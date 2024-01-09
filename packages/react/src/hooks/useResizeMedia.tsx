@@ -11,6 +11,8 @@ export const useResizeMedia = (
   props: MediaResizeProps,
   refResizable: React.RefObject<HTMLImageElement | HTMLVideoElement>,
 ) => {
+  const MIN_WIDTH = 250;
+
   const aspectRatio = useRef(0);
 
   const lastCursorX = useRef(-1);
@@ -21,7 +23,7 @@ export const useResizeMedia = (
 
   const proseMirrorContainerWidth = useRef(0);
 
-  const limitWidthOrHeight = (width: number) => width < 250;
+  const limitWidthOrHeight = (width: number) => width < MIN_WIDTH;
 
   useEffect(() => {
     const proseMirrorContainerDiv = document.querySelector(".ProseMirror");
@@ -70,9 +72,11 @@ export const useResizeMedia = (
     if (newMediaDimensions.width > proseMirrorContainerWidth.current)
       newMediaDimensions.width = proseMirrorContainerWidth.current;
 
-    newMediaDimensions.height = newMediaDimensions.width / aspectRatio.current;
+    if (diff !== 0 && limitWidthOrHeight(newMediaDimensions.width)) {
+      newMediaDimensions.width = MIN_WIDTH;
+    }
 
-    if (limitWidthOrHeight(newMediaDimensions.width)) return;
+    newMediaDimensions.height = newMediaDimensions.width / aspectRatio.current;
 
     setTimeout(() => {
       props.updateAttributes(newMediaDimensions);
