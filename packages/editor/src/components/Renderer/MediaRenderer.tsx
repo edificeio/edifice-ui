@@ -19,7 +19,6 @@ const MediaRenderer = (props: MediaResizeProps) => {
     isHorizontalResizeActive,
     isVerticalResizeActive,
   } = useResizeMedia(props, resizableMedia);
-
   return (
     <NodeViewWrapper>
       <div
@@ -27,10 +26,10 @@ const MediaRenderer = (props: MediaResizeProps) => {
         style={{ position: "relative", width: "fit-content" }}
       >
         <div data-drag-handle>
-          {node.attrs["media-type"] === "img" ? (
+          {node.type.name === "custom-image" ? (
             <Image
               {...node.attrs}
-              className={`custum-image`}
+              className={`custom-image`}
               ref={resizableMedia as React.RefObject<HTMLImageElement>}
             />
           ) : (
