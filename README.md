@@ -1,6 +1,6 @@
 # Edifice UI
 
-Edifice React Monorepo with React Components and Icons Library
+Edifice React Monorepo with React Components, Editor and Icons Library
 
 ## Prerequisites
 

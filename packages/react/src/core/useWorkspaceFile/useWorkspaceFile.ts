@@ -48,8 +48,10 @@ const useWorkspaceFile = () => {
 
   // const put = () => {}
 
-  const remove = async (file: WorkspaceElement) => {
-    return await odeServices.workspace().deleteFile([file]);
+  const remove = async (file: WorkspaceElement | WorkspaceElement[]) => {
+    return await odeServices
+      .workspace()
+      .deleteFile(Array.isArray(file) ? file : [file]);
   };
 
   return {

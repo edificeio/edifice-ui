@@ -21,7 +21,7 @@ export const Workspace = () => {
 
   function handleSelect(result: WorkspaceElement[]) {
     setResultCounter(result.length);
-    if (result.length > 0) {
+    if (result.length) {
       setResult(result);
     } else {
       setResult();

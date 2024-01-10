@@ -23,10 +23,14 @@ const acceptedTypes = (type: MediaLibraryType) => {
 };
 
 export const Upload = () => {
-  const { type, setResult, setResultCounter } = useMediaLibraryContext();
+  const { type, setResult, setResultCounter, addCancellable } =
+    useMediaLibraryContext();
 
   const handleOnFilesChange = (uploadedFiles: WorkspaceElement[]) => {
     if (uploadedFiles.length) {
+      // Uploaded files are subject to cancel action
+      addCancellable(uploadedFiles);
+      // Uploaded files are subject to success action
       setResultCounter(uploadedFiles.length);
       setResult(uploadedFiles);
     } else {

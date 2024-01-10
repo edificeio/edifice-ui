@@ -156,11 +156,11 @@ export function useHelp() {
   // @ts-expect-error
   const parsedContent = parsedHTML?.props?.children.find(
     (child: { type: string }) => child.type === "body",
-  ).props.children;
+  )?.props?.children;
 
   const parsedHeadline = parsedContent?.find(
     (child: { type: string }) => child.type === "p",
-  ).props.children;
+  )?.props?.children;
 
   return {
     html,

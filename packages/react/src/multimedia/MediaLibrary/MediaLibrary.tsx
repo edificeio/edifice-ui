@@ -154,8 +154,11 @@ export interface MediaLibraryProps {
    * @param result depends on which InnerTab is visible
    */
   onSuccess: (result: MediaLibraryResult) => void;
-  /** Called when the user closes the modal. */
-  onCancel: () => void;
+  /**
+   * Called when the user closes the modal.
+   * @param uploads uploaded elements to remove, depend on which InnerTab is visible
+   */
+  onCancel: (uploads?: WorkspaceElement[]) => void;
 }
 
 //---------------------------------------------------
@@ -295,6 +298,7 @@ const MediaLibrary = forwardRef(
     // Stateful contextual values
     const [resultCounter, setResultCounter] = useState<number | undefined>();
     const [result, setResult] = useState<MediaLibraryResult | undefined>();
+    const [cancellable, setCancellable] = useState<WorkspaceElement[]>([]);
     const [onSuccessAction, setPreSuccess] =
       useState<() => Promise<MediaLibraryResult>>();
 
@@ -344,11 +348,28 @@ const MediaLibrary = forwardRef(
     const modalHeader = t(
       mediaLibraryTypes[type ?? "none"]?.title ?? "Bibliothèque multimédia", // FIXME i18n key
     );
-    const handleTabChange = () => {
+    const addCancellable = (uploads: WorkspaceElement[]) =>
+      setCancellable((previous) => {
+        // Append WorkspaceElements which not already in the list.
+        const ids = previous.map((element) => element._id);
+        const newUploads = uploads.filter(
+          (upload) =>
+            upload._id && ids.findIndex((id) => id === upload._id) < 0,
+        );
+        return previous.concat(newUploads);
+      });
+
+    const resetState = () => {
       setResult(undefined);
       setResultCounter(undefined);
       setLinkTabProps(undefined);
       setDefaultTabId(undefined);
+      setPreSuccess(undefined);
+      setCancellable([]);
+    };
+
+    const handleTabChange = () => {
+      resetState();
     };
 
     const handleOnSuccess = useCallback(() => {
@@ -359,15 +380,12 @@ const MediaLibrary = forwardRef(
       } else if (result) {
         onSuccess(result);
       }
-
-      setLinkTabProps(undefined);
-      setDefaultTabId(undefined);
+      resetState();
     }, [onSuccess, onSuccessAction, result]);
 
     const handleOnCancel = () => {
-      onCancel();
-      setLinkTabProps(undefined);
-      setDefaultTabId(undefined);
+      onCancel(cancellable);
+      resetState();
     };
 
     return type ? (
@@ -377,6 +395,7 @@ const MediaLibrary = forwardRef(
           type,
           setResultCounter,
           setResult,
+          addCancellable,
           setVisibleTab,
           switchType,
           setPreSuccess,

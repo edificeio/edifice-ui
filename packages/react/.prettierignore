@@ -1,7 +1,7 @@
 # Ignore everything:
 /*
 *.d.ts
-/src/utils
+/src/styles
 
 # Except web-app:
 !/src
