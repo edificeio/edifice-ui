@@ -1,11 +1,11 @@
-import { Fragment, RefAttributes, useState } from "react";
+import { Fragment, RefAttributes } from "react";
 
-import { TypoSizeLevel } from "@edifice-tiptap-extensions/extension-typosize";
 import { TextSize } from "@edifice-ui/icons";
 import { Dropdown, IconButton, IconButtonProps } from "@edifice-ui/react";
 import { useTranslation } from "react-i18next";
 
 import { useEditorContext } from "../../hooks/useEditorContext";
+import { hasExtension } from "../../utils/has-extension";
 
 interface Props {
   /**
@@ -20,42 +20,50 @@ export const EditorToolbarTextSize = ({ triggerProps }: Props) => {
   const { t } = useTranslation();
   const { editor } = useEditorContext();
 
-  const [size, setSize] = useState<TypoSizeLevel>();
-
-  /* FIXME
-  useEffect(() => {
-    // When cursor moves in editor, update the text values.
-    const textStyle = editor?.getAttributes("textStyle");
-    // TODO setSize( ?? 5);
-  }, [editor, editor?.state]);
-  */
-
-  const sizes = [
+  const textOptions = [
     {
-      value: "2",
       label: t("tiptap.toolbar.size.h1"),
-      className: "fs-2 fw-bold",
+      className: "fs-2 fw-bold text-secondary",
+      action: () =>
+        editor?.chain().focus().setCustomHeading({ level: 1 }).run(),
+      visibility: hasExtension("customHeading", editor),
     },
     {
-      value: "3",
       label: t("tiptap.toolbar.size.h2"),
-      className: "fs-3 fw-bold",
+      className: "fs-3 fw-bold text-secondary",
+      action: () =>
+        editor?.chain().focus().setCustomHeading({ level: 2 }).run(),
+      visibility: hasExtension("customHeading", editor),
     },
     {
-      value: "4",
+      type: "divider",
+      visibility:
+        hasExtension("customHeading", editor) &&
+        hasExtension("fontSize", editor),
+    },
+    {
       label: t("tiptap.toolbar.size.big"),
       className: "fs-4",
+      action: () =>
+        editor?.chain().focus().setParagraph().setFontSize("18px").run(),
+      visibility: hasExtension("fontSize", editor),
     },
     {
-      value: "5",
       label: t("tiptap.toolbar.size.normal"),
+      action: () =>
+        editor?.chain().focus().setParagraph().setFontSize("16px").run(),
+      visibility: hasExtension("fontSize", editor),
     },
     {
-      value: "6",
       label: t("tiptap.toolbar.size.small"),
       className: "fs-6",
+      action: () =>
+        editor?.chain().focus().setParagraph().setFontSize("14px").run(),
+      visibility: hasExtension("fontSize", editor),
     },
   ];
+
+  console.log(hasExtension("customHeading", editor));
 
   return (
     <>
@@ -68,20 +76,16 @@ export const EditorToolbarTextSize = ({ triggerProps }: Props) => {
         aria-label={t("tiptap.toolbar.size.choice")}
       />
       <Dropdown.Menu>
-        {sizes.map(({ value, label, className }) => {
+        {textOptions.map((option) => {
           return (
-            <Fragment key={value}>
-              <Dropdown.RadioItem
-                value={value}
-                model={`${size}`}
-                onChange={(newValue: string) => {
-                  const level = parseInt(newValue) as TypoSizeLevel;
-                  editor?.chain().focus().toggleTypoSize({ level }).run();
-                  setSize(level);
-                }}
-              >
-                <span className={className}>{label}</span>
-              </Dropdown.RadioItem>
+            <Fragment key={option.label}>
+              {option.type === "divider" && option.visibility ? (
+                <Dropdown.Separator />
+              ) : option.visibility ? (
+                <Dropdown.Item onClick={option.action}>
+                  <span className={option.className}>{option.label}</span>
+                </Dropdown.Item>
+              ) : null}
             </Fragment>
           );
         })}

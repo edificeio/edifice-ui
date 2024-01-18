@@ -33,6 +33,9 @@ import {
   useEditorContext,
   useSpeechRecognition,
 } from "../..";
+import { hasExtension } from "../../utils/has-extension";
+import { hasMark } from "../../utils/has-mark";
+import { hasTextStyle } from "../../utils/has-text-style";
 
 interface Props {
   /** Ref to a MediaLibrary instance */
@@ -58,16 +61,6 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
   } = useSpeechRecognition(editor);
 
   const toolbarItems: ToolbarItem[] = useMemo(() => {
-    const hasMark = (extensionName: string) =>
-      !!editor?.extensionManager.splittableMarks.includes(extensionName);
-    const hasExtension = (extensionName: string) =>
-      !!editor?.extensionManager.extensions.find(
-        (item) => item.name === extensionName,
-      );
-    const hasTextStyle = (styleName: string) =>
-      editor?.extensionManager.extensions.find(
-        (item) => item.name === styleName && hasMark("textStyle"),
-      );
     const showIf = (truthy: boolean) => (truthy ? "show" : "hide");
 
     return [
@@ -149,7 +142,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
           ) => <EditorToolbarTypography triggerProps={triggerProps} />,
         },
         name: "text_typo",
-        visibility: showIf(hasExtension("fontFamily")),
+        visibility: showIf(hasExtension("fontFamily", editor)),
       },
       //--------------- TEXT SIZE ---------------//
       {
@@ -162,7 +155,10 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
           ) => <EditorToolbarTextSize triggerProps={triggerProps} />,
         },
         name: "text_size",
-        visibility: showIf(hasExtension("typoSize")),
+        visibility: showIf(
+          hasExtension("fontSize", editor) ||
+            hasExtension("customHeading", editor),
+        ),
       },
       //--------------- TEXT COLOR ---------------//
       {
@@ -182,7 +178,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
         },
         overflow: false,
         name: "color",
-        visibility: hasTextStyle("color") ? "show" : "hide",
+        visibility: hasTextStyle("color", editor) ? "show" : "hide",
       },
       //--------------- TEXT HIGHLIGHTING COLOR ---------------//
       {
@@ -201,7 +197,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
           ),
         },
         name: "highlight",
-        visibility: showIf(hasMark("highlight")),
+        visibility: showIf(hasMark("highlight", editor)),
       },
       //-------------------------------------//
       {
@@ -218,7 +214,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
           onClick: () => editor?.chain().focus().toggleBold().run(),
         },
         name: "bold",
-        visibility: showIf(hasMark("bold")),
+        visibility: showIf(hasMark("bold", editor)),
       },
       //--------------- ITALIC ---------------//
       {
@@ -230,7 +226,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
           onClick: () => editor?.chain().focus().toggleItalic().run(),
         },
         name: "italic",
-        visibility: showIf(hasMark("italic")),
+        visibility: showIf(hasMark("italic", editor)),
       },
       //--------------- UNDERLINE ---------------//
       {
@@ -242,7 +238,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
           onClick: () => editor?.chain().focus().toggleUnderline().run(),
         },
         name: "underline",
-        visibility: showIf(hasMark("underline")),
+        visibility: showIf(hasMark("underline", editor)),
       },
       //-------------------------------------//
       {
@@ -301,7 +297,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
           ),
         },
         name: "list",
-        visibility: showIf(hasExtension("starterKit")),
+        visibility: showIf(hasExtension("starterKit", editor)),
       },
       //--------------- TEXT ALIGNMENT ---------------//
       {
@@ -321,7 +317,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
           ),
         },
         name: "alignment",
-        visibility: showIf(hasExtension("textAlign")),
+        visibility: showIf(hasExtension("textAlign", editor)),
       },
       //-------------------------------------//
       {
@@ -335,7 +331,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
           children: () => <EditorToolbarPlusMenu options={plusOptions} />,
         },
         name: "plus",
-        visibility: showIf(hasExtension("textAlign")),
+        visibility: showIf(hasExtension("textAlign", editor)),
       },
     ];
   }, [

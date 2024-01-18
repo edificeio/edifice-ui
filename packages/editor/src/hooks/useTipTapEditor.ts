@@ -6,12 +6,13 @@ import "@edifice-tiptap-extensions/extension-image";
 import "@edifice-tiptap-extensions/extension-video";
 
 import { Alerts } from "@edifice-tiptap-extensions/extension-alert";
+import { FontSize } from "@edifice-tiptap-extensions/extension-font-size";
+import { CustomHeading } from "@edifice-tiptap-extensions/extension-heading";
 import { Hyperlink } from "@edifice-tiptap-extensions/extension-hyperlink";
 import { Iframe } from "@edifice-tiptap-extensions/extension-iframe";
 import { SpeechRecognition } from "@edifice-tiptap-extensions/extension-speechrecognition";
 import { SpeechSynthesis } from "@edifice-tiptap-extensions/extension-speechsynthesis";
 import { TableCell } from "@edifice-tiptap-extensions/extension-table-cell";
-import { TypoSize } from "@edifice-tiptap-extensions/extension-typosize";
 import { useOdeClient } from "@edifice-ui/react";
 import Color from "@tiptap/extension-color";
 import Focus from "@tiptap/extension-focus";
@@ -77,8 +78,9 @@ export const useTipTapEditor = (editable: boolean, content: Content) => {
       TextAlign.configure({
         types: ["heading", "paragraph"],
       }),
+      CustomHeading,
       Typography,
-      TypoSize,
+      FontSize,
       SpeechRecognition,
       SpeechSynthesis.configure({
         lang:
@@ -90,12 +92,12 @@ export const useTipTapEditor = (editable: boolean, content: Content) => {
       Hyperlink,
       FontFamily,
       Mathematics,
+      Alerts,
       VideoNodeView(MediaRenderer),
       AudioNodeView(AudioRenderer),
       ImageNodeView(MediaRenderer),
       LinkerNodeView(LinkerRenderer),
       AttachmentNodeView(AttachmentRenderer),
-      Alerts,
     ],
     content,
   });
