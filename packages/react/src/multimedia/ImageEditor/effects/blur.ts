@@ -1,6 +1,6 @@
 import * as PIXI from "pixi.js";
 
-import { debounceAggregate } from "../utils/debounceAggregate";
+import { aggregate } from "../utils/aggregate";
 
 //
 // Global constants used for crop effects
@@ -49,7 +49,7 @@ function drawBlurListener(
   application: PIXI.Application,
   { spriteName }: { spriteName: string },
 ) {
-  return debounceAggregate(
+  return aggregate(
     DEBOUNCE,
     (event: PIXI.FederatedMouseEvent) => {
       return application.stage.toLocal(event.global);

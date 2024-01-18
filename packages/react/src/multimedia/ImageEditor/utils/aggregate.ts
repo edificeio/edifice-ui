@@ -24,6 +24,8 @@ export function aggregate<INPUT, OUTPUT>(
       pending.splice(0, pending.length);
       // call with aggregated
       callback(copy);
+      // reset timer
+      timerId = undefined;
     }, delay) as unknown as number;
   };
 }
