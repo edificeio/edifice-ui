@@ -13,9 +13,12 @@ const useUploadFiles = ({
 }) => {
   const [uploadedFiles, setUploadedFiles] = useState<WorkspaceElement[]>([]);
   const [status, setStatus] = useState<Record<string, Status>>({});
+  const [editingImage, setEditingImage] = useState<
+    WorkspaceElement | undefined
+  >(undefined);
 
   const { files, deleteFile } = useDropzoneContext();
-  const { create, remove } = useWorkspaceFile();
+  const { create, remove, createOrUpdate } = useWorkspaceFile();
 
   useEffect(() => {
     if (files.length > 0) {
@@ -85,10 +88,44 @@ const useUploadFiles = ({
     }
   }
 
+  async function updateImage({
+    blob,
+    legend,
+    altText: alt,
+  }: {
+    blob: Blob;
+    legend: string;
+    altText: string;
+  }) {
+    if (!editingImage) {
+      return;
+    }
+    try {
+      await createOrUpdate({
+        blob,
+        legend,
+        alt,
+        uri: getUrl(editingImage),
+      });
+    } finally {
+      setEditingImage(undefined);
+    }
+  }
+  function getUrl(resource?: WorkspaceElement, timestamp?: boolean) {
+    return resource
+      ? `/workspace/document/${resource?._id}?timestamp=${
+          timestamp ? new Date().getTime() : ""
+        }`
+      : "";
+  }
   return {
     files,
     status,
     uploadedFiles,
+    editingImage,
+    setEditingImage,
+    getUrl,
+    updateImage,
     uploadFile,
     removeFile,
   };

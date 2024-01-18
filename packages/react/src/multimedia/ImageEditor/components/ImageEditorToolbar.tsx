@@ -1,16 +1,20 @@
 import { useState } from "react";
 
-import { Blur, Crop, FullScreen, Reset, Undo } from "@edifice-ui/icons";
+import { Blur, Crop, Reset, Undo } from "@edifice-ui/icons";
 import { useTranslation } from "react-i18next";
 
 import { Button } from "../../../components";
 
 export type ImageEditorAction = "ROTATE" | "UNDO" | "CROP" | "BLUR" | "RESIZE";
 interface ImageEditorToolbarProps {
+  historyCount: number;
   handle(operation: ImageEditorAction): void;
 }
 
-const ImageEditorToolbar = ({ handle }: ImageEditorToolbarProps) => {
+const ImageEditorToolbar = ({
+  historyCount,
+  handle,
+}: ImageEditorToolbarProps) => {
   const { t } = useTranslation();
   const [action, setAction] = useState<ImageEditorAction | undefined>(
     undefined,
@@ -27,13 +31,14 @@ const ImageEditorToolbar = ({ handle }: ImageEditorToolbarProps) => {
       <Button
         color="tertiary"
         type="button"
-        variant={"ghost"}
+        variant="ghost"
         leftIcon={<Undo />}
+        disabled={historyCount === 0}
         onClick={() => handleAndSave("UNDO")}
       >
         {t("cancel")}
       </Button>
-      <>&#10072;</>
+      <span className="text-gray-400">&#10072;</span>
       <Button
         color="tertiary"
         type="button"
@@ -46,8 +51,9 @@ const ImageEditorToolbar = ({ handle }: ImageEditorToolbarProps) => {
       <Button
         color="tertiary"
         type="button"
+        variant="ghost"
         leftIcon={<Crop />}
-        variant={action === "CROP" ? "filled" : "ghost"}
+        className={action === "CROP" ? "is-selected" : ""}
         onClick={() => handleAndSave("CROP")}
       >
         {t("crop")}
@@ -55,17 +61,9 @@ const ImageEditorToolbar = ({ handle }: ImageEditorToolbarProps) => {
       <Button
         color="tertiary"
         type="button"
-        leftIcon={<FullScreen />}
-        variant={action === "RESIZE" ? "filled" : "ghost"}
-        onClick={() => handleAndSave("RESIZE")}
-      >
-        {t("resize")}
-      </Button>
-      <Button
-        color="tertiary"
-        type="button"
+        variant="ghost"
         leftIcon={<Blur />}
-        variant={action === "BLUR" ? "filled" : "ghost"}
+        className={action === "BLUR" ? "is-selected" : ""}
         onClick={() => handleAndSave("BLUR")}
       >
         {t("blur")}
