@@ -2,7 +2,7 @@ import { Suspense, lazy, forwardRef, useImperativeHandle, Ref } from "react";
 
 import "@edifice-tiptap-extensions/extension-image";
 import { LoadingScreen, MediaLibrary, useOdeClient } from "@edifice-ui/react";
-import { BubbleMenu, EditorContent, Content, JSONContent } from "@tiptap/react";
+import { EditorContent, Content, JSONContent } from "@tiptap/react";
 
 import {
   EditorToolbar,
@@ -111,23 +111,11 @@ const Editor = forwardRef(
         <TableToolbar editor={editor} />
 
         {editor && (
-          <BubbleMenu
-            className={imageModal.isOpen ? "d-none" : ""}
-            shouldShow={({ editor }) => {
-              return editor.isActive("custom-image") && !imageModal.isOpen;
-            }}
+          <BubbleMenuEditImage
             editor={editor}
-            tippyOptions={{
-              duration: 100,
-              placement: "bottom-start",
-              zIndex: 999,
-            }}
-          >
-            <BubbleMenuEditImage
-              editor={editor}
-              onEditImage={imageModal.handleEdit}
-            />
-          </BubbleMenu>
+            onEditImage={imageModal.handleEdit}
+            openEditImage={imageModal.isOpen}
+          />
         )}
 
         <Suspense fallback={<LoadingScreen />}>

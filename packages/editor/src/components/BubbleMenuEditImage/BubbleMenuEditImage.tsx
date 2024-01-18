@@ -1,3 +1,5 @@
+import { useMemo } from "react";
+
 import {
   ImageSizeLarge,
   ImageSizeMedium,
@@ -5,7 +7,7 @@ import {
   Wand,
 } from "@edifice-ui/icons";
 import { Button, IconButton } from "@edifice-ui/react";
-import { Editor } from "@tiptap/react";
+import { Editor, BubbleMenu } from "@tiptap/react";
 import { useTranslation } from "react-i18next";
 
 interface ButtonSize {
@@ -20,9 +22,11 @@ interface ButtonSize {
 const BubbleMenuEditImage = ({
   editor,
   onEditImage,
+  openEditImage,
 }: {
   editor: Editor;
   onEditImage: () => void;
+  openEditImage: boolean;
 }) => {
   const { t } = useTranslation();
 
@@ -53,6 +57,47 @@ const BubbleMenuEditImage = ({
     },
   ];
 
+  const tippyOptions: any = useMemo(() => {
+    // Adjust a DOMRect to make it visible at a correct place.
+    function adjustRect(rect: DOMRect) {
+      let yOffset = 0;
+      if (window.visualViewport) {
+        const bottomScreen =
+          window.innerHeight || document.documentElement.clientHeight;
+        if (rect.bottom >= bottomScreen) {
+          yOffset += rect.bottom - bottomScreen - rect.height;
+        }
+      }
+      return new DOMRect(rect.x, rect.y - yOffset, rect.width, rect.height);
+    }
+
+    return {
+      placement: "bottom-start",
+      offset: [0, 0],
+      zIndex: 999,
+      duration: 100,
+      // Try to get the bounding rect of the table.
+      getReferenceClientRect: () => {
+        const parentDiv = editor?.isActive("custom-image")
+          ? editor.state.selection.$anchor
+          : null;
+
+        if (parentDiv) {
+          const parentDomNode = editor?.view.nodeDOM(parentDiv.pos) as
+            | HTMLElement
+            | undefined;
+
+          if (parentDomNode) {
+            return adjustRect(parentDomNode.getBoundingClientRect());
+          }
+        }
+
+        // This should never happen... but it keeps the transpiler happy.
+        return new DOMRect(0, 0, 100, 100);
+      },
+    };
+  }, [editor]);
+
   const handleButtonClick = (buttonSize: ButtonSize) => {
     editor
       .chain()
@@ -70,35 +115,44 @@ const BubbleMenuEditImage = ({
   const selectedNode = editor.view.state.doc.nodeAt(selection.anchor);
 
   return (
-    <div className="bubble-menu">
-      <Button
-        size="lg"
-        variant="ghost"
-        leftIcon={<Wand />}
-        color="secondary"
-        onClick={onEditImage}
-      >
-        {t("tiptap.bubblemenu.edit")}
-      </Button>
-      <div className="vr"></div>
-      {buttonSizeList.map((button, index) => (
-        <IconButton
-          key={index}
-          className={
-            selectedNode?.attrs?.size === button.sizeName &&
-            selectedNode?.attrs?.width === button.size.width
-              ? "is-selected"
-              : ""
-          }
-          icon={button.icon}
+    <BubbleMenu
+      className={openEditImage ? "d-none" : ""}
+      shouldShow={({ editor }) => {
+        return editor.isActive("custom-image") && !openEditImage;
+      }}
+      editor={editor}
+      tippyOptions={tippyOptions}
+    >
+      <div className="bubble-menu">
+        <Button
+          size="lg"
           variant="ghost"
-          color="tertiary"
-          onClick={() => {
-            handleButtonClick(button);
-          }}
-        />
-      ))}
-    </div>
+          leftIcon={<Wand />}
+          color="secondary"
+          onClick={onEditImage}
+        >
+          {t("tiptap.bubblemenu.edit")}
+        </Button>
+        <div className="vr"></div>
+        {buttonSizeList.map((button, index) => (
+          <IconButton
+            key={index}
+            className={
+              selectedNode?.attrs?.size === button.sizeName &&
+              selectedNode?.attrs?.width === button.size.width
+                ? "is-selected"
+                : ""
+            }
+            icon={button.icon}
+            variant="ghost"
+            color="tertiary"
+            onClick={() => {
+              handleButtonClick(button);
+            }}
+          />
+        ))}
+      </div>
+    </BubbleMenu>
   );
 };
 
