@@ -102,7 +102,7 @@ const MathsModal = ({ isOpen, onSuccess, onCancel }: ModalProps) => {
           type="button"
           variant="ghost"
         >
-          {t("Annuler")}
+          {t("tiptap.maths.cancel")}
         </Button>
         <Button
           color="primary"
@@ -110,7 +110,7 @@ const MathsModal = ({ isOpen, onSuccess, onCancel }: ModalProps) => {
           type="button"
           variant="filled"
         >
-          {t("Ajouter")}
+          {t("tiptap.maths.add")}
         </Button>
       </Modal.Footer>
     </Modal>,

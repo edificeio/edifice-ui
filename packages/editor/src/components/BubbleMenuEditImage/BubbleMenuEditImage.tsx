@@ -6,7 +6,7 @@ import {
   ImageSizeSmall,
   Wand,
 } from "@edifice-ui/icons";
-import { Button, IconButton } from "@edifice-ui/react";
+import { Button, IconButton, Tooltip } from "@edifice-ui/react";
 import { Editor, BubbleMenu } from "@tiptap/react";
 import { useTranslation } from "react-i18next";
 
@@ -33,6 +33,7 @@ const BubbleMenuEditImage = ({
   const buttonSizeList = [
     {
       icon: <ImageSizeSmall />,
+      label: "tiptap.tooltip.bubblemenu.image.small",
       sizeName: "small",
       size: {
         width: 250,
@@ -41,6 +42,7 @@ const BubbleMenuEditImage = ({
     },
     {
       icon: <ImageSizeMedium />,
+      label: "tiptap.tooltip.bubblemenu.image.medium",
       sizeName: "medium",
       size: {
         width: 350,
@@ -49,6 +51,7 @@ const BubbleMenuEditImage = ({
     },
     {
       icon: <ImageSizeLarge />,
+      label: "tiptap.tooltip.bubblemenu.image.big",
       sizeName: "large",
       size: {
         width: 500,
@@ -124,32 +127,39 @@ const BubbleMenuEditImage = ({
       tippyOptions={tippyOptions}
     >
       <div className="bubble-menu">
-        <Button
-          size="lg"
-          variant="ghost"
-          leftIcon={<Wand />}
-          color="secondary"
-          onClick={onEditImage}
+        <Tooltip
+          message={t("tiptap.tooltip.bubblemenu.image.edit")}
+          placement="top"
         >
-          {t("tiptap.bubblemenu.edit")}
-        </Button>
+          <Button
+            size="lg"
+            variant="ghost"
+            leftIcon={<Wand />}
+            color="secondary"
+            onClick={onEditImage}
+          >
+            {t("tiptap.bubblemenu.edit")}
+          </Button>
+        </Tooltip>
         <div className="vr"></div>
         {buttonSizeList.map((button, index) => (
-          <IconButton
-            key={index}
-            className={
-              selectedNode?.attrs?.size === button.sizeName &&
-              selectedNode?.attrs?.width === button.size.width
-                ? "is-selected"
-                : ""
-            }
-            icon={button.icon}
-            variant="ghost"
-            color="tertiary"
-            onClick={() => {
-              handleButtonClick(button);
-            }}
-          />
+          <Tooltip key={index} message={t(button.label)} placement="top">
+            <IconButton
+              className={
+                selectedNode?.attrs?.size === button.sizeName &&
+                selectedNode?.attrs?.width === button.size.width
+                  ? "is-selected"
+                  : ""
+              }
+              aria-label="Delete"
+              icon={button.icon}
+              variant="ghost"
+              color="tertiary"
+              onClick={() => {
+                handleButtonClick(button);
+              }}
+            />
+          </Tooltip>
         ))}
       </div>
     </BubbleMenu>

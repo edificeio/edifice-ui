@@ -15,6 +15,7 @@ import {
   Dropdown,
   IconButton,
   IconButtonProps,
+  Tooltip,
 } from "@edifice-ui/react";
 import { useTranslation } from "react-i18next";
 
@@ -85,15 +86,17 @@ export const EditorToolbarTextColor = ({ triggerProps, itemRefs }: Props) => {
 
   return (
     <>
-      <IconButton
-        {...triggerProps}
-        type="button"
-        variant="ghost"
-        color="tertiary"
-        icon={<TextColor />}
-        aria-label={t("tiptap.toolbar.color.text")}
-        className={isActive ? "selected" : ""}
-      />
+      <Tooltip message={t("tiptap.toolbar.color.text")} placement="top">
+        <IconButton
+          {...triggerProps}
+          type="button"
+          variant="ghost"
+          color="tertiary"
+          icon={<TextColor />}
+          aria-label={t("tiptap.toolbar.color.text")}
+          className={isActive ? "selected" : ""}
+        />
+      </Tooltip>
       <Dropdown.Menu>
         <ColorPicker
           ref={(el: any) => (itemRefs.current["color-picker"] = el)}

@@ -134,7 +134,7 @@ const ImageEditor = ({
       size="lg"
     >
       <Modal.Header onModalClose={handleCancel}>
-        <span className="h2">{t("Retouche de l'image")}</span>
+        <span className="h2">{t("imageeditor.title")}</span>
       </Modal.Header>
       <Modal.Body>
         <div className="d-flex flex-column align-items-center gap-12">
@@ -145,27 +145,27 @@ const ImageEditor = ({
           ></Stage>
           <div className="d-flex flex-column flex-md-row m-10 gap-12 w-100">
             <FormControl id="alt" className="flex-grow-1">
-              <Label>{t("Texte alternatif")}</Label>
+              <Label>{t("alttext")}</Label>
               <Input
                 value={altText}
                 onChange={(e) => {
                   setDirty(true);
                   setAltText(e.target.value);
                 }}
-                placeholder={t("Affiché pour les non-voyants")}
+                placeholder={t("alttext.help")}
                 size="md"
                 type="text"
               />
             </FormControl>
             <FormControl id="legend" className="flex-grow-1">
-              <Label>{t("Légende")}</Label>
+              <Label>{t("legend")}</Label>
               <Input
                 value={legend}
                 onChange={(e) => {
                   setDirty(true);
                   setLegend(e.target.value);
                 }}
-                placeholder={t("Légende de l’image")}
+                placeholder={t("legend.help")}
                 size="md"
                 type="text"
               />
@@ -180,7 +180,7 @@ const ImageEditor = ({
           type="button"
           variant="outline"
         >
-          {t("Annuler")}
+          {t("imageeditor.cancel")}
         </Button>
         <Button
           color="primary"
@@ -190,7 +190,7 @@ const ImageEditor = ({
           isLoading={isSaving}
           disabled={isSaving || !dirty}
         >
-          {"Enregistrer"}
+          {"imageeditor.save"}
         </Button>
       </Modal.Footer>
     </Modal>

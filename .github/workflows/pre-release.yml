@@ -61,7 +61,7 @@ jobs:
 
           echo "Your current branch is ${{ github.ref_name }}"
 
-          npx lerna publish --canary --preid ${{ github.ref_name }} --pre-dist-tag ${{ github.ref_name }} --yes
+          npx lerna publish prerelease --preid ${{ github.ref_name }} --pre-dist-tag ${{ github.ref_name }} --yes
 
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

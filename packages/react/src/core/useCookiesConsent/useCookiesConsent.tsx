@@ -8,8 +8,12 @@ export default function useCookiesConsent() {
 
   useEffect(() => {
     (async () => {
-      const res: boolean = await getPreference();
-      setShowCookiesConsent(res === null ? true : res);
+      const res: { showInfoTip: boolean } = await getPreference();
+      if (res === null) {
+        setShowCookiesConsent(true);
+      } else {
+        setShowCookiesConsent(res.showInfoTip);
+      }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

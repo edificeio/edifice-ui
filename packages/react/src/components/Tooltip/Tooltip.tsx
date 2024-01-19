@@ -81,7 +81,7 @@ const Tooltip = ({
       >
         {children}
       </div>
-      {visible && (
+      {visible && message && (
         <div
           className={clsx("tooltip d-block show mb-12", `bs-tooltip-auto`)}
           ref={setPopperElement}

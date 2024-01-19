@@ -41,6 +41,10 @@ const LinkToolbar = ({
           "aria-label": t("tiptap.link.toolbar.edit"),
           onClick: () => onEdit?.(linkAttrs),
         },
+        tooltip: {
+          message: t("tiptap.link.toolbar.tooltip.edit"),
+          position: "bottom",
+        },
       },
       {
         type: "icon",
@@ -50,6 +54,10 @@ const LinkToolbar = ({
           "aria-label": t("tiptap.link.toolbar.open"),
           onClick: () => onOpen?.(linkAttrs),
         },
+        tooltip: {
+          message: t("tiptap.link.toolbar.tooltip.open"),
+          position: "bottom",
+        },
       },
       {
         type: "icon",
@@ -58,6 +66,10 @@ const LinkToolbar = ({
           icon: <Unlink className="text-danger" />,
           "aria-label": t("tiptap.link.toolbar.unlink"),
           onClick: () => onUnlink?.(linkAttrs),
+        },
+        tooltip: {
+          message: t("tiptap.link.toolbar.tooltip.unlink"),
+          position: "bottom",
         },
       },
     ];

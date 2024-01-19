@@ -1,6 +1,7 @@
 import { SuccessOutline, Wand, Close, Reset } from "@edifice-ui/icons";
 import { useTranslation } from "react-i18next";
 
+import { Tooltip } from "..";
 import { usePaths } from "../../core";
 import { Status } from "../../types";
 import { Button, IconButton } from "../Button";
@@ -114,11 +115,13 @@ const UploadCard = ({
           <div className="ms-auto">
             <div className="d-flex align-items-center gap-12">
               {isLoading && (
-                <Loading
-                  isLoading
-                  loadingPosition="left"
-                  className="text-secondary"
-                />
+                <Tooltip message={t("Chargement en cours")} placement="top">
+                  <Loading
+                    isLoading
+                    loadingPosition="left"
+                    className="text-secondary"
+                  />
+                </Tooltip>
               )}
               {isSuccess && <SuccessOutline className="text-success" />}
               {isError && (
@@ -133,22 +136,26 @@ const UploadCard = ({
               )}
               {!isIdle && <div className="vr"></div>}
               {isTypeImage && (
-                <IconButton
-                  icon={<Wand />}
-                  variant="ghost"
-                  aria-label="edit"
-                  disabled={isLoading || !isSuccess}
-                  onClick={onEdit}
-                  color="secondary"
-                />
+                <Tooltip message={t("Modifier l'image")} placement="top">
+                  <IconButton
+                    icon={<Wand />}
+                    variant="ghost"
+                    aria-label={t("Modifier l'image")}
+                    disabled={isLoading || !isSuccess}
+                    onClick={onEdit}
+                    color="secondary"
+                  />
+                </Tooltip>
               )}
-              <IconButton
-                icon={<Close />}
-                variant="ghost"
-                aria-label="delete"
-                color="tertiary"
-                onClick={onDelete}
-              />
+              <Tooltip message={t("Supprimer le fichier")} placement="top">
+                <IconButton
+                  icon={<Close />}
+                  variant="ghost"
+                  aria-label={t("Supprimer le fichier")}
+                  color="tertiary"
+                  onClick={onDelete}
+                />
+              </Tooltip>
             </div>
           </div>
         )}

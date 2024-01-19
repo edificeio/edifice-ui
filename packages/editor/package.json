@@ -1,6 +1,6 @@
 {
   "name": "@edifice-ui/editor",
-  "version": "1.4.0-develop.14",
+  "version": "1.4.0-develop.24",
   "description": "Edifice Editor Library",
   "keywords": [
     "react",
@@ -46,6 +46,8 @@
     "@edifice-tiptap-extensions/extension-alert": "develop",
     "@edifice-tiptap-extensions/extension-attachment": "develop",
     "@edifice-tiptap-extensions/extension-audio": "develop",
+    "@edifice-tiptap-extensions/extension-font-size": "develop",
+    "@edifice-tiptap-extensions/extension-heading": "develop",
     "@edifice-tiptap-extensions/extension-hyperlink": "develop",
     "@edifice-tiptap-extensions/extension-iframe": "develop",
     "@edifice-tiptap-extensions/extension-image": "develop",
@@ -53,7 +55,6 @@
     "@edifice-tiptap-extensions/extension-speechrecognition": "develop",
     "@edifice-tiptap-extensions/extension-speechsynthesis": "develop",
     "@edifice-tiptap-extensions/extension-table-cell": "develop",
-    "@edifice-tiptap-extensions/extension-typosize": "develop",
     "@edifice-tiptap-extensions/extension-video": "develop",
     "@tiptap-pro/extension-mathematics": "2.2.1",
     "@tiptap/core": "2.0.3",

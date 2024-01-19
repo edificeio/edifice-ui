@@ -435,6 +435,7 @@ const VideoRecorder = forwardRef(
           onClick: handleRecord,
           "aria-label": t("bbm.video.record.start"),
         },
+        tooltip: t("bbm.video.record.start"),
       },
       {
         type: "icon",
@@ -445,6 +446,7 @@ const VideoRecorder = forwardRef(
           onClick: handleStop,
           "aria-label": t("bbm.video.record.stop"),
         },
+        tooltip: t("bbm.video.record.stop"),
       },
       {
         type: "icon",
@@ -456,6 +458,7 @@ const VideoRecorder = forwardRef(
           onClick: handlePlayPause,
           "aria-label": t("bbm.video.play.start"),
         },
+        tooltip: t("bbm.video.play.start"),
       },
       {
         type: "icon",
@@ -467,6 +470,7 @@ const VideoRecorder = forwardRef(
           onClick: handlePlayPause,
           "aria-label": t("bbm.video.play.pause"),
         },
+        tooltip: t("bbm.video.play.pause"),
       },
       { type: "divider" },
       {
@@ -478,6 +482,7 @@ const VideoRecorder = forwardRef(
           onClick: handleReset,
           "aria-label": t("bbm.video.record.reset"),
         },
+        tooltip: t("bbm.video.record.reset"),
       },
       {
         type: "icon",
@@ -489,6 +494,7 @@ const VideoRecorder = forwardRef(
           onClick: handleSave,
           "aria-label": t("bbm.video.record.save"),
         },
+        tooltip: t("bbm.video.record.save"),
       },
     ];
 

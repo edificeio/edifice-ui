@@ -4,6 +4,7 @@ import { RafterUp } from "@edifice-ui/icons";
 import clsx from "clsx";
 
 import { useDropdownContext } from "./DropdownContext";
+import { Tooltip } from "..";
 
 export interface DropdownTriggerProps
   extends React.ComponentPropsWithRef<"button"> {
@@ -35,6 +36,7 @@ export interface DropdownTriggerProps
    * Stretch the dropdown trigger.
    */
   block?: boolean;
+  tooltip?: string;
 }
 
 export type DropdownTriggerType = React.ReactElement<DropdownTriggerProps>;
@@ -47,6 +49,7 @@ const DropdownTrigger = forwardRef(
       variant,
       disabled = false,
       size,
+      tooltip,
       badgeContent,
       ...restProps
     }: DropdownTriggerProps,
@@ -65,22 +68,28 @@ const DropdownTrigger = forwardRef(
     );
 
     return (
-      <button
-        ref={forwardRef}
-        className={dropdownTrigger}
-        disabled={disabled}
-        {...mergedProps}
-      >
-        {icon ? icon : null}
-        {label}
-        {badgeContent ? (
-          <span className="badge text-bg-secondary rounded-pill">
-            {badgeContent}
-          </span>
-        ) : (
-          <RafterUp width={16} height={16} className="dropdown-toggle-caret" />
-        )}
-      </button>
+      <Tooltip message={tooltip} placement="top">
+        <button
+          ref={forwardRef}
+          className={dropdownTrigger}
+          disabled={disabled}
+          {...mergedProps}
+        >
+          {icon ? icon : null}
+          {label}
+          {badgeContent ? (
+            <span className="badge text-bg-secondary rounded-pill">
+              {badgeContent}
+            </span>
+          ) : (
+            <RafterUp
+              width={16}
+              height={16}
+              className="dropdown-toggle-caret"
+            />
+          )}
+        </button>
+      </Tooltip>
     );
   },
 );

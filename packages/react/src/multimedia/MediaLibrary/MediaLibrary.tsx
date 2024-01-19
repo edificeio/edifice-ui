@@ -188,7 +188,7 @@ const MediaLibrary = forwardRef(
     }));
 
     // HTTP errors toasts
-    useHttpErrorToast();
+    useHttpErrorToast({ isDismissible: true, duration: Infinity });
 
     const { t } = useTranslation();
 

@@ -31,7 +31,7 @@ const ImageEditorToolbar = ({ handle }: ImageEditorToolbarProps) => {
         leftIcon={<Undo />}
         onClick={() => handleAndSave("UNDO")}
       >
-        {t("Annuler l'action")}
+        {t("cancel")}
       </Button>
       <>&#10072;</>
       <Button
@@ -41,7 +41,7 @@ const ImageEditorToolbar = ({ handle }: ImageEditorToolbarProps) => {
         leftIcon={<Reset />}
         onClick={() => handleAndSave("ROTATE")}
       >
-        {t("Pivoter")}
+        {t("rotate")}
       </Button>
       <Button
         color="tertiary"
@@ -50,7 +50,7 @@ const ImageEditorToolbar = ({ handle }: ImageEditorToolbarProps) => {
         variant={action === "CROP" ? "filled" : "ghost"}
         onClick={() => handleAndSave("CROP")}
       >
-        {t("Rogner")}
+        {t("crop")}
       </Button>
       <Button
         color="tertiary"
@@ -59,7 +59,7 @@ const ImageEditorToolbar = ({ handle }: ImageEditorToolbarProps) => {
         variant={action === "RESIZE" ? "filled" : "ghost"}
         onClick={() => handleAndSave("RESIZE")}
       >
-        {t("Redimensionner")}
+        {t("resize")}
       </Button>
       <Button
         color="tertiary"
@@ -68,7 +68,7 @@ const ImageEditorToolbar = ({ handle }: ImageEditorToolbarProps) => {
         variant={action === "BLUR" ? "filled" : "ghost"}
         onClick={() => handleAndSave("BLUR")}
       >
-        {t("Flouter")}
+        {t("blur")}
       </Button>
     </div>
   );

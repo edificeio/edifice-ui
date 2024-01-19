@@ -1,11 +1,16 @@
-import { Fragment, RefAttributes, useState } from "react";
+import { Fragment, RefAttributes } from "react";
 
-import { TypoSizeLevel } from "@edifice-tiptap-extensions/extension-typosize";
 import { TextSize } from "@edifice-ui/icons";
-import { Dropdown, IconButton, IconButtonProps } from "@edifice-ui/react";
+import {
+  Dropdown,
+  IconButton,
+  IconButtonProps,
+  Tooltip,
+} from "@edifice-ui/react";
 import { useTranslation } from "react-i18next";
 
 import { useEditorContext } from "../../hooks/useEditorContext";
+import { hasExtension } from "../../utils/has-extension";
 
 interface Props {
   /**
@@ -20,68 +25,78 @@ export const EditorToolbarTextSize = ({ triggerProps }: Props) => {
   const { t } = useTranslation();
   const { editor } = useEditorContext();
 
-  const [size, setSize] = useState<TypoSizeLevel>();
-
-  /* FIXME
-  useEffect(() => {
-    // When cursor moves in editor, update the text values.
-    const textStyle = editor?.getAttributes("textStyle");
-    // TODO setSize( ?? 5);
-  }, [editor, editor?.state]);
-  */
-
-  const sizes = [
+  const textOptions = [
     {
-      value: "2",
+      id: "title-1",
       label: t("tiptap.toolbar.size.h1"),
-      className: "fs-2 fw-bold",
+      className: "fs-2 fw-bold text-secondary",
+      action: () =>
+        editor?.chain().focus().setCustomHeading({ level: 1 }).run(),
+      visibility: hasExtension("customHeading", editor),
     },
     {
-      value: "3",
+      id: "title-2",
       label: t("tiptap.toolbar.size.h2"),
-      className: "fs-3 fw-bold",
+      className: "fs-3 fw-bold text-secondary",
+      action: () =>
+        editor?.chain().focus().setCustomHeading({ level: 2 }).run(),
+      visibility: hasExtension("customHeading", editor),
     },
     {
-      value: "4",
+      id: "divider",
+      type: "divider",
+      visibility:
+        hasExtension("customHeading", editor) &&
+        hasExtension("fontSize", editor),
+    },
+    {
+      id: "big-text",
       label: t("tiptap.toolbar.size.big"),
       className: "fs-4",
+      action: () =>
+        editor?.chain().focus().setParagraph().setFontSize("18px").run(),
+      visibility: hasExtension("fontSize", editor),
     },
     {
-      value: "5",
+      id: "normal-text",
       label: t("tiptap.toolbar.size.normal"),
+      action: () =>
+        editor?.chain().focus().setParagraph().setFontSize("16px").run(),
+      visibility: hasExtension("fontSize", editor),
     },
     {
-      value: "6",
+      id: "small-text",
       label: t("tiptap.toolbar.size.small"),
       className: "fs-6",
+      action: () =>
+        editor?.chain().focus().setParagraph().setFontSize("14px").run(),
+      visibility: hasExtension("fontSize", editor),
     },
   ];
 
   return (
     <>
-      <IconButton
-        {...triggerProps}
-        type="button"
-        variant="ghost"
-        color="tertiary"
-        icon={<TextSize />}
-        aria-label={t("tiptap.toolbar.size.choice")}
-      />
+      <Tooltip message={t("tiptap.toolbar.size.choice")} placement="top">
+        <IconButton
+          {...triggerProps}
+          type="button"
+          variant="ghost"
+          color="tertiary"
+          icon={<TextSize />}
+          aria-label={t("tiptap.toolbar.size.choice")}
+        />
+      </Tooltip>
       <Dropdown.Menu>
-        {sizes.map(({ value, label, className }) => {
+        {textOptions.map((option) => {
           return (
-            <Fragment key={value}>
-              <Dropdown.RadioItem
-                value={value}
-                model={`${size}`}
-                onChange={(newValue: string) => {
-                  const level = parseInt(newValue) as TypoSizeLevel;
-                  editor?.chain().focus().toggleTypoSize({ level }).run();
-                  setSize(level);
-                }}
-              >
-                <span className={className}>{label}</span>
-              </Dropdown.RadioItem>
+            <Fragment key={option.id}>
+              {option.type === "divider" && option.visibility ? (
+                <Dropdown.Separator />
+              ) : option.visibility ? (
+                <Dropdown.Item onClick={option.action}>
+                  <span className={option.className}>{option.label}</span>
+                </Dropdown.Item>
+              ) : null}
             </Fragment>
           );
         })}
