@@ -118,6 +118,7 @@ const TableToolbar = ({ editor }: TableToolbarProps) => {
                     />
                   ),
                 },
+                tooltip: t("tiptap.table.toolbar.cell.color"),
               },
               {
                 type: "icon",
@@ -130,6 +131,9 @@ const TableToolbar = ({ editor }: TableToolbarProps) => {
                     : t("tiptap.table.toolbar.merge"),
                   onClick: () => editor?.chain().focus().mergeOrSplit().run(),
                 },
+                tooltip: isSpan
+                  ? t("tiptap.table.toolbar.split")
+                  : t("tiptap.table.toolbar.merge"),
               },
               {
                 type: "divider",
@@ -141,6 +145,7 @@ const TableToolbar = ({ editor }: TableToolbarProps) => {
                 props: {
                   children: () => <TableToolbarAddMenu editor={editor} />,
                 },
+                tooltip: t("tiptap.table.toolbar.add"),
               },
               {
                 type: "divider",
@@ -152,6 +157,7 @@ const TableToolbar = ({ editor }: TableToolbarProps) => {
                 props: {
                   children: () => <TableToolbarDelMenu editor={editor} />,
                 },
+                tooltip: t("tiptap.table.toolbar.del"),
               },
             ]}
           />

@@ -75,7 +75,7 @@ const AudioRecorder = forwardRef(
             }
           />
         </FormControl>
-        <div className="audio-recorder-icon mx-auto ">
+        <div className="audio-recorder-icon mx-auto">
           <Mic width={64} height={64} className={classColor} />
         </div>
         <AudioRecorderTimer

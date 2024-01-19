@@ -5,6 +5,7 @@ import {
   DropdownMenuOptions,
   IconButton,
   IconButtonProps,
+  Tooltip,
 } from "@edifice-ui/react";
 
 interface Props {
@@ -36,14 +37,17 @@ export const EditorToolbarDropdownMenu = ({
 }: Props) => {
   return (
     <>
-      <IconButton
-        {...triggerProps}
-        type="button"
-        variant="ghost"
-        color="tertiary"
-        icon={icon}
-        aria-label={ariaLabel}
-      />
+      <Tooltip message={ariaLabel} placement="top">
+        <IconButton
+          {...triggerProps}
+          type="button"
+          variant="ghost"
+          color="tertiary"
+          icon={icon}
+          aria-label={ariaLabel}
+          tooltip={ariaLabel}
+        />
+      </Tooltip>
       <Dropdown.Menu>
         {options.map((option, index) => {
           return (

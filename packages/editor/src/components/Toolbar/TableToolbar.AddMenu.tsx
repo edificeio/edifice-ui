@@ -6,6 +6,7 @@ import {
   HighlightColumn,
   HighlightRow,
 } from "@edifice-ui/icons";
+import { Tooltip } from "@edifice-ui/react";
 import { Dropdown } from "@edifice-ui/react";
 import { Editor } from "@tiptap/react";
 import { useTranslation } from "react-i18next";
@@ -22,7 +23,12 @@ export const TableToolbarAddMenu = ({ editor }: Props) => {
 
   return (
     <>
-      <Dropdown.Trigger variant="ghost" label={t("add")} />
+      <Tooltip message={t("tiptap.table.toolbar.tooltip.add")} placement="top">
+        <Dropdown.Trigger
+          variant="ghost"
+          label={t("tiptap.table.toolbar.add")}
+        />
+      </Tooltip>
       <Dropdown.Menu>
         <Dropdown.Item
           key="add-above"

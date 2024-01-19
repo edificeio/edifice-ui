@@ -1,7 +1,12 @@
 import { RefAttributes } from "react";
 
 import { Smiley } from "@edifice-ui/icons";
-import { Dropdown, IconButton, IconButtonProps } from "@edifice-ui/react";
+import {
+  Dropdown,
+  IconButton,
+  IconButtonProps,
+  Tooltip,
+} from "@edifice-ui/react";
 import EmojiPicker, { Categories } from "emoji-picker-react";
 import { useTranslation } from "react-i18next";
 
@@ -26,14 +31,16 @@ export const EditorToolbarEmoji = ({ triggerProps, itemRefs }: Props) => {
 
   return (
     <>
-      <IconButton
-        {...triggerProps}
-        type="button"
-        variant="ghost"
-        color="tertiary"
-        icon={<Smiley />}
-        aria-label={t("tiptap.toolbar.emojisPicker")}
-      />
+      <Tooltip message={t("tiptap.toolbar.emojisPicker")} placement="top">
+        <IconButton
+          {...triggerProps}
+          type="button"
+          variant="ghost"
+          color="tertiary"
+          icon={<Smiley />}
+          aria-label={t("tiptap.toolbar.emojisPicker")}
+        />
+      </Tooltip>
       <Dropdown.Menu>
         <div ref={(el) => (itemRefs.current["emoji-picker"] = el)}>
           <EmojiPicker

@@ -13,6 +13,7 @@ import clsx from "clsx";
 import { mergeRefs } from "../../utils";
 import { Button, ButtonProps, IconButton, IconButtonProps } from "../Button";
 import { Dropdown, DropdownProps } from "../Dropdown";
+import { Placement, Tooltip } from "../Tooltip";
 
 interface Item {
   /** Object type */
@@ -22,13 +23,23 @@ interface Item {
   /** Set to "hide" to hide this item. Defaults to "show" when undefined. */
   visibility?: "show" | "hide";
 }
-interface ButtonItem extends Item {
+
+interface ToolbarTooltip {
+  tooltip?:
+    | string
+    | {
+        message: string;
+        position?: Placement;
+      };
+}
+
+interface ButtonItem extends Item, ToolbarTooltip {
   type: "button";
   name: string;
   props: ButtonProps;
   isEnable?: boolean;
 }
-interface IconButtonItem extends Item {
+interface IconButtonItem extends Item, ToolbarTooltip {
   type: "icon";
   name: string;
   props: IconButtonProps;
@@ -39,7 +50,7 @@ interface DropdownItem extends Item {
   props: DropdownProps;
   overflow?: boolean;
 }
-interface PrimaryItem extends Item {
+interface PrimaryItem extends Item, ToolbarTooltip {
   type: "primary";
   props: ButtonProps;
   isEnable?: boolean;
@@ -165,6 +176,20 @@ const Toolbar = forwardRef(
       }
     };
 
+    const renderTooltipMessage = (
+      item: Exclude<ToolbarItem, DropdownItem | DividerItem>,
+    ) => {
+      return typeof item.tooltip === "string"
+        ? item.tooltip
+        : item.tooltip?.message;
+    };
+
+    const renderTooltipPosition = (
+      item: Exclude<ToolbarItem, DropdownItem | DividerItem>,
+    ) => {
+      return typeof item.tooltip !== "string" ? item.tooltip?.position : "top";
+    };
+
     return (
       <div
         ref={mergeRefs(ref, divToolbarRef)}
@@ -186,28 +211,40 @@ const Toolbar = forwardRef(
 
             case "button":
               return (
-                <Button
-                  {...item.props}
+                <Tooltip
                   key={item.name ?? index}
-                  color={item.props.color ? item.props.color : "tertiary"}
-                  variant="ghost"
-                  tabIndex={index === 0 ? 0 : -1}
-                  onKeyDown={handleKeyDown}
-                  disabled={item.isEnable}
-                />
+                  message={renderTooltipMessage(item)}
+                  placement={renderTooltipPosition(item)}
+                >
+                  <Button
+                    {...item.props}
+                    key={item.name ?? index}
+                    color={item.props.color ? item.props.color : "tertiary"}
+                    variant="ghost"
+                    tabIndex={index === 0 ? 0 : -1}
+                    onKeyDown={handleKeyDown}
+                    disabled={item.isEnable}
+                  />
+                </Tooltip>
               );
 
             case "icon":
               return (
-                <IconButton
-                  {...item.props}
+                <Tooltip
                   key={item.name ?? index}
-                  color={item.props.color ? item.props.color : "tertiary"}
-                  variant="ghost"
-                  tabIndex={index === 0 ? 0 : -1}
-                  onKeyDown={handleKeyDown}
-                  disabled={item.isEnable}
-                />
+                  message={renderTooltipMessage(item)}
+                  placement={renderTooltipPosition(item)}
+                >
+                  <IconButton
+                    {...item.props}
+                    key={item.name ?? index}
+                    color={item.props.color ? item.props.color : "tertiary"}
+                    variant="ghost"
+                    tabIndex={index === 0 ? 0 : -1}
+                    onKeyDown={handleKeyDown}
+                    disabled={item.isEnable}
+                  />
+                </Tooltip>
               );
 
             case "dropdown":
@@ -224,15 +261,20 @@ const Toolbar = forwardRef(
 
             case "primary":
               return (
-                <Button
-                  {...item.props}
+                <Tooltip
                   key={item.name ?? index}
-                  variant="filled"
-                  color="primary"
-                  tabIndex={index === 0 ? 0 : -1}
-                  onKeyDown={handleKeyDown}
-                  disabled={item.isEnable}
-                />
+                  message={renderTooltipMessage(item)}
+                  placement={renderTooltipPosition(item)}
+                >
+                  <Button
+                    {...item.props}
+                    variant="filled"
+                    color="primary"
+                    tabIndex={index === 0 ? 0 : -1}
+                    onKeyDown={handleKeyDown}
+                    disabled={item.isEnable}
+                  />
+                </Tooltip>
               );
 
             default:

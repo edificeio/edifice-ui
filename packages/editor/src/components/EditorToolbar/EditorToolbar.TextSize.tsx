@@ -1,7 +1,12 @@
 import { Fragment, RefAttributes } from "react";
 
 import { TextSize } from "@edifice-ui/icons";
-import { Dropdown, IconButton, IconButtonProps } from "@edifice-ui/react";
+import {
+  Dropdown,
+  IconButton,
+  IconButtonProps,
+  Tooltip,
+} from "@edifice-ui/react";
 import { useTranslation } from "react-i18next";
 
 import { useEditorContext } from "../../hooks/useEditorContext";
@@ -71,14 +76,16 @@ export const EditorToolbarTextSize = ({ triggerProps }: Props) => {
 
   return (
     <>
-      <IconButton
-        {...triggerProps}
-        type="button"
-        variant="ghost"
-        color="tertiary"
-        icon={<TextSize />}
-        aria-label={t("tiptap.toolbar.size.choice")}
-      />
+      <Tooltip message={t("tiptap.toolbar.size.choice")} placement="top">
+        <IconButton
+          {...triggerProps}
+          type="button"
+          variant="ghost"
+          color="tertiary"
+          icon={<TextSize />}
+          aria-label={t("tiptap.toolbar.size.choice")}
+        />
+      </Tooltip>
       <Dropdown.Menu>
         {textOptions.map((option) => {
           return (

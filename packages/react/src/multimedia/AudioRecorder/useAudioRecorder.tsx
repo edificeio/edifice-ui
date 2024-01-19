@@ -504,6 +504,11 @@ export default function useAudioRecorder(
     dispatch({ type: "update", updatedState: { webSocket: null } });
   }
 
+  const recordText =
+    recordState === "IDLE"
+      ? t("bbm.audio.record.start")
+      : t("bbm.audio.record.resume");
+
   const toolbarItems: ToolbarItem[] = [
     {
       type: "icon",
@@ -514,11 +519,9 @@ export default function useAudioRecorder(
         color: "danger",
         disabled: recordState !== "IDLE" && recordState !== "PAUSED",
         onClick: handleRecord,
-        "aria-label":
-          recordState === "IDLE"
-            ? t("bbm.audio.record.start")
-            : t("bbm.audio.record.resume"),
+        "aria-label": recordText,
       },
+      tooltip: recordText,
     },
     {
       type: "icon",
@@ -531,6 +534,7 @@ export default function useAudioRecorder(
         onClick: handleRecordPause,
         "aria-label": t("bbm.audio.record.pause"),
       },
+      tooltip: t("bbm.audio.record.pause"),
     },
     { type: "divider" },
     {
@@ -547,6 +551,7 @@ export default function useAudioRecorder(
         onClick: handlePlay,
         "aria-label": t("bbm.audio.play.start"),
       },
+      tooltip: t("bbm.audio.play.start"),
     },
     {
       type: "icon",
@@ -558,6 +563,7 @@ export default function useAudioRecorder(
         onClick: handlePlayPause,
         "aria-label": t("bbm.audio.play.pause"),
       },
+      tooltip: t("bbm.audio.play.pause"),
     },
     {
       type: "icon",
@@ -568,6 +574,7 @@ export default function useAudioRecorder(
         onClick: handlePlayStop,
         "aria-label": t("bbm.audio.play.stop"),
       },
+      tooltip: t("bbm.audio.play.stop"),
     },
     { type: "divider" },
     {
@@ -583,6 +590,7 @@ export default function useAudioRecorder(
         onClick: handleReset,
         "aria-label": t("bbm.audio.record.reset"),
       },
+      tooltip: t("bbm.audio.record.reset"),
     },
     {
       type: "icon",
@@ -600,6 +608,7 @@ export default function useAudioRecorder(
         onClick: handleSave,
         "aria-label": t("bbm.audio.record.save"),
       },
+      tooltip: t("bbm.audio.record.save"),
     },
   ];
 
