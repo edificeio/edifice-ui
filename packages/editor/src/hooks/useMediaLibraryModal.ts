@@ -39,16 +39,17 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
       switch (type) {
         // Image type => result is of type WorkspaceElement[]
         case "image": {
-          const imgs = result as WorkspaceElement[];
-          imgs.forEach((img, index) => {
+          const images = result as WorkspaceElement[];
+          const imagesSize = images.length - 1;
+          images.forEach((image, index) => {
             const currentChain = editor?.chain().focus();
             currentChain.setNewImage({
-              src: `/workspace/document/${img._id}`,
-              alt: img.alt,
-              title: img.title,
+              src: `/workspace/document/${image._id}`,
+              alt: image.alt,
+              title: image.title,
             });
             // Deselect the image, so that next images are added afterward. Select only the last image.
-            if (index < imgs.length - 1) {
+            if (index < imagesSize) {
               currentChain.setTextSelection(editor.state.selection.to);
             }
             currentChain.run();
@@ -62,14 +63,15 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
             typeof result === "object"
               ? [result]
               : (result as WorkspaceElement[]);
-          sounds.forEach((snd, index) => {
+          const soundsSize = sounds.length - 1;
+          sounds.forEach((sound, index) => {
             const currentChain = editor?.chain().focus();
             currentChain.setAudio(
-              snd._id || "",
-              `/workspace/document/${snd._id}`,
+              sound._id || "",
+              `/workspace/document/${sound._id}`,
             );
             // Deselect the audio, so that next audios are added afterward. Select only the last audio.
-            if (index < sounds.length - 1) {
+            if (index < soundsSize) {
               currentChain.setTextSelection(editor.state.selection.to);
             }
             currentChain.run();
@@ -87,6 +89,7 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
             );
           } else {
             const videos = result as WorkspaceElement[];
+            const videosSize = videos.length - 1;
             videos.forEach((video, index) => {
               const currentChain = editor?.chain().focus();
               currentChain.setVideo(
@@ -96,7 +99,7 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
               );
 
               // Deselect the video, so that next videos are added afterward. Select only the last video.
-              if (index < videos.length - 1) {
+              if (index < videosSize) {
                 currentChain.setTextSelection(editor.state.selection.to);
               }
               currentChain.run();
