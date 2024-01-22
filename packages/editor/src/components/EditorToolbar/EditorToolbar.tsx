@@ -367,7 +367,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
     <Toolbar
       items={toolbarItems}
       variant="no-shadow"
-      className="rounded-top"
+      className="rounded-top editor-toolbar"
       isBlock
       align="left"
       ariaControls="editorContent"
