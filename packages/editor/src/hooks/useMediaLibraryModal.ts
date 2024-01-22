@@ -40,16 +40,18 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
         // Image type => result is of type WorkspaceElement[]
         case "image": {
           const imgs = result as WorkspaceElement[];
-          imgs.forEach((img) => {
-            editor
-              ?.chain()
-              .focus()
-              .setNewImage({
-                src: `/workspace/document/${img._id}`,
-                alt: img.alt,
-                title: img.title,
-              })
-              .run();
+          imgs.forEach((img, index) => {
+            const currentChain = editor?.chain().focus();
+            currentChain.setNewImage({
+              src: `/workspace/document/${img._id}`,
+              alt: img.alt,
+              title: img.title,
+            });
+            // Deselect the image, so that next images are added afterward. Select only the last image.
+            if (index < imgs.length - 1) {
+              currentChain.setTextSelection(editor.state.selection.to);
+            }
+            currentChain.run();
           });
           break;
         }
@@ -60,11 +62,17 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
             typeof result === "object"
               ? [result]
               : (result as WorkspaceElement[]);
-          sounds.forEach((snd) => {
-            editor
-              ?.chain()
-              .focus()
-              .setAudio(snd._id || "", `/workspace/document/${snd._id}`);
+          sounds.forEach((snd, index) => {
+            const currentChain = editor?.chain().focus();
+            currentChain.setAudio(
+              snd._id || "",
+              `/workspace/document/${snd._id}`,
+            );
+            // Deselect the audio, so that next audios are added afterward. Select only the last audio.
+            if (index < sounds.length - 1) {
+              currentChain.setTextSelection(editor.state.selection.to);
+            }
+            currentChain.run();
           });
           break;
         }
@@ -79,15 +87,19 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
             );
           } else {
             const videos = result as WorkspaceElement[];
-            videos.forEach((video) => {
-              editor
-                ?.chain()
-                .focus()
-                .setVideo(
-                  video._id || "",
-                  `/workspace/document/${video._id}`,
-                  true,
-                );
+            videos.forEach((video, index) => {
+              const currentChain = editor?.chain().focus();
+              currentChain.setVideo(
+                video._id || "",
+                `/workspace/document/${video._id}`,
+                true,
+              );
+
+              // Deselect the video, so that next videos are added afterward. Select only the last video.
+              if (index < videos.length - 1) {
+                currentChain.setTextSelection(editor.state.selection.to);
+              }
+              currentChain.run();
             });
           }
           break;
