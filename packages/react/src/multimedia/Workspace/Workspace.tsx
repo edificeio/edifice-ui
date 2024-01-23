@@ -1,14 +1,6 @@
-import {
-  FormEvent,
-  Ref,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 
 import {
-  Search,
   SortAscendingLetters,
   SortDescendingLetters,
   SortTime,
@@ -24,10 +16,8 @@ import { useTranslation } from "react-i18next";
 import {
   Dropdown,
   FileCard,
-  FormControl,
   Grid,
-  Input,
-  SearchButton,
+  SearchBar,
   TreeNode,
   TreeView,
   TreeViewHandlers,
@@ -56,7 +46,6 @@ export interface WorkspaceProps {
 
 const Workspace = ({ roles, onSelect, className }: WorkspaceProps) => {
   const { t } = useTranslation();
-  const inputRef: Ref<HTMLInputElement> = useRef(null);
 
   const { root: owner, loadContent: loadOwnerDocs } = useWorkspaceSearch(
     "owner",
@@ -89,6 +78,7 @@ const Workspace = ({ roles, onSelect, className }: WorkspaceProps) => {
   const [documents, setDocuments] = useState<WorkspaceElement[]>([]);
 
   const [searchTerm, setSearchTerm] = useState<string | undefined>(null!);
+
   const [sortOrder, setSortOrder] = useState<[string, string]>([
     "modified",
     "desc",
@@ -206,13 +196,11 @@ const Workspace = ({ roles, onSelect, className }: WorkspaceProps) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => selectAndLoadContent("owner", "owner"), []);
 
-  const handleSearchSubmit = useCallback(
-    (e: FormEvent) => {
-      setSearchTerm(inputRef.current?.value);
-      e.stopPropagation();
-      e.preventDefault();
+  const handleSearchChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      setSearchTerm(e.target.value);
     },
-    [inputRef],
+    [setSearchTerm],
   );
 
   function compare(a: string, b: string) {
@@ -285,22 +273,11 @@ const Workspace = ({ roles, onSelect, className }: WorkspaceProps) => {
         <Grid className="flex-grow-1 gap-0">
           <Grid.Col sm="4" md="8" xl="12">
             <div className="workspace-search px-16 py-8 ">
-              <form className="gap-16 d-flex" onSubmit={handleSearchSubmit}>
-                <FormControl className="input-group" id="search">
-                  <Input
-                    noValidationIcon
-                    ref={inputRef}
-                    placeholder={t("workspace.search.protected")}
-                    size="md"
-                    type="search"
-                  />
-                  <SearchButton
-                    aria-label={t("search")}
-                    icon={<Search />}
-                    type="submit"
-                  />
-                </FormControl>
-              </form>
+              <SearchBar
+                isVariant={true}
+                className="gap-16"
+                onChange={handleSearchChange}
+              />
             </div>
             <div className="d-flex align-items-center justify-content-end px-8 py-4">
               <small className="text-muted">

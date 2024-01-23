@@ -4,7 +4,6 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import { Button } from "../Button";
 import Alert, { AlertRef } from "./Alert";
-import React from "react";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Alert> = {
@@ -18,6 +17,7 @@ const meta: Meta<typeof Alert> = {
       },
     },
   },
+  decorators: [(Story) => <div style={{ height: "400px" }}>{Story()}</div>],
   argTypes: {
     type: {
       options: ["success", "warning", "info", "danger"],
