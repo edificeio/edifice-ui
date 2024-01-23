@@ -194,7 +194,7 @@ const ImageEditor = ({
           isLoading={isSaving}
           disabled={isSaving || !dirty}
         >
-          {"imageeditor.save"}
+          {t("imageeditor.save")}
         </Button>
       </Modal.Footer>
     </Modal>

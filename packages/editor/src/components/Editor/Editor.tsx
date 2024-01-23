@@ -115,6 +115,7 @@ const Editor = forwardRef(
             editor={editor}
             onEditImage={imageModal.handleEdit}
             openEditImage={imageModal.isOpen}
+            editable={editable}
           />
         )}
 

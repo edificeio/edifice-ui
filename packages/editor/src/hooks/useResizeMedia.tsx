@@ -50,8 +50,8 @@ export const useResizeMedia = (
     }
 
     const currentMediaDimensions = {
-      width: refResizable.current?.clientWidth,
-      height: refResizable.current?.clientHeight,
+      width: refResizable.current?.width,
+      height: refResizable.current?.height,
     };
 
     const newMediaDimensions = {
