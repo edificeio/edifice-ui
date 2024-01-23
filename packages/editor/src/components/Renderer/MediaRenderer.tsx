@@ -16,11 +16,25 @@ const MediaRenderer = (props: MediaResizeProps) => {
 
   const { startVerticalResize, stopVerticalResize, isVerticalResizeActive } =
     useResizeMedia(props, resizableMedia);
+
+  const alignContent = (textalign: string) => {
+    switch (textalign) {
+      case "center":
+      case "justify":
+        return { marginLeft: "auto", marginRight: "auto" };
+      case "left":
+        return { marginRight: "auto" };
+      case "right":
+        return { marginLeft: "auto" };
+      default:
+        return {};
+    }
+  };
   return (
     <NodeViewWrapper>
       <div
         className="media-node-view"
-        style={{ position: "relative", width: "fit-content" }}
+        style={alignContent(node.attrs.textAlign)}
       >
         <div data-drag-handle>
           {node.type.name === "custom-image" ? (

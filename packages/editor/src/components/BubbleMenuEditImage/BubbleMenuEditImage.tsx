@@ -6,17 +6,14 @@ import {
   ImageSizeSmall,
   Wand,
 } from "@edifice-ui/icons";
-import { Button, IconButton, Tooltip } from "@edifice-ui/react";
-import { Editor, BubbleMenu } from "@tiptap/react";
+import { Toolbar, ToolbarItem } from "@edifice-ui/react";
+import { Editor, BubbleMenu, BubbleMenuProps } from "@tiptap/react";
 import { useTranslation } from "react-i18next";
 
 interface ButtonSize {
-  icon: JSX.Element;
-  sizeName: string;
-  size: {
-    width: number;
-    height: number | string;
-  };
+  size: string;
+  width: string | number;
+  height: string | number;
 }
 
 const BubbleMenuEditImage = ({
@@ -30,37 +27,120 @@ const BubbleMenuEditImage = ({
 }) => {
   const { t } = useTranslation();
 
-  const buttonSizeList = [
-    {
-      icon: <ImageSizeSmall />,
-      label: "tiptap.tooltip.bubblemenu.image.small",
-      sizeName: "small",
-      size: {
-        width: 250,
-        height: "auto",
-      },
-    },
-    {
-      icon: <ImageSizeMedium />,
-      label: "tiptap.tooltip.bubblemenu.image.medium",
-      sizeName: "medium",
-      size: {
-        width: 350,
-        height: "auto",
-      },
-    },
-    {
-      icon: <ImageSizeLarge />,
-      label: "tiptap.tooltip.bubblemenu.image.big",
-      sizeName: "large",
-      size: {
-        width: 500,
-        height: "auto",
-      },
-    },
-  ];
+  const { selection } = editor.view.state;
 
-  const tippyOptions: any = useMemo(() => {
+  const selectedNode = editor.view.state.doc.nodeAt(selection.anchor);
+
+  const handleButtonClick = (buttonSize: ButtonSize) => {
+    editor
+      .chain()
+      .focus()
+      .setAttributes({
+        width: buttonSize.width,
+        height: buttonSize.height,
+        size: buttonSize.size,
+      })
+      .run();
+  };
+
+  const ImageSizeItems: ToolbarItem[] = useMemo(() => {
+    return [
+      {
+        type: "button",
+        name: "edit",
+        props: {
+          size: "lg",
+          color: "secondary",
+          leftIcon: <Wand />,
+          "aria-label": t("tiptap.tooltip.bubblemenu.image.edit"),
+          children: t("tiptap.bubblemenu.edit"),
+          onClick: onEditImage,
+        },
+        tooltip: {
+          message: t("tiptap.tooltip.bubblemenu.image.edit"),
+          position: "top",
+        },
+      },
+      {
+        type: "divider",
+        name: "div-4",
+      },
+      {
+        type: "icon",
+        name: "small",
+        props: {
+          icon: <ImageSizeSmall />,
+          "aria-label": t("tiptap.tooltip.bubblemenu.image.small"),
+          color: "tertiary",
+          className:
+            selectedNode?.attrs?.size === "small" &&
+            selectedNode?.attrs?.width === 250
+              ? "is-selected"
+              : "",
+          onClick: () =>
+            handleButtonClick({
+              size: "small",
+              width: 250,
+              height: "auto",
+            }),
+        },
+        tooltip: {
+          message: t("tiptap.tooltip.bubblemenu.image.small"),
+          position: "top",
+        },
+      },
+      {
+        type: "icon",
+        name: "medium",
+        props: {
+          icon: <ImageSizeMedium />,
+          "aria-label": t("tiptap.tooltip.bubblemenu.image.medium"),
+          color: "tertiary",
+          className:
+            selectedNode?.attrs?.size === "medium" &&
+            selectedNode?.attrs?.width === 350
+              ? "is-selected"
+              : "",
+          onClick: () =>
+            handleButtonClick({
+              size: "medium",
+              width: 350,
+              height: "auto",
+            }),
+        },
+        tooltip: {
+          message: t("tiptap.tooltip.bubblemenu.image.medium"),
+          position: "top",
+        },
+      },
+      {
+        type: "icon",
+        name: "large",
+        props: {
+          icon: <ImageSizeLarge />,
+          "aria-label": t("tiptap.tooltip.bubblemenu.image.big"),
+          color: "tertiary",
+          className:
+            selectedNode?.attrs?.size === "large" &&
+            selectedNode?.attrs?.width === 500
+              ? "is-selected"
+              : "",
+          onClick: () =>
+            handleButtonClick({
+              size: "large",
+              width: 500,
+              height: "auto",
+            }),
+        },
+        tooltip: {
+          message: t("tiptap.tooltip.bubblemenu.image.big"),
+          position: "top",
+        },
+      },
+    ];
+  }, [t, selectedNode]);
+
+  const tippyOptions: BubbleMenuProps["tippyOptions"] = useMemo(() => {
     // Adjust a DOMRect to make it visible at a correct place.
     function adjustRect(rect: DOMRect) {
       let yOffset = 0;
@@ -101,22 +181,6 @@ const BubbleMenuEditImage = ({
     };
   }, [editor]);
 
-  const handleButtonClick = (buttonSize: ButtonSize) => {
-    editor
-      .chain()
-      .focus()
-      .setAttributes({
-        width: buttonSize.size.width,
-        height: buttonSize.size.height,
-        size: buttonSize.sizeName,
-      })
-      .run();
-  };
-
-  const { selection } = editor.view.state;
-
-  const selectedNode = editor.view.state.doc.nodeAt(selection.anchor);
-
   return (
     <BubbleMenu
       className={openEditImage ? "d-none" : ""}
@@ -126,42 +190,7 @@ const BubbleMenuEditImage = ({
       editor={editor}
       tippyOptions={tippyOptions}
     >
-      <div className="bubble-menu">
-        <Tooltip
-          message={t("tiptap.tooltip.bubblemenu.image.edit")}
-          placement="top"
-        >
-          <Button
-            size="lg"
-            variant="ghost"
-            leftIcon={<Wand />}
-            color="secondary"
-            onClick={onEditImage}
-          >
-            {t("tiptap.bubblemenu.edit")}
-          </Button>
-        </Tooltip>
-        <div className="vr"></div>
-        {buttonSizeList.map((button, index) => (
-          <Tooltip key={index} message={t(button.label)} placement="top">
-            <IconButton
-              className={
-                selectedNode?.attrs?.size === button.sizeName &&
-                selectedNode?.attrs?.width === button.size.width
-                  ? "is-selected"
-                  : ""
-              }
-              aria-label="Delete"
-              icon={button.icon}
-              variant="ghost"
-              color="tertiary"
-              onClick={() => {
-                handleButtonClick(button);
-              }}
-            />
-          </Tooltip>
-        ))}
-      </div>
+      <Toolbar className="p-8" items={ImageSizeItems} />
     </BubbleMenu>
   );
 };

@@ -76,7 +76,7 @@ export const useTipTapEditor = (editable: boolean, content: Content) => {
       TableHeader,
       TableCell,
       TextAlign.configure({
-        types: ["heading", "paragraph"],
+        types: ["heading", "paragraph", "custom-image", "video"],
       }),
       CustomHeading.configure({
         levels: [1, 2],
