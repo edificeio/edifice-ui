@@ -12,7 +12,11 @@ import { Hyperlink } from "@edifice-tiptap-extensions/extension-hyperlink";
 import { Iframe } from "@edifice-tiptap-extensions/extension-iframe";
 import { SpeechRecognition } from "@edifice-tiptap-extensions/extension-speechrecognition";
 import { SpeechSynthesis } from "@edifice-tiptap-extensions/extension-speechsynthesis";
-import { TableCell } from "@edifice-tiptap-extensions/extension-table-cell";
+import {
+  TableCell,
+  FixedParagraph,
+  TrailingNode,
+} from "@edifice-tiptap-extensions/extension-table-cell";
 import { useOdeClient } from "@edifice-ui/react";
 import Color from "@tiptap/extension-color";
 import Focus from "@tiptap/extension-focus";
@@ -100,6 +104,8 @@ export const useTipTapEditor = (editable: boolean, content: Content) => {
       ImageNodeView(MediaRenderer),
       LinkerNodeView(LinkerRenderer),
       AttachmentNodeView(AttachmentRenderer),
+      FixedParagraph,
+      TrailingNode,
     ],
     content,
   });
