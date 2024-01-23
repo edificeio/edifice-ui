@@ -364,11 +364,11 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
   ]);
 
   return (
-    <div className=" z-1000  sticky-top">
+    <div className=" z-1000 sticky-top editor-toolbar rounded">
       <Toolbar
         items={toolbarItems}
         variant="no-shadow"
-        className="toolbar bg-white rounded-top no-shadow d-flex justify-content-start overflow-x-auto"
+        className="toolbar bg-white rounded-top no-shadow d-flex justify-content-start overflow-x-auto px-16"
         isBlock
         align="left"
         ariaControls="editorContent"
