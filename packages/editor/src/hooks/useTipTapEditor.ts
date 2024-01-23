@@ -8,6 +8,7 @@ import "@edifice-tiptap-extensions/extension-video";
 import { Alert } from "@edifice-tiptap-extensions/extension-alert";
 import { FontSize } from "@edifice-tiptap-extensions/extension-font-size";
 import { CustomHeading } from "@edifice-tiptap-extensions/extension-heading";
+import { CustomHighlight } from "@edifice-tiptap-extensions/extension-highlight";
 import { Hyperlink } from "@edifice-tiptap-extensions/extension-hyperlink";
 import { Iframe } from "@edifice-tiptap-extensions/extension-iframe";
 import { SpeechRecognition } from "@edifice-tiptap-extensions/extension-speechrecognition";
@@ -17,7 +18,6 @@ import { useOdeClient } from "@edifice-ui/react";
 import Color from "@tiptap/extension-color";
 import Focus from "@tiptap/extension-focus";
 import FontFamily from "@tiptap/extension-font-family";
-import Highlight from "@tiptap/extension-highlight";
 import Subscript from "@tiptap/extension-subscript";
 import Superscript from "@tiptap/extension-superscript";
 import Table from "@tiptap/extension-table";
@@ -57,7 +57,7 @@ export const useTipTapEditor = (editable: boolean, content: Content) => {
     editable,
     extensions: [
       StarterKit,
-      Highlight.configure({
+      CustomHighlight.configure({
         multicolor: true,
       }),
       Underline,

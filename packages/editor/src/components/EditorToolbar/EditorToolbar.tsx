@@ -204,7 +204,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
           ),
         },
         name: "highlight",
-        visibility: showIf(hasMark("highlight", editor)),
+        visibility: showIf(hasMark("customHighlight", editor)),
         tooltip: t("tiptap.toolbar.highlight.back"),
       },
       //-------------------------------------//

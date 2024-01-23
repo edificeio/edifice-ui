@@ -47,6 +47,7 @@
     "@edifice-tiptap-extensions/extension-attachment": "develop",
     "@edifice-tiptap-extensions/extension-audio": "develop",
     "@edifice-tiptap-extensions/extension-font-size": "develop",
+    "@edifice-tiptap-extensions/extension-highlight": "develop",
     "@edifice-tiptap-extensions/extension-heading": "develop",
     "@edifice-tiptap-extensions/extension-hyperlink": "develop",
     "@edifice-tiptap-extensions/extension-iframe": "develop",

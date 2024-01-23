@@ -45,7 +45,7 @@ export const EditorToolbarHighlightColor = ({
 
   const isActive = useMemo(
     () =>
-      editor?.isActive("highlight", {
+      editor?.isActive("customHighlight", {
         color: /^#([0-9a-f]{3}){1,2}$/i,
       }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -69,7 +69,7 @@ export const EditorToolbarHighlightColor = ({
 
   // When cursor moves in table, update the current highlight color.
   useEffect(() => {
-    setColor(editor?.getAttributes("highlight").color ?? "");
+    setColor(editor?.getAttributes("customHighlight").color ?? "");
   }, [editor, editor?.state]);
 
   // Palettes of available colors to choose from.
