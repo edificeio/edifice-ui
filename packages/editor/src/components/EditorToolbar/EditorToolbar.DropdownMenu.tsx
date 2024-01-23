@@ -45,7 +45,6 @@ export const EditorToolbarDropdownMenu = ({
           color="tertiary"
           icon={icon}
           aria-label={ariaLabel}
-          tooltip={ariaLabel}
         />
       </Tooltip>
       <Dropdown.Menu>

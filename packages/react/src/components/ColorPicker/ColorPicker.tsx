@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import { Ref } from "react";
 import { ComponentPropsWithRef } from "react";
 
-import { InfoCircle } from "@edifice-ui/icons";
+import { DeleteColor, InfoCircle } from "@edifice-ui/icons";
 import clsx from "clsx";
 
 import {
@@ -71,14 +71,10 @@ const ColorPicker = forwardRef(
               // Show/hide the reset option
               palette.reset && (
                 <button
-                  className="color-picker-reset small my-8"
+                  className="color-picker-reset small my-8 gap-4"
                   onClick={() => handleClick(palette.reset)}
                 >
-                  <ColorPickerItem
-                    {...restProps}
-                    model={palette.reset}
-                    className="me-4"
-                  />
+                  <DeleteColor width={20} height={20} />
                   {palette.reset.description}
                 </button>
               )
