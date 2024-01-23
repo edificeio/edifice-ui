@@ -20,10 +20,12 @@ const BubbleMenuEditImage = ({
   editor,
   onEditImage,
   openEditImage,
+  editable,
 }: {
   editor: Editor;
   onEditImage: () => void;
   openEditImage: boolean;
+  editable: boolean;
 }) => {
   const { t } = useTranslation();
 
@@ -190,7 +192,7 @@ const BubbleMenuEditImage = ({
       editor={editor}
       tippyOptions={tippyOptions}
     >
-      <Toolbar className="p-8" items={ImageSizeItems} />
+      {editable && <Toolbar className="p-8" items={ImageSizeItems} />}
     </BubbleMenu>
   );
 };

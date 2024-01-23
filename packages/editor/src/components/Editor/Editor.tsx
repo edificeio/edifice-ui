@@ -115,9 +115,10 @@ const Editor = forwardRef(
             editor={editor}
             onEditImage={imageModal.handleEdit}
             openEditImage={imageModal.isOpen}
+            editable={editable}
           />
         )}
-
+        
         <Suspense fallback={<LoadingScreen />}>
           {editable && (
             <MediaLibrary
