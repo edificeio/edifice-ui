@@ -38,7 +38,7 @@ const LinkerRenderer = ({ selected, ...props }: LinkerProps) => {
   };
 
   return (
-    <NodeViewWrapper as={"span"} contentEditable="false">
+    <NodeViewWrapper as="span" contentEditable={false}>
       <Badge
         variant={{ type: "link" }}
         className={classes}
