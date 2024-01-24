@@ -12,6 +12,8 @@ import {
   TextUnderline,
   SpeechToText,
   BulletList,
+  Undo,
+  Redo,
 } from "@edifice-ui/icons";
 import {
   ToolbarItem,
@@ -64,6 +66,37 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
     const showIf = (truthy: boolean) => (truthy ? "show" : "hide");
 
     return [
+      //--------------- UNDO ---------------//
+      {
+        type: "icon",
+        props: {
+          icon: <Undo />,
+          "aria-label": t("editor.option.undo"),
+          onClick: () => editor?.chain().focus().undo().run(),
+        },
+        name: "undo",
+        tooltip: t("editor.option.undo"),
+        isEnable: !editor?.can().undo(),
+        visibility: showIf(hasExtension("history", editor)),
+      },
+      //--------------- REDO ---------------//
+      {
+        type: "icon",
+        props: {
+          icon: <Redo />,
+          "aria-label": t("editor.option.redo"),
+          onClick: () => editor?.chain().focus().redo().run(),
+        },
+        name: "redo",
+        tooltip: t("editor.option.redo"),
+        isEnable: !editor?.can().redo(),
+        visibility: showIf(hasExtension("history", editor)),
+      },
+      //-------------------------------------//
+      {
+        type: "divider",
+        name: "div-1",
+      },
       //--------------- IMAGE ---------------//
       {
         type: "icon",
@@ -112,10 +145,9 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
         name: "attachment",
         tooltip: t("tiptap.toolbar.attachment"),
       },
-      //-------------------------------------//
       {
         type: "divider",
-        name: "div-1",
+        name: "div-2",
       },
       //--------------- SPEECH TO TEXT ---------------//
       {
@@ -210,7 +242,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
       //-------------------------------------//
       {
         type: "divider",
-        name: "div-2",
+        name: "div-3",
       },
       //--------------- BOLD ---------------//
       {
@@ -255,7 +287,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
       //-------------------------------------//
       {
         type: "divider",
-        name: "div-3",
+        name: "div-4",
       },
       //--------------- EMOJI ---------------//
       {
@@ -291,7 +323,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
       //-----------------------------------//
       {
         type: "divider",
-        name: "div-4",
+        name: "div-5",
       },
       //--------------- LIST MENU ---------------//
       {
@@ -338,7 +370,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
       //-------------------------------------//
       {
         type: "divider",
-        name: "div-5",
+        name: "div-6",
       },
       //--------------- MORE sub-menu ---------------//
       {
@@ -368,7 +400,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
       <Toolbar
         items={toolbarItems}
         variant="no-shadow"
-        className="toolbar bg-white rounded-top no-shadow d-flex justify-content-start overflow-x-auto px-16"
+        className="rounded-top px-16"
         isBlock
         align="left"
         ariaControls="editorContent"

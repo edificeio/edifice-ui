@@ -82,6 +82,8 @@ const Editor = forwardRef(
       isSpeeching: () => speechSynthetisis.isActivated,
     }));
 
+    if (!editor) return null;
+
     return (
       <EditorContext.Provider
         value={{
