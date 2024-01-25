@@ -210,8 +210,9 @@ const useDropdown = (
           case KEYS.Escape:
             closeDropdown();
             break;
+          // FIX WB2-1334: Space event prevents user to insert Space during search, so we comment it to keep a trace.
+          // case KEYS.Space:
           case " ":
-          case KEYS.Space:
           case KEYS.Enter:
             if (activeIndex !== -1) {
               const currentItem = Object.values(itemRefs.current)[
