@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import { Blur, Crop, Reset, Undo } from "@edifice-ui/icons";
 import { useTranslation } from "react-i18next";

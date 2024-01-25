@@ -22,6 +22,7 @@ import { WorkspaceElement } from "edifice-ts-client";
 import { useTranslation } from "react-i18next";
 
 import { InnerTabs } from "./innertabs";
+import { ExternalLinkTabProps } from "./innertabs/ExternalLink";
 import {
   InternalLinkTabProps,
   InternalLinkTabResult,
@@ -33,7 +34,6 @@ import Modal, { ModalElement } from "../../components/Modal/Modal";
 import { Tabs } from "../../components/Tabs";
 import { TabsItemProps } from "../../components/Tabs/TabsItem";
 import { useHasWorkflow } from "../../core/useHasWorkflow";
-import { IExternalLink } from "../Linker";
 
 //---------------------------------------------------
 // Tabs parameters
@@ -107,7 +107,8 @@ export interface MediaLibraryRef {
    * Open the MediaLibrary on a internal/external link Tab,
    * and prefill the tab with data.
    */
-  editLink: (data: InternalLinkTabProps | IExternalLink) => void;
+  showLink: (data: InternalLinkTabProps | ExternalLinkTabProps) => void;
+
   /** Get the Media Libray type currently displayed, or null if hidden. */
   type: MediaLibraryType | null;
 }
@@ -182,7 +183,7 @@ const MediaLibrary = forwardRef(
     useImperativeHandle(ref, () => ({
       show,
       hide,
-      editLink,
+      showLink,
       type,
       ...refModal.current,
     }));
@@ -201,7 +202,7 @@ const MediaLibrary = forwardRef(
 
     // Used to prefill the [in|ex]ternal innertab.
     const [linkTabProps, setLinkTabProps] = useState<
-      InternalLinkTabProps | IExternalLink | undefined
+      InternalLinkTabProps | ExternalLinkTabProps | undefined
     >();
 
     const [type, setType] = useState<MediaLibraryType | null>(null);
@@ -246,7 +247,7 @@ const MediaLibrary = forwardRef(
         icon: <Globe />,
         label: t("bbm.linker.ext"),
         content: (
-          <InnerTabs.ExternalLink {...(linkTabProps as IExternalLink)} />
+          <InnerTabs.ExternalLink {...(linkTabProps as ExternalLinkTabProps)} />
         ),
         availableFor: ["hyperlink"],
         isEnable: null,
@@ -334,7 +335,7 @@ const MediaLibrary = forwardRef(
       setType(null);
     };
 
-    const editLink = (props: InternalLinkTabProps | IExternalLink) => {
+    const showLink = (props: InternalLinkTabProps | ExternalLinkTabProps) => {
       setLinkTabProps(props);
       const asInternal = props as InternalLinkTabProps;
       if (!asInternal?.resourceId && !asInternal?.appPrefix) {

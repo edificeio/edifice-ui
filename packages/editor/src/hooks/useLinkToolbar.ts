@@ -30,17 +30,21 @@ export const useLinkToolbar = (
 
       const attrsLinker = attrs as LinkerAttributes;
       if (attrsLinker["data-id"] || attrsLinker["data-app-prefix"]) {
-        mediaLibraryRef.current?.editLink({
+        mediaLibraryRef.current?.showLink({
           target: attrs.target,
           resourceId: attrsLinker["data-id"],
           appPrefix: attrsLinker["data-app-prefix"],
         });
       } else {
-        const { href, target, title, text } = attrs as HyperlinkAttributes;
-        mediaLibraryRef.current?.editLink({
-          url: href || "",
-          target: target || undefined,
-          text: text || title || undefined,
+        const { href, target } = attrs as HyperlinkAttributes;
+        mediaLibraryRef.current?.showLink({
+          link: {
+            url: href || "",
+            target: target || undefined,
+            text: editor?.state.selection.content().content.child(0)
+              .textContent,
+          },
+          enabledTextEdition: true,
         });
       }
     },

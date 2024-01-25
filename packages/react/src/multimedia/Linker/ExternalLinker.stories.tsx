@@ -25,25 +25,6 @@ export const Base: Story = {
   },
 };
 
-export const Validation: Story = {
-  render: (args) => {
-    const [isValidURL, setIsValidURL] = useState(false);
-
-    const handleLinkChange = ({}, isValidURL: boolean) => {
-      setIsValidURL(isValidURL);
-    };
-
-    return (
-      <>
-        <ExternalLinker onChange={handleLinkChange} />
-        <div className="mt-32">
-          {isValidURL ? "URL is valid" : "URL is INVALID"}
-        </div>
-      </>
-    );
-  },
-};
-
 export const UpdateLink: Story = {
   args: {
     link: {

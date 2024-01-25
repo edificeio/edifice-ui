@@ -168,13 +168,12 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
 
             // *** Case of internal links ***
             if (Array.isArray(resourceTabResult.resources)) {
-              if (editor.state.selection.empty) {
-                // No text is currently selected.
-                // => Insert the name of the first link and select it.
-                insertAndSelectText(resourceTabResult.resources[0].name);
-              }
-
               resourceTabResult.resources.forEach((link) => {
+                if (editor.state.selection.empty) {
+                  // No text is currently selected.
+                  // => Insert the name of the first link and select it.
+                  insertAndSelectText(link.name);
+                }
                 // Add a hyperlink to the selection.
                 editor?.commands.setLink({
                   href: link.path,
@@ -201,10 +200,33 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
                 // No text is currently selected.
                 // => Insert the name of the link and select it.
                 insertAndSelectText(text);
+              } else {
+                const selection = editor.view.state.selection;
+                if (
+                  text &&
+                  editor.view.state.selection.content().content.child(0)
+                    .textContent !== text
+                ) {
+                  editor
+                    .chain()
+                    .focus()
+                    .insertContentAt(
+                      {
+                        from: selection.from,
+                        to: selection.to,
+                      },
+                      text,
+                    )
+                    .setTextSelection({
+                      from: selection.from,
+                      to: selection.from + text.length,
+                    })
+                    .run();
+                }
               }
               editor?.commands.setLink({
                 href: url,
-                title: text,
+                title: "",
                 target,
               });
             }

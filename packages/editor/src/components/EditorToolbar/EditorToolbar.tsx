@@ -65,6 +65,21 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
   const toolbarItems: ToolbarItem[] = useMemo(() => {
     const showIf = (truthy: boolean) => (truthy ? "show" : "hide");
 
+    const showLinkModal = () => {
+      const { state } = editor!;
+      if (state.selection.empty) {
+        mediaLibraryRef.current?.show("hyperlink");
+      } else {
+        mediaLibraryRef.current?.showLink({
+          link: {
+            text: state.selection.content().content.child(0).textContent,
+            target: "_blank",
+          },
+          enabledTextEdition: state.selection.content().content.childCount <= 1,
+        });
+      }
+    };
+
     return [
       //--------------- UNDO ---------------//
       {
@@ -315,7 +330,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
           icon: <Link />,
           "aria-label": t("tiptap.toolbar.linker"),
           className: editor?.isActive("linker") ? "is-selected" : "",
-          onClick: () => mediaLibraryRef.current?.show("hyperlink"),
+          onClick: () => showLinkModal(),
         },
         name: "linker",
         tooltip: t("tiptap.toolbar.linker"),

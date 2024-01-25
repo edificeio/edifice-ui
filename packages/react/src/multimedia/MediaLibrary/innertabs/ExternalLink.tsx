@@ -1,23 +1,26 @@
 import ExternalLinker, { IExternalLink } from "../../Linker/ExternalLinker";
 import { useMediaLibraryContext } from "../MediaLibraryContext";
 
-export const ExternalLink = (link?: IExternalLink) => {
+export type ExternalLinkTabProps = {
+  enabledTextEdition?: boolean;
+  link?: Partial<IExternalLink>;
+};
+
+export const ExternalLink = ({
+  link,
+  enabledTextEdition = true,
+}: ExternalLinkTabProps) => {
   const { setResult } = useMediaLibraryContext();
 
-  const handleLinkChange = (
-    { url, text, target }: IExternalLink,
-    isValidLink: boolean,
-  ) => {
-    if (isValidLink) {
-      setResult({
-        url,
-        text: text ? text : url,
-        target,
-      } as IExternalLink);
-    } else {
-      setResult();
-    }
+  const handleLinkChange = (link?: IExternalLink) => {
+    setResult(link);
   };
 
-  return <ExternalLinker link={link} onChange={handleLinkChange} />;
+  return (
+    <ExternalLinker
+      link={link}
+      onChange={handleLinkChange}
+      enabledTextEdition={enabledTextEdition}
+    />
+  );
 };

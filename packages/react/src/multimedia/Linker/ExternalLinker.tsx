@@ -23,39 +23,54 @@ export interface IExternalLink {
  */
 export type ExternalLinkerProps = {
   /** Default link to update. */
-  link?: IExternalLink;
-  /** Selected text in case of a link creation. */
-  selectedText?: string;
+  link?: Partial<IExternalLink>;
+  /**
+   * Enable or disable text edition.
+   */
+  enabledTextEdition?: boolean;
   /** Target */
   target?: "_blank";
   /** Notify when the user change any link information */
-  onChange?: (link: IExternalLink, isValidLink: boolean) => void;
+  onChange?: (link?: IExternalLink) => void;
 };
 
 const ExternalLinker = ({
   link,
-  selectedText,
   onChange,
+  enabledTextEdition = true,
 }: ExternalLinkerProps) => {
   const { t } = useTranslation();
 
-  const [linkText, setLinkText] = useState<string>(
-    link?.text || selectedText || "",
-  );
+  const [linkText, setLinkText] = useState<string>(link?.text || "");
   const [linkURL, setLinkURL] = useState<string>(link?.url || "");
   const [isBlankTarget, toggleBlankTarget] = useToggle(
     link ? link.target === "_blank" : true,
   );
 
   useEffect(() => {
-    onChange?.(
-      {
-        url: linkURL,
-        text: linkText,
-        target: isBlankTarget ? "_blank" : undefined,
-      },
-      StringUtils.isLocalURL(linkURL) || StringUtils.isValidURL(linkURL),
-    );
+    if (!enabledTextEdition && link?.text) {
+      setLinkText(link.text.slice(0, 20) + "...");
+    }
+  }, [enabledTextEdition, link]);
+
+  useEffect(() => {
+    if (!linkURL.length) {
+      onChange?.();
+      return;
+    }
+
+    const newLink: IExternalLink = {
+      url: linkURL,
+      text: enabledTextEdition ? linkText || linkURL : link?.text,
+      target: isBlankTarget ? "_blank" : undefined,
+    };
+    if (
+      !StringUtils.isLocalURL(linkURL) &&
+      !StringUtils.startWithHttp(linkURL)
+    ) {
+      newLink.url = "http://" + linkURL;
+    }
+    onChange?.(newLink);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [linkText, linkURL, isBlankTarget]);
 
@@ -68,6 +83,7 @@ const ExternalLinker = ({
             type="text"
             placeholder={t("bbm.linker.ext.text.placeholder")}
             size="md"
+            disabled={!enabledTextEdition}
             value={linkText}
             onChange={(e) => setLinkText(e.target.value)}
           />
