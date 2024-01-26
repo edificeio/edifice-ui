@@ -73,6 +73,8 @@ export const ShareBookmarkLine = ({
                 </Button>
               )}
               {shareRight.type !== "sharebookmark" && shareRight.displayName}
+              {shareRight.type === "user" &&
+                ` (${t(shareRight.profile || "")})`}
             </div>
           </td>
           {shareRightActions.map((shareRightAction) => (
