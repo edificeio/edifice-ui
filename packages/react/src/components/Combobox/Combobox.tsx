@@ -74,6 +74,7 @@ const Combobox = ({
       <Fragment key={index}>
         <Dropdown.Item
           type="select"
+          icon={option.icon}
           onClick={() => handleOptionClick(option.value)}
         >
           {option.label}

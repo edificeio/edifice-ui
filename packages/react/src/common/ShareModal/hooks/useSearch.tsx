@@ -161,7 +161,7 @@ export const useSearch = ({
             return {
               value: searchResult.id,
               label,
-              icon: searchResult.type === "sharebookmark" ? Bookmark : null,
+              icon: searchResult.type === "sharebookmark" ? <Bookmark /> : null,
             };
           },
         );

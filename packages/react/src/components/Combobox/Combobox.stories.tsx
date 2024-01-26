@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from "react";
 
 import { Meta, StoryObj } from "@storybook/react";
 import Combobox, { ComboboxProps } from "./Combobox";
+import { Bookmark } from "@edifice-ui/icons";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Combobox> = {
@@ -16,6 +17,7 @@ const meta: Meta<typeof Combobox> = {
       {
         value: "First Item",
         label: "First Item",
+        icon: <Bookmark />,
       },
       {
         value: "Second Item",
