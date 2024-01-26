@@ -41,10 +41,10 @@ export const useLinkToolbar = (
           link: {
             url: href || "",
             target: target || undefined,
-            text: editor?.state.selection.content().content.child(0)
-              .textContent,
+            text: editor?.state.selection.empty
+              ? ""
+              : editor?.state.selection.content().content.child(0).textContent,
           },
-          enabledTextEdition: true,
         });
       }
     },

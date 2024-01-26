@@ -2,13 +2,13 @@ import ExternalLinker, { IExternalLink } from "../../Linker/ExternalLinker";
 import { useMediaLibraryContext } from "../MediaLibraryContext";
 
 export type ExternalLinkTabProps = {
-  enabledTextEdition?: boolean;
+  multiNodeSelected?: boolean;
   link?: Partial<IExternalLink>;
 };
 
 export const ExternalLink = ({
   link,
-  enabledTextEdition = true,
+  multiNodeSelected = false,
 }: ExternalLinkTabProps) => {
   const { setResult } = useMediaLibraryContext();
 
@@ -20,7 +20,7 @@ export const ExternalLink = ({
     <ExternalLinker
       link={link}
       onChange={handleLinkChange}
-      enabledTextEdition={enabledTextEdition}
+      multiNodeSelected={multiNodeSelected}
     />
   );
 };

@@ -25,9 +25,9 @@ export type ExternalLinkerProps = {
   /** Default link to update. */
   link?: Partial<IExternalLink>;
   /**
-   * Enable or disable text edition.
+   * Set true if the user select multiple nodes. (note simple text selection)
    */
-  enabledTextEdition?: boolean;
+  multiNodeSelected?: boolean;
   /** Target */
   target?: "_blank";
   /** Notify when the user change any link information */
@@ -37,7 +37,7 @@ export type ExternalLinkerProps = {
 const ExternalLinker = ({
   link,
   onChange,
-  enabledTextEdition = true,
+  multiNodeSelected = false,
 }: ExternalLinkerProps) => {
   const { t } = useTranslation();
 
@@ -48,10 +48,10 @@ const ExternalLinker = ({
   );
 
   useEffect(() => {
-    if (!enabledTextEdition && link?.text) {
+    if (multiNodeSelected && link?.text) {
       setLinkText(link.text.slice(0, 20) + "...");
     }
-  }, [enabledTextEdition, link]);
+  }, [multiNodeSelected, link]);
 
   useEffect(() => {
     if (!linkURL.length) {
@@ -61,7 +61,7 @@ const ExternalLinker = ({
 
     const newLink: IExternalLink = {
       url: linkURL,
-      text: enabledTextEdition ? linkText || linkURL : link?.text,
+      text: multiNodeSelected ? linkText || linkURL : link?.text,
       target: isBlankTarget ? "_blank" : undefined,
     };
     if (
@@ -83,7 +83,7 @@ const ExternalLinker = ({
             type="text"
             placeholder={t("bbm.linker.ext.text.placeholder")}
             size="md"
-            disabled={!enabledTextEdition}
+            disabled={multiNodeSelected}
             value={linkText}
             onChange={(e) => setLinkText(e.target.value)}
           />

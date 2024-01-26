@@ -201,25 +201,25 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
                 // => Insert the name of the link and select it.
                 insertAndSelectText(text);
               } else {
-                const selection = editor.view.state.selection;
+                const { selection } = editor.view.state;
+                const { from, to } = selection;
                 if (
                   text &&
-                  editor.view.state.selection.content().content.child(0)
-                    .textContent !== text
+                  selection.content().content.child(0).textContent !== text
                 ) {
                   editor
                     .chain()
                     .focus()
                     .insertContentAt(
                       {
-                        from: selection.from,
-                        to: selection.to,
+                        from,
+                        to,
                       },
                       text,
                     )
                     .setTextSelection({
-                      from: selection.from,
-                      to: selection.from + text.length,
+                      from,
+                      to: from + text.length,
                     })
                     .run();
                 }

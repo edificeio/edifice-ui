@@ -70,12 +70,13 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
       if (state.selection.empty) {
         mediaLibraryRef.current?.show("hyperlink");
       } else {
+        console.log(state.selection.content().content.child(0).textContent);
         mediaLibraryRef.current?.showLink({
           link: {
             text: state.selection.content().content.child(0).textContent,
             target: "_blank",
           },
-          enabledTextEdition: state.selection.content().content.childCount <= 1,
+          multiNodeSelected: state.selection.content().content.childCount > 1,
         });
       }
     };
