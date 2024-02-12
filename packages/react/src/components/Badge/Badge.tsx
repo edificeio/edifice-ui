@@ -7,7 +7,8 @@ export type BadgeRef = HTMLSpanElement;
 /** Badge variant : notification */
 export type NotificationBadgeVariant = {
   type: "notification";
-  level: "warning" | "danger";
+  level: "warning" | "danger" | "info";
+  color?: "background" | "text";
 };
 /** Badge variant : profile = teacher, student, relative or personnel */
 export type ProfileBadgeVariant = {
@@ -56,7 +57,7 @@ const Badge = forwardRef(
   (
     {
       className,
-      variant = { type: "notification", level: "danger" },
+      variant = { type: "notification", level: "danger", color: "background" },
       visibility,
       rounded,
       children,
@@ -87,7 +88,13 @@ const Badge = forwardRef(
       "always" === visibility &&
         `position-absolute translate-middle p-8 d-inline`,
 
-      "notification" === variant.type && `bg-${variant.level} text-light`,
+      "notification" === variant.type &&
+        (!variant.color || variant.color === "background") &&
+        `bg-${variant.level} text-light`,
+
+      "notification" === variant.type &&
+        variant.color === "text" &&
+        `text-${variant.level} bg-gray-200 border border-gray-400`,
 
       "profile" === variant.type && `badge-profile-${variant.profile}`,
 

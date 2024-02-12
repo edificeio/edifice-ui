@@ -13,6 +13,10 @@ const meta: Meta<typeof Badge> = {
       options: [
         "notification / warning",
         "notification / danger",
+        "notification / info",
+        "notification / warning / text",
+        "notification / danger / text",
+        "notification / info / text",
         "profile / student",
         "profile / teacher",
         "profile / relative",
@@ -21,6 +25,22 @@ const meta: Meta<typeof Badge> = {
       mapping: {
         "notification / warning": { type: "notification", level: "warning" },
         "notification / danger": { type: "notification", level: "danger" },
+        "notification / info": { type: "notification", level: "info" },
+        "notification / warning / text": {
+          type: "notification",
+          level: "warning",
+          color: "text",
+        },
+        "notification / danger / text": {
+          type: "notification",
+          level: "danger",
+          color: "text",
+        },
+        "notification / info / text": {
+          type: "notification",
+          level: "info",
+          color: "text",
+        },
         "profile / student": { type: "profile", profile: "student" },
         "profile / teacher": { type: "profile", profile: "teacher" },
         "profile / relative": { type: "profile", profile: "relative" },
@@ -65,6 +85,20 @@ export const VisibilityOption: Story = {
           'An empty badge is hidden by default. Set its `visibility` to `"always"` to show it anyway.',
       },
     },
+  },
+};
+
+export const NotificationTextInfoBadge: Story = {
+  args: {
+    variant: { type: "notification", level: "info", color: "text" },
+  },
+
+  render: (args: BadgeProps) => {
+    return (
+      <p>
+        Titre du billet <Badge {...args}>Brouillon</Badge>
+      </p>
+    );
   },
 };
 
