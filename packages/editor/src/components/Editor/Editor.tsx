@@ -92,7 +92,7 @@ const Editor = forwardRef(
 
     if (!editor) return null;
 
-    const borderClass = clsx(variant === "outline" && "border rounded");
+    const borderClass = clsx(variant === "outline" && "border rounded-3");
     const contentClass = clsx(variant === "outline" && "py-12 px-16");
 
     return (

@@ -411,11 +411,11 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
   ]);
 
   return (
-    <div className="sticky-top z-1 editor-toolbar rounded">
+    <div className="sticky-top z-1 editor-toolbar rounded-3">
       <Toolbar
         items={toolbarItems}
         variant="no-shadow"
-        className="rounded-top px-16"
+        className="rounded-top-3 px-16"
         isBlock
         align="left"
         ariaControls="editorContent"
