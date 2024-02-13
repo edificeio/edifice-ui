@@ -3,6 +3,7 @@ import { Suspense, lazy, forwardRef, useImperativeHandle, Ref } from "react";
 import "@edifice-tiptap-extensions/extension-image";
 import { LoadingScreen, MediaLibrary, useOdeClient } from "@edifice-ui/react";
 import { EditorContent, Content, JSONContent } from "@tiptap/react";
+import clsx from "clsx";
 
 import {
   EditorToolbar,
@@ -47,11 +48,18 @@ export interface EditorProps {
   mode?: "edit" | "read" /* | "preview" */;
   /** Toolbar to display in `edit` mode. */
   toolbar?: "full" | "none";
+  /** Display with or without a border */
+  variant?: "outline" | "ghost";
 }
 
 const Editor = forwardRef(
   (
-    { content, mode = "read", toolbar = "full" }: EditorProps,
+    {
+      content,
+      mode = "read",
+      toolbar = "full",
+      variant = "outline",
+    }: EditorProps,
     ref: Ref<EditorRef>,
   ) => {
     const { appCode } = useOdeClient();
@@ -84,6 +92,9 @@ const Editor = forwardRef(
 
     if (!editor) return null;
 
+    const borderClass = clsx(variant === "outline" && "border rounded");
+    const contentClass = clsx(variant === "outline" && "py-12 px-16");
+
     return (
       <EditorContext.Provider
         value={{
@@ -92,7 +103,7 @@ const Editor = forwardRef(
           editable,
         }}
       >
-        <div className="border rounded">
+        <div className={borderClass}>
           {toolbar !== "none" && editable && (
             <EditorToolbar
               {...{
@@ -105,7 +116,7 @@ const Editor = forwardRef(
           <EditorContent
             editor={editor}
             id="editorContent"
-            className="py-12 px-16"
+            className={contentClass}
           />
         </div>
 
