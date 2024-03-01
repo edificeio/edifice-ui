@@ -241,7 +241,7 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
         }
 
         default:
-          return `<div>[TipTap/toRichContent] Le contenu de type "${type}" n'est pas convertissable pour l'instant !</div>`;
+          return `<div>[useMediaLibraryModal/onSuccess] Le contenu de type "${type}" n'est pas convertissable pour l'instant !</div>`;
       }
     },
     [editor],

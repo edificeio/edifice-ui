@@ -16,13 +16,13 @@ import "dayjs/locale/it";
 dayjs.extend(relativeTime);
 dayjs.extend(customParseFormat);
 
-type MongoDate = {
+export type MongoDate = {
   $date: number | string;
 };
-type IsoDate = string; // "2021-03-24T16:36:05.398" or "1980-01-13"
+export type IsoDate = string; // "2021-03-24T16:36:05.398" or "1980-01-13"
 
 /** Date formats we are going to deal with. */
-type CoreDate = IsoDate | MongoDate;
+export type CoreDate = IsoDate | MongoDate;
 
 /**
  * Hook to compute user-friendly dates from various format.

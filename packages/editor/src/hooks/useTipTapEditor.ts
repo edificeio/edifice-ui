@@ -44,10 +44,9 @@ import {
 } from "../components";
 
 /**
- * Hook that creates a tiptap editor instance,
- * and a function to add rich content from the MediaLibrary.
+ * Hook that creates a tiptap editor instance.
  *
- * @param isEditable truthy if the editor content should be editable
+ * @param editable truthy if the editor content should be editable
  * @param content default rich content
  */
 export const useTipTapEditor = (editable: boolean, content: Content) => {

@@ -1,4 +1,5 @@
 export * from "./useActionOptions";
+export * from "./useCommentEditor";
 export * from "./useEditorContext";
 export * from "./useImageModal";
 export * from "./useImageSelection";
