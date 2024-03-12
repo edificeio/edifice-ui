@@ -4,7 +4,8 @@ import { Workspace as Component } from "../../Workspace";
 import { useMediaLibraryContext } from "../MediaLibraryContext";
 
 export const Workspace = () => {
-  const { type, setResultCounter, setResult } = useMediaLibraryContext();
+  const { type, setResultCounter, setResult, multiple } =
+    useMediaLibraryContext();
 
   function getDocumentRoleFilter(): Role | Role[] | null {
     switch (type) {
@@ -32,6 +33,7 @@ export const Workspace = () => {
     <Component
       roles={getDocumentRoleFilter()}
       onSelect={handleSelect}
+      multiple={multiple}
       className="border rounded overflow-y-auto"
     ></Component>
   );

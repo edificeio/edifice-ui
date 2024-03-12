@@ -39,12 +39,21 @@ export interface WorkspaceProps {
    */
   onSelect: (result: WorkspaceElement[]) => void;
   /**
+   * Boolean to know if we can select 1 or many files.
+   */
+  multiple?: boolean | undefined;
+  /**
    * Optional class for styling purpose
    */
   className?: string;
 }
 
-const Workspace = ({ roles, onSelect, className }: WorkspaceProps) => {
+const Workspace = ({
+  roles,
+  onSelect,
+  multiple = true,
+  className,
+}: WorkspaceProps) => {
   const { t } = useTranslation();
 
   const { root: owner, loadContent: loadOwnerDocs } = useWorkspaceSearch(
@@ -219,7 +228,9 @@ const Workspace = ({ roles, onSelect, className }: WorkspaceProps) => {
 
   function handleSelectDoc(doc: WorkspaceElement) {
     let currentDocuments = [...selectedDocuments];
-    if (currentDocuments.includes(doc)) {
+    if (!multiple) {
+      currentDocuments = [doc];
+    } else if (currentDocuments.includes(doc)) {
       currentDocuments = currentDocuments.filter(
         (selectedDocument) => selectedDocument._id !== doc._id,
       );
