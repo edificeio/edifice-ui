@@ -38,7 +38,7 @@ const Dropzone = ({
   const classes = clsx(
     "dropzone",
     {
-      "is-dragging": dragging,
+      "is-dragging": !multiple ? files.length < 1 && dragging : dragging,
       "is-drop-files": files.length !== 0 && !handle ? false : true,
     },
     className,
@@ -61,7 +61,7 @@ const Dropzone = ({
         onDragEnter={handleDragging}
         onDragOver={handleDragging}
         onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
+        onDrop={files.length > 0 && !multiple ? undefined : handleDrop}
       >
         <div className="align-center">
           {!handle ? (

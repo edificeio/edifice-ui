@@ -5,11 +5,14 @@ import clsx from "clsx";
 import { useTranslation } from "react-i18next";
 
 import { useDropzoneContext } from "./DropzoneContext";
+import { useMediaLibraryContext } from "../../multimedia/MediaLibrary/MediaLibraryContext";
 import Button from "../Button/Button";
 
 const DropzoneFile = ({ children }: { children: ReactNode }) => {
   const { t } = useTranslation();
   const { files, inputRef } = useDropzoneContext();
+
+  const { multiple } = useMediaLibraryContext();
 
   const hasFiles = files && files.length > 0;
 
@@ -25,6 +28,7 @@ const DropzoneFile = ({ children }: { children: ReactNode }) => {
           <Button
             variant="ghost"
             leftIcon={<Plus></Plus>}
+            disabled={!multiple}
             onClick={() => inputRef?.current?.click()}
           >
             {t("dropzone.add.more")}
