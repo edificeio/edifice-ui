@@ -7,6 +7,7 @@ import {
   Check,
   InfoCircle,
 } from "@edifice-ui/icons";
+import { Button } from "..";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Callout> = {
@@ -40,9 +41,14 @@ export const Warning: Story = {
   args: {
     children: (
       <>
-        <AlertTriangle className="text-warning" /> Lorem ipsum dolor, sit amet
-        consectetur adipisicing elit. Inventore tempora perspiciatis explicabo
-        ipsam rem blanditiis quisquam!
+        <AlertTriangle className="text-warning" />
+        <div className="flex-fill">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore
+          tempora perspiciatis explicabo ipsam rem blanditiis quisquam!
+        </div>
+        <Button variant="ghost" color="tertiary">
+          Confirmer
+        </Button>
       </>
     ),
     variant: "warning",
@@ -53,9 +59,14 @@ export const Danger: Story = {
   args: {
     children: (
       <>
-        <AlertCircle className="text-danger" /> Lorem ipsum dolor, sit amet
-        consectetur adipisicing elit. Inventore tempora perspiciatis explicabo
-        ipsam rem blanditiis quisquam!
+        <AlertCircle className="text-danger" />
+        <div className="flex-fill">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore
+          tempora perspiciatis explicabo ipsam rem blanditiis quisquam!
+        </div>
+        <Button variant="ghost" color="tertiary">
+          Confirmer
+        </Button>
       </>
     ),
     variant: "danger",
@@ -66,9 +77,14 @@ export const Info: Story = {
   args: {
     children: (
       <>
-        <InfoCircle className="text-info" /> Lorem ipsum dolor, sit amet
-        consectetur adipisicing elit. Inventore tempora perspiciatis explicabo
-        ipsam rem blanditiis quisquam!
+        <InfoCircle className="text-info" />
+        <div className="flex-fill">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore
+          tempora perspiciatis explicabo ipsam rem blanditiis quisquam!
+        </div>
+        <Button variant="ghost" color="tertiary">
+          Confirmer
+        </Button>
       </>
     ),
     variant: "info",
