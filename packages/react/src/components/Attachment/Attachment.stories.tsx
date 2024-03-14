@@ -1,6 +1,6 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { StoryObj } from "@storybook/react";
 
-import { Button, IconButton } from "../Button";
+import { IconButton } from "../Button";
 import Attachment, { AttachmentProps } from "./Attachment";
 import { Delete, Download } from "@edifice-ui/icons";
 import { Grid } from "../Grid";

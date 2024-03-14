@@ -10,7 +10,7 @@ export interface AttachmentProps extends ComponentPropsWithRef<"div"> {
   /**
    * Actions attachment
    * */
-  options: ReactNode;
+  options: ReactNode | undefined;
 }
 
 export type AttachmentType = AttachmentProps;
@@ -26,7 +26,7 @@ const Attachment = forwardRef(
           <Paperclip height={22} width={22} />
           <p className="text-truncate">{name}</p>
         </div>
-        <div className="options ps-12">{options}</div>
+        {options && <div className="options ps-12">{options}</div>}
       </div>
     );
   },
