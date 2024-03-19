@@ -1,4 +1,11 @@
-import { Suspense, lazy, forwardRef, useImperativeHandle, Ref } from "react";
+import {
+  Suspense,
+  lazy,
+  forwardRef,
+  useImperativeHandle,
+  Ref,
+  useEffect,
+} from "react";
 
 import "@edifice-tiptap-extensions/extension-image";
 import { LoadingScreen, MediaLibrary, useOdeClient } from "@edifice-ui/react";
@@ -89,6 +96,20 @@ const Editor = forwardRef(
       toogleSpeechSynthetisis: speechSynthetisis.toggle,
       isSpeeching: () => speechSynthetisis.isActivated,
     }));
+
+    useEffect(() => {
+      const link = document.createElement("link");
+      link.href =
+        "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css";
+      link.rel = "stylesheet";
+      link.type = "text/css";
+
+      document.head.appendChild(link);
+
+      return () => {
+        document.head.removeChild(link);
+      };
+    }, []);
 
     if (!editor) return null;
 
