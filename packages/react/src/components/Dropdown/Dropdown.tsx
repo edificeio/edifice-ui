@@ -1,5 +1,6 @@
 import { ReactNode, useMemo } from "react";
 
+import { Placement } from "@floating-ui/react";
 import clsx from "clsx";
 
 import DropdownCheckboxItem from "./DropdownCheckboxItem";
@@ -25,15 +26,7 @@ export interface DropdownProps {
   /**
    * Default placement with FloatingUI
    */
-  placement?:
-    | "bottom-end"
-    | "bottom-start"
-    | "left"
-    | "left-start"
-    | "left-end"
-    | "right"
-    | "right-start"
-    | "right-end";
+  placement?: Placement;
   /**
    * Extra keydown handler for the Dropdown Trigger.
    * Useful for a11y keyboard navigation between a Dropdown element and other elements,
