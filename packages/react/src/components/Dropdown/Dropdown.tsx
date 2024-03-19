@@ -25,7 +25,15 @@ export interface DropdownProps {
   /**
    * Default placement with FloatingUI
    */
-  placement?: "bottom-end" | "bottom-start";
+  placement?:
+    | "bottom-end"
+    | "bottom-start"
+    | "left"
+    | "left-start"
+    | "left-end"
+    | "right"
+    | "right-start"
+    | "right-end";
   /**
    * Extra keydown handler for the Dropdown Trigger.
    * Useful for a11y keyboard navigation between a Dropdown element and other elements,
