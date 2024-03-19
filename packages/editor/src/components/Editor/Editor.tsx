@@ -25,6 +25,7 @@ import {
   TableToolbar,
   BubbleMenuEditImage,
 } from "../..";
+import { useMathsStyles } from "../../hooks/useMathsStyles";
 
 const MathsModal = lazy(async () => await import("./MathsModal"));
 const ImageEditor = lazy(async () => await import("./ImageEditor"));
@@ -79,6 +80,13 @@ const Editor = forwardRef(
     const linkToolbarHandlers = useLinkToolbar(editor, mediaLibraryModalRef);
     const speechSynthetisis = useSpeechSynthetisis(editor);
 
+    const { loadMathsStyles } = useMathsStyles();
+
+    useEffect(() => {
+      loadMathsStyles();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     //----- Editor API
     useImperativeHandle(ref, () => ({
       getContent: (as: "html" | "json" | "plain") => {
@@ -96,20 +104,6 @@ const Editor = forwardRef(
       toogleSpeechSynthetisis: speechSynthetisis.toggle,
       isSpeeching: () => speechSynthetisis.isActivated,
     }));
-
-    useEffect(() => {
-      const link = document.createElement("link");
-      link.href =
-        "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css";
-      link.rel = "stylesheet";
-      link.type = "text/css";
-
-      document.head.appendChild(link);
-
-      return () => {
-        document.head.removeChild(link);
-      };
-    }, []);
 
     if (!editor) return null;
 
