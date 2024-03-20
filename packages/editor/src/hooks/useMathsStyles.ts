@@ -1,5 +1,7 @@
+import { useEffect } from "react";
+
 export const useMathsStyles = () => {
-  const loadMathsStyles = () => {
+  useEffect(() => {
     const katexURL =
       "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css";
     let hasKatexLink = false;
@@ -21,9 +23,5 @@ export const useMathsStyles = () => {
       document.links;
       document.head.appendChild(link);
     }
-  };
-
-  return {
-    loadMathsStyles,
-  };
+  }, []);
 };

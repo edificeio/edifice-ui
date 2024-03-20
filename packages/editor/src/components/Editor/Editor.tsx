@@ -1,11 +1,4 @@
-import {
-  Suspense,
-  lazy,
-  forwardRef,
-  useImperativeHandle,
-  Ref,
-  useEffect,
-} from "react";
+import { Suspense, lazy, forwardRef, useImperativeHandle, Ref } from "react";
 
 import "@edifice-tiptap-extensions/extension-image";
 import { LoadingScreen, MediaLibrary, useOdeClient } from "@edifice-ui/react";
@@ -80,12 +73,7 @@ const Editor = forwardRef(
     const linkToolbarHandlers = useLinkToolbar(editor, mediaLibraryModalRef);
     const speechSynthetisis = useSpeechSynthetisis(editor);
 
-    const { loadMathsStyles } = useMathsStyles();
-
-    useEffect(() => {
-      loadMathsStyles();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    useMathsStyles();
 
     //----- Editor API
     useImperativeHandle(ref, () => ({

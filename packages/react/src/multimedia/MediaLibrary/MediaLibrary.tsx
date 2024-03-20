@@ -132,7 +132,7 @@ const mediaLibraryTypes: { none: null } & {
     defaultTab: "workspace",
   },
   hyperlink: { title: "bbm.link.modal.title", defaultTab: "linker" },
-  embedder: { title: "bbm.embedder.modal.title", defaultTab: "iframe" },
+  embedder: { title: "bbm.embed.modal.title", defaultTab: "iframe" },
 };
 
 /**

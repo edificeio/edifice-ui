@@ -28,6 +28,19 @@ const MathsModal = ({ isOpen, onSuccess, onCancel }: ModalProps) => {
   });
 
   useEffect(() => {
+    const link = document.createElement("link");
+    link.href = "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css";
+    link.rel = "stylesheet";
+    link.type = "text/css";
+
+    document.head.appendChild(link);
+
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
+
+  useEffect(() => {
     editor?.commands.setContent(formulaEditor);
     editor?.commands.enter();
     return;
