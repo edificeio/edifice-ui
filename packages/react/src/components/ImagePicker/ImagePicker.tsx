@@ -142,7 +142,7 @@ const ImagePicker = forwardRef(
         <FormControl.Label>
           <span className="visually-hidden">{label}</span>
           <Input
-            accept="image/*"
+            accept="image/jpeg, image/png"
             hidden
             onChange={handleOnChange}
             ref={inputRef}
