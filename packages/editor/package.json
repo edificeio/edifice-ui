@@ -53,6 +53,7 @@
     "@edifice-tiptap-extensions/extension-iframe": "develop",
     "@edifice-tiptap-extensions/extension-image": "develop",
     "@edifice-tiptap-extensions/extension-linker": "develop",
+    "@edifice-tiptap-extensions/extension-paragraph": "develop",
     "@edifice-tiptap-extensions/extension-speechrecognition": "develop",
     "@edifice-tiptap-extensions/extension-speechsynthesis": "develop",
     "@edifice-tiptap-extensions/extension-table-cell": "develop",

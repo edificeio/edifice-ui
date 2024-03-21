@@ -11,6 +11,7 @@ import { CustomHeading } from "@edifice-tiptap-extensions/extension-heading";
 import { CustomHighlight } from "@edifice-tiptap-extensions/extension-highlight";
 import { Hyperlink } from "@edifice-tiptap-extensions/extension-hyperlink";
 import { Iframe } from "@edifice-tiptap-extensions/extension-iframe";
+import { Paragraph } from "@edifice-tiptap-extensions/extension-paragraph";
 import { SpeechRecognition } from "@edifice-tiptap-extensions/extension-speechrecognition";
 import { SpeechSynthesis } from "@edifice-tiptap-extensions/extension-speechsynthesis";
 import { TableCell } from "@edifice-tiptap-extensions/extension-table-cell";
@@ -59,7 +60,8 @@ export const useTipTapEditor = (editable: boolean, content: Content) => {
     // It will then be set in the correct editable mode, by a useEffect below.
     editable: true,
     extensions: [
-      StarterKit,
+      StarterKit.configure({ paragraph: false }),
+      Paragraph,
       CustomHighlight.configure({
         multicolor: true,
       }),
