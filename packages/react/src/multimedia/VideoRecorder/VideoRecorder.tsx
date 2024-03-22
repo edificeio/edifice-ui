@@ -501,11 +501,15 @@ const VideoRecorder = forwardRef(
 
     return (
       <div className="video-recorder d-flex flex-fill flex-column align-items-center pb-8">
-        <div className="video-recorder-caption">{caption}</div>
+        <div className="video-recorder-caption d-none d-md-block">
+          {caption}
+        </div>
         {inputDevices.length > 1 && (
           <div className="video-recorder-devices mb-12">
             <FormControl id="selectInputDevice">
-              <Label>{t("bbm.video.record.select.devices.label")}</Label>
+              <Label className="d-none d-md-block">
+                {t("bbm.video.record.select.devices.label")}
+              </Label>
               <Select
                 placeholderOption={t(
                   "bbm.video.record.select.devices.placeholder",
