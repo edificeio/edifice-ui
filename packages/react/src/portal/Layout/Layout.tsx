@@ -3,7 +3,7 @@ import { ComponentPropsWithoutRef, type ReactNode } from "react";
 import clsx from "clsx";
 import { Toaster } from "react-hot-toast";
 
-import { useOdeTheme } from "../../core";
+import { useOdeTheme, useZendeskGuide } from "../../core";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 
@@ -14,6 +14,7 @@ export interface LayoutProps extends ComponentPropsWithoutRef<any> {
 const Layout = ({ children, ...restProps }: { children: ReactNode }) => {
   const { theme } = useOdeTheme();
 
+  useZendeskGuide();
   return (
     <>
       <Header is1d={theme?.is1d} src={theme?.basePath} />
