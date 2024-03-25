@@ -150,7 +150,7 @@ const InternalLinker = ({
         selectResource(resource);
       } else {
         setSelectedDocuments(
-          selectedDocuments.filter((value, i) => i !== index),
+          selectedDocuments.filter((_value, i) => i !== index),
         );
       }
     },
@@ -279,7 +279,7 @@ const InternalLinker = ({
               ) >= 0;
             return (
               <LinkerCard
-                key={resource.assetId}
+                key={resource.path}
                 doc={resource}
                 isSelected={isSelected}
                 onClick={() => toggleResourceSelection(resource)}

@@ -23,11 +23,9 @@ import { useMockedData } from "../../utils";
  * `resourceApplications: Array<App>`
  * Resources-producing applications the user can use.
  *
- * `loadResources: (filters:GetContextParameters) => void`
+ * `loadResources: (filters:GetContextParameters) => Promise<ILinkedResource[]>`
  * A search method with filters.
  *
- * Note : until all applications are using the explorer main page,
- * only the first resource of the `filter.types` array will be considered while searching.
  */
 export const useResourceSearch = (appCode: App) => {
   // Needed for storybook to mock calls to backend
@@ -69,9 +67,8 @@ export const useResourceSearch = (appCode: App) => {
             }),
           )
         : await odeServices
-            .resource(appCode, resourceType)
-            .searchContext(filters)
-            .then((results) => results.resources);
+            .behaviour(appCode, resourceType)
+            .loadResources(filters);
 
       return payload;
     },
