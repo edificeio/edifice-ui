@@ -19,3 +19,4 @@ export * from "./useUser";
 export * from "./useWorkspaceFile";
 export * from "./useWorkspaceSearch";
 export * from "./useXitiTrackPageLoad";
+export * from "./useZendeskGuide";
