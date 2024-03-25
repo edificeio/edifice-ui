@@ -10,6 +10,9 @@ const acceptedTypes = (type: MediaLibraryType) => {
 
   switch (type) {
     case "audio":
+      acceptedTypes.push("audio/*");
+      acceptedTypes.push("video/*");
+      break;
     case "video":
       acceptedTypes.push("video/*");
       break;
