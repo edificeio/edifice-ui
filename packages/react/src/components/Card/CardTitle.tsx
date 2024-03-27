@@ -10,7 +10,7 @@ const CardTitle = ({
   className?: string;
 }) => {
   const title = clsx(
-    "card-title body text-break text-truncate text-truncate-1",
+    "card-title body text-break text-truncate text-truncate-2",
     className,
   );
   return (
