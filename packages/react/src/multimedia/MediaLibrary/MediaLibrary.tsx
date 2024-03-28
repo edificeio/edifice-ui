@@ -18,7 +18,11 @@ import {
   Smartphone,
   Code,
 } from "@edifice-ui/icons";
-import { WorkspaceElement } from "edifice-ts-client";
+import {
+  WorkspaceElement,
+  WorkspaceVisibility,
+  odeServices,
+} from "edifice-ts-client";
 import { useTranslation } from "react-i18next";
 
 import { InnerTabs } from "./innertabs";
@@ -151,6 +155,12 @@ export type MediaLibraryResult =
 export interface MediaLibraryProps {
   /** Application Code (example: "blog"). */
   appCode: string;
+
+  /**
+   * Visibility of the uploaded files
+   */
+  visibility?: WorkspaceVisibility;
+
   multiple?: boolean;
   /**
    * Called when the user validates the modal (Add button).
@@ -175,7 +185,14 @@ export interface MediaLibraryProps {
 //---------------------------------------------------
 const MediaLibrary = forwardRef(
   (
-    { appCode, multiple, onSuccess, onCancel, onTabChange }: MediaLibraryProps,
+    {
+      appCode,
+      visibility,
+      multiple,
+      onSuccess,
+      onCancel,
+      onTabChange,
+    }: MediaLibraryProps,
     ref: Ref<MediaLibraryRef>,
   ) => {
     // Local ref will be merged with forwardRef in useImperativeHandle() below
@@ -384,15 +401,26 @@ const MediaLibrary = forwardRef(
     };
 
     const handleOnSuccess = useCallback(() => {
+      const triggerSuccess = async (result: MediaLibraryResult) => {
+        // Copy WorkspaceElement from shared/owner folder to protected/public folder
+        if (result instanceof Array) {
+          result = await odeServices
+            .workspace()
+            .transferDocuments(result, "media-library", visibility);
+        }
+        onSuccess(result);
+      };
+
       if (onSuccessAction) {
+        // First execute the pre-success action, then trigger the onSuccess callback.
         onSuccessAction().then((result) => {
-          onSuccess(result);
+          triggerSuccess(result);
         });
       } else if (result) {
-        onSuccess(result);
+        triggerSuccess(result);
       }
       resetState();
-    }, [onSuccess, onSuccessAction, result]);
+    }, [onSuccessAction, result, onSuccess, visibility]);
 
     const handleOnCancel = () => {
       onCancel(cancellable);
@@ -403,6 +431,7 @@ const MediaLibrary = forwardRef(
       <MediaLibraryContext.Provider
         value={{
           appCode,
+          visibility,
           multiple,
           type,
           setResultCounter,

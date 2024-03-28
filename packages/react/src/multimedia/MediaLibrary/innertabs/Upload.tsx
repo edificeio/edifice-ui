@@ -26,8 +26,14 @@ const acceptedTypes = (type: MediaLibraryType) => {
 };
 
 export const Upload = () => {
-  const { type, multiple, setResult, setResultCounter, addCancellable } =
-    useMediaLibraryContext();
+  const {
+    type,
+    visibility,
+    multiple,
+    setResult,
+    setResultCounter,
+    addCancellable,
+  } = useMediaLibraryContext();
 
   const handleOnFilesChange = (uploadedFiles: WorkspaceElement[]) => {
     if (uploadedFiles.length) {
@@ -45,7 +51,10 @@ export const Upload = () => {
   return (
     <div className="py-8 flex-grow-1">
       <Dropzone multiple={multiple} accept={acceptedTypes(type ?? "embedder")}>
-        <UploadFiles onFilesChange={handleOnFilesChange} />
+        <UploadFiles
+          onFilesChange={handleOnFilesChange}
+          visibility={visibility}
+        />
       </Dropzone>
     </div>
   );

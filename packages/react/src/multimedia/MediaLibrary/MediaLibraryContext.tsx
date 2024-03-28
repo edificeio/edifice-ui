@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-import { WorkspaceElement } from "edifice-ts-client";
+import { WorkspaceElement, WorkspaceVisibility } from "edifice-ts-client";
 
 import {
   MediaLibraryType,
@@ -13,6 +13,11 @@ export const MediaLibraryContext = createContext<{
    * Application code (example: "blog")
    */
   appCode: string;
+
+  /**
+   * Visibility of the uploaded files
+   */
+  visibility?: WorkspaceVisibility;
 
   multiple?: boolean;
 

@@ -1,4 +1,4 @@
-import { WorkspaceElement } from "edifice-ts-client";
+import { WorkspaceElement, WorkspaceVisibility } from "edifice-ts-client";
 
 import { UploadCard } from "../../components";
 import useUploadFiles from "../../core/useUploadFiles/useUploadFiles";
@@ -7,8 +7,10 @@ import ImageEditor from "../ImageEditor/components/ImageEditor";
 
 const Upload = ({
   onFilesChange,
+  visibility = "protected",
 }: {
   onFilesChange: (uploadedFiles: WorkspaceElement[]) => void;
+  visibility?: WorkspaceVisibility;
 }) => {
   const {
     files,
@@ -20,7 +22,11 @@ const Upload = ({
     editingImage,
     setEditingImage,
     getUrl,
-  } = useUploadFiles({ handleOnChange: onFilesChange });
+  } = useUploadFiles({
+    handleOnChange: onFilesChange,
+    application: "media-lirary",
+    visibility,
+  });
 
   return (
     <>

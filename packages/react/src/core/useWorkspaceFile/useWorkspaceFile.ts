@@ -1,4 +1,8 @@
-import { WorkspaceElement, odeServices } from "edifice-ts-client";
+import {
+  WorkspaceElement,
+  WorkspaceVisibility,
+  odeServices,
+} from "edifice-ts-client";
 
 const useWorkspaceFile = () => {
   /**
@@ -20,6 +24,7 @@ const useWorkspaceFile = () => {
     legend,
     parentId,
     application,
+    visibility,
   }: {
     blob: Blob;
     uri?: string;
@@ -27,23 +32,32 @@ const useWorkspaceFile = () => {
     legend?: string;
     application?: string;
     parentId?: string;
+    visibility?: WorkspaceVisibility;
   }) => {
     const regex = /\/workspace\/document\/([0-9a-fA-F-]+)/;
     const matches = (uri ?? "").match(regex);
     if (matches && matches.length === 2) {
       const uuid = matches[1];
-      await odeServices.workspace().updateFile(uuid, blob, { alt, legend });
-      return `/workspace/document/${uuid}`;
+      const file: WorkspaceElement = await odeServices
+        .workspace()
+        .updateFile(uuid, blob, { alt, legend });
+      return `/workspace/${file.public ? "pub/" : ""}document/${uuid}`;
     } else {
       const res = await odeServices
         .workspace()
-        .saveFile(blob, { application, parentId });
-      return `/workspace/document/${res._id}`;
+        .saveFile(blob, { application, parentId, visibility });
+      return `/workspace/${res.public ? "pub/" : ""}document/${res._id}`;
     }
   };
   // const get = () => {}
-  const create = async (file: File) => {
-    return await odeServices.workspace().saveFile(file);
+  const create = async (
+    file: File,
+    params?: {
+      visibility?: WorkspaceVisibility;
+      application?: string | undefined;
+    },
+  ) => {
+    return await odeServices.workspace().saveFile(file, params);
   };
 
   // const put = () => {}
