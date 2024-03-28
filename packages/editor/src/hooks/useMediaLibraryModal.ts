@@ -46,7 +46,9 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
               ?.chain()
               .focus()
               .setNewImage({
-                src: `/workspace/document/${image._id}`,
+                src: `/workspace/${image.public ? "pub/" : ""}document/${
+                  image._id
+                }`,
                 alt: image.alt,
                 title: image.title,
               })
@@ -67,10 +69,10 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
           // The setAudio() command does not auto-select the inserted audio.
           // => reset the cursor position after inserting
           const { from } = editor.state.selection;
-          sounds.reverse().forEach((sound) => {
+          sounds.reverse().forEach((sound: WorkspaceElement) => {
             editor?.commands.setAudio(
               sound._id || "",
-              `/workspace/document/${sound._id}`,
+              `/workspace/${sound.public ? "pub/" : ""}document/${sound._id}`,
             );
             editor?.commands.setTextSelection(from);
           });
@@ -93,7 +95,7 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
             videos.reverse().forEach((video) => {
               editor?.commands.setVideo(
                 video._id || "",
-                `/workspace/document/${video._id}`,
+                `/workspace/${video.public ? "pub/" : ""}document/${video._id}`,
                 true,
               );
               editor?.commands.setTextSelection(from);
@@ -105,9 +107,10 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
         case "attachment": {
           let innerHtml = "";
           for (let i = 0; i < result.length; i++) {
-            innerHtml += `<a href="/workspace/document/${
-              (result as WorkspaceElement[])[i]._id
-            }">${(result as WorkspaceElement[])[i].name}
+            const link = (result as WorkspaceElement[])[i];
+            innerHtml += `<a href="/workspace/${
+              link.public ? "pub/" : ""
+            }document/${link._id}">${link.name}
             </a>`;
           }
           const richContent = `<div class="attachments">

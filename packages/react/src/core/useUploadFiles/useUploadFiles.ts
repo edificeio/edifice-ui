@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { WorkspaceElement } from "edifice-ts-client";
+import { WorkspaceElement, WorkspaceVisibility } from "edifice-ts-client";
 
 import { useDropzoneContext } from "../../components/Dropzone/DropzoneContext";
 import { Status } from "../../types";
@@ -8,8 +8,12 @@ import { useWorkspaceFile } from "../useWorkspaceFile";
 
 const useUploadFiles = ({
   handleOnChange,
+  visibility,
+  application,
 }: {
   handleOnChange: (uploadedFiles: WorkspaceElement[]) => void;
+  visibility?: WorkspaceVisibility;
+  application?: string;
 }) => {
   const [uploadedFiles, setUploadedFiles] = useState<WorkspaceElement[]>([]);
   const [status, setStatus] = useState<Record<string, Status>>({});
@@ -45,7 +49,7 @@ const useUploadFiles = ({
     }));
 
     try {
-      const resource = await create(file);
+      const resource = await create(file, { application, visibility });
 
       setStatus((prevStatus) => ({
         ...prevStatus,
@@ -113,7 +117,9 @@ const useUploadFiles = ({
   }
   function getUrl(resource?: WorkspaceElement, timestamp?: boolean) {
     return resource
-      ? `/workspace/document/${resource?._id}?timestamp=${
+      ? `/workspace/${
+          resource.public ? "pub/" : ""
+        }document/${resource?._id}?timestamp=${
           timestamp ? new Date().getTime() : ""
         }`
       : "";

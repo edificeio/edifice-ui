@@ -51,6 +51,10 @@ export interface EditorProps {
   toolbar?: "full" | "none";
   /** Display with or without a border */
   variant?: "outline" | "ghost";
+
+  /** Visibility of the content created
+   *  this will impact where the uploaded files will be upload and the availability of the public media files  */
+  visibility?: WorkspaceVisibility;
 }
 
 const Editor = forwardRef(
@@ -60,6 +64,7 @@ const Editor = forwardRef(
       mode = "read",
       toolbar = "full",
       variant = "outline",
+      visibility = "protected",
     }: EditorProps,
     ref: Ref<EditorRef>,
   ) => {
@@ -69,7 +74,7 @@ const Editor = forwardRef(
       useMediaLibraryModal(editor);
     const { toggle: toggleMathsModal, ...mathsModalHandlers } =
       useMathsModal(editor);
-    const imageModal = useImageModal(editor);
+    const imageModal = useImageModal(editor, "media-library", visibility);
     const linkToolbarHandlers = useLinkToolbar(editor, mediaLibraryModalRef);
     const speechSynthetisis = useSpeechSynthetisis(editor);
 
@@ -140,6 +145,7 @@ const Editor = forwardRef(
           {editable && (
             <MediaLibrary
               appCode={appCode}
+              visibility={visibility}
               ref={mediaLibraryModalRef}
               {...mediaLibraryModalHandlers}
             />
