@@ -101,6 +101,7 @@ export { default as Save } from "./Save";
 export { default as Search } from "./Search";
 export { default as See } from "./See";
 export { default as Send } from "./Send";
+export { default as SetBackground } from "./SetBackground";
 export { default as Settings } from "./Settings";
 export { default as Share } from "./Share";
 export { default as Smartphone } from "./Smartphone";
