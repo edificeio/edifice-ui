@@ -30,8 +30,8 @@ const Layout = ({ children, headless = false, ...restProps }: LayoutProps) => {
 
   const classes = clsx("d-flex flex-column bg-white", {
     "container-fluid": !headless,
-    "rounded-4 border": theme?.is1d,
-    "mt-24": theme?.is1d,
+    "rounded-4 border": theme?.is1d && !headless,
+    "mt-24": theme?.is1d && !headless,
   });
 
   const renderHeader = !headless ? (
