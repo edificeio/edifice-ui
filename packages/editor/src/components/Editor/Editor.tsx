@@ -4,6 +4,7 @@ import "@edifice-tiptap-extensions/extension-image";
 import { LoadingScreen, MediaLibrary, useOdeClient } from "@edifice-ui/react";
 import { EditorContent, Content, JSONContent } from "@tiptap/react";
 import clsx from "clsx";
+import { WorkspaceVisibility } from "edifice-ts-client";
 
 import {
   EditorToolbar,
