@@ -23,7 +23,8 @@ export const InternalLink = ({
   appPrefix,
 }: InternalLinkTabProps) => {
   const { t } = useTranslation();
-  const { setResult, setResultCounter, appCode } = useMediaLibraryContext();
+  const { setResult, setResultCounter, appCode, multiple } =
+    useMediaLibraryContext();
   const [isChecked, toggleChecked] = useToggle(target === "_blank");
 
   const handleSelect = (resources: ILinkedResource[]) => {
@@ -45,6 +46,7 @@ export const InternalLink = ({
         defaultAppCode={appPrefix}
         defaultResourceId={resourceId}
         onSelect={handleSelect}
+        multiple={multiple}
       ></InternalLinker>
       <Checkbox
         className="align-items-center"

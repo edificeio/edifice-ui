@@ -38,6 +38,7 @@ export interface InternalLinkerProps {
   onChange?: (application?: ApplicationOption) => void;
   /** Notify when resources selection changes */
   onSelect?: (resources: ILinkedResource[]) => void;
+  multiple: boolean | undefined;
 }
 
 /** The InternalLinker component */
@@ -47,6 +48,7 @@ const InternalLinker = ({
   defaultResourceId,
   onChange,
   onSelect,
+  multiple = true,
 }: InternalLinkerProps) => {
   const { t } = useTranslation();
   const { theme } = useOdeTheme();
@@ -137,7 +139,11 @@ const InternalLinker = ({
   // Select a resource.
   const selectResource = useCallback(
     (resource: ILinkedResource) => {
-      setSelectedDocuments((previousState) => [...previousState, resource]);
+      if (!multiple) {
+        setSelectedDocuments([resource]);
+      } else {
+        setSelectedDocuments((previousState) => [...previousState, resource]);
+      }
     },
     [setSelectedDocuments],
   );
