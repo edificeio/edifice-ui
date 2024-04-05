@@ -403,10 +403,13 @@ const MediaLibrary = forwardRef(
     const handleOnSuccess = useCallback(() => {
       const triggerSuccess = async (result: MediaLibraryResult) => {
         // Copy WorkspaceElement from shared/owner folder to protected/public folder
-        if (result instanceof Array) {
+        if (
+          result instanceof Array &&
+          ["protected", "public"].findIndex((v) => v === visibility) >= 0
+        ) {
           result = await odeServices
             .workspace()
-            .transferDocuments(result, "media-library", visibility);
+            .transferDocuments(result, appCode ?? "media-library", visibility);
         }
         onSuccess(result);
       };

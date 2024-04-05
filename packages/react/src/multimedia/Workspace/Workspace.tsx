@@ -35,6 +35,14 @@ export interface WorkspaceProps {
    */
   roles: Role | Role[] | null;
   /**
+   * If defined, try to auto-select the folder dedicated to this filter.
+   */
+  defaultFolder?: WorkspaceSearchFilter;
+  /**
+   * Allow selecting public documents.
+   */
+  showPublicFolder?: boolean;
+  /**
    * Notify parent when media elements are successfully selected.
    */
   onSelect: (result: WorkspaceElement[]) => void;
@@ -44,36 +52,60 @@ export interface WorkspaceProps {
   className?: string;
 }
 
-const Workspace = ({ roles, onSelect, className }: WorkspaceProps) => {
+const Workspace = ({
+  roles,
+  onSelect,
+  className,
+  defaultFolder,
+  showPublicFolder,
+}: WorkspaceProps) => {
   const { t } = useTranslation();
 
-  const { root: owner, loadContent: loadOwnerDocs } = useWorkspaceSearch(
-    "owner",
+  const { root: ownerRoot, loadContent: loadOwnerDocs } = useWorkspaceSearch(
+    "root",
     t("workspace.tree.owner"),
     "owner",
     roles,
   );
-  const { root: shared, loadContent: loadSharedDocs } = useWorkspaceSearch(
-    "shared",
+  const { root: sharedRoot, loadContent: loadSharedDocs } = useWorkspaceSearch(
+    "root",
     t("workspace.tree.shared"),
     "shared",
     roles,
   );
-  const { root: protect, loadContent: loadProtectedDocs } = useWorkspaceSearch(
-    "protected",
-    t("workspace.tree.protected"),
-    "protected",
+  const { root: protectRoot, loadContent: loadProtectedDocs } =
+    useWorkspaceSearch(
+      "root",
+      t("workspace.tree.protected"),
+      "protected",
+      roles,
+    );
+  const { root: publicRoot, loadContent: loadPublicDocs } = useWorkspaceSearch(
+    "root",
+    t("workspace.tree.public"),
+    "public",
     roles,
   );
 
   const ownerRef = useRef<TreeViewHandlers>(null);
   const sharedRef = useRef<TreeViewHandlers>(null);
   const protectRef = useRef<TreeViewHandlers>(null);
+  const publicRef = useRef<TreeViewHandlers>(null);
 
-  const [currentFilter, setCurrentFilter] =
-    useState<WorkspaceSearchFilter>("owner");
+  const [currentFilter, setCurrentFilter] = useState<WorkspaceSearchFilter>(
+    () => {
+      // Determine which root folder to load at first.
+      if ("public" === defaultFolder) {
+        if (showPublicFolder) return defaultFolder;
+        return "protected";
+      }
+      if ("protected" === defaultFolder || "shared" === defaultFolder)
+        return defaultFolder;
+      return "owner";
+    },
+  );
 
-  const [currentNode, setCurrentNode] = useState<FolderNode>(owner);
+  const [currentNode, setCurrentNode] = useState<FolderNode>(ownerRoot);
 
   const [documents, setDocuments] = useState<WorkspaceElement[]>([]);
 
@@ -98,22 +130,31 @@ const Workspace = ({ roles, onSelect, className }: WorkspaceProps) => {
     (filter: WorkspaceSearchFilter) => {
       switch (filter) {
         case "owner":
-          return { root: owner, othersRef: [sharedRef, protectRef] };
+          return {
+            root: ownerRoot,
+            othersRef: [sharedRef, protectRef, publicRef],
+          };
         case "shared":
-          return { root: shared, othersRef: [ownerRef, protectRef] };
+          return {
+            root: sharedRoot,
+            othersRef: [ownerRef, protectRef, publicRef],
+          };
         case "protected":
-          return { root: protect, othersRef: [ownerRef, sharedRef] };
+          return {
+            root: protectRoot,
+            othersRef: [ownerRef, sharedRef, publicRef],
+          };
+        case "public":
+          return {
+            root: publicRoot,
+            othersRef: [ownerRef, sharedRef, protectRef],
+          };
         default:
           throw "no.root.node";
       }
     },
-    [owner, protect, shared],
+    [ownerRoot, sharedRoot, protectRoot, publicRoot],
   );
-
-  useEffect(() => {
-    if (currentFilter === "owner")
-      ownerRef.current && ownerRef.current.select("owner");
-  }, [currentFilter]);
 
   /**
    * Load current node children (folders and files)
@@ -134,15 +175,20 @@ const Workspace = ({ roles, onSelect, className }: WorkspaceProps) => {
         case "protected":
           loadProtectedDocs(currentNode.id);
           break;
+        case "public":
+          loadPublicDocs(currentNode.id);
+          break;
         default:
           throw "no.way";
       }
     }
   }, [
     currentFilter,
-    currentNode,
+    currentNode.children,
+    currentNode.id,
     loadOwnerDocs,
     loadProtectedDocs,
+    loadPublicDocs,
     loadSharedDocs,
   ]);
 
@@ -171,7 +217,30 @@ const Workspace = ({ roles, onSelect, className }: WorkspaceProps) => {
     }
   }
 
-  /** Load content when the callback is updated */
+  /** Select a tree node */
+  useEffect(() => {
+    let ref;
+    switch (currentFilter) {
+      case "owner":
+        ref = ownerRef;
+        break;
+      case "shared":
+        ref = sharedRef;
+        break;
+      case "protected":
+        ref = protectRef;
+        break;
+      case "public":
+        ref = publicRef;
+        break;
+      default:
+        return;
+    }
+    // Selecting a tree node here will trigger a selectAndLoadContent()
+    ref?.current?.select("root");
+  }, [currentFilter]);
+
+  /** Load content when the callback is updated. */
   useEffect(loadContent, [loadContent]);
 
   /** Display documents when currentNode or searchTerm or sortOrder changes */
@@ -190,11 +259,11 @@ const Workspace = ({ roles, onSelect, className }: WorkspaceProps) => {
         : (a, b) => compare(b.modified, a.modified);
 
     setDocuments(() => list.sort(sortFunction));
-  }, [currentNode, owner, protect, shared, searchTerm, sortOrder]);
+  }, [currentNode, ownerRoot, protectRoot, sharedRoot, searchTerm, sortOrder]);
 
   /** Load initial content, once */
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => selectAndLoadContent("owner", "owner"), []);
+  useEffect(() => selectAndLoadContent(currentFilter, "root"), []);
 
   const handleSearchChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -243,13 +312,13 @@ const Workspace = ({ roles, onSelect, className }: WorkspaceProps) => {
         <div style={{ position: "sticky", top: 0, paddingTop: "1.2rem" }}>
           <TreeView
             ref={ownerRef}
-            data={owner}
+            data={ownerRoot}
             onTreeItemSelect={(nodeId) => selectAndLoadContent("owner", nodeId)}
             onTreeItemUnfold={(nodeId) => selectAndLoadContent("owner", nodeId)}
           />
           <TreeView
             ref={sharedRef}
-            data={shared}
+            data={sharedRoot}
             onTreeItemSelect={(nodeId) =>
               selectAndLoadContent("shared", nodeId)
             }
@@ -259,7 +328,7 @@ const Workspace = ({ roles, onSelect, className }: WorkspaceProps) => {
           />
           <TreeView
             ref={protectRef}
-            data={protect}
+            data={protectRoot}
             onTreeItemSelect={(nodeId) =>
               selectAndLoadContent("protected", nodeId)
             }
@@ -267,6 +336,18 @@ const Workspace = ({ roles, onSelect, className }: WorkspaceProps) => {
               selectAndLoadContent("protected", nodeId)
             }
           />
+          {showPublicFolder && (
+            <TreeView
+              ref={publicRef}
+              data={publicRoot}
+              onTreeItemSelect={(nodeId) =>
+                selectAndLoadContent("public", nodeId)
+              }
+              onTreeItemUnfold={(nodeId) =>
+                selectAndLoadContent("public", nodeId)
+              }
+            />
+          )}
         </div>
       </Grid.Col>
       <Grid.Col sm="12" md="5" xl="8">
