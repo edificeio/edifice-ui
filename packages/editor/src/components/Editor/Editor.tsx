@@ -2,7 +2,12 @@ import { Suspense, lazy, forwardRef, useImperativeHandle, Ref } from "react";
 
 import "@edifice-tiptap-extensions/extension-image";
 import { LoadingScreen, MediaLibrary, useOdeClient } from "@edifice-ui/react";
-import { EditorContent, Content, JSONContent } from "@tiptap/react";
+import {
+  EditorContent,
+  Content,
+  JSONContent,
+  FocusPosition,
+} from "@tiptap/react";
 import clsx from "clsx";
 
 import {
@@ -50,6 +55,8 @@ export interface EditorProps {
   toolbar?: "full" | "none";
   /** Display with or without a border */
   variant?: "outline" | "ghost";
+  /** Set focus position to the editor */
+  focus?: FocusPosition;
 }
 
 const Editor = forwardRef(
@@ -59,11 +66,16 @@ const Editor = forwardRef(
       mode = "read",
       toolbar = "full",
       variant = "outline",
+      focus = null,
     }: EditorProps,
     ref: Ref<EditorRef>,
   ) => {
     const { appCode } = useOdeClient();
-    const { editor, editable } = useTipTapEditor(mode === "edit", content);
+    const { editor, editable } = useTipTapEditor(
+      mode === "edit",
+      content,
+      focus,
+    );
     const { ref: mediaLibraryModalRef, ...mediaLibraryModalHandlers } =
       useMediaLibraryModal(editor);
     const { toggle: toggleMathsModal, ...mathsModalHandlers } =

@@ -27,7 +27,7 @@ import TextAlign from "@tiptap/extension-text-align";
 import TextStyle from "@tiptap/extension-text-style";
 import Typography from "@tiptap/extension-typography";
 import Underline from "@tiptap/extension-underline";
-import { Content, useEditor } from "@tiptap/react";
+import { Content, FocusPosition, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { Mathematics } from "@tiptap-pro/extension-mathematics";
 
@@ -49,8 +49,13 @@ import {
  *
  * @param isEditable truthy if the editor content should be editable
  * @param content default rich content
+ * @param focus set focus position to the editor
  */
-export const useTipTapEditor = (editable: boolean, content: Content) => {
+export const useTipTapEditor = (
+  editable: boolean,
+  content: Content,
+  focus: FocusPosition,
+) => {
   const { currentLanguage } = useOdeClient();
 
   const editor = useEditor({
@@ -115,6 +120,10 @@ export const useTipTapEditor = (editable: boolean, content: Content) => {
     editor?.commands.setContent(content);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [content]);
+
+  useEffect(() => {
+    focus && editor?.commands.focus(focus);
+  }, [editor, focus, editable]);
 
   return { editor, editable };
 };
