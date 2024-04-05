@@ -18,6 +18,7 @@ import { useOdeClient } from "@edifice-ui/react";
 import Color from "@tiptap/extension-color";
 import Focus from "@tiptap/extension-focus";
 import FontFamily from "@tiptap/extension-font-family";
+import Placeholder from "@tiptap/extension-placeholder";
 import Subscript from "@tiptap/extension-subscript";
 import Superscript from "@tiptap/extension-superscript";
 import Table from "@tiptap/extension-table";
@@ -50,11 +51,13 @@ import {
  * @param isEditable truthy if the editor content should be editable
  * @param content default rich content
  * @param focus set focus position to the editor
+ * @param placeholder editor placeholder content
  */
 export const useTipTapEditor = (
   editable: boolean,
   content: Content,
-  focus: FocusPosition,
+  focus?: FocusPosition,
+  placeholder?: string,
 ) => {
   const { currentLanguage } = useOdeClient();
 
@@ -103,6 +106,7 @@ export const useTipTapEditor = (
       FontFamily,
       Mathematics,
       Alert,
+      Placeholder.configure({ placeholder }),
       VideoNodeView(MediaRenderer),
       AudioNodeView(AudioRenderer),
       LinkerNodeView(LinkerRenderer),

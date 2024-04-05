@@ -57,6 +57,8 @@ export interface EditorProps {
   variant?: "outline" | "ghost";
   /** Set focus position to the editor */
   focus?: FocusPosition;
+  /** Editor placeholder content */
+  placeholder?: string;
 }
 
 const Editor = forwardRef(
@@ -67,6 +69,7 @@ const Editor = forwardRef(
       toolbar = "full",
       variant = "outline",
       focus = null,
+      placeholder = "",
     }: EditorProps,
     ref: Ref<EditorRef>,
   ) => {
@@ -75,6 +78,7 @@ const Editor = forwardRef(
       mode === "edit",
       content,
       focus,
+      placeholder,
     );
     const { ref: mediaLibraryModalRef, ...mediaLibraryModalHandlers } =
       useMediaLibraryModal(editor);
