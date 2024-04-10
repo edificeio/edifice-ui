@@ -48,8 +48,13 @@ importers:
         version: 7.6.6(react-dom@18.2.0)(react@18.2.0)
       "@turbo/gen":
         specifier: 1.11.2
+<<<<<<< Updated upstream
         version: 1.11.2(@types/node@20.8.9)(typescript@5.3.3)
       "@typescript-eslint/eslint-plugin":
+=======
+        version: 1.11.2(@types/node@20.12.7)(typescript@5.3.3)
+      '@typescript-eslint/eslint-plugin':
+>>>>>>> Stashed changes
         specifier: 6.15.0
         version: 6.15.0(@typescript-eslint/parser@6.15.0)(eslint@8.56.0)(typescript@5.3.3)
       "@typescript-eslint/parser":
@@ -114,10 +119,10 @@ importers:
         version: 5.3.3
       vite:
         specifier: 4.5.1
-        version: 4.5.1(@types/node@20.8.9)
+        version: 4.5.1(@types/node@20.12.7)
       vite-plugin-dts:
         specifier: 3.7.0
-        version: 3.7.0(@types/node@20.8.9)(rollup@3.29.4)(typescript@5.3.3)(vite@4.5.1)
+        version: 3.7.0(@types/node@20.12.7)(rollup@3.29.4)(typescript@5.3.3)(vite@4.5.1)
 
   packages/editor:
     dependencies:
@@ -333,8 +338,8 @@ importers:
         specifier: 2.1.0
         version: 2.1.0
       pixi.js:
-        specifier: 7.3.2
-        version: 7.3.2(@pixi/utils@7.3.2)
+        specifier: 7.4.2
+        version: 7.4.2
       react-hot-toast:
         specifier: 2.4.1
         version: 2.4.1(csstype@3.1.3)(react-dom@18.2.0)(react@18.2.0)
@@ -2840,10 +2845,17 @@ packages:
       }
     engines: { node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0 }
     dependencies:
+<<<<<<< Updated upstream
       "@types/istanbul-lib-coverage": 2.0.6
       "@types/istanbul-reports": 3.0.4
       "@types/node": 20.8.9
       "@types/yargs": 16.0.9
+=======
+      '@types/istanbul-lib-coverage': 2.0.6
+      '@types/istanbul-reports': 3.0.4
+      '@types/node': 20.12.7
+      '@types/yargs': 16.0.9
+>>>>>>> Stashed changes
       chalk: 4.1.2
     dev: true
 
@@ -2854,11 +2866,19 @@ packages:
       }
     engines: { node: ^14.15.0 || ^16.10.0 || >=18.0.0 }
     dependencies:
+<<<<<<< Updated upstream
       "@jest/schemas": 29.6.3
       "@types/istanbul-lib-coverage": 2.0.6
       "@types/istanbul-reports": 3.0.4
       "@types/node": 20.8.9
       "@types/yargs": 17.0.32
+=======
+      '@jest/schemas': 29.6.3
+      '@types/istanbul-lib-coverage': 2.0.6
+      '@types/istanbul-reports': 3.0.4
+      '@types/node': 20.12.7
+      '@types/yargs': 17.0.32
+>>>>>>> Stashed changes
       chalk: 4.1.2
     dev: true
 
@@ -2879,7 +2899,7 @@ packages:
       magic-string: 0.27.0
       react-docgen-typescript: 2.2.2(typescript@5.3.3)
       typescript: 5.3.3
-      vite: 4.5.1(@types/node@20.8.9)
+      vite: 4.5.1(@types/node@20.12.7)
     dev: true
 
   /@jridgewell/gen-mapping@0.3.5:
@@ -3033,6 +3053,7 @@ packages:
     peerDependencies:
       react: ">=16"
     dependencies:
+<<<<<<< Updated upstream
       "@types/mdx": 2.0.12
       "@types/react": 18.2.33
       react: 18.2.0
@@ -3047,10 +3068,24 @@ packages:
       "@microsoft/tsdoc": 0.14.2
       "@microsoft/tsdoc-config": 0.16.2
       "@rushstack/node-core-library": 3.62.0(@types/node@20.8.9)
+=======
+      '@types/mdx': 2.0.12
+      '@types/react': 18.2.75
+      react: 18.2.0
+    dev: true
+
+  /@microsoft/api-extractor-model@7.28.3(@types/node@20.12.7):
+    resolution: {integrity: sha512-wT/kB2oDbdZXITyDh2SQLzaWwTOFbV326fP0pUwNW00WeliARs0qjmXBWmGWardEzp2U3/axkO3Lboqun6vrig==}
+    dependencies:
+      '@microsoft/tsdoc': 0.14.2
+      '@microsoft/tsdoc-config': 0.16.2
+      '@rushstack/node-core-library': 3.62.0(@types/node@20.12.7)
+>>>>>>> Stashed changes
     transitivePeerDependencies:
       - "@types/node"
     dev: true
 
+<<<<<<< Updated upstream
   /@microsoft/api-extractor@7.39.0(@types/node@20.8.9):
     resolution:
       {
@@ -3064,6 +3099,18 @@ packages:
       "@rushstack/node-core-library": 3.62.0(@types/node@20.8.9)
       "@rushstack/rig-package": 0.5.1
       "@rushstack/ts-command-line": 4.17.1
+=======
+  /@microsoft/api-extractor@7.39.0(@types/node@20.12.7):
+    resolution: {integrity: sha512-PuXxzadgnvp+wdeZFPonssRAj/EW4Gm4s75TXzPk09h3wJ8RS3x7typf95B4vwZRrPTQBGopdUl+/vHvlPdAcg==}
+    hasBin: true
+    dependencies:
+      '@microsoft/api-extractor-model': 7.28.3(@types/node@20.12.7)
+      '@microsoft/tsdoc': 0.14.2
+      '@microsoft/tsdoc-config': 0.16.2
+      '@rushstack/node-core-library': 3.62.0(@types/node@20.12.7)
+      '@rushstack/rig-package': 0.5.1
+      '@rushstack/ts-command-line': 4.17.1
+>>>>>>> Stashed changes
       colors: 1.2.5
       lodash: 4.17.21
       resolve: 1.22.8
@@ -3571,6 +3618,7 @@ packages:
       "@octokit/openapi-types": 18.1.1
     dev: true
 
+<<<<<<< Updated upstream
   /@pixi/accessibility@7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)(@pixi/events@7.3.2):
     resolution:
       {
@@ -3597,6 +3645,18 @@ packages:
     dependencies:
       "@pixi/core": 7.3.2
       "@pixi/display": 7.3.2(@pixi/core@7.3.2)
+=======
+  /@pixi/accessibility@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)(@pixi/events@7.4.2):
+    resolution: {integrity: sha512-R6VEolm8uyy1FB1F2qaLKxVbzXAFTZCF2ka8fl9lsz7We6ZfO4QpXv9ur7DvzratjCQUQVCKo0/V7xL5q1EV/g==}
+    peerDependencies:
+      '@pixi/core': 7.4.2
+      '@pixi/display': 7.4.2
+      '@pixi/events': 7.4.2
+    dependencies:
+      '@pixi/core': 7.4.2
+      '@pixi/display': 7.4.2(@pixi/core@7.4.2)
+      '@pixi/events': 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)
+>>>>>>> Stashed changes
     dev: false
 
   /@pixi/app@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2):
@@ -3612,6 +3672,7 @@ packages:
       "@pixi/display": 7.4.2(@pixi/core@7.4.2)
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/assets@7.3.2(@pixi/core@7.3.2)(@pixi/utils@7.3.2):
     resolution:
       {
@@ -3626,6 +3687,8 @@ packages:
       "@types/css-font-loading-module": 0.0.7
     dev: false
 
+=======
+>>>>>>> Stashed changes
   /@pixi/assets@7.4.2(@pixi/core@7.4.2):
     resolution:
       {
@@ -3638,6 +3701,7 @@ packages:
       "@types/css-font-loading-module": 0.0.12
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/color@7.3.2:
     resolution:
       {
@@ -3647,6 +3711,8 @@ packages:
       "@pixi/colord": 2.9.6
     dev: false
 
+=======
+>>>>>>> Stashed changes
   /@pixi/color@7.4.2:
     resolution:
       {
@@ -3663,6 +3729,7 @@ packages:
       }
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/compressed-textures@7.3.2(@pixi/assets@7.3.2)(@pixi/core@7.3.2):
     resolution:
       {
@@ -3681,6 +3748,16 @@ packages:
       {
         integrity: sha512-Q8W3ncsFxmfgC5EtokpG92qJZabd+Dl+pbQAdHwiPY3v+8UNq77u4VN2qtl1Z04864hCcg7AStIYEDrzqTLF6Q==,
       }
+=======
+  /@pixi/compressed-textures@7.4.2(@pixi/assets@7.4.2)(@pixi/core@7.4.2):
+    resolution: {integrity: sha512-VJrt7el6O4ZJSWkeOGXwrhJaiLg1UBhHB3fj42VR4YloYkAxpfd9K6s6IcbcVz7n9L48APKBMgHyaB2pX2Ck/A==}
+    peerDependencies:
+      '@pixi/assets': 7.4.2
+      '@pixi/core': 7.4.2
+    dependencies:
+      '@pixi/assets': 7.4.2(@pixi/core@7.4.2)
+      '@pixi/core': 7.4.2
+>>>>>>> Stashed changes
     dev: false
 
   /@pixi/constants@7.4.2:
@@ -3690,6 +3767,7 @@ packages:
       }
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/core@7.3.2:
     resolution:
       {
@@ -3707,6 +3785,8 @@ packages:
       "@types/offscreencanvas": 2019.7.3
     dev: false
 
+=======
+>>>>>>> Stashed changes
   /@pixi/core@7.4.2:
     resolution:
       {
@@ -3723,6 +3803,7 @@ packages:
       "@pixi/utils": 7.4.2
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/display@7.3.2(@pixi/core@7.3.2):
     resolution:
       {
@@ -3734,6 +3815,8 @@ packages:
       "@pixi/core": 7.3.2
     dev: false
 
+=======
+>>>>>>> Stashed changes
   /@pixi/display@7.4.2(@pixi/core@7.4.2):
     resolution:
       {
@@ -3745,6 +3828,7 @@ packages:
       "@pixi/core": 7.4.2
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/events@7.3.2(@pixi/core@7.4.2)(@pixi/display@7.4.2):
     resolution:
       {
@@ -3753,11 +3837,19 @@ packages:
     peerDependencies:
       "@pixi/core": 7.3.2
       "@pixi/display": 7.3.2
+=======
+  /@pixi/events@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2):
+    resolution: {integrity: sha512-Jw/w57heZjzZShIXL0bxOvKB+XgGIevyezhGtfF2ZSzQoSBWo+Fj1uE0QwKd0RIaXegZw/DhSmiMJSbNmcjifA==}
+    peerDependencies:
+      '@pixi/core': 7.4.2
+      '@pixi/display': 7.4.2
+>>>>>>> Stashed changes
     dependencies:
       "@pixi/core": 7.4.2
       "@pixi/display": 7.4.2(@pixi/core@7.4.2)
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/extensions@7.3.2:
     resolution:
       {
@@ -3765,6 +3857,8 @@ packages:
       }
     dev: false
 
+=======
+>>>>>>> Stashed changes
   /@pixi/extensions@7.4.2:
     resolution:
       {
@@ -3772,6 +3866,7 @@ packages:
       }
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/extract@7.3.2(@pixi/core@7.3.2):
     resolution:
       {
@@ -3862,6 +3957,62 @@ packages:
       "@pixi/core": 7.3.2
       "@pixi/display": 7.3.2(@pixi/core@7.3.2)
       "@pixi/sprite": 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)
+=======
+  /@pixi/extract@7.4.2(@pixi/core@7.4.2):
+    resolution: {integrity: sha512-JOX27TRWjVEjauGBbF8PU7/g6LYXnivehdgqS5QlVDv1CNHTOrz/j3MdKcVWOhyZPbH5c9sh7lxyRxvd9AIuTQ==}
+    peerDependencies:
+      '@pixi/core': 7.4.2
+    dependencies:
+      '@pixi/core': 7.4.2
+    dev: false
+
+  /@pixi/filter-alpha@7.4.2(@pixi/core@7.4.2):
+    resolution: {integrity: sha512-9OsKJ+yvY2wIcQXwswj5HQBiwNGymwmqdxfp7mo+nZSBoDmxUqvMZzE9UNJ3eUlswuNvNRO8zNOsQvwdz7WFww==}
+    peerDependencies:
+      '@pixi/core': 7.4.2
+    dependencies:
+      '@pixi/core': 7.4.2
+    dev: false
+
+  /@pixi/filter-blur@7.4.2(@pixi/core@7.4.2):
+    resolution: {integrity: sha512-gOXBbIUx6CRZP1fmsis2wLzzSsofrqmIHhbf1gIkZMIQaLsc9T7brj+PaLTTiOiyJgnvGN5j20RZnkERWWKV0Q==}
+    peerDependencies:
+      '@pixi/core': 7.4.2
+    dependencies:
+      '@pixi/core': 7.4.2
+    dev: false
+
+  /@pixi/filter-color-matrix@7.4.2(@pixi/core@7.4.2):
+    resolution: {integrity: sha512-ykZiR59Gvj80UKs9qm7jeUTKvn+wWk6HBVJOmJbK9jFK5juakDWp7BbH26U78Q61EWj97kI1FdfcbMkuQ7rqkA==}
+    peerDependencies:
+      '@pixi/core': 7.4.2
+    dependencies:
+      '@pixi/core': 7.4.2
+    dev: false
+
+  /@pixi/filter-displacement@7.4.2(@pixi/core@7.4.2):
+    resolution: {integrity: sha512-QS/eWp/ivsxef3xapNeGwpPX7vrqQQeo99Fux4k5zsvplnNEsf91t6QYJLG776AbZEu/qh8VYRBA5raIVY/REw==}
+    peerDependencies:
+      '@pixi/core': 7.4.2
+    dependencies:
+      '@pixi/core': 7.4.2
+    dev: false
+
+  /@pixi/filter-fxaa@7.4.2(@pixi/core@7.4.2):
+    resolution: {integrity: sha512-U/ptJgDsfs/r8y2a6gCaiPfDu2IFAxpQ4wtfmBpz6vRhqeE4kI8yNIUx5dZbui57zlsJaW0BNacOQxHU0vLkyQ==}
+    peerDependencies:
+      '@pixi/core': 7.4.2
+    dependencies:
+      '@pixi/core': 7.4.2
+    dev: false
+
+  /@pixi/filter-noise@7.4.2(@pixi/core@7.4.2):
+    resolution: {integrity: sha512-Vy9ViBFhZEGh6xKkd3kFWErolZTwv1Y5Qb1bV7qPIYbvBECYsqzlR4uCrrjBV6KKm0PufpG/+NKC5vICZaqKzg==}
+    peerDependencies:
+      '@pixi/core': 7.4.2
+    dependencies:
+      '@pixi/core': 7.4.2
+>>>>>>> Stashed changes
     dev: false
 
   /@pixi/graphics@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)(@pixi/sprite@7.4.2):
@@ -3879,6 +4030,7 @@ packages:
       "@pixi/sprite": 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/math@7.3.2:
     resolution:
       {
@@ -3886,6 +4038,8 @@ packages:
       }
     dev: false
 
+=======
+>>>>>>> Stashed changes
   /@pixi/math@7.4.2:
     resolution:
       {
@@ -3893,6 +4047,7 @@ packages:
       }
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/mesh-extras@7.3.2(@pixi/core@7.3.2)(@pixi/mesh@7.3.2):
     resolution:
       {
@@ -3906,6 +4061,8 @@ packages:
       "@pixi/mesh": 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)
     dev: false
 
+=======
+>>>>>>> Stashed changes
   /@pixi/mesh-extras@7.4.2(@pixi/core@7.4.2)(@pixi/mesh@7.4.2):
     resolution:
       {
@@ -3919,6 +4076,7 @@ packages:
       "@pixi/mesh": 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/mesh@7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2):
     resolution:
       {
@@ -3932,6 +4090,8 @@ packages:
       "@pixi/display": 7.3.2(@pixi/core@7.3.2)
     dev: false
 
+=======
+>>>>>>> Stashed changes
   /@pixi/mesh@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2):
     resolution:
       {
@@ -3945,6 +4105,7 @@ packages:
       "@pixi/display": 7.4.2(@pixi/core@7.4.2)
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/mixin-cache-as-bitmap@7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)(@pixi/sprite@7.3.2):
     resolution:
       {
@@ -3997,6 +4158,36 @@ packages:
       "@pixi/core": 7.3.2
       "@pixi/display": 7.3.2(@pixi/core@7.3.2)
       "@pixi/sprite": 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)
+=======
+  /@pixi/mixin-cache-as-bitmap@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)(@pixi/sprite@7.4.2):
+    resolution: {integrity: sha512-6dgthi2ruUT/lervSrFDQ7vXkEsHo6CxdgV7W/wNdW1dqgQlKfDvO6FhjXzyIMRLSooUf5FoeluVtfsjkUIYrw==}
+    peerDependencies:
+      '@pixi/core': 7.4.2
+      '@pixi/display': 7.4.2
+      '@pixi/sprite': 7.4.2
+    dependencies:
+      '@pixi/core': 7.4.2
+      '@pixi/display': 7.4.2(@pixi/core@7.4.2)
+      '@pixi/sprite': 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)
+    dev: false
+
+  /@pixi/mixin-get-child-by-name@7.4.2(@pixi/display@7.4.2):
+    resolution: {integrity: sha512-0Cfw8JpQhsixprxiYph4Lj+B5n83Kk4ftNMXgM5xtZz+tVLz5s91qR0MqcdzwTGTJ7utVygiGmS4/3EfR/duRQ==}
+    peerDependencies:
+      '@pixi/display': 7.4.2
+    dependencies:
+      '@pixi/display': 7.4.2(@pixi/core@7.4.2)
+    dev: false
+
+  /@pixi/mixin-get-global-position@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2):
+    resolution: {integrity: sha512-LcsahbVdX4DFS2IcGfNp4KaXuu7SjAwUp/flZSGIfstyKOKb5FWFgihtqcc9ZT4coyri3gs2JbILZub/zPZj1w==}
+    peerDependencies:
+      '@pixi/core': 7.4.2
+      '@pixi/display': 7.4.2
+    dependencies:
+      '@pixi/core': 7.4.2
+      '@pixi/display': 7.4.2(@pixi/core@7.4.2)
+>>>>>>> Stashed changes
     dev: false
 
   /@pixi/particle-container@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)(@pixi/sprite@7.4.2):
@@ -4014,6 +4205,7 @@ packages:
       "@pixi/sprite": 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/prepare@7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)(@pixi/graphics@7.3.2)(@pixi/text@7.3.2):
     resolution:
       {
@@ -4029,6 +4221,20 @@ packages:
       "@pixi/display": 7.3.2(@pixi/core@7.3.2)
       "@pixi/graphics": 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)(@pixi/sprite@7.3.2)
       "@pixi/text": 7.3.2(@pixi/core@7.3.2)(@pixi/sprite@7.3.2)
+=======
+  /@pixi/prepare@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)(@pixi/graphics@7.4.2)(@pixi/text@7.4.2):
+    resolution: {integrity: sha512-PugyMzReCHXUzc3so9PPJj2OdHwibpUNWyqG4mWY2UUkb6c8NAGK1AnAPiscOvLilJcv/XQSFoNhX+N1jrvJEg==}
+    peerDependencies:
+      '@pixi/core': 7.4.2
+      '@pixi/display': 7.4.2
+      '@pixi/graphics': 7.4.2
+      '@pixi/text': 7.4.2
+    dependencies:
+      '@pixi/core': 7.4.2
+      '@pixi/display': 7.4.2(@pixi/core@7.4.2)
+      '@pixi/graphics': 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)(@pixi/sprite@7.4.2)
+      '@pixi/text': 7.4.2(@pixi/core@7.4.2)(@pixi/sprite@7.4.2)
+>>>>>>> Stashed changes
     dev: false
 
   /@pixi/react@7.1.1(@babel/runtime@7.24.4)(@pixi/app@7.4.2)(@pixi/constants@7.4.2)(@pixi/core@7.4.2)(@pixi/display@7.4.2)(@pixi/extensions@7.4.2)(@pixi/graphics@7.4.2)(@pixi/math@7.4.2)(@pixi/mesh-extras@7.4.2)(@pixi/mesh@7.4.2)(@pixi/particle-container@7.4.2)(@pixi/sprite-animated@7.4.2)(@pixi/sprite-tiling@7.4.2)(@pixi/sprite@7.4.2)(@pixi/text-bitmap@7.4.2)(@pixi/text@7.4.2)(@pixi/ticker@7.4.2)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
@@ -4083,6 +4289,7 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/runner@7.3.2:
     resolution:
       {
@@ -4090,6 +4297,8 @@ packages:
       }
     dev: false
 
+=======
+>>>>>>> Stashed changes
   /@pixi/runner@7.4.2:
     resolution:
       {
@@ -4097,6 +4306,7 @@ packages:
       }
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/settings@7.3.2:
     resolution:
       {
@@ -4108,6 +4318,8 @@ packages:
       ismobilejs: 1.1.1
     dev: false
 
+=======
+>>>>>>> Stashed changes
   /@pixi/settings@7.4.2:
     resolution:
       {
@@ -4119,6 +4331,7 @@ packages:
       ismobilejs: 1.1.1
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/sprite-animated@7.3.2(@pixi/core@7.3.2)(@pixi/sprite@7.3.2):
     resolution:
       {
@@ -4132,6 +4345,8 @@ packages:
       "@pixi/sprite": 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)
     dev: false
 
+=======
+>>>>>>> Stashed changes
   /@pixi/sprite-animated@7.4.2(@pixi/core@7.4.2)(@pixi/sprite@7.4.2):
     resolution:
       {
@@ -4145,6 +4360,7 @@ packages:
       "@pixi/sprite": 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/sprite-tiling@7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)(@pixi/sprite@7.3.2):
     resolution:
       {
@@ -4160,6 +4376,8 @@ packages:
       "@pixi/sprite": 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)
     dev: false
 
+=======
+>>>>>>> Stashed changes
   /@pixi/sprite-tiling@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)(@pixi/sprite@7.4.2):
     resolution:
       {
@@ -4175,6 +4393,7 @@ packages:
       "@pixi/sprite": 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/sprite@7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2):
     resolution:
       {
@@ -4188,6 +4407,8 @@ packages:
       "@pixi/display": 7.3.2(@pixi/core@7.3.2)
     dev: false
 
+=======
+>>>>>>> Stashed changes
   /@pixi/sprite@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2):
     resolution:
       {
@@ -4201,6 +4422,7 @@ packages:
       "@pixi/display": 7.4.2(@pixi/core@7.4.2)
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/spritesheet@7.3.2(@pixi/assets@7.3.2)(@pixi/core@7.3.2):
     resolution:
       {
@@ -4231,6 +4453,16 @@ packages:
       "@pixi/display": 7.3.2(@pixi/core@7.3.2)
       "@pixi/mesh": 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)
       "@pixi/text": 7.3.2(@pixi/core@7.3.2)(@pixi/sprite@7.3.2)
+=======
+  /@pixi/spritesheet@7.4.2(@pixi/assets@7.4.2)(@pixi/core@7.4.2):
+    resolution: {integrity: sha512-YIvHdpXW+AYp8vD0NkjJmrdnVHTZKidCnx6k8ATSuuvCT6O5Tuh2N/Ul2oDj4/QaePy0lVhyhAbZpJW00Jr7mQ==}
+    peerDependencies:
+      '@pixi/assets': 7.4.2
+      '@pixi/core': 7.4.2
+    dependencies:
+      '@pixi/assets': 7.4.2(@pixi/core@7.4.2)
+      '@pixi/core': 7.4.2
+>>>>>>> Stashed changes
     dev: false
 
   /@pixi/text-bitmap@7.4.2(@pixi/assets@7.4.2)(@pixi/core@7.4.2)(@pixi/display@7.4.2)(@pixi/mesh@7.4.2)(@pixi/text@7.4.2):
@@ -4252,6 +4484,7 @@ packages:
       "@pixi/text": 7.4.2(@pixi/core@7.4.2)(@pixi/sprite@7.4.2)
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/text-html@7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)(@pixi/sprite@7.3.2)(@pixi/text@7.3.2):
     resolution:
       {
@@ -4280,6 +4513,20 @@ packages:
     dependencies:
       "@pixi/core": 7.3.2
       "@pixi/sprite": 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)
+=======
+  /@pixi/text-html@7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)(@pixi/sprite@7.4.2)(@pixi/text@7.4.2):
+    resolution: {integrity: sha512-duOu8oDYeDNuyPozj2DAsQ5VZBbRiwIXy78Gn7H2pCiEAefw/Uv5jJYwdgneKME0e1tOxz1eOUGKPcI6IJnZjw==}
+    peerDependencies:
+      '@pixi/core': 7.4.2
+      '@pixi/display': 7.4.2
+      '@pixi/sprite': 7.4.2
+      '@pixi/text': 7.4.2
+    dependencies:
+      '@pixi/core': 7.4.2
+      '@pixi/display': 7.4.2(@pixi/core@7.4.2)
+      '@pixi/sprite': 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)
+      '@pixi/text': 7.4.2(@pixi/core@7.4.2)(@pixi/sprite@7.4.2)
+>>>>>>> Stashed changes
     dev: false
 
   /@pixi/text@7.4.2(@pixi/core@7.4.2)(@pixi/sprite@7.4.2):
@@ -4295,6 +4542,7 @@ packages:
       "@pixi/sprite": 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/ticker@7.3.2:
     resolution:
       {
@@ -4306,6 +4554,8 @@ packages:
       "@pixi/utils": 7.3.2
     dev: false
 
+=======
+>>>>>>> Stashed changes
   /@pixi/ticker@7.4.2:
     resolution:
       {
@@ -4317,6 +4567,7 @@ packages:
       "@pixi/utils": 7.4.2
     dev: false
 
+<<<<<<< Updated upstream
   /@pixi/utils@7.3.2:
     resolution:
       {
@@ -4332,6 +4583,8 @@ packages:
       url: 0.11.3
     dev: false
 
+=======
+>>>>>>> Stashed changes
   /@pixi/utils@7.4.2:
     resolution:
       {
@@ -5056,18 +5309,27 @@ packages:
       rollup: 3.29.4
     dev: true
 
+<<<<<<< Updated upstream
   /@rushstack/node-core-library@3.62.0(@types/node@20.8.9):
     resolution:
       {
         integrity: sha512-88aJn2h8UpSvdwuDXBv1/v1heM6GnBf3RjEy6ZPP7UnzHNCqOHA2Ut+ScYUbXcqIdfew9JlTAe3g+cnX9xQ/Aw==,
       }
+=======
+  /@rushstack/node-core-library@3.62.0(@types/node@20.12.7):
+    resolution: {integrity: sha512-88aJn2h8UpSvdwuDXBv1/v1heM6GnBf3RjEy6ZPP7UnzHNCqOHA2Ut+ScYUbXcqIdfew9JlTAe3g+cnX9xQ/Aw==}
+>>>>>>> Stashed changes
     peerDependencies:
       "@types/node": "*"
     peerDependenciesMeta:
       "@types/node":
         optional: true
     dependencies:
+<<<<<<< Updated upstream
       "@types/node": 20.8.9
+=======
+      '@types/node': 20.12.7
+>>>>>>> Stashed changes
       colors: 1.2.5
       fs-extra: 7.0.1
       import-lazy: 4.0.0
@@ -5528,7 +5790,7 @@ packages:
       magic-string: 0.30.9
       rollup: 3.29.4
       typescript: 5.3.3
-      vite: 4.5.1(@types/node@20.8.9)
+      vite: 4.5.1(@types/node@20.12.7)
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -5966,7 +6228,7 @@ packages:
       react: 18.2.0
       react-docgen: 7.0.3
       react-dom: 18.2.0(react@18.2.0)
-      vite: 4.5.1(@types/node@20.8.9)
+      vite: 4.5.1(@types/node@20.12.7)
     transitivePeerDependencies:
       - "@preact/preset-vite"
       - encoding
@@ -7342,11 +7604,16 @@ packages:
       minimatch: 9.0.4
     dev: true
 
+<<<<<<< Updated upstream
   /@turbo/gen@1.11.2(@types/node@20.8.9)(typescript@5.3.3):
     resolution:
       {
         integrity: sha512-zV4vwedEujiAcACPnFXnKat8IqDo0EVJpMbS3W5CiokUBv35vw5PjldjqKcdh0GIiUTlriWGwRU6FZ8pzBg+kg==,
       }
+=======
+  /@turbo/gen@1.11.2(@types/node@20.12.7)(typescript@5.3.3):
+    resolution: {integrity: sha512-zV4vwedEujiAcACPnFXnKat8IqDo0EVJpMbS3W5CiokUBv35vw5PjldjqKcdh0GIiUTlriWGwRU6FZ8pzBg+kg==}
+>>>>>>> Stashed changes
     hasBin: true
     dependencies:
       "@turbo/workspaces": 1.11.2
@@ -7357,7 +7624,7 @@ packages:
       minimatch: 9.0.4
       node-plop: 0.26.3
       proxy-agent: 6.4.0
-      ts-node: 10.9.2(@types/node@20.8.9)(typescript@5.3.3)
+      ts-node: 10.9.2(@types/node@20.12.7)(typescript@5.3.3)
       update-check: 1.5.4
       validate-npm-package-name: 5.0.0
     transitivePeerDependencies:
@@ -7450,8 +7717,13 @@ packages:
         integrity: sha512-fB3Zu92ucau0iQ0JMCFQE7b/dv8Ot07NI3KaZIkIUNXq82k4eBAqUaneXfleGY9JWskeS9y+u0nXMyspcuQrCg==,
       }
     dependencies:
+<<<<<<< Updated upstream
       "@types/connect": 3.4.38
       "@types/node": 20.8.9
+=======
+      '@types/connect': 3.4.38
+      '@types/node': 20.12.7
+>>>>>>> Stashed changes
     dev: true
 
   /@types/connect@3.4.38:
@@ -7460,7 +7732,11 @@ packages:
         integrity: sha512-K6uROf1LD88uDQqJCktA4yzL1YYAK6NgfsI0v/mTgyPKWsX1CnJ0XPSDhViejru1GcRkLWb8RlzFYJRqGUbaug==,
       }
     dependencies:
+<<<<<<< Updated upstream
       "@types/node": 20.8.9
+=======
+      '@types/node': 20.12.7
+>>>>>>> Stashed changes
     dev: true
 
   /@types/cross-spawn@6.0.6:
@@ -7469,7 +7745,11 @@ packages:
         integrity: sha512-fXRhhUkG4H3TQk5dBhQ7m/JDdSNHKwR2BBia62lhwEIq9xGiQKLxd6LymNhn47SjXhsUEPmxi+PKw2OkW4LLjA==,
       }
     dependencies:
+<<<<<<< Updated upstream
       "@types/node": 20.8.9
+=======
+      '@types/node': 20.12.7
+>>>>>>> Stashed changes
     dev: true
 
   /@types/css-font-loading-module@0.0.12:
@@ -7479,6 +7759,7 @@ packages:
       }
     dev: false
 
+<<<<<<< Updated upstream
   /@types/css-font-loading-module@0.0.7:
     resolution:
       {
@@ -7486,6 +7767,8 @@ packages:
       }
     dev: false
 
+=======
+>>>>>>> Stashed changes
   /@types/detect-port@1.3.5:
     resolution:
       {
@@ -7555,10 +7838,17 @@ packages:
         integrity: sha512-bGyep3JqPCRry1wq+O5n7oiBgGWmeIJXPjXXCo8EK0u8duZGSYar7cGqd3ML2JUsLGeB7fmc06KYo9fLGWqPvQ==,
       }
     dependencies:
+<<<<<<< Updated upstream
       "@types/node": 20.8.9
       "@types/qs": 6.9.14
       "@types/range-parser": 1.2.7
       "@types/send": 0.17.4
+=======
+      '@types/node': 20.12.7
+      '@types/qs': 6.9.14
+      '@types/range-parser': 1.2.7
+      '@types/send': 0.17.4
+>>>>>>> Stashed changes
     dev: true
 
   /@types/express@4.17.21:
@@ -7586,8 +7876,13 @@ packages:
         integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==,
       }
     dependencies:
+<<<<<<< Updated upstream
       "@types/minimatch": 5.1.2
       "@types/node": 20.8.9
+=======
+      '@types/minimatch': 5.1.2
+      '@types/node': 20.12.7
+>>>>>>> Stashed changes
     dev: true
 
   /@types/graceful-fs@4.1.9:
@@ -7596,7 +7891,11 @@ packages:
         integrity: sha512-olP3sd1qOEe5dXTSaFvQG+02VdRXcdytWLAZsAq1PecU8uqQAhkrnbli7DagjtXKW/Bl7YJbUsa8MPcuc8LHEQ==,
       }
     dependencies:
+<<<<<<< Updated upstream
       "@types/node": 20.8.9
+=======
+      '@types/node': 20.12.7
+>>>>>>> Stashed changes
     dev: true
 
   /@types/http-errors@2.0.4:
@@ -7710,7 +8009,11 @@ packages:
         integrity: sha512-24xFj9R5+rfQJLRyM56qh+wnVSYhyXC2tkoBndtY0U+vubqNsYXGjufB2nn8Q6gt0LrARwL6UBtMCSVCwl4B1g==,
       }
     dependencies:
+<<<<<<< Updated upstream
       "@types/node": 20.8.9
+=======
+      '@types/node': 18.19.31
+>>>>>>> Stashed changes
       form-data: 4.0.0
     dev: true
 
@@ -7719,6 +8022,12 @@ packages:
       {
         integrity: sha512-ArgCD39YpyyrtFKIqMDvjz79jto5fcI/SVUs2HwB+f0dAzq68yqOdyaSivLiLugSziTpNXLQrVb7RZFmdZzbhA==,
       }
+    dependencies:
+      undici-types: 5.26.5
+    dev: true
+
+  /@types/node@20.12.7:
+    resolution: {integrity: sha512-wq0cICSkRLVaf3UGLMGItu/PtdY7oaXaI/RVU+xliKVOtRna3PRY57ZDfztpDL0n11vfymMUnXv8QwYCO7L1wg==}
     dependencies:
       undici-types: 5.26.5
     dev: true
@@ -7755,6 +8064,7 @@ packages:
       }
     dev: true
 
+<<<<<<< Updated upstream
   /@types/offscreencanvas@2019.7.3:
     resolution:
       {
@@ -7762,6 +8072,8 @@ packages:
       }
     dev: false
 
+=======
+>>>>>>> Stashed changes
   /@types/pako@2.0.3:
     resolution:
       {
@@ -7837,6 +8149,13 @@ packages:
       csstype: 3.1.3
     dev: true
 
+  /@types/react@18.2.75:
+    resolution: {integrity: sha512-+DNnF7yc5y0bHkBTiLKqXFe+L4B3nvOphiMY3tuA5X10esmjqk7smyBZzbGTy2vsiy/Bnzj8yFIBL8xhRacoOg==}
+    dependencies:
+      '@types/prop-types': 15.7.12
+      csstype: 3.1.3
+    dev: true
+
   /@types/resolve@1.20.6:
     resolution:
       {
@@ -7864,8 +8183,13 @@ packages:
         integrity: sha512-x2EM6TJOybec7c52BX0ZspPodMsQUd5L6PRwOunVyVUhXiBSKf3AezDL8Dgvgt5o0UfKNfuA0eMLr2wLT4AiBA==,
       }
     dependencies:
+<<<<<<< Updated upstream
       "@types/mime": 1.3.5
       "@types/node": 20.8.9
+=======
+      '@types/mime': 1.3.5
+      '@types/node': 20.12.7
+>>>>>>> Stashed changes
     dev: true
 
   /@types/serve-static@1.15.7:
@@ -7874,9 +8198,15 @@ packages:
         integrity: sha512-W8Ym+h8nhuRwaKPaDw34QUkwsGi6Rc4yYqvKFo5rm2FUEhCFbzVWrxXUxuKK8TASjWsysJY0nsmNCGhCOIsrOw==,
       }
     dependencies:
+<<<<<<< Updated upstream
       "@types/http-errors": 2.0.4
       "@types/node": 20.8.9
       "@types/send": 0.17.4
+=======
+      '@types/http-errors': 2.0.4
+      '@types/node': 20.12.7
+      '@types/send': 0.17.4
+>>>>>>> Stashed changes
     dev: true
 
   /@types/through@0.0.33:
@@ -7885,7 +8215,11 @@ packages:
         integrity: sha512-HsJ+z3QuETzP3cswwtzt2vEIiHBk/dCcHGhbmG5X3ecnwFD/lPrMpliGXxSCg03L9AhrdwA4Oz/qfspkDW+xGQ==,
       }
     dependencies:
+<<<<<<< Updated upstream
       "@types/node": 20.8.9
+=======
+      '@types/node': 20.12.7
+>>>>>>> Stashed changes
     dev: true
 
   /@types/tinycolor2@1.4.6:
@@ -8188,8 +8522,13 @@ packages:
     peerDependencies:
       vite: ^4 || ^5
     dependencies:
+<<<<<<< Updated upstream
       "@swc/core": 1.4.13
       vite: 4.5.1(@types/node@20.8.9)
+=======
+      '@swc/core': 1.4.13
+      vite: 4.5.1(@types/node@20.12.7)
+>>>>>>> Stashed changes
     transitivePeerDependencies:
       - "@swc/helpers"
     dev: true
@@ -8208,7 +8547,7 @@ packages:
       "@babel/plugin-transform-react-jsx-source": 7.24.1(@babel/core@7.24.4)
       magic-string: 0.27.0
       react-refresh: 0.14.0
-      vite: 4.5.1(@types/node@20.8.9)
+      vite: 4.5.1(@types/node@20.12.7)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -8227,7 +8566,7 @@ packages:
       "@babel/plugin-transform-react-jsx-source": 7.24.1(@babel/core@7.24.4)
       "@types/babel__core": 7.20.5
       react-refresh: 0.14.0
-      vite: 4.5.1(@types/node@20.8.9)
+      vite: 4.5.1(@types/node@20.12.7)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -12870,11 +13209,17 @@ packages:
     dev: true
 
   /iconv-lite@0.6.3:
+<<<<<<< Updated upstream
     resolution:
       {
         integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==,
       }
     engines: { node: ">=0.10.0" }
+=======
+    resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
+    engines: {node: '>=0.10.0'}
+    requiresBuild: true
+>>>>>>> Stashed changes
     dependencies:
       safer-buffer: 2.1.2
     dev: true
@@ -13721,9 +14066,15 @@ packages:
       }
     engines: { node: ^14.15.0 || ^16.10.0 || >=18.0.0 }
     dependencies:
+<<<<<<< Updated upstream
       "@jest/types": 29.6.3
       "@types/graceful-fs": 4.1.9
       "@types/node": 20.8.9
+=======
+      '@jest/types': 29.6.3
+      '@types/graceful-fs': 4.1.9
+      '@types/node': 20.12.7
+>>>>>>> Stashed changes
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       graceful-fs: 4.2.11
@@ -13743,8 +14094,13 @@ packages:
       }
     engines: { node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0 }
     dependencies:
+<<<<<<< Updated upstream
       "@jest/types": 27.5.1
       "@types/node": 20.8.9
+=======
+      '@jest/types': 27.5.1
+      '@types/node': 20.12.7
+>>>>>>> Stashed changes
     dev: true
 
   /jest-regex-util@29.6.3:
@@ -13762,8 +14118,13 @@ packages:
       }
     engines: { node: ^14.15.0 || ^16.10.0 || >=18.0.0 }
     dependencies:
+<<<<<<< Updated upstream
       "@jest/types": 29.6.3
       "@types/node": 20.8.9
+=======
+      '@jest/types': 29.6.3
+      '@types/node': 20.12.7
+>>>>>>> Stashed changes
       chalk: 4.1.2
       ci-info: 3.9.0
       graceful-fs: 4.2.11
@@ -13777,7 +14138,11 @@ packages:
       }
     engines: { node: ^14.15.0 || ^16.10.0 || >=18.0.0 }
     dependencies:
+<<<<<<< Updated upstream
       "@types/node": 20.8.9
+=======
+      '@types/node': 20.12.7
+>>>>>>> Stashed changes
       jest-util: 29.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
@@ -16375,6 +16740,7 @@ packages:
     engines: { node: ">= 6" }
     dev: true
 
+<<<<<<< Updated upstream
   /pixi.js@7.3.2(@pixi/utils@7.3.2):
     resolution:
       {
@@ -16413,6 +16779,41 @@ packages:
       "@pixi/text-html": 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)(@pixi/sprite@7.3.2)(@pixi/text@7.3.2)
     transitivePeerDependencies:
       - "@pixi/utils"
+=======
+  /pixi.js@7.4.2:
+    resolution: {integrity: sha512-TifqgHGNofO7UCEbdZJOpUu7dUnpu4YZ0o76kfCqxDa4RS8ITc9zjECCbtalmuNXkVhSEZmBKQvE7qhHMqw/xg==}
+    dependencies:
+      '@pixi/accessibility': 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)(@pixi/events@7.4.2)
+      '@pixi/app': 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)
+      '@pixi/assets': 7.4.2(@pixi/core@7.4.2)
+      '@pixi/compressed-textures': 7.4.2(@pixi/assets@7.4.2)(@pixi/core@7.4.2)
+      '@pixi/core': 7.4.2
+      '@pixi/display': 7.4.2(@pixi/core@7.4.2)
+      '@pixi/events': 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)
+      '@pixi/extensions': 7.4.2
+      '@pixi/extract': 7.4.2(@pixi/core@7.4.2)
+      '@pixi/filter-alpha': 7.4.2(@pixi/core@7.4.2)
+      '@pixi/filter-blur': 7.4.2(@pixi/core@7.4.2)
+      '@pixi/filter-color-matrix': 7.4.2(@pixi/core@7.4.2)
+      '@pixi/filter-displacement': 7.4.2(@pixi/core@7.4.2)
+      '@pixi/filter-fxaa': 7.4.2(@pixi/core@7.4.2)
+      '@pixi/filter-noise': 7.4.2(@pixi/core@7.4.2)
+      '@pixi/graphics': 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)(@pixi/sprite@7.4.2)
+      '@pixi/mesh': 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)
+      '@pixi/mesh-extras': 7.4.2(@pixi/core@7.4.2)(@pixi/mesh@7.4.2)
+      '@pixi/mixin-cache-as-bitmap': 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)(@pixi/sprite@7.4.2)
+      '@pixi/mixin-get-child-by-name': 7.4.2(@pixi/display@7.4.2)
+      '@pixi/mixin-get-global-position': 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)
+      '@pixi/particle-container': 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)(@pixi/sprite@7.4.2)
+      '@pixi/prepare': 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)(@pixi/graphics@7.4.2)(@pixi/text@7.4.2)
+      '@pixi/sprite': 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)
+      '@pixi/sprite-animated': 7.4.2(@pixi/core@7.4.2)(@pixi/sprite@7.4.2)
+      '@pixi/sprite-tiling': 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)(@pixi/sprite@7.4.2)
+      '@pixi/spritesheet': 7.4.2(@pixi/assets@7.4.2)(@pixi/core@7.4.2)
+      '@pixi/text': 7.4.2(@pixi/core@7.4.2)(@pixi/sprite@7.4.2)
+      '@pixi/text-bitmap': 7.4.2(@pixi/assets@7.4.2)(@pixi/core@7.4.2)(@pixi/display@7.4.2)(@pixi/mesh@7.4.2)(@pixi/text@7.4.2)
+      '@pixi/text-html': 7.4.2(@pixi/core@7.4.2)(@pixi/display@7.4.2)(@pixi/sprite@7.4.2)(@pixi/text@7.4.2)
+>>>>>>> Stashed changes
     dev: false
 
   /pkg-dir@3.0.0:
@@ -19007,11 +19408,16 @@ packages:
     engines: { node: ">=6.10" }
     dev: true
 
+<<<<<<< Updated upstream
   /ts-node@10.9.2(@types/node@20.8.9)(typescript@5.3.3):
     resolution:
       {
         integrity: sha512-f0FFpIdcHgn8zcPSbf1dRevwt047YMnaiJM3u2w2RewrB+fob/zePZcrOyQoLMMO7aBIddLcQIEK5dYjkLnGrQ==,
       }
+=======
+  /ts-node@10.9.2(@types/node@20.12.7)(typescript@5.3.3):
+    resolution: {integrity: sha512-f0FFpIdcHgn8zcPSbf1dRevwt047YMnaiJM3u2w2RewrB+fob/zePZcrOyQoLMMO7aBIddLcQIEK5dYjkLnGrQ==}
+>>>>>>> Stashed changes
     hasBin: true
     peerDependencies:
       "@swc/core": ">=1.2.50"
@@ -19024,12 +19430,21 @@ packages:
       "@swc/wasm":
         optional: true
     dependencies:
+<<<<<<< Updated upstream
       "@cspotcode/source-map-support": 0.8.1
       "@tsconfig/node10": 1.0.11
       "@tsconfig/node12": 1.0.11
       "@tsconfig/node14": 1.0.3
       "@tsconfig/node16": 1.0.4
       "@types/node": 20.8.9
+=======
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.11
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.4
+      '@types/node': 20.12.7
+>>>>>>> Stashed changes
       acorn: 8.11.3
       acorn-walk: 8.3.2
       arg: 4.1.3
@@ -19765,12 +20180,18 @@ packages:
     engines: { node: ">= 0.8" }
     dev: true
 
+<<<<<<< Updated upstream
   /vite-plugin-dts@3.7.0(@types/node@20.8.9)(rollup@3.29.4)(typescript@5.3.3)(vite@4.5.1):
     resolution:
       {
         integrity: sha512-np1uPaYzu98AtPReB8zkMnbjwcNHOABsLhqVOf81b3ol9b5M2wPcAVs8oqPnOpr6Us+7yDXVauwkxsk5+ldmRA==,
       }
     engines: { node: ^14.18.0 || >=16.0.0 }
+=======
+  /vite-plugin-dts@3.7.0(@types/node@20.12.7)(rollup@3.29.4)(typescript@5.3.3)(vite@4.5.1):
+    resolution: {integrity: sha512-np1uPaYzu98AtPReB8zkMnbjwcNHOABsLhqVOf81b3ol9b5M2wPcAVs8oqPnOpr6Us+7yDXVauwkxsk5+ldmRA==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+>>>>>>> Stashed changes
     peerDependencies:
       typescript: "*"
       vite: "*"
@@ -19778,13 +20199,19 @@ packages:
       vite:
         optional: true
     dependencies:
+<<<<<<< Updated upstream
       "@microsoft/api-extractor": 7.39.0(@types/node@20.8.9)
       "@rollup/pluginutils": 5.1.0(rollup@3.29.4)
       "@vue/language-core": 1.8.27(typescript@5.3.3)
+=======
+      '@microsoft/api-extractor': 7.39.0(@types/node@20.12.7)
+      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
+      '@vue/language-core': 1.8.27(typescript@5.3.3)
+>>>>>>> Stashed changes
       debug: 4.3.4
       kolorist: 1.8.0
       typescript: 5.3.3
-      vite: 4.5.1(@types/node@20.8.9)
+      vite: 4.5.1(@types/node@20.12.7)
       vue-tsc: 1.8.27(typescript@5.3.3)
     transitivePeerDependencies:
       - "@types/node"
@@ -19792,12 +20219,18 @@ packages:
       - supports-color
     dev: true
 
+<<<<<<< Updated upstream
   /vite@4.5.1(@types/node@20.8.9):
     resolution:
       {
         integrity: sha512-AXXFaAJ8yebyqzoNB9fu2pHoo/nWX+xZlaRwoeYUxEqBO+Zj4msE5G+BhGBll9lYEKv9Hfks52PAF2X7qDYXQA==,
       }
     engines: { node: ^14.18.0 || >=16.0.0 }
+=======
+  /vite@4.5.1(@types/node@20.12.7):
+    resolution: {integrity: sha512-AXXFaAJ8yebyqzoNB9fu2pHoo/nWX+xZlaRwoeYUxEqBO+Zj4msE5G+BhGBll9lYEKv9Hfks52PAF2X7qDYXQA==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+>>>>>>> Stashed changes
     hasBin: true
     peerDependencies:
       "@types/node": ">= 14"
@@ -19823,7 +20256,11 @@ packages:
       terser:
         optional: true
     dependencies:
+<<<<<<< Updated upstream
       "@types/node": 20.8.9
+=======
+      '@types/node': 20.12.7
+>>>>>>> Stashed changes
       esbuild: 0.18.20
       postcss: 8.4.38
       rollup: 3.29.4
