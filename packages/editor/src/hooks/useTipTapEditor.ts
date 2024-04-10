@@ -68,16 +68,17 @@ export const useTipTapEditor = (
     editable: true,
     extensions: [
       StarterKit,
+      Placeholder.configure({ placeholder }),
+      Focus.configure({
+        className: "has-focus",
+        mode: "all",
+      }),
       CustomHighlight.configure({
         multicolor: true,
       }),
       Underline,
       TextStyle,
       Color,
-      Focus.configure({
-        className: "has-focus",
-        mode: "all",
-      }),
       Subscript,
       Superscript,
       Table.configure({
@@ -106,7 +107,6 @@ export const useTipTapEditor = (
       FontFamily,
       Mathematics,
       Alert,
-      Placeholder.configure({ placeholder }),
       VideoNodeView(MediaRenderer),
       AudioNodeView(AudioRenderer),
       LinkerNodeView(LinkerRenderer),
