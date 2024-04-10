@@ -68,7 +68,7 @@ const Editor = forwardRef(
       mode = "read",
       toolbar = "full",
       variant = "outline",
-      focus = null,
+      focus = "all",
       placeholder = "",
     }: EditorProps,
     ref: Ref<EditorRef>,
