@@ -152,7 +152,7 @@ const InternalLinker = ({
   const toggleResourceSelection = useCallback(
     (resource: ILinkedResource) => {
       const index = getSelectedResourceIndex(resource.assetId);
-      if (index < 0) {
+      if (index < 0 || multiple) {
         selectResource(resource);
       } else {
         setSelectedDocuments(
