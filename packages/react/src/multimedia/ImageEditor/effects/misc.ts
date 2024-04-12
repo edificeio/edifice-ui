@@ -137,8 +137,10 @@ export async function updateImage(
   } else {
     // Add sprite to context
     application.stage.addChild(sprite);
-    autoResize(application, sprite);
+    // Resize the sprite
+    application.renderer.resize(sprite.width, sprite.height);
   }
+  autoResize(application, sprite);
 }
 /**
  * This function resize the sprite according to the container width
@@ -150,7 +152,6 @@ export function autoResize(
   application: PIXI.Application,
   sprite: PIXI.Sprite,
 ): void {
-  // Get parent html object
   const parent = application.view.parentNode as HTMLElement | undefined;
   const maxMobileWidth = window.innerWidth - MODAL_HORIZONTAL_PADDING;
   const parentWidth = Math.max(parent?.offsetWidth ?? 0, MIN_WIDTH);
@@ -172,18 +173,12 @@ export function autoResize(
   );
   // Define the new width to the parentWidth
   const { height: newHeight, width: newWidth } = newSize;
-  // Anchor the sprite to the middle (for rotation)
-  sprite.anchor.x = 0.5;
-  sprite.anchor.y = 0.5;
-  // Position the sprite to the middle
-  sprite.position = new PIXI.Point(newWidth / 2, newHeight / 2);
-  // Update sprite size
-  sprite.width = newWidth;
-  sprite.height = newHeight;
-  // Resize the stage
-  application.stage.height = newHeight;
-  application.stage.width = newWidth;
-  application.renderer.resize(newWidth, newHeight);
+
+  // Resize the view in css to keep img quality
+  if (application.view.style) {
+    (application.view.style as any).width = `${newWidth}px`;
+    (application.view.style as any).height = `${newHeight}px`;
+  }
 }
 /**
  * This function transform the stage into a blob
@@ -213,6 +208,13 @@ export function saveAsDataURL(
 ): string | undefined {
   return application.view.toDataURL?.();
 }
+
+/**
+ * Constrains the size of an image based on the given constraints.
+ * @param size - The original size of the image.
+ * @param constraints - The constraints for the image size.
+ * @returns The constrained size of the image.
+ */
 export function constraintSize(
   size: { width: number; height: number },
   constraints: {
@@ -248,6 +250,20 @@ export function constraintSize(
   }
   return { width: newWidth, height: newHeight };
 }
+
+/**
+ * Calculates the scale percentage for a PIXI.Sprite or the application view based on the parent container's dimensions.
+ * @param application - The PIXI.Application instance.
+ * @param sprite - The PIXI.Sprite instance (optional).
+ * @returns The scale percentage.
+ */
+export function getApplicationScale(application: PIXI.Application) {
+  if (application.view?.style?.width) {
+    return parseFloat(application.view.style.width) / application.view.width;
+  }
+  return 1;
+}
+
 export function toBlob(application: PIXI.Application) {
   return new Promise<Blob>((resolve, reject) => {
     application.view.toBlob?.(

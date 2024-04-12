@@ -1,5 +1,7 @@
 import * as PIXI from "pixi.js";
 
+import { getApplicationScale } from "./misc";
+
 //
 // Global constants used for crop effects
 //
@@ -190,6 +192,7 @@ function drawCorner(
     getCornerName(cornerType),
     true,
   );
+  const scale = getApplicationScale(application);
   previous?.removeFromParent();
   // Search for background
   const background = application.stage.getChildByName(
@@ -225,7 +228,7 @@ function drawCorner(
   //Draw corner
   const corner = new PIXI.Graphics();
   corner.beginFill(0x4bafd5, 1);
-  corner.arc(0, 0, POINT_RADIUS, position.start, position.end);
+  corner.arc(0, 0, POINT_RADIUS / scale, position.start, position.end);
   corner.lineTo(0, 0);
   corner.endFill();
   corner.position = new PIXI.Point(position.x, position.y);

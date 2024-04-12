@@ -12,6 +12,7 @@ import {
   saveAsDataURL,
   updateImageFromBlob,
 } from "../effects/misc";
+
 /**
  * This hook expose all the functions available for the pixi editor:
  * - all the effects (crop, resize, rotate, blur)
@@ -32,6 +33,7 @@ export default function useImageEditor({
   const [application, setApplication] = useState<PIXI.Application | undefined>(
     undefined,
   );
+
   const {
     rotate,
     startBlur,
@@ -79,6 +81,7 @@ export default function useImageEditor({
     if (!application) return undefined;
     updateImage(application, { spriteName, imgDatasource: imageSrc });
   }, [application, imageSrc, spriteName]);
+
   return {
     historyCount,
     setApplication,
