@@ -143,10 +143,14 @@ const ImageEditor = ({
             handle={handleOperation}
             historyCount={historyCount}
           />
-          <div className="d-flex flex-column align-items-center justify-content-center flex-grow-1 w-100">
+          <div className="d-flex flex-column align-items-center justify-content-center flex-grow-1 w-100 image-editor">
             <Stage
               onMount={(app) => setApplication(app)}
-              options={{ preserveDrawingBuffer: true, backgroundAlpha: 0 }}
+              options={{
+                preserveDrawingBuffer: true,
+                backgroundAlpha: 0,
+                resolution: 1,
+              }}
             ></Stage>
           </div>
           <div className="d-flex flex-column flex-md-row m-10 gap-12 w-100">
