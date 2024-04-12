@@ -55,8 +55,8 @@ const useHistoryTool = ({
     }
     return arr;
   };
-  const historize = <T extends (...args: any[]) => any>(callback: T) => {
-    return async function (...args: any[]) {
+  const historize = async <T extends (...args: any[]) => any>(callback: T) => {
+    {
       if (!application) {
         return;
       }
@@ -87,9 +87,10 @@ const useHistoryTool = ({
       };
       setHistory([...listSize(history), state]);
       await promise;
-      return callback.call(callback, ...args);
-    };
+      return callback.call(callback);
+    }
   };
+
   return {
     historyCount: history.length,
     restore,

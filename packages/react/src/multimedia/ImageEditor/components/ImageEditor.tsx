@@ -4,7 +4,14 @@ import { Stage } from "@pixi/react";
 import { useTranslation } from "react-i18next";
 
 import ImageEditorToolbar, { ImageEditorAction } from "./ImageEditorToolbar";
-import { Button, FormControl, Input, Label, Modal } from "../../../components";
+import {
+  Button,
+  FormControl,
+  Input,
+  Label,
+  LoadingScreen,
+  Modal,
+} from "../../../components";
 import useImageEditor from "../hooks/useImageEditor";
 
 interface ImageEditorProps {
@@ -67,6 +74,7 @@ const ImageEditor = ({
     startResize,
     stopResize,
     historyCount,
+    loading,
   } = useImageEditor({
     imageSrc,
   });
@@ -143,7 +151,7 @@ const ImageEditor = ({
             handle={handleOperation}
             historyCount={historyCount}
           />
-          <div className="d-flex flex-column align-items-center justify-content-center flex-grow-1 w-100 image-editor">
+          <div className="position-relative d-flex flex-column align-items-center justify-content-center flex-grow-1 w-100 image-editor">
             <Stage
               onMount={(app) => setApplication(app)}
               options={{
@@ -152,6 +160,11 @@ const ImageEditor = ({
                 resolution: 1,
               }}
             ></Stage>
+            {!!loading && (
+              <div className="position-absolute top-0 start-0 bottom-0 end-0 m-10 d-flex align-items-center justify-content-center bg-black opacity-25">
+                <LoadingScreen />
+              </div>
+            )}
           </div>
           <div className="d-flex flex-column flex-md-row m-10 gap-12 w-100">
             <FormControl id="alt" className="flex-grow-1">
