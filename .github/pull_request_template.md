@@ -1,29 +1,14 @@
 # Description
 
-Please include a summary of the changes and the related issue. Please also include relevant motivation and context. List any dependencies that are required for this change.
-
-## Which Package changed?
-
-Please check the name of the package you changed
-
-- [ ] Components
-- [ ] Core
-- [ ] Icons
-- [ ] Hooks
+__Please include a summary of the changes and the related issue. Please also include relevant motivation and context. List any dependencies that are required for this change__
 
 ## Has the documentation changed?
 
-- [ ] Storybook
+- [ ]
 
-## Type of change
+## Did you respect conventional commits ?
 
-Please check options that are relevant.
-
-- [ ] Chore (PATCH)
-- [ ] Doc (PATCH)
-- [ ] Bug fix (PATCH)
-- [ ] New feature (MINOR)
-- [ ] Breaking change (MAJOR)
+- [ ]
 
 # Checklist:
 

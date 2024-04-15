@@ -1,0 +1,27 @@
+<link rel="icon" id="favicon" href="" />
+<link rel="stylesheet" id="theme-ode" href="assets/themes/edifice-bootstrap/index.css">
+
+<div id="portal"></div>
+
+<div class="extended-toolbar">
+  <div class="vtmn-select_container">
+    <label for="theme-switcher">Theme :</label>
+
+    <select onchange="addTheme(this.value)" id="theme-switcher">
+      <option value="one">One</option>
+      <option value="neo" selected>Neo</option>
+    </select>
+  </div>
+</div>
+
+<script>
+  const createStyleSheet = (theme) => {
+    document.querySelector(":root").setAttribute("data-product", "one");
+  };
+
+  const addTheme = (value) => {
+    document.querySelector(":root").setAttribute("data-product", `${value}`);
+  };
+
+  createStyleSheet("one");
+</script>
