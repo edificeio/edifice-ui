@@ -65,7 +65,15 @@ function drawBlurListener(
       if (child === undefined || child === null) return;
       // Create a sprite by copying texture and apply blurFilter
       const newSprite = new PIXI.Sprite((child as PIXI.Sprite).texture);
-      newSprite.filters = [new PIXI.BlurFilter(2 / scale, 1, 0.5)];
+      // Apply blur filter to the new sprite, quality for big image (fix lag issue)
+
+      newSprite.filters = [
+        new PIXI.BlurFilter(
+          8, // PIXI Default value for strength of the blur effect
+          (Math.min(Math.round(4 * scale)), 4), // Quality of the blur effect depending on the scale (4 is the PIXI default value)
+          Math.min(scale, 1), // Resolution of the blur effect depending on the scale
+        ),
+      ];
       newSprite.width = (child as PIXI.Sprite).width;
       newSprite.height = (child as PIXI.Sprite).height;
       // Resize the new sprite to match the original
