@@ -1,6 +1,7 @@
 import { forwardRef, ReactNode, Ref, useEffect } from "react";
 
 import clsx from "clsx";
+import { useTranslation } from "react-i18next";
 
 import { useFormControl } from "../Form/FormContext";
 
@@ -34,7 +35,7 @@ const Label = forwardRef(
   (
     {
       leftIcon,
-      optionalText = "optional",
+      optionalText,
       requiredText = "*",
       children,
       className,
@@ -42,6 +43,8 @@ const Label = forwardRef(
     ref?: Ref<HTMLLabelElement>,
   ) => {
     const { id, isOptional, isRequired } = useFormControl();
+
+    const { t } = useTranslation();
 
     const classes = clsx(
       "form-label",
@@ -64,7 +67,11 @@ const Label = forwardRef(
       <label ref={ref} htmlFor={id} className={classes}>
         {leftIcon}
         {children}
-        {optionalState && <em className="optional">- {optionalText}</em>}
+        {optionalState && (
+          <em className="optional">
+            - {optionalText ?? t("explorer.optional")}
+          </em>
+        )}
         {requiredState && <em className="required">{requiredText}</em>}
       </label>
     );
