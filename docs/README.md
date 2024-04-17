@@ -20,10 +20,8 @@ For specific MDX documentation, you must write them inside `stories` folder from
 
 ### Dev
 
-> Start Storybook on port 6006
-
 ```bash
-pnpm run docs
+pnpm nx storybook docs
 ```
 
 ### Build
@@ -31,13 +29,7 @@ pnpm run docs
 > Build storybook document to `dist/` folder
 
 ```bash
-pnpm run docs:build
-```
-
-### Preview
-
-```bash
-pnpm run docs:preview
+pnpm nx build-storybook docs
 ```
 
 ⚠️ Don't change output folder. This is used to deploy to Vercel.

@@ -1,0 +1,39 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2021",
+    "module": "esnext",
+    "lib": [
+      "ES2021",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@edifice-ui/editor": [
+        "packages/editor/src/index.ts"
+      ],
+      "@edifice-ui/icons": [
+        "packages/icons/src/index.ts"
+      ],
+      "@edifice-ui/icons/nav": [
+        "packages/icons/src/nav/index.ts"
+      ],
+      "@edifice-ui/react": [
+        "packages/react/src/index.ts"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
+}

@@ -10,50 +10,42 @@ We follow [WAI ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/) rules and [Boots
 ### Build
 
 ```bash
-pnpm run build
+pnpm nx build
 ```
 
 ### Lint
 
 ```bash
-pnpm run lint
+pnpm nx lint
 ```
 
 If `pnpm run lint` shows issues, run this command to fix them.
 
 ```bash
-pnpm run fix
+pnpm nx lint --fix
 ```
 
-### Prettier
+## Generate a new component
 
-```bash
-pnpm run format
+```
+nx g @nx/react:component packages/<packageName>/src/<folder>/<componentFolder>/<componentName> --nameAndDirectoryFormat=as-provided
 ```
 
-## Structure
+Say yes when “Should this component be exported into the project?” » is asked.
 
 ### Component Folder
 
-- Folder name always in PascalCase: `Button`
-- Component file in PascalCase: `Button.tsx`
-- Export types & interfaces inside Component file
-- Stories file in PascalCase + `*.stories.tsx` : `Button.stories.tsx`
+- A component file in kebab-case
+- A spec file to test component
+- A story file for Storybook documentation
 
-```bash
-src
-  -- ComponentFolder
-    -- Component.tsx
-    -- Component.stories.tsx
-    -- index.ts
 ```
-
-- Re-export the Component inside his own `index` file: `index.ts`
-- Export everything if Component has types & interfaces
-
-```jsx
-export { default as Component } from "./Component";
-export * from "./Component";
+src
+  -- component (folder)
+    -- component.tsx
+    -- component.stories.tsx
+    -- component.spec.tsx
+    -- index.ts
 ```
 
 ### Component Guideline
@@ -105,6 +97,16 @@ export interface ButtonProps {
 export * from "./Button";
 ```
 
-## Dev
+## Generate a new custom hook
 
-You can build your component using `Storybook`. See [README](../../docs//README.md)
+```
+nx g @nx/react:hook my-hook --project=<project-name> --directory=lib/<folder> --nameAndDirectoryFormat=derived
+```
+
+## Generate a new storybook file
+
+You can develop your component using `Storybook`. See [README](../../docs//README.md)
+
+```
+nx g @nx/react:component-story --project=<project-name> --componentPath=lib/<folder>/<component-folder>/<component-name>.tsx
+```

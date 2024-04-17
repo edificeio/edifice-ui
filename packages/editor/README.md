@@ -1,35 +1,54 @@
-# Edifice Editor
+# Edifice React Editor
 
 ![npm](https://img.shields.io/npm/v/@edifice-ui/editor?style=flat-square)
 ![bundlephobia](https://img.shields.io/bundlephobia/min/@edifice-ui/editor?style=flat-square)
 
 ## Getting Started
 
+We follow [WAI ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/) rules and [Bootstrap 5](https://getbootstrap.com/docs/5.0/components/accordion/) guidelines when making our components
+
 ### Build
 
 ```bash
-pnpm run build
+pnpm nx build
 ```
 
 ### Lint
 
 ```bash
-pnpm run lint
+pnpm nx lint
 ```
 
 If `pnpm run lint` shows issues, run this command to fix them.
 
 ```bash
-pnpm run fix
+pnpm nx lint --fix
 ```
 
-### Prettier
+## Generate a new component
 
-```bash
-pnpm run format
+```
+nx g @nx/react:component packages/<packageName>/src/<folder>/<componentFolder>/<componentName> --nameAndDirectoryFormat=as-provided
 ```
 
-## Component Guideline
+Say yes when “Should this component be exported into the project?” » is asked.
+
+### Component Folder
+
+- A component file in kebab-case
+- A spec file to test component
+- A story file for Storybook documentation
+
+```
+src
+  -- component (folder)
+    -- component.tsx
+    -- component.stories.tsx
+    -- component.spec.tsx
+    -- index.ts
+```
+
+### Component Guideline
 
 - Always document basic guideline of Component with JSDoc format. Used by Storybook to generate documentation.
 
@@ -39,7 +58,7 @@ pnpm run format
  */
 ```
 
-## Interface description
+### Interface description
 
 - Always document typescript types and interface with JSDoc syntax. Used by Storybook to generate documentation.
 
@@ -78,6 +97,16 @@ export interface ButtonProps {
 export * from "./Button";
 ```
 
-## Dev
+## Generate a new custom hook
 
-You can build your component using `Storybook`. See [README](../../docs//README.md)
+```
+nx g @nx/react:hook my-hook --project=<project-name> --directory=lib/<folder> --nameAndDirectoryFormat=derived
+```
+
+## Generate a new storybook file
+
+You can develop your component using `Storybook`. See [README](../../docs//README.md)
+
+```
+nx g @nx/react:component-story --project=<project-name> --componentPath=lib/<folder>/<component-folder>/<component-name>.tsx
+```

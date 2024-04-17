@@ -14,30 +14,10 @@ To add a new icon to the library:
 ### Build
 
 ```bash
-pnpm run build
+pnpm nx build
 ```
 
 - Create all React Icons Components based on `*.svg` files from `assets` folder and import them all inside `index.tsx` file
-
-### Lint
-
-```bash
-pnpm run lint
-```
-
-```bash
-pnpm run fix
-```
-
-If `pnpm run lint` shows issues, run this command to fix them.
-
-### Prettier
-
-```bash
-pnpm run format
-```
-
-This command starts `format:check` + `format:write`
 
 ## Dev
 

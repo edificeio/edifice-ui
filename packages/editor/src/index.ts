@@ -1,2 +1,2 @@
-export * from "./components";
-export * from "./hooks";
+export * from './lib/components';
+export * from './lib/hooks';
