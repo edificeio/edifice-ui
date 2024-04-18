@@ -4,7 +4,7 @@
   "npmClient": "pnpm",
   "command": {
     "version": {
-      "allowBranch": ["main", "develop", "develop*"],
+      "allowBranch": ["main", "develop-integration", "develop-integration*"],
       "message": "chore(release): version & publish"
     }
   }
