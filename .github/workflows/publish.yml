@@ -61,7 +61,7 @@ jobs:
             pnpm nx release publish
           else
             echo "This is not the main branch."
-            pnpm nx release version --specifier prerelease --preid ${{ github.ref_name }} --git-tag
+            pnpm nx release version --specifier prerelease --preid ${{ github.ref_name }} --git-tag --git-commit
             pnpm nx release publish --tag ${{ github.ref_name }} --output-style=stream
           fi
 
