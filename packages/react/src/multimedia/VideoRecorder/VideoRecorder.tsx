@@ -335,16 +335,6 @@ const VideoRecorder = forwardRef(
 
       const uploadResponse = await odeServices.video().upload(params);
       if (uploadResponse.state === "succeed") {
-        await odeServices
-          .video()
-          .generateSaveEvent(
-            appCode,
-            recordedTime,
-            { name: browser.name, version: browser.version },
-            device.type,
-            uploadResponse,
-          );
-
         const resVideo: WorkspaceElement = {
           _id: uploadResponse.videoworkspaceid,
           file: uploadResponse.videoid,
