@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
-import { Image } from "@edifice-ui/react";
+import { Image, useBrowserInfo } from "@edifice-ui/react";
 import { NodeViewWrapper } from "@tiptap/react";
+import { odeServices } from "edifice-ts-client";
 import { useTranslation } from "react-i18next";
 
 import { MediaResizeProps, useResizeMedia } from "../../hooks";
@@ -11,6 +12,8 @@ const MediaRenderer = (props: MediaResizeProps) => {
   const { node } = props;
 
   const { t } = useTranslation();
+
+  const { browser, device } = useBrowserInfo(navigator.userAgent);
 
   const resizableMedia = useRef<HTMLImageElement | HTMLVideoElement>(null);
 
@@ -35,6 +38,39 @@ const MediaRenderer = (props: MediaResizeProps) => {
     }
   };
 
+  const onVideoPlay = () => {
+    if (resizableMedia.current instanceof HTMLVideoElement) {
+      const videoElement: HTMLVideoElement = resizableMedia.current;
+      const videoId = videoElement.dataset.documentId;
+      const isCaptation =
+        (videoElement.dataset.documentIsCaptation || "false") == "true";
+
+      videoId &&
+        odeServices
+          .data()
+          .trackVideoRead(
+            videoId,
+            isCaptation,
+            window.location.hostname,
+            `${browser.name} ${browser.version}`,
+            device.type,
+          );
+    }
+  };
+
+  // Set up some event listeners, once.
+  useEffect(() => {
+    if (!resizableMedia.current) return;
+    const element = resizableMedia.current;
+
+    // Track play event on HTMLVideoElement
+    element.addEventListener("play", onVideoPlay);
+    return () => {
+      element.removeEventListener("play", onVideoPlay);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <NodeViewWrapper style={alignContent(node.attrs.textAlign)}>
       <div className="media-node-view">
@@ -49,7 +85,7 @@ const MediaRenderer = (props: MediaResizeProps) => {
             // eslint-disable-next-line jsx-a11y/media-has-caption
             <video
               ref={resizableMedia as React.RefObject<HTMLVideoElement>}
-              controls={node.attrs.controls}
+              controls={node.attrs.controls === "true"}
               src={node.attrs.src}
               width={node.attrs.width}
               height={node.attrs.height}
