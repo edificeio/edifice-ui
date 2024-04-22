@@ -259,7 +259,15 @@ const Workspace = ({
         : (a, b) => compare(b.modified, a.modified);
 
     setDocuments(() => list.sort(sortFunction));
-  }, [currentNode, ownerRoot, protectRoot, sharedRoot, searchTerm, sortOrder]);
+  }, [
+    currentNode,
+    ownerRoot,
+    protectRoot,
+    sharedRoot,
+    publicRoot,
+    searchTerm,
+    sortOrder,
+  ]);
 
   /** Load initial content, once */
   // eslint-disable-next-line react-hooks/exhaustive-deps
