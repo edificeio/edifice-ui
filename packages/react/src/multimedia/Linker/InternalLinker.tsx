@@ -81,7 +81,15 @@ const InternalLinker = ({
                 filters: {},
                 pagination: { startIdx: 0, pageSize: 300 }, // ignored at the moment
               })
-            ).sort((a, b) => (a.modifiedAt < b.modifiedAt ? 1 : -1));
+            )
+              .filter((resource) => {
+                if (!search || search.length === 0) return true;
+                let found = resource.name?.includes(search) ?? false;
+                found ||= resource.creatorName?.includes(search) ?? false;
+                found ||= resource.description?.includes(search) ?? false;
+                return found;
+              })
+              .sort((a, b) => (a.modifiedAt < b.modifiedAt ? 1 : -1));
 
             setResources(resources);
             return; // end here

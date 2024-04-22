@@ -48,7 +48,7 @@ export const Base: Story = {
               {
                 application: "timelinegenerator",
                 modifiedAt: "2023-10-23T01:00:00.000Z",
-                name: "Another fake timelinegenerator",
+                name: "Another fake timelinegenerator with a very long name that should now overflow aloooooot, don't you think ?",
                 modifierId: "sarge",
                 modifierName: "Batou",
                 thumbnail: "",

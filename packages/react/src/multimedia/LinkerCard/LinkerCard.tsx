@@ -61,7 +61,7 @@ const LinkerCard = ({
           )}
         </div>
 
-        <div className="w-100">
+        <div className="w-75">
           <Card.Text>{doc.name}</Card.Text>
           <Card.Text className="text-black-50">{doc?.creatorName}</Card.Text>
         </div>

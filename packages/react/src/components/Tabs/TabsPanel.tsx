@@ -18,9 +18,9 @@ const TabsPanel = ({ children, currentItem }: TabsPanelProps) => {
   const { activeTab } = useTabsContext();
 
   return (
-    <div className="tab-content d-flex flex-fill">
+    <div className="tab-content d-flex flex-fill w-100">
       <div
-        className={`tab-pane flex-fill fade ${
+        className={`tab-pane flex-fill w-100 fade ${
           activeTab === currentItem?.id ? "show active" : ""
         }`}
         id={`tabpanel-${currentItem?.id}`}
