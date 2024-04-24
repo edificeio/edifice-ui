@@ -129,6 +129,22 @@ export const useSubjectsOptions = () => {
       label: t("bpr.subjectArea.technology"),
     },
     {
+      value: "bpr.subjectArea.Arabic",
+      label: t("bpr.subjectArea.Arabic"),
+    },
+    {
+      value: "bpr.subjectArea.Chinese",
+      label: t("bpr.subjectArea.Chinese"),
+    },
+    {
+      value: "bpr.subjectArea.NaturalSciences",
+      label: t("bpr.subjectArea.NaturalSciences"),
+    },
+    {
+      value: "bpr.subjectArea.SocioEmotionalEducation",
+      label: t("bpr.subjectArea.SocioEmotionalEducation"),
+    },
+    {
       value: "bpr.other",
       label: t("bpr.other"),
     },

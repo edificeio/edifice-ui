@@ -40,6 +40,7 @@ const useConversation = () => {
 
   const goToMessagerie = async () => {
     const defaultLink = "/zimbra/zimbra";
+
     try {
       const { preference } = await odeServices
         .http()
@@ -65,7 +66,7 @@ const useConversation = () => {
   }, []);
 
   useEffect(() => {
-    if (zimbraPreauth) goToMessagerie();
+    goToMessagerie();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
