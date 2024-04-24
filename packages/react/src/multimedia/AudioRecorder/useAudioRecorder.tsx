@@ -118,6 +118,7 @@ export default function useAudioRecorder(
         ws.send("rawdata");
       }
     };
+
     ws.onerror = (event: Event) => {
       console.error(event);
       dispatch({
@@ -126,6 +127,7 @@ export default function useAudioRecorder(
       });
       closeWs();
     };
+
     ws.onclose = () => {
       clearWs();
     };
@@ -381,7 +383,9 @@ export default function useAudioRecorder(
     if (onUpdateRecord) {
       onUpdateRecord(undefined);
     }
-  }, [closeAudioStream, onUpdateRecord]);
+
+    webSocket?.send("cancel");
+  }, [closeAudioStream, onUpdateRecord, webSocket]);
 
   const handleSave: () => Promise<WorkspaceElement | undefined> =
     useCallback(async () => {
