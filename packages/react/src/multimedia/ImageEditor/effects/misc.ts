@@ -8,6 +8,9 @@ const MIN_WIDTH = 100;
 const MODAL_VERTICAL_PADDING = 450;
 const MODAL_HORIZONTAL_PADDING = 64;
 
+// Using canvas to download the image increase the file size so to keep the same we need to apply a quality
+const DEFAULT_QUALITY = 0.5;
+
 // Define the default name of the sprite in the PIXI.Application context
 export const DEFAULT_SPRITE_NAME = "image";
 
@@ -235,7 +238,7 @@ export function saveAsBlob(application: PIXI.Application): Promise<Blob> {
           blob ? resolve(blob) : reject("EXTRACT_FAILED");
         },
         "image/jpeg",
-        0.5,
+        DEFAULT_QUALITY,
       );
     } else {
       reject("EXTRACT_FAILED");
