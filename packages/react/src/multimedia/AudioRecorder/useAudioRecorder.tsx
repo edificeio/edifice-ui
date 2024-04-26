@@ -467,7 +467,6 @@ export default function useAudioRecorder(
                 reject("Error while saving");
               }
             }
-            console.log(event);
           };
         });
       }

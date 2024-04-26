@@ -144,6 +144,7 @@ export async function updateImage(
   // Resize the view in css to keep img quality
   autoResize(application, sprite);
 }
+
 /**
  * This function resize the sprite according to the container width
  *
@@ -181,7 +182,6 @@ export function autoResize(
   if (application.view?.style) {
     application.view.style.width = `${newWidth}px`;
     application.view.style.height = `${newHeight}px`;
-    console.log(application.view.style.width, application.view.style.height);
   }
 }
 
@@ -230,9 +230,13 @@ export function constraintSize(
 export function saveAsBlob(application: PIXI.Application): Promise<Blob> {
   return new Promise<Blob>((resolve, reject) => {
     if (application?.view?.toBlob) {
-      application.view.toBlob((blob) => {
-        blob ? resolve(blob) : reject("EXTRACT_FAILED");
-      });
+      application.view.toBlob(
+        (blob) => {
+          blob ? resolve(blob) : reject("EXTRACT_FAILED");
+        },
+        "image/jpeg",
+        0.5,
+      );
     } else {
       reject("EXTRACT_FAILED");
     }
