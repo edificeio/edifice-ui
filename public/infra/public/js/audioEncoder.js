@@ -36,7 +36,7 @@ function writeUTFBytes(view, offset, string){
 
 var encoder = {
 	options: {
-		sampleRate: 44100
+		sampleRate: 48000
 	}
 };
 
