@@ -1,10 +1,14 @@
 {
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
-  "version": "1.5.4",
+  "version": "1.5.4-develop-pedago.0",
   "npmClient": "pnpm",
   "command": {
     "version": {
-      "allowBranch": ["main", "develop", "develop*"],
+      "allowBranch": [
+        "main",
+        "develop",
+        "develop*"
+      ],
       "message": "chore(release): version & publish"
     }
   }
