@@ -1,0 +1,64 @@
+.widget-record {
+  .widget-body {
+    display: flex;
+    align-items: center;
+
+    > * {
+      // flex: 1;
+      padding: 1.6rem;
+      text-align: center;
+
+      .img-fluid {
+        width: 100px;
+      }
+    }
+  }
+
+  .form-control,
+  .form-select {
+    padding: 12px 16px;
+    border: 1px solid #e4e4e4;
+    border-radius: 8px;
+  }
+}
+
+.record {
+  &-timer {
+    font-size: 2.2rem;
+  }
+
+  &-widget-player {
+    margin: 1.6rem 2.4rem;
+    min-height: 150px;
+    border-radius: 4px;
+    background-color: #d9d9d9;
+
+    > video {
+      display: block;
+    }
+  }
+
+  &-controls {
+    display: flex;
+    justify-content: space-around;
+    margin-block: 1.5em;
+
+    .btn-circle {
+      font-size: 1.6rem;
+
+      &:hover {
+        color: $white;
+      }
+
+      &:disabled {
+        opacity: 1;
+        background-color: #e4e4e4 !important;
+        border-color: transparent;
+      }
+
+      &.btn-danger {
+        background-color: $red;
+      }
+    }
+  }
+}

@@ -1,0 +1,104 @@
+// Array Widget Flash Colors
+$widget-flash-colors: (
+  "red": $red,
+  "orange": $orange,
+  "green": $green,
+  "blue": $blue,
+  "grey-dark": $gray-700,
+);
+
+.widget-flash {
+  position: relative;
+  padding: $widget-padding-x;
+  overflow: hidden;
+  color: $white;
+  background: $secondary;
+
+  @each $key, $value in $widget-flash-colors {
+    &.#{$key} {
+      --custom-message-color: #{$value};
+      background-color: $value;
+    }
+  }
+
+  .btn {
+    &-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: var(--#{$prefix}dark);
+      text-shadow: none;
+    }
+
+    &-expand {
+      cursor: pointer;
+
+      &-inner {
+        position: absolute;
+        z-index: 2;
+        bottom: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        padding: 5px;
+        font-size: 0.8em;
+        color: $white;
+        text-align: center;
+        background: rgba(#000, 0.1);
+
+        @include background-color-to(rgba(#000, 0.2));
+      }
+    }
+  }
+
+  .flash-content {
+    padding-right: 1rem;
+
+    p {
+      > br:first-child {
+        display: none;
+      }
+    }
+
+    &.can-be-truncated {
+      &:not(.flash-content-is-expandable) {
+        p {
+          @include has-text-truncated(4);
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          z-index: 1;
+          bottom: 2em;
+          right: 0;
+          left: 0;
+          height: 4em;
+          background: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0),
+            var(--custom-message-color)
+          );
+        }
+
+        @media not all and (min-resolution: 0.001dpcm) {
+          &::after {
+            display: none;
+          }
+        }
+
+        .flash-content-signature {
+          display: none;
+        }
+      }
+
+      .flash-content-signature {
+        padding-bottom: 1rem;
+      }
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

@@ -1,0 +1,98 @@
+@use "../abstracts/" as *;
+@use "../vendors/bootstrap";
+
+.nav-slide {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--#{$prefix}secondary);
+  transition: all 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav-tabs {
+  position: relative;
+  display: inline-flex;
+  gap: $spacer-24;
+
+  .nav-link {
+    position: relative;
+    align-items: center;
+
+    small {
+      position: relative;
+
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        right: -#{$spacer-24};
+        top: 50%;
+        transform: translateY(-50%);
+        height: 2rem;
+        width: 1px;
+        background-color: $gray-400;
+      }
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: transparent;
+      transition: background-color 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    &:is(:focus, :hover) {
+      &::after {
+        background-color: var(--#{$prefix}secondary-300);
+      }
+    }
+
+    &.selected {
+      --#{$prefix}nav-link-color: var(--#{$prefix}secondary);
+      --#{$prefix}nav-link-hover-color: var(--#{$prefix}secondary);
+
+      font-weight: 600;
+    }
+
+    &:focus-visible {
+      box-shadow: none;
+    }
+  }
+
+  .nav-item {
+    svg {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    &:last-child {
+      small {
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.tab-content {
+  & > .tab-pane {
+    display: none;
+
+    &:focus-visible {
+      outline-offset: -1px;
+      outline-color: var(--#{$prefix}secondary);
+    }
+  }
+
+  & > .active {
+    display: flex;
+  }
+}

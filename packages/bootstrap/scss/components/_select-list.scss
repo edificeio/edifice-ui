@@ -1,0 +1,55 @@
+@use "../abstracts/colors" as *;
+
+.select-list {
+  display: flex;
+  flex-direction: column;
+  max-height: 32rem;
+  overflow-y: auto;
+
+  &-option {
+    position: relative;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 8px;
+
+    &.selected {
+      background-color: $secondary-200;
+    }
+
+    &:hover {
+      background-color: $gray-200;
+    }
+
+    &:active {
+      background-color: $gray-300;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+
+    &:not(:last-child)::after {
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 1px;
+      content: "";
+      background-color: $gray-300;
+    }
+
+    &-label {
+      width: 100%;
+    }
+
+    &-checkbox {
+      display: flex;
+    }
+  }
+}

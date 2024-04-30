@@ -1,0 +1,20 @@
+@use "../../abstracts/" as *;
+
+.ProseMirror {
+  div:where(.warning, .info) {
+    border-radius: 1rem;
+    padding: 1.5rem 3rem 1.5rem 1.5rem;
+    margin-block: 1rem;
+    word-break: break-word;
+  }
+  div.warning {
+    color: $warning;
+    background: $warning-200;
+    text-align: center;
+  }
+  div.info {
+    color: $info;
+    background: $info-200;
+    text-align: left;
+  }
+}

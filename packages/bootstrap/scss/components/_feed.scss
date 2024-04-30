@@ -1,0 +1,195 @@
+$feed-spacing: 20px !default;
+
+.feed {
+  font-size: 14px;
+
+  .filter-button {
+    @include append-icon("\f107", 1em, 0);
+
+    display: inline-block;
+    margin-bottom: 0.5em;
+  }
+
+  &-divider-message {
+    @include add-before-layer() {
+      top: 50%;
+      z-index: -1;
+      height: 1px;
+      border-top: 2px dashed $gray-400;
+    }
+
+    margin-bottom: $feed-spacing;
+    text-align: center;
+
+    .message {
+      color: $gray-600;
+      background: $body-bg;
+    }
+  }
+
+  &-item {
+    display: flex;
+    padding: 15px $feed-spacing;
+    margin-bottom: $feed-spacing;
+    overflow: hidden;
+    background: $white;
+    border-radius: 8px;
+
+    @include add-before-layer();
+
+    @include media-breakpoint-down(lg) {
+      padding-right: 50px;
+    }
+
+    &::before {
+      width: 4px;
+      background: currentcolor;
+
+      @include border-start-radius(8px);
+    }
+
+    .zone-avatar {
+      justify-self: stretch;
+      padding-right: 25px;
+    }
+
+    .zone-tools {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: center;
+      justify-self: stretch;
+      width: 60%;
+      height: 100%;
+      padding-left: 2rem;
+      background-color: $white;
+      transition-duration: 0.2s;
+      transform: translateX(120%);
+
+      @include add-transitions(transform);
+
+      @include media-breakpoint-down(lg) {
+        transform: translateX(101%);
+      }
+
+      @include media-breakpoint-down(md) {
+        width: 50%;
+      }
+
+      @include media-breakpoint-down(sm) {
+        width: 60%;
+      }
+
+      .control {
+        @include prepend-icon("\f053", 1.4em) {
+          position: relative;
+          top: 0;
+          display: flex;
+          align-items: center;
+          height: 100%;
+          padding: 0 10px;
+          transform: translateY(0);
+          transform-origin: center;
+
+          @include add-transitions(transform);
+        }
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        color: $secondary;
+        cursor: pointer;
+        background: $white;
+        border-right: 1px solid $gray-200;
+        border-left: 1px solid $gray-200;
+        box-shadow: -5px 0 10px -10px rgb(0 0 0 / 25%);
+        transform: translateX(-100%);
+
+        @include add-transitions(background-color, color) {
+          color: $white;
+          background-color: $secondary;
+        }
+
+        @include media-breakpoint-down(lg) {
+          border-color: $gray-200;
+        }
+      }
+
+      .link {
+        display: block;
+
+        > i {
+          margin-right: 1rem;
+        }
+      }
+
+      &.open {
+        transform: translateX(0) !important;
+
+        .control {
+          &::before {
+            transform: rotate(180deg);
+          }
+
+          @media (hover: none) {
+            color: $white;
+            background-color: $secondary;
+          }
+        }
+      }
+    }
+
+    .zone-text {
+      flex: 1;
+      color: $gray-800;
+
+      .meta {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 0.4em;
+        margin-bottom: 0.4em;
+        font-size: 0.8em;
+        color: $gray-600;
+        border-bottom: 1px solid $gray-300;
+      }
+
+      .report {
+        br:first-of-type {
+          display: none;
+        }
+
+        a {
+          @extend .link;
+        }
+      }
+
+      .username {
+        .link {
+          color: currentcolor;
+        }
+      }
+    }
+
+    [class*="ic-mood"] {
+      font-size: 3rem;
+    }
+
+    &:hover {
+      .zone-tools {
+        transform: translateX(101%);
+      }
+    }
+  }
+
+  &.new {
+    .date {
+      @include append-icon("\f111", 0.7em, 0, $orange);
+      @include set-icon-top(1em);
+    }
+  }
+}

@@ -1,0 +1,10 @@
+@use "../abstracts/" as *;
+@use "../vendors/bootstrap";
+
+.table {
+  td {
+    .form-check {
+      justify-content: center;
+    }
+  }
+}

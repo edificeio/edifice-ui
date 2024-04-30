@@ -1,0 +1,169 @@
+@use "../abstracts/" as *;
+@use "../vendors/bootstrap";
+
+.modal {
+  --#{$prefix}modal-zindex: #{$modal-zindex};
+  --#{$prefix}modal-width: #{bootstrap.$modal-md};
+  --#{$prefix}modal-max-width-md: #{$modal-max-width-md};
+  --#{$prefix}modal-max-width-lg: #{$modal-max-width-lg};
+  --#{$prefix}modal-padding: #{$modal-inner-padding};
+  --#{$prefix}modal-margin: #{$modal-dialog-margin};
+  --#{$prefix}modal-color: #{bootstrap.$modal-content-color};
+  --#{$prefix}modal-bg: #{$white};
+  --#{$prefix}modal-border-color: #{bootstrap.$modal-content-border-color};
+  --#{$prefix}modal-border-width: #{$modal-content-border-width};
+  --#{$prefix}modal-border-radius: #{$border-radius-xl};
+  --#{$prefix}modal-box-shadow: #{bootstrap.$modal-content-box-shadow-xs};
+  --#{$prefix}modal-inner-border-radius: #{bootstrap.$modal-content-inner-border-radius};
+  --#{$prefix}modal-content-padding: #{$modal-content-padding};
+  --#{$prefix}modal-header-padding-x: #{bootstrap.$modal-header-padding-x};
+  --#{$prefix}modal-header-padding-y: #{bootstrap.$modal-header-padding-y};
+  --#{$prefix}modal-header-padding: #{$modal-header-padding}; // Todo in v6: Split this padding into x and y
+  --#{$prefix}modal-header-border-color: #{bootstrap.$modal-header-border-color};
+  --#{$prefix}modal-header-border-width: #{$modal-header-border-width};
+  --#{$prefix}modal-title-line-height: #{$modal-title-line-height};
+  --#{$prefix}modal-footer-gap: #{$modal-footer-gap};
+  --#{$prefix}modal-footer-bg: #{bootstrap.$modal-footer-bg};
+  --#{$prefix}modal-footer-border-color: #{bootstrap.$modal-footer-border-color};
+  --#{$prefix}modal-footer-border-width: #{$modal-footer-border-width};
+  --#{$prefix}modal-footer-padding: #{$modal-footer-padding};
+
+  position: fixed;
+  inset: 0;
+  overflow: hidden auto;
+  z-index: var(--#{$prefix}modal-zindex);
+  padding-block: var(--#{$prefix}modal-margin);
+
+  @include bootstrap.media-breakpoint-up(md) {
+    --#{$prefix}modal-margin: #{$spacer-48};
+  }
+
+  @include bootstrap.media-breakpoint-up(lg) {
+    --#{$prefix}modal-margin: #{$spacer-64};
+  }
+
+  &-content {
+    padding: var(--#{$prefix}modal-content-padding);
+    position: relative;
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    background-clip: padding-box;
+  }
+
+  &-header,
+  &-footer {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    background-color: $white;
+  }
+
+  &-footer {
+    gap: var(--#{$prefix}modal-footer-gap);
+    justify-content: flex-end;
+    border-bottom-left-radius: var(--#{$prefix}modal-border-radius);
+    border-bottom-right-radius: var(--#{$prefix}modal-border-radius);
+  }
+
+  &-header {
+    border-top-left-radius: var(--#{$prefix}modal-border-radius);
+    border-top-right-radius: var(--#{$prefix}modal-border-radius);
+
+    .btn-close {
+      position: absolute;
+      top: 1.9rem;
+      right: 1.9rem;
+      color: var(--#{$prefix}gray-800);
+      opacity: 1;
+    }
+
+    + .modal-subtitle {
+      margin-top: $spacer-8;
+    }
+  }
+
+  &-body {
+    margin-block: $spacer-24;
+    flex: 1;
+  }
+
+  &-dialog {
+    border-radius: var(--#{$prefix}modal-border-radius);
+    background-color: var(--#{$prefix}modal-bg);
+    max-width: var(--#{$prefix}modal-width);
+    margin-inline: auto;
+  }
+
+  &-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: calc($modal-zindex - 1);
+    background-color: $modal-backdrop-bg;
+    opacity: $modal-backdrop-opacity;
+  }
+
+  &-scrollable {
+    .modal-dialog {
+      height: 100%;
+    }
+
+    .modal-content {
+      max-height: 100%;
+      overflow: hidden;
+    }
+
+    .modal-body {
+      overflow: hidden auto;
+    }
+  }
+
+  &.modal-md,
+  &.modal-lg {
+    padding-inline: $spacer-16;
+
+    .modal-dialog {
+      max-width: 100%;
+    }
+
+    @include bootstrap.media-breakpoint-up(md) {
+      padding-inline: $spacer-32;
+    }
+
+    & > .modal-content {
+      @include bootstrap.media-breakpoint-up(xs) {
+        padding: $spacer-24;
+      }
+
+      @include bootstrap.media-breakpoint-up(md) {
+        padding: var(--#{$prefix}modal-content-padding);
+      }
+    }
+  }
+
+  &.modal-md {
+    @include bootstrap.media-breakpoint-up(md) {
+      .modal-dialog {
+        max-width: var(--#{$prefix}modal-max-width-md);
+      }
+    }
+  }
+
+  &.modal-lg {
+    @include bootstrap.media-breakpoint-up(md) {
+      padding-inline: $spacer-32;
+    }
+
+    @include bootstrap.media-breakpoint-up(lg) {
+      .modal-dialog {
+        max-width: var(--#{$prefix}modal-max-width-lg);
+      }
+    }
+  }
+
+  &.viewport {
+    .modal-dialog {
+      height: 100%;
+    }
+  }
+}

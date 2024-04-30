@@ -1,0 +1,49 @@
+.widget-applications {
+  //Widget Applications
+
+  .icon-grid {
+    display: flex;
+    flex-wrap: wrap;
+
+    &-item {
+      position: relative;
+      width: 25%;
+      font-size: 3.2em;
+
+      a {
+        @include have-child-in-middle();
+        @include background-color-to(white, 0.8s);
+
+        position: relative;
+        padding-top: 100%;
+        margin: 1px;
+        text-decoration: none;
+        background: $gray-200;
+
+        > i,
+        > img {
+          @include have-child-in-middle();
+          @include square(100%);
+
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        > img {
+          width: 50%;
+          height: auto;
+        }
+      }
+
+      @include media-breakpoint-between(sm, md) {
+        width: calc(100 / 6 * 1%);
+      }
+    }
+  }
+
+  > .widget-body {
+    max-height: 300px;
+    overflow: auto;
+  }
+}

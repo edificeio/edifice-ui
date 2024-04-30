@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.2](https://github.com/opendigitaleducation/edifice-ui/compare/v1.5.1-develop.6...v1.5.2) (2024-04-29)
+
+## [1.5.1](https://github.com/opendigitaleducation/edifice-ui/compare/v1.4.6-develop-b2school.16...v1.5.1) (2024-04-18)
+
+**Note:** Version bump only for package root
+
 ## [1.4.5](https://github.com/opendigitaleducation/edifice-ui/compare/v1.4.5-develop.1...v1.4.5) (2024-03-18)
 
 **Note:** Version bump only for package root

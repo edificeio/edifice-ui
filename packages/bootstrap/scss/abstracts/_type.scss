@@ -1,0 +1,44 @@
+/* FONT PATHS */
+$fonts-path: "./fonts" !default;
+$dyslexic-font-path: "#{$fonts-path}/dyslexic" !default;
+
+/* Bootstrap Overrides */
+$font-family-sans-serif: "Roboto", sans-serif;
+$font-family-primary: "Comfortaa", cursive;
+$font-family-secondary: $font-family-sans-serif;
+
+$font-size-root: 62.5% !default;
+$font-size-base: 1.6rem !default;
+
+$line-height-base: 1.6 !default;
+
+$small-font-size: 1.4rem !default;
+$caption-font-size: 1.2rem !default;
+
+$headings-font-weight: 700 !default;
+$headings-margin-bottom: 0 !default;
+$headings-font-weight: 700;
+$headings-font-family: var(--edifice-family-primary);
+
+$display-font-sizes: (
+  1: 3.2rem,
+  2: 2.6rem,
+  3: 2.2rem,
+  4: 1.8rem,
+) !default;
+
+$h1-font-size: 3.2rem !default;
+$h2-font-size: 2.6rem !default;
+$h3-font-size: 2.2rem !default;
+$h4-font-size: 1.8rem !default;
+$h5-font-size: $font-size-base !default;
+$h6-font-size: 1.4rem !default;
+
+$font-sizes: (
+  1: $h1-font-size,
+  2: $h2-font-size,
+  3: $h3-font-size,
+  4: $h4-font-size,
+  5: $h5-font-size,
+  6: $h6-font-size,
+) !default;

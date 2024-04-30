@@ -1,0 +1,45 @@
+@mixin circle($width) {
+  @include square($width);
+
+  border-radius: 50%;
+}
+
+@mixin square($width) {
+  @include rect($width, $width);
+}
+
+@mixin rect($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin have-child-in-middle() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin text-truncate() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin has-text-truncated($lines: 3) {
+  display: -webkit-box;
+  padding-bottom: 0.5rem;
+  overflow: hidden;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+}
+
+@mixin list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+@mixin data-product($arg) {
+  @at-root [data-product="#{$arg}"] & {
+    @content;
+  }
+}

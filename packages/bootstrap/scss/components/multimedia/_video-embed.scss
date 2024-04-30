@@ -1,0 +1,12 @@
+.video-embed {
+    &-provider {
+        &-logo {
+            width: 3rem;
+            height: 3rem;
+        }
+    }
+
+    .emptyscreen {
+        max-width: 600px;
+    }
+}

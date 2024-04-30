@@ -1,0 +1,31 @@
+@use "../abstracts/" as *;
+@use "../vendors/bootstrap";
+
+.table-explorer {
+  width: 100%;
+  overflow: hidden;
+  border-spacing: 0;
+  border-collapse: separate;
+  border: 1px solid $table-explorer-main-color;
+  border-radius: 8px;
+
+  tr > * {
+    padding: 10px 12px;
+    font-size: bootstrap.$small-font-size;
+  }
+
+  thead {
+    color: var(--#{$prefix}gray-800);
+    background-color: $table-explorer-main-color;
+
+    .form-check-input {
+      width: 16px;
+      height: 16px;
+      transform: translateY(-1px) translateX(-1px);
+    }
+  }
+
+  tbody > tr:nth-of-type(even) > * {
+    background-color: var(--#{$prefix}gray-200);
+  }
+}

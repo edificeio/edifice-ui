@@ -1,0 +1,16 @@
+@use "../abstracts/" as *;
+
+.form-text {
+  --#{$prefix}form-feedback-valid-color: #{$form-feedback-valid-color};
+  --#{$prefix}form-feedback-invalid-color: #{$form-feedback-invalid-color};
+
+  margin-left: $spacer-4;
+
+  &.valid {
+    color: var(--#{$prefix}form-feedback-valid-color);
+  }
+
+  &.is-invalid {
+    color: var(--#{$prefix}form-feedback-invalid-color);
+  }
+}

@@ -1,0 +1,36 @@
+@use "../abstracts/" as *;
+
+.app-icon {
+  flex-shrink: 0;
+
+  &.icon-ratio {
+    &.square,
+    &.rounded,
+    &.rounded-circle {
+      > svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      &.icon-xs {
+        padding: $spacer-4;
+      }
+
+      &.icon-sm {
+        padding: $spacer-8;
+      }
+
+      &.icon-md {
+        padding: $spacer-8;
+      }
+
+      &.icon-lg {
+        padding: $spacer-16;
+      }
+
+      &.icon-xl {
+        padding: 3.2rem;
+      }
+    }
+  }
+}

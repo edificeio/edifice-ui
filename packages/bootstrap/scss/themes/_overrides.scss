@@ -1,0 +1,11 @@
+@use "../abstracts/" as *;
+
+[data-product="neo"][data-theme="na"] {
+  --#{$prefix}secondary: #e20037;
+
+  .header {
+    .navbar {
+      background: #e20037;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+@use "../abstracts/" as *;
+@use "../vendors/bootstrap";
+
+.media-library {
+  width: calc(100% - 250px);
+  padding: 10px;
+
+  @include bootstrap.media-breakpoint-down(md) {
+    width: 100%;
+  }
+
+  .item {
+    width: calc(20% - 10px);
+    padding: 10px;
+    margin: 1px;
+    text-align: center;
+    border-radius: $border-radius;
+
+    @include bootstrap.media-breakpoint-down(md) {
+      width: calc(50% - 10px);
+    }
+
+    &:hover {
+      background-color: rgba(var(--#{$prefix}secondary, 0.1));
+
+      .figure-caption {
+        color: var(--#{$prefix}secondary);
+      }
+    }
+  }
+}

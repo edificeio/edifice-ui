@@ -1,0 +1,72 @@
+@use "../abstracts/" as *;
+
+.form-control {
+  --#{$prefix}input-padding-y: #{$input-padding-y};
+  --#{$prefix}input-padding-x: #{$input-padding-x};
+  --#{$prefix}input-padding-y-lg: #{$input-padding-y-lg};
+  --#{$prefix}input-padding-x-lg: #{$input-padding-x-lg};
+  --#{$prefix}input-font-size-lg: #{$input-font-size-lg};
+  --#{$prefix}input-padding-y-sm: #{$input-padding-y-sm};
+  --#{$prefix}input-padding-x-sm: #{$input-padding-x-sm};
+  --#{$prefix}input-font-size-sm: #{$input-font-size-sm};
+  --#{$prefix}input-border-color: #{$input-border-color};
+  --#{$prefix}input-disabled-bg: #{$input-disabled-bg};
+  --#{$prefix}input-disabled-color: #{$input-disabled-color};
+  --#{$prefix}input-disabled-border-color: #{$input-disabled-border-color};
+  --#{$prefix}input-placeholder-color: #{$input-placeholder-color};
+  --#{$prefix}input-focus-border-color: #{$input-focus-border-color};
+  --#{$prefix}input-invalid-border-color: #{$input-invalid-border-color};
+  --#{$prefix}input-filled-border-color: #{$input-filled-border-color};
+  --#{$prefix}input-border-radius: #{$input-border-radius};
+  --#{$prefix}input-border-radius-sm: #{$input-border-radius-sm};
+  --#{$prefix}input-border-radius-lg: #{$input-border-radius-lg};
+
+  min-height: inherit;
+  padding: var(--#{$prefix}input-padding-y) var(--#{$prefix}input-padding-x);
+  font-size: var(--#{$prefix}input-font-size-lg);
+  line-height: 2.2rem;
+  border-color: var(--#{$prefix}input-border-color);
+  border-radius: var(--#{$prefix}input-border-radius);
+
+  &::placeholder {
+    font-style: italic;
+    color: var(--#{$prefix}input-placeholder-color);
+  }
+
+  &:focus,
+  &:focus-visible {
+    border-color: var(--#{$prefix}input-focus-border-color);
+    box-shadow: none;
+  }
+
+  &:disabled {
+    color: var(--#{$prefix}input-disabled-color);
+    background-color: var(--#{$prefix}input-disabled-bg);
+    border-color: var(--#{$prefix}input-disabled-border-color);
+  }
+
+  &:not(:placeholder-shown, :focus) {
+    border-color: var(--#{$prefix}input-filled-border-color);
+  }
+
+  &:not(:placeholder-shown, :focus):is(.is-invalid) {
+    border-color: var(--#{$prefix}input-invalid-border-color);
+  }
+
+  &.form-control-sm {
+    padding: var(--#{$prefix}input-padding-y-sm)
+      var(--#{$prefix}input-padding-x-sm);
+    font-size: var(--#{$prefix}input-font-size-sm);
+    border-radius: var(--#{$prefix}input-border-radius-sm);
+  }
+
+  &.form-control-lg {
+    padding: var(--#{$prefix}input-padding-y-lg)
+      var(--#{$prefix}input-padding-x-lg);
+    border-radius: var(--#{$prefix}input-border-radius-lg);
+  }
+
+  &.no-validation-icon {
+    background-image: none;
+  }
+}

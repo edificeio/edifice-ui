@@ -1,0 +1,527 @@
+@use "../abstracts/colors" as *;
+
+$icons-applications: (
+  "account": (
+    "neo": $purple,
+    "one": $purple,
+  ),
+  "actualites": (
+    "neo": $blue,
+    "one": $purple,
+  ),
+  "admin-portal": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "admin": (
+    "neo": $yellow,
+    "one": $purple,
+  ),
+  "archive": (
+    "neo": $yellow,
+    "one": $yellow,
+  ),
+  "attendance": (
+    "neo": $red,
+    "one": $yellow,
+  ),
+  "blog": (
+    "neo": $indigo,
+    "one": $orange,
+  ),
+  "cahier-de-texte": (
+    "neo": $green,
+    "one": $green,
+  ),
+  "cahier-textes": (
+    "neo": $green,
+    "one": $green,
+  ),
+  "calendar": (
+    "neo": $yellow,
+    "one": $yellow,
+  ),
+  "canal-numerique": (
+    "neo": $blue,
+    "one": $red,
+  ),
+  "cns": (
+    "neo": $green,
+    "one": $purple,
+  ),
+  "collaborative-wall": (
+    "neo": $green,
+    "one": #5ac235,
+  ),
+  "collaborativeeditor": (
+    "neo": $cyan,
+    "one": $blue,
+  ),
+  "community": (
+    "neo": $purple,
+    "one": $purple,
+  ),
+  "competences": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "conversation": (
+    "neo": $yellow,
+    "one": $yellow,
+  ),
+  "crre": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "directory": (
+    "neo": $green,
+    "one": $green,
+  ),
+  "edt": (
+    "neo": $blue,
+    "one": $blue,
+  ),
+  "exercizer": (
+    "neo": $purple,
+    "one": $purple,
+  ),
+  "qwant": (
+    "neo": $pink,
+    "one": $pink,
+  ),
+  "forms": (
+    "neo": $purple,
+    "one": $purple,
+  ),
+  "forum": (
+    "neo": $blue,
+    "one": $orange,
+  ),
+  "library": (
+    "neo": $yellow,
+    "one": $yellow,
+  ),
+  "magneto": (
+    "neo": $yellow,
+    "one": $yellow,
+  ),
+  "mindmap": (
+    "neo": $blue,
+    "one": $blue,
+  ),
+  "minibadge": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "notebook": (
+    "neo": $green,
+    "one": $green,
+  ),
+  "notes": (
+    "neo": $yellow,
+    "one": $red,
+  ),
+  "pad": (
+    "neo": $blue,
+    "one": $blue,
+  ),
+  "pages": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "parametrage": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "parcours": (
+    "neo": $orange,
+    "one": $orange,
+  ),
+  "paths": (
+    "neo": $orange,
+    "one": $orange,
+  ),
+  "poll": (
+    "neo": $blue,
+    "one": $blue,
+  ),
+  "polls": (
+    "neo": $blue,
+    "one": $blue,
+  ),
+  "presences": (
+    "neo": $yellow,
+    "one": $yellow,
+  ),
+  "rack": (
+    "neo": $red,
+    "one": $blue,
+  ),
+  "rbs": (
+    "neo": $pink,
+    "one": $red,
+  ),
+  "schoolbook": (
+    "neo": $green,
+    "one": $green,
+  ),
+  "scrap-book": (
+    "neo": $green,
+    "one": #5ac235,
+  ),
+  "scrapbook": (
+    "neo": $green,
+    "one": #5ac235,
+  ),
+  "searchengine": (
+    "neo": $blue,
+    "one": $blue,
+  ),
+  "settings-class": (
+    "neo": $yellow,
+    "one": $purple,
+  ),
+  "sharebigfiles": (
+    "neo": $purple,
+    "one": $purple,
+  ),
+  "statistics": (
+    "neo": $purple,
+    "one": $purple,
+  ),
+  "stats": (
+    "neo": $purple,
+    "one": $purple,
+  ),
+  "support": (
+    "neo": $green,
+    "one": $red,
+  ),
+  "timeline": (
+    "neo": $indigo,
+    "one": $indigo,
+  ),
+  "timelinegenerator": (
+    "neo": $yellow,
+    "one": $yellow,
+  ),
+  "userbook": (
+    "neo": $green,
+    "one": $orange,
+  ),
+  "userbook-mood": (
+    "neo": $green,
+    "one": $green,
+  ),
+  "userbook-moto": (
+    "neo": $green,
+    "one": $green,
+  ),
+  "video": (
+    "neo": $blue,
+    "one": $blue,
+  ),
+  "visioconf": (
+    "neo": $blue,
+    "one": $purple,
+  ),
+  "web-conference": (
+    "neo": $cyan,
+    "one": $purple,
+  ),
+  "website": (
+    "neo": $blue,
+    "one": $blue,
+  ),
+  "wiki": (
+    "neo": $purple,
+    "one": $red,
+  ),
+  "workspace": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "placeholder": (
+    "neo": $secondary,
+    "one": $primary,
+  ),
+) !default;
+
+$icons-connectors: (
+  "absences": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "admission-post-bac": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "aide-devoirs": (
+    "neo": $green,
+    "one": $green,
+  ),
+  "agenda": (
+    "neo": $yellow,
+    "one": $yellow,
+  ),
+  "assistance": (
+    "neo": $blue,
+    "one": $blue,
+  ),
+  "assr": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "award": (
+    "neo": $green,
+    "one": $green,
+  ),
+  "banquesavoir": (
+    "neo": $blue,
+    "one": $blue,
+  ),
+  "bcdi": (
+    "neo": $purple,
+    "one": $purple,
+  ),
+  "biblionisep": (
+    "neo": $green,
+    "one": $green,
+  ),
+  "bookmark-empty": (
+    "neo": $green,
+    "one": $green,
+  ),
+  "canal-numerique": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "ccn": (
+    "neo": $green,
+    "one": $green,
+  ),
+  "cerise": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "cervoprint": (
+    "neo": $blue,
+    "one": $blue,
+  ),
+  "charlemagne": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "charte": (
+    "neo": $yellow,
+    "one": $yellow,
+  ),
+  "chat": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "cidj": (
+    "neo": $green,
+    "one": $green,
+  ),
+  "connecteur-generique1": (
+    "neo": $red,
+    "one": $orange,
+  ),
+  "connecteur-generique2": (
+    "neo": $red,
+    "one": $orange,
+  ),
+  "educagri": (
+    "neo": $indigo,
+    "one": $indigo,
+  ),
+  "edumedia": (
+    "neo": $blue,
+    "one": $blue,
+  ),
+  "edumoov": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "edutheque": (
+    "neo": $yellow,
+    "one": $yellow,
+  ),
+  "electron": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "elyceepicardie": (
+    "neo": $indigo,
+    "one": $indigo,
+  ),
+  "esidoc": (
+    "neo": $pink,
+    "one": $indigo,
+  ),
+  "europress": (
+    "neo": $blue,
+    "one": $blue,
+  ),
+  "gepi": (
+    "neo": $blue,
+    "one": $blue,
+  ),
+  "glpi": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "hiboutheque": (
+    "neo": $green,
+    "one": $green,
+  ),
+  "itopstore": (
+    "neo": $green,
+    "one": $green,
+  ),
+  "kne": (
+    "neo": $purple,
+    "one": $orange,
+  ),
+  "le-site-tv": (
+    "neo": $yellow,
+    "one": $yellow,
+  ),
+  "lemonde": (
+    "neo": $indigo,
+    "one": $indigo,
+  ),
+  "lesechos": (
+    "neo": $indigo,
+    "one": $indigo,
+  ),
+  "lsu": (
+    "neo": $blue,
+    "one": $blue,
+  ),
+  "madmagz": (
+    "neo": $pink,
+    "one": $red,
+  ),
+  "matholycee": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "maxicours": (
+    "neo": $indigo,
+    "one": $yellow,
+  ),
+  "mediacentre": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "monorientationenligne": (
+    "neo": $yellow,
+    "one": $yellow,
+  ),
+  "monstageenligne": (
+    "neo": $blue,
+    "one": $blue,
+  ),
+  "moodle": (
+    "neo": $orange,
+    "one": $orange,
+  ),
+  "museefrancaisphoto": (
+    "neo": $indigo,
+    "one": $indigo,
+  ),
+  "my-network": (
+    "neo": $indigo,
+    "one": $indigo,
+  ),
+  "netvibes": (
+    "neo": $green,
+    "one": $green,
+  ),
+  "note": (
+    "neo": $yellow,
+    "one": $yellow,
+  ),
+  "onisep": (
+    "neo": $blue,
+    "one": $blue,
+  ),
+  "onisep2": (
+    "neo": $blue,
+    "one": $blue,
+  ),
+  "parametrage": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "paraschool": (
+    "neo": $green,
+    "one": $green,
+  ),
+  "pearltress": (
+    "neo": $blue,
+    "one": $blue,
+  ),
+  "picardie-cursus": (
+    "neo": $purple,
+    "one": $purple,
+  ),
+  "pro-eps": (
+    "neo": $blue,
+    "one": $blue,
+  ),
+  "pronote": (
+    "neo": $purple,
+    "one": $indigo,
+  ),
+  "public": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "qwant-junior": (
+    "neo": $red,
+    "one": $orange,
+  ),
+  "residence-artiste": (
+    "neo": $green,
+    "one": $green,
+  ),
+  "ressourcesdepartementale91": (
+    "neo": $indigo,
+    "one": $indigo,
+  ),
+  "sacoche": (
+    "neo": $indigo,
+    "one": $indigo,
+  ),
+  "scolinfo": (
+    "neo": $red,
+    "one": $orange,
+  ),
+  "suitcase": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "turboself": (
+    "neo": $yellow,
+    "one": $yellow,
+  ),
+  "universalis": (
+    "neo": $red,
+    "one": $red,
+  ),
+  "unstagepourtous": (
+    "neo": $pink,
+    "one": $pink,
+  ),
+  "vie-scolaire": (
+    "neo": $yellow,
+    "one": $yellow,
+  ),
+  "webclasseur": (
+    "neo": $blue,
+    "one": $blue,
+  ),
+) !default;

@@ -1,0 +1,76 @@
+.filters {
+  .btn {
+    color: $gray-600;
+    box-shadow: none;
+
+    &.inactive {
+      color: $gray-400;
+    }
+  }
+}
+
+.filters-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-start;
+  margin: 0 -5px 1rem;
+  margin-bottom: 1em;
+
+  &:hover {
+    color: unset;
+    background-color: transparent;
+  }
+
+  .filter {
+    position: relative;
+    display: inline-block;
+    padding: 3px 15px;
+    margin: 0 5px 10px;
+    overflow: hidden;
+    font-weight: 400;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: $white;
+    border: 1px solid currentcolor;
+    border-radius: 20px;
+
+    @include add-transitions(background-color, color);
+
+    .icon {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      color: inherit;
+      vertical-align: middle;
+
+      @include square(1.5em);
+    }
+
+    .label {
+      position: relative;
+      z-index: 2;
+      display: inline-block;
+      font-size: 1em;
+      vertical-align: middle;
+    }
+
+    &.visible {
+      display: block;
+    }
+
+    &.active {
+      background-color: currentcolor !important;
+
+      .icon,
+      .label {
+        color: $white;
+      }
+    }
+
+    .hidden-checkbox {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,47 @@
+@use "../abstracts/" as *;
+
+:root {
+  --#{$prefix}family-primary: #{$font-family-primary};
+}
+
+svg,
+img {
+  display: block;
+}
+
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+svg {
+  flex-shrink: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+hr {
+  margin: $hr-default-spacing 0;
+  color: $hr-color;
+  border-color: currentcolor;
+  opacity: $hr-opacity;
+}
+
+.vr {
+  background-color: $gray-400;
+}
+
+.text-secondary {
+  color: var(--#{$prefix}secondary) !important;
+}
+
+.text-bg-secondary {
+  background-color: var(--#{$prefix}secondary) !important;
+}

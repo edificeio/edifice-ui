@@ -1,0 +1,35 @@
+.widget-news {
+  //Widget Actualités
+
+  .news-row {
+    @include background-color-to($gray-300, 0.4s, $easeOutQuad);
+
+    display: flex;
+    align-items: center;
+    padding: 1rem $widget-padding-x;
+    text-decoration: none;
+
+    &-image {
+      width: 60px;
+      padding-right: 2.5rem;
+      text-align: center;
+      transition: transform 0.4s $easeInOutQuad;
+      transform-origin: center;
+
+      img {
+        max-height: 4rem;
+        max-width: 4rem;
+      }
+    }
+
+    &-text {
+      line-height: 1.4em;
+    }
+
+    &:hover {
+      .news-row-image {
+        transform: translateX(5px);
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+@use "sass:map";
+@use "../abstracts/variables" as *;
+@use "../abstracts/colors";
+@use "../vendors/bootstrap";
+
+.toast {
+  --#{$prefix}toast-border-left-color: var(--#{$prefix}gray-800);
+  --#{$prefix}toast-zindex: 1090;
+  --#{$prefix}toast-padding-x: 1.2rem;
+  --#{$prefix}toast-padding-y: 0.8rem;
+  --#{$prefix}toast-spacing: 1.5rem;
+  --#{$prefix}toast-max-width: 352px;
+  --#{$prefix}toast-font-size: #{bootstrap.$small-font-size};
+  --#{$prefix}toast-color: var(--#{$prefix}gray-800);
+  --#{$prefix}toast-bg: var(--#{$prefix}white);
+  --#{$prefix}toast-border-width: 1px;
+  --#{$prefix}toast-border-color: var(--#{$prefix}border-color-translucent);
+  --#{$prefix}toast-border-radius: #{$spacer-8};
+  --#{$prefix}toast-box-shadow: none;
+
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  max-width: 402px;
+  padding: var(--#{$prefix}toast-padding-y) var(--#{$prefix}toast-padding-x);
+  background-color: var(--#{$prefix}white);
+  background-color: var(--#{$prefix}toast-bg);
+  border-color: var(--#{$prefix}toast-border-color);
+  border-left: $toast-left-border-width solid
+    var(--#{$prefix}toast-border-left-color);
+
+  &-body {
+    padding: 0;
+    line-height: 2.2rem;
+  }
+
+  @include bootstrap.media-breakpoint-up(xs) {
+    --#{$prefix}toast-max-width: 100%;
+  }
+}
+
+@each $state, $key in colors.$support-colors {
+  .toast-#{$state} {
+    --#{$prefix}toast-color: #{map.get($key, "base")};
+    --#{$prefix}toast-border-color: #{map.get($key, "pale")};
+    --#{$prefix}toast-border-left-color: #{map.get($key, "base")};
+  }
+}

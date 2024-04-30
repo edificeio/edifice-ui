@@ -1,0 +1,59 @@
+# Workflow name
+name: Build and Publish Storybook
+
+on:
+  # Event for the workflow to run on
+  push:
+    branches:
+      - "main"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# List of jobs
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Job steps
+    steps:
+      # Manual Checkout
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      # Set up Node
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Restore cached npm dependencies
+        uses: actions/cache/restore@v3
+        with:
+          path: |
+            node_modules
+            ~/.cache/Cypress # needed for the Cypress binary
+          key: npm-dependencies-${{ hashFiles('pnpm-lock.yaml') }}
+      - name: Cache npm dependencies
+        uses: actions/cache/save@v3
+        with:
+          path: |
+            node_modules
+            ~/.cache/Cypress # needed for the Cypress binary
+          key: npm-dependencies-${{ hashFiles('pnpm-lock.yaml') }}
+      - name: Generate .npmrc
+        run: |
+          pnpm config set @edifice-ui:registry https://registry.npmjs.org
+          pnpm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
+          pnpm config set @tiptap-pro:registry https://registry.tiptap.dev
+          pnpm config set //registry.tiptap.dev/:_authToken ${{ secrets.TIPTAP_PRO_TOKEN }}
+          pnpm config set auto-install-peers true
+      #👇 Add Storybook build and deploy to GitHub Pages as a step in the workflow
+      - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
+        with:
+          install_command: pnpm install # default: npm ci
+          build_command: npx storybook build --docs -o dist/ && cp -R packages/icons/assets/ dist/icons/ # default: npm run build-storybook
+          path: dist/ # default: dist/storybook
+          checkout: false # default: true
+        env:
+          TIPTAP_PRO_TOKEN: ${{ secrets.TIPTAP_PRO_TOKEN }}

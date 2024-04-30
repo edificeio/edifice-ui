@@ -1,0 +1,15 @@
+@use "../../abstracts/" as *;
+
+.ProseMirror {
+  table.template {
+    td.title {
+        border-bottom: 0;
+    }
+    td.image {
+        width: 30%;
+    }
+    td.text {
+        border-top: 0
+    }
+}
+}

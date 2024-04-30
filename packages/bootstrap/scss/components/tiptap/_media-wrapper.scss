@@ -1,0 +1,59 @@
+@use "../../abstracts/" as *;
+
+.ProseMirror {
+  .media-node-view .vertical-resize-handle {
+    opacity: 0;
+    background-color: $secondary;
+  }
+
+  .media-node-view {
+    position: relative;
+    width: fit-content;
+  }
+
+  .media-node-view .vertical-resize-handle {
+    top: 50%;
+    right: -10px;
+    height: 44px;
+    width: 4px;
+    cursor: col-resize;
+    position: absolute;
+    border-radius: 4px;
+    transform: translateY(-50%);
+  }
+
+  .react-renderer.has-focus {
+    .media-node-view .vertical-resize-handle {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .media-node-view {
+      border-radius: 4px;
+      outline-color: $secondary;
+      outline-width: 4px;
+      outline-style: solid;
+      outline-offset: -4px;
+      position: relative;
+      width: fit-content;
+
+      img,
+      video {
+        border-radius: 4px;
+      }
+    }
+  }
+}
+
+.bubble-menu {
+  background-color: $white;
+  border-radius: 16px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+.badge-linker {
+  max-width: $badge-linker-max-width;
+}

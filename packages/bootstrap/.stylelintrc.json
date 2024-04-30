@@ -1,0 +1,36 @@
+{
+  "extends": ["stylelint-config-standard", "stylelint-config-recommended-scss"],
+  "rules": {
+    "import-notation": null,
+    "selector-max-attribute": null,
+    "scss/at-extend-no-missing-placeholder": null,
+    "scss/at-function-named-arguments": null,
+    "at-rule-empty-line-before": [
+      "always",
+      {
+        "except": ["blockless-after-blockless", "first-nested"],
+        "ignore": ["after-comment"]
+      }
+    ],
+    "custom-property-empty-line-before": [
+      "always",
+      {
+        "except": ["after-custom-property", "first-nested"]
+      }
+    ],
+    "declaration-empty-line-before": [
+      "always",
+      {
+        "except": ["after-declaration", "first-nested"]
+      }
+    ],
+    "declaration-no-important": null,
+    "rule-empty-line-before": [
+      "always-multi-line",
+      {
+        "except": ["after-single-line-comment", "first-nested"],
+        "ignore": ["after-comment"]
+      }
+    ]
+  }
+}

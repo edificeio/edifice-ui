@@ -1,0 +1,45 @@
+@use "../../abstracts/" as *;
+@use "../../vendors/bootstrap";
+
+.modal-body {
+  & .video-recorder {
+    &-caption {
+      margin: 0 $spacer-12 $spacer-12 $spacer-12;
+    }
+
+    &-video-container {
+      min-height: 200px;
+      height: 100%;
+
+      & video {
+        height: 100%;
+        width: 100%;
+      }
+
+      & .toolbar {
+        padding: $spacer-4 $spacer-12;
+        transform: translate(-50%, -#{$spacer-8}) !important;
+
+        @include bootstrap.media-breakpoint-down(md) {
+          padding: $spacer-0 $spacer-8;
+          transform: translate(-50%, -#{$spacer-12}) !important;
+        }
+
+        @include bootstrap.media-breakpoint-down(sm) {
+          transform: translate(-50%, -#{$spacer-8}) !important;
+        }
+      }
+
+      & .video-recorder-time {
+        position: absolute;
+        top: $spacer-0;
+        padding: $spacer-2 $spacer-8;
+
+        @include bootstrap.media-breakpoint-down(sm) {
+          padding-block: $spacer-0;
+          top: $spacer-4 !important;
+        }
+      }
+    }
+  }
+}

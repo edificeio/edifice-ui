@@ -1,0 +1,135 @@
+@use "../../abstracts/" as *;
+@use "../../vendors/bootstrap";
+
+.widget {
+  margin-bottom: 2em;
+  font-size: 1.4rem;
+  background-color: $white;
+  border-radius: $border-radius;
+  box-shadow: 2px 2px 40px 0 rgba(0, 0, 0, 0.05);
+
+  a {
+    text-decoration: none;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+
+  .meta {
+    font-size: 0.8em;
+    color: var(--#{$prefix}gray-700);
+  }
+
+  &-empty-message {
+    display: block;
+    padding: 10px $widget-padding-x;
+    font-style: italic;
+    color: var(--#{$prefix}gray-700);
+    text-align: center;
+
+    &.link {
+      cursor: pointer;
+
+      @include bootstrap.media-breakpoint-down(lg) {
+        pointer-events: none;
+      }
+    }
+  }
+
+  &-header {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1.2rem $widget-padding-x;
+    border-bottom: 1px solid var(--#{$prefix}tertiary);
+
+    .subtitle {
+      flex: 1;
+
+      .seemore {
+        @include color-to(var(--#{$prefix}orange));
+
+        color: inherit;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+
+      .seemore-text {
+        padding-left: 0.5em;
+        font-size: 0.8em;
+        font-weight: 400;
+        text-transform: initial;
+      }
+    }
+
+    &:hover {
+      .widget-options {
+        opacity: 1;
+      }
+    }
+  }
+
+  &-options {
+    @include add-transitions(opacity);
+    opacity: 0;
+
+    & > * {
+      display: inline-block;
+
+      &:not(:first-child) {
+        margin-left: 0.8rem;
+      }
+    }
+
+    .tool,
+    .widget-handle {
+      @include color-to(var(--#{$prefix}gray-700));
+      color: var(--#{$prefix}gray-400);
+    }
+
+    @include bootstrap.media-breakpoint-down(lg) {
+      display: none;
+    }
+  }
+
+  &-footer {
+    &-action {
+      text-align: center;
+
+      .link {
+        display: block;
+        padding: 0.4em 0;
+        font-size: bootstrap.$small-font-size;
+        color: var(--#{$prefix}gray-600);
+
+        @include add-transitions(background-color, color) {
+          color: var(--#{$prefix}primary);
+          background-color: var(--#{$prefix}tertiary);
+        }
+      }
+    }
+  }
+
+  &:not(.widget-locked) {
+    .widget-header {
+      cursor: grab;
+    }
+  }
+
+  &:is(.widget-locked) {
+    .widget-handle {
+      display: none;
+    }
+  }
+
+  &-qwant {
+    .widget-header {
+      margin-bottom: -2em;
+    }
+  }
+}

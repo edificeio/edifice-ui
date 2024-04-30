@@ -1,0 +1,16 @@
+@use "../vendors/bootstrap";
+
+.emptyscreen {
+  max-width: 512px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.emptyscreen-image {
+  max-width: 250px;
+  margin: 0 auto;
+
+  @include bootstrap.media-breakpoint-down(md) {
+    max-width: 200px;
+  }
+}

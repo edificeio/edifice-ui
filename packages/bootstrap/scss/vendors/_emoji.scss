@@ -1,0 +1,40 @@
+@use "../abstracts/" as *;
+
+/* stylelint-disable selector-class-pattern */
+#root .EmojiPickerReact {
+  /* stylelint-enable selector-class-pattern */
+
+  --epr-emoji-size: #{$spacer-24};
+  --epr-emoji-gap: #{$spacer-4};
+  --epr-emoji-padding: #{$spacer-4};
+  --epr-emoji-fullsize: calc(
+    var(--epr-emoji-size) + var(--epr-emoji-padding) * 2
+  );
+  --epr-header-padding: 6px var(--epr-horizontal-padding);
+  --epr-search-input-bg-color: #{$white};
+  --epr-search-input-placeholder-color: #{$input-placeholder-color};
+  --epr-search-input-border-color: #{$input-border-color};
+  --epr-search-input-border-radius: #{$border-radius-lg};
+  --epr-search-input-border-color-active: #{$input-focus-border-color};
+
+  & * {
+    font-family: var(--#{$prefix}font-sans-serif);
+  }
+
+  &.epr-main {
+    border-style: none;
+    max-height: 300px;
+  }
+
+  .epr-search-container input.epr-search {
+    border: 1px solid var(--epr-search-input-border-color);
+
+    &::placeholder {
+      font-style: italic;
+    }
+
+    &:focus {
+      border-color: var(--epr-search-input-border-color-active);
+    }
+  }
+}

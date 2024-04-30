@@ -1,0 +1,56 @@
+@use "../abstracts/" as *;
+
+.color-picker {
+  max-width: 180px;
+
+  &-reset {
+    display: flex;
+    align-items: center;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+  }
+
+  &-palette {
+    line-height: 10px;
+  }
+
+  &-hue-color {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+
+    &-item {
+      width: fit-content;
+      height: fit-content;
+      min-width: $spacer-24;
+      min-height: $spacer-24;
+      border: 1px solid $gray-400;
+      padding: 0;
+
+      & > svg {
+        max-width: calc($spacer-24 - 2px);
+        max-height: calc($spacer-24 - 2px);
+      }
+
+      &.selected {
+        &::after {
+          content: "";
+          display: block;
+          width: 18px;
+          height: 18px;
+          background-size: cover;
+          background-position: 2px 2px;
+          background-repeat: no-repeat;
+          background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' xmlns='http://www.w3.org/2000/svg' aria-hidden='true'%3E%3Cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 3.75L7.5 13.5L3 8.25'%3E%3C/path%3E%3C/svg%3E");
+        }
+
+        &.light::after {
+          background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' xmlns='http://www.w3.org/2000/svg' aria-hidden='true'%3E%3Cpath fill='none' stroke='%234a4a4a' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 3.75L7.5 13.5L3 8.25'%3E%3C/path%3E%3C/svg%3E");
+        }
+      }
+    }
+  }
+}

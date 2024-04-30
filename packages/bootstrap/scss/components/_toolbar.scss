@@ -1,0 +1,33 @@
+@use "../abstracts/" as *;
+@use "../vendors/bootstrap";
+
+.toolbar {
+  align-items: center;
+  gap: $spacer-4;
+  border-radius: $spacer-16;
+
+  & > * {
+    flex-shrink: 0;
+  }
+
+  &.default {
+    padding: $spacer-8 $spacer-12;
+    box-shadow: $box-shadow;
+  }
+
+  &.no-shadow {
+    padding: $spacer-8;
+  }
+
+  &-divider {
+    width: 1px;
+    height: 2rem;
+    background: $gray-400;
+    margin: 0 $spacer-4;
+  }
+
+  &.focus {
+    outline: 2px solid var(--#{$prefix}secondary);
+    outline-offset: -1px;
+  }
+}

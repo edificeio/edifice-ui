@@ -1,0 +1,35 @@
+@use "sass:map";
+@use "../abstracts/" as *;
+@use "../vendors/bootstrap";
+
+.container-fluid {
+  --#{$prefix}container-width: 100%;
+
+  width: var(--#{$prefix}container-width);
+  max-width: map.get($container-max-widths, "xxl");
+
+  @include bootstrap.media-breakpoint-up(md) {
+    --#{$prefix}container-width: calc(100% - #{$spacer-24} * 2);
+  }
+
+  [data-product="one"] & {
+    --#{$prefix}container-width: 100%;
+
+    max-width: map.get($container-max-widths, "xxl");
+    width: var(--#{$prefix}container-width);
+
+    @include bootstrap.media-breakpoint-up(md) {
+      min-width: 768px;
+    }
+
+    @each $key, $breakpoint in $grid-breakpoints {
+      @include bootstrap.media-breakpoint-up($breakpoint) {
+        @each $value, $spacing in $container-spacings {
+          @if $key == $value {
+            --#{$prefix}container-width: calc(100% - #{$spacing} * 2);
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,144 @@
+$breakpoint-up: "lg";
+$breakpoint-down: "lg";
+
+.container-advanced {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  &-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto;
+
+    @include media-breakpoint-down($breakpoint-down) {
+      width: 300vw;
+      max-width: unset;
+
+      @include add-transitions(transform);
+    }
+
+    @include media-breakpoint-up($breakpoint-up) {
+      gap: 4rem;
+      max-width: 1700px;
+      padding: 0 2rem;
+    }
+  }
+
+  &-left,
+  &-center,
+  &-right {
+    flex: 1;
+
+    @include media-breakpoint-down($breakpoint-down) {
+      margin: 2rem;
+    }
+  }
+
+  &-left,
+  &-right {
+    @include media-breakpoint-up($breakpoint-up) {
+      max-width: 25%;
+    }
+  }
+
+  &-left {
+    order: 1;
+  }
+
+  &-center {
+    order: 2;
+
+    @include media-breakpoint-up($breakpoint-up) {
+      max-width: 50%;
+    }
+  }
+
+  &-right {
+    order: 3;
+  }
+
+  @include media-breakpoint-down($breakpoint-down) {
+    &.focus-left {
+      .container-advanced-wrapper {
+        transform: translateX(0);
+      }
+
+      &.hide {
+        .container-advanced-center > *,
+        .container-advanced-right > * {
+          display: none;
+        }
+      }
+    }
+
+    &.focus-right {
+      .container-advanced-wrapper {
+        transform: translateX(calc(100 / 3 * 2% * -1));
+      }
+
+      &.hide {
+        .container-advanced-center > *,
+        .container-advanced-left > * {
+          display: none;
+        }
+      }
+    }
+
+    &.focus-center {
+      .container-advanced-wrapper {
+        transform: translateX(calc(100 / 3 * 1% * -1));
+      }
+
+      &.hide {
+        .container-advanced-left > *,
+        .container-advanced-right > * {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &-nav {
+    color: $white;
+    background-color: $secondary;
+
+    @include media-breakpoint-up($breakpoint-up) {
+      display: none;
+    }
+
+    .list-trigger {
+      display: flex;
+      justify-content: space-around;
+      overflow: hidden;
+
+      .trigger {
+        @include add-before-layer() {
+          @include add-transitions(opacity, transform);
+
+          top: 50%;
+          z-index: -1;
+          height: auto;
+          padding-top: 100%;
+          background: $blue-800;
+          border-radius: 50%;
+          opacity: 0;
+          transform: translateY(-50%) scale(1.1);
+        }
+
+        z-index: 2;
+        flex: 1;
+        align-self: center;
+        padding: 15px;
+        font-size: 1.1rem;
+        text-align: center;
+
+        &.on {
+          &::before {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}

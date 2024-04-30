@@ -1,0 +1,380 @@
+/*
+Personnalisation de certains paramètres de boostrap
+Ajouter l'option !default pour permettre la surcharge depuis les thèmes
+Ref : https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss
+*/
+@use "sass:color";
+@use "../abstracts/colors" as *;
+@use "../abstracts/type";
+
+$prefix: "edifice-";
+
+/* Body */
+$body-bg: $gray-200 !default;
+$body-color: $gray-800 !default;
+
+$text-light: $gray-300 !default;
+$text-lightest: $white !default;
+$text-color: $gray-800 !default;
+
+$component-active-bg: $secondary;
+
+$link-decoration: none !default;
+
+$min-contrast-ratio: 1.75 !default;
+
+/* Shadows */
+$box-shadow: 0 0.2rem 0.6em rgba($black, 0.15) !default;
+$box-shadow-hover: 0 0.4rem 1rem rgba($black, 0.12) !default;
+$box-shadow-bottom: 0 -0.6rem 3rem -1rem rgba($black, 0.15) !default;
+
+/* Radius */
+$border-radius: 0.8rem !default;
+$border-radius-sm: 0.4rem !default;
+$border-radius-lg: 1.2rem !default;
+$border-radius-xl: 1.6rem !default;
+$border-radius-2xl: 2.4rem !default;
+$border-radius-pill: 50rem !default;
+
+/* Spacers for margins, paddings and gaps */
+$spacer-0: 0 !default;
+$spacer-2: 0.2rem !default;
+$spacer-4: 0.4rem !default;
+$spacer-8: 0.8rem !default;
+$spacer-12: 1.2rem !default;
+$spacer-16: 1.6rem !default;
+$spacer-24: 2.4rem !default;
+$spacer-32: 3.2rem !default;
+$spacer-40: 4rem !default;
+$spacer-48: 4.8rem !default;
+$spacer-64: 6.4rem !default;
+
+$spacers: (
+  0: $spacer-0,
+  2: $spacer-2,
+  4: $spacer-4,
+  8: $spacer-8,
+  12: $spacer-12,
+  16: $spacer-16,
+  24: $spacer-24,
+  32: $spacer-32,
+  40: $spacer-40,
+  48: $spacer-48,
+  64: $spacer-64,
+) !default;
+
+/* Grid breakpoints */
+$grid-breakpoints: (
+  xs: 0,
+  sm: 375px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  xxl: 1400px,
+) !default;
+
+/* Container Max Widths */
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1352px,
+) !default;
+
+$container-spacings: (
+  "xs": 0,
+  "sm": 0,
+  "md": 2.4rem,
+  "lg": 2.4rem,
+  "xl": 2.4rem,
+) !default;
+
+$width-sizing: (
+  25: 25%,
+  50: 50%,
+  75: 75%,
+  100: 100%,
+  auto: auto,
+) !default;
+
+$container-padding-x: 3.2rem !default;
+
+/* Gutter Grid CSS */
+$grid-gutter-width: 2.4rem !default;
+
+/* Enable Options */
+$enable-negative-margins: true !default;
+$enable-rfs: false !default;
+$enable-cssgrid: true !default;
+$enable-dark-mode: false !default;
+
+/* Buttons */
+$button-colors: (
+  "primary": (
+    base: var(--#{$prefix}primary),
+    pale: var(--#{$prefix}primary-200),
+    light: var(--#{$prefix}primary-300),
+    text: var(--#{$prefix}white),
+    dark: var(--#{$prefix}primary-800),
+    "box-shadow": transparent,
+  ),
+  "secondary": (
+    base: var(--#{$prefix}secondary),
+    pale: var(--#{$prefix}secondary-200),
+    light: var(--#{$prefix}secondary-300),
+    text: var(--#{$prefix}white),
+    dark: var(--#{$prefix}secondary-800),
+    "box-shadow": transparent,
+  ),
+  "tertiary": (
+    base: var(--#{$prefix}tertiary),
+    pale: var(--#{$prefix}gray-200),
+    light: var(--#{$prefix}gray-300),
+    text: var(--#{$prefix}gray-800),
+    dark: var(--#{$prefix}gray-400),
+    "box-shadow": transparent,
+  ),
+  "danger": (
+    base: var(--#{$prefix}danger),
+    pale: var(--#{$prefix}danger-200),
+    light: var(--#{$prefix}danger-300),
+    text: var(--#{$prefix}white),
+    dark: var(--#{$prefix}danger-800),
+    "box-shadow": transparent,
+  ),
+);
+
+$btn-align-items: center !default;
+$btn-border-radius: 0.8rem !default;
+$btn-border-width: 0.1rem !default;
+$btn-box-shadow: transparent !default;
+$btn-disabled-opacity: 1 !default;
+$btn-display-mode: flex !default;
+$btn-font-size: 1.6rem !default;
+$btn-font-weight: 600 !default;
+$btn-gap: 0.8rem !default;
+$btn-height: 4rem !default;
+$btn-search-icon-size: 2.4rem !default;
+$btn-svg-size: 2rem !default;
+$btn-justify-content: center !default;
+$btn-line-height: 2.2rem !default;
+$btn-padding-x: 1.6rem !default;
+$btn-padding-y: 0.8rem !default;
+$btn-search-bg: var(--#{$prefix}secondary-200) !default;
+$btn-search-focus-border-color: var(--#{$prefix}secondary-300) !default;
+$btn-bg: $white !default;
+$btn-font-family: type.$font-family-sans-serif !default;
+
+/* Forms Feedback */
+$form-feedback-valid-color: $success !default;
+$form-feedback-invalid-color: $danger !default;
+
+/* Forms Text */
+$form-text-margin-top: 0.4rem !default;
+$form-text-color: $gray-700 !default;
+$form-text-font-size: 1.2rem !default;
+
+/* Forms Label */
+$form-label-margin-bottom: 0.8rem !default;
+$form-label-font-size: 1.4rem !default;
+$form-label-color: $gray-800 !default;
+$form-label-icon-size: 1.6rem !default;
+
+/* Forms Input */
+$input-bg: $white !default;
+$input-padding-y: 0.8rem !default;
+$input-padding-x: 1.2rem !default;
+$input-font-size: 1.6rem !default;
+$input-padding-y-lg: 1.2rem !default;
+$input-padding-x-lg: 1.6rem !default;
+$input-font-size-lg: 1.6rem !default;
+$input-padding-y-sm: 0.4rem !default;
+$input-padding-x-sm: 1.2rem !default;
+$input-font-size-sm: 1.4rem !default;
+$input-border-color: $gray-400 !default;
+$input-disabled-bg: $gray-300 !default;
+$input-disabled-color: $gray-700 !default;
+$input-disabled-border-color: $gray-500 !default;
+$input-placeholder-color: $gray-600 !default;
+$input-focus-border-color: var(--#{$prefix}secondary-300) !default;
+$input-invalid-border-color: $danger !default;
+$input-filled-border-color: $gray-600 !default;
+$input-border-radius: $border-radius-lg !default;
+$input-border-radius-sm: $border-radius !default;
+$input-border-radius-lg: $border-radius-lg !default;
+
+$focus-ring-width: 0.4rem !default;
+$focus-ring-color: var(--#{$prefix}secondary-200) !default;
+
+/* Forms check */
+$form-check-input-width: 2rem;
+$form-check-padding-start: 0;
+$form-check-input-checked-bg-color: var(--#{$prefix}secondary) !default;
+$form-check-input-checked-border-color: var(--#{$prefix}secondary) !default;
+$form-check-input-focus-border: var(--#{$prefix}secondary-800) !default;
+
+$form-check-input-indeterminate-bg-color: var(--#{$prefix}secondary) !default;
+$form-check-input-indeterminate-bg-color: var(--#{$prefix}secondary) !default;
+$form-check-input-indeterminate-border-color: var(
+  --#{$prefix}secondary
+) !default;
+
+/* Dropdowns */
+$dropdown-border-color: var(--#{$prefix}border-color-translucent);
+$dropdown-padding-y: 0;
+$dropdown-link-active-bg: $gray-300;
+$dropdown-link-active-color: $gray-800;
+$dropdown-link-hover-bg: $gray-200;
+$dropdown-border-width: 0;
+$dropdown-font-size: 1.6rem;
+$dropdown-item-padding-y: $spacer-8;
+$dropdown-item-padding-x: $spacer-12;
+$dropdown-toggle-selected-border-color: var(--#{$prefix}secondary-300) !default;
+$dropdown-toggle-selected-bg-color: var(--#{$prefix}secondary-200) !default;
+
+/* Image thumbnails */
+$thumbnail-bg: $white !default;
+
+/* Cards */
+$card-spacer-y: 25px !default;
+$card-spacer-x: 35px !default;
+$card-min-height: 110px !default;
+$card-width: 265px !default;
+$card-bg: $white !default;
+
+/* Modals */
+$modal-backdrop-bg: $gray-800 !default;
+$modal-backdrop-opacity: 0.65 !default;
+$modal-footer-border-width: 0 !default;
+$modal-header-border-width: 0 !default;
+$modal-inner-padding: 1.5rem !default;
+$modal-content-border-width: 0 !default;
+$modal-inner-padding: $spacer-0 !default;
+$modal-content-padding: $spacer-32 !default;
+$modal-header-padding: $spacer-0 !default;
+$modal-footer-padding: $spacer-0 !default;
+$modal-dialog-margin: $spacer-32 !default;
+$modal-title-line-height: 3.2rem !default;
+$modal-footer-gap: $spacer-8 !default;
+$modal-max-width-md: 648px !default;
+$modal-max-width-lg: 872px !default;
+$modal-zindex: 1055 !default;
+
+/* Alerts */
+$alert-color-scale: 0 !default;
+$alert-border-width: 1px !default;
+$alert-left-border-width: 8px !default;
+$alert-border-scale: -70% !default;
+$alert-border-radius: 8px !default;
+$alert-padding-x: $spacer-12 !default;
+$alert-padding-y: $spacer-8 !default;
+$alert-dismissible-padding-r: $alert-padding-x * 4 !default;
+$alert-margin-bottom: 0 !default;
+$alert-color-success: var(--#{$prefix}success) !default;
+$alert-color-info: var(--#{$prefix}info) !default;
+$alert-color-warning: var(--#{$prefix}warning) !default;
+$alert-color-danger: var(--#{$prefix}danger) !default;
+$alert-border-width: var(--#{$prefix}spacer-8) !default;
+
+/* Avatars */
+$avatar-size: 65px !default;
+
+/* Offcanvas */
+$offcanvas-padding-y: 1rem !default;
+$offcanvas-padding-x: 1rem !default;
+$offcanvas-vertical-height: auto !default;
+
+/* Image thumbnails */
+$thumbnail-bg: $white !default;
+$thumbnail-padding: 0.5rem !default;
+
+/* Toast */
+$toast-font-size: 1.4rem !default;
+$toast-padding-y: 15px !default;
+$toast-padding-x: 20px !default;
+$toast-background-color: $white !default;
+$toast-header-background-color: $white !default;
+$toast-max-width: 450px !default;
+$toast-start-color: #f0f9fc !default;
+$toast-end-color: #dceff7 !default;
+$btn-border-radius: 0 !default;
+$toast-left-border-width: $spacer-8 !default;
+
+/* Table */
+$table-color: $gray-800;
+$table-bg: transparent !default;
+$table-striped-bg: rgba($gray-300, 0.25) !default;
+$table-border-color: $gray-300 !default;
+$table-cell-padding-y: 0.75rem !default;
+$table-cell-padding-x: 0.75rem !default;
+$table-cell-padding-y-sm: 0.5rem !default;
+$table-cell-padding-x-sm: 0.5rem !default;
+$table-hover-bg: $gray-300 !default;
+
+/* Tabs */
+$nav-link-color: $secondary !default;
+$nav-tabs-link-active-bg: $white !default;
+$nav-tabs-link-active-color: $gray-600 !default;
+
+/* Tooltip */
+$tooltip-padding-y: $spacer-8 !default;
+$tooltip-padding-x: $spacer-12 !default;
+$tooltip-arrow-width: 1.6rem !default;
+$tooltip-arrow-height: 0.8rem !default;
+$tooltip-opacity: 0.8 !default;
+$tooltip-border-radius: 8px !default;
+$tooltip-max-width: 326px !default;
+$tooltip-color: $white !default;
+
+/* Z-index */
+$zindex-offcanvas: 1050 !default;
+
+/* Horizontal rule */
+$hr-color: $gray-400 !default;
+$hr-opacity: 1 !default;
+$hr-default-spacing: 2.4rem !default;
+
+/* Widgets */
+$widget-padding-x: 2rem;
+
+/* Table Explorer */
+$table-explorer-main-color: var(--#{$prefix}secondary-200) !default;
+
+/* Header */
+$navbar-brand-padding-y: 0;
+$navbar-brand-padding-x: 0;
+$navbar-brand-margin-end: 0;
+$navbar-padding-y: 0;
+
+$navbar-badge-padding-x: 0.55em;
+$navbar-badge-padding-y: 0.35em;
+$navbar-badge-font-size: 0.55em;
+
+// Borders Sass variables
+$border-color: $gray-400 !default;
+
+//Attachment
+$attachment-border-color: $gray-400 !default;
+$attachment-border-color-focus: $gray-600 !default;
+$attachment-border-color-active: $gray-800 !default;
+$attachment-background-color: $white !default;
+$attachment-border-width: 0.1rem;
+
+//Tabs
+$tabs-border-width: 0.1rem !default;
+$tabs-gap: 0.8rem !default;
+$tabs-svg-size: 2rem !default;
+
+// Nav Tabs
+$nav-link-padding-y: $spacer-12;
+$nav-link-padding-x: $spacer-12;
+$nav-link-color: $gray-800;
+$nav-link-hover-color: $gray-800;
+
+// Dropzone Tabs
+$dropzone-width-content: 425px !default;
+$dropzone-font-weight: 600 !default;
+
+/* Tiptap */
+$badge-linker-max-width: 31rem !default;

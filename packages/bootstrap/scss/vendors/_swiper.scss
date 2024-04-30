@@ -1,0 +1,13 @@
+@use "../abstracts/" as *;
+
+.swiper {
+  --swiper-theme-color: var(--#{$prefix}primary);
+}
+
+.swiper.swiper-horizontal {
+  --swiper-pagination-bottom: 0;
+  --swiper-pagination-bullet-horizontal-gap: 8px;
+  --swiper-pagination-bullet-size: 16px;
+
+  padding-bottom: 42px;
+}

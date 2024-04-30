@@ -1,0 +1,28 @@
+@use "../../abstracts/" as *;
+@use "../../vendors/bootstrap";
+
+$workspace-search-bg: $gray-200 !default;
+
+.workspace {
+  --#{$prefix}workspace-search-bg: #{$workspace-search-bg};
+
+  grid-template-rows: min-content;
+
+  &-folders {
+    @include bootstrap.media-breakpoint-up(md) {
+      border-right: 1px solid var(--#{$prefix}border-color);
+    }
+  }
+
+  &-search {
+    background-color: var(--#{$prefix}workspace-search-bg);
+    
+    @include bootstrap.media-breakpoint-down(md) {
+      border-top: 1px solid var(--#{$prefix}border-color);
+    }
+  }
+
+  @include bootstrap.media-breakpoint-up(md) {
+    grid-template-rows: auto;
+  }
+}

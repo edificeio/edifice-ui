@@ -1,0 +1,99 @@
+//Widget établissement
+.widget-school {
+  &-header {
+    @include border-top-radius(6px);
+
+    position: relative;
+    padding: 30px $widget-padding-x;
+    font-size: 1.3em;
+    color: $white;
+    background-position: center;
+    background-size: cover;
+
+    img {
+      @include avatar-image(65px);
+      background: $white;
+      max-width: initial;
+    }
+
+    .name {
+      font-weight: 600;
+    }
+
+    .school {
+      &,
+      &-multiple {
+        position: relative;
+        font-size: 0.9em;
+        font-weight: 400;
+      }
+
+      &-multiple {
+        // @include prepend-icon("\f150", 1.1em);
+
+        cursor: pointer;
+        white-space: normal;
+        display: inline-flex;
+        align-items: baseline;
+        gap: 1rem;
+
+        &::before {
+          @include fontawesome();
+          content: "\f150";
+          top: 0.2rem;
+          position: relative;
+        }
+
+        &::after {
+          display: none;
+        }
+      }
+
+      &-choice {
+        > div {
+          @include color-to($primary);
+
+          padding: 6px 20px;
+          cursor: pointer;
+
+          &.dropdown-item {
+            white-space: normal;
+          }
+        }
+      }
+    }
+
+    .avatar-list {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 $widget-padding-x;
+      transform: translateY(50%);
+
+      @include media-breakpoint-down(xl) {
+        .avatar-link:nth-child(n + 4) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .btn-group {
+    padding: 1.6rem;
+    padding-bottom: 0;
+    flex-wrap: wrap;
+
+    > * {
+      padding: 0.6rem 1.5rem;
+      margin-bottom: 1em;
+
+      &:not(:last-child) {
+        margin-right: 0.4em;
+      }
+    }
+  }
+}

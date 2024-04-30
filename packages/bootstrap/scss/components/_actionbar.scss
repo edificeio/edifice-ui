@@ -1,0 +1,41 @@
+@use "../vendors/bootstrap";
+@use "../abstracts/" as *;
+
+.actionbar {
+  --#{$prefix}actionbar-background-color: var(--#{$prefix}primary);
+  --#{$prefix}actionbar-gap: #{$spacer-8};
+  --#{$prefix}actionbar-padding-y: #{$spacer-8};
+  --#{$prefix}actionbar-padding-x: #{$spacer-8};
+  --#{$prefix}actionbar-font-size: 1.6rem;
+  --#{$prefix}actionbar-font-size-mobile: 1.8rem;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--#{$prefix}actionbar-gap);
+  padding: var(--#{$prefix}actionbar-padding-y)
+    var(--#{$prefix}actionbar-padding-x);
+  background-color: var(--#{$prefix}actionbar-background-color);
+
+  @include bootstrap.media-breakpoint-up(md) {
+    --#{$prefix}actionbar-padding-y: #{$spacer-16};
+    --#{$prefix}actionbar-padding-x: #{$spacer-16};
+  }
+
+  .btn {
+    font-size: var(--#{$prefix}actionbar-font-size);
+
+    @include bootstrap.media-breakpoint-down(md) {
+      font-size: var(--#{$prefix}actionbar-font-size-mobile);
+    }
+  }
+
+  @include data-product("one") {
+    --#{$prefix}actionbar-background-color: var(--#{$prefix}primary);
+    --#{$prefix}actionbar-font-size: 2.3rem;
+    --#{$prefix}actionbar-font-size-mobile: 1.8rem;
+
+    @include bootstrap.media-breakpoint-up(md) {
+      background-color: rgba($white, 0.8);
+    }
+  }
+}

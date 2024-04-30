@@ -1,0 +1,10 @@
+.spinner-border {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  vertical-align: -0.125em;
+  border: 0.25em solid currentcolor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: 0.75s linear infinite loading;
+}

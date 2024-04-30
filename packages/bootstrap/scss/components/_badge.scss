@@ -1,0 +1,35 @@
+@use "../abstracts/" as *;
+@use "../vendors/bootstrap";
+
+.badge {
+  --#{$prefix}badge-border-color: #{$gray-400};
+
+  // Reset some bootstrap variables
+
+  --#{$prefix}badge-font-size: 1.4rem;
+  --#{$prefix}badge-padding-x: 0.8rem;
+  --#{$prefix}badge-padding-y: 0.4rem;
+  --#{$prefix}badge-color: inherit;
+
+  &.badge-profile {
+    &-student {
+      border: 1px solid var(--#{$prefix}badge-border-color);
+      color: var(--#{$prefix}orange);
+    }
+
+    &-teacher {
+      border: 1px solid var(--#{$prefix}badge-border-color);
+      color: var(--#{$prefix}green);
+    }
+
+    &-relative {
+      border: 1px solid var(--#{$prefix}badge-border-color);
+      color: var(--#{$prefix}blue);
+    }
+
+    &-personnel {
+      border: 1px solid var(--#{$prefix}badge-border-color);
+      color: var(--#{$prefix}purple);
+    }
+  }
+}

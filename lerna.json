@@ -1,6 +1,10 @@
 {
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+<<<<<<< HEAD
   "version": "1.4.6-develop-integration.1",
+=======
+  "version": "1.5.4-develop.4",
+>>>>>>> develop
   "npmClient": "pnpm",
   "command": {
     "version": {

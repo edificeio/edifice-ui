@@ -1,0 +1,57 @@
+.widget-calendar {
+  //Widget Calendar
+
+  .day-list {
+    margin: 10px $widget-padding-x;
+  }
+
+  .day-item {
+    position: relative;
+    padding-bottom: 0.5em;
+
+    &-title {
+      padding-left: 20px;
+
+      @include prepend-icon("\f111", 8px, 0, $orange);
+    }
+
+    &::before {
+      position: absolute;
+      top: 0.7em;
+      left: 3.5px;
+      display: block;
+      width: 1px;
+      height: 100%;
+      content: "";
+      background: #c8c8c8;
+    }
+
+    &:last-child {
+      &::before {
+        content: none;
+      }
+    }
+  }
+
+  .moment-item {
+    display: flex;
+    align-items: start;
+    padding-bottom: 0.75em;
+    padding-left: 25px;
+
+    .icon,
+    .hour {
+      width: 1em;
+      margin-right: 0.75em;
+    }
+
+    .hour {
+      width: 2.5em;
+      text-align: right;
+    }
+
+    .link {
+      flex: 1;
+    }
+  }
+}

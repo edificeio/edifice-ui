@@ -1,0 +1,28 @@
+@use "../abstracts/" as *;
+@use "../vendors/bootstrap";
+
+@each $value, $color in $extra-colors {
+  .text-bg-#{$value} {
+    color: $white !important;
+    background-color: var(--#{$prefix}#{$value}) !important;
+  }
+}
+
+@each $value, $color in $extra-colors {
+  .bg-#{$value} {
+    background-color: var(--#{$prefix}#{$value}) !important;
+  }
+}
+
+@each $value, $color in $extend-theme-colors {
+  .text-bg-#{$value} {
+    color: $white !important;
+    background-color: var(--#{$prefix}#{$value}) !important;
+  }
+}
+
+@each $value, $color in $extend-theme-colors {
+  .bg-#{$value} {
+    background-color: var(--#{$prefix}#{$value}) !important;
+  }
+}

@@ -1,0 +1,30 @@
+@use "../abstracts/" as *;
+@use "../vendors/bootstrap";
+
+.grid {
+  --#{$prefix}columns: 4;
+  --#{$prefix}gap: #{$spacer-16};
+
+  @include bootstrap.media-breakpoint-up(md) {
+    --#{$prefix}columns: 8;
+    --#{$prefix}gap: #{$spacer-24};
+  }
+
+  @include bootstrap.media-breakpoint-up(xl) {
+    --#{$prefix}columns: 12;
+  }
+
+  &.grid-workspace {
+    --#{$prefix}gap: #{$spacer-8};
+
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    grid-auto-rows: auto;
+    grid-auto-flow: dense;
+  }
+}
+
+.node-attachments {
+  .grid {
+    --#{$prefix}gap: #{$spacer-12};
+  }
+}

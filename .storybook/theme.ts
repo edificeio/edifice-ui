@@ -6,6 +6,6 @@ export default create({
   base: "light",
   brandTitle: "Edifice UI",
   brandUrl: "https://github.com/opendigitaleducation/edifice-ui",
-  brandImage: "/logo.svg",
+  brandImage: "logo.svg",
   fontBase: '"Roboto", sans-serif',
 });

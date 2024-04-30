@@ -30,7 +30,6 @@
     "fix": "turbo run fix",
     "format": "turbo run format",
     "preinstall": "npx only-allow pnpm",
-    "postinstall": "pnpm build",
     "lint": "turbo run lint",
     "pre-commit": "pnpm lint && pnpm format",
     "prepare": "husky install",

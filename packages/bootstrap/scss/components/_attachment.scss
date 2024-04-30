@@ -1,0 +1,29 @@
+@use "../abstracts/" as *;
+
+.attachment {
+  --#{$prefix}attachment-border-radius: #{$border-radius-xl};
+  --#{$prefix}attachment-border-color: #{$attachment-border-color};
+  --#{$prefix}attachment-border-color-focus: #{$attachment-border-color-focus};
+  --#{$prefix}attachment-border-color-active: #{$attachment-border-color-active};
+  --#{$prefix}attachment-background-color: #{$attachment-background-color};
+  --#{$prefix}attachment-border-width: #{$attachment-border-width};
+
+  display: flex;
+  border-radius: var(--#{$prefix}attachment-border-radius);
+  border-width: var(--#{$prefix}attachment-border-width);
+  border-color: var(--#{$prefix}attachment-border-color);
+  border-style: solid;
+  background-color: var(--#{$prefix}attachment-background-color);
+  align-items: center;
+  gap: $spacer-8;
+
+  .filename {
+    flex-grow: 1;
+  }
+
+  .options {
+    border-left: solid var(--#{$prefix}attachment-border-width)
+      var(--#{$prefix}attachment-border-color);
+    display: flex;
+  }
+}

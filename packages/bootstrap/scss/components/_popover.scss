@@ -1,0 +1,66 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/colors";
+@use "../abstracts/transition";
+
+.popover {
+  --#{$prefix}popover-border-color: var(--#{$prefix}gray-200);
+  --#{$prefix}popover-body-padding-x: #{$spacer-12};
+  --#{$prefix}popover-body-padding-y: #{$spacer-8};
+  --#{$prefix}popover-max-width: 250px;
+  --#{$prefix}popover-footer-color: #{$body-color};
+  --#{$prefix}popover-header-bg: transparent;
+  --#{$prefix}popover-header-color: #{$body-color};
+
+  display: none;
+  width: var(--#{$prefix}popover-max-width);
+  opacity: 0;
+
+  &::before {
+    position: absolute;
+    top: -2rem;
+    left: 50%;
+    z-index: 0;
+    display: block;
+    width: 2rem;
+    font-family: none;
+    font-size: 2rem;
+    color: var(--#{$prefix}white);
+    content: "▲";
+    transform: translateX(-50%);
+  }
+
+  &::after {
+    display: none;
+  }
+
+  &-footer {
+    color: var(--#{$prefix}popover-footer-color);
+  }
+
+  &-trigger {
+    &:hover {
+      .popover {
+        display: block;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.bookmarked-app {
+  display: inline-flex;
+  flex: 0 1 33.33%;
+  align-items: center;
+  justify-content: center;
+  height: 33.33%;
+  aspect-ratio: 1 / 1;
+  padding: $spacer-16;
+  font-size: 3rem;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: $border-radius;
+
+  @include transition.add-transitions(border-color) {
+    border-color: var(--#{$prefix}gray-300);
+  }
+}

@@ -1,0 +1,9 @@
+@use "../abstracts/" as *;
+
+.breadcrumb {
+  &-item {
+    &::before {
+      display: none;
+    }
+  }
+}

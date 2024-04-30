@@ -1,0 +1,24 @@
+.ProseMirror {
+  .Tiptap-mathematics-editor {
+    background: #202020;
+    color: #fff;
+    font-family: monospace;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .Tiptap-mathematics-render {
+    cursor: pointer;
+    padding: 0 0.25rem;
+    transition: background 0.2s;
+
+    &:hover {
+      background: #eee;
+    }
+  }
+
+  .Tiptap-mathematics-editor,
+  .Tiptap-mathematics-render {
+    border-radius: 0.25rem;
+    display: inline-block;
+  }
+}
