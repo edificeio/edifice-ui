@@ -483,3 +483,10 @@ export interface CollaborativewallResource extends IResource {
 export interface ScrapbookUpdate extends UpdateParameters {}
 
 export interface ScrapbookResource extends IResource {}
+
+export interface TimelineGeneratorUpdate extends UpdateParameters {
+  "publish-type"?: "RESTRAINT" | "IMMEDIATE";
+}
+export interface TimelineGeneratorResource extends IResource {
+  "publish-type": "RESTRAINT" | "IMMEDIATE";
+}
