@@ -56,15 +56,24 @@ const Tabs = ({ defaultId, items, onChange, children }: TabsProps) => {
 
   useEffect(() => {
     function setTabPosition() {
-      const currentTabIndex = items.findIndex((item) => item.id === activeTab);
-      if (currentTabIndex === -1 && defaultId) {
-        setActiveTab(defaultId);
-      }
-      const currentTabRef = tabsRef.current[currentTabIndex];
-      if (currentTabRef) {
-        currentTabRef.focus();
-        setTabUnderlineLeft(currentTabRef?.offsetLeft ?? 0);
-        setTabUnderlineWidth(currentTabRef?.clientWidth ?? 0);
+      /**
+       * If the active element is not an input, then focus on the current tab.
+       * The focus on input element with a reponse device will cause the keyboard to be displayed and trigger the resize event.
+       * Which will cause the tab to be focused again and the keyboard to be closed. #WB-2841
+       */
+      if (document?.activeElement?.tagName !== "INPUT") {
+        const currentTabIndex = items.findIndex(
+          (item) => item.id === activeTab,
+        );
+        if (currentTabIndex === -1 && defaultId) {
+          setActiveTab(defaultId);
+        }
+        const currentTabRef = tabsRef.current[currentTabIndex];
+        if (currentTabRef) {
+          currentTabRef.focus();
+          setTabUnderlineLeft(currentTabRef?.offsetLeft ?? 0);
+          setTabUnderlineWidth(currentTabRef?.clientWidth ?? 0);
+        }
       }
     }
 
