@@ -16,7 +16,7 @@ export class TimelineGeneratorResourceService extends ResourceService {
       ? await this.getThumbnailPath(parameters.thumbnail)
       : "";
 
-    const res = await this.http.post<CreateResult>("/timelinegenerator", {
+    const res = await this.http.post<CreateResult>("/timelinegenerator/timelines", {
       title: parameters.name,
       description: parameters.description,
       visibility: parameters.public ? "PUBLIC" : "OWNER",
