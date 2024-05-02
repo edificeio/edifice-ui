@@ -86,7 +86,6 @@ const VideoRecorder = forwardRef(
     const [recordedChunks, setRecordedChunks] = useState<Blob[]>([]);
     const [recordedVideo, setRecordedVideo] = useState<Blob>();
 
-    const [startTime, setStartTime] = useState<number>(0);
     const [recordedTime, setRecordedTime] = useState<number>(0);
     const [playedTime, setPlayedTime] = useState<number>(0);
 
@@ -144,39 +143,41 @@ const VideoRecorder = forwardRef(
 
     /**
      * Handle recording countup.
+     * Recording cannot be paused.
      */
     useEffect(() => {
-      const timer = window.setInterval(() => {
-        setRecordedTime((prev) => {
-          if (recording) {
-            return prev + 500; // add 500ms
-          }
-          return prev;
-        });
-      }, 500);
+      if (recording) {
+        // Get the start timestamp.
+        const startedAt = Date.now();
+        const timer = window.setInterval(
+          // Compute exact elapsed time by diffing the start time.
+          () => setRecordedTime(Date.now() - startedAt),
+          500,
+        );
 
-      return () => {
-        window.clearInterval(timer);
-      };
-    }, [startTime, recording]);
+        return () => {
+          window.clearInterval(timer);
+        };
+      }
+    }, [recording]);
 
     /**
      * Handle playing countup.
+     * Playing can be paused and resumed.
      */
     useEffect(() => {
-      const timer = window.setInterval(() => {
-        setPlayedTime((prev) => {
-          if (playing) {
-            return prev + 500; // add 500ms
-          }
-          return prev;
-        });
-      }, 500);
+      if (playing) {
+        // Compute an approximative elapsed time by cumulating small inaccurate values.
+        const timer = window.setInterval(
+          () => setPlayedTime((prev) => prev + 500),
+          500,
+        );
 
-      return () => {
-        window.clearInterval(timer);
-      };
-    }, [startTime, playing]);
+        return () => {
+          window.clearInterval(timer);
+        };
+      }
+    }, [playing]);
 
     const initMaxDuration = async () => {
       const videoConfResponse = await odeServices.video().getVideoConf();
@@ -245,7 +246,6 @@ const VideoRecorder = forwardRef(
     };
 
     const handleRecord = useCallback(() => {
-      setStartTime(Date.now());
       setRecording(true);
 
       if (videoRef && videoRef.current) {
@@ -261,9 +261,6 @@ const VideoRecorder = forwardRef(
           if (data.size > 0) {
             setRecordedChunks((prev) => [...prev, data]);
           }
-          if (recordedTime >= maxDuration) {
-            recorderRef?.current?.stop();
-          }
         };
         recorderRef.current.onerror = (event) => console.error(event);
         recorderRef.current.start(1000); // collect 1000ms of data
@@ -278,8 +275,6 @@ const VideoRecorder = forwardRef(
         recorderRef.current.requestData();
         recorderRef.current.stop();
       }
-
-      setStartTime(0);
     }, [recorderRef]);
 
     const handlePlayPause = useCallback(() => {
@@ -301,7 +296,6 @@ const VideoRecorder = forwardRef(
       setRecording(false);
       setPlaying(false);
       setSaved(false);
-      setStartTime(0);
       setRecordedTime(0);
       setRecordedChunks([]);
       setRecordedVideo(undefined);
@@ -416,6 +410,15 @@ const VideoRecorder = forwardRef(
         console.error("Selected input device id is null");
       }
     };
+
+    /**
+     * Auto-stop recording when max allowed duration is reached.
+     */
+    useEffect(() => {
+      if (recordedTime >= maxDuration) {
+        handleStop();
+      }
+    }, [recordedTime, handleStop]);
 
     const toolbarItems: ToolbarItem[] = [
       {
