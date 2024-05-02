@@ -225,6 +225,7 @@ const ResourceModal = ({
                   defaultValue={isUpdating ? resource?.name : ""}
                   {...register("title", {
                     required: true,
+                    maxLength: 60,
                     pattern: {
                       value: /[^ ]/,
                       message: "invalid title",
@@ -235,17 +236,22 @@ const ResourceModal = ({
                   )}
                   size="md"
                   aria-required={true}
+                  maxLength={60}
                 />
               </FormControl>
               <FormControl id="description" isOptional>
                 <Label>{t("description")}</Label>
                 <TextArea
                   defaultValue={isUpdating ? resource?.description : ""}
-                  {...register("description")}
+                  {...register("description", {
+                    required: false,
+                    maxLength: 400,
+                  })}
                   placeholder={t(
                     "explorer.resource.editModal.description.placeholder",
                   )}
                   size="md"
+                  maxLength={400}
                 />
               </FormControl>
             </div>
