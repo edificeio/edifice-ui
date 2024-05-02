@@ -111,7 +111,7 @@ export const CustomImage = Image.extend<CustomImageOptions>({
           const attr = { src: el.getAttribute("src") };
           // Check old content format and get the width from the parent element
           if (el.parentElement?.className.includes("image-container")) {
-            if (el.parentElement.style.width) {
+            if (el.parentElement.style?.width) {
               attr["width"] = el.parentElement.style.width;
             }
           }
@@ -136,7 +136,7 @@ export const CustomImage = Image.extend<CustomImageOptions>({
             attr["style"] = {
               width: "1.5em",
               height: "1.5em",
-              fontSize: el.parentElement.style.fontSize,
+              fontSize: el.parentElement?.style?.fontSize,
             };
             attr["width"] = "null";
             attr["height"] = "null";
