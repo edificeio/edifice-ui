@@ -75,6 +75,7 @@ const InternalLinker = ({
       async function load() {
         if (selectedApplication) {
           try {
+            const searchLower = search?.toLowerCase();
             const resources = (
               await loadResources({
                 application: selectedApplication.application,
@@ -85,10 +86,13 @@ const InternalLinker = ({
               })
             )
               .filter((resource) => {
-                if (!search || search.length === 0) return true;
-                let found = resource.name?.includes(search) ?? false;
-                found ||= resource.creatorName?.includes(search) ?? false;
-                found ||= resource.description?.includes(search) ?? false;
+                // Filter in lowercase only
+                if (!searchLower || searchLower.length === 0) return true;
+                const found =
+                  resource.name?.toLowerCase().includes(searchLower) ||
+                  resource.creatorName?.toLowerCase().includes(searchLower) ||
+                  resource.description?.toLowerCase().includes(searchLower) ||
+                  false;
                 return found;
               })
               .sort((a, b) => (a.modifiedAt < b.modifiedAt ? 1 : -1));
