@@ -147,22 +147,25 @@ const InternalLinker = ({
   // Select a resource.
   const selectResource = useCallback(
     (resource: ILinkedResource) => {
-      if (!multiple) {
-        setSelectedDocuments([resource]);
-      } else {
+      if (multiple) {
+        // Add this resource to the previous selected ones.
         setSelectedDocuments((previousState) => [...previousState, resource]);
+      } else {
+        // Replace previous selection by this resource.
+        setSelectedDocuments([resource]);
       }
     },
-    [setSelectedDocuments],
+    [setSelectedDocuments, multiple],
   );
 
   // Handle [de-]selection of a resource by the user.
   const toggleResourceSelection = useCallback(
     (resource: ILinkedResource) => {
       const index = getSelectedResourceIndex(resource.assetId);
-      if (index < 0 || multiple) {
+      if (index < 0) {
         selectResource(resource);
       } else {
+        // De-select resource (clicked twice)
         setSelectedDocuments(
           selectedDocuments.filter((_value, i) => i !== index),
         );
