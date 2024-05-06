@@ -12,9 +12,6 @@ const RESOURCE = "timelinegenerator";
 
 export class TimelineGeneratorResourceService extends ResourceService {
   async create(parameters: CreateParameters): Promise<CreateResult> {
-    const thumbnail = parameters.thumbnail
-      ? await this.getThumbnailPath(parameters.thumbnail)
-      : "";
 
     const res = await this.http.post<CreateResult>(
       "/timelinegenerator/timelines",
@@ -34,7 +31,7 @@ export class TimelineGeneratorResourceService extends ResourceService {
   async update(parameters: TimelineGeneratorUpdate): Promise<UpdateResult> {
     const thumbnail = await this.getThumbnailPath(parameters.thumbnail);
     const res = await this.http.put<IResource>(
-      `/timelinegenerator/${parameters.entId}`,
+      `/timelinegenerator/timeline/${parameters.entId}`,
       {
         trashed: parameters.trashed ? 1 : 0,
         title: parameters.name,
