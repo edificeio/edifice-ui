@@ -43,6 +43,7 @@ type AudioReducerState = {
   leftChannel: Float32Array[];
   rightChannel: Float32Array[];
 
+  // max duration in s (3 minutes by default)
   maxDuration: number;
 };
 
