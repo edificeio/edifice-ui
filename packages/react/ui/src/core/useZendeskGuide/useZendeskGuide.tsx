@@ -154,6 +154,7 @@ export default function useZendeskGuide() {
           (window as any).zE("webWidget", "updateSettings", {
             webWidget: {
               color: { theme: zendeskGuideConfig.color || "#ffc400" },
+              zIndex: 2,
               launcher: {
                 mobile: {
                   labelVisible: true,
@@ -217,7 +218,7 @@ export default function useZendeskGuide() {
                   },
                 });
                 (window as any).zE("webWidget", "close");
-                window.location.href = "/support";
+                window.open("/support", "_blank");
               }
             },
           );
