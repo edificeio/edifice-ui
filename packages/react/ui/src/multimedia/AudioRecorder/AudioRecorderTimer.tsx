@@ -8,6 +8,7 @@ export interface AudioRecorderTimerProps {
   playState: PlayState;
   recordTime: number | undefined;
   audioTime: number;
+  maxDuration: number;
 }
 
 const AudioRecorderTimer = ({
@@ -15,6 +16,7 @@ const AudioRecorderTimer = ({
   playState,
   recordTime,
   audioTime,
+  maxDuration,
 }: AudioRecorderTimerProps) => {
   return (
     <div className="audio-recorder-time my-16 mx-auto">
@@ -25,7 +27,9 @@ const AudioRecorderTimer = ({
           ) : (
             <Record width={12} height={12} className="me-8 text-danger" />
           )}
-          {convertMsToMS(recordState !== "IDLE" ? recordTime! : 0)}
+          {convertMsToMS(recordState !== "IDLE" ? recordTime! : 0) +
+            " / " +
+            convertMsToMS(maxDuration)}
         </div>
       )}
       {playState !== "IDLE" && (

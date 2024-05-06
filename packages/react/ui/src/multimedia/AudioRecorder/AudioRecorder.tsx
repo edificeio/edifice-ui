@@ -35,6 +35,7 @@ const AudioRecorder = forwardRef(
       audioRef,
       audioNameRef,
       toolbarItems,
+      maxDuration,
       handlePlayEnded,
       handleSave,
     } = useAudioRecorder(onSaveSuccess, onRecordUpdated, hideSaveAction);
@@ -83,6 +84,7 @@ const AudioRecorder = forwardRef(
           playState={playState}
           recordTime={recordtime}
           audioTime={audioTime}
+          maxDuration={maxDuration}
         ></AudioRecorderTimer>
         <audio
           ref={audioRef}
