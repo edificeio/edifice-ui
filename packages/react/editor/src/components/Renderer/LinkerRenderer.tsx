@@ -1,25 +1,26 @@
 import { MouseEventHandler } from "react";
 
 import { AppIcon, Badge, useOdeIcons } from "@edifice-ui/react";
+import { Node } from "@tiptap/pm/model";
 import { Editor, NodeViewWrapper } from "@tiptap/react";
 import clsx from "clsx";
 
 interface LinkerProps {
   selected: boolean;
   editor: Editor;
-  [x: string]: any;
+  node: Node;
 }
 
 const LinkerRenderer = ({ selected, ...props }: LinkerProps) => {
   const { getIconCode } = useOdeIcons();
-  const { editor } = props;
+  const { editor, node } = props;
   const {
     class: className,
     title,
     "data-app-prefix": appPrefix,
     href,
     target,
-  } = props.node.attrs;
+  } = node.attrs;
 
   const classes = clsx(
     "align-middle badge-linker c-pointer mx-4",
@@ -46,7 +47,7 @@ const LinkerRenderer = ({ selected, ...props }: LinkerProps) => {
         data-drag-handle
       >
         <AppIcon size="24" app={appCode} />
-        <span className="ms-8 text-truncate">{title}</span>
+        <span className="ms-8 text-truncate">{title || node.textContent}</span>
       </Badge>
     </NodeViewWrapper>
   );
