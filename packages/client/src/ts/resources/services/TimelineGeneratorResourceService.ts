@@ -16,17 +16,15 @@ export class TimelineGeneratorResourceService extends ResourceService {
       ? await this.getThumbnailPath(parameters.thumbnail)
       : "";
 
-    const res = await this.http.post<CreateResult>("/timelinegenerator/timelines", {
-      title: parameters.name,
-      description: parameters.description,
-      visibility: parameters.public ? "PUBLIC" : "OWNER",
-      thumbnail,
-      trashed: false,
-      folder: parameters.folder,
-      slug: parameters.public ? parameters.slug : "",
-      "publish-type": parameters.publishType || "RESTRAINT",
-      "comment-type": "IMMEDIATE",
-    });
+    const res = await this.http.post<CreateResult>(
+      "/timelinegenerator/timelines",
+      {
+        headline: parameters.name,
+        type: "default",
+        trashed: false,
+        folder: parameters.folder,
+      },
+    );
 
     this.checkHttpResponse(res);
 
