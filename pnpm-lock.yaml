@@ -442,7 +442,7 @@ importers:
         specifier: 7.23.3
         version: 7.23.3(@babel/core@7.24.5)
       '@edifice-ui/icons':
-        specifier: ^1.5.4-develop-pedago.0
+        specifier: ^1.5.4-develop-pedago.2
         version: 1.5.4(react-dom@18.2.0)(react@18.2.0)
       '@react-spring/web':
         specifier: 9.7.3
