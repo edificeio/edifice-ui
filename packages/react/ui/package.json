@@ -67,7 +67,7 @@
     "@types/react": "18.2.28",
     "@types/react-dom": "18.2.13",
     "@types/ua-parser-js": "0.7.37",
-    "clsx": "2.0.0",
+    "clsx": "2.1.0",
     "concurrently": "8.2.0",
     "edifice-ts-client": "workspace:*",
     "html-react-parser": "4.0.0",
@@ -75,7 +75,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "7.49.2",
-    "react-i18next": "13.5.0",
+    "react-i18next": "14.1.0",
     "react-popper": "2.3.0",
     "react-slugify": "3.0.3"
   },
@@ -83,11 +83,11 @@
     "@edifice-ui/icons": "*",
     "@react-spring/web": "9.7.3",
     "@tanstack/react-query": "5.8.4",
-    "clsx": "2.0.0",
+    "clsx": "2.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "7.49.2",
-    "react-i18next": "13.5.0"
+    "react-i18next": "14.1.0"
   },
   "publishConfig": {
     "access": "public"
