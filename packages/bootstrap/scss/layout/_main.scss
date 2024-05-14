@@ -1,7 +1,19 @@
+@use "../vendors/bootstrap";
+
 main {
   overflow: clip;
 
   &.container-fluid {
     min-height: calc(100vh - 65px);
+  }
+}
+
+/** Fix issue WB-2828 provoced by the toaster container with responsive devices **/
+@media screen and (orientation: portrait) {
+  @include bootstrap.media-breakpoint-down(md) {
+    .toaster-container {
+      height: 0px;
+      overflow: visible;
+    }
   }
 }
