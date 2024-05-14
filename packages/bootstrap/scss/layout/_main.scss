@@ -1,7 +1,16 @@
+@use "../vendors/bootstrap";
+
 main {
   overflow: clip;
 
   &.container-fluid {
     min-height: calc(100vh - 65px);
+  }
+
+  @include bootstrap.media-breakpoint-down(sm) {
+    .toaster-container {
+      height: "0px";
+      overflow: "visible";
+    }
   }
 }

@@ -57,32 +57,9 @@ const Layout = ({ children, headless = false, ...restProps }: LayoutProps) => {
 
   const renderToaster = (
     <Toaster
-      containerStyle={{
-        zIndex: 0,
-      }}
+      containerClassName="toaster-container"
       toastOptions={{
         position: "top-right",
-        style: {},
-        success: {
-          style: {
-            zIndex: 9999,
-          },
-        },
-        error: {
-          style: {
-            zIndex: 9999,
-          },
-        },
-        loading: {
-          style: {
-            zIndex: 9999,
-          },
-        },
-        custom: {
-          style: {
-            zIndex: 9999,
-          },
-        },
       }}
     />
   );
