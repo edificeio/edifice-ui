@@ -377,8 +377,6 @@ const VideoRecorder = forwardRef(
           mediaStreamConstraints = {
             audio: true,
             video: {
-              width: VIDEO_WIDTH,
-              height: VIDEO_HEIGHT,
               aspectRatio: VIDEO_WIDTH / VIDEO_HEIGHT,
               facingMode: selectedDevice?.deviceId,
             },
@@ -387,8 +385,6 @@ const VideoRecorder = forwardRef(
           mediaStreamConstraints = {
             audio: true,
             video: {
-              width: VIDEO_WIDTH,
-              height: VIDEO_HEIGHT,
               aspectRatio: VIDEO_WIDTH / VIDEO_HEIGHT,
               deviceId: selectedDevice.deviceId,
             },
@@ -525,8 +521,6 @@ const VideoRecorder = forwardRef(
             autoPlay={true}
             controls={false}
             muted={true}
-            height={VIDEO_HEIGHT}
-            width={VIDEO_WIDTH}
             onEnded={handleEnded}
             className="rounded"
           >
