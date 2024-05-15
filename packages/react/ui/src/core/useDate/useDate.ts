@@ -77,7 +77,7 @@ export default function useDate() {
   );
 
   const formatDate = useCallback(
-    (date: CoreDate, format?: "short" | "long" | "abbr"): string => {
+    (date: CoreDate, format = "short"): string => {
       let computedDate: Dayjs = dayjs();
       try {
         if ("undefined" === typeof date) {
@@ -90,13 +90,19 @@ export default function useDate() {
           computedDate = parseDate(date.$date, lang);
         }
 
-        let dayjsFormat = "L";
-        if (format === "short") {
-          dayjsFormat = "L";
-        } else if (format === "long") {
-          dayjsFormat = "LL";
-        } else if (format === "abbr") {
-          dayjsFormat = "ll";
+        let dayjsFormat = "";
+        switch (format) {
+          case "short":
+            dayjsFormat = "L";
+            break;
+          case "long":
+            dayjsFormat = "LL";
+            break;
+          case "abbr":
+            dayjsFormat = "ll";
+            break;
+          default:
+            dayjsFormat = format;
         }
 
         return computedDate.isValid()
