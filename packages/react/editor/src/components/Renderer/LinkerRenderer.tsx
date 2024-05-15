@@ -23,7 +23,7 @@ const LinkerRenderer = ({ selected, ...props }: LinkerProps) => {
   } = node.attrs;
 
   const classes = clsx(
-    "align-middle badge-linker c-pointer mx-4",
+    "align-middle badge-linker c-pointer mx-4 my-2",
     className,
     selected && "bg-secondary-200",
   );
