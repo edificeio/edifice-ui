@@ -242,7 +242,7 @@ const ResourceModal = ({
               <FormControl id="description" isOptional>
                 <Label>{t("description")}</Label>
                 <TextArea
-                  defaultValue={isUpdating ? resource?.description : ""}
+                  value={resource.description}
                   {...register("description", {
                     required: false,
                     maxLength: 400,
