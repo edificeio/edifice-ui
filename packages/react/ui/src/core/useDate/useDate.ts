@@ -2,6 +2,7 @@ import { useCallback } from "react";
 
 import dayjs, { Dayjs } from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import localizedFormat from "dayjs/plugin/localizedFormat";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 import "dayjs/locale/de";
@@ -13,6 +14,7 @@ import { useOdeClient } from "../OdeClientProvider";
 
 dayjs.extend(relativeTime);
 dayjs.extend(customParseFormat);
+dayjs.extend(localizedFormat);
 
 export type MongoDate = {
   $date: number | string;
@@ -81,7 +83,7 @@ export default function useDate() {
   );
 
   const formatDate = useCallback(
-    (date: CoreDate, format?: string): string => {
+    (date: CoreDate, format = "short"): string => {
       let computedDate: Dayjs = dayjs();
 
       try {
@@ -97,10 +99,23 @@ export default function useDate() {
           computedDate = parseDate(date.$date);
         }
 
+        let dayjsFormat = "";
+        switch (format) {
+          case "short":
+            dayjsFormat = "L";
+            break;
+          case "long":
+            dayjsFormat = "LL";
+            break;
+          case "abbr":
+            dayjsFormat = "ll";
+            break;
+          default:
+            dayjsFormat = format;
+        }
+
         return computedDate.isValid()
-          ? computedDate
-              .locale(currentLanguage as string)
-              .format(format || "D MMMM YYYY HH:mm:ss")
+          ? computedDate.locale(currentLanguage as string).format(dayjsFormat)
           : "";
       } catch (e) {
         return "";
