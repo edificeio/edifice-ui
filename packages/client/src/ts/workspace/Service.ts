@@ -1,11 +1,11 @@
-import { IOdeServices } from "../services/OdeServices";
-import { DocumentHelper } from "../utils/DocumentHelper";
 import {
   WorkspaceElement,
   WorkspaceSearchFilter,
   WorkspaceVisibility,
 } from "./interface";
 import { ID } from "../globals";
+import { IOdeServices } from "../services/OdeServices";
+import { DocumentHelper } from "../utils/DocumentHelper";
 
 interface ElementQuery {
   /**
@@ -183,7 +183,7 @@ export class WorkspaceService {
   }
 
   async searchDocuments(params: ElementQuery): Promise<WorkspaceElement[]> {
-    let filesO: WorkspaceElement[] =
+    const filesO: WorkspaceElement[] =
       params.filter !== "external" || params.parentId
         ? await this.http.get<WorkspaceElement[]>("/workspace/documents", {
             queryParams: { ...params, _: new Date().getTime() },
@@ -253,6 +253,10 @@ export class WorkspaceService {
     return documents;
   }
 
+  /**
+   * Get the URL of the thumbnail of a workspace element (or its URL),
+   * or `null` if none exists or can be created.
+   */
   getThumbnailUrl(
     doc: WorkspaceElement | string,
     width: number = 0,
@@ -262,18 +266,26 @@ export class WorkspaceService {
       if (doc.includes("data:image") || doc.includes("thumbnail")) {
         return doc;
       }
-      return (
-        doc +
-        (doc.includes("?") ? "&thumbnail=" : "?thumbnail=") +
-        `${width}x${height}`
-      );
+      return `${doc}${doc.includes("?") ? "&" : "?"}thumbnail=${width}x${height}`;
     } else {
+      const urlPrefix = `/workspace/${doc.public ? "pub/" : ""}document/${doc._id}?thumbnail=`;
       const thumbnails = doc.thumbnails;
-      return thumbnails
-        ? `/workspace/${
-            doc.public ? "pub/" : ""
-          }document/${doc._id}?thumbnail=${Object.keys(thumbnails)[0]}`
-        : `/workspace/${doc.public ? "pub/" : ""}document/${doc._id}`;
+
+      // Videos may have only 1 thumbnail, and the backend cannot create new ones at the moment.
+      if (doc.metadata?.["content-type"]?.includes("video")) {
+        // Return the first thumbnail, or `null` if none is available.
+        const firstThumbnail =
+          thumbnails && Object.keys(thumbnails).length > 0
+            ? Object.keys(thumbnails)[0]
+            : null;
+        return firstThumbnail ? urlPrefix + firstThumbnail : null;
+      } else {
+        // Return a thumbnail with requested sizes, or default to 150x150
+        return (
+          urlPrefix +
+          (width > 0 || height > 0 ? `${width}x${height}` : "150x150")
+        );
+      }
     }
   }
 }
