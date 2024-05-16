@@ -1,6 +1,6 @@
 {
   "name": "@edifice-tiptap-extensions/extension-speechsynthesis",
-  "version": "1.5.4-develop-pedago.2",
+  "version": "1.5.4-develop-pedago.5",
   "description": "Rich Text Editor Voice Transcription Extension",
   "type": "module",
   "exports": {
