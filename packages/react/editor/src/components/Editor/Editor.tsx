@@ -75,7 +75,7 @@ const Editor = forwardRef(
       mode = "read",
       toolbar = "full",
       variant = "outline",
-      focus = "all",
+      focus = "start",
       placeholder = "",
       visibility = "protected",
       onContentChange,
