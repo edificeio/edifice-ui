@@ -12,6 +12,7 @@ const RESOURCE = "timelinegenerator";
 
 export class TimelineGeneratorResourceService extends ResourceService {
   async create(parameters: CreateParameters): Promise<CreateResult> {
+    const thumbnail = await this.getThumbnailPath(parameters.thumbnail);
 
     const res = await this.http.post<CreateResult>(
       "/timelinegenerator/timelines",
@@ -19,6 +20,7 @@ export class TimelineGeneratorResourceService extends ResourceService {
         headline: parameters.name,
         type: "default",
         trashed: false,
+        icon: thumbnail,
         folder: parameters.folder,
       },
     );
