@@ -6,6 +6,7 @@ import {
   forwardRef,
   useEffect,
   useRef,
+  useState,
 } from "react";
 
 import clsx from "clsx";
@@ -109,6 +110,16 @@ const Toolbar = forwardRef(
     }: ToolbarProps,
     ref: Ref<ToolbarRef>,
   ) => {
+    const [firstFocusableItemIndex, setFirstFocusableItemIndex] =
+      useState<number>(0);
+    const [a11yNavigationItems, setA11yNavigationItems] = useState<
+      Array<HTMLElement>
+    >([]);
+    const [firstA11yNavigationItem, setFirstA11yNavigationItem] =
+      useState<HTMLElement>();
+    const [lastA11yNavigationItem, setA11yNavigationLastItem] =
+      useState<HTMLElement>();
+
     const divToolbarRef = useRef<HTMLDivElement>();
 
     const classes = clsx("toolbar z-1000 bg-white", className, {
@@ -123,20 +134,34 @@ const Toolbar = forwardRef(
       "justify-content-end": align === "right",
     });
 
-    const toolbarItems: Array<HTMLElement> = [];
-    let lastItem: HTMLElement;
-    let firstItem: HTMLElement;
-
     useEffect(() => {
+      // a11y: set first and last item for keyboard arrow navigation
       const buttons: NodeListOf<HTMLButtonElement> | undefined =
         divToolbarRef.current?.querySelectorAll("button");
-      buttons?.forEach((item, index) => {
-        if (index === 0) {
-          firstItem = item;
+      const enabledItems: Array<HTMLElement> = [];
+      let isfirstItemSet: boolean = false;
+
+      buttons?.forEach((item) => {
+        if (!item.disabled) {
+          if (!isfirstItemSet) {
+            setFirstA11yNavigationItem(item);
+            isfirstItemSet = true;
+          }
+          setA11yNavigationLastItem(item);
+          enabledItems.push(item);
         }
-        lastItem = item;
-        toolbarItems.push(item);
       });
+
+      setA11yNavigationItems(enabledItems);
+
+      // a11y: set first element to focus with tab keyboard
+      setFirstFocusableItemIndex(
+        items.findIndex(
+          (item) =>
+            (item.type === "button" || item.type === "icon") &&
+            !item.props.disabled,
+        ),
+      );
     }, [items]);
 
     const handleFocus = (event: FocusEvent<HTMLDivElement>) => {
@@ -149,23 +174,26 @@ const Toolbar = forwardRef(
       event.target.classList.remove("focus");
     };
 
+    /**
+     * Handle a11y toolbar navigation with Arrow keys.
+     */
     const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-      const index = toolbarItems.indexOf(event.currentTarget);
+      const index = a11yNavigationItems.indexOf(event.currentTarget);
       switch (event.code) {
         case "ArrowLeft":
           // switch to previous item
-          if (event.currentTarget === firstItem) {
-            lastItem.focus();
+          if (event.currentTarget === firstA11yNavigationItem) {
+            lastA11yNavigationItem?.focus();
           } else {
-            toolbarItems[index - 1].focus();
+            a11yNavigationItems[index - 1]?.focus();
           }
           break;
         case "ArrowRight":
           // switch to next item
-          if (event.currentTarget === lastItem) {
-            firstItem.focus();
+          if (event.currentTarget === lastA11yNavigationItem) {
+            firstA11yNavigationItem?.focus();
           } else {
-            toolbarItems[index + 1].focus();
+            a11yNavigationItems[index + 1]?.focus();
           }
           break;
         default:
@@ -218,7 +246,7 @@ const Toolbar = forwardRef(
                     key={item.name ?? index}
                     color={item.props.color ? item.props.color : "tertiary"}
                     variant="ghost"
-                    tabIndex={index === 0 ? 0 : -1}
+                    tabIndex={index === firstFocusableItemIndex ? 0 : -1}
                     onKeyDown={handleKeyDown}
                   />
                 </Tooltip>
@@ -236,7 +264,7 @@ const Toolbar = forwardRef(
                     key={item.name ?? index}
                     color={item.props.color ? item.props.color : "tertiary"}
                     variant={item.props.variant ? item.props.variant : "ghost"}
-                    tabIndex={index === 0 ? 0 : -1}
+                    tabIndex={index === firstFocusableItemIndex ? 0 : -1}
                     onKeyDown={handleKeyDown}
                   />
                 </Tooltip>
@@ -265,7 +293,7 @@ const Toolbar = forwardRef(
                     {...item.props}
                     variant="filled"
                     color="primary"
-                    tabIndex={index === 0 ? 0 : -1}
+                    tabIndex={index === firstFocusableItemIndex ? 0 : -1}
                     onKeyDown={handleKeyDown}
                   />
                 </Tooltip>

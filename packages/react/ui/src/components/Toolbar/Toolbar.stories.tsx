@@ -41,6 +41,7 @@ const meta: Meta<typeof Toolbar> = {
         props: {
           icon: <RecordVideo />,
           onClick: () => console.log("on click"),
+          disabled: true,
         },
       },
       {
@@ -60,6 +61,7 @@ const meta: Meta<typeof Toolbar> = {
         props: {
           icon: <Write />,
           onClick: () => console.log("on click"),
+          disabled: true,
         },
       },
       {
