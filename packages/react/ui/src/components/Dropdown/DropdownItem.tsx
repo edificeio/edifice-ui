@@ -21,7 +21,7 @@ export interface DropdownItemProps {
    *
    * Action on click
    */
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent) => void;
 }
 
 const DropdownItem = ({
@@ -35,8 +35,8 @@ const DropdownItem = ({
   const { onMenuItemKeyDown, onMenuItemMouseEnter, onMenuItemClick } =
     itemProps;
 
-  const handleOnClick = () => {
-    onClick?.();
+  const handleOnClick = (event: React.MouseEvent) => {
+    onClick?.(event);
 
     if (type === "action") {
       onMenuItemClick();
