@@ -169,7 +169,7 @@ export default function useAudioRecorder(
     dispatch({ updatedState: { recordState: "PAUSED" } });
     mediaRecorder?.pause();
 
-    const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
+    const audioBlob = new Blob(audioChunks);
     const audioUrl = URL.createObjectURL(audioBlob);
     if (audioRef.current) {
       audioRef.current.src = audioUrl;
