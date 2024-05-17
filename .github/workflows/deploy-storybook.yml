@@ -52,7 +52,7 @@ jobs:
       - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
         with:
           install_command: pnpm install # default: npm ci
-          build_command: npx storybook build --docs -o dist/ && cp -R packages/icons/assets/ dist/icons/ # default: npm run build-storybook
+          build_command: npx storybook build --docs -o dist/ && cp -R packages/react/icons/assets/ dist/icons/ # default: npm run build-storybook
           path: dist/ # default: dist/storybook
           checkout: false # default: true
         env:
