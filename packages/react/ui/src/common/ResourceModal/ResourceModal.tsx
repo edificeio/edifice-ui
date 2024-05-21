@@ -14,21 +14,22 @@ import { createPortal } from "react-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { useThumb } from "./hooks/useThumb";
 import {
-  Modal,
+  Button,
+  FormControl,
   Heading,
   ImagePicker,
-  FormControl,
-  Label,
   Input,
-  TextArea,
-  Button,
+  Label,
   LoadingScreen,
+  Modal,
+  TextArea,
 } from "../../components";
+import { TextareaCounter } from "../../components/TextArea/TextareaCounter";
 import { useOdeClient } from "../../core";
 import { useResource } from "../../core/useResource";
 import { useToast } from "../../hooks";
+import { useThumb } from "./hooks/useThumb";
 
 export interface FormInputs {
   title: string;
@@ -40,6 +41,8 @@ export interface FormInputs {
 interface BaseProps {
   isOpen: boolean;
   children?: ReactNode | ((...props: any) => ReactNode);
+  inputMaxLength?: number;
+  textareaMaxLength?: number;
   onSuccess: () => void;
   onCancel: () => void;
 }
@@ -68,11 +71,16 @@ interface UpdateProps extends BaseProps {
 
 type Props = CreateProps | UpdateProps;
 
+const DEFAULT_INPUT_MAX_LENGTH = 60;
+const DEFAULT_TEXTAREA_MAX_LENGTH = 400;
+
 const ResourceModal = ({
   isOpen,
   onCancel,
   onSuccess,
   children,
+  inputMaxLength = DEFAULT_INPUT_MAX_LENGTH,
+  textareaMaxLength = DEFAULT_TEXTAREA_MAX_LENGTH,
   ...props
 }: Props) => {
   const { appCode: application, currentApp } = useOdeClient();
@@ -107,6 +115,8 @@ const ResourceModal = ({
     isUpdating,
     selectedResource: isUpdating ? resource : undefined,
   });
+
+  const watchedDescription = watch("description");
 
   const onSubmit: SubmitHandler<FormInputs> = async function (
     formData: FormInputs,
@@ -225,7 +235,7 @@ const ResourceModal = ({
                   defaultValue={isUpdating ? resource?.name : ""}
                   {...register("title", {
                     required: true,
-                    maxLength: 60,
+                    maxLength: inputMaxLength,
                     pattern: {
                       value: /[^ ]/,
                       message: "invalid title",
@@ -236,23 +246,29 @@ const ResourceModal = ({
                   )}
                   size="md"
                   aria-required={true}
-                  maxLength={60}
+                  maxLength={inputMaxLength}
                 />
               </FormControl>
               <FormControl id="description" isOptional>
                 <Label>{t("description")}</Label>
                 <TextArea
-                  value={resource?.description}
+                  defaultValue={resource?.description || ""}
                   {...register("description", {
                     required: false,
-                    maxLength: 400,
+                    maxLength: textareaMaxLength,
                   })}
                   placeholder={t(
                     "explorer.resource.editModal.description.placeholder",
                   )}
                   size="md"
-                  maxLength={400}
+                  maxLength={textareaMaxLength}
                 />
+                {watchedDescription && (
+                  <TextareaCounter
+                    content={watchedDescription}
+                    maxLength={textareaMaxLength}
+                  />
+                )}
               </FormControl>
             </div>
           </div>

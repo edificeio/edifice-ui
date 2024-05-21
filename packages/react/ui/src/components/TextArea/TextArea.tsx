@@ -1,4 +1,4 @@
-import { ChangeEvent, forwardRef, Ref, useState } from "react";
+import { forwardRef, Ref } from "react";
 
 import clsx from "clsx";
 
@@ -56,10 +56,6 @@ const TextArea = forwardRef(
     }: TextAreaProps,
     ref: Ref<HTMLTextAreaElement>,
   ) => {
-    const [content, setContent] = useState<string | undefined>(
-      restProps.defaultValue?.toString() || restProps.value?.toString(),
-    );
-
     const { id, isRequired, isReadOnly, status } = useFormControl();
 
     const classes = clsx(
@@ -78,10 +74,6 @@ const TextArea = forwardRef(
       className,
     );
 
-    const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-      setContent(event.target.value);
-    };
-
     return (
       <>
         <textarea
@@ -91,15 +83,8 @@ const TextArea = forwardRef(
           placeholder={placeholder}
           required={isRequired}
           readOnly={isReadOnly}
-          value={content}
-          onChange={handleChange}
           {...restProps}
         />
-        {restProps.maxLength && content && (
-          <p className="small text-gray-700 p-2 text-end">
-            {content.length} / {restProps.maxLength}
-          </p>
-        )}
       </>
     );
   },

@@ -1,10 +1,11 @@
 import { StoryObj } from "@storybook/react";
 
-import TextArea, { TextAreaProps } from "./TextArea";
-import { Ref, useEffect, useRef } from "react";
+import { Ref, useEffect, useRef, useState } from "react";
 import { Button } from "../Button";
 import FormControl from "../Form/FormControl";
 import FormText from "../Form/FormText";
+import TextArea, { TextAreaProps } from "./TextArea";
+import { TextareaCounter } from "./TextareaCounter";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -137,7 +138,7 @@ export const TextAreaFocused: Story = {
     };
 
     return (
-      <FormControl id="example-3" className="d-flex gap-8">
+      <FormControl id="example-3" className="d-flex align-items-start gap-8">
         <TextArea
           ref={textAreaRef}
           placeholder={args.placeholder}
@@ -273,5 +274,34 @@ export const DisabledStatus: Story = {
     disabled: true,
     size: "md",
     placeholder: "Edifice",
+  },
+};
+
+export const MaxCount: Story = {
+  render: (args) => {
+    const [content, setContent] = useState("");
+    return (
+      <FormControl id="example-4">
+        <TextArea
+          defaultValue={content}
+          placeholder={args.placeholder}
+          size={args.size}
+          maxLength={args.maxLength}
+          onChange={(e) => {
+            setContent(e.target.value);
+          }}
+        />
+        {content && (
+          <TextareaCounter
+            content={content}
+            maxLength={args.maxLength as number}
+          />
+        )}
+      </FormControl>
+    );
+  },
+
+  args: {
+    maxLength: 50,
   },
 };
