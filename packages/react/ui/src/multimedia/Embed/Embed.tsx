@@ -17,6 +17,7 @@ const Embed = ({ onSuccess }: EmbedProps) => {
     const HTMLContent = event.target.value;
 
     setHTMLContent(HTMLContent);
+
     if (HTMLContent?.length) {
       onSuccess(HTMLContent);
     } else {

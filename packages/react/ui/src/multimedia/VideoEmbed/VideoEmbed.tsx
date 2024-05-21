@@ -21,12 +21,13 @@ export interface VideoEmbedProps {
 
 const VideoEmbed = ({ onSuccess }: VideoEmbedProps) => {
   const { t } = useTranslation();
+  const { switchType } = useMediaLibraryContext();
+
   const [url, setUrl] = useState<string>();
   const [embedVideo, setEmbedVideo] = useState<string>();
   const [embedder, setEmbedder] = useState<Embedder | undefined>(undefined);
-  const debounceChangeUrl = useDebounce<string>(url || "", 300);
   const [whiteListProvider, setWhiteListProvider] = useState<Embedder[]>();
-  const { switchType } = useMediaLibraryContext();
+  const debounceChangeUrl = useDebounce<string>(url || "", 300);
   const formControlId = useId();
 
   const [imagePath] = usePaths();
@@ -78,7 +79,7 @@ const VideoEmbed = ({ onSuccess }: VideoEmbedProps) => {
       if (embedder) {
         return (
           <div className="mx-auto mt-16">
-            <div className="video-embed-provider  d-flex align-items-center">
+            <div className="video-embed-provider d-flex align-items-center">
               <Image
                 src={embedder.logo}
                 alt={"Logo " + embedder.displayName}

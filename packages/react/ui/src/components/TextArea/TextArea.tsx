@@ -91,9 +91,9 @@ const TextArea = forwardRef(
           placeholder={placeholder}
           required={isRequired}
           readOnly={isReadOnly}
-          {...restProps}
           value={content}
           onChange={handleChange}
+          {...restProps}
         />
         {restProps.maxLength && content && (
           <p className="small text-gray-700 p-2 text-end">
