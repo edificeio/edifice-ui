@@ -1,6 +1,6 @@
 {
   "name": "@edifice-tiptap-extensions/extension-hyperlink",
-  "version": "1.5.4-develop-pedago.5",
+  "version": "1.5.4-develop.8",
   "description": "Rich Text Editor Hyperlink Extension",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
