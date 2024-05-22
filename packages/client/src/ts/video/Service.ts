@@ -1,11 +1,11 @@
 import { APP } from "../globals";
 import { IOdeServices } from "../services/OdeServices";
 import {
-  VideoEncodeResponse,
-  VideoUploadResponse,
   VideoConf,
+  VideoEncodeResponse,
   VideoPublicConfResponse,
   VideoUploadParams,
+  VideoUploadResponse,
 } from "./interface";
 
 export class VideoService {
@@ -45,29 +45,34 @@ export class VideoService {
    * @param params cf VideoUploadParams
    * @returns a VideoCheckResponse
    */
-  public async upload(params: VideoUploadParams): Promise<VideoUploadResponse> {
-    if (!params.data.file) {
+  public async upload({
+    data,
+    appCode,
+    captation,
+    duration,
+  }: VideoUploadParams): Promise<VideoUploadResponse> {
+    if (!data.file) {
       throw new Error("Invalid video file.");
     }
 
-    if (!params.data.filename) {
+    if (!data.filename) {
       throw new Error("Invalid video filename");
     }
 
-    const browser = `${params.data.browser.name} ${params.data.browser.version}`;
+    const browser = `${data.browser.name} ${data.browser.version}`;
 
     const formData = new FormData();
-    formData.append("device", params.data.device || "");
+    formData.append("device", data.device || "");
     formData.append("browser", browser);
-    formData.append("url", params.data.url);
-    formData.append("app", params.appCode);
-    formData.append("file", params.data.file, params.data.filename);
-    formData.append("weight", "" + params.data.file.size);
-    formData.append("captation", "" + params.captation);
+    formData.append("url", data.url);
+    formData.append("app", appCode);
+    formData.append("file", data.file, data.filename);
+    formData.append("weight", "" + data.file.size);
+    formData.append("captation", "" + captation);
 
-    let encodeUrl = `/video/encode?captation=${params.captation}`;
-    if (params.duration) {
-      encodeUrl += `&duration=${params.duration}`;
+    let encodeUrl = `/video/encode?captation=${captation}`;
+    if (duration) {
+      encodeUrl += `&duration=${duration}`;
     }
 
     // post video to /video/encode API
@@ -99,12 +104,12 @@ export class VideoService {
               .data()
               .trackVideoSave(
                 checkResponse.videoworkspaceid,
-                Math.round(params.duration),
+                Math.round(duration),
                 checkResponse.videosize,
-                params.captation,
-                params.data.url,
+                captation,
+                data.url,
                 browser,
-                params.data.device,
+                data.device,
               );
           }
           return checkResponse;
