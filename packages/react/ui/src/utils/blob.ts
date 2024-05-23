@@ -10,7 +10,7 @@ import { StringUtils } from "edifice-ts-client";
  */
 export const getOrGenerateBlobId = (blob: Blob | File, id?: string) => {
   const KEY = "virtualID";
-  if (!(blob as any).hasOwn(KEY)) {
+  if (!Object.hasOwnProperty.apply(blob, [KEY])) {
     const value = id ?? `${StringUtils.generateVirtualId()}#${blob.size}`;
     Object.defineProperty(blob, KEY, {
       value,

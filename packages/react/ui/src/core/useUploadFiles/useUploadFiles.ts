@@ -28,11 +28,20 @@ const useUploadFiles = ({
   );
 
   useEffect(() => {
+    const MAX_UPLOADS_AT_ONCE = 5;
+    let numUploads = 0;
+
     files.forEach((file) => {
       const status = getUploadStatus(file);
-      if (status === "success") return;
+      /* Do not upload :
+         * the same file twice.
+           To upload it again, reset its previous status first.
+         * more than 5 files at once.
+      */
+      if (status || numUploads >= MAX_UPLOADS_AT_ONCE) return;
 
       (async () => {
+        numUploads++;
         const resource = await uploadFile(file);
         if (resource != null) {
           setUploadedFiles((prevFiles: WorkspaceElement[]) => [
@@ -103,6 +112,7 @@ const useUploadFiles = ({
     /** List of dragged'n'dropped files */
     files,
     getUploadStatus,
+    clearUploadStatus,
     uploadedFiles,
     editingImage,
     setEditingImage,
