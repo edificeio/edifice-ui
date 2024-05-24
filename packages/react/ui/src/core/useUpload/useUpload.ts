@@ -8,10 +8,10 @@ import {
   odeServices,
 } from "edifice-ts-client";
 
-import { useBrowserInfo } from "..";
-import { useWorkspaceFile } from "../../core/useWorkspaceFile";
+import { useBrowserInfo } from "../../hooks";
 import { Status } from "../../types";
 import { getOrGenerateBlobId } from "../../utils";
+import { useWorkspaceFile } from "../useWorkspaceFile";
 
 const useUpload = (
   visibility?: WorkspaceVisibility,

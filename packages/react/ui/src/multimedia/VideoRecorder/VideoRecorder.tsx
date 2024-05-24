@@ -28,8 +28,8 @@ import {
   Select,
 } from "../../components";
 import { Toolbar, ToolbarItem } from "../../components/Toolbar";
+import { useUpload } from "../../core/useUpload";
 import useBrowserInfo from "../../hooks/useBrowserInfo/useBrowserInfo";
-import { useUpload } from "../../hooks/useUpload";
 import { convertMsToMS, getBestSupportedMimeType } from "../../utils";
 
 export interface VideoRecorderProps {

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { WorkspaceElement, WorkspaceVisibility } from "edifice-ts-client";
 
 import { useDropzoneContext } from "../../components/Dropzone/DropzoneContext";
-import { useUpload } from "../../hooks/useUpload";
+import { useUpload } from "../useUpload";
 import { useWorkspaceFile } from "../useWorkspaceFile";
 
 const useUploadFiles = ({
