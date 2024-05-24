@@ -15,7 +15,7 @@ const Upload = ({
   const {
     files,
     uploadedFiles,
-    status,
+    getUploadStatus,
     uploadFile,
     removeFile,
     updateImage,
@@ -47,7 +47,7 @@ const Upload = ({
         return (
           <UploadCard
             key={file.name}
-            status={status[file.name]}
+            status={getUploadStatus(file)}
             item={item}
             onEdit={() => setEditingImage(resource)}
             onRetry={() => uploadFile(file)}

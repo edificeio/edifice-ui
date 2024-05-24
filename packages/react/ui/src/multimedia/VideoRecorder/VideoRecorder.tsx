@@ -17,11 +17,7 @@ import {
   Refresh,
   Save,
 } from "@edifice-ui/icons";
-import {
-  WorkspaceElement,
-  odeServices,
-  VideoUploadParams,
-} from "edifice-ts-client";
+import { WorkspaceElement, odeServices } from "edifice-ts-client";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -32,6 +28,7 @@ import {
   Select,
 } from "../../components";
 import { Toolbar, ToolbarItem } from "../../components/Toolbar";
+import { useUpload } from "../../core/useUpload";
 import useBrowserInfo from "../../hooks/useBrowserInfo/useBrowserInfo";
 import { convertMsToMS, getBestSupportedMimeType } from "../../utils";
 
@@ -92,7 +89,9 @@ const VideoRecorder = forwardRef(
     const videoRef = useRef<HTMLVideoElement>(null);
     const recorderRef = useRef<MediaRecorder | null>(null);
 
-    const { browser, device } = useBrowserInfo(navigator.userAgent);
+    const { uploadBlob } = useUpload(undefined, appCode);
+
+    const { device } = useBrowserInfo(navigator.userAgent);
 
     // We add one methods to handle save action from parent component
     useImperativeHandle(ref, () => ({
@@ -313,46 +312,20 @@ const VideoRecorder = forwardRef(
         return;
       }
 
-      const params: VideoUploadParams = {
-        data: {
-          device: device.type,
-          browser: { name: browser.name, version: browser.version },
-          url: window.location.hostname,
-          file: recordedVideo,
-          filename: "filename",
-          weight: recordedVideo.size,
-        },
-        appCode: appCode,
-        captation: true,
+      const resVideo = await uploadBlob(recordedVideo, {
         duration: recordedTime,
-      };
+      });
 
-      const uploadResponse = await odeServices.video().upload(params);
-      if (uploadResponse.state === "succeed") {
-        const resVideo: WorkspaceElement = {
-          _id: uploadResponse.videoworkspaceid,
-          file: uploadResponse.videoid,
-          name: params.data.filename,
-          eType: "file",
-          eParent: "",
-          children: [],
-          created: new Date(),
-          _shared: [],
-          _isShared: false,
-          owner: { userId: "", displayName: "" },
-        };
-
+      if (resVideo != null) {
         onSuccess?.([resVideo]);
         setSaving(false);
         setSaved(true);
         return [resVideo];
-      } else if (uploadResponse.state === "error") {
-        onError("Error while uploading video");
       } else {
-        console.info("Video encoding is still running");
+        onError("Error while uploading video");
+        setSaving(false);
+        setSaved(true);
       }
-      setSaving(false);
-      setSaved(true);
     };
 
     const handleEnded = () => {

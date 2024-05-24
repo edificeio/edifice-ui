@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { WorkspaceElement, WorkspaceVisibility } from "edifice-ts-client";
 
 import { useDropzoneContext } from "../../components/Dropzone/DropzoneContext";
-import { Status } from "../../types";
+import { useUpload } from "../useUpload";
 import { useWorkspaceFile } from "../useWorkspaceFile";
 
 const useUploadFiles = ({
@@ -16,58 +16,47 @@ const useUploadFiles = ({
   application?: string;
 }) => {
   const [uploadedFiles, setUploadedFiles] = useState<WorkspaceElement[]>([]);
-  const [status, setStatus] = useState<Record<string, Status>>({});
   const [editingImage, setEditingImage] = useState<
     WorkspaceElement | undefined
   >(undefined);
 
   const { files, deleteFile } = useDropzoneContext();
-  const { create, remove, createOrUpdate } = useWorkspaceFile();
+  const { remove, createOrUpdate } = useWorkspaceFile();
+  const { getUploadStatus, clearUploadStatus, uploadFile } = useUpload(
+    visibility,
+    application,
+  );
 
   useEffect(() => {
-    if (files.length > 0) {
-      files.forEach((file) => {
-        if (status[file.name] === "success") return;
+    const MAX_UPLOADS_AT_ONCE = 5;
+    let numUploads = 0;
 
-        (async () => {
-          await uploadFile(file);
-        })();
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [files]);
+    files.forEach((file) => {
+      const status = getUploadStatus(file);
+      /* Do not upload :
+         * the same file twice.
+           To upload it again, reset its previous status first.
+         * more than 5 files at once.
+      */
+      if (status || numUploads >= MAX_UPLOADS_AT_ONCE) return;
+
+      (async () => {
+        numUploads++;
+        const resource = await uploadFile(file);
+        if (resource != null) {
+          setUploadedFiles((prevFiles: WorkspaceElement[]) => [
+            ...prevFiles,
+            resource,
+          ]);
+        }
+      })();
+    });
+  }, [files, getUploadStatus, uploadFile]);
 
   useEffect(() => {
     handleOnChange(uploadedFiles);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadedFiles]);
-
-  async function uploadFile(file: File) {
-    setStatus((prevStatus) => ({
-      ...prevStatus,
-      [file.name]: "loading",
-    }));
-
-    try {
-      const resource = await create(file, { application, visibility });
-
-      setStatus((prevStatus) => ({
-        ...prevStatus,
-        [resource.name]: "success",
-      }));
-
-      setUploadedFiles((prevFiles: WorkspaceElement[]) => [
-        ...prevFiles,
-        resource,
-      ]);
-    } catch (error) {
-      //console.error(error);
-      setStatus((prevStatus) => ({
-        ...prevStatus,
-        [file.name]: "error",
-      }));
-    }
-  }
 
   async function removeFile(file: File) {
     const resource = uploadedFiles.find(
@@ -77,12 +66,7 @@ const useUploadFiles = ({
     if (resource) {
       await remove(resource);
 
-      setStatus((prevStatus) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { [resource.name]: removedStatus, ...rest } = prevStatus;
-
-        return rest;
-      });
+      clearUploadStatus(file);
 
       setUploadedFiles((prevFiles: WorkspaceElement[]) => {
         return prevFiles.filter((prevFile) => prevFile.name !== resource?.name);
@@ -125,8 +109,10 @@ const useUploadFiles = ({
       : "";
   }
   return {
+    /** List of dragged'n'dropped files */
     files,
-    status,
+    getUploadStatus,
+    clearUploadStatus,
     uploadedFiles,
     editingImage,
     setEditingImage,
