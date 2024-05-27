@@ -21,6 +21,8 @@ export default function useZendeskGuide() {
 
   const { theme } = useOdeTheme();
 
+  const isMobileView = window.innerWidth <= 768;
+
   const hasSupportWorkflow = useHasWorkflow(
     "net.atos.entng.support.controllers.DisplayController|view",
   );
@@ -67,6 +69,13 @@ export default function useZendeskGuide() {
       }
     } else if (dataModule?.default && String(dataModule?.default).length > 0) {
       labels = dataModule?.default;
+    }
+
+    // Exception for the collaborative wall
+    if (labels === "collaborativewall") {
+      if (isMobileView && modulePathnameSplit.includes("id")) {
+        (window as any).zE("webWidget", "hide");
+      }
     }
 
     // Check if label has tag ${adml} and replace it with the user role
@@ -151,10 +160,12 @@ export default function useZendeskGuide() {
             setDataModule(zendeskGuideConfig.module);
           }
 
+          (window as any).zE("webWidget", "show");
+
           (window as any).zE("webWidget", "updateSettings", {
             webWidget: {
               color: { theme: zendeskGuideConfig.color || "#ffc400" },
-              zIndex: 2,
+              zIndex: 4,
               launcher: {
                 mobile: {
                   labelVisible: true,
@@ -222,6 +233,11 @@ export default function useZendeskGuide() {
               }
             },
           );
+
+          const element = document.querySelector("#myLauncher");
+          if (element) {
+            element.style.zIndex = "2";
+          }
         };
       }
     })();
