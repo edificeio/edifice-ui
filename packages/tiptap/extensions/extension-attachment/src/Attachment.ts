@@ -64,9 +64,10 @@ export const Attachment = Node.create<AttachmentOptions>({
             const link = links[i];
             const href = link.getAttribute("href");
             const name = link.textContent;
+            const regexResult = href.match(/([^/]+$)/);
             const documentId =
               link.getAttribute("data-document-id") ||
-              href.match(/([^/]+$)/)[0];
+              (regexResult && regexResult[0]);
             const dataContentType = link.getAttribute("data-content-type");
 
             parsedLinks.push({
