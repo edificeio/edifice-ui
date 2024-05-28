@@ -438,8 +438,8 @@ importers:
         specifier: 7.23.3
         version: 7.23.3(@babel/core@7.24.5)
       "@edifice-ui/icons":
-        specifier: ^1.5.4-develop.18
-        version: 1.5.4(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^1.5.4
+        version: link:../icons
       "@react-spring/web":
         specifier: 9.7.3
         version: 9.7.3(react-dom@18.2.0)(react@18.2.0)
@@ -2897,19 +2897,6 @@ packages:
         integrity: sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==,
       }
     engines: { node: ">=10.0.0" }
-    dev: true
-
-  /@edifice-ui/icons@1.5.4(react-dom@18.2.0)(react@18.2.0):
-    resolution:
-      {
-        integrity: sha512-0sRQlLgSIDmT6Ps1J1btH8YekMd3/Jw8v+x1tpdklDhKrPnhITJQYmIwzV/Y7IYoO0eTZWmy0YXjdS3ZNg+0Tg==,
-      }
-    peerDependencies:
-      react: 18.2.0
-      react-dom: 18.2.0
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
     dev: true
 
   /@emotion/use-insertion-effect-with-fallbacks@1.0.1(react@18.2.0):
