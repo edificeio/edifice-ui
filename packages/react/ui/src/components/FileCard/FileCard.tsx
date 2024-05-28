@@ -1,15 +1,17 @@
-import { Mic, Landscape, Video, TextPage } from "@edifice-ui/icons";
+import { useRef } from "react";
+
+import { Landscape, Mic, TextPage, Video } from "@edifice-ui/icons";
 import clsx from "clsx";
 import {
-  WorkspaceElement,
-  odeServices,
   DocumentHelper,
   Role,
+  WorkspaceElement,
+  odeServices,
 } from "edifice-ts-client";
 
-import FileIcon from "./FileIcon";
 import { useThumbnail } from "../../hooks/useThumbnail";
 import Card, { CardProps } from "../Card/Card";
+import FileIcon from "./FileIcon";
 
 export interface FileCardProps extends CardProps {
   /**
@@ -26,6 +28,8 @@ const FileCard = ({
   onClick,
   className,
 }: FileCardProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+
   const type = DocumentHelper.getRole(doc);
 
   function getRoleMap(type: Role | "unknown") {
@@ -93,7 +97,7 @@ const FileCard = ({
       ? odeServices.workspace().getThumbnailUrl(doc)
       : null;
 
-  const hasThumbnail = useThumbnail(mediaSrc!);
+  const hasThumbnail = useThumbnail(mediaSrc!, { ref });
 
   const imageStyles = hasThumbnail && {
     backgroundImage: `url(${mediaSrc})`,
@@ -110,6 +114,7 @@ const FileCard = ({
     >
       <Card.Body space="8">
         <div
+          ref={ref}
           className={file}
           style={{
             aspectRatio: "16/10",
