@@ -24,7 +24,7 @@ export default function useThumbnail(src: string, options?: LazyLoadOptions) {
     ...options?.intersectionOptions,
   });
 
-  // This `useCallback` is required to share the ref node with useInView() above
+  // This `useEffect` is required to share the ref node with useInView() above
   useEffect(() => {
     // Callback refs, like the one from `useInView`, is a function that takes the node as an argument
     options?.ref?.current && inViewRef?.(options.ref.current);
