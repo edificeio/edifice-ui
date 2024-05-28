@@ -69,19 +69,32 @@ export const CustomImage = Image.extend<CustomImageOptions>({
         parseHTML: (element) => element.getAttribute("title"),
       },
       width: {
-        default: "350",
         renderHTML: (attributes) => {
-          return {
-            width: parseInt(attributes.width),
-          };
+          if (
+            attributes.width !== null &&
+            attributes.width !== undefined &&
+            !Number.isNaN(attributes.width)
+          ) {
+            return {
+              width: parseInt(attributes.width),
+            };
+          }
+          return {};
         },
         parseHTML: (element) => element.getAttribute("width"),
       },
       height: {
         renderHTML: (attributes) => {
-          return {
-            height: parseInt(attributes.height),
-          };
+          if (
+            attributes.height !== null &&
+            attributes.height !== undefined &&
+            !Number.isNaN(attributes.height)
+          ) {
+            return {
+              height: parseInt(attributes.height),
+            };
+          }
+          return {};
         },
         parseHTML: (element) => element.getAttribute("height"),
       },
@@ -114,6 +127,9 @@ export const CustomImage = Image.extend<CustomImageOptions>({
             if (el.parentElement.style?.width) {
               attr["width"] = el.parentElement.style.width;
             }
+          }
+          if (el.style?.width) {
+            attr["width"] = el.style.width;
           }
 
           // Check old content smiley
