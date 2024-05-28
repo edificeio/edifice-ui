@@ -1,22 +1,22 @@
 import {
+  Ref,
   forwardRef,
+  useCallback,
+  useEffect,
   useImperativeHandle,
   useMemo,
   useRef,
-  Ref,
   useState,
-  useEffect,
-  useCallback,
 } from "react";
 
 import {
   Applications,
-  Globe,
+  Code,
   Folder,
+  Globe,
   Mic,
   RecordVideo,
   Smartphone,
-  Code,
 } from "@edifice-ui/icons";
 import {
   WorkspaceElement,
@@ -157,9 +157,9 @@ export interface MediaLibraryProps {
   appCode: string;
 
   /**
-   * Visibility of the uploaded files
+   * Visibility of the uploaded files "protected" | "public" | "external".
    */
-  visibility?: WorkspaceVisibility;
+  visibility: WorkspaceVisibility;
 
   multiple?: boolean;
   /**
