@@ -18,6 +18,7 @@ import {
   EmptyScreen,
   FileCard,
   Grid,
+  LoadingScreen,
   SearchBar,
   TreeNode,
   TreeView,
@@ -102,8 +103,7 @@ const Workspace = ({
     () => {
       // Determine which root folder to load at first.
       if ("public" === defaultFolder) {
-        if (showPublicFolder) return defaultFolder;
-        return "protected";
+        return showPublicFolder ? defaultFolder : "protected";
       }
       if ("protected" === defaultFolder || "shared" === defaultFolder)
         return defaultFolder;
@@ -111,9 +111,17 @@ const Workspace = ({
     },
   );
 
-  const [currentNode, setCurrentNode] = useState<FolderNode>(ownerRoot);
+  const [currentNode, setCurrentNode] = useState<FolderNode>(() => {
+    // Determine which root folder to load at first.
+    if ("public" === defaultFolder) {
+      return showPublicFolder ? publicRoot : protectRoot;
+    }
+    if ("protected" === defaultFolder) return protectRoot;
+    if ("shared" === defaultFolder) return sharedRoot;
+    return ownerRoot;
+  });
 
-  const [documents, setDocuments] = useState<WorkspaceElement[]>([]);
+  const [documents, setDocuments] = useState<WorkspaceElement[] | undefined>();
 
   const [searchTerm, setSearchTerm] = useState<string | undefined>(null!);
 
@@ -166,31 +174,24 @@ const Workspace = ({
    * Load current node children (folders and files)
    */
   const loadContent = useCallback(() => {
-    // Try to avoid loading twice
-    if (
-      typeof currentNode.children === "undefined" ||
-      !currentNode.children.length
-    ) {
-      switch (currentFilter) {
-        case "owner":
-          loadOwnerDocs(currentNode.id);
-          break;
-        case "shared":
-          loadSharedDocs(currentNode.id);
-          break;
-        case "protected":
-          loadProtectedDocs(currentNode.id);
-          break;
-        case "public":
-          loadPublicDocs(currentNode.id);
-          break;
-        default:
-          throw "no.way";
-      }
+    switch (currentFilter) {
+      case "owner":
+        loadOwnerDocs(currentNode.id);
+        break;
+      case "shared":
+        loadSharedDocs(currentNode.id);
+        break;
+      case "protected":
+        loadProtectedDocs(currentNode.id);
+        break;
+      case "public":
+        loadPublicDocs(currentNode.id);
+        break;
+      default:
+        throw "no.way";
     }
   }, [
     currentFilter,
-    currentNode.children,
     currentNode.id,
     loadOwnerDocs,
     loadProtectedDocs,
@@ -213,6 +214,7 @@ const Workspace = ({
   }
 
   function selectAndLoadContent(filter: WorkspaceSearchFilter, nodeId: string) {
+    // Apply filters and nodeId, and send a command to the node's Tree
     setCurrentFilter(filter);
     const { root, othersRef } = rootNodeFor(filter);
     const targetNode = find(root, (node) => node.id === nodeId);
@@ -251,20 +253,24 @@ const Workspace = ({
 
   /** Display documents when currentNode or searchTerm or sortOrder changes */
   useEffect(() => {
-    let list = ([] as WorkspaceElement[]).concat(currentNode.files || []);
-    // Apply search terms
-    if (searchTerm) {
-      list = list.filter((f) => f.name.indexOf(searchTerm) >= 0);
-    }
-    // Apply sort order
-    const sortFunction: (a: any, b: any) => number =
-      sortOrder[0] === "name"
-        ? sortOrder[1] === "asc"
-          ? (a, b) => compare(a.name, b.name)
-          : (a, b) => compare(b.name, a.name)
-        : (a, b) => compare(b.modified, a.modified);
+    if (currentNode.files) {
+      let list = ([] as WorkspaceElement[]).concat(currentNode.files);
+      // Apply search terms
+      if (searchTerm) {
+        list = list.filter((f) => f.name.indexOf(searchTerm) >= 0);
+      }
+      // Apply sort order
+      const sortFunction: (a: any, b: any) => number =
+        sortOrder[0] === "name"
+          ? sortOrder[1] === "asc"
+            ? (a, b) => compare(a.name, b.name)
+            : (a, b) => compare(b.name, a.name)
+          : (a, b) => compare(b.modified, a.modified);
 
-    setDocuments(() => list.sort(sortFunction));
+      setDocuments(() => list.sort(sortFunction));
+    } else {
+      setDocuments(undefined);
+    }
   }, [
     currentNode,
     ownerRoot,
@@ -274,10 +280,6 @@ const Workspace = ({
     searchTerm,
     sortOrder,
   ]);
-
-  /** Load initial content, once */
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => selectAndLoadContent(currentFilter, "root"), []);
 
   const handleSearchChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -410,7 +412,9 @@ const Workspace = ({
             </div>
           </Grid.Col>
           <Grid.Col sm="4" md="8" xl="12" className="p-8 gap-8">
-            {documents.length !== 0 ? (
+            {!documents ? (
+              <LoadingScreen />
+            ) : documents.length !== 0 ? (
               <div className="grid grid-workspace">
                 {documents.map((doc) => {
                   const isSelected = selectedDocuments.includes(doc);
