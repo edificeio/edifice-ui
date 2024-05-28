@@ -1,6 +1,6 @@
 {
   "name": "@edifice-tiptap-extensions/extension-abbr",
-  "version": "1.5.4-develop-b2school.21",
+  "version": "1.5.4-develop-b2school.26",
   "description": "Rich Text Editor Abbr Extension",
   "type": "module",
   "exports": {

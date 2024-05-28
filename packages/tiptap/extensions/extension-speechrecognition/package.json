@@ -1,6 +1,6 @@
 {
   "name": "@edifice-tiptap-extensions/extension-speechrecognition",
-  "version": "1.5.4-develop-b2school.21",
+  "version": "1.5.4-develop-b2school.26",
   "description": "Rich Text Editor Speech Recognition Extension",
   "type": "module",
   "exports": {

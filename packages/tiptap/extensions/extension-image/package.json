@@ -1,6 +1,6 @@
 {
   "name": "@edifice-tiptap-extensions/extension-image",
-  "version": "1.5.4-develop-b2school.24",
+  "version": "1.5.4-develop-b2school.26",
   "description": "Rich Text Editor Attachment Extension",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
