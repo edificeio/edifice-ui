@@ -69,6 +69,7 @@ export const CustomImage = Image.extend<CustomImageOptions>({
         parseHTML: (element) => element.getAttribute("title"),
       },
       width: {
+        default: "350",
         renderHTML: (attributes) => {
           if (
             attributes.width !== null &&
