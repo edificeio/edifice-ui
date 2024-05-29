@@ -2,7 +2,6 @@
   $toolbar-shadow-width: 16px;
   $toolbar-shadow-color: #fff;
 
-  &::before,
   &::after {
     content: "";
     display: block;
@@ -11,15 +10,6 @@
     top: 0.7rem;
     width: $toolbar-shadow-width;
     height: 40px;
-  }
-
-  &::before {
-    left: 0;
-    background: linear-gradient(
-      to right,
-      $toolbar-shadow-color,
-      rgba($toolbar-shadow-color, 0.4)
-    );
   }
 
   &::after {
