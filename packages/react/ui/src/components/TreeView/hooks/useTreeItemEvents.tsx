@@ -67,5 +67,6 @@ export default function useTreeItemEvents(
     handleItemFoldUnfoldKeyDown,
     handleItemFocus,
     handleItemBlur,
+    itemFoldUnfold,
   };
 }

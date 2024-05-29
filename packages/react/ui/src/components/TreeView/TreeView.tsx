@@ -6,8 +6,8 @@ import {
   useState,
 } from "react";
 
-import TreeItem from "./TreeItem";
 import { TreeNode } from "./TreeNode";
+import TreeNodeComponent from "./TreeNodeComponent";
 
 export interface TreeViewHandlers {
   unselectAll: () => void;
@@ -24,6 +24,14 @@ export interface TreeViewProps {
    * Node ID used for navigation folders
    */
   selectedNodesIds?: string[];
+
+  /**
+   * Sate element who is drag
+   */
+  elementDragOver?: {
+    isOver: boolean;
+    overId: string | undefined;
+  };
 
   /**
    * Callback function to provide selected item to parent component
@@ -65,6 +73,7 @@ const TreeView = forwardRef<TreeViewHandlers, TreeViewProps>(
       onTreeItemFocus,
       onTreeItemBlur,
       selectedNodesIds,
+      elementDragOver,
     } = props;
 
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
@@ -108,27 +117,21 @@ const TreeView = forwardRef<TreeViewHandlers, TreeViewProps>(
       onTreeItemBlur?.(nodeId);
     };
 
-    const renderTree = (node: TreeNode) => (
-      <TreeItem
-        key={node.id}
-        nodeId={node.id}
-        label={node.name}
-        section={node.section}
-        selectedNodesIds={selectedNodesIds}
-        selected={selectedItem === node.id}
-        onItemSelect={handlers.select}
-        onItemFold={handleItemFold}
-        onItemUnfold={handleItemUnfold}
-        onItemFocus={handleItemFocus}
-        onItemBlur={handleItemBlur}
-      >
-        {Array.isArray(node.children)
-          ? node.children.map((item) => renderTree(item))
-          : null}
-      </TreeItem>
+    return (
+      <div className="treeview">
+        <TreeNodeComponent
+          node={data}
+          handlers={handlers}
+          selectedItem={selectedItem}
+          selectedNodesIds={selectedNodesIds}
+          handleItemFold={handleItemFold}
+          handleItemUnfold={handleItemUnfold}
+          handleItemFocus={handleItemFocus}
+          handleItemBlur={handleItemBlur}
+          elementDragOver={elementDragOver}
+        />
+      </div>
     );
-
-    return <div className="treeview">{renderTree(data)}</div>;
   },
 );
 

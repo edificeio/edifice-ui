@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import { useDroppable } from "@dnd-kit/core";
 import { Folder, RafterRight, RafterDown } from "@edifice-ui/icons";
 import { useTranslation } from "react-i18next";
 
@@ -60,6 +61,14 @@ export interface TreeItemProps {
    * Callback function to provide blured item to parent component (TreeView)
    */
   onItemBlur?: Function;
+
+  /**
+   * Sate element who is drag
+   */
+  elementDragOver?: {
+    isOver: boolean;
+    overId: string | undefined;
+  };
 }
 
 const TreeItem = (props: TreeItemProps) => {
@@ -75,6 +84,7 @@ const TreeItem = (props: TreeItemProps) => {
     onItemFocus,
     onItemBlur,
     selectedNodesIds,
+    elementDragOver,
   } = props;
 
   const { t } = useTranslation();
@@ -87,6 +97,7 @@ const TreeItem = (props: TreeItemProps) => {
     handleItemFoldUnfoldKeyDown,
     handleItemFocus,
     handleItemBlur,
+    itemFoldUnfold,
   } = useTreeItemEvents(
     nodeId,
     label,
@@ -98,6 +109,15 @@ const TreeItem = (props: TreeItemProps) => {
     onItemFocus,
     onItemBlur,
   );
+
+  const { setNodeRef } = useDroppable({
+    id: nodeId,
+    data: {
+      accepts: ["folder", "resource"],
+    },
+  });
+
+  const isFocus = elementDragOver?.overId === nodeId;
 
   useEffect(() => {
     if (selectedNodesIds?.length && selectedNodesIds?.length >= 1) {
@@ -117,6 +137,13 @@ const TreeItem = (props: TreeItemProps) => {
     }
   }, [nodeId, selectedNodesIds]);
 
+  useEffect(() => {
+    if (elementDragOver?.overId === nodeId) {
+      itemFoldUnfold();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [elementDragOver]);
+
   const rafterSize = section ? 16 : 12;
 
   const renderItem = () => (
@@ -128,8 +155,12 @@ const TreeItem = (props: TreeItemProps) => {
       aria-expanded={expanded}
     >
       <div>
-        <div className="action-container d-flex align-items-center gap-8 px-2">
+        <div
+          className="action-container d-flex align-items-center gap-8 px-2"
+          style={{ border: isFocus ? "black 1px solid" : "" }}
+        >
           <div
+            ref={setNodeRef}
             className={`py-8 ${!Array.isArray(children) ? "invisible" : null}`}
             tabIndex={0}
             role="button"
