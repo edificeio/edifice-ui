@@ -137,7 +137,7 @@ const TreeItem = (props: TreeItemProps) => {
             onKeyDown={handleItemFoldUnfoldKeyDown}
             aria-label={t("foldUnfold")}
           >
-            {Array.isArray(children) && !expanded && (
+            {Array.isArray(children) && !!children.length && !expanded && (
               <RafterRight
                 title={t("foldUnfold")}
                 width={rafterSize}
@@ -145,7 +145,7 @@ const TreeItem = (props: TreeItemProps) => {
               />
             )}
 
-            {Array.isArray(children) && expanded && (
+            {Array.isArray(children) && !!children.length && expanded && (
               <RafterDown
                 title={t("foldUnfold")}
                 width={rafterSize}
