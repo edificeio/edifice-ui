@@ -11,6 +11,7 @@ export * from "./useIsAdml";
 export * from "./useLibraryUrl";
 export * from "./useOdeIcons";
 export * from "./usePaths";
+export * from "./useReactionIcons";
 export * from "./useResourceSearch";
 export * from "./useSession";
 export * from "./useTrashedResource";
