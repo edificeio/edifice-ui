@@ -97,7 +97,7 @@ const TreeItem = (props: TreeItemProps) => {
     handleItemFoldUnfoldKeyDown,
     handleItemFocus,
     handleItemBlur,
-    itemFoldUnfold,
+    itemFoldDrag,
   } = useTreeItemEvents(
     nodeId,
     label,
@@ -139,7 +139,7 @@ const TreeItem = (props: TreeItemProps) => {
 
   useEffect(() => {
     if (elementDragOver?.overId === nodeId) {
-      itemFoldUnfold();
+      itemFoldDrag();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [elementDragOver]);
@@ -156,8 +156,9 @@ const TreeItem = (props: TreeItemProps) => {
     >
       <div>
         <div
-          className="action-container d-flex align-items-center gap-8 px-2"
-          style={{ border: isFocus ? "black 1px solid" : "" }}
+          className={`action-container d-flex align-items-center gap-8 px-2 ${
+            isFocus ? "drag-focus" : ""
+          }`}
         >
           <div
             ref={setNodeRef}

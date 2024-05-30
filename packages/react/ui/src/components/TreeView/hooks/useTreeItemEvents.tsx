@@ -30,6 +30,11 @@ export default function useTreeItemEvents(
     expanded ? onItemFold?.(nodeId) : onItemUnfold?.(nodeId);
   };
 
+  const itemFoldDrag = () => {
+    setExpanded(true);
+    onItemFold?.(nodeId);
+  };
+
   const handleItemFoldUnfoldClick = (
     event: React.MouseEvent<HTMLDivElement>,
   ) => {
@@ -68,5 +73,6 @@ export default function useTreeItemEvents(
     handleItemFocus,
     handleItemBlur,
     itemFoldUnfold,
+    itemFoldDrag,
   };
 }

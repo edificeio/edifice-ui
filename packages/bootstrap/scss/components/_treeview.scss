@@ -21,6 +21,13 @@ $selected-background-color: var(--#{$prefix}blue-200);
     }
   }
 
+  .drag-focus {
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--#{$prefix}secondary);
+    border-radius: $border-radius;
+  }
+
   [role="tree"] {
     max-width: 400px;
     overflow-y: auto;
