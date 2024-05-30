@@ -10,10 +10,16 @@ import {
 } from "@edifice-ui/icons/reactions";
 
 import { Reaction } from "../../types";
+import { Smiley } from "@edifice-ui/icons";
 
 export default function useReactionIcons() {
-  const getReactionIcon = (reactionType: Reaction, circle?: boolean) => {
+  const getReactionIcon = (
+    reactionType?: Reaction | null,
+    circle?: boolean,
+  ) => {
     switch (reactionType) {
+      case undefined || null:
+        return <Smiley />;
       case "REACTION_1":
         return circle ? <Reaction1Circle /> : <Reaction1 />;
       case "REACTION_2":
@@ -26,20 +32,20 @@ export default function useReactionIcons() {
         return <></>;
     }
   };
-  const getReactionTitle = (reactionType: Reaction) => {
+  const getReactionLabel = (reactionType?: Reaction | null) => {
     switch (reactionType) {
       case "REACTION_1":
-        return "";
+        return "REACTION_1";
       case "REACTION_2":
-        return "";
+        return "REACTION_2";
       case "REACTION_3":
-        return "";
+        return "REACTION_3";
       case "REACTION_4":
-        return "";
+        return "REACTION_4";
       default:
-        return "";
+        return "réaction";
     }
   };
 
-  return { getReactionIcon, getReactionTitle };
+  return { getReactionIcon, getReactionLabel };
 }

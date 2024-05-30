@@ -1,0 +1,7 @@
+@use "../abstracts/colors" as *;
+
+.reaction-summary {
+  .reaction-type {
+    margin-left: -#{$spacer-8};
+  }
+}
