@@ -1,2 +1,2 @@
-export { default as ReactionSummaryWidget } from "./ReactionSummaryWidget";
-export * from "./ReactionSummaryWidget";
+export { default as ReactionSummary } from "./ReactionSummary";
+export * from "./ReactionSummary";

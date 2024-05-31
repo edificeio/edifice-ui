@@ -34,22 +34,29 @@ export type DropdownMenuOptions = Item | Divider;
 
 export interface DropdownMenuProps extends ComponentPropsWithRef<"div"> {
   children: ReactNode;
+  /** Use whole width ? */
   block?: boolean;
+  /** Do not apply the default CSS classes in addition to those in the className prop ? */
+  unstyled?: boolean;
 }
 
 const DropdownMenu = forwardRef(
   (
-    { children, block, ...restProps }: DropdownMenuProps,
+    { children, block, unstyled, ...restProps }: DropdownMenuProps,
     forwardRef: Ref<HTMLDivElement>,
   ) => {
     const { menuProps, visible } = useDropdownContext();
-    const { className, ...restMenuProps } = menuProps;
 
-    const mergedProps = { ...restMenuProps, ...restProps };
-    const dropdownMenu = clsx({ "w-100": block }, className);
+    const className = clsx(
+      { "w-100": block, "bg-white shadow rounded-4 p-8": !unstyled },
+      menuProps.className,
+      restProps.className,
+    );
+
+    const mergedProps = { ...menuProps, ...restProps, className };
 
     return visible ? (
-      <div ref={forwardRef} className={dropdownMenu} {...mergedProps}>
+      <div ref={forwardRef} {...mergedProps}>
         {children}
       </div>
     ) : null;

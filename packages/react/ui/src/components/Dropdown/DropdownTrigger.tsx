@@ -54,7 +54,7 @@ const DropdownTrigger = forwardRef(
   ) => {
     const { triggerProps, block } = useDropdownContext();
 
-    const dropdownTrigger = clsx(
+    const className = clsx(
       "dropdown-toggle ",
       size,
       variant,
@@ -66,7 +66,7 @@ const DropdownTrigger = forwardRef(
     const mergedProps = {
       ...triggerProps,
       ...restProps,
-      className: dropdownTrigger,
+      className,
     };
 
     return (

@@ -1,33 +1,33 @@
 import {
-  Reaction1,
-  Reaction1Circle,
-  Reaction2,
-  Reaction2Circle,
-  Reaction3,
-  Reaction3Circle,
-  Reaction4,
-  Reaction4Circle,
+  Congrats,
+  CongratsCounter,
+  Great,
+  GreatCounter,
+  InsterestingCounter,
+  Interesting,
+  Thanks,
+  ThanksCounter,
 } from "@edifice-ui/icons/reactions";
 
 import { Reaction } from "../../types";
-import { Smiley } from "@edifice-ui/icons";
+import { Reaction as ReactionIcon } from "@edifice-ui/icons";
 
 export default function useReactionIcons() {
   const getReactionIcon = (
     reactionType?: Reaction | null,
-    circle?: boolean,
+    rounded?: boolean,
   ) => {
     switch (reactionType) {
       case undefined || null:
-        return <Smiley />;
+        return <ReactionIcon />;
       case "REACTION_1":
-        return circle ? <Reaction1Circle /> : <Reaction1 />;
+        return rounded ? <ThanksCounter /> : <Thanks />;
       case "REACTION_2":
-        return circle ? <Reaction2Circle /> : <Reaction2 />;
+        return rounded ? <GreatCounter /> : <Great />;
       case "REACTION_3":
-        return circle ? <Reaction3Circle /> : <Reaction3 />;
+        return rounded ? <CongratsCounter /> : <Congrats />;
       case "REACTION_4":
-        return circle ? <Reaction4Circle /> : <Reaction4 />;
+        return rounded ? <InsterestingCounter /> : <Interesting />;
       default:
         return <></>;
     }
@@ -35,15 +35,15 @@ export default function useReactionIcons() {
   const getReactionLabel = (reactionType?: Reaction | null) => {
     switch (reactionType) {
       case "REACTION_1":
-        return "REACTION_1";
+        return "Merci";
       case "REACTION_2":
-        return "REACTION_2";
+        return "Génial";
       case "REACTION_3":
-        return "REACTION_3";
+        return "Bravo";
       case "REACTION_4":
-        return "REACTION_4";
+        return "Instructif";
       default:
-        return "réaction";
+        return "Réagir";
     }
   };
 

@@ -1,28 +1,28 @@
 import { RefAttributes } from "react";
 import { useReactionIcons } from "../../core";
-import { Reaction, ReactionSummary } from "../../types/Reaction";
-import { Button, IconButtonProps } from "../Button";
+import { Reaction, ReactionSummaryData } from "../../types/Reaction";
+import { Button, IconButton, IconButtonProps } from "../Button";
 import { Dropdown } from "../Dropdown";
 
-export interface ReactionSummaryWidgetProps {
+export interface ReactionSummaryProps {
   availableReactions: Reaction[];
-  summary: ReactionSummary;
+  summary: ReactionSummaryData;
 }
 
-const ReactionSummaryWidget = ({
+const ReactionSummary = ({
   availableReactions,
   summary,
-}: ReactionSummaryWidgetProps) => {
+}: ReactionSummaryProps) => {
   const { totalReactionsCounter, reactionTypes, userReaction } = summary;
 
   const { getReactionIcon, getReactionLabel } = useReactionIcons();
 
   return (
-    <>
-      <div className="reaction-summary d-flex">
+    <div className="reaction-summary">
+      <div className="d-flex">
         <div className="text-gray-700 me-16">{totalReactionsCounter}</div>
         {reactionTypes?.map((reactionType) => (
-          <div className="reaction-type" style={{ "margin-left": "-8px" }}>
+          <div className="reaction-overlap">
             {getReactionIcon(reactionType, true)}
           </div>
         ))}
@@ -41,21 +41,23 @@ const ReactionSummaryWidget = ({
                 variant="ghost"
                 size="sm"
                 leftIcon={getReactionIcon(userReaction)}
-                className="ps-4 pe-8 reaction-type fw-normal"
-                style={{ "margin-left": "-8px" }}
+                className="ps-4 pe-8 reaction-overlap"
               >
                 {getReactionLabel(userReaction)}
               </Button>
 
-              <Dropdown.Menu>
-                <div className="d-flex gap-8 align-items-center justify-content-between p-4 p-relative">
+              <Dropdown.Menu
+                unstyled={true}
+                className="bg-white shadow rounded-8 overflow-visible"
+              >
+                <div className="d-flex align-items-center justify-content-between">
                   {availableReactions?.map((reactionType) => (
-                    <div
-                      className="reaction-available"
+                    <IconButton
+                      className="reaction-available m-4"
+                      variant="ghost"
                       title={getReactionLabel(reactionType)}
-                    >
-                      {getReactionIcon(reactionType)}
-                    </div>
+                      icon={getReactionIcon(reactionType)}
+                    />
                   ))}
                 </div>
               </Dropdown.Menu>
@@ -63,10 +65,10 @@ const ReactionSummaryWidget = ({
           )}
         </Dropdown>
       </div>
-    </>
+    </div>
   );
 };
 
-ReactionSummaryWidget.displayName = "ReactionWidget";
+ReactionSummary.displayName = "ReactionSummary";
 
-export default ReactionSummaryWidget;
+export default ReactionSummary;

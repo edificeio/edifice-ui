@@ -1,13 +1,11 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import ReactionSummaryWidget, {
-  ReactionSummaryWidgetProps,
-} from "./ReactionSummaryWidget";
+import ReactionSummary, { ReactionSummaryProps } from "./ReactionSummary";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-const meta: Meta<typeof ReactionSummaryWidget> = {
+const meta: Meta<typeof ReactionSummary> = {
   title: "Widgets/Reaction summary",
-  component: ReactionSummaryWidget,
+  component: ReactionSummary,
   args: {
     availableReactions: ["REACTION_2", "REACTION_3", "REACTION_4"],
     summary: {
@@ -20,10 +18,10 @@ const meta: Meta<typeof ReactionSummaryWidget> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof ReactionSummaryWidget>;
+type Story = StoryObj<typeof ReactionSummary>;
 
 export const Base: Story = {
-  render: (args: ReactionSummaryWidgetProps) => {
-    return <ReactionSummaryWidget {...args} />;
+  render: (args: ReactionSummaryProps) => {
+    return <ReactionSummary {...args} />;
   },
 };
