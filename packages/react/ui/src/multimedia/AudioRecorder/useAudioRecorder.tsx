@@ -368,14 +368,12 @@ export default function useAudioRecorder(
         rightChannel.length * BUFFER_SIZE,
       ]);
       encoderWorker.onmessage = (event: MessageEvent) => {
-        if (event.data instanceof Blob) {
-          const audioUrl = window.URL.createObjectURL(event.data);
-          if (audioRef.current) {
-            audioRef.current.src = audioUrl;
-          }
-          if (onUpdateRecord) {
-            onUpdateRecord(audioUrl);
-          }
+        const audioUrl = window.URL.createObjectURL(event.data);
+        if (audioRef.current) {
+          audioRef.current.src = audioUrl;
+        }
+        if (onUpdateRecord) {
+          onUpdateRecord(audioUrl);
         }
       };
     }
