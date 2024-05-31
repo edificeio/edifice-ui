@@ -33,6 +33,7 @@ type AudioReducerState = {
   micStream?: MediaStream;
   audioChunks: Blob[];
   recordedTime?: number;
+  recordingTime?: number;
 
   encoderWorker?: Worker;
 
@@ -65,6 +66,7 @@ export default function useAudioRecorder(
       audioChunks,
       maxDuration,
       recordedTime,
+      recordingTime,
       encoderWorker,
     },
     dispatch,
@@ -109,14 +111,27 @@ export default function useAudioRecorder(
       const timer = window.setInterval(
         // Compute exact elapsed time by diffing the start time.
         () =>
-          dispatch({ updatedState: { recordedTime: Date.now() - startedAt } }),
+          dispatch({
+            updatedState: {
+              recordingTime: Date.now() - startedAt,
+            },
+          }),
         500,
       );
-      return () => {
-        window.clearInterval(timer);
-      };
+      return () => window.clearInterval(timer);
     }
   }, [recordState, mediaRecorder?.state]);
+
+  useEffect(() => {
+    if (recordState === "PAUSED" && recordingTime) {
+      dispatch({
+        updatedState: {
+          recordedTime: (recordedTime || 0) + recordingTime,
+          recordingTime: 0,
+        },
+      });
+    }
+  }, [recordState, recordedTime, recordingTime]);
 
   /**
    * Close opened audio stream and clean channels
@@ -128,9 +143,12 @@ export default function useAudioRecorder(
 
   const handleRecord = useCallback(async () => {
     if (recordState === "PAUSED") {
-      dispatch({ updatedState: { recordState: "RECORDING" } });
+      dispatch({
+        updatedState: { recordState: "RECORDING", playState: "IDLE" },
+      });
       mediaRecorder?.resume();
       if (audioRef.current) {
+        audioRef.current.pause();
         audioRef.current.currentTime = 0;
       }
     } else {
@@ -166,7 +184,7 @@ export default function useAudioRecorder(
   }, [recordState, audioRef, micStream, audioChunks, mediaRecorder]);
 
   const handleRecordPause = useCallback(async () => {
-    dispatch({ updatedState: { recordState: "PAUSED" } });
+    dispatch({ updatedState: { recordState: "PAUSED", playState: "IDLE" } });
     mediaRecorder?.pause();
 
     const audioBlob = new Blob(audioChunks);
@@ -228,8 +246,12 @@ export default function useAudioRecorder(
         console.error("Audio name is required");
         return;
       }
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
 
-      dispatch({ updatedState: { recordState: "SAVING" } });
+      dispatch({ updatedState: { recordState: "SAVING", playState: "IDLE" } });
       const audioBuffer = await getAudioBufferFromChunk(audioChunks);
 
       return new Promise<WorkspaceElement | undefined>((resolve, reject) => {
@@ -427,8 +449,8 @@ export default function useAudioRecorder(
   return {
     recordState,
     playState,
-    recordtime: recordedTime,
-    maxDuration: maxDuration * 1000,
+    recordtime: (recordedTime || 0) + (recordingTime || 0),
+    maxDuration: maxDuration,
     audioRef,
     audioNameRef,
     toolbarItems,
