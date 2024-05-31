@@ -1,7 +1,21 @@
 @use "../abstracts/colors" as *;
 
 .reaction-summary {
-  .reaction-type {
+  .reaction-overlap {
     margin-left: -#{$spacer-8};
+  }
+
+  .btn.reaction-available {
+    svg {
+      transform: scale(1.6);
+    }
+
+    &:hover {
+      background-color: transparent;
+
+      svg {
+        animation: 0.3s ease-out 0s both zoomIn;
+      }
+    }
   }
 }
