@@ -18,8 +18,6 @@ export default function useReactionIcons() {
     rounded?: boolean,
   ) => {
     switch (reactionType) {
-      case undefined || null:
-        return <ReactionIcon />;
       case "REACTION_1":
         return rounded ? <ThanksCounter /> : <Thanks />;
       case "REACTION_2":
@@ -29,7 +27,7 @@ export default function useReactionIcons() {
       case "REACTION_4":
         return rounded ? <InsterestingCounter /> : <Interesting />;
       default:
-        return <></>;
+        return <ReactionIcon />;
     }
   };
   const getReactionLabel = (reactionType?: Reaction | null) => {
