@@ -2,7 +2,7 @@ import { useState, forwardRef, useImperativeHandle } from "react";
 
 import { Mic } from "@edifice-ui/icons";
 import clsx from "clsx";
-import { WorkspaceElement, WorkspaceVisibility } from "edifice-ts-client";
+import { WorkspaceElement } from "edifice-ts-client";
 import { useTranslation } from "react-i18next";
 
 import AudioRecorderTimer from "./AudioRecorderTimer";
@@ -13,7 +13,6 @@ export interface AudioRecorderProps {
   onSaveSuccess?: (resource: WorkspaceElement) => void;
   onRecordUpdated?: (recordURL?: string) => void;
   hideSaveAction?: boolean;
-  visibility?: WorkspaceVisibility;
 }
 
 export interface AudioRecorderRef {
@@ -26,7 +25,6 @@ const AudioRecorder = forwardRef(
       onSaveSuccess,
       onRecordUpdated,
       hideSaveAction = false,
-      visibility = "protected",
     }: AudioRecorderProps,
     ref,
   ) => {
@@ -40,13 +38,7 @@ const AudioRecorder = forwardRef(
       maxDuration,
       handlePlayEnded,
       handleSave,
-    } = useAudioRecorder(
-      onSaveSuccess,
-      onRecordUpdated,
-      hideSaveAction,
-      visibility,
-      "media-library",
-    );
+    } = useAudioRecorder(onSaveSuccess, onRecordUpdated, hideSaveAction);
     const { t } = useTranslation();
 
     // We add one methods to handle save action from parent component
