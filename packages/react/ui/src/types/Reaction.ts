@@ -6,7 +6,7 @@ export type Reaction =
   | "REACTION_4";
 
 /** Typing of a Reaction summary */
-export type ReactionSummary = {
+export type ReactionSummaryData = {
   reactionTypes?: Array<Reaction> | null;
   userReaction?: Reaction | null;
   totalReactionsCounter: number;
