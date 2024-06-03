@@ -29,6 +29,7 @@ export * from "./Logo";
 export * from "./Modal";
 export * from "./Popover";
 export * from "./Radio";
+export * from "./Reaction";
 export * from "./SearchBar";
 export * from "./Select";
 export * from "./Table";

@@ -1,6 +1,6 @@
 import { RefAttributes } from "react";
-import { useReactionIcons } from "../../core";
-import { Reaction, ReactionSummaryData } from "../../types/Reaction";
+import { default as useReactionIcons } from "./hook/useReactionIcons";
+import { Reaction, ReactionSummaryData } from "./ReactionTypes";
 import { Button, IconButton, IconButtonProps } from "../Button";
 import { Dropdown } from "../Dropdown";
 

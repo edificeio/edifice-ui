@@ -10,7 +10,7 @@ const meta: Meta<typeof ReactionSummary> = {
     availableReactions: ["REACTION_2", "REACTION_3", "REACTION_4"],
     summary: {
       reactionTypes: ["REACTION_2", "REACTION_4"],
-      userReaction: "REACTION_4",
+      userReaction: undefined,
       totalReactionsCounter: 3,
     },
   },

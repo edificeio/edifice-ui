@@ -9,8 +9,8 @@ import {
   ThanksCounter,
 } from "@edifice-ui/icons/audience";
 
-import { Reaction } from "../../types";
 import { Reaction as ReactionIcon } from "@edifice-ui/icons";
+import { Reaction } from ".";
 
 export default function useReactionIcons() {
   const getReactionIcon = (
