@@ -4,8 +4,10 @@ import {
   Disconnect,
   Home,
   MyApps,
+  NeoAssistance,
   NeoMessaging,
   NewRelease,
+  OneAssistance as Assistance,
   OneMessaging,
   OneProfile,
   Userbook,
@@ -13,22 +15,24 @@ import {
 import clsx from "clsx";
 import { useTranslation } from "react-i18next";
 
+import { Badge } from "./Badge";
+import { Navbar } from "./Navbar";
+import { NavBarNav } from "./NavbarNav";
+import { NavItem } from "./NavItem";
+import { NavLink } from "./NavLink";
+import { WidgetAppsBody, WidgetAppsFooter } from "./WidgetApps";
 import {
   Avatar,
+  VisuallyHidden,
   Logo,
   Popover,
   PopoverBody,
   PopoverFooter,
-  VisuallyHidden,
 } from "../../components";
-import { useConversation, useHeader, useOdeClient, useUser } from "../../core";
+import { useConversation, useUser, useHeader, useOdeClient } from "../../core";
+import { Help } from "../Help";
+import { useHelp } from "../Help/hooks/useHelp";
 import SearchEngine from "../SearchEngine/SearchEngine";
-import { Badge } from "./Badge";
-import { NavItem } from "./NavItem";
-import { NavLink } from "./NavLink";
-import { Navbar } from "./Navbar";
-import { NavBarNav } from "./NavbarNav";
-import { WidgetAppsBody, WidgetAppsFooter } from "./WidgetApps";
 
 export interface HeaderProps {
   is1d?: boolean;
@@ -39,7 +43,15 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
   const { t } = useTranslation();
   const { messages, msgLink, zimbraWorkflow } = useConversation();
   const { user, avatar } = useUser();
-  const { currentApp } = useOdeClient();
+  const { currentLanguage, currentApp } = useOdeClient();
+
+  const {
+    isModalOpen: isHelpOpen,
+    setIsModalOpen: setIsHelpOpen,
+    parsedContent,
+    parsedHeadline,
+    error,
+  } = useHelp();
 
   const classes = clsx("header", {
     "no-2d": is1d,
@@ -111,6 +123,27 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                     <OneProfile className="icon user" />
                   </NavLink>
                 </NavItem>
+                {currentLanguage === "fr" ? (
+                  <NavItem>
+                    <button
+                      className="nav-link"
+                      onClick={() => {
+                        setIsHelpOpen(true);
+                      }}
+                    >
+                      <Assistance className="icon help" />
+                      <VisuallyHidden>{t("navbar.help")}</VisuallyHidden>
+                    </button>
+
+                    <Help
+                      isHelpOpen={isHelpOpen}
+                      setIsHelpOpen={setIsHelpOpen}
+                      parsedContent={parsedContent}
+                      parsedHeadline={parsedHeadline}
+                      error={error}
+                    />
+                  </NavItem>
+                ) : null}
                 <NavItem>
                   <button className="nav-link" onClick={handleLogout}>
                     <Disconnect className="icon logout" />
@@ -246,6 +279,27 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                   </NavLink>
                 </NavItem>
               )}
+              {currentLanguage === "fr" ? (
+                <NavItem>
+                  <button
+                    className="nav-link btn btn-naked"
+                    onClick={() => {
+                      setIsHelpOpen(true);
+                    }}
+                  >
+                    <NeoAssistance color="#fff" />
+                    <VisuallyHidden>{t("support")}</VisuallyHidden>
+                  </button>
+
+                  <Help
+                    isHelpOpen={isHelpOpen}
+                    setIsHelpOpen={setIsHelpOpen}
+                    parsedContent={parsedContent}
+                    parsedHeadline={parsedHeadline}
+                    error={error}
+                  />
+                </NavItem>
+              ) : null}
               <NavItem>
                 <div className="dropdown">
                   <button

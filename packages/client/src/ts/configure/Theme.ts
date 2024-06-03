@@ -5,9 +5,9 @@ import { configure } from "./Framework";
 import {
   ITheme,
   IThemeConf,
-  IThemeConfOverriding,
   IThemeDesc,
   IThemeOverrides,
+  IThemeConfOverriding,
 } from "./interfaces";
 
 export class Theme implements ITheme {
@@ -194,6 +194,12 @@ export class Theme implements ITheme {
           }
           return this.skins;
         });
+  }
+
+  async getHelpPath(): Promise<String> {
+    const overrides = await this.listSkins();
+    const override = overrides.find((t) => t.child === this.skin);
+    return override?.help ?? "/help";
   }
 }
 

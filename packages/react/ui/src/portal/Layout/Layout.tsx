@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 import Alert from "../../components/Alert/Alert";
 import Button from "../../components/Button/Button";
-import { useOdeTheme, useZendeskGuide } from "../../core";
+import { useOdeTheme } from "../../core";
 import useCookiesConsent from "../../core/useCookiesConsent/useCookiesConsent";
 import Header from "../Header/Header";
 
@@ -27,8 +27,6 @@ const Layout = ({ children, headless = false, ...restProps }: LayoutProps) => {
     handleConsultCookies,
     handleCloseCookiesConsent,
   } = useCookiesConsent();
-
-  useZendeskGuide();
 
   const classes = clsx("d-flex flex-column bg-white", {
     "container-fluid": !headless,
@@ -59,6 +57,7 @@ const Layout = ({ children, headless = false, ...restProps }: LayoutProps) => {
 
   const renderToaster = (
     <Toaster
+      containerClassName="toaster-container"
       toastOptions={{
         position: "top-right",
       }}
