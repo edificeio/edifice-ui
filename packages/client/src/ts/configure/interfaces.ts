@@ -155,6 +155,9 @@ export interface ITheme {
 
   /** List available skins. */
   listSkins(): Promise<IThemeConfOverriding[]>;
+
+  /** Get the help path, which can be dedicated to 1D or 2D. */
+  getHelpPath(): Promise<String>;
 }
 
 //-------------------------------------
@@ -183,6 +186,7 @@ export interface IThemeConfOverriding {
   child: string;
   bootstrapVersion: string;
   skins: Array<string>;
+  help: string;
   group?: string;
   edumedia: {
     uri: string;
