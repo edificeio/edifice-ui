@@ -3,11 +3,11 @@ import {
   CongratsCounter,
   Great,
   GreatCounter,
-  InsterestingCounter,
+  InterestingCounter,
   Interesting,
   Thanks,
   ThanksCounter,
-} from "@edifice-ui/icons/reactions";
+} from "@edifice-ui/icons/audience";
 
 import { Reaction } from "../../types";
 import { Reaction as ReactionIcon } from "@edifice-ui/icons";
@@ -25,7 +25,7 @@ export default function useReactionIcons() {
       case "REACTION_3":
         return rounded ? <CongratsCounter /> : <Congrats />;
       case "REACTION_4":
-        return rounded ? <InsterestingCounter /> : <Interesting />;
+        return rounded ? <InterestingCounter /> : <Interesting />;
       default:
         return <ReactionIcon />;
     }
