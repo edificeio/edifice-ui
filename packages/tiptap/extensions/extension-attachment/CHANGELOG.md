@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.7](https://github.com/edificeio/edifice-ui/compare/v1.5.5...v1.5.7) (2024-06-03)
+
+### Bug Fixes
+
+- #WB2-1732, manage attachment regex issues ([d163f15](https://github.com/edificeio/edifice-ui/commit/d163f15e8cc01589a98fa6e92cdc7c1f5a117785)), closes [#WB2-1732](https://github.com/edificeio/edifice-ui/issues/WB2-1732)
+
 ## [1.5.6](https://github.com/edificeio/edifice-ui/compare/v1.5.4-develop.22...v1.5.6) (2024-05-28)
 
 **Note:** Version bump only for package @edifice-tiptap-extensions/extension-attachment

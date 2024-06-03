@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.7](https://github.com/edificeio/edifice-ui/compare/v1.5.5...v1.5.7) (2024-06-03)
+
+### Bug Fixes
+
+- #WB-2443 keep default width ([5360195](https://github.com/edificeio/edifice-ui/commit/536019504d73b107f81c8b1eb8ae91968b2b4704)), closes [#WB-2443](https://github.com/edificeio/edifice-ui/issues/WB-2443)
+- #WB-2443 old image compatibility ([#169](https://github.com/edificeio/edifice-ui/issues/169)) ([3761575](https://github.com/edificeio/edifice-ui/commit/3761575fb1ebc4629515a036defe65cf8cd2d968)), closes [#WB-2443](https://github.com/edificeio/edifice-ui/issues/WB-2443)
+
 ## [1.5.6](https://github.com/edificeio/edifice-ui/compare/v1.5.4-develop.22...v1.5.6) (2024-05-28)
 
 **Note:** Version bump only for package @edifice-tiptap-extensions/extension-image

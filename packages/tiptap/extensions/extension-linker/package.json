@@ -1,6 +1,6 @@
 {
   "name": "@edifice-tiptap-extensions/extension-linker",
-  "version": "1.5.6",
+  "version": "1.5.7",
   "description": "Rich Text Editor Linker Extension",
   "main": "dist/index.cjs",
   "module": "dist/index.js",

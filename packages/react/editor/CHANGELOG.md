@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.7](https://github.com/edificeio/edifice-ui/compare/v1.5.5...v1.5.7) (2024-06-03)
+
+### Bug Fixes
+
+- #WB-2484 responsive editor toolbar ([5564c7c](https://github.com/edificeio/edifice-ui/commit/5564c7c7b65d746314e1f5bc6201679ac33acc3f)), closes [#WB-2484](https://github.com/edificeio/edifice-ui/issues/WB-2484)
+- **editor:** #WB-2907 spacing linker badge ([6f45a89](https://github.com/edificeio/edifice-ui/commit/6f45a899dabdc8b0e44748ae3a2e70d1d19790e2)), closes [#WB-2907](https://github.com/edificeio/edifice-ui/issues/WB-2907)
+- **editor:** #WB-2980, set default editor focus to "start" ([45195b4](https://github.com/edificeio/edifice-ui/commit/45195b4667ce708191053a8d684e1888b6f9e9e7)), closes [#WB-2980](https://github.com/edificeio/edifice-ui/issues/WB-2980)
+
 ## [1.5.6](https://github.com/edificeio/edifice-ui/compare/v1.5.4-develop.22...v1.5.6) (2024-05-28)
 
 **Note:** Version bump only for package @edifice-ui/editor

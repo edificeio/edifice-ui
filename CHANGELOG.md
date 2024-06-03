@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.7](https://github.com/opendigitaleducation/edifice-ui/compare/v1.5.5...v1.5.7) (2024-06-03)
+
+### Bug Fixes
+
+- #WB-2443 keep default width ([5360195](https://github.com/opendigitaleducation/edifice-ui/commit/536019504d73b107f81c8b1eb8ae91968b2b4704)), closes [#WB-2443](https://github.com/opendigitaleducation/edifice-ui/issues/WB-2443)
+- #WB-2443 old image compatibility ([#169](https://github.com/opendigitaleducation/edifice-ui/issues/169)) ([3761575](https://github.com/opendigitaleducation/edifice-ui/commit/3761575fb1ebc4629515a036defe65cf8cd2d968)), closes [#WB-2443](https://github.com/opendigitaleducation/edifice-ui/issues/WB-2443)
+- #WB-2445, fold/unfold tree when clicking on item with children ([ddba4cf](https://github.com/opendigitaleducation/edifice-ui/commit/ddba4cf2f00d0fa88dbf7090701acf2427dfea9b)), closes [#WB-2445](https://github.com/opendigitaleducation/edifice-ui/issues/WB-2445)
+- #WB-2445, hide rafterRight if tree children array is empty ([33ee6ce](https://github.com/opendigitaleducation/edifice-ui/commit/33ee6ce57c47ad84ad081a8eaab328eff4ade57c)), closes [#WB-2445](https://github.com/opendigitaleducation/edifice-ui/issues/WB-2445)
+- #WB-2484 responsive editor toolbar ([5564c7c](https://github.com/opendigitaleducation/edifice-ui/commit/5564c7c7b65d746314e1f5bc6201679ac33acc3f)), closes [#WB-2484](https://github.com/opendigitaleducation/edifice-ui/issues/WB-2484)
+- #WB-2846 responsive video recording width ([450213c](https://github.com/opendigitaleducation/edifice-ui/commit/450213cefa3ce30e60796be00fbd07f951360321)), closes [#WB-2846](https://github.com/opendigitaleducation/edifice-ui/issues/WB-2846)
+- #WB-2912 audio performance without websocket ([#165](https://github.com/opendigitaleducation/edifice-ui/issues/165)) ([32bfe1f](https://github.com/opendigitaleducation/edifice-ui/commit/32bfe1f049252c451599d74bea5eaf27327639b9)), closes [#WB-2912](https://github.com/opendigitaleducation/edifice-ui/issues/WB-2912)
+- #WB-2981 ([8e22737](https://github.com/opendigitaleducation/edifice-ui/commit/8e22737fd4ec5ae2cd69532cec3c4cdab8f15249)), closes [#WB-2981](https://github.com/opendigitaleducation/edifice-ui/issues/WB-2981)
+- #WB2-1732, manage attachment regex issues ([d163f15](https://github.com/opendigitaleducation/edifice-ui/commit/d163f15e8cc01589a98fa6e92cdc7c1f5a117785)), closes [#WB2-1732](https://github.com/opendigitaleducation/edifice-ui/issues/WB2-1732)
+- **bootstrap:** #WB-2872, set line-height to normal in badge-linker ([2d4f516](https://github.com/opendigitaleducation/edifice-ui/commit/2d4f5167189e54035338957d3b577dbce92f3a8b)), closes [#WB-2872](https://github.com/opendigitaleducation/edifice-ui/issues/WB-2872)
+- **client:** do not use video files as thumbnails [#161](https://github.com/opendigitaleducation/edifice-ui/issues/161) ([c975f67](https://github.com/opendigitaleducation/edifice-ui/commit/c975f67b48720607842439c755626a73e636c74d))
+- **editor:** #WB-2907 spacing linker badge ([6f45a89](https://github.com/opendigitaleducation/edifice-ui/commit/6f45a899dabdc8b0e44748ae3a2e70d1d19790e2)), closes [#WB-2907](https://github.com/opendigitaleducation/edifice-ui/issues/WB-2907)
+- **editor:** #WB-2980, set default editor focus to "start" ([45195b4](https://github.com/opendigitaleducation/edifice-ui/commit/45195b4667ce708191053a8d684e1888b6f9e9e7)), closes [#WB-2980](https://github.com/opendigitaleducation/edifice-ui/issues/WB-2980)
+- **ui:** #WB-2690 format date with localized format ([#162](https://github.com/opendigitaleducation/edifice-ui/issues/162)) ([119f82b](https://github.com/opendigitaleducation/edifice-ui/commit/119f82bf102c91a4a9b5799fe3da9c4507e49e85)), closes [#WB-2690](https://github.com/opendigitaleducation/edifice-ui/issues/WB-2690)
+- **ui:** #WB-2862, improve loading of documents in workspace [#171](https://github.com/opendigitaleducation/edifice-ui/issues/171) ([700c0bc](https://github.com/opendigitaleducation/edifice-ui/commit/700c0bc011f5a7f99c3f670fd552066d2ce7d532)), closes [#WB-2862](https://github.com/opendigitaleducation/edifice-ui/issues/WB-2862)
+- **video:** #WB-1661, uploading a video file from BBM must encode it to mp4 [#167](https://github.com/opendigitaleducation/edifice-ui/issues/167) ([6c4f46d](https://github.com/opendigitaleducation/edifice-ui/commit/6c4f46de669e3caba994092433674b90b210ce06)), closes [#WB-1661](https://github.com/opendigitaleducation/edifice-ui/issues/WB-1661)
+
+### Reverts
+
+- Revert "feat: #INTEG-270, add zendeskGuide and remove help module" ([0604eee](https://github.com/opendigitaleducation/edifice-ui/commit/0604eee9cd3b52785052936864ea866d43e8422c)), closes [#INTEG-270](https://github.com/opendigitaleducation/edifice-ui/issues/INTEG-270)
+- Revert "fix(zendeskGuide): INTEG-270 change z index to mobile view and hide zendesk on collaborativewall view" ([849cde3](https://github.com/opendigitaleducation/edifice-ui/commit/849cde35a13576f08b6258d2df30cf34123e413c))
+- Revert "fix: #WB-2981" ([0c7bc6f](https://github.com/opendigitaleducation/edifice-ui/commit/0c7bc6f985abb48adab0ee02a89852aca02f0c8c)), closes [#WB-2981](https://github.com/opendigitaleducation/edifice-ui/issues/WB-2981)
+- Revert "fix: #WB-2912 audio performance without websocket (#165)" ([9830963](https://github.com/opendigitaleducation/edifice-ui/commit/98309638cd7be4541c2cbb9d498086649404f586)), closes [#WB-2912](https://github.com/opendigitaleducation/edifice-ui/issues/WB-2912) [#165](https://github.com/opendigitaleducation/edifice-ui/issues/165)
+
 ## [1.5.6](https://github.com/opendigitaleducation/edifice-ui/compare/v1.5.4-develop.22...v1.5.6) (2024-05-28)
 
 **Note:** Version bump only for package root

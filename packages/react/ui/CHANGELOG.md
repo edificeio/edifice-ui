@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.7](https://github.com/edificeio/edifice-ui/compare/v1.5.5...v1.5.7) (2024-06-03)
+
+### Bug Fixes
+
+- #WB-2445, fold/unfold tree when clicking on item with children ([ddba4cf](https://github.com/edificeio/edifice-ui/commit/ddba4cf2f00d0fa88dbf7090701acf2427dfea9b)), closes [#WB-2445](https://github.com/edificeio/edifice-ui/issues/WB-2445)
+- #WB-2445, hide rafterRight if tree children array is empty ([33ee6ce](https://github.com/edificeio/edifice-ui/commit/33ee6ce57c47ad84ad081a8eaab328eff4ade57c)), closes [#WB-2445](https://github.com/edificeio/edifice-ui/issues/WB-2445)
+- #WB-2846 responsive video recording width ([450213c](https://github.com/edificeio/edifice-ui/commit/450213cefa3ce30e60796be00fbd07f951360321)), closes [#WB-2846](https://github.com/edificeio/edifice-ui/issues/WB-2846)
+- #WB-2912 audio performance without websocket ([#165](https://github.com/edificeio/edifice-ui/issues/165)) ([32bfe1f](https://github.com/edificeio/edifice-ui/commit/32bfe1f049252c451599d74bea5eaf27327639b9)), closes [#WB-2912](https://github.com/edificeio/edifice-ui/issues/WB-2912)
+- #WB-2981 ([8e22737](https://github.com/edificeio/edifice-ui/commit/8e22737fd4ec5ae2cd69532cec3c4cdab8f15249)), closes [#WB-2981](https://github.com/edificeio/edifice-ui/issues/WB-2981)
+- **ui:** #WB-2690 format date with localized format ([#162](https://github.com/edificeio/edifice-ui/issues/162)) ([119f82b](https://github.com/edificeio/edifice-ui/commit/119f82bf102c91a4a9b5799fe3da9c4507e49e85)), closes [#WB-2690](https://github.com/edificeio/edifice-ui/issues/WB-2690)
+- **ui:** #WB-2862, improve loading of documents in workspace [#171](https://github.com/edificeio/edifice-ui/issues/171) ([700c0bc](https://github.com/edificeio/edifice-ui/commit/700c0bc011f5a7f99c3f670fd552066d2ce7d532)), closes [#WB-2862](https://github.com/edificeio/edifice-ui/issues/WB-2862)
+- **video:** #WB-1661, uploading a video file from BBM must encode it to mp4 [#167](https://github.com/edificeio/edifice-ui/issues/167) ([6c4f46d](https://github.com/edificeio/edifice-ui/commit/6c4f46de669e3caba994092433674b90b210ce06)), closes [#WB-1661](https://github.com/edificeio/edifice-ui/issues/WB-1661)
+
+### Reverts
+
+- Revert "feat: #INTEG-270, add zendeskGuide and remove help module" ([0604eee](https://github.com/edificeio/edifice-ui/commit/0604eee9cd3b52785052936864ea866d43e8422c)), closes [#INTEG-270](https://github.com/edificeio/edifice-ui/issues/INTEG-270)
+- Revert "fix(zendeskGuide): INTEG-270 change z index to mobile view and hide zendesk on collaborativewall view" ([849cde3](https://github.com/edificeio/edifice-ui/commit/849cde35a13576f08b6258d2df30cf34123e413c))
+- Revert "fix: #WB-2981" ([0c7bc6f](https://github.com/edificeio/edifice-ui/commit/0c7bc6f985abb48adab0ee02a89852aca02f0c8c)), closes [#WB-2981](https://github.com/edificeio/edifice-ui/issues/WB-2981)
+- Revert "fix: #WB-2912 audio performance without websocket (#165)" ([9830963](https://github.com/edificeio/edifice-ui/commit/98309638cd7be4541c2cbb9d498086649404f586)), closes [#WB-2912](https://github.com/edificeio/edifice-ui/issues/WB-2912) [#165](https://github.com/edificeio/edifice-ui/issues/165)
+
 ## [1.5.6](https://github.com/edificeio/edifice-ui/compare/v1.5.4-develop.22...v1.5.6) (2024-05-28)
 
 **Note:** Version bump only for package @edifice-ui/react
