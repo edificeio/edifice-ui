@@ -1,6 +1,6 @@
 {
   "name": "@edifice-tiptap-extensions/extension-highlight",
-  "version": "1.5.7",
+  "version": "1.5.8-develop.0",
   "description": "Rich Text Editor Highlight Extension",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
