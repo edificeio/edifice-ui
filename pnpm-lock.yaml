@@ -452,7 +452,7 @@ importers:
 =======
         version: 7.23.3(@babel/core@7.24.6)
       "@edifice-ui/icons":
-        specifier: ^1.5.8-develop.0
+        specifier: ^1.5.8-develop.1
         version: 1.5.8-develop-pedago.0(react-dom@18.2.0)(react@18.2.0)
       "@react-spring/web":
 >>>>>>> 913e35ed (chore(release): version & publish)
