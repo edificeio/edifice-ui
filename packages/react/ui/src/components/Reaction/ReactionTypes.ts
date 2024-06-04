@@ -1,5 +1,5 @@
 /** Typing of a Reaction */
-export type Reaction =
+export type ReactionType =
   | "REACTION_1"
   | "REACTION_2"
   | "REACTION_3"
@@ -7,8 +7,8 @@ export type Reaction =
 
 /** Typing of a Reaction summary */
 export type ReactionSummaryData = {
-  reactionTypes?: Array<Reaction> | null;
-  userReaction?: Reaction | null;
+  reactionTypes?: Array<ReactionType> | null;
+  userReaction?: ReactionType | null;
   totalReactionsCounter: number;
 };
 
@@ -16,14 +16,14 @@ export type ReactionSummaryData = {
 export type ReactionDetail = {
   reactionCounters: {
     countByType: {
-      [type in Reaction]?: number;
+      [type in ReactionType]?: number;
     };
     allReactionsCounter: number;
   };
   userReactions: Array<{
     userId: string;
     profile: string;
-    reactionType: Reaction;
+    reactionType: ReactionType;
     displayName: string;
   }>;
 };

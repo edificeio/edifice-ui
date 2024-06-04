@@ -10,38 +10,51 @@ import {
 } from "@edifice-ui/icons/audience";
 
 import { Reaction as ReactionIcon } from "@edifice-ui/icons";
-import { Reaction } from ".";
+import { ReactionType } from "../ReactionTypes";
 
 export default function useReactionIcons() {
+  /**
+   * Get the Icon corresponding to a ReactionType.
+   *
+   * @param reactionType type
+   * @param asCounter Get the "counter / rounded" version of the icon ?
+   * @returns An icon for the type, or <ReactionIcon /> by default.
+   */
   const getReactionIcon = (
-    reactionType?: Reaction | null,
-    rounded?: boolean,
+    reactionType?: ReactionType | null,
+    asCounter?: boolean,
   ) => {
     switch (reactionType) {
       case "REACTION_1":
-        return rounded ? <ThanksCounter /> : <Thanks />;
+        return asCounter ? <ThanksCounter /> : <Thanks />;
       case "REACTION_2":
-        return rounded ? <GreatCounter /> : <Great />;
+        return asCounter ? <GreatCounter /> : <Great />;
       case "REACTION_3":
-        return rounded ? <CongratsCounter /> : <Congrats />;
+        return asCounter ? <CongratsCounter /> : <Congrats />;
       case "REACTION_4":
-        return rounded ? <InterestingCounter /> : <Interesting />;
+        return asCounter ? <InterestingCounter /> : <Interesting />;
       default:
         return <ReactionIcon />;
     }
   };
-  const getReactionLabel = (reactionType?: Reaction | null) => {
+
+  /**
+   * Get the i18n key for labelling a ReactionType.
+   * @param reactionType type
+   * @returns An i18n key
+   */
+  const getReactionLabel = (reactionType?: ReactionType | null) => {
     switch (reactionType) {
       case "REACTION_1":
-        return "Merci";
+        return "reaction.reaction_1";
       case "REACTION_2":
-        return "Génial";
+        return "reaction.reaction_2";
       case "REACTION_3":
-        return "Bravo";
+        return "reaction.reaction_3";
       case "REACTION_4":
-        return "Instructif";
+        return "reaction.reaction_4";
       default:
-        return "Réagir";
+        return "reaction.default";
     }
   };
 

@@ -1,21 +1,33 @@
-import { RefAttributes } from "react";
+import { RefAttributes, useRef } from "react";
 import { default as useReactionIcons } from "./hook/useReactionIcons";
-import { Reaction, ReactionSummaryData } from "./ReactionTypes";
+import { ReactionType, ReactionSummaryData } from "./ReactionTypes";
 import { Button, IconButton, IconButtonProps } from "../Button";
 import { Dropdown } from "../Dropdown";
 
 export interface ReactionSummaryProps {
-  availableReactions: Reaction[];
+  availableReactions: ReactionType[];
   summary: ReactionSummaryData;
+  onChange?: (chosenReaction?: ReactionType) => void;
 }
 
 const ReactionSummary = ({
   availableReactions,
   summary,
+  onChange,
 }: ReactionSummaryProps) => {
   const { totalReactionsCounter, reactionTypes, userReaction } = summary;
 
   const { getReactionIcon, getReactionLabel } = useReactionIcons();
+
+  const triggerButtonRef = useRef<HTMLButtonElement>(null);
+
+  const handleReactionClick = (reactionType: ReactionType) => {
+    // Reaction is reset to `undefined` when same value is clicked.
+    onChange?.(userReaction === reactionType ? undefined : reactionType);
+
+    // Then close dropdown menu
+    triggerButtonRef.current?.click();
+  };
 
   return (
     <div className="reaction-summary">
@@ -37,6 +49,7 @@ const ReactionSummary = ({
             <>
               <Button
                 {...triggerProps}
+                ref={triggerButtonRef}
                 color="tertiary"
                 variant="ghost"
                 size="sm"
@@ -57,6 +70,7 @@ const ReactionSummary = ({
                       variant="ghost"
                       title={getReactionLabel(reactionType)}
                       icon={getReactionIcon(reactionType)}
+                      onClick={() => handleReactionClick(reactionType)}
                     />
                   ))}
                 </div>
