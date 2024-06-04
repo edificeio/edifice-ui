@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.8](https://github.com/edificeio/edifice-ui/compare/v1.5.8-develop.1...v1.5.8) (2024-06-04)
+
+**Note:** Version bump only for package @edifice-tiptap-extensions/extension-video
+
 ## [1.5.7](https://github.com/edificeio/edifice-ui/compare/v1.5.5...v1.5.7) (2024-06-03)
 
 **Note:** Version bump only for package @edifice-tiptap-extensions/extension-video

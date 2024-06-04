@@ -452,8 +452,8 @@ importers:
 =======
         version: 7.23.3(@babel/core@7.24.6)
       "@edifice-ui/icons":
-        specifier: ^1.5.8-develop.1
-        version: 1.5.8-develop-pedago.0(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^1.5.8
+        version: link:../icons
       "@react-spring/web":
 >>>>>>> 913e35ed (chore(release): version & publish)
         specifier: 9.7.3
@@ -1836,6 +1836,7 @@ packages:
     resolution: {integrity: sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==}
     engines: {node: '>=10.0.0'}
 
+<<<<<<< HEAD
   '@edifice-ui/icons@1.5.9':
     resolution: {integrity: sha512-D78VbtZp3+06GYFAh7128LB6bbuHq1HEGew3Gpcc255GAN+JSF/RiBrpMsUQpRL6EpM9T/O4hHP0TteYE6rXOA==}
     peerDependencies:
@@ -1844,6 +1845,13 @@ packages:
 
   '@emotion/use-insertion-effect-with-fallbacks@1.0.1':
     resolution: {integrity: sha512-jT/qyKZ9rzLErtrjGgdkMBn2OP8wl0G3sQlBb3YPryvKHsjvINUhVaPFfP+fpBcOkmrVOVEEHQFJ7nbj2TH2gw==}
+=======
+  /@emotion/use-insertion-effect-with-fallbacks@1.0.1(react@18.2.0):
+    resolution:
+      {
+        integrity: sha512-jT/qyKZ9rzLErtrjGgdkMBn2OP8wl0G3sQlBb3YPryvKHsjvINUhVaPFfP+fpBcOkmrVOVEEHQFJ7nbj2TH2gw==,
+      }
+>>>>>>> 92697e3f (chore(release): version & publish)
     peerDependencies:
       react: '>=16.8.0'
 
