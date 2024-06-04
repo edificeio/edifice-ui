@@ -42,7 +42,7 @@ export class WorkspaceBehaviour extends AbstractBehaviourService {
             const icon =
               data.metadata["content-type"] &&
               data.metadata["content-type"].indexOf("image") !== -1
-                ? `/workspace/document/${data._id}?thumbnail=150x150`
+                ? `/workspace/document/${data._id}?thumbnail=120x120`
                 : "/img/icons/unknown-large.png";
             return this.dataToResource({
               title: data.name,
