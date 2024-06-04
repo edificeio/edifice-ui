@@ -262,17 +262,20 @@ export class WorkspaceService {
     width: number = 0,
     height: number = 0,
   ) {
+    const thumbnailSize =
+      width > 0 || height > 0 ? `${width}x${height}` : "120x120";
+
     if (typeof doc === "string") {
       if (doc.includes("data:image") || doc.includes("thumbnail")) {
         return doc;
       }
-      return `${doc}${doc.includes("?") ? "&" : "?"}thumbnail=${width}x${height}`;
+      return `${doc}${doc.includes("?") ? "&" : "?"}thumbnail=${thumbnailSize}`;
     } else {
       const urlPrefix = `/workspace/${doc.public ? "pub/" : ""}document/${doc._id}?thumbnail=`;
       const thumbnails = doc.thumbnails;
 
-      // Videos may have only 1 thumbnail, and the backend cannot create new ones at the moment.
       if (doc.metadata?.["content-type"]?.includes("video")) {
+        // Videos may have only 1 thumbnail, and the backend cannot create new ones at the moment.
         // Return the first thumbnail, or `null` if none is available.
         const firstThumbnail =
           thumbnails && Object.keys(thumbnails).length > 0
@@ -280,11 +283,8 @@ export class WorkspaceService {
             : null;
         return firstThumbnail ? urlPrefix + firstThumbnail : null;
       } else {
-        // Return a thumbnail with requested sizes, or default to 150x150
-        return (
-          urlPrefix +
-          (width > 0 || height > 0 ? `${width}x${height}` : "150x150")
-        );
+        // Return a thumbnail with requested sizes, or default to 120x120
+        return urlPrefix + thumbnailSize;
       }
     }
   }
