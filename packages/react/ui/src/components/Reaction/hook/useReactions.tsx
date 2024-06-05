@@ -51,11 +51,18 @@ export default function useReactions(module: string, resourceType: string) {
       : summaries.reactionsByResource;
   };
 
+  /**
+   * Set, update or remove a reaction to a resource.
+   * This parameter is
+   * @param resourceId id
+   * @param newReaction reaction to set / update / remove
+   * @param oldReaction Previous reaction set, or null if none exists.
+   */
   const applyReaction = useCallback(
     (
       resourceId: string,
       newReaction: ReactionType,
-      oldReaction?: ReactionType | null,
+      oldReaction: ReactionType | null,
     ) => {
       // Forbid setting an unavailable reaction, by allow resetting it.
       if (
