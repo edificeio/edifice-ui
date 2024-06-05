@@ -1,6 +1,6 @@
 {
   "name": "@edifice-tiptap-extensions/extension-iframe",
-  "version": "1.5.8",
+  "version": "1.5.9-develop",
   "description": "Rich Text Editor Video Extension",
   "type": "module",
   "exports": {
