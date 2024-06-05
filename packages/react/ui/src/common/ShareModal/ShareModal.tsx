@@ -98,7 +98,13 @@ export default function ShareResourceModal({
   if (!resource) return <LoadingScreen />;
 
   return createPortal(
-    <Modal id="share_modal" size="lg" isOpen={isOpen} onModalClose={onCancel}>
+    <Modal
+      id="share_modal"
+      size="lg"
+      isOpen={isOpen}
+      onModalClose={onCancel}
+      scrollable
+    >
       <Modal.Header onModalClose={onCancel}>{t("share.title")}</Modal.Header>
       <Modal.Body>
         <Heading headingStyle="h4" level="h3" className="mb-16">
