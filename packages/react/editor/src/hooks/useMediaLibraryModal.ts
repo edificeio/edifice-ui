@@ -7,6 +7,7 @@ import {
   MediaLibraryResult,
   MediaLibraryType,
   TabsItemProps,
+  addTimestampToImageUrl,
   useWorkspaceFile,
 } from "@edifice-ui/react";
 import { Editor } from "@tiptap/react";
@@ -41,14 +42,20 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
         case "image": {
           const images = result as WorkspaceElement[];
           const imagesSize = images.length - 1;
+
           images.forEach((image, index) => {
+            const url = `/workspace/${image.public ? "pub/" : ""}document/${
+              image._id
+            }`;
+
             editor
               ?.chain()
               .focus()
               .setNewImage({
-                src: `/workspace/${image.public ? "pub/" : ""}document/${
-                  image._id
-                }`,
+                /**
+                 * WB-3053: addTimestampToImageUrl to update correctly image in tiptap-image-extension
+                 */
+                src: addTimestampToImageUrl(url),
                 alt: image.alt,
                 title: image.title,
               })

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { WorkspaceElement, WorkspaceVisibility } from "edifice-ts-client";
 
 import { useDropzoneContext } from "../../components/Dropzone/DropzoneContext";
+import { addTimestampToImageUrl } from "../../utils";
 import { useUpload } from "../useUpload";
 import { useWorkspaceFile } from "../useWorkspaceFile";
 
@@ -43,7 +44,7 @@ const useUploadFiles = ({
       (async () => {
         numUploads++;
         const resource = await uploadFile(file);
-        if (resource != null) {
+        if (resource !== null) {
           setUploadedFiles((prevFiles: WorkspaceElement[]) => [
             ...prevFiles,
             resource,
@@ -65,9 +66,7 @@ const useUploadFiles = ({
 
     if (resource) {
       await remove(resource);
-
       clearUploadStatus(file);
-
       setUploadedFiles((prevFiles: WorkspaceElement[]) => {
         return prevFiles.filter((prevFile) => prevFile.name !== resource?.name);
       });
@@ -89,27 +88,48 @@ const useUploadFiles = ({
       return;
     }
     try {
-      await createOrUpdate({
+      const res = await createOrUpdate({
         blob,
         legend,
         alt,
         uri: getUrl(editingImage),
       });
+
+      /**
+       * `res` contains updated file and src path
+       * update uploadedFiles with the correct updated information
+       */
+      if (res && typeof res === "object") {
+        setUploadedFiles((prevFiles: WorkspaceElement[]) => {
+          return prevFiles.map((prevFile) => {
+            if (prevFile._id === res.file._id) {
+              return { ...res.file };
+            }
+            return prevFile;
+          });
+        });
+      }
     } finally {
       setEditingImage(undefined);
     }
   }
-  function getUrl(resource?: WorkspaceElement, timestamp?: boolean) {
-    return resource
-      ? `/workspace/${
-          resource.public ? "pub/" : ""
-        }document/${resource?._id}?timestamp=${
-          timestamp ? new Date().getTime() : ""
-        }`
-      : "";
-  }
+
+  const getUrl = (resource?: WorkspaceElement, timestamp?: boolean) => {
+    const url = `/workspace/${
+      resource?.public ? "pub/" : ""
+    }document/${resource?._id}`;
+
+    if (!resource) return "";
+    /**
+     * WB-3053: add timestamp if option is true
+     */
+    if (timestamp) return addTimestampToImageUrl(url);
+
+    return url;
+  };
+
   return {
-    /** List of dragged'n'dropped files */
+    /** List of files added from device */
     files,
     getUploadStatus,
     clearUploadStatus,

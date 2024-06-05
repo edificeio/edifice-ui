@@ -57,7 +57,7 @@ export const useImageModal = (
     legend: string;
     altText: string;
   }) => {
-    const url = await createOrUpdate({
+    const res = await createOrUpdate({
       blob,
       legend,
       alt,
@@ -66,11 +66,20 @@ export const useImageModal = (
       application,
     });
     toggle();
-    setAttributes({
-      url,
-      alt,
-      title: legend,
-    });
+    /**
+     * WB-3053: res is of type object because
+     * @returns {
+     * updated file
+     * src path
+     * }
+     */
+    if (typeof res === "object") {
+      setAttributes({
+        url: res.src,
+        alt,
+        title: legend,
+      });
+    }
   };
 
   return {

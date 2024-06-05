@@ -1,11 +1,11 @@
-import { SuccessOutline, Wand, Close, Reset } from "@edifice-ui/icons";
+import { Close, Reset, SuccessOutline, Wand } from "@edifice-ui/icons";
 import { useTranslation } from "react-i18next";
 
 import { Tooltip } from "..";
 import { usePaths } from "../../core";
 import { Status } from "../../types";
 import { Button, IconButton } from "../Button";
-import { CardProps, Card } from "../Card";
+import { Card, CardProps } from "../Card";
 import { Image } from "../Image";
 import { Loading } from "../Loading";
 
@@ -64,10 +64,101 @@ const UploadCard = ({
 
   const isIdle = status === "idle";
   const isLoading = status === "loading";
-  const isError = status === "error";
   const isSuccess = status === "success";
 
   const isTypeImage = info?.type.startsWith("image/");
+
+  /**
+   * WB-3053: add mapping object to store information
+   * <Image/> component is not used for placeholder because of re-render intempestive image download
+   */
+  const imgPlaceholder = `${imagePath}/common/image-placeholder.png`;
+  const defaultMapping = {
+    text: "",
+    context: null,
+    image: <img src={imgPlaceholder} alt="" width="48" height="48" />,
+  };
+
+  const mapping = {
+    error: {
+      text: (
+        <strong>
+          <small className="text-danger caption">
+            {t("tiptap.upload.error")}
+          </small>
+        </strong>
+      ),
+      context: (
+        <Button
+          leftIcon={<Reset />}
+          variant="ghost"
+          color="tertiary"
+          onClick={onRetry}
+        >
+          {t("tiptap.upload.retry")}
+        </Button>
+      ),
+      image: (
+        <Image
+          alt=""
+          src={`${imagePath}/common/image-status-error.svg`}
+          objectFit="cover"
+        />
+      ),
+    },
+    idle: defaultMapping,
+    loading: {
+      text: "",
+      context: (
+        <Tooltip message={t("tiptap.tooltip.upload.loading")} placement="top">
+          <Loading
+            isLoading
+            loadingPosition="left"
+            className="text-secondary"
+          />
+        </Tooltip>
+      ),
+      image: defaultMapping.image,
+    },
+    warning: defaultMapping,
+    success: {
+      text: (
+        <em>
+          {info?.type} {info?.weight && `- ${info.weight}`}
+        </em>
+      ),
+      context: (
+        <Tooltip message={t("tiptap.tooltip.upload.loaded")} placement="top">
+          <SuccessOutline className="text-success" />
+        </Tooltip>
+      ),
+      image: (
+        <Image
+          alt=""
+          src={src ?? ""}
+          width="48"
+          objectFit="cover"
+          className="rounded"
+          style={{ aspectRatio: 1 / 1 }}
+        />
+      ),
+    },
+    unknown: defaultMapping,
+  };
+
+  const canEditItem = () =>
+    isTypeImage && (
+      <Tooltip message={t("tiptap.tooltip.upload.edit")} placement="top">
+        <IconButton
+          icon={<Wand />}
+          variant="ghost"
+          aria-label={t("tiptap.tooltip.upload.loading")}
+          disabled={isLoading || !isSuccess}
+          onClick={onEdit}
+          color="secondary"
+        />
+      </Tooltip>
+    );
 
   return (
     <Card
@@ -76,90 +167,17 @@ const UploadCard = ({
       className="card-upload"
     >
       <Card.Body>
-        <div className="card-image">
-          {isError ? (
-            <Image
-              alt=""
-              src={`${imagePath}/common/image-status-error.svg`}
-              objectFit="cover"
-            />
-          ) : (
-            <Image
-              alt=""
-              src={src ?? ""}
-              width="48"
-              objectFit="cover"
-              className="rounded"
-              style={{ aspectRatio: 1 / 1 }}
-            />
-          )}
-        </div>
+        <div className="card-image">{mapping[status].image}</div>
         <div className="text-truncate">
           <Card.Text>{name}</Card.Text>
-          <Card.Text className="caption">
-            {isSuccess && (
-              <em>
-                {info?.type} {info?.weight && `- ${info.weight}`}
-              </em>
-            )}
-            {isError && (
-              <strong>
-                <small className="text-danger caption">
-                  {t("tiptap.upload.error")}
-                </small>
-              </strong>
-            )}
-          </Card.Text>
+          <Card.Text className="caption">{mapping[status].text}</Card.Text>
         </div>
         {!isIdle && (
           <div className="ms-auto">
             <div className="d-flex align-items-center gap-12">
-              {isLoading && (
-                <Tooltip
-                  message={t("tiptap.tooltip.upload.loading")}
-                  placement="top"
-                >
-                  <Loading
-                    isLoading
-                    loadingPosition="left"
-                    className="text-secondary"
-                  />
-                </Tooltip>
-              )}
-              {isSuccess && (
-                <Tooltip
-                  message={t("tiptap.tooltip.upload.loaded")}
-                  placement="top"
-                >
-                  <SuccessOutline className="text-success" />
-                </Tooltip>
-              )}
-              {isError && (
-                <Button
-                  leftIcon={<Reset />}
-                  variant="ghost"
-                  color="tertiary"
-                  onClick={onRetry}
-                >
-                  {t("tiptap.upload.retry")}
-                </Button>
-              )}
+              {mapping[status].context}
               {!isIdle && <div className="vr"></div>}
-              {isTypeImage && (
-                <Tooltip
-                  message={t("tiptap.tooltip.upload.edit")}
-                  placement="top"
-                >
-                  <IconButton
-                    icon={<Wand />}
-                    variant="ghost"
-                    aria-label={t("tiptap.tooltip.upload.loading")}
-                    disabled={isLoading || !isSuccess}
-                    onClick={onEdit}
-                    color="secondary"
-                  />
-                </Tooltip>
-              )}
+              {canEditItem()}
               <Tooltip
                 message={t("tiptap.tooltip.upload.delete")}
                 placement="top"
@@ -179,7 +197,5 @@ const UploadCard = ({
     </Card>
   );
 };
-
-UploadCard.displayName = "UploadCard";
 
 export default UploadCard;
