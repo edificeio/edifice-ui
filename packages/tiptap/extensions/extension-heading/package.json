@@ -1,6 +1,6 @@
 {
   "name": "@edifice-tiptap-extensions/extension-heading",
-  "version": "1.5.9-develop",
+  "version": "1.5.9-develop.0",
   "description": "Rich Text Editor Heading Extension",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
