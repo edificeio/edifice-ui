@@ -4,21 +4,10 @@ import { DocumentHelper, Role, odeServices } from "edifice-ts-client";
 import { ID, WorkspaceElement, WorkspaceSearchFilter } from "edifice-ts-client";
 
 import { TreeNode } from "../../components";
-import { useMockedData } from "../../utils";
+import { findTreeNode, useMockedData } from "../../utils";
 import { useHasWorkflow } from "../useHasWorkflow";
 
 export type FolderNode = TreeNode & { files?: WorkspaceElement[] };
-
-/**
- * Utility function to find a node in a tree.
- */
-function findById(node: TreeNode, nodeId?: string): FolderNode | undefined {
-  if (!nodeId || node.id === nodeId) return node;
-  return (
-    Array.isArray(node.children) &&
-    node.children.find((child) => findById(child, nodeId))
-  );
-}
 
 export default function useWorkspaceSearch(
   rootId: string,
@@ -52,7 +41,10 @@ export default function useWorkspaceSearch(
   ) {
     switch (action.type) {
       case "update": {
-        const node = findById(state, action.folderId);
+        const node = findTreeNode(
+          state,
+          (child) => child.id === action.folderId,
+        );
         if (node) {
           node.children = action.subfolders.map((f) => ({
             id: f._id || "",
@@ -119,8 +111,7 @@ export default function useWorkspaceSearch(
               files.push(doc);
             }
           });
-        const newValue = { folderId: folderId, subfolders, files };
-        dispatch({ ...newValue, type: "update" });
+        dispatch({ folderId, subfolders, files, type: "update" });
       }
     },
     [canListDocs, canListFolders, rootId, mock, filter, format],
