@@ -1,6 +1,6 @@
 {
   "name": "@edifice-tiptap-extensions/extension-alert",
-  "version": "1.5.9-develop.0",
+  "version": "1.5.9-develop-b2school",
   "description": "Rich Text Editor Alert Extension",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
