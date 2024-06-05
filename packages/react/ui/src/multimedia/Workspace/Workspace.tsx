@@ -20,12 +20,12 @@ import {
   Grid,
   LoadingScreen,
   SearchBar,
-  TreeNode,
   TreeView,
   TreeViewHandlers,
 } from "../../components";
 import { useWorkspaceSearch } from "../../core";
 import { FolderNode } from "../../core/useWorkspaceSearch/useWorkspaceSearch";
+import { findTreeNode } from "../../utils";
 
 /**
  * MediaLibrary component properties
@@ -199,25 +199,11 @@ const Workspace = ({
     loadSharedDocs,
   ]);
 
-  /**
-   * Utility function to find a node in a tree.
-   */
-  function find(
-    root: TreeNode,
-    predicate: (node: TreeNode) => boolean,
-  ): TreeNode | undefined {
-    if (predicate(root)) return root;
-    return (
-      Array.isArray(root.children) &&
-      root.children.find((child) => find(child, predicate))
-    );
-  }
-
   function selectAndLoadContent(filter: WorkspaceSearchFilter, nodeId: string) {
     // Apply filters and nodeId, and send a command to the node's Tree
     setCurrentFilter(filter);
     const { root, othersRef } = rootNodeFor(filter);
-    const targetNode = find(root, (node) => node.id === nodeId);
+    const targetNode = findTreeNode(root, (node) => node.id === nodeId);
     if (targetNode) {
       setCurrentNode(targetNode);
       // Reset others current selection, if any

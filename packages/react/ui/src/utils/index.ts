@@ -1,4 +1,5 @@
 export * from "./blob";
+export * from "./findTreeNode";
 export * from "./isActionAvailable";
 export * from "./libraryMaps";
 export * from "./MockedDataProvider";
