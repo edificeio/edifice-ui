@@ -1,4 +1,11 @@
-import { Ref, Suspense, forwardRef, lazy, useImperativeHandle } from "react";
+import {
+  Ref,
+  Suspense,
+  forwardRef,
+  lazy,
+  useId,
+  useImperativeHandle,
+} from "react";
 
 import "@edifice-tiptap-extensions/extension-image";
 import { LoadingScreen, MediaLibrary, useOdeClient } from "@edifice-ui/react";
@@ -45,6 +52,11 @@ export interface EditorRef {
  * Editor component properties
  */
 export interface EditorProps {
+  /**
+   * (Optional) id of the HTML element.
+   * Useful with an external `<FormControl id=...><Label/>`.
+   */
+  id?: string;
   /** Rich content to render. */
   content: Content;
   /**
@@ -71,6 +83,7 @@ export interface EditorProps {
 const Editor = forwardRef(
   (
     {
+      id,
       content,
       mode = "read",
       toolbar = "full",
@@ -82,6 +95,7 @@ const Editor = forwardRef(
     }: EditorProps,
     ref: Ref<EditorRef>,
   ) => {
+    const editorId = useId();
     const { appCode } = useOdeClient();
     const { editor, editable } = useTipTapEditor(
       mode === "edit",
@@ -126,6 +140,7 @@ const Editor = forwardRef(
     return (
       <EditorContext.Provider
         value={{
+          id: id ?? editorId,
           appCode,
           editor,
           editable,
@@ -135,15 +150,14 @@ const Editor = forwardRef(
           {toolbar !== "none" && editable && (
             <EditorToolbar
               {...{
-                editor,
                 mediaLibraryRef: mediaLibraryModalRef,
                 toggleMathsModal: toggleMathsModal,
               }}
             />
           )}
           <EditorContent
+            id={id ?? editorId}
             editor={editor}
-            id="editorContent"
             className={contentClass}
           />
         </div>
