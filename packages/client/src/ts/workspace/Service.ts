@@ -271,7 +271,9 @@ export class WorkspaceService {
       }
       return `${doc}${doc.includes("?") ? "&" : "?"}thumbnail=${thumbnailSize}`;
     } else {
-      const urlPrefix = `/workspace/${doc.public ? "pub/" : ""}document/${doc._id}?thumbnail=`;
+      const urlPrefix = `/workspace/${doc.public ? "pub/" : ""}document/${
+        doc._id
+      }?thumbnail=`;
       const thumbnails = doc.thumbnails;
 
       if (doc.metadata?.["content-type"]?.includes("video")) {
