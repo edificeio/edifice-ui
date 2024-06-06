@@ -66,7 +66,7 @@ const UploadCard = ({
   const isLoading = status === "loading";
   const isSuccess = status === "success";
 
-  const isTypeImage = info?.type.startsWith("image/");
+  const isTypeImage = info?.type.startsWith("image");
 
   /**
    * WB-3053: add mapping object to store information
