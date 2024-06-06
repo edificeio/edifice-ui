@@ -48,7 +48,7 @@ interface Props {
 
 export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
   const { t } = useTranslation();
-  const { editor } = useEditorContext();
+  const { id, editor } = useEditorContext();
 
   const [plusOptions, listOptions, alignmentOptions] = useActionOptions(
     editor,
@@ -417,7 +417,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
         className="rounded-top-3"
         isBlock
         align="left"
-        ariaControls="editorContent"
+        ariaControls={id}
       />
     </div>
   );
