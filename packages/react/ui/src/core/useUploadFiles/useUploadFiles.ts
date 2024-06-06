@@ -54,8 +54,26 @@ const useUploadFiles = ({
     });
   }, [files, getUploadStatus, uploadFile]);
 
+  const sortUploadedFiles = (
+    filesArray: File[],
+    uploadedFilesArray: WorkspaceElement[],
+  ) => {
+    const orderMap = filesArray.reduce(
+      (acc: any, item: File, index: number) => {
+        acc[item.name] = index;
+        return acc;
+      },
+      {},
+    );
+    return uploadedFilesArray.sort(
+      (a: WorkspaceElement, b: WorkspaceElement) =>
+        orderMap[a.name] - orderMap[b.name],
+    );
+  };
+
   useEffect(() => {
-    handleOnChange(uploadedFiles);
+    const sortedUploadedFiles = sortUploadedFiles(files, uploadedFiles);
+    handleOnChange(sortedUploadedFiles);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadedFiles]);
 
