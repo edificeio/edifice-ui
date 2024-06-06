@@ -3,7 +3,7 @@ import { WorkspaceElement, WorkspaceVisibility } from "edifice-ts-client";
 import { UploadCard } from "../../components";
 import useUploadFiles from "../../core/useUploadFiles/useUploadFiles";
 import { customSize } from "../../utils/fileSize";
-import ImageEditor from "../ImageEditor/components/ImageEditor";
+import { ImageEditor } from "../ImageEditor";
 
 const Upload = ({
   onFilesChange,
@@ -41,7 +41,10 @@ const Upload = ({
             type: file.type,
             weight: customSize(file.size || 0, 1),
           },
-          src: getUrl(resource, true),
+          /**
+           * WB-3053: timestamp to false to avoid intempestive images download with re-render
+           */
+          src: getUrl(resource, false),
         };
 
         return (

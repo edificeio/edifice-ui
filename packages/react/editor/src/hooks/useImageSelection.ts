@@ -1,3 +1,4 @@
+import { addTimestampToImageUrl } from "@edifice-ui/react";
 import { Editor } from "@tiptap/react";
 /**
  * This hooks lets manipulate selected image node by
@@ -38,11 +39,6 @@ export function useImageSelection(editor?: Editor | null | undefined) {
     alt?: string;
     title?: string;
   }) => {
-    function addTimestampToImageUrl(imageUrl: string) {
-      const timestamp = new Date().getTime();
-      const separator = imageUrl.includes("?") ? "&" : "?";
-      return `${imageUrl}${separator}timestamp=${timestamp}`;
-    }
     // Update our custom image node
     const hasUpdate = editor
       ?.chain()
