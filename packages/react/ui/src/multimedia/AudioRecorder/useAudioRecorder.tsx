@@ -32,8 +32,8 @@ type AudioReducerState = {
   mediaRecorder?: MediaRecorder;
   micStream?: MediaStream;
   audioChunks: Blob[];
-  recordedTime?: number;
-  recordingTime?: number;
+  recordedTime: number;
+  recordingTime: number;
 
   encoderWorker?: Worker;
 
@@ -74,6 +74,8 @@ export default function useAudioRecorder(
     recordState: "IDLE",
     playState: "IDLE",
     audioChunks: [],
+    recordedTime: 0,
+    recordingTime: 0,
     maxDuration: 180000, // max duration in s (3 minutes by default)
   });
   const audioNameRef = useRef<HTMLInputElement>(null);
@@ -328,12 +330,17 @@ export default function useAudioRecorder(
   useEffect(() => {
     if (
       recordState === "RECORDING" &&
-      recordedTime &&
-      recordedTime >= maxDuration
+      recordedTime + recordingTime >= maxDuration
     ) {
       handleRecordPause();
     }
-  }, [handleRecordPause, maxDuration, recordState, recordedTime]);
+  }, [
+    handleRecordPause,
+    maxDuration,
+    recordState,
+    recordedTime,
+    recordingTime,
+  ]);
 
   const recordText =
     recordState === "IDLE"
@@ -349,9 +356,8 @@ export default function useAudioRecorder(
         icon: <Record />,
         color: "danger",
         disabled:
-          recordState !== "IDLE" &&
-          recordState !== "PAUSED" &&
-          (!recordedTime || recordedTime >= maxDuration),
+          (recordState !== "IDLE" && recordState !== "PAUSED") ||
+          recordedTime + recordingTime >= maxDuration,
         onClick: handleRecord,
         "aria-label": recordText,
       },
