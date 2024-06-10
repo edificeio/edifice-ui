@@ -10,11 +10,12 @@ export class ConfService {
   private get http() {
     return this.context.http();
   }
-
+  private get cache() {
+    return this.context.cache();
+  }
   private get cdnDomain(): string {
     return configure.Platform.cdnDomain;
   }
-
   private get notify() {
     return this.context.notify();
   }
@@ -44,11 +45,16 @@ export class ConfService {
   }
 
   async getPublicConf<T extends any>(app: App): Promise<T> {
-    const publicConfResponse = await this.http.get<any>(`/${app}/conf/public`, {
-      queryParams: { _: configure.Platform.deploymentTag },
-    });
-    if (this.http.isResponseError()) throw ERROR_CODE.APP_NOT_FOUND;
-    return publicConfResponse;
+    // Public confs do not change until redeployed
+    const { response, value } = await this.cache.httpGet<any>(
+      `/${app}/conf/public`,
+      {
+        queryParams: { _: configure.Platform.deploymentTag },
+      },
+    );
+    if (response.status < 200 || response.status >= 300)
+      throw ERROR_CODE.APP_NOT_FOUND;
+    return value;
   }
 
   getCdnUrl(): string | undefined {

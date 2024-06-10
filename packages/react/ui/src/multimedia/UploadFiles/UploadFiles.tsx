@@ -2,7 +2,7 @@ import { WorkspaceElement, WorkspaceVisibility } from "edifice-ts-client";
 
 import { useEffect, useRef } from "react";
 import { UploadCard } from "../../components";
-import useUploadFiles from "../../core/useUploadFiles/useUploadFiles";
+import { useUploadFiles } from "../../core";
 import { customSize } from "../../utils/fileSize";
 import { ImageEditor } from "../ImageEditor";
 

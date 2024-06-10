@@ -31,12 +31,14 @@ export class VideoService {
       APP.VIDEO,
     );
     return {
-      maxWeight: publicConf["max-videosize-mbytes"] || VideoService.MAX_WEIGHT,
+      maxWeight:
+        publicConf?.["max-videosize-mbytes"] ?? VideoService.MAX_WEIGHT,
       maxDuration:
-        publicConf["max-videoduration-minutes"] || VideoService.MAX_DURATION,
-      acceptVideoUploadExtensions: publicConf[
-        "accept-videoupload-extensions"
-      ].map((ext) => ext.toUpperCase()),
+        publicConf?.["max-videoduration-minutes"] ?? VideoService.MAX_DURATION,
+      acceptVideoUploadExtensions:
+        publicConf?.["accept-videoupload-extensions"]?.map((ext) =>
+          ext.toUpperCase(),
+        ) ?? [],
     };
   }
 

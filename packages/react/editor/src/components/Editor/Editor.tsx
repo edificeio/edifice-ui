@@ -180,6 +180,7 @@ const Editor = forwardRef(
             <MediaLibrary
               appCode={appCode}
               visibility={visibility}
+              multiple={true}
               ref={mediaLibraryModalRef}
               {...mediaLibraryModalHandlers}
             />

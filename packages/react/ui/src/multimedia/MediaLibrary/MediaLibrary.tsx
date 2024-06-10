@@ -156,11 +156,10 @@ export interface MediaLibraryProps {
   /** Application Code (example: "blog"). */
   appCode: string;
 
-  /**
-   * Visibility of the uploaded files "protected" | "public" | "external".
-   */
+  /** Visibility of the uploaded files "protected" | "public" | "external". */
   visibility: WorkspaceVisibility;
 
+  /** Allow selecting / uploading multiple files at once ? */
   multiple?: boolean;
   /**
    * Called when the user validates the modal (Add button).
