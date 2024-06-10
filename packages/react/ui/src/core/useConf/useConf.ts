@@ -5,6 +5,5 @@ export default function useConf({ appCode }: { appCode: App }) {
   return useQuery<IGetConf>({
     queryKey: ["conf"],
     queryFn: async () => await odeServices.conf().getConf(appCode),
-    suspense: true,
   });
 }
