@@ -29,10 +29,8 @@ export const MediaLibraryContext = createContext<{
    */
   setResult: (result?: MediaLibraryResult) => void;
 
-  /**
-   * Memoize all uploaded elements, to be deleted on cancellation.
-   */
-  addCancellable: (uploads: WorkspaceElement[]) => void;
+  /** Memoize uploaded elements to be deleted on cancellation. */
+  setCancellable: (uploads: WorkspaceElement[]) => void;
 
   /**
    * Allow an innertab to switch display to another innertab.

@@ -32,17 +32,18 @@ export const Upload = () => {
     multiple,
     setResult,
     setResultCounter,
-    addCancellable,
+    setCancellable,
   } = useMediaLibraryContext();
 
   const handleOnFilesChange = (uploadedFiles: WorkspaceElement[]) => {
     if (uploadedFiles.length) {
       // Uploaded files are subject to cancel action
-      addCancellable(uploadedFiles);
+      setCancellable(uploadedFiles);
       // Uploaded files are subject to success action
       setResultCounter(uploadedFiles.length);
       setResult(uploadedFiles);
     } else {
+      setCancellable([]);
       setResultCounter(undefined);
       setResult(undefined);
     }

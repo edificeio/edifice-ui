@@ -91,9 +91,12 @@ const useWorkspaceFile = () => {
   // const put = () => {}
 
   const remove = async (file: WorkspaceElement | WorkspaceElement[]) => {
-    return await odeServices
-      .workspace()
-      .deleteFile(Array.isArray(file) ? file : [file]);
+    const noop = !file || (Array.isArray(file) && file.length === 0);
+    return noop
+      ? Promise.resolve()
+      : await odeServices
+          .workspace()
+          .deleteFile(Array.isArray(file) ? file : [file]);
   };
 
   return {

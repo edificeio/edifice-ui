@@ -326,7 +326,9 @@ const MediaLibrary = forwardRef(
     // Stateful contextual values
     const [resultCounter, setResultCounter] = useState<number | undefined>();
     const [result, setResult] = useState<MediaLibraryResult | undefined>();
-    const [cancellable, setCancellable] = useState<WorkspaceElement[]>([]);
+    const [deletionsOnCancel, setDeletionsOnCancel] = useState<
+      WorkspaceElement[]
+    >([]);
     const [onSuccessAction, setPreSuccess] =
       useState<() => Promise<MediaLibraryResult>>();
 
@@ -374,16 +376,9 @@ const MediaLibrary = forwardRef(
 
     // --------------- Utility functions
     const modalHeader = t(mediaLibraryTypes[type ?? "none"]?.title ?? "bbm");
-    const addCancellable = (uploads: WorkspaceElement[]) =>
-      setCancellable((previous) => {
-        // Append WorkspaceElements which not already in the list.
-        const ids = previous.map((element) => element._id);
-        const newUploads = uploads.filter(
-          (upload) =>
-            upload._id && ids.findIndex((id) => id === upload._id) < 0,
-        );
-        return previous.concat(newUploads);
-      });
+
+    const setCancellable = (uploads: WorkspaceElement[]) =>
+      setDeletionsOnCancel([...uploads]);
 
     const resetState = () => {
       setResult(undefined);
@@ -391,11 +386,11 @@ const MediaLibrary = forwardRef(
       setLinkTabProps(undefined);
       setDefaultTabId(undefined);
       setPreSuccess(undefined);
-      setCancellable([]);
+      setDeletionsOnCancel([]);
     };
 
     const handleTabChange = (tab: TabsItemProps) => {
-      onTabChange?.(tab, cancellable);
+      onTabChange?.(tab, deletionsOnCancel);
       resetState();
     };
 
@@ -425,7 +420,7 @@ const MediaLibrary = forwardRef(
     }, [onSuccessAction, result, onSuccess, visibility]);
 
     const handleOnCancel = () => {
-      onCancel(cancellable);
+      onCancel(deletionsOnCancel);
       resetState();
     };
 
@@ -438,7 +433,7 @@ const MediaLibrary = forwardRef(
           type,
           setResultCounter,
           setResult,
-          addCancellable,
+          setCancellable,
           setVisibleTab,
           switchType,
           setPreSuccess,
