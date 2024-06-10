@@ -5,8 +5,8 @@ import { useTranslation } from "react-i18next";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import { Button, Image, Modal, usePaths } from "../..";
 import { useOnboardingModal } from "./useOnboardingModal";
-import { usePaths, Modal, Button, Image } from "../..";
 
 interface ModalItemsProps {
   /**
@@ -52,7 +52,7 @@ const OnboardingModal = ({ id, items, modalOptions }: OnboardingProps) => {
   const [swiperInstance, setSwiperInstance] = useState<any>();
   const [swiperProgress, setSwiperprogress] = useState<number>(0);
 
-  const { isOpen, isOnboardingTrash, setIsOpen, handleSavePreference } =
+  const { isOpen, isOnboarding, setIsOpen, handleSavePreference } =
     useOnboardingModal(id);
 
   useEffect(() => {
@@ -72,7 +72,7 @@ const OnboardingModal = ({ id, items, modalOptions }: OnboardingProps) => {
 
   const { title, prevText, closeText, nextText } = modalOptions;
 
-  return isOnboardingTrash
+  return isOnboarding
     ? createPortal(
         <Modal
           id="onboarding-modal"

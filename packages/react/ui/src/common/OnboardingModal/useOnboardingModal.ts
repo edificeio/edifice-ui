@@ -8,9 +8,7 @@ import { odeServices } from "edifice-ts-client";
  * @returns check onboarding trash param
  */
 const getOnboardingTrash = async (key: string) => {
-  const res = await odeServices
-    .conf()
-    .getPreference<{ showOnboardingTrash: boolean }>(key);
+  const res = await odeServices.conf().getPreference<{ key: boolean }>(key);
   return res;
 };
 
@@ -22,26 +20,25 @@ const getOnboardingTrash = async (key: string) => {
 const saveOnboardingTrash = async (key: string) => {
   const result = await odeServices
     .conf()
-    .savePreference(key, JSON.stringify({ showOnboardingTrash: false }));
+    .savePreference(key, JSON.stringify({ key: false }));
 
   return result;
 };
 
 export const useOnboardingModal = (id: string) => {
   const [isOpen, setIsOpen] = useState(true);
-  const [isOnboardingTrash, setIsOnboardingTrash] = useState(false);
+  const [isOnboarding, setIsOnboarding] = useState(false);
 
   useEffect(() => {
     (async () => {
-      const response: { showOnboardingTrash: boolean } =
-        await getOnboardingTrash(id);
+      const response: { key: boolean } = await getOnboardingTrash(id);
 
       if (response) {
-        const { showOnboardingTrash } = response;
-        setIsOnboardingTrash(showOnboardingTrash);
+        const { key } = response;
+        setIsOnboarding(key);
         return;
       }
-      setIsOnboardingTrash(true);
+      setIsOnboarding(true);
     })();
   }, [id]);
 
@@ -53,7 +50,7 @@ export const useOnboardingModal = (id: string) => {
   return {
     isOpen,
     setIsOpen,
-    isOnboardingTrash,
+    isOnboarding,
     handleSavePreference,
   };
 };
