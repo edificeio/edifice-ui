@@ -35,9 +35,9 @@ const useUploadFiles = ({
     files.forEach((file) => {
       const status = getUploadStatus(file);
       /* Do not upload :
-         * the same file twice.
+         - the same file twice.
            To upload it again, reset its previous status first.
-         * more than 5 files at once.
+         - more than 5 files at once.
       */
       if (status || numUploads >= MAX_UPLOADS_AT_ONCE) return;
 
@@ -78,19 +78,21 @@ const useUploadFiles = ({
   }, [uploadedFiles]);
 
   async function removeFile(file: File) {
+    // Check if this file was successfully uploaded.
     const resource = uploadedFiles.find(
       (uploadedFile) => uploadedFile.name === file.name,
     );
 
+    // Remove the corresponding resource from `uploadedFiles`
     if (resource) {
       await remove(resource);
       clearUploadStatus(file);
       setUploadedFiles((prevFiles: WorkspaceElement[]) => {
         return prevFiles.filter((prevFile) => prevFile.name !== resource?.name);
       });
-
-      deleteFile(file);
     }
+    // Remove the file from `files`
+    deleteFile(file);
   }
 
   async function updateImage({

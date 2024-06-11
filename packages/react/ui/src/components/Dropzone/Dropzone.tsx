@@ -10,6 +10,7 @@ import useDropzone from "../../hooks/useDropzone/useDropzone";
 
 interface DropzoneProps {
   className?: string;
+  /** See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept#unique_file_type_specifiers */
   accept?: string[];
   multiple?: boolean;
   handle?: boolean;
