@@ -47,11 +47,13 @@ const useUploadFiles = ({
       (async () => {
         numUploads++;
         let fileToUpload = file;
-        try {
-          fileToUpload = await resizeImageFile(file);
-          getOrGenerateBlobId(fileToUpload, getOrGenerateBlobId(file));
-        } catch (err) {
-          console.error(err);
+        if (file.type.startsWith("image")) {
+          try {
+            fileToUpload = await resizeImageFile(file);
+            getOrGenerateBlobId(fileToUpload, getOrGenerateBlobId(file));
+          } catch (err) {
+            console.error(err);
+          }
         }
         const resource = await uploadFile(fileToUpload);
         if (resource !== null) {
