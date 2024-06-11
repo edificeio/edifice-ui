@@ -14,9 +14,10 @@ const useLibraryUrl = (): string | null => {
   const appName = libraryMaps[appCode as string];
 
   // get library app from userinfo apps
-  const libraryApp: IWebApp | undefined = (user as IUserInfo).apps.find(
+  const libraryApp: IWebApp | undefined = (user as IUserInfo)?.apps.find(
     (app) => app.isExternal && app.address.includes("library"),
   );
+
   if (!libraryApp) {
     return null;
   }

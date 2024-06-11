@@ -1,20 +1,20 @@
 import {
   createContext,
-  type ReactNode,
-  useMemo,
   useContext,
   useEffect,
+  useMemo,
+  type ReactNode,
 } from "react";
 
 import { UseQueryResult } from "@tanstack/react-query";
 import {
   App,
-  IUserInfo,
-  IUserDescription,
-  IWebApp,
-  UserProfile,
   IGetConf,
   IGetSession,
+  IUserDescription,
+  IUserInfo,
+  IWebApp,
+  UserProfile,
 } from "edifice-ts-client";
 import { useTranslation } from "react-i18next";
 
@@ -41,8 +41,8 @@ export interface OdeContextProps {
   currentLanguage: string | undefined;
   init: boolean;
   sessionQuery: UseQueryResult<IGetSession>;
-  user: IUserInfo | any;
-  userDescription: IUserDescription | undefined;
+  user: IUserInfo | undefined;
+  userDescription: Partial<IUserDescription> | undefined;
   userProfile: UserProfile | undefined;
 }
 

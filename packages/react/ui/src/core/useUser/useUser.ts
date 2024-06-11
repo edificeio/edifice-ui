@@ -1,12 +1,16 @@
-import { IUserDescription, IUserInfo } from "edifice-ts-client";
+import { IUserDescription, IUserInfo, UserProfile } from "edifice-ts-client";
 
 import { useOdeClient } from "../OdeClientProvider";
 import { useOdeTheme } from "../ThemeProvider";
 
+interface UserInfo extends Omit<IUserInfo, "type"> {
+  type: UserProfile;
+}
+
 export interface useUserProps {
-  user: IUserInfo | undefined;
+  user: UserInfo | undefined;
   avatar: string;
-  userDescription: IUserDescription | undefined;
+  userDescription: Partial<IUserDescription> | undefined;
 }
 
 export default function useUser(): useUserProps {
@@ -24,8 +28,8 @@ export default function useUser(): useUserProps {
   return {
     user: {
       ...user,
-      type: userProfile,
-    },
+      type: userProfile as UserProfile,
+    } as UserInfo,
     avatar: avatarUrl(),
     userDescription,
   };
