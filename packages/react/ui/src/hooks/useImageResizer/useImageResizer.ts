@@ -92,33 +92,30 @@ export default function useImageResizer() {
     compressFormat: string = "jpeg",
     quality: number = 80,
   ): Promise<File> => {
-    if (file) {
-      if (file.type && !file.type.includes("image")) {
-        throw Error("File Is NOT Image!");
-      } else {
-        return new Promise((resolve) => {
-          const image = new Image();
-          image.setAttribute("style", "max-width: none;");
-          image.src = URL.createObjectURL(file);
-          image.onload = async () => {
-            const resizedFile = await resizeImage(
-              image,
-              file.name,
-              maxWidth,
-              maxHeight,
-              compressFormat,
-              quality,
-            );
-            resolve(resizedFile);
-          };
-          image.onerror = (error) => {
-            throw Error("Image Loading Error: " + error);
-          };
-        });
-      }
-    } else {
-      throw Error("File Not Found!");
-    }
+    if (!file) throw Error("Image resizer: file not found!");
+
+    if (!file.type || !file.type.includes("image"))
+      throw Error("Image resizer: the file given is not an image.");
+
+    return new Promise((resolve) => {
+      const image = new Image();
+      image.setAttribute("style", "max-width: none;");
+      image.src = URL.createObjectURL(file);
+      image.onload = async () => {
+        const resizedFile = await resizeImage(
+          image,
+          file.name,
+          maxWidth,
+          maxHeight,
+          compressFormat,
+          quality,
+        );
+        resolve(resizedFile);
+      };
+      image.onerror = (error) => {
+        throw Error("Image Loading Error: " + error);
+      };
+    });
   };
 
   return {
