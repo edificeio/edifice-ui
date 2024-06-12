@@ -72,6 +72,9 @@ export type MediaLibraryTabProps = {
   isEnable: null | (() => boolean);
 };
 
+// Typing for an internal or external link properties.
+type AnyLinkProps = InternalLinkTabProps | ExternalLinkTabProps | undefined;
+
 //---------------------------------------------------
 // Media Library parameters
 //---------------------------------------------------
@@ -194,6 +197,8 @@ const MediaLibrary = forwardRef(
     }: MediaLibraryProps,
     ref: Ref<MediaLibraryRef>,
   ) => {
+    // Props for prefilling the [in|ex]ternal innertab.
+    const linkTabProps = useRef<AnyLinkProps>();
     // Local ref will be merged with forwardRef in useImperativeHandle() below
     const refModal = useRef<ModalElement>(null);
     // Methods to control the Media Library from parent component
@@ -216,11 +221,6 @@ const MediaLibrary = forwardRef(
     const videoCaptureWorkflow = useHasWorkflow(
       "com.opendigitaleducation.video.controllers.VideoController|capture",
     );
-
-    // Used to prefill the [in|ex]ternal innertab.
-    const [linkTabProps, setLinkTabProps] = useState<
-      InternalLinkTabProps | ExternalLinkTabProps | undefined
-    >();
 
     const [type, setType] = useState<MediaLibraryType | null>(null);
 
@@ -264,7 +264,9 @@ const MediaLibrary = forwardRef(
         icon: <Globe />,
         label: t("bbm.linker.ext"),
         content: (
-          <InnerTabs.ExternalLink {...(linkTabProps as ExternalLinkTabProps)} />
+          <InnerTabs.ExternalLink
+            {...(linkTabProps.current as ExternalLinkTabProps)}
+          />
         ),
         availableFor: ["hyperlink"],
         isEnable: null,
@@ -274,7 +276,9 @@ const MediaLibrary = forwardRef(
         icon: <Applications />,
         label: t("bbm.linker.int"),
         content: (
-          <InnerTabs.InternalLink {...(linkTabProps as InternalLinkTabProps)} />
+          <InnerTabs.InternalLink
+            {...(linkTabProps.current as InternalLinkTabProps)}
+          />
         ),
         availableFor: ["hyperlink"],
         isEnable: null,
@@ -340,7 +344,7 @@ const MediaLibrary = forwardRef(
     }
 
     function switchType(type: MediaLibraryType) {
-      setLinkTabProps(undefined);
+      linkTabProps.current = undefined;
       setDefaultTabId(undefined);
       setType(type);
     }
@@ -355,11 +359,9 @@ const MediaLibrary = forwardRef(
     };
 
     const showLink = (props: InternalLinkTabProps | ExternalLinkTabProps) => {
-      setLinkTabProps(props);
-      const asInternal = props as InternalLinkTabProps;
-      if (!asInternal?.resourceId && !asInternal?.appPrefix) {
+      linkTabProps.current = props;
+      !("resourceId" in props || "appPrefix" in props) &&
         setDefaultTabId("external-link");
-      }
       setType("hyperlink");
     };
 
@@ -377,13 +379,10 @@ const MediaLibrary = forwardRef(
     // --------------- Utility functions
     const modalHeader = t(mediaLibraryTypes[type ?? "none"]?.title ?? "bbm");
 
-    const setCancellable = (uploads: WorkspaceElement[]) =>
-      setDeletionsOnCancel([...uploads]);
-
     const resetState = () => {
+      linkTabProps.current = undefined;
       setResult(undefined);
       setResultCounter(undefined);
-      setLinkTabProps(undefined);
       setDefaultTabId(undefined);
       setPreSuccess(undefined);
       setDeletionsOnCancel([]);
@@ -424,73 +423,76 @@ const MediaLibrary = forwardRef(
       resetState();
     };
 
-    return type ? (
-      <MediaLibraryContext.Provider
-        value={{
-          appCode,
-          visibility,
-          multiple,
-          type,
-          setResultCounter,
-          setResult,
-          setCancellable,
-          setVisibleTab,
-          switchType,
-          setPreSuccess,
-        }}
-      >
-        <Modal
-          id="media-library"
-          isOpen={type !== null}
-          onModalClose={handleOnCancel}
-          size="lg"
-          viewport
-          scrollable
+    return (
+      type && (
+        <MediaLibraryContext.Provider
+          value={{
+            appCode,
+            visibility,
+            multiple,
+            type,
+            setResultCounter,
+            setResult,
+            setCancellable: (uploads: WorkspaceElement[]) =>
+              setDeletionsOnCancel([...uploads]),
+            setVisibleTab,
+            switchType,
+            setPreSuccess,
+          }}
         >
-          <Modal.Header onModalClose={handleOnCancel}>
-            {modalHeader}
-          </Modal.Header>
-          <Tabs
-            items={tabs}
-            defaultId={tabs[defaultTabIdx].id}
-            onChange={handleTabChange}
+          <Modal
+            id="media-library"
+            isOpen={type !== null}
+            onModalClose={handleOnCancel}
+            size="lg"
+            viewport
+            scrollable
           >
-            {(currentItem) => (
-              <>
-                {tabs.length > 1 && <Tabs.List className="mt-16" />}
-                <Modal.Body className="d-flex">
-                  <Tabs.Panel currentItem={currentItem}>
-                    {currentItem?.content}
-                  </Tabs.Panel>
-                </Modal.Body>
-              </>
-            )}
-          </Tabs>
-          <Modal.Footer>
-            <Button
-              type="button"
-              color="tertiary"
-              variant="ghost"
-              onClick={handleOnCancel}
+            <Modal.Header onModalClose={handleOnCancel}>
+              {modalHeader}
+            </Modal.Header>
+            <Tabs
+              items={tabs}
+              defaultId={tabs[defaultTabIdx].id}
+              onChange={handleTabChange}
             >
-              {t("cancel")}
-            </Button>
-            <Button
-              type="button"
-              color="primary"
-              variant="filled"
-              disabled={typeof result === "undefined"}
-              onClick={handleOnSuccess}
-            >
-              {t("add")}
-              {typeof resultCounter === "number" &&
-                resultCounter > 1 &&
-                ` (${resultCounter})`}
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </MediaLibraryContext.Provider>
-    ) : null;
+              {(currentItem) => (
+                <>
+                  {tabs.length > 1 && <Tabs.List className="mt-16" />}
+                  <Modal.Body className="d-flex">
+                    <Tabs.Panel currentItem={currentItem}>
+                      {currentItem?.content}
+                    </Tabs.Panel>
+                  </Modal.Body>
+                </>
+              )}
+            </Tabs>
+            <Modal.Footer>
+              <Button
+                type="button"
+                color="tertiary"
+                variant="ghost"
+                onClick={handleOnCancel}
+              >
+                {t("cancel")}
+              </Button>
+              <Button
+                type="button"
+                color="primary"
+                variant="filled"
+                disabled={typeof result === "undefined"}
+                onClick={handleOnSuccess}
+              >
+                {t("add")}
+                {typeof resultCounter === "number" &&
+                  resultCounter > 1 &&
+                  ` (${resultCounter})`}
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </MediaLibraryContext.Provider>
+      )
+    );
   },
 );
 
