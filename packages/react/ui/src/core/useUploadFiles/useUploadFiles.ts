@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import { WorkspaceElement, WorkspaceVisibility } from "edifice-ts-client";
 
 import { useDropzoneContext } from "../../components/Dropzone/DropzoneContext";
-import { addTimestampToImageUrl } from "../../utils";
+import { addTimestampToImageUrl, getOrGenerateBlobId } from "../../utils";
 import { useUpload } from "../useUpload";
 import { useWorkspaceFile } from "../useWorkspaceFile";
+import { useImageResizer } from "../../hooks/useImageResizer";
 
 const useUploadFiles = ({
   handleOnChange,
@@ -28,6 +29,8 @@ const useUploadFiles = ({
     application,
   );
 
+  const { resizeImageFile } = useImageResizer();
+
   useEffect(() => {
     const MAX_UPLOADS_AT_ONCE = 5;
     let numUploads = 0;
@@ -43,7 +46,16 @@ const useUploadFiles = ({
 
       (async () => {
         numUploads++;
-        const resource = await uploadFile(file);
+        let fileToUpload = file;
+        if (file.type.startsWith("image")) {
+          try {
+            fileToUpload = await resizeImageFile(file);
+            getOrGenerateBlobId(fileToUpload, getOrGenerateBlobId(file));
+          } catch (err) {
+            console.error(err);
+          }
+        }
+        const resource = await uploadFile(fileToUpload);
         if (resource !== null) {
           setUploadedFiles((prevFiles: WorkspaceElement[]) => [
             ...prevFiles,
@@ -52,7 +64,7 @@ const useUploadFiles = ({
         }
       })();
     });
-  }, [files, getUploadStatus, uploadFile]);
+  }, [files, getUploadStatus, resizeImageFile, uploadFile]);
 
   const sortUploadedFiles = (
     filesArray: File[],
