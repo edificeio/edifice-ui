@@ -1,58 +1,89 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 
 import { Bookmark, InfoCircle, RafterDown } from "@edifice-ui/icons";
+
 import { UseMutationResult } from "@tanstack/react-query";
-import { ID, PutShareResponse, ShareRight } from "edifice-ts-client";
+import {
+  ID,
+  PutShareResponse,
+  RightStringified,
+  ShareRight,
+} from "edifice-ts-client";
 import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
 
+import {
+  Avatar,
+  Button,
+  Checkbox,
+  Combobox,
+  Heading,
+  LoadingScreen,
+  Modal,
+  Tooltip,
+  VisuallyHidden,
+} from "../../components";
+import { ShareBookmark } from "./ShareBookmark";
+import { ShareBookmarkLine } from "./ShareBookmarkLine";
 import { useSearch } from "./hooks/useSearch";
 import useShare from "./hooks/useShare";
 import { useShareBookmark } from "./hooks/useShareBookmark";
-import { ShareBookmark } from "./ShareBookmark";
-import { ShareBookmarkLine } from "./ShareBookmarkLine";
-import {
-  Modal,
-  Heading,
-  VisuallyHidden,
-  Avatar,
-  Checkbox,
-  Button,
-  Tooltip,
-  Combobox,
-  useOdeClient,
-  LoadingScreen,
-} from "../..";
-import { useResource } from "../../core/useResource";
+
+export type ShareOptions = {
+  resourceId: ID;
+  resourceRights: RightStringified[];
+  resourceCreatorId: string;
+};
+
+export type ShareResourceMutation = UseMutationResult<
+  PutShareResponse,
+  unknown,
+  {
+    resourceId: string;
+    rights: ShareRight[];
+  },
+  unknown
+>;
 
 interface ShareResourceModalProps {
+  /** Handle open/close state */
   isOpen: boolean;
-  resourceId: ID;
-  shareResource?: UseMutationResult<
-    PutShareResponse,
-    unknown,
-    {
-      resourceId: string;
-      rights: ShareRight[];
-    },
-    unknown
-  >;
-  children?: ReactNode | ((...props: any) => ReactNode);
+  /**
+   * Expect resourceId,
+   * new rights array (replace shared array),
+   * creatorId
+   * of a resource */
+  shareOptions: ShareOptions;
+  /**
+   * Use the `shareResource` props when you need to do Optimistic UI
+   * otherwise ShareModal handles everything
+   * Must use React Query */
+  shareResource?: ShareResourceMutation;
+  /**
+   * To pass any specific app related component (e.g: Blog)
+   */
+  children?: ReactNode;
+  /**
+   * onSuccess callback when a resource is successfully shared
+   */
   onSuccess: () => void;
+  /**
+   * onCancel handler to close ShareModal
+   */
   onCancel: () => void;
 }
 
 export default function ShareResourceModal({
   isOpen,
-  resourceId,
+  shareOptions,
   shareResource,
   children,
   onSuccess,
   onCancel,
 }: ShareResourceModalProps) {
-  const { appCode: application } = useOdeClient();
+  const { resourceId, resourceCreatorId, resourceRights } = shareOptions;
 
-  const resource = useResource(application, resourceId);
+  const [isLoading, setIsLoading] = useState(true);
 
   const {
     state: { isSharing, shareRights, shareRightActions },
@@ -63,8 +94,11 @@ export default function ShareResourceModal({
     toggleRight,
     handleDeleteRow,
   } = useShare({
-    resource,
+    resourceId,
+    resourceCreatorId,
+    resourceRights,
     shareResource,
+    setIsLoading,
     onSuccess,
   });
 
@@ -76,7 +110,12 @@ export default function ShareResourceModal({
     getSearchMinLength,
     handleSearchInputChange,
     handleSearchResultsChange,
-  } = useSearch({ resource, shareRights, shareDispatch });
+  } = useSearch({
+    resourceId,
+    resourceCreatorId,
+    shareRights,
+    shareDispatch,
+  });
 
   const {
     refBookmark,
@@ -95,8 +134,6 @@ export default function ShareResourceModal({
     ? t("explorer.search.adml.hint")
     : t("explorer.modal.share.search.placeholder");
 
-  if (!resource) return <LoadingScreen />;
-
   return createPortal(
     <Modal id="share_modal" size="lg" isOpen={isOpen} onModalClose={onCancel}>
       <Modal.Header onModalClose={onCancel}>{t("share.title")}</Modal.Header>
@@ -105,67 +142,71 @@ export default function ShareResourceModal({
           {t("explorer.modal.share.usersWithAccess")}
         </Heading>
         <div className="table-responsive">
-          <table className="table border align-middle mb-0">
-            <thead className="bg-secondary">
-              <tr>
-                <th scope="col" className="w-32">
-                  <VisuallyHidden>
-                    {t("explorer.modal.share.avatar.shared.alt")}
-                  </VisuallyHidden>
-                </th>
-                <th scope="col">
-                  <VisuallyHidden>
-                    {t("explorer.modal.share.search.placeholder")}
-                  </VisuallyHidden>
-                </th>
-                {shareRightActions.map((shareRightAction) => (
-                  <th
-                    key={shareRightAction.displayName}
-                    scope="col"
-                    className="text-center text-white"
-                  >
-                    {t(shareRightAction.displayName)}
-                  </th>
-                ))}
-                <th scope="col">
-                  <VisuallyHidden>{t("close")}</VisuallyHidden>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {currentIsAuthor() && (
+          {isLoading ? (
+            <LoadingScreen />
+          ) : (
+            <table className="table border align-middle mb-0">
+              <thead className="bg-secondary">
                 <tr>
-                  <th scope="row">
-                    <Avatar
-                      alt={t("explorer.modal.share.avatar.me.alt")}
-                      size="xs"
-                      src={myAvatar}
-                      variant="circle"
-                    />
+                  <th scope="col" className="w-32">
+                    <VisuallyHidden>
+                      {t("explorer.modal.share.avatar.shared.alt")}
+                    </VisuallyHidden>
                   </th>
-                  <td>{t("share.me")}</td>
+                  <th scope="col">
+                    <VisuallyHidden>
+                      {t("explorer.modal.share.search.placeholder")}
+                    </VisuallyHidden>
+                  </th>
                   {shareRightActions.map((shareRightAction) => (
-                    <td
+                    <th
                       key={shareRightAction.displayName}
-                      style={{ width: "80px" }}
+                      scope="col"
                       className="text-center text-white"
                     >
-                      <Checkbox checked={true} disabled />
-                    </td>
+                      {t(shareRightAction.displayName)}
+                    </th>
                   ))}
-                  <td></td>
+                  <th scope="col">
+                    <VisuallyHidden>{t("close")}</VisuallyHidden>
+                  </th>
                 </tr>
-              )}
-              <ShareBookmarkLine
-                showBookmark={showBookmark}
-                shareRightActions={shareRightActions}
-                shareRights={shareRights}
-                onDeleteRow={handleDeleteRow}
-                toggleRight={toggleRight}
-                toggleBookmark={toggleBookmark}
-              />
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {currentIsAuthor() && (
+                  <tr>
+                    <th scope="row">
+                      <Avatar
+                        alt={t("explorer.modal.share.avatar.me.alt")}
+                        size="xs"
+                        src={myAvatar}
+                        variant="circle"
+                      />
+                    </th>
+                    <td>{t("share.me")}</td>
+                    {shareRightActions.map((shareRightAction) => (
+                      <td
+                        key={shareRightAction.displayName}
+                        style={{ width: "80px" }}
+                        className="text-center text-white"
+                      >
+                        <Checkbox checked={true} disabled />
+                      </td>
+                    ))}
+                    <td></td>
+                  </tr>
+                )}
+                <ShareBookmarkLine
+                  showBookmark={showBookmark}
+                  shareRightActions={shareRightActions}
+                  shareRights={shareRights}
+                  onDeleteRow={handleDeleteRow}
+                  toggleRight={toggleRight}
+                  toggleBookmark={toggleBookmark}
+                />
+              </tbody>
+            </table>
+          )}
         </div>
         <div className="mt-16">
           <Button
@@ -227,7 +268,7 @@ export default function ShareResourceModal({
             />
           </div>
         </div>
-        {typeof children === "function" ? children(resource) : children}
+        {children}
       </Modal.Body>
       <Modal.Footer>
         <Button

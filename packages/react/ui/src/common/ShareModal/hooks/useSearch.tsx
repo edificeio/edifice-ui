@@ -1,20 +1,21 @@
 import { ChangeEvent, Dispatch, useEffect, useReducer } from "react";
 
 import { Bookmark } from "@edifice-ui/icons";
+
 import {
-  odeServices,
-  ShareRightAction,
   ShareRight,
-  IResource,
-  ShareSubject,
+  ShareRightAction,
   ShareRightWithVisibles,
+  ShareSubject,
+  odeServices,
 } from "edifice-ts-client";
 import { useTranslation } from "react-i18next";
 
-import { ShareAction } from "./useShare";
 import { OptionListItemType } from "../../../components";
 import { useIsAdml, useOdeClient } from "../../../core";
 import { useDebounce } from "../../../hooks";
+import { ShareOptions } from "../ShareModal";
+import { ShareAction } from "./useShare";
 
 type State = {
   searchInputValue: string;
@@ -69,11 +70,13 @@ const defaultActions: ShareRightAction[] = [
 ];
 
 export const useSearch = ({
-  resource,
+  resourceId,
+  resourceCreatorId,
   shareRights,
   shareDispatch,
 }: {
-  resource: IResource;
+  resourceId: ShareOptions["resourceCreatorId"];
+  resourceCreatorId: ShareOptions["resourceCreatorId"];
   shareRights: ShareRightWithVisibles;
   shareDispatch: Dispatch<ShareAction>;
 }) => {
@@ -103,7 +106,7 @@ export const useSearch = ({
   };
 
   const search = async (debouncedSearchInputValue: string) => {
-    if (!resource) return;
+    if (!resourceId) return;
 
     dispatch({
       type: "isSearching",
@@ -116,11 +119,7 @@ export const useSearch = ({
     ) {
       const resSearchShareSubjects = await odeServices
         .share()
-        .searchShareSubjects(
-          appCode,
-          resource.assetId,
-          debouncedSearchInputValue,
-        );
+        .searchShareSubjects(appCode, resourceId, debouncedSearchInputValue);
 
       dispatch({
         type: "addApiResult",
@@ -138,7 +137,7 @@ export const useSearch = ({
         // exclude owner from results
         .filter(
           (right: { type: string; id: any }) =>
-            !(right.type === "user" && right.id === resource?.creatorId),
+            !(right.type === "user" && right.id === resourceCreatorId),
         )
         .map(
           (searchResult: {

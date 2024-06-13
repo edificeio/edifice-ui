@@ -3,8 +3,8 @@ import { Dispatch, useId, useRef, useState } from "react";
 import { ShareRightWithVisibles, odeServices } from "edifice-ts-client";
 import { useTranslation } from "react-i18next";
 
+import { useToast, useToggle } from "../../../hooks";
 import { ShareAction } from "./useShare";
-import { useToast, useToggle } from "../../..";
 
 interface UseShareBookmarkProps {
   shareRights: ShareRightWithVisibles;

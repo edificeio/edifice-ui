@@ -1,21 +1,23 @@
-import { useState, ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 
 import { UseMutationResult } from "@tanstack/react-query";
 import {
   BlogResource,
   BlogUpdate,
+  ID,
   UpdateParameters,
   UpdateResult,
   odeServices,
 } from "edifice-ts-client";
 import { useTranslation } from "react-i18next";
-
-import { useOdeClient, Heading, Radio } from "../../..";
+import { Heading, Radio } from "../../../components";
+import { useOdeClient } from "../../../core";
+import { useResource } from "../../../core/useResource";
 
 export type PublicationType = "RESTRAINT" | "IMMEDIATE" | undefined;
 
 export interface ShareBlogProps {
-  resource: BlogResource;
+  resourceId: ID;
   updateResource?: UseMutationResult<
     UpdateResult,
     unknown,
@@ -25,11 +27,13 @@ export interface ShareBlogProps {
 }
 
 export default function ShareBlog({
-  resource,
+  resourceId,
   updateResource,
 }: ShareBlogProps) {
   const { appCode } = useOdeClient();
   const { t } = useTranslation(appCode);
+
+  const resource = useResource("blog", resourceId) as BlogResource;
 
   const publishType = resource && resource["publish-type"];
 

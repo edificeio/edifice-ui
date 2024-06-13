@@ -1,31 +1,34 @@
 import { useEffect, useReducer } from "react";
 
-import { UseMutationResult } from "@tanstack/react-query";
 import {
   odeServices,
-  type ShareRightAction,
-  type ShareRightWithVisibles,
   type ShareRight,
+  type ShareRightAction,
   type ShareRightActionDisplayName,
-  IResource,
-  PutShareResponse,
+  type ShareRightWithVisibles,
 } from "edifice-ts-client";
 import { useTranslation } from "react-i18next";
 
-import { useOdeClient, useToast, useUser } from "../../..";
+import { useOdeClient, useUser } from "../../../core";
+import { useToast } from "../../../hooks";
+import { ShareOptions, ShareResourceMutation } from "../ShareModal";
 
 interface UseShareResourceModalProps {
-  resource: IResource;
-  shareResource?: UseMutationResult<
-    PutShareResponse,
-    unknown,
-    {
-      resourceId: string;
-      rights: ShareRight[];
-    },
-    unknown
-  >;
+  /**
+   * Resource ID (assetId)
+   */
+  resourceId: ShareOptions["resourceId"];
+  /**
+   * Resource Rights (based on the new rights array)
+   */
+  resourceRights: ShareOptions["resourceRights"];
+  /**
+   * Resource Creator Id: Id of the user who created the resource
+   */
+  resourceCreatorId: ShareOptions["resourceCreatorId"];
+  shareResource?: ShareResourceMutation;
   onSuccess: () => void;
+  setIsLoading: (value: boolean) => void;
 }
 
 type State = {
@@ -70,9 +73,12 @@ function reducer(state: State, action: ShareAction) {
 }
 
 export default function useShare({
-  onSuccess,
-  resource,
+  resourceId,
+  resourceRights,
+  resourceCreatorId,
   shareResource,
+  setIsLoading,
+  onSuccess,
 }: UseShareResourceModalProps) {
   const { appCode } = useOdeClient();
   const { user, avatar } = useUser();
@@ -83,27 +89,31 @@ export default function useShare({
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    if (!resource) return;
+    if (!resourceId) return;
 
     (async () => {
-      const shareRightActions: ShareRightAction[] = await odeServices
-        .share()
-        .getActionsForApp(appCode);
+      try {
+        const [shareRightActions, shareRights] = await Promise.all([
+          odeServices.share().getActionsForApp(appCode),
+          odeServices.share().getRightsForResource(appCode, resourceId),
+        ]);
 
-      const shareRights: ShareRightWithVisibles = await odeServices
-        .share()
-        .getRightsForResource(appCode, resource?.assetId);
-
-      dispatch({
-        type: "init",
-        payload: {
-          shareRightActions,
-          shareRights,
-        },
-      });
+        dispatch({
+          type: "init",
+          payload: {
+            shareRightActions,
+            shareRights,
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+      {
+        setIsLoading(false);
+      }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [resource]);
+  }, [resourceId]);
 
   const toggleRight = (
     shareRight: ShareRight,
@@ -203,7 +213,7 @@ export default function useShare({
     try {
       //TODO move this logic into services
       // add my rights if needed (because visible api does not return my rights)
-      const myRights = resource.rights
+      const myRights = resourceRights
         .filter((right) => user && right.includes(`user:${user.userId}`))
         .map((right) => right.split(":")[2])
         .filter((right) => !!right);
@@ -230,13 +240,11 @@ export default function useShare({
       // shared
       if (shareResource) {
         await shareResource.mutateAsync({
-          resourceId: resource?.assetId,
+          resourceId: resourceId,
           rights: shares,
         });
       } else {
-        await odeServices
-          .share()
-          .saveRights(appCode, resource?.assetId, shares);
+        await odeServices.share().saveRights(appCode, resourceId, shares);
       }
       toast.success(t("explorer.shared.status.saved"));
       onSuccess();
@@ -271,7 +279,7 @@ export default function useShare({
     });
   };
   const currentIsAuthor = () =>
-    resource && resource.creatorId === user?.userId ? true : false;
+    resourceCreatorId === user?.userId ? true : false;
 
   return {
     state,

@@ -3,8 +3,8 @@ import { Ref } from "react";
 import { Save } from "@edifice-ui/icons";
 import { useTranslation } from "react-i18next";
 
+import { Button, FormControl } from "../../components";
 import { BookmarkProps } from "./hooks/useShareBookmark";
-import { FormControl, Button } from "../..";
 
 export const ShareBookmark = ({
   bookmark,
