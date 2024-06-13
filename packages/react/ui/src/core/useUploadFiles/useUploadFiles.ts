@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { WorkspaceElement, WorkspaceVisibility } from "edifice-ts-client";
 
 import { useDropzoneContext } from "../../components/Dropzone/DropzoneContext";
-import { addTimestampToImageUrl, getOrGenerateBlobId } from "../../utils";
+import { addTimestampToImageUrl } from "../../utils";
 import { useUpload } from "../useUpload";
 import { useWorkspaceFile } from "../useWorkspaceFile";
 import { useImageResizer } from "../../hooks/useImageResizer";
@@ -24,47 +24,77 @@ const useUploadFiles = ({
 
   const { files, deleteFile } = useDropzoneContext();
   const { remove, createOrUpdate } = useWorkspaceFile();
-  const { getUploadStatus, clearUploadStatus, uploadFile } = useUpload(
-    visibility,
-    application,
-  );
+  const {
+    getUploadStatus,
+    setUploadStatus,
+    clearUploadStatus,
+    uploadFile,
+    uploadAlternateFile,
+  } = useUpload(visibility, application);
 
   const { resizeImageFile } = useImageResizer();
 
-  useEffect(() => {
-    const MAX_UPLOADS_AT_ONCE = 5;
-    let numUploads = 0;
-
-    files.forEach((file) => {
-      const status = getUploadStatus(file);
-      /* Do not upload :
-         - the same file twice.
-           To upload it again, reset its previous status first.
-         - more than 5 files at once.
-      */
-      if (status || numUploads >= MAX_UPLOADS_AT_ONCE) return;
-
-      (async () => {
-        numUploads++;
-        let fileToUpload = file;
+  const tryUploading = useCallback(
+    (files: File[]) => {
+      files.forEach(async (file) => {
+        let resource;
         if (file.type.startsWith("image")) {
           try {
-            fileToUpload = await resizeImageFile(file);
-            getOrGenerateBlobId(fileToUpload, getOrGenerateBlobId(file));
+            const replacement = await resizeImageFile(file);
+            resource = await uploadAlternateFile(file, replacement);
           } catch (err) {
             console.error(err);
           }
         }
-        const resource = await uploadFile(fileToUpload);
-        if (resource !== null) {
+        if (!resource) {
+          resource = await uploadFile(file);
+        }
+        if (resource) {
           setUploadedFiles((prevFiles: WorkspaceElement[]) => [
             ...prevFiles,
             resource,
           ]);
         }
-      })();
-    });
-  }, [files, getUploadStatus, resizeImageFile, uploadFile]);
+      });
+    },
+    [resizeImageFile, uploadAlternateFile, uploadFile],
+  );
+
+  /* Try to upload more files when 
+    - the `files` list has been updated, 
+    - or a file has been uploaded, leaving a slot free.
+  */
+  useEffect(() => {
+    /* but not upload :
+      - the same file twice (by checking if an upload Status already exists for it).
+        To upload it again, reset its previous status first.
+      - more than 5 files at once.
+    */
+    const UPLOAD_SLOTS = 5;
+    let numUploads = 0;
+    // Check which new files can be uploaded right now.
+    const newFiles = files
+      .map((file) => {
+        if (numUploads >= UPLOAD_SLOTS) return null;
+        const status = getUploadStatus(file);
+        // If this file is currently loading => it uses a slot.
+        if (status === "loading") numUploads++;
+        // If this file has already been sent in a slot => don't send it again.
+        if (status) return null;
+        return file;
+      })
+      .filter((file) => file !== null) as File[];
+
+    newFiles.forEach((file) => setUploadStatus(file, "idle"));
+    tryUploading(newFiles);
+  }, [files, uploadedFiles, getUploadStatus, setUploadStatus, tryUploading]);
+
+  /** When file finished being uploaded, sort and handle the result. */
+  useEffect(() => {
+    const sortedUploadedFiles = sortUploadedFiles(files, uploadedFiles);
+    handleOnChange(sortedUploadedFiles);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [uploadedFiles]);
 
   const sortUploadedFiles = (
     filesArray: File[],
@@ -82,12 +112,6 @@ const useUploadFiles = ({
         orderMap[a.name] - orderMap[b.name],
     );
   };
-
-  useEffect(() => {
-    const sortedUploadedFiles = sortUploadedFiles(files, uploadedFiles);
-    handleOnChange(sortedUploadedFiles);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [uploadedFiles]);
 
   async function removeFile(file: File) {
     // Check if this file was successfully uploaded.

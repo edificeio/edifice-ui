@@ -135,10 +135,22 @@ const useUpload = (
     }
   };
 
+  function uploadAlternateFile(
+    original: File,
+    replacement: File,
+    metadata?: { duration: number },
+  ) {
+    // The original and its alternate must share the same virtual id.
+    getOrGenerateBlobId(replacement, getOrGenerateBlobId(original));
+    return uploadFile(replacement, metadata);
+  }
+
   return {
     getUploadStatus,
+    setUploadStatus,
     clearUploadStatus,
     uploadFile,
+    uploadAlternateFile,
     uploadBlob,
   };
 };

@@ -6,9 +6,8 @@ const useDropzone = () => {
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const addFile = (file: File) => {
-    setFiles((prevFiles) => [...prevFiles, file]);
+    addFiles([file]);
   };
 
   const deleteFile = (file: File) => {
@@ -17,55 +16,66 @@ const useDropzone = () => {
     );
   };
 
+  const addFiles = (files: File[]) => {
+    setFiles((prevFiles) => [...prevFiles, ...files]);
+  };
+
   const cleanFiles = () => {
     setFiles([]);
   };
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
-
-    if (files)
-      [...files].forEach((file) => {
-        addFile(file);
-      });
+    if (files) addFiles([...files]);
   };
 
-  const handleDragging = (event: React.DragEvent<HTMLDivElement>) => {
+  const handleDragging = <T extends HTMLElement>(event: React.DragEvent<T>) => {
     event.preventDefault();
     event.stopPropagation();
     setDragging(true);
   };
 
-  const handleDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
+  const handleDragLeave = <T extends HTMLElement>(
+    event: React.DragEvent<T>,
+  ) => {
     event.preventDefault();
     event.stopPropagation();
     setDragging(false);
   };
 
-  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+  const handleDrop = <T extends HTMLElement>(event: React.DragEvent<T>) => {
     handleDragLeave(event);
     const files = event.dataTransfer?.files;
-
-    if (files)
-      [...files].forEach((file) => {
-        addFile(file);
-      });
-
-    if (inputRef?.current && files) {
-      inputRef.current.files = files;
+    if (files) {
+      addFiles([...files]);
+      if (inputRef?.current) {
+        inputRef.current.files = files;
+      }
     }
   };
 
   return {
+    /** Reference to an `input[type=file]` HTMLElement, null at first. */
     inputRef,
+    /** Read-only list of File·s  managed by this hook. */
     files,
+    /** Truthy when a drag event is triggered. */
     dragging,
+    /** Callback to attach to your drop zone (any HTMLElement). */
     handleDragging,
+    /** Callback to attach to your drop zone (any HTMLElement). */
     handleDragLeave,
+    /** Callback to attach to your drop zone (any HTMLElement). */
     handleDrop,
+    /** Use it to remove a file from the `files` list. */
     deleteFile,
+    /** Use it to add a file to the `files` list. */
     addFile,
+    /** Use it to add many files to the `files` list. */
+    addFiles,
+    /** Use it to empty the `files` list. */
     cleanFiles,
+    /** Callback to attach to your `input[type=file]` HTMLElement. */
     handleOnChange,
   };
 };

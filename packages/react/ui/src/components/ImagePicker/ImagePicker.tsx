@@ -10,7 +10,7 @@ import { Delete, Edit } from "@edifice-ui/icons";
 import clsx from "clsx";
 import { IWebApp } from "edifice-ts-client";
 
-import useDropzone from "../../hooks/useDropzone/useDropzone";
+import { useDropzone } from "../../hooks";
 import { AppIcon } from "../AppIcon";
 import { Avatar } from "../Avatar";
 import { IconButton } from "../Button";
