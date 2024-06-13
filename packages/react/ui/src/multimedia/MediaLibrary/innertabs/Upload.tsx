@@ -5,6 +5,13 @@ import { UploadFiles } from "../../UploadFiles";
 import { MediaLibraryType } from "../MediaLibrary";
 import { useMediaLibraryContext } from "../MediaLibraryContext";
 
+/**
+ * Get acceptable file (MIME-)types or extensions, for a MediaLibraryType.
+ * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept#unique_file_type_specifiers
+ *
+ * @param type type of MediaLibrary
+ * @returns array of acceptable types
+ */
 const acceptedTypes = (type: MediaLibraryType) => {
   const acceptedTypes = [];
 

@@ -6,7 +6,7 @@ import { useUploadFiles } from "../../core";
 import { customSize } from "../../utils/fileSize";
 import { ImageEditor } from "../ImageEditor";
 
-const Upload = ({
+const UploadFiles = ({
   onFilesChange,
   visibility = "protected",
 }: {
@@ -120,6 +120,6 @@ const Upload = ({
   );
 };
 
-Upload.displayName = "Upload";
+UploadFiles.displayName = "UploadFiles";
 
-export default Upload;
+export default UploadFiles;

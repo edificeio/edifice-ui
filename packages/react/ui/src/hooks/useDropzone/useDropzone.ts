@@ -1,6 +1,12 @@
 import { ChangeEvent, useRef, useState } from "react";
 
-const useDropzone = () => {
+const useDropzone = (props?: {
+  /**
+   * Truthy when the `accept` attribute of the referenced `input[type=file]`
+   * must be force-checked against any added file.
+   */
+  forceFilters: boolean;
+}) => {
   const [dragging, setDragging] = useState<boolean>(false);
   const [files, setFiles] = useState<File[]>([]);
 
@@ -16,8 +22,40 @@ const useDropzone = () => {
     );
   };
 
+  const applyInputFiltersOn = (files: File[]) => {
+    let filteredFiles: File[] = files;
+    if (inputRef.current?.accept) {
+      // Reject files which do not pass the `accept` filter.
+      const filters = inputRef.current.accept
+        .split(",")
+        .map((filter) => filter.trim().toLowerCase());
+      const extensions = filters.filter((filter) => filter.startsWith("."));
+      const mimes = filters
+        .filter((filter) => !filter.startsWith("."))
+        .map((mime) => mime.replace("*", ""));
+
+      filteredFiles = [];
+      files.forEach((file) => {
+        const fileName = file.name.toLowerCase();
+        if (
+          extensions.some((extension) => fileName.endsWith(extension)) ||
+          mimes.some((mime) => file.type.includes(mime))
+        ) {
+          filteredFiles.push(file);
+        }
+      });
+    }
+    return filteredFiles;
+  };
+
   const addFiles = (files: File[]) => {
-    setFiles((prevFiles) => [...prevFiles, ...files]);
+    if (props?.forceFilters) {
+      const filesToAdd = applyInputFiltersOn(files);
+      if (filesToAdd && filesToAdd.length)
+        setFiles((prevFiles) => [...prevFiles, ...filesToAdd]);
+    } else {
+      setFiles((prevFiles) => [...prevFiles, ...files]);
+    }
   };
 
   const cleanFiles = () => {

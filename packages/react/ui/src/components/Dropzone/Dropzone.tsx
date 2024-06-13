@@ -34,7 +34,7 @@ const Dropzone = ({
     handleDragging,
     handleDrop,
     handleOnChange,
-  } = useDropzone();
+  } = useDropzone(accept ? { forceFilters: true } : undefined);
 
   const classes = clsx(
     "dropzone",
