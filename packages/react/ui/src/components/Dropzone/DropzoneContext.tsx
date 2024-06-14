@@ -5,6 +5,7 @@ export interface DropzoneContextType {
   files: File[];
   addFile: (file: File) => void;
   deleteFile: (file: File) => void;
+  replaceFileAt: (index: number, file: File) => void;
 }
 
 export const DropzoneContext = createContext<DropzoneContextType | null>(null);

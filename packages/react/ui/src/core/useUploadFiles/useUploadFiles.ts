@@ -22,7 +22,7 @@ const useUploadFiles = ({
     WorkspaceElement | undefined
   >(undefined);
 
-  const { files, deleteFile } = useDropzoneContext();
+  const { files, deleteFile, replaceFileAt } = useDropzoneContext();
   const { remove, createOrUpdate } = useWorkspaceFile();
   const {
     getUploadStatus,
@@ -35,13 +35,15 @@ const useUploadFiles = ({
   const { resizeImageFile } = useImageResizer();
 
   const tryUploading = useCallback(
-    (files: File[]) => {
-      files.forEach(async (file) => {
+    (files: Array<File | null>) => {
+      files.forEach(async (file, index) => {
+        if (file == null) return;
         let resource;
         if (file.type.startsWith("image")) {
           try {
             const replacement = await resizeImageFile(file);
             resource = await uploadAlternateFile(file, replacement);
+            replaceFileAt(index, replacement);
           } catch (err) {
             console.error(err);
           }
@@ -57,7 +59,7 @@ const useUploadFiles = ({
         }
       });
     },
-    [resizeImageFile, uploadAlternateFile, uploadFile],
+    [resizeImageFile, uploadAlternateFile, uploadFile, replaceFileAt],
   );
 
   /* Try to upload more files when 
@@ -73,19 +75,17 @@ const useUploadFiles = ({
     const UPLOAD_SLOTS = 5;
     let numUploads = 0;
     // Check which new files can be uploaded right now.
-    const newFiles = files
-      .map((file) => {
-        if (numUploads >= UPLOAD_SLOTS) return null;
-        const status = getUploadStatus(file);
-        // If this file is currently loading => it uses a slot.
-        if (status === "loading") numUploads++;
-        // If this file has already been sent in a slot => don't send it again.
-        if (status) return null;
-        return file;
-      })
-      .filter((file) => file !== null) as File[];
+    const newFiles = files.map((file) => {
+      if (numUploads >= UPLOAD_SLOTS) return null;
+      const status = getUploadStatus(file);
+      // If this file is currently loading => it uses a slot.
+      if (status === "loading") numUploads++;
+      // If this file has already been sent in a slot => don't send it again.
+      if (status) return null;
+      return file;
+    });
 
-    newFiles.forEach((file) => setUploadStatus(file, "idle"));
+    newFiles.forEach((file) => file && setUploadStatus(file, "idle"));
     tryUploading(newFiles);
   }, [files, uploadedFiles, getUploadStatus, setUploadStatus, tryUploading]);
 

@@ -30,6 +30,7 @@ const Dropzone = ({
     files,
     addFile,
     deleteFile,
+    replaceFileAt,
     handleDragLeave,
     handleDragging,
     handleDrop,
@@ -51,8 +52,9 @@ const Dropzone = ({
       files,
       addFile,
       deleteFile,
+      replaceFileAt,
     }),
-    [addFile, deleteFile, files, inputRef],
+    [addFile, deleteFile, replaceFileAt, files, inputRef],
   );
 
   return (

@@ -26,6 +26,19 @@ export default function useImageResizer() {
     return filenameParts.join(".") + "." + newExtension;
   };
 
+  function checkCompressFormat(
+    initialFormat: string,
+    desiredFormat: string | undefined,
+  ) {
+    if (!desiredFormat) {
+      initialFormat = initialFormat.trim().toLowerCase();
+      desiredFormat = ["png", "gif" /*, "jpg", "jpeg"*/].find(
+        (format) => format === initialFormat,
+      );
+    }
+    return desiredFormat ?? "jpeg";
+  }
+
   const resizeImage = (
     image: HTMLImageElement,
     fileName: string,
@@ -85,23 +98,28 @@ export default function useImageResizer() {
   /**
    * Resize and compress Image File
    * @param file  The image file to resize
+   * @param compressFormat  The format of the compressed image
    * @param maxWidth  The maximum width of the resized image
    * @param maxHeight   The maximum height of the resized image
-   * @param compressFormat  The format of the compressed image
    * @param quality   The quality of the compressed image
    * @returns   The resized image file
    */
   const resizeImageFile = async (
     file: File,
+    compressFormat?: string,
     maxWidth: number = 1440,
     maxHeight: number = 1440,
-    compressFormat: string = "jpeg",
     quality: number = 80,
   ): Promise<File> => {
     if (!file) throw Error("Image resizer: file not found!");
 
-    if (!file.type || !file.type.includes("image"))
+    if (!file.type || !file.type.startsWith("image/"))
       throw Error("Image resizer: the file given is not an image.");
+
+    compressFormat = checkCompressFormat(
+      file.type.split("image/")[1],
+      compressFormat,
+    );
 
     return new Promise((resolve) => {
       const image = new Image();

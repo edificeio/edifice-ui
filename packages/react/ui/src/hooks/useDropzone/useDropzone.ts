@@ -22,6 +22,18 @@ const useDropzone = (props?: {
     );
   };
 
+  const replaceFileAt = (index: number, file: File) => {
+    setFiles((prevFiles) => {
+      if (0 <= index && index < prevFiles.length) {
+        const firstPart = prevFiles.slice(0, index);
+        const lastPart =
+          index === prevFiles.length - 1 ? [] : prevFiles.slice(index + 1);
+        return [...firstPart, file, ...lastPart];
+      }
+      return prevFiles;
+    });
+  };
+
   const applyInputFiltersOn = (files: File[]) => {
     let filteredFiles: File[] = files;
     if (inputRef.current?.accept) {
@@ -105,13 +117,15 @@ const useDropzone = (props?: {
     handleDragLeave,
     /** Callback to attach to your drop zone (any HTMLElement). */
     handleDrop,
-    /** Use it to remove a file from the `files` list. */
+    /** Replace a file in the `files` list. */
+    replaceFileAt,
+    /** Remove a file from the `files` list. */
     deleteFile,
-    /** Use it to add a file to the `files` list. */
+    /** Add a file to the `files` list. */
     addFile,
-    /** Use it to add many files to the `files` list. */
+    /** Add many files to the `files` list. */
     addFiles,
-    /** Use it to empty the `files` list. */
+    /** Empty the `files` list. */
     cleanFiles,
     /** Callback to attach to your `input[type=file]` HTMLElement. */
     handleOnChange,
