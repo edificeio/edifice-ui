@@ -33,7 +33,7 @@ const AudioRecorder = forwardRef(
     const {
       recordState,
       playState,
-      recordtime,
+      recordTime,
       audioRef,
       audioNameRef,
       toolbarItems,
@@ -90,7 +90,7 @@ const AudioRecorder = forwardRef(
         <AudioRecorderTimer
           recordState={recordState}
           playState={playState}
-          recordTime={recordtime}
+          recordTime={recordTime}
           audioTime={audioTime}
           maxDuration={maxDuration}
         ></AudioRecorderTimer>

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useReducer, useRef } from "react";
 
 import {
+  Loader,
   Pause,
   PlayFilled,
   Record,
@@ -28,15 +29,19 @@ export type PlayState = "IDLE" | "PLAYING" | "PAUSED";
 type AudioReducerState = {
   recordState: RecordState;
   playState: PlayState;
+  isEncoding: boolean;
 
-  mediaRecorder?: MediaRecorder;
+  // The audio recorder is based on the Web Audio API (https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
+  // See also https://developer.mozilla.org/en-US/docs/Web/API/AudioWorkletNode for more information.
   micStream?: MediaStream;
-  audioChunks: Blob[];
-  recordedTime: number;
-  recordingTime: number;
+  micStreamAudioSourceNode?: MediaStreamAudioSourceNode;
+  audioWorkletNode?: AudioWorkletNode;
+  audioContext?: AudioContext;
 
+  // encoder and web socket for sending encoded audio to the backend
   encoderWorker?: Worker;
 
+  recordTime: number;
   // max duration in s (3 minutes by default)
   maxDuration: number;
 };
@@ -51,6 +56,7 @@ export default function useAudioRecorder(
   function audioReducer(
     state: AudioReducerState,
     action: {
+      type: "update";
       updatedState?: Partial<AudioReducerState>;
     },
   ): AudioReducerState {
@@ -61,79 +67,74 @@ export default function useAudioRecorder(
     {
       recordState,
       playState,
-      mediaRecorder,
       micStream,
-      audioChunks,
-      maxDuration,
-      recordedTime,
-      recordingTime,
+      micStreamAudioSourceNode,
+      audioWorkletNode,
+      audioContext,
       encoderWorker,
+      maxDuration,
+      recordTime,
+      isEncoding,
     },
     dispatch,
   ] = useReducer(audioReducer, {
     recordState: "IDLE",
+    isEncoding: false,
     playState: "IDLE",
-    audioChunks: [],
-    recordedTime: 0,
-    recordingTime: 0,
-    maxDuration: 180000, // max duration in s (3 minutes by default)
+    recordTime: 0,
+    maxDuration: 180, // max duration in s (3 minutes by default)
   });
   const audioNameRef = useRef<HTMLInputElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const leftChannelRef = useRef<Float32Array[]>();
+  const rightChannelRef = useRef<Float32Array[]>();
 
   const { t } = useTranslation();
-
   const { create } = useWorkspaceFile();
 
-  const BUFFER_SIZE: number = 512;
+  const BUFFER_SIZE: number = 128; // https://developer.mozilla.org/en-US/docs/Web/API/AudioWorkletProcessor
   const DEFAULT_SAMPLE_RATE: number = 48000;
 
-  function initEncoderWorker() {
+  // Init Web Socket to send audio chunks to backend
+  useEffect(() => {
     const encoderWorker = new Worker("/infra/public/js/audioEncoder.js");
     dispatch({
+      type: "update",
       updatedState: { encoderWorker: encoderWorker },
     });
-    encoderWorker.postMessage(["init", DEFAULT_SAMPLE_RATE]);
-  }
-
-  useEffect(() => {
-    initEncoderWorker();
+    encoderWorker.postMessage([
+      "init",
+      audioContext?.sampleRate || DEFAULT_SAMPLE_RATE,
+    ]);
 
     return () => {
-      // Close opened audio stream and clean channels
       closeAudioStream();
-      encoderWorker?.terminate();
+      encoderWorker.terminate();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    if (recordState === "RECORDING" && mediaRecorder?.state === "recording") {
-      const startedAt = Date.now();
-      const timer = window.setInterval(
-        // Compute exact elapsed time by diffing the start time.
-        () =>
-          dispatch({
-            updatedState: {
-              recordingTime: Date.now() - startedAt,
-            },
-          }),
-        500,
-      );
-      return () => window.clearInterval(timer);
+  /**
+   * Handle message received from the audio recorder processor.
+   * Basically the Audio recorder processor returns the input channels that will be treated by the audioEncoder worker.
+   * The audio recorder processor script is located here: /infra/public/js/audio-recorder-processor.js
+   * The script follows the AudioWorkletProcessor API (https://developer.mozilla.org/en-US/docs/Web/API/AudioWorkletProcessor)
+   * This method gets called for each block of 128 sample-frames.
+   *
+   * @param event is the input returned, containing leftChannel and rightChannel arrays.
+   */
+  const handleAudioWorkletNodeMessage = (event: MessageEvent) => {
+    const leftChannel = (event.data.inputs as Float32Array[][])[0][0];
+    let rightChannel = (event.data.inputs as Float32Array[][])[0][1];
+    if (
+      !rightChannel ||
+      rightChannel.filter((data) => data !== undefined).length === 0
+    ) {
+      rightChannel = leftChannel;
     }
-  }, [recordState, mediaRecorder?.state]);
-
-  useEffect(() => {
-    if (recordState === "PAUSED" && recordingTime) {
-      dispatch({
-        updatedState: {
-          recordedTime: (recordedTime || 0) + recordingTime,
-          recordingTime: 0,
-        },
-      });
-    }
-  }, [recordState, recordedTime, recordingTime]);
+    leftChannelRef.current?.push(leftChannel);
+    rightChannelRef.current?.push(rightChannel);
+  };
 
   /**
    * Close opened audio stream and clean channels
@@ -141,66 +142,131 @@ export default function useAudioRecorder(
   const closeAudioStream = useCallback(() => {
     // Close audio stream
     micStream?.getTracks().forEach((track) => track.stop());
-  }, [micStream]);
+    micStreamAudioSourceNode?.disconnect();
+    audioWorkletNode?.port.removeEventListener(
+      "message",
+      handleAudioWorkletNodeMessage,
+    );
+    audioWorkletNode?.port.close();
+    audioWorkletNode?.disconnect();
+    audioContext?.close();
+  }, [audioContext, audioWorkletNode, micStream, micStreamAudioSourceNode]);
+
+  const initRecording = async () => {
+    // Request access to the user's microphone
+    const micStream: MediaStream = await navigator.mediaDevices.getUserMedia({
+      audio: true,
+    });
+
+    // Create the microphone stream
+    const audioContext = new AudioContext({ sampleRate: DEFAULT_SAMPLE_RATE });
+    const micStreamAudioSourceNode: MediaStreamAudioSourceNode =
+      audioContext.createMediaStreamSource(micStream);
+
+    // Create and connect AudioWorkletNode for processing the audio stream
+    // https://developer.mozilla.org/en-US/docs/Web/API/AudioWorkletProcessor
+    try {
+      await audioContext.audioWorklet.addModule(
+        "/infra/public/js/audio-recorder-processor.js",
+      );
+    } catch (err) {
+      console.error(err);
+    }
+
+    const audioWorkletNode = new AudioWorkletNode(
+      audioContext,
+      "audio-recorder-processor",
+    );
+
+    // Message received from the audio recorder processor. cf handleAudioWorkletNodeMessage function.
+    // Basically the Audio recorder processor returns the input channels that will be treated by the audioEncoder worker.
+    audioWorkletNode.port.addEventListener(
+      "message",
+      handleAudioWorkletNodeMessage,
+    );
+
+    // Store the audio context and stream in the state, reset record time and set states
+    dispatch({
+      type: "update",
+      updatedState: {
+        micStream,
+        micStreamAudioSourceNode,
+        audioContext,
+        recordTime: 0,
+        audioWorkletNode,
+        recordState: "RECORDING",
+        playState: "IDLE",
+      },
+    });
+
+    // Clean audio channels
+    rightChannelRef.current = [];
+    leftChannelRef.current = [];
+
+    audioWorkletNode.port.start();
+
+    micStreamAudioSourceNode.connect(audioWorkletNode);
+    audioWorkletNode.connect(audioContext.destination);
+  };
 
   const handleRecord = useCallback(async () => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.pause();
+    }
     if (recordState === "PAUSED") {
+      // Resume recording
       dispatch({
+        type: "update",
         updatedState: { recordState: "RECORDING", playState: "IDLE" },
       });
-      mediaRecorder?.resume();
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
-      }
+      audioContext?.resume();
     } else {
-      const micStream: MediaStream = await navigator.mediaDevices.getUserMedia({
-        audio: true,
-      });
-
-      dispatch({
-        updatedState: { micStream },
-      });
-
-      // Create the microphone recorder
-      const mediaRecorder = new MediaRecorder(micStream);
-      dispatch({
-        updatedState: {
-          mediaRecorder,
-          recordState: "RECORDING",
-          playState: "IDLE",
-          recordedTime: 0,
-          audioChunks: [] as Blob[], // Reset audio chunks
-        },
-      });
-      mediaRecorder.ondataavailable = (event) => {
-        if (typeof event.data === "undefined") return;
-        if (event.data.size === 0) return;
-        audioChunks.push(event.data);
-        dispatch({ updatedState: { audioChunks } });
-      };
-
-      mediaRecorder.start(BUFFER_SIZE);
+      // Start new recording
+      initRecording();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [recordState, audioRef, micStream, audioChunks, mediaRecorder]);
+  }, [recordState, audioContext, audioRef]);
 
-  const handleRecordPause = useCallback(async () => {
-    dispatch({ updatedState: { recordState: "PAUSED", playState: "IDLE" } });
-    mediaRecorder?.pause();
+  const handleRecordPause = useCallback(() => {
+    dispatch({
+      type: "update",
+      updatedState: {
+        recordState: "PAUSED",
+        playState: "IDLE",
+        isEncoding: true,
+      },
+    });
+    audioContext?.suspend();
+    if (encoderWorker && leftChannelRef.current && rightChannelRef.current) {
+      // Encode audio
+      encoderWorker.postMessage([
+        "mp3",
+        rightChannelRef.current,
+        leftChannelRef.current,
+        rightChannelRef.current.length * BUFFER_SIZE,
+      ]);
+      encoderWorker.onmessage = (event: MessageEvent) => {
+        const audioUrl = window.URL.createObjectURL(event.data);
 
-    const audioBlob = new Blob(audioChunks);
-    const audioUrl = URL.createObjectURL(audioBlob);
-    if (audioRef.current) {
-      audioRef.current.src = audioUrl;
+        dispatch({
+          type: "update",
+          updatedState: { isEncoding: false },
+        });
+
+        if (audioRef.current) {
+          audioRef.current.src = audioUrl;
+        }
+
+        if (onUpdateRecord) {
+          onUpdateRecord(audioUrl);
+        }
+      };
     }
-    if (onUpdateRecord) {
-      onUpdateRecord(audioUrl);
-    }
-  }, [mediaRecorder, audioChunks, onUpdateRecord]);
+  }, [audioContext, encoderWorker, onUpdateRecord]);
 
   const handlePlay = useCallback(() => {
-    dispatch({ updatedState: { playState: "PLAYING" } });
+    dispatch({ type: "update", updatedState: { playState: "PLAYING" } });
     if (audioRef?.current?.currentTime) {
       audioRef.current.play();
     } else {
@@ -212,18 +278,23 @@ export default function useAudioRecorder(
 
   const handlePlayPause = useCallback(() => {
     audioRef?.current?.pause();
-    dispatch({ updatedState: { playState: "PAUSED" } });
+    dispatch({ type: "update", updatedState: { playState: "PAUSED" } });
   }, [audioRef]);
 
   const handleReset = useCallback(() => {
+    closeAudioStream();
+
     dispatch({
+      type: "update",
       updatedState: {
         playState: "IDLE",
         recordState: "IDLE",
-        audioChunks: [],
-        mediaRecorder: undefined,
       },
     });
+
+    // Clean channels
+    rightChannelRef.current = [];
+    leftChannelRef.current = [];
 
     if (onUpdateRecord) {
       onUpdateRecord(undefined);
@@ -231,15 +302,6 @@ export default function useAudioRecorder(
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [closeAudioStream, onUpdateRecord]);
-
-  async function getAudioBufferFromChunk(audioChunks: Blob[]) {
-    const audioBlob = new Blob(audioChunks, {
-      type: "audio/webm;codecs=opus",
-    });
-    const arrayBuffer = await audioBlob.arrayBuffer();
-    const audioContext = new AudioContext();
-    return await audioContext.decodeAudioData(arrayBuffer);
-  }
 
   const handleSave: () => Promise<WorkspaceElement | undefined> =
     useCallback(async () => {
@@ -252,20 +314,22 @@ export default function useAudioRecorder(
         audioRef.current.pause();
         audioRef.current.currentTime = 0;
       }
-
-      dispatch({ updatedState: { recordState: "SAVING", playState: "IDLE" } });
-      const audioBuffer = await getAudioBufferFromChunk(audioChunks);
-
+      dispatch({
+        type: "update",
+        updatedState: { recordState: "SAVING", playState: "IDLE" },
+      });
       return new Promise<WorkspaceElement | undefined>((resolve, reject) => {
         try {
-          if (encoderWorker) {
+          if (
+            encoderWorker &&
+            leftChannelRef.current &&
+            rightChannelRef.current
+          ) {
             encoderWorker.postMessage([
               "mp3",
-              [audioBuffer.getChannelData(0)],
-              audioBuffer.numberOfChannels > 1
-                ? [audioBuffer.getChannelData(1)]
-                : [audioBuffer.getChannelData(0)],
-              audioBuffer.length,
+              rightChannelRef.current,
+              leftChannelRef.current,
+              rightChannelRef.current.length * BUFFER_SIZE,
             ]);
 
             encoderWorker.onmessage = async (event: MessageEvent) => {
@@ -284,6 +348,7 @@ export default function useAudioRecorder(
                 }
 
                 dispatch({
+                  type: "update",
                   updatedState: { recordState: "SAVED" },
                 });
 
@@ -293,6 +358,7 @@ export default function useAudioRecorder(
           }
         } catch (error) {
           dispatch({
+            type: "update",
             updatedState: { playState: "IDLE", recordState: "IDLE" },
           });
           console.error("Error while saving", error);
@@ -300,13 +366,7 @@ export default function useAudioRecorder(
         }
       });
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [
-      recordState,
-      onSaveSuccess,
-      closeAudioStream,
-      audioChunks,
-      audioNameRef,
-    ]);
+    }, [recordState, onSaveSuccess, closeAudioStream]);
 
   const handlePlayStop = useCallback(() => {
     // Stop Playing the record
@@ -314,11 +374,11 @@ export default function useAudioRecorder(
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
     }
-    dispatch({ updatedState: { playState: "IDLE" } });
+    dispatch({ type: "update", updatedState: { playState: "IDLE" } });
   }, [audioRef]);
 
   const handlePlayEnded = useCallback(() => {
-    dispatch({ updatedState: { playState: "PAUSED" } });
+    dispatch({ type: "update", updatedState: { playState: "PAUSED" } });
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
     }
@@ -328,19 +388,29 @@ export default function useAudioRecorder(
    * Auto-stop recording when max allowed duration is reached.
    */
   useEffect(() => {
-    if (
-      recordState === "RECORDING" &&
-      recordedTime + recordingTime >= maxDuration
-    ) {
-      handleRecordPause();
+    if (recordState === "RECORDING" && audioContext) {
+      console.log("audioContext.currentTime", audioContext.currentTime);
+      const timer = window.setInterval(
+        // Compute exact elapsed time by diffing the start time.
+        () => {
+          dispatch({
+            type: "update",
+            updatedState: {
+              recordTime: audioContext.currentTime * 1000,
+            },
+          });
+
+          if (audioContext.currentTime >= maxDuration) {
+            handleRecordPause();
+            window.clearInterval(timer);
+          }
+        },
+        250,
+      );
+
+      return () => window.clearInterval(timer);
     }
-  }, [
-    handleRecordPause,
-    maxDuration,
-    recordState,
-    recordedTime,
-    recordingTime,
-  ]);
+  }, [audioContext, handleRecordPause, maxDuration, recordState]);
 
   const recordText =
     recordState === "IDLE"
@@ -356,8 +426,10 @@ export default function useAudioRecorder(
         icon: <Record />,
         color: "danger",
         disabled:
-          (recordState !== "IDLE" && recordState !== "PAUSED") ||
-          recordedTime + recordingTime >= maxDuration,
+          recordState !== "IDLE" &&
+          recordState !== "PAUSED" &&
+          (!audioContext?.currentTime ||
+            audioContext?.currentTime >= maxDuration),
         onClick: handleRecord,
         "aria-label": recordText,
       },
@@ -379,15 +451,23 @@ export default function useAudioRecorder(
     { type: "divider" },
     {
       type: "icon",
+      name: "encoding",
+      visibility: isEncoding ? "show" : "hide",
+      props: {
+        icon: <Loader style={{ animation: "loading 1s infinite" }} />,
+        disabled: true,
+      },
+    },
+    {
+      type: "icon",
       name: "play",
-      visibility: playState === "PLAYING" ? "hide" : "show",
+      visibility: isEncoding || playState === "PLAYING" ? "hide" : "show",
       props: {
         icon: <PlayFilled />,
         disabled:
           recordState !== "RECORDED" &&
           recordState !== "PAUSED" &&
-          recordState !== "SAVED" &&
-          playState !== "PAUSED",
+          recordState !== "SAVED",
         onClick: handlePlay,
         "aria-label": t("bbm.audio.play.start"),
       },
@@ -396,10 +476,9 @@ export default function useAudioRecorder(
     {
       type: "icon",
       name: "playPause",
-      visibility: playState === "PLAYING" ? "show" : "hide",
+      visibility: !isEncoding && playState === "PLAYING" ? "show" : "hide",
       props: {
         icon: <Pause />,
-        disabled: playState !== "PLAYING",
         onClick: handlePlayPause,
         "aria-label": t("bbm.audio.play.pause"),
       },
@@ -424,9 +503,9 @@ export default function useAudioRecorder(
         icon: <Refresh />,
         disabled:
           recordState !== "RECORDED" &&
+          recordState !== "PAUSED" &&
           playState !== "PLAYING" &&
-          playState !== "PAUSED" &&
-          recordState !== "PAUSED",
+          playState !== "PAUSED",
         onClick: handleReset,
         "aria-label": t("bbm.audio.record.reset"),
       },
@@ -455,8 +534,9 @@ export default function useAudioRecorder(
   return {
     recordState,
     playState,
-    recordtime: (recordedTime || 0) + (recordingTime || 0),
-    maxDuration: maxDuration,
+    audioContext,
+    recordTime,
+    maxDuration: maxDuration * 1000,
     audioRef,
     audioNameRef,
     toolbarItems,
