@@ -1,5 +1,6 @@
 /**
- *
+ * @module useImageResizer
+ * @description This module provides a hook to resize and compress image files.
  * @returns all the action available for the image resizer
  */
 export default function useImageResizer() {
@@ -25,19 +26,6 @@ export default function useImageResizer() {
     filenameParts.pop();
     return filenameParts.join(".") + "." + newExtension;
   };
-
-  function checkCompressFormat(
-    initialFormat: string,
-    desiredFormat: string | undefined,
-  ) {
-    if (!desiredFormat) {
-      initialFormat = initialFormat.trim().toLowerCase();
-      desiredFormat = ["png", "gif" /*, "jpg", "jpeg"*/].find(
-        (format) => format === initialFormat,
-      );
-    }
-    return desiredFormat ?? "jpeg";
-  }
 
   const resizeImage = (
     image: HTMLImageElement,
@@ -96,9 +84,8 @@ export default function useImageResizer() {
   };
 
   /**
-   * Resize and compress Image File
+   * Resize and compress Image File in JPEG format (other format don't work well with canvas.toBlob() with quality parameter)
    * @param file  The image file to resize
-   * @param compressFormat  The format of the compressed image
    * @param maxWidth  The maximum width of the resized image
    * @param maxHeight   The maximum height of the resized image
    * @param quality   The quality of the compressed image
@@ -106,7 +93,6 @@ export default function useImageResizer() {
    */
   const resizeImageFile = async (
     file: File,
-    compressFormat?: string,
     maxWidth: number = 1440,
     maxHeight: number = 1440,
     quality: number = 80,
@@ -116,10 +102,7 @@ export default function useImageResizer() {
     if (!file.type || !file.type.startsWith("image/"))
       throw Error("Image resizer: the file given is not an image.");
 
-    compressFormat = checkCompressFormat(
-      file.type.split("image/")[1],
-      compressFormat,
-    );
+    const compressFormat = "jpeg";
 
     return new Promise((resolve) => {
       const image = new Image();
