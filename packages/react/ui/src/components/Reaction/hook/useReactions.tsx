@@ -53,18 +53,18 @@ export default function useReactions(module: string, resourceType: string) {
 
   /**
    * Set, update or remove a reaction to a resource.
-   * This parameter is
    * @param resourceId id
    * @param newReaction reaction to set / update / remove
-   * @param oldReaction Previous reaction set, or null if none exists.
+   * @param oldReaction Previous reaction, or null if none exists.
+   * @returns a promise of "+" (reaction added), "-" (reaction removed) or "=" (reaction changed)
    */
   const applyReaction = useCallback(
-    (
+    async (
       resourceId: string,
       newReaction: ReactionType,
       oldReaction: ReactionType | null,
     ) => {
-      // Forbid setting an unavailable reaction, by allow resetting it.
+      // Forbid setting an unavailable reaction, but allow resetting it.
       if (
         newReaction !== oldReaction &&
         availableReactions.indexOf(newReaction) < 0
@@ -72,32 +72,35 @@ export default function useReactions(module: string, resourceType: string) {
         return Promise.reject(ERROR_CODE.MALFORMED_DATA);
       }
 
+      let result: "+" | "-" | "=" = "+";
       if (oldReaction) {
         if (newReaction === oldReaction) {
           // Reset the reaction
-          return _delete<void>(
+          await _delete<void>(
             `/audience/reactions/${module}/${resourceType}/${resourceId}`,
           );
+          result = "-";
         } else {
           // Put a reaction change
-          return _putJson<void>(
+          await _putJson<void>(
             `/audience/reactions/${module}/${resourceType}`,
             {
               resourceId,
               reactionType: newReaction,
             },
           );
+          result = "=";
         }
       } else {
         // Post a new reaction
-        return _postJson<void>(
-          `/audience/reactions/${module}/${resourceType}`,
-          {
-            resourceId,
-            reactionType: newReaction,
-          },
-        );
+        await _postJson<void>(`/audience/reactions/${module}/${resourceType}`, {
+          resourceId,
+          reactionType: newReaction,
+        });
       }
+      if (odeServices.http().isResponseError())
+        return Promise.reject(ERROR_CODE.UNKNOWN);
+      return result;
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [availableReactions],
