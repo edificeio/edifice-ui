@@ -90,7 +90,7 @@ export default function usePublishModal({ onSuccess, resource }: ModalProps) {
     selectOption(value, selectedSubjectAreas, setSelectedSubjectAreas);
   };
 
-  const handleUploadImage = (file: File) => setCover(file);
+  const handleUploadImage = (file: File | string) => setCover(file);
 
   const handleDeleteImage = () => setCover("");
 

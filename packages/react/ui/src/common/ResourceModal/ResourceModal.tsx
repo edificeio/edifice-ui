@@ -18,7 +18,6 @@ import {
   Button,
   FormControl,
   Heading,
-  ImagePicker,
   Input,
   Label,
   LoadingScreen,
@@ -26,10 +25,12 @@ import {
   TextArea,
 } from "../../components";
 import { TextareaCounter } from "../../components/TextArea/TextareaCounter";
-import { useOdeClient } from "../../core";
+import { useMediaLibrary, useOdeClient } from "../../core";
 import { useResource } from "../../core/useResource";
 import { useToast } from "../../hooks";
 import { useThumb } from "./hooks/useThumb";
+import { MediaLibrary } from "../../multimedia";
+import ImagePickerWorkspace from "../../components/ImagePickerWorkspace/ImagePickerWorkspace";
 
 export interface FormInputs {
   title: string;
@@ -110,6 +111,14 @@ const ResourceModal = ({
       formSlug: isUpdating ? resource?.slug : "",
     },
   });
+
+  const {
+    ref: mediaLibraryRef,
+    libraryMedia,
+    ...mediaLibraryHandlers
+  } = useMediaLibrary();
+
+  const { appCode } = useOdeClient();
 
   const { thumbnail, handleDeleteImage, handleUploadImage } = useThumb({
     isUpdating,
@@ -214,18 +223,17 @@ const ResourceModal = ({
 
         <form id={formId} onSubmit={handleSubmit(onSubmit)}>
           <div className="d-block d-md-flex gap-16 mb-24">
-            <div>
-              <ImagePicker
-                app={currentApp}
-                src={isUpdating ? resource?.thumbnail || "" : ""}
-                label={t("explorer.imagepicker.label")}
-                addButtonLabel={t("explorer.imagepicker.button.add")}
-                deleteButtonLabel={t("explorer.imagepicker.button.delete")}
-                onUploadImage={handleUploadImage}
-                onDeleteImage={handleDeleteImage}
-                className="align-self-center mt-8"
-              />
-            </div>
+            <ImagePickerWorkspace
+              app={currentApp}
+              src={isUpdating ? resource?.thumbnail || "" : ""}
+              addButtonLabel={t("explorer.imagepicker.button.add")}
+              deleteButtonLabel={t("explorer.imagepicker.button.delete")}
+              onUploadImage={handleUploadImage}
+              onDeleteImage={handleDeleteImage}
+              className="align-self-center mt-8"
+              libraryMedia={libraryMedia}
+              mediaLibraryRef={mediaLibraryRef}
+            />
 
             <div className="col">
               <FormControl id="title" className="mb-16" isRequired>
@@ -299,6 +307,13 @@ const ResourceModal = ({
           {t(isCreating ? "explorer.create" : "save")}
         </Button>
       </Modal.Footer>
+      <MediaLibrary
+        appCode={appCode}
+        ref={mediaLibraryRef}
+        multiple={false}
+        visibility="protected"
+        {...mediaLibraryHandlers}
+      />
     </Modal>,
     document.getElementById("portal") as HTMLElement,
   );
