@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef, forwardRef, useEffect, useState } from "react";
+import { ComponentPropsWithRef, useEffect, useState } from "react";
 
 import { Delete, Edit } from "@edifice-ui/icons";
 import { IWebApp } from "edifice-ts-client";
@@ -8,7 +8,8 @@ import { Avatar } from "../Avatar";
 import { IconButton } from "../Button";
 import clsx from "clsx";
 
-export interface ImagePickerProps extends ComponentPropsWithRef<"input"> {
+export interface ImagePickerWorkspaceProps
+  extends ComponentPropsWithRef<"input"> {
   /**
    * Accessible description of the add button
    */
@@ -49,69 +50,67 @@ export interface ImagePickerProps extends ComponentPropsWithRef<"input"> {
   onDeleteImage: () => void;
 }
 
-const ImagePickerWorkspace = forwardRef(
-  ({
-    addButtonLabel = "Add image",
-    deleteButtonLabel = "Delete image",
-    src,
-    className,
-    mediaLibraryRef,
-    libraryMedia,
-    app,
-    onUploadImage,
-    onDeleteImage,
-  }: ImagePickerProps) => {
-    const [preview, setPreview] = useState<string>(src || "");
+const ImagePickerWorkspace = ({
+  addButtonLabel = "Add image",
+  deleteButtonLabel = "Delete image",
+  src,
+  className,
+  mediaLibraryRef,
+  libraryMedia,
+  app,
+  onUploadImage,
+  onDeleteImage,
+}: ImagePickerWorkspaceProps) => {
+  const [preview, setPreview] = useState<string>(src || "");
 
-    useEffect(() => {
-      if (libraryMedia) {
-        setPreview(libraryMedia);
-        onUploadImage(libraryMedia);
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [libraryMedia]);
+  useEffect(() => {
+    if (libraryMedia) {
+      setPreview(libraryMedia);
+      onUploadImage(libraryMedia);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [libraryMedia]);
 
-    const handleClick = () => {
-      mediaLibraryRef.current?.show("image");
-    };
+  const handleClick = () => {
+    mediaLibraryRef.current?.show("image");
+  };
 
-    const handleClean = () => {
-      setPreview("");
-      onDeleteImage();
-    };
+  const handleClean = () => {
+    setPreview("");
+    onDeleteImage();
+  };
 
-    const classes = clsx("image-input", className);
+  const classes = clsx("image-input", className);
 
-    return (
-      <div id="image-input" className={classes}>
-        <div className="image-input-actions gap-8">
-          <IconButton
-            aria-label={addButtonLabel}
-            color="tertiary"
-            icon={<Edit />}
-            onClick={handleClick}
-            type="button"
-            variant="ghost"
-          />
-          <IconButton
-            aria-label={deleteButtonLabel}
-            color="danger"
-            disabled={!preview}
-            icon={<Delete width="20" height="20" />}
-            onClick={handleClean}
-            type="button"
-            variant="ghost"
-          />
-        </div>
-        {preview ? (
-          <Avatar alt="" src={preview} size="xl" />
-        ) : (
-          <AppIcon app={app} iconFit="ratio" size="160" variant="rounded" />
-        )}
+  return (
+    <div id="image-input" className={classes}>
+      <div className="image-input-actions gap-8">
+        <IconButton
+          aria-label={addButtonLabel}
+          color="tertiary"
+          icon={<Edit />}
+          onClick={handleClick}
+          type="button"
+          variant="ghost"
+        />
+        <IconButton
+          aria-label={deleteButtonLabel}
+          color="danger"
+          disabled={!preview}
+          icon={<Delete width="20" height="20" />}
+          onClick={handleClean}
+          type="button"
+          variant="ghost"
+        />
       </div>
-    );
-  },
-);
+      {preview ? (
+        <Avatar alt="" src={preview} size="xl" />
+      ) : (
+        <AppIcon app={app} iconFit="ratio" size="160" variant="rounded" />
+      )}
+    </div>
+  );
+};
 
 ImagePickerWorkspace.displayName = "ImagePickerWorkspace";
 
