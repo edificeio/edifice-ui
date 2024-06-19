@@ -7,6 +7,7 @@ import { addTimestampToImageUrl } from "../../utils";
 import { useUpload } from "../useUpload";
 import { useWorkspaceFile } from "../useWorkspaceFile";
 import { useImageResizer } from "../../hooks/useImageResizer";
+import useUploadProcess from "./useUploadProcess";
 
 const useUploadFiles = ({
   handleOnChange,
@@ -22,72 +23,51 @@ const useUploadFiles = ({
     WorkspaceElement | undefined
   >(undefined);
 
+  const onSuccess = useCallback(
+    (_file: File, document: WorkspaceElement) => {
+      setUploadedFiles((previous) => [...previous, document]);
+    },
+    [setUploadedFiles],
+  );
+
   const { files, deleteFile, replaceFileAt } = useDropzoneContext();
   const { remove, createOrUpdate } = useWorkspaceFile();
-  const {
-    getUploadStatus,
-    setUploadStatus,
-    clearUploadStatus,
-    uploadFile,
-    uploadAlternateFile,
-  } = useUpload(visibility, application);
+  const { getUploadStatus, setUploadStatus, clearUploadStatus, uploadFile } =
+    useUpload(visibility, application);
 
   const { resizeImageFile } = useImageResizer();
 
-  const tryUploading = useCallback(
-    (files: Array<File | null>) => {
-      files.forEach(async (file, index) => {
-        if (file == null) return;
-        let resource;
+  const { launch, cancel } = useUploadProcess({
+    onSuccess,
+    visibility,
+    application,
+  });
+
+  // TODO ce useEffect part en boucle.
+  // En effet, `files` est modifiée mais après un await, ce qui semble poser problème.
+  // Une solution à tester : utiliser un useRef() pour stocker une copie de la liste
+  // pour éviter les re-render intempestifs.
+  useEffect(() => {
+    files.forEach(async (file, index) => {
+      const status = getUploadStatus(file);
+      if (!status) {
+        // This is a new file to upload
+        setUploadStatus(file, "idle");
         if (file.type.startsWith("image")) {
+          // This is an image, resize it before uploading
           try {
             const replacement = await resizeImageFile(file);
-            resource = await uploadAlternateFile(file, replacement);
             replaceFileAt(index, replacement);
+            file = replacement;
           } catch (err) {
             console.error(err);
           }
         }
-        if (!resource) {
-          resource = await uploadFile(file);
-        }
-        if (resource) {
-          setUploadedFiles((prevFiles: WorkspaceElement[]) => [
-            ...prevFiles,
-            resource,
-          ]);
-        }
-      });
-    },
-    [resizeImageFile, uploadAlternateFile, uploadFile, replaceFileAt],
-  );
-
-  /* Try to upload more files when 
-    - the `files` list has been updated, 
-    - or a file has been uploaded, leaving a slot free.
-  */
-  useEffect(() => {
-    /* but not upload :
-      - the same file twice (by checking if an upload Status already exists for it).
-        To upload it again, reset its previous status first.
-      - more than 5 files at once.
-    */
-    const UPLOAD_SLOTS = 5;
-    let numUploads = 0;
-    // Check which new files can be uploaded right now.
-    const newFiles = files.map((file) => {
-      if (numUploads >= UPLOAD_SLOTS) return null;
-      const status = getUploadStatus(file);
-      // If this file is currently loading => it uses a slot.
-      if (status === "loading") numUploads++;
-      // If this file has already been sent in a slot => don't send it again.
-      if (status) return null;
-      return file;
+        launch(file);
+      }
     });
-
-    newFiles.forEach((file) => file && setUploadStatus(file, "idle"));
-    tryUploading(newFiles);
-  }, [files, uploadedFiles, getUploadStatus, setUploadStatus, tryUploading]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [files]);
 
   /** When file finished being uploaded, sort and handle the result. */
   useEffect(() => {
@@ -118,15 +98,15 @@ const useUploadFiles = ({
     const resource = uploadedFiles.find(
       (uploadedFile) => uploadedFile.name === file.name,
     );
-
     // Remove the corresponding resource from `uploadedFiles`
     if (resource) {
       await remove(resource);
-      clearUploadStatus(file);
       setUploadedFiles((prevFiles: WorkspaceElement[]) => {
         return prevFiles.filter((prevFile) => prevFile.name !== resource?.name);
       });
     }
+    // Cancel any pending upload
+    cancel(file);
     // Remove the file from `files`
     deleteFile(file);
   }

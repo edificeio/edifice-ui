@@ -1,5 +1,7 @@
+import { HttpStatusCode } from "axios";
 import { APP } from "../globals";
 import { IOdeServices } from "../services/OdeServices";
+import { IHttpResponse } from "../transport/interfaces";
 import {
   VideoConf,
   VideoEncodeResponse,
@@ -20,6 +22,14 @@ export class VideoService {
 
   private get conf() {
     return this.context.conf();
+  }
+
+  private toError(errorResponse: IHttpResponse) {
+    if (errorResponse.status === HttpStatusCode.PayloadTooLarge)
+      return new Error("video.upload.error.space");
+    if (errorResponse.status === HttpStatusCode.Forbidden)
+      return new Error("upload.forbidden");
+    return new Error(errorResponse.statusText);
   }
 
   /**
@@ -84,6 +94,10 @@ export class VideoService {
       { headers: { "Content-Type": "multipart/form-data" } },
     );
 
+    if (this.http.isResponseError()) {
+      throw this.toError(this.http.latestResponse);
+    }
+
     // if encoding request is pending then get /video/status API to get final result
     if (encodeResponse.state == "running") {
       let previous = 0;
@@ -99,6 +113,9 @@ export class VideoService {
         const checkResponse = await this.http.get<VideoUploadResponse>(
           `/video/status/${encodeResponse.processid}`,
         );
+        if (this.http.isResponseError()) {
+          throw this.toError(this.http.latestResponse);
+        }
         if (checkResponse.state == "succeed") {
           if (checkResponse.videoworkspaceid && checkResponse.videosize) {
             // Track a VIDEO_SAVE event
