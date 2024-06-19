@@ -22,7 +22,7 @@ import { WorkspaceElement } from "edifice-ts-client";
  * `onSuccess`: Success event handler (adds a formula to the editor content),
  * }
  */
-export const useMediaLibraryModal = (editor: Editor | null) => {
+export const useMediaLibraryEditor = (editor: Editor | null) => {
   const { remove } = useWorkspaceFile();
 
   /**
@@ -251,7 +251,7 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
         }
 
         default:
-          return `<div>[useMediaLibraryModal/onSuccess] Le contenu de type "${type}" n'est pas convertissable pour l'instant !</div>`;
+          return `<div>[useMediaLibraryEditore/onSuccess] Le contenu de type "${type}" n'est pas convertissable pour l'instant !</div>`;
       }
     },
     [editor],
