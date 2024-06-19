@@ -134,7 +134,9 @@ export abstract class ResourceService
         headers: { "Content-Type": "multipart/form-data" },
       },
     );
-    return this.checkHttpResponse(res);
+
+    // #WB2-1747: "checkHttpResponse" is intentionally not called here because, in case of HTTP "Content Too Large" error, we need to return response with code 413.
+    return res;
   }
 
   //
