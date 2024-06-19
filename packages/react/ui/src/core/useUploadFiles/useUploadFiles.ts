@@ -39,7 +39,6 @@ const useUploadFiles = ({
       files.forEach(async (file, index) => {
         if (file == null) return;
         let resource;
-        console.log("file", file);
         if (
           file.type.startsWith("image") ||
           file.name.endsWith(".heic") ||
