@@ -1,3 +1,5 @@
+import decode from "heic-decode";
+
 /**
  * @module useImageResizer
  * @description This module provides a hook to resize and compress image files.
@@ -28,7 +30,7 @@ export default function useImageResizer() {
   };
 
   const resizeImage = (
-    image: HTMLImageElement,
+    image: ImageData | HTMLImageElement,
     fileName: string,
     maxWidth: number,
     maxHeight: number,
@@ -61,7 +63,11 @@ export default function useImageResizer() {
         ctx.imageSmoothingQuality = "high";
       }
 
-      ctx.drawImage(image, 0, 0, width, height);
+      if (image instanceof ImageData) {
+        ctx.putImageData(image, width, height);
+      } else {
+        ctx.drawImage(image, 0, 0, width, height);
+      }
     }
     return new Promise((resolve, reject) => {
       canvas.toBlob(
@@ -99,10 +105,38 @@ export default function useImageResizer() {
   ): Promise<File> => {
     if (!file) throw Error("Image resizer: file not found!");
 
-    if (!file.type || !file.type.startsWith("image/"))
+    if (
+      !file.type.startsWith("image/") &&
+      !file.name.endsWith(".heic") &&
+      !file.name.endsWith(".heif")
+    )
       throw Error("Image resizer: the file given is not an image.");
 
     const compressFormat = "jpeg";
+
+    if (
+      file.type.startsWith("image/heic") ||
+      file.type.startsWith("image/heif") ||
+      file.name.endsWith(".heic") ||
+      file.name.endsWith(".heif")
+    ) {
+      const inputBuffer = new Uint8Array(await file.arrayBuffer());
+      const { data, height, width } = await decode({
+        buffer: inputBuffer, // the HEIC file buffer
+      });
+      const image = new ImageData(new Uint8ClampedArray(data), width, height);
+      const resizedFile = await resizeImage(
+        image,
+        renameFileNameExtension(file.name, compressFormat),
+        maxWidth,
+        maxHeight,
+        compressFormat,
+        quality,
+      );
+      return new Promise((resolve) => {
+        resolve(resizedFile);
+      });
+    }
 
     return new Promise((resolve) => {
       const image = new Image();
