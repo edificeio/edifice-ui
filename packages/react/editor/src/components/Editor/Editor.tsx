@@ -27,7 +27,7 @@ import {
   useImageModal,
   useLinkToolbar,
   useMathsModal,
-  useMediaLibraryModal,
+  useMediaLibraryEditor,
   useSpeechSynthetisis,
   useTipTapEditor,
 } from "../..";
@@ -105,7 +105,7 @@ const Editor = forwardRef(
       onContentChange,
     );
     const { ref: mediaLibraryModalRef, ...mediaLibraryModalHandlers } =
-      useMediaLibraryModal(editor);
+      useMediaLibraryEditor(editor);
     const { toggle: toggleMathsModal, ...mathsModalHandlers } =
       useMathsModal(editor);
     const imageModal = useImageModal(editor, "media-library", visibility);
