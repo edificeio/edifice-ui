@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 
 import { odeServices } from "edifice-ts-client";
 
-import { useIsAdml, useOdeTheme } from "..";
+import { useIsAdml, useOdeClient, useOdeTheme, useUser } from "..";
 import { useHasWorkflow } from "../useHasWorkflow";
-import { useSession } from "../useSession";
 
 type DataModel =
   | {
@@ -16,7 +15,8 @@ type DataModel =
 
 /** Add Zendesk Guide  */
 export default function useZendeskGuide() {
-  const sessionQuery = useSession();
+  const { currentLanguage } = useOdeClient();
+  const { user } = useUser();
   const { isAdml } = useIsAdml();
 
   const { theme } = useOdeTheme();
@@ -91,8 +91,11 @@ export default function useZendeskGuide() {
 
     // Check if the label has a ${profile} tag and replace it with the user profile
     if (labels.includes("${profile}")) {
-      const userProfile = sessionQuery?.data?.userProfile[0] || "";
-      labels = labels.replace("${profile}", userProfile.toLowerCase());
+      const userProfile = user?.type || "";
+      labels = labels.replace(
+        "${profile}",
+        (userProfile as string).toLowerCase(),
+      );
     }
 
     // Check if the user has a ${theme} tag and replace it with the theme
@@ -144,8 +147,6 @@ export default function useZendeskGuide() {
         const scriptZendesk = document.createElement("script");
         scriptZendesk.id = "ze-snippet";
         scriptZendesk.src = `https://static.zdassets.com/ekr/snippet.js?key=${zendeskGuideConfig.key}`;
-
-        const currentLanguage = sessionQuery?.data?.currentLanguage || "fr";
 
         document.body.appendChild(scriptZendesk).onload = () => {
           if (currentLanguage === "es") {
