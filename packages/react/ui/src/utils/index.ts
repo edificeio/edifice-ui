@@ -2,7 +2,7 @@ export * from "./MockedDataProvider";
 export * from "./StringUtils";
 export * from "./addTimestampToUrl";
 export * from "./blob";
-export * from "./checkHasRights";
+export * from "./checkUserRight";
 export * from "./findTreeNode";
 export * from "./isActionAvailable";
 export * from "./libraryMaps";
