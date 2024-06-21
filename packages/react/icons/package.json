@@ -1,6 +1,5 @@
 {
   "name": "@edifice-ui/icons",
-  "version": "1.5.10-develop.1",
   "description": "Edifice Icons Library",
   "keywords": [
     "react",
@@ -12,56 +11,27 @@
   "bugs": {
     "url": "https://github.com/edificeio/edifice-ui/issues"
   },
+  "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/edificeio/edifice-ui.git"
+    "url": "https://github.com/ccreusat/nx-monorepo"
   },
-  "license": "AGPL-3.0",
-  "author": "Edifice",
-  "sideEffects": false,
+  "version": "0.0.1",
   "type": "module",
+  "module": "./index.js",
+  "types": "./index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": "./index.js"
     },
     "./nav": {
-      "import": "./dist/nav.js",
-      "require": "./dist/nav.cjs"
+      "import": "./nav.js"
     }
   },
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "*.d.ts"
-  ],
-  "scripts": {
-    "build": "pnpm build:icons && pnpm build:vite",
-    "build:icons": "svgr assets --config-file ./svgr.config.cjs",
-    "build:vite": "vite build",
-    "fix": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "format": "pnpm run format:write && pnpm run format:check",
-    "format:check": "npx prettier --check .",
-    "format:write": "npx prettier --write .",
-    "lint": "eslint \"**/*.{ts,tsx}\""
-  },
-  "devDependencies": {
-    "@svgr/cli": "8.1.0",
-    "@types/node": "20.8.9",
-    "@types/react": "18.2.33",
-    "@types/react-dom": "18.2.14",
-    "concurrently": "8.2.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
-  },
-  "peerDependencies": {
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+  "dependencies": {
+    "react": "18.2.0"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "3e1c3f5b48505564db1b70aab22063a70336f3b0"
+  }
 }

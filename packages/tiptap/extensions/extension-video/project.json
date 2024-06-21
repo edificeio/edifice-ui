@@ -1,0 +1,36 @@
+{
+  "name": "video",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/tiptap/extensions/extension-video/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/video",
+        "main": "packages/tiptap/extensions/extension-video/src/index.ts",
+        "tsConfig": "packages/tiptap/extensions/extension-video/tsconfig.lib.json",
+        "assets": [
+          "packages/tiptap/extensions/extension-video/*.md"
+        ]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/packages/{projectName}"
+      }
+    }
+  },
+  "tags": [],
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/packages/{projectName}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  }
+}

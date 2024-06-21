@@ -1,0 +1,36 @@
+{
+  "name": "iframe",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/tiptap/extensions/extension-iframe/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/iframe",
+        "main": "packages/tiptap/extensions/extension-iframe/src/index.ts",
+        "tsConfig": "packages/tiptap/extensions/extension-iframe/tsconfig.lib.json",
+        "assets": [
+          "packages/tiptap/extensions/extension-iframe/*.md"
+        ]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/packages/{projectName}"
+      }
+    }
+  },
+  "tags": [],
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/packages/{projectName}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  }
+}

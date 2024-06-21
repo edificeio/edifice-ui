@@ -1,6 +1,6 @@
-import { ChangeEvent, Dispatch, useEffect, useReducer } from "react";
+import { ChangeEvent, Dispatch, useEffect, useReducer } from 'react';
 
-import { Bookmark } from "@edifice-ui/icons";
+import { Bookmark } from '@edifice-ui/icons';
 
 import {
   ShareRight,
@@ -8,14 +8,14 @@ import {
   ShareRightWithVisibles,
   ShareSubject,
   odeServices,
-} from "edifice-ts-client";
-import { useTranslation } from "react-i18next";
+} from 'edifice-ts-client';
+import { useTranslation } from 'react-i18next';
 
-import { OptionListItemType } from "../../../components";
-import { useIsAdml, useOdeClient } from "../../../core";
-import { useDebounce } from "../../../hooks";
-import { ShareOptions } from "../ShareModal";
-import { ShareAction } from "./useShare";
+import { OptionListItemType } from '../../../components';
+import { useIsAdml, useOdeClient } from '../../../core';
+import { useDebounce } from '../../../hooks';
+import { ShareOptions } from '../ShareModal';
+import { ShareAction } from './useShare';
 
 type State = {
   searchInputValue: string;
@@ -25,15 +25,15 @@ type State = {
 };
 
 type Action =
-  | { type: "onChange"; payload: string }
-  | { type: "isSearching"; payload: boolean }
-  | { type: "addResult"; payload: OptionListItemType[] }
-  | { type: "addApiResult"; payload: ShareSubject[] }
-  | { type: "updateSearchResult"; payload: OptionListItemType[] }
-  | { type: "emptyResult"; payload: OptionListItemType[] };
+  | { type: 'onChange'; payload: string }
+  | { type: 'isSearching'; payload: boolean }
+  | { type: 'addResult'; payload: OptionListItemType[] }
+  | { type: 'addApiResult'; payload: ShareSubject[] }
+  | { type: 'updateSearchResult'; payload: OptionListItemType[] }
+  | { type: 'emptyResult'; payload: OptionListItemType[] };
 
 const initialState = {
-  searchInputValue: "",
+  searchInputValue: '',
   searchResults: [],
   searchAPIResults: [],
   isSearching: false,
@@ -41,17 +41,17 @@ const initialState = {
 
 function reducer(state: State, action: Action) {
   switch (action.type) {
-    case "onChange":
+    case 'onChange':
       return { ...state, searchInputValue: action.payload };
-    case "isSearching":
+    case 'isSearching':
       return { ...state, isSearching: action.payload };
-    case "addResult":
+    case 'addResult':
       return { ...state, searchResults: action.payload };
-    case "addApiResult":
+    case 'addApiResult':
       return { ...state, searchAPIResults: action.payload };
-    case "updateSearchResult":
+    case 'updateSearchResult':
       return { ...state, searchResults: action.payload };
-    case "emptyResult":
+    case 'emptyResult':
       return { ...state, searchResults: action.payload };
     default:
       throw new Error(`Unhandled action type`);
@@ -60,12 +60,12 @@ function reducer(state: State, action: Action) {
 
 const defaultActions: ShareRightAction[] = [
   {
-    id: "read",
-    displayName: "read",
+    id: 'read',
+    displayName: 'read',
   },
   {
-    id: "comment",
-    displayName: "comment",
+    id: 'comment',
+    displayName: 'comment',
   },
 ];
 
@@ -75,8 +75,8 @@ export const useSearch = ({
   shareRights,
   shareDispatch,
 }: {
-  resourceId: ShareOptions["resourceCreatorId"];
-  resourceCreatorId: ShareOptions["resourceCreatorId"];
+  resourceId: ShareOptions['resourceCreatorId'];
+  resourceCreatorId: ShareOptions['resourceCreatorId'];
   shareRights: ShareRightWithVisibles;
   shareDispatch: Dispatch<ShareAction>;
 }) => {
@@ -84,7 +84,7 @@ export const useSearch = ({
 
   const debouncedSearchInputValue = useDebounce<string>(
     state.searchInputValue,
-    500,
+    500
   );
 
   const { isAdml } = useIsAdml();
@@ -100,7 +100,7 @@ export const useSearch = ({
   const handleSearchInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     dispatch({
-      type: "onChange",
+      type: 'onChange',
       payload: value,
     });
   };
@@ -109,7 +109,7 @@ export const useSearch = ({
     if (!resourceId) return;
 
     dispatch({
-      type: "isSearching",
+      type: 'isSearching',
       payload: true,
     });
     // start search from 1 caracter length for non Adml but start from 3 for Adml
@@ -122,7 +122,7 @@ export const useSearch = ({
         .searchShareSubjects(appCode, resourceId, debouncedSearchInputValue);
 
       dispatch({
-        type: "addApiResult",
+        type: 'addApiResult',
         payload: resSearchShareSubjects,
       });
 
@@ -131,13 +131,13 @@ export const useSearch = ({
         .filter(
           (right: { id: any }) =>
             !shareRights.rights.find(
-              (shareRight: { id: any }) => shareRight.id === right.id,
-            ),
+              (shareRight: { id: any }) => shareRight.id === right.id
+            )
         )
         // exclude owner from results
         .filter(
           (right: { type: string; id: any }) =>
-            !(right.type === "user" && right.id === resourceCreatorId),
+            !(right.type === 'user' && right.id === resourceCreatorId)
         )
         .map(
           (searchResult: {
@@ -148,10 +148,10 @@ export const useSearch = ({
             structureName?: string;
           }) => {
             let label: string = searchResult.displayName;
-            if (searchResult.type === "user" && searchResult.profile) {
+            if (searchResult.type === 'user' && searchResult.profile) {
               label = `${label} (${t(searchResult.profile)})`;
             } else if (
-              searchResult.type === "group" &&
+              searchResult.type === 'group' &&
               searchResult.structureName
             ) {
               label = `${label} (${searchResult.structureName})`;
@@ -160,47 +160,50 @@ export const useSearch = ({
             return {
               value: searchResult.id,
               label,
-              icon: searchResult.type === "sharebookmark" ? <Bookmark /> : null,
+              icon:
+                searchResult.type === 'sharebookmark' ? (
+                  <Bookmark />
+                ) : undefined,
             };
-          },
+          }
         );
 
       dispatch({
-        type: "addResult",
+        type: 'addResult',
         payload: adaptedResults,
       });
     } else {
       dispatch({
-        type: "emptyResult",
+        type: 'emptyResult',
         payload: [],
       });
       Promise.resolve();
     }
 
     dispatch({
-      type: "isSearching",
+      type: 'isSearching',
       payload: false,
     });
   };
 
   const handleSearchResultsChange = async (model: Array<string | number>) => {
     const shareSubject = state.searchAPIResults.find(
-      (searchAPIResult) => searchAPIResult.id === model[0],
+      (searchAPIResult) => searchAPIResult.id === model[0]
     );
 
     if (shareSubject) {
       let rightsToAdd: ShareRight[] = [];
 
-      if (shareSubject.type === "sharebookmark") {
+      if (shareSubject.type === 'sharebookmark') {
         const bookmarkRes = await odeServices
           .directory()
           .getBookMarkById(shareSubject.id);
 
         rightsToAdd.push({
           ...bookmarkRes,
-          type: "sharebookmark",
-          avatarUrl: "",
-          directoryUrl: "",
+          type: 'sharebookmark',
+          avatarUrl: '',
+          directoryUrl: '',
           actions: defaultActions,
         });
 
@@ -208,15 +211,15 @@ export const useSearch = ({
           .filter(
             (user: { id: any }) =>
               !shareRights.rights.find(
-                (right: { id: any }) => right.id === user.id,
-              ),
+                (right: { id: any }) => right.id === user.id
+              )
           )
           .forEach((user: any) => {
             rightsToAdd.push({
               ...user,
-              type: "user",
-              avatarUrl: "",
-              directoryUrl: "",
+              type: 'user',
+              avatarUrl: '',
+              directoryUrl: '',
               actions: defaultActions,
               isBookmarkMember: true,
             });
@@ -225,15 +228,15 @@ export const useSearch = ({
           .filter(
             (group: { id: any }) =>
               !shareRights.rights.find(
-                (right: { id: any }) => right.id === group.id,
-              ),
+                (right: { id: any }) => right.id === group.id
+              )
           )
           .forEach((group: any) => {
             rightsToAdd.push({
               ...group,
-              type: "group",
-              avatarUrl: "",
-              directoryUrl: "",
+              type: 'group',
+              avatarUrl: '',
+              directoryUrl: '',
               actions: defaultActions,
               isBookmarkMember: true,
             });
@@ -244,12 +247,12 @@ export const useSearch = ({
             ...shareSubject,
             actions: [
               {
-                id: "read",
-                displayName: "read",
+                id: 'read',
+                displayName: 'read',
               },
               {
-                id: "comment",
-                displayName: "comment",
+                id: 'comment',
+                displayName: 'comment',
               },
             ],
           },
@@ -257,7 +260,7 @@ export const useSearch = ({
       }
 
       shareDispatch({
-        type: "updateShareRights",
+        type: 'updateShareRights',
         payload: {
           ...shareRights,
           rights: [...shareRights.rights, ...rightsToAdd],
@@ -265,9 +268,9 @@ export const useSearch = ({
       });
 
       dispatch({
-        type: "updateSearchResult",
+        type: 'updateSearchResult',
         payload: state.searchResults.filter(
-          (result) => result.value !== model[0],
+          (result) => result.value !== model[0]
         ),
       });
     }

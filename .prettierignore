@@ -1,0 +1,14 @@
+# Add files here to ignore them from prettier formatting
+/dist
+/coverage
+/.nx/cache
+
+# Ignore everything recursively
+*
+
+# But not the .ts files
+!*.ts
+!*.tsx
+
+# Check subdirectories too
+!*/

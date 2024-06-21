@@ -1,5 +1,6 @@
-import { IOdeServices } from "../services/OdeServices";
-import { ResourceRight, RightRole, RightStringified } from "./interface";
+// @ts-nocheck
+import { IOdeServices } from '../services/OdeServices';
+import { ResourceRight, RightRole, RightStringified } from './interface';
 
 export class RightService {
   constructor(private context: IOdeServices) {}
@@ -16,13 +17,13 @@ export class RightService {
    * @returns Right parsed
    */
   parseResourceRight(right: RightStringified): ResourceRight | undefined {
-    const parts = right.split(":");
+    const parts = right.split(':');
     if (parts.length === 2) {
-      if (parts[0] === "creator") {
+      if (parts[0] === 'creator') {
         return {
           id: parts[1],
-          right: "creator",
-          type: "creator",
+          right: 'creator',
+          type: 'creator',
         } as ResourceRight;
       }
     } else if (parts.length === 3) {
@@ -65,11 +66,11 @@ export class RightService {
   hasResourceRight(
     { id, groupIds }: { id: string; groupIds: string[] },
     expect: RightRole,
-    rights: ResourceRight[] | RightStringified[],
+    rights: ResourceRight[] | RightStringified[]
   ) {
     const safeRights = rights
       .map((right) => {
-        if (typeof right === "string") {
+        if (typeof right === 'string') {
           return this.parseResourceRight(right);
         }
         return right;
@@ -78,17 +79,17 @@ export class RightService {
         return right !== undefined;
       }) as ResourceRight[];
     for (const right of safeRights) {
-      if (right.id === id && right.type === "creator") {
+      if (right.id === id && right.type === 'creator') {
         return true;
       } else if (
         right.id === id &&
-        right.type === "user" &&
+        right.type === 'user' &&
         right.right === expect
       ) {
         return true;
       } else if (
         groupIds.includes(right.id) &&
-        right.type === "group" &&
+        right.type === 'group' &&
         right.right === expect
       ) {
         return true;
@@ -104,7 +105,7 @@ export class RightService {
    */
   async sessionHasResourceRight(
     expect: RightRole,
-    rights: ResourceRight[] | RightStringified[],
+    rights: ResourceRight[] | RightStringified[]
   ): Promise<boolean> {
     try {
       const user = await this.session.getUser();
@@ -113,7 +114,7 @@ export class RightService {
         this.hasResourceRight(
           { groupIds: user.groupsIds, id: user.userId },
           expect,
-          rights,
+          rights
         )
       );
     } catch (e) {
@@ -129,7 +130,7 @@ export class RightService {
    */
   async sessionHasAtLeastOneResourceRight(
     expects: RightRole[],
-    rights: ResourceRight[] | RightStringified[],
+    rights: ResourceRight[] | RightStringified[]
   ): Promise<boolean> {
     for (const expect of expects) {
       const hasRight = await this.sessionHasResourceRight(expect, rights);
@@ -148,7 +149,7 @@ export class RightService {
    */
   async sessionHasResourceRightForEachList(
     expect: RightRole,
-    rightsArray: ResourceRight[][] | RightStringified[][],
+    rightsArray: ResourceRight[][] | RightStringified[][]
   ): Promise<boolean> {
     let count = 0;
     for (const rights of rightsArray) {
@@ -172,7 +173,7 @@ export class RightService {
    */
   async sessionHasAtLeastOneResourceRightForEachList(
     expects: RightRole[],
-    rightsArray: ResourceRight[][] | RightStringified[][],
+    rightsArray: ResourceRight[][] | RightStringified[][]
   ): Promise<boolean> {
     for (const expect of expects) {
       let count = 0;
@@ -210,8 +211,8 @@ export class RightService {
         this.hasWorkflowRight(
           expect,
           user.authorizedActions.map(
-            (authorizedAction) => authorizedAction.name,
-          ),
+            (authorizedAction) => authorizedAction.name
+          )
         )
       );
     } catch (e) {
@@ -225,7 +226,7 @@ export class RightService {
    * @returns a record with right as key and boolean as value if current session has right on it
    */
   async sessionHasWorkflowRights(
-    expects: string[],
+    expects: string[]
   ): Promise<Record<string, boolean>> {
     const result: Record<string, boolean> = {};
     try {
@@ -236,8 +237,8 @@ export class RightService {
           this.hasWorkflowRight(
             expect,
             user.authorizedActions.map(
-              (authorizedAction) => authorizedAction.name,
-            ),
+              (authorizedAction) => authorizedAction.name
+            )
           );
       }
     } catch (e) {

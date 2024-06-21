@@ -1,0 +1,68 @@
+import * as Icons from "@edifice-ui/icons";
+import * as NavIcons from "@edifice-ui/icons/nav";
+import { IconGallery, IconItem, Meta, Title } from '@storybook/blocks';
+
+import { SvgIcon } from "../components/SvgIcon";
+
+<Meta title="Design Tokens/Iconography" />
+
+# Iconography
+[![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/design/pFK2b3yRo1wLAuzoA6YvVf/Public_Web_Library_Guidelines?node-id=2202-17493&t=buVzHWOLl8QWf6Qu-1)
+
+- All icons are provided as SVGs
+- All icons are transformed with React SVGR
+- All icons are single color
+- All icons has square canvas (Default to 24x24)
+- All icons are for decorative purposes
+
+
+## Common Interface Icons
+
+To use this set of icons, import `@edifice-ui/icons` into your code: `import { Add } from "@edifice-ui/icons"`
+
+<IconGallery>
+  { Object.entries(Icons).map(([name, Icon]) => (<IconItem name={name}><Icon/></IconItem>)) }
+</IconGallery>
+
+## Navbar Icons
+
+To use this set of icons, import `@edifice-ui/icons/nav` into your code: `import { NeoAssistance, Search, MyApps } from "@edifice-ui/icons/nav"`
+
+<IconGallery>
+  { Object.entries(NavIcons).map(([name, Icon]) => (<IconItem name={name}><Icon/></IconItem>)) }
+</IconGallery>
+
+## Apps and Connectors Icons
+
+This set of icons uses a SVG Sprite and it is included with `edifice-bootstrap`.
+
+### Usage
+
+Use this set of icons with the `AppIcon` Component.
+
+```jsx
+import { AppIcon } from "@edifice-ui/components";
+
+export default function App() {
+  return (
+    <AppIcon
+      app={{
+        address: "/blog",
+        icon: "blog-large",
+        name: "Blog",
+        scope: [],
+        display: false,
+        displayName: "",
+        isExternal: false,
+      }}
+      size="48"
+    ></AppIcon>
+  );
+}
+```
+
+### Apps and Connectors Icons Set
+
+This set includes 116 icons.
+
+<SvgIcon />

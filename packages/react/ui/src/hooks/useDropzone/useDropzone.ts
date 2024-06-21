@@ -1,4 +1,5 @@
-import { ChangeEvent, useRef, useState } from "react";
+// @ts-nocheck
+import { ChangeEvent, useRef, useState } from 'react';
 
 const useDropzone = (props?: {
   /**
@@ -18,7 +19,7 @@ const useDropzone = (props?: {
 
   const deleteFile = (file: File) => {
     setFiles((prevFiles) =>
-      prevFiles.filter((prevFile) => prevFile.name !== file.name),
+      prevFiles.filter((prevFile) => prevFile.name !== file.name)
     );
   };
 

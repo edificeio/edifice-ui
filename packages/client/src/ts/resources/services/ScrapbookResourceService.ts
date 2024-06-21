@@ -1,11 +1,21 @@
-import { IResource, ResourceType } from "../..";
-import { ScrapbookUpdate, UpdateResult } from "../interface";
-import { ResourceService } from "../ResourceService";
+import { IResource, ResourceType } from '../..';
+import {
+  CreateParameters,
+  CreateResult,
+  ScrapbookUpdate,
+  UpdateResult,
+} from '../interface';
+import { ResourceService } from '../ResourceService';
 
-const APP = "scrapbook";
-const RESOURCE = "scrapbook";
+const APP = 'scrapbook';
+const RESOURCE = 'scrapbook';
 
 export class ScrapbookResourceService extends ResourceService {
+  override create<T extends CreateParameters>(
+    parameters: T
+  ): Promise<CreateResult> {
+    throw new Error('Method not implemented.');
+  }
   async update(parameters: ScrapbookUpdate): Promise<UpdateResult> {
     const thumbnail = await this.getThumbnailPath(parameters.thumbnail);
     const res = await this.http.put<IResource>(
@@ -15,7 +25,7 @@ export class ScrapbookResourceService extends ResourceService {
         title: parameters.name,
         icon: thumbnail,
         subTitle: parameters.description,
-      },
+      }
     );
     this.checkHttpResponse(res);
     return { thumbnail: thumbnail, entId: parameters.entId } as UpdateResult;
@@ -47,5 +57,5 @@ export class ScrapbookResourceService extends ResourceService {
 
 ResourceService.register(
   { application: RESOURCE, resourceType: RESOURCE },
-  (context) => new ScrapbookResourceService(context),
+  (context) => new ScrapbookResourceService(context)
 );

@@ -1,0 +1,54 @@
+{
+  "name": "icons",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/react/icons/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "svg": {
+      "command": "svgr packages/react/icons/assets --config-file packages/react/icons/.svgrrc.cjs"
+    },
+    "build": {
+      "dependsOn": [
+        "svg"
+      ],
+      "executor": "@nx/vite:build",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/icons",
+        "main": "packages/react/icons/src/index.ts",
+        "tsConfig": "packages/react/icons/tsconfig.lib.json",
+        "assets": [
+          "packages/react/icons/*.md"
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/react/icons/**/*.{ts,tsx,js,jsx}",
+          "packages/react/icons/package.json"
+        ]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/packages/{projectName}"
+      }
+    }
+  },
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/packages/{projectName}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  }
+}

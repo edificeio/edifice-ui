@@ -1,0 +1,36 @@
+{
+  "name": "font-size",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/tiptap/extensions/extension-font-size/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/font-size",
+        "main": "packages/tiptap/extensions/extension-font-size/src/index.ts",
+        "tsConfig": "packages/tiptap/extensions/extension-font-size/tsconfig.lib.json",
+        "assets": [
+          "packages/tiptap/extensions/extension-font-size/*.md"
+        ]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/packages/{projectName}"
+      }
+    }
+  },
+  "tags": [],
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/packages/{projectName}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  }
+}

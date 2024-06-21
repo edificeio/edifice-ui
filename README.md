@@ -1,48 +1,60 @@
-# Edifice UI
+# Edifice Frontend
 
-Edifice React Monorepo with React Components, Editor and Icons Library
+Monorepo with frontend librairies
 
 ## Prerequisites
 
-- `pnpm: >= 7 | 8`
-- `node: >= 16 | 18`
+- `pnpm: >= 8`
+- `node: >= 18 | 20`
 
 ## Getting Started
 
-```bash
-pnpm install
-```
+`pnpm install`
+
+### Storybook
+
+`pnpm nx run docs:storybook`
 
 ### Build
 
-```bash
-pnpm run build
-```
+All libs:
 
-### Eslint Lint
+`pnpm nx run-many -t build`
 
-```bash
-pnpm run lint
-```
+One lib:
 
-### Eslint Fix
+`pnpm nx build <project>`
 
-```bash
-pnpm run fix
-```
+### Test
+
+All libs:
+
+`pnpm nx run-many -t test`
+
+One lib:
+
+`pnpm nx test <project>`
+
+### Lint
+
+All libs:
+
+`pnpm nx run-many -t lint`
+
+One lib:
+
+`pnpm nx lint <project>`
+
+### Lint Fix
+
+All libs:
+
+`pnpm nx run-many -t lint --fix`
+
+One lib:
+
+`pnpm nx lint <project> --fix`
 
 ### Prettier
 
-```bash
-pnpm run format
-```
-
-### Push Force
-
-`git push --force` is not recommended!
-
-```
-After a git history rewrite due to a git push --force, the git tags and notes referencing the commits that were rewritten are lost.
-```
-
-If it happens, read this troubleshooting section: [Troubleshooting](https://semantic-release.gitbook.io/semantic-release/support/troubleshooting#release-not-found-release-branch-after-git-push-force)
+`pnpm nx format`

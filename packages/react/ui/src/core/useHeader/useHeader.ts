@@ -1,18 +1,19 @@
-import { useState, useId, useCallback, useMemo } from "react";
+import { useCallback, useId, useMemo, useState } from 'react';
 
-import { IUserInfo, odeServices } from "edifice-ts-client";
-import { useTranslation } from "react-i18next";
+import { odeServices } from 'edifice-ts-client';
+import { useTranslation } from 'react-i18next';
 
-import { useHover } from "../../hooks";
-import { useOdeClient } from "../OdeClientProvider/OdeClientProvider";
-import { useBookmark } from "../useBookmark";
-import { useHasWorkflow } from "../useHasWorkflow";
+import { useHover } from '../../hooks';
+import { useOdeClient } from '../OdeClientProvider/OdeClientProvider';
+import { useBookmark } from '../useBookmark';
+import { useHasWorkflow } from '../useHasWorkflow';
+import { UserInfo } from '../useUser/useUser';
 
 export default function useHeader({
   user,
   avatar,
 }: {
-  user: IUserInfo | undefined;
+  user: UserInfo | undefined;
   avatar: string;
 }): any {
   const { appCode } = useOdeClient();
@@ -45,7 +46,7 @@ export default function useHeader({
   const userAvatar = avatar;
   const userName = user?.username;
 
-  const welcomeUser = t("welcome", { username: user?.firstName });
+  const welcomeUser = t('welcome', { username: user?.firstName });
 
   /**
    * Get Bookmarked Apps
@@ -56,13 +57,13 @@ export default function useHeader({
    * Handle Header Workflows
    */
   const communityWorkflow = useHasWorkflow(
-    "net.atos.entng.community.controllers.CommunityController|view",
+    'net.atos.entng.community.controllers.CommunityController|view'
   );
   const conversationWorflow = useHasWorkflow(
-    "org.entcore.conversation.controllers.ConversationController|view",
+    'org.entcore.conversation.controllers.ConversationController|view'
   );
   const searchWorkflow = useHasWorkflow(
-    "fr.openent.searchengine.controllers.SearchEngineController|view",
+    'fr.openent.searchengine.controllers.SearchEngineController|view'
   );
 
   const toggleCollapsedNav = useCallback(() => {
@@ -71,7 +72,7 @@ export default function useHeader({
 
   const handleLogout = async () => {
     await odeServices.session().logout();
-    window.location.href = "/auth/login";
+    window.location.href = '/auth/login';
   };
 
   return useMemo(
@@ -107,6 +108,6 @@ export default function useHeader({
       userAvatar,
       userName,
       welcomeUser,
-    ],
+    ]
   );
 }

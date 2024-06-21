@@ -1,26 +1,11 @@
-# extension-font-size
+# tiptap-extension-font-size
 
-![npm](https://img.shields.io/npm/v/@edifice-tiptap-extensions/extension-font-size?style=flat-square)
-![bundlephobia](https://img.shields.io/bundlephobia/min/@edifice-tiptap-extensions/extension-font-size?style=flat-square)
+This library was generated with [Nx](https://nx.dev).
 
-A Tiptap extension to apply Font Size to text
+## Building
 
-## Installation
+Run `nx build tiptap-extension-font-size` to build the library.
 
-With `npm`:
+## Running unit tests
 
-```bash
-npm install @edifice-tiptap-extensions/extension-font-size
-```
-
-With `yarn`:
-
-```bash
-yarn add @edifice-tiptap-extensions/extension-font-size
-```
-
-With `pnpm`:
-
-```bash
-pnpm add @edifice-tiptap-extensions/extension-font-size
-```
+Run `nx test tiptap-extension-font-size` to execute the unit tests via [Vitest](https://vitest.dev/).

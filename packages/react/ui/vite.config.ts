@@ -1,66 +1,88 @@
-import { resolve } from "path";
+/// <reference types='vitest' />
+import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+import react from '@vitejs/plugin-react';
+import * as path from 'path';
+import { defineConfig } from 'vite';
+import dts from 'vite-plugin-dts';
 
-import react from "@vitejs/plugin-react";
-import { visualizer } from "rollup-plugin-visualizer";
-import { defineConfig } from "vite";
-import dts from "vite-plugin-dts";
-
-import { PluginPure } from "rollup-plugin-pure";
-import { removeDsn } from "../../../scripts/remove-display-name";
-import { dependencies, peerDependencies } from "./package.json";
+// Import du fichier package.json
+import packageJson from './package.json';
 
 export default defineConfig({
-  esbuild: {
-    minifyIdentifiers: false,
-  },
+  root: __dirname,
+  cacheDir: '../../../node_modules/.vite/ui',
+
+  plugins: [
+    react(),
+    nxViteTsPaths(),
+    dts({
+      entryRoot: 'src',
+      tsConfigFilePath: path.join(__dirname, 'tsconfig.lib.json'),
+      skipDiagnostics: true,
+    }),
+  ],
+
+  // Uncomment this if you are using workers.
+  // worker: {
+  //  plugins: [ nxViteTsPaths() ],
+  // },
+
+  // Configuration for building your library.
+  // See: https://vitejs.dev/guide/build.html#library-mode
   build: {
+    outDir: '../../dist/packages/ui',
+    emptyOutDir: true,
+    reportCompressedSize: true,
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    },
     lib: {
-      entry: {
-        index: resolve(__dirname, "src/index.ts"),
-      },
-      formats: ["es"],
+      // Could also be a dictionary or array of multiple entry points.
+      entry: 'src/index.ts',
+      name: 'react',
+      fileName: 'index',
+      // Change this to the formats you want to support.
+      // Don't forget to update your package.json as well.
+      formats: ['es'],
     },
     rollupOptions: {
+      // External packages that should not be bundled into your library.
       external: [
-        ...Object.keys(dependencies),
-        ...Object.keys(peerDependencies),
-        "dayjs/plugin/customParseFormat",
-        "dayjs/plugin/relativeTime",
-        "dayjs/locale/de",
-        "dayjs/locale/es",
-        "dayjs/locale/pt",
-        "dayjs/locale/fr",
-        "dayjs/locale/it",
-        "swiper/react",
-        "swiper/modules",
-        "react/jsx-runtime",
-        "edifice-ts-client",
-        "@edifice-ui/icons/nav",
+        'react/jsx-runtime',
+        ...Object.keys(packageJson.dependencies || {}),
+        'dayjs/plugin/customParseFormat',
+        'dayjs/plugin/relativeTime',
+        'dayjs/locale/de',
+        'dayjs/locale/es',
+        'dayjs/locale/pt',
+        'dayjs/locale/fr',
+        'dayjs/locale/it',
+        'swiper/react',
+        'swiper/modules',
       ],
-    },
-  },
-  plugins: [
-    react({
-      babel: {
-        plugins: ["@babel/plugin-transform-react-pure-annotations"],
-      },
-    }),
-    removeDsn({
-      includeExtensions: [".ts", ".tsx"],
-      excludeExtensions: [".stories.tsx"],
-    }),
-    dts({
-      tsconfigPath: "./tsconfig.build.json",
-      compilerOptions: {
-        baseUrl: ".",
-        paths: {
-          "@tanstack/react-query": ["node_modules/@tanstack/react-query"],
+      output: {
+        // Provide global variables to use in the UMD build
+        // for externalized deps
+        globals: {
+          'react': 'React',
+          'react-dom': 'ReactDOM',
         },
       },
-    }),
-    PluginPure({
-      functions: ["Object.assign"],
-    }),
-    visualizer(),
-  ],
+    },
+  },
+
+  test: {
+    globals: true,
+    cache: {
+      dir: '../../../node_modules/.vitest',
+    },
+    environment: 'jsdom',
+    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+
+    reporters: ['default'],
+    coverage: {
+      reportsDirectory: '../../../coverage/ui',
+      provider: 'v8',
+    },
+  },
 });

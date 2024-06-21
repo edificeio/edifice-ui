@@ -1,26 +1,11 @@
-# extension-video
+# tiptap-extension-mathjax
 
-![npm](https://img.shields.io/npm/v/@edifice-tiptap-extensions/extension-video?style=flat-square)
-![bundlephobia](https://img.shields.io/bundlephobia/min/@edifice-tiptap-extensions/extension-video?style=flat-square)
+This library was generated with [Nx](https://nx.dev).
 
-A Tiptap extension that handles the conversion of old MathJax formulae to TipTap Mathematics extension.
+## Building
 
-## Installation
+Run `nx build tiptap-extension-mathjax` to build the library.
 
-With `npm`:
+## Running unit tests
 
-```bash
-npm install @edifice-tiptap-extensions/extension-mathjax
-```
-
-With `yarn`:
-
-```bash
-yarn add @edifice-tiptap-extensions/extension-mathjax
-```
-
-With `pnpm`:
-
-```bash
-pnpm add @edifice-tiptap-extensions/extension-mathjax
-```
+Run `nx test tiptap-extension-mathjax` to execute the unit tests via [Vitest](https://vitest.dev/).

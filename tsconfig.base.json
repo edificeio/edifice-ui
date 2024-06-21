@@ -1,0 +1,108 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2021",
+    "module": "esnext",
+    "lib": [
+      "ES2021",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@edifice-tiptap-extensions/extension-abbr": [
+        "packages/tiptap/extensions/extension-abbr/src/index.ts"
+      ],
+      "@edifice-tiptap-extensions/extension-alert": [
+        "packages/tiptap/extensions/extension-alert/src/index.ts"
+      ],
+      "@edifice-tiptap-extensions/extension-attachment": [
+        "packages/tiptap/extensions/extension-attachment/src/index.ts"
+      ],
+      "@edifice-tiptap-extensions/extension-audio": [
+        "packages/tiptap/extensions/extension-audio/src/index.ts"
+      ],
+      "@edifice-tiptap-extensions/extension-font-size": [
+        "packages/tiptap/extensions/extension-font-size/src/index.ts"
+      ],
+      "@edifice-tiptap-extensions/extension-heading": [
+        "packages/tiptap/extensions/extension-heading/src/index.ts"
+      ],
+      "@edifice-tiptap-extensions/extension-highlight": [
+        "packages/tiptap/extensions/extension-highlight/src/index.ts"
+      ],
+      "@edifice-tiptap-extensions/extension-hyperlink": [
+        "packages/tiptap/extensions/extension-hyperlink/src/index.ts"
+      ],
+      "@edifice-tiptap-extensions/extension-iframe": [
+        "packages/tiptap/extensions/extension-iframe/src/index.ts"
+      ],
+      "@edifice-tiptap-extensions/extension-image": [
+        "packages/tiptap/extensions/extension-image/src/index.ts"
+      ],
+      "@edifice-tiptap-extensions/extension-line-height": [
+        "packages/tiptap/extensions/extension-line-height/src/index.ts"
+      ],
+      "@edifice-tiptap-extensions/extension-linker": [
+        "packages/tiptap/extensions/extension-linker/src/index.ts"
+      ],
+      "@edifice-tiptap-extensions/extension-mathjax": [
+        "packages/tiptap/extensions/extension-mathjax/src/index.ts"
+      ],
+      "@edifice-tiptap-extensions/extension-paragraph": [
+        "packages/tiptap/extensions/extension-paragraph/src/index.ts"
+      ],
+      "@edifice-tiptap-extensions/extension-speechrecognition": [
+        "packages/tiptap/extensions/extension-speechrecognition/src/index.ts"
+      ],
+      "@edifice-tiptap-extensions/extension-speechsynthesis": [
+        "packages/tiptap/extensions/extension-speechsynthesis/src/index.ts"
+      ],
+      "@edifice-tiptap-extensions/extension-table-cell": [
+        "packages/tiptap/extensions/extension-table-cell/src/index.ts"
+      ],
+      "@edifice-tiptap-extensions/extension-transform": [
+        "packages/tiptap/extensions/extension-transform/src/index.ts"
+      ],
+      "@edifice-tiptap-extensions/extension-video": [
+        "packages/tiptap/extensions/extension-video/src/index.ts"
+      ],
+      "@edifice-ui/docs": [
+        "docs/src/index.ts"
+      ],
+      "@edifice-ui/editor": [
+        "packages/react/editor/src/index.ts"
+      ],
+      "@edifice-ui/icons": [
+        "packages/react/icons/src/index.ts"
+      ],
+      "@edifice-ui/icons/nav": [
+        "packages/react/icons/src/nav/index.ts"
+      ],
+      "@edifice-ui/multimedia": [
+        "packages/react/multimedia/src/index.ts"
+      ],
+      "@edifice-ui/react": [
+        "packages/react/ui/src/index.ts"
+      ],
+      "edifice-bootstrap": [
+        "packages/bootstrap/scss/index.scss"
+      ],
+      "edifice-ts-client": [
+        "packages/client/src/ts/index.ts"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
+}
