@@ -198,7 +198,6 @@ const ResourceModal = ({
       size="lg"
       isOpen={isOpen}
       onModalClose={onCancel}
-      scrollable
     >
       <Modal.Header onModalClose={onCancel}>
         {t(
