@@ -126,4 +126,13 @@ export class DataService implements IDataService {
 
     this.trackWebEvent(eventData);
   }
+
+  public trackAccessLibraryFromExplorer() {
+    const eventData = this.addUserInfos({
+      "event-type": "ACCESS_LIBRARY_FROM_EXPLORER",
+    });
+    if (this.app) eventData["module"] = this.app;
+
+    this.trackWebEvent(eventData);
+  }
 }
