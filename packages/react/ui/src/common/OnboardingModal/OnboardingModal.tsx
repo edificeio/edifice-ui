@@ -80,7 +80,6 @@ const OnboardingModal = ({ id, items, modalOptions }: OnboardingProps) => {
           isOpen={isOpen}
           focusId="nextButtonId"
           onModalClose={() => setIsOpen(false)}
-          scrollable
         >
           <Modal.Header onModalClose={() => setIsOpen(false)}>
             {t(title || "explorer.modal.onboarding.trash.title")}
