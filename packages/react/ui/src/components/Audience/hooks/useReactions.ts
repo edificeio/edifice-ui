@@ -33,6 +33,20 @@ export default function useReactions(module: string, resourceType: string) {
   }
 
   /**
+   * Load the reactions details for a resource.
+   * @param resourceId ID of the resource
+   * @param page Page number
+   * @param size Number of results per page.
+   */
+  const loadReactionDetails = async (
+    resourceId: string,
+    page: number,
+    size = 30,
+  ) => {
+    return await reactions.loadReactionDetails(resourceId, page, size);
+  };
+
+  /**
    * Set, update or remove a reaction to a resource.
    * @param resourceId id
    * @param newReaction reaction to set / update / remove
@@ -82,5 +96,10 @@ export default function useReactions(module: string, resourceType: string) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { availableReactions, loadReactionSummaries, applyReaction };
+  return {
+    availableReactions,
+    loadReactionDetails,
+    loadReactionSummaries,
+    applyReaction,
+  };
 }

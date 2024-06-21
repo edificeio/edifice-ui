@@ -64,6 +64,17 @@ export interface IReactionsService {
     [resourceId: string]: ReactionSummaryData | undefined;
   }>;
   /**
+   * Load the reactions details for a resource.
+   * @param resourceId ID of the resource
+   * @param page Page number
+   * @param size Number of results per page.
+   */
+  loadReactionDetails(
+    resourceId: string,
+    page: number,
+    size: number,
+  ): Promise<ReactionDetailsData | undefined>;
+  /**
    * Remove the current user reaction to a resource.
    * @param resourceId id
    */
@@ -96,8 +107,8 @@ export type ReactionSummaryData = {
   totalReactionsCounter: number;
 };
 
-/** Typing of a Reaction detail */
-export type ReactionDetail = {
+/** Typing of a Reaction details */
+export type ReactionDetailsData = {
   reactionCounters: {
     countByType: {
       [type in ReactionType]?: number;
