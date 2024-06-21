@@ -111,8 +111,9 @@ const TreeItem = (props: TreeItemProps) => {
   );
 
   const { setNodeRef } = useDroppable({
-    id: nodeId,
+    id: nodeId + "2",
     data: {
+      id: nodeId,
       accepts: ["folder", "resource"],
     },
   });
@@ -156,12 +157,12 @@ const TreeItem = (props: TreeItemProps) => {
     >
       <div>
         <div
+          ref={setNodeRef}
           className={`action-container d-flex align-items-center gap-8 px-2 ${
             isFocus ? "drag-focus" : ""
           }`}
         >
           <div
-            ref={setNodeRef}
             className={`py-8 ${!Array.isArray(children) ? "invisible" : null}`}
             tabIndex={0}
             role="button"
