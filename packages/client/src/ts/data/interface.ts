@@ -44,6 +44,11 @@ export interface IDataService {
    * @param direction speech-to-text (voice recognition) or text-to-speech (voice generation)
    */
   trackSpeechAndText(direction: "STT" | "TTS"): void;
+
+  /**
+   * Send a ACCESS_LIBRARY_FROM_EXPLORER event to the backend.
+   */
+  trackAccessLibraryFromExplorer(): void;
 }
 
 /** Public properties of the DataService. */
