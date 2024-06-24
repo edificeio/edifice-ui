@@ -135,13 +135,7 @@ export default function ShareResourceModal({
     : t("explorer.modal.share.search.placeholder");
 
   return createPortal(
-    <Modal
-      id="share_modal"
-      size="lg"
-      isOpen={isOpen}
-      onModalClose={onCancel}
-      scrollable
-    >
+    <Modal id="share_modal" size="lg" isOpen={isOpen} onModalClose={onCancel}>
       <Modal.Header onModalClose={onCancel}>{t("share.title")}</Modal.Header>
       <Modal.Body>
         <Heading headingStyle="h4" level="h3" className="mb-16">
