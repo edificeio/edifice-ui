@@ -61,7 +61,13 @@ export default function PublishModal({
   if (!resource) return <LoadingScreen />;
 
   return createPortal(
-    <Modal isOpen={isOpen} onModalClose={onCancel} id="libraryModal" size="lg">
+    <Modal
+      isOpen={isOpen}
+      onModalClose={onCancel}
+      id="libraryModal"
+      size="lg"
+      scrollable
+    >
       <Modal.Header onModalClose={onCancel}>{t("bpr.publish")}</Modal.Header>
       <Modal.Subtitle>{t("bpr.form.tip")}</Modal.Subtitle>
       <Modal.Body>
