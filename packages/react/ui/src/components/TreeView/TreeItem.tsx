@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 
 import { useDroppable } from "@dnd-kit/core";
 import { Folder, RafterRight, RafterDown } from "@edifice-ui/icons";
@@ -111,7 +111,7 @@ const TreeItem = (props: TreeItemProps) => {
   );
 
   const { setNodeRef } = useDroppable({
-    id: nodeId + "2",
+    id: useId(),
     data: {
       id: nodeId,
       accepts: ["folder", "resource"],
