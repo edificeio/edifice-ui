@@ -20,7 +20,7 @@ import {
 } from "../../components";
 import { useMediaLibrary, useOdeClient } from "../../core";
 import { useResource } from "../../core/useResource";
-import ImagePickerWorkspace from "../../components/ImagePickerWorkspace/ImagePickerWorkspace";
+import ImagePickerWorkspace from "../../multimedia/ImagePickerWorkspace/ImagePickerWorkspace";
 import { MediaLibrary } from "../../multimedia";
 
 interface PublishModalProps {
