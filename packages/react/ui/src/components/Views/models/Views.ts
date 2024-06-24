@@ -9,7 +9,8 @@ export type ViewsCounters = {
  * Views detail model
  */
 export type ViewsDetail = {
-  totalViewsCounter: number;
+  totalViews: number;
+  totalUniqueViews: number;
   counterDetails: {
     parents: number;
     teachers: number;
