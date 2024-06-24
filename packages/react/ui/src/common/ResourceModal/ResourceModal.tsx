@@ -30,7 +30,7 @@ import { useResource } from "../../core/useResource";
 import { useToast } from "../../hooks";
 import { useThumb } from "./hooks/useThumb";
 import { MediaLibrary } from "../../multimedia";
-import ImagePickerWorkspace from "../../components/ImagePickerWorkspace/ImagePickerWorkspace";
+import ImagePickerWorkspace from "../../multimedia/ImagePickerWorkspace/ImagePickerWorkspace";
 
 export interface FormInputs {
   title: string;

@@ -3,9 +3,9 @@ import { ComponentPropsWithRef, useEffect, useState } from "react";
 import { Delete, Edit } from "@edifice-ui/icons";
 import { IWebApp } from "edifice-ts-client";
 
-import { AppIcon } from "../AppIcon";
-import { Avatar } from "../Avatar";
-import { IconButton } from "../Button";
+import { AppIcon } from "../../components/AppIcon";
+import { Avatar } from "../../components/Avatar";
+import { IconButton } from "../../components/Button";
 import clsx from "clsx";
 
 export interface ImagePickerWorkspaceProps

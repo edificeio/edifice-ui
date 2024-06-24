@@ -251,7 +251,7 @@ export const useMediaLibraryEditor = (editor: Editor | null) => {
         }
 
         default:
-          return `<div>[useMediaLibraryEditore/onSuccess] Le contenu de type "${type}" n'est pas convertissable pour l'instant !</div>`;
+          return `<div>[useMediaLibraryEditor/onSuccess] Le contenu de type "${type}" n'est pas convertissable pour l'instant !</div>`;
       }
     },
     [editor],
