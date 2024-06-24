@@ -2,6 +2,7 @@ import { RefAttributes, useEffect, useState } from "react";
 import { default as useReactionIcons } from "./hooks/useReactionIcons";
 import { Button, ButtonProps, IconButton } from "../Button";
 import { Dropdown } from "../Dropdown";
+import { useTranslation } from "react-i18next";
 import { ReactionSummaryData, ReactionType } from "edifice-ts-client";
 import { Tooltip } from "../Tooltip";
 import { useHover } from "../../hooks";
@@ -20,11 +21,11 @@ const ReactionSummary = ({
   onClick: handleDetailsClick,
 }: ReactionSummaryProps) => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const { totalReactionsCounter, reactionTypes, userReaction } = summary;
-
+  const { t } = useTranslation();
   const { getReactionIcon, getReactionLabel } = useReactionIcons();
-
   const [triggerButtonRef, isHovered] = useHover<HTMLButtonElement>();
+
+  const { totalReactionsCounter, reactionTypes, userReaction } = summary;
 
   useEffect(() => {
     if (isHovered && !isDropdownVisible) triggerButtonRef.current?.click();
@@ -76,7 +77,7 @@ const ReactionSummary = ({
                 leftIcon={getReactionIcon(userReaction)}
                 className="ps-4 pe-8 reaction-overlap"
               >
-                {getReactionLabel(userReaction)}
+                {t(getReactionLabel(userReaction))}
               </Button>
 
               <Dropdown.Menu
@@ -86,7 +87,7 @@ const ReactionSummary = ({
                 <div className="d-flex align-items-center justify-content-between">
                   {availableReactions?.map((reactionType) => (
                     <Tooltip
-                      message={getReactionLabel(reactionType)}
+                      message={t(getReactionLabel(reactionType))}
                       placement="top"
                     >
                       <IconButton

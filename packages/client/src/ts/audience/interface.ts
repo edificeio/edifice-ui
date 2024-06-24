@@ -94,11 +94,13 @@ export interface IReactionsService {
 }
 
 /** Typing of a Reaction */
-export type ReactionType =
-  | "REACTION_1"
-  | "REACTION_2"
-  | "REACTION_3"
-  | "REACTION_4";
+export const ReactionTypes = [
+  "REACTION_1",
+  "REACTION_2",
+  "REACTION_3",
+  "REACTION_4",
+] as const;
+export type ReactionType = (typeof ReactionTypes)[number];
 
 /** Typing of a Reaction summary */
 export type ReactionSummaryData = {
@@ -117,7 +119,7 @@ export type ReactionDetailsData = {
   };
   userReactions: Array<{
     userId: string;
-    profile: string;
+    profile: "Teacher" | "Student" | "Relative" | "Personnel";
     reactionType: ReactionType;
     displayName: string;
   }>;
