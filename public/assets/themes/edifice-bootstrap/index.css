@@ -18597,7 +18597,8 @@ hr {
     --edifice-dropzone-width-content: 425px;
     --edifice-dropzone-font-weight: 600;
     overflow: hidden;
-    height: 100%
+    height: 100%;
+    min-height: 35rem
 }
 
 .dropzone .align-center {
@@ -18993,6 +18994,8 @@ hr {
 }
 
 .modal-content {
+    border-radius: var(--edifice-modal-border-radius);
+    background-color: var(--edifice-modal-bg);
     padding: var(--edifice-modal-content-padding);
     position: relative;
     display: flex;
@@ -19039,8 +19042,6 @@ hr {
 }
 
 .modal-dialog {
-    border-radius: var(--edifice-modal-border-radius);
-    background-color: var(--edifice-modal-bg);
     max-width: var(--edifice-modal-width);
     margin-inline: auto
 }
@@ -19059,7 +19060,8 @@ hr {
 
 .modal-scrollable .modal-content {
     max-height: 100%;
-    overflow: hidden
+    overflow: hidden;
+    min-height: auto
 }
 
 .modal-scrollable .modal-body {
@@ -20093,7 +20095,8 @@ p:has(.node-custom-image) {
 
 .workspace {
     --edifice-workspace-search-bg: #fafafa;
-    grid-template-rows: min-content
+    grid-template-rows: min-content;
+    min-height: 40rem
 }
 
 @media(min-width: 768px) {
