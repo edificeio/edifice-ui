@@ -7,6 +7,7 @@ $workspace-search-bg: $gray-200 !default;
   --#{$prefix}workspace-search-bg: #{$workspace-search-bg};
 
   grid-template-rows: min-content;
+  min-height: 40rem;
 
   &-folders {
     @include bootstrap.media-breakpoint-up(md) {
@@ -16,7 +17,7 @@ $workspace-search-bg: $gray-200 !default;
 
   &-search {
     background-color: var(--#{$prefix}workspace-search-bg);
-    
+
     @include bootstrap.media-breakpoint-down(md) {
       border-top: 1px solid var(--#{$prefix}border-color);
     }

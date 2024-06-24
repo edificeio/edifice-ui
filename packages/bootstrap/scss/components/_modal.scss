@@ -43,6 +43,8 @@
   }
 
   &-content {
+    border-radius: var(--edifice-modal-border-radius);
+    background-color: var(--edifice-modal-bg);
     padding: var(--#{$prefix}modal-content-padding);
     position: relative;
     display: flex;
