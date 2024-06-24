@@ -1,5 +1,6 @@
-import { IHttpParams, IHttpResponse } from "../transport/interfaces";
-import { IOdeServices } from "../services/OdeServices";
+// @ts-nocheck
+import { IOdeServices } from '../services/OdeServices';
+import { IHttpParams, IHttpResponse } from '../transport/interfaces';
 
 const globalCache: Record<string, any> = {};
 const mutexPromise: Record<string, Promise<any>> = {};
@@ -14,9 +15,9 @@ export class CacheService {
   private async fromCacheIfPossible<T>(
     key: string,
     task: () => Promise<T>,
-    shouldCache: (value: T) => boolean,
+    shouldCache: (value: T) => boolean
   ): Promise<T> {
-    if (!!mutexPromise[key]) {
+    if (mutexPromise[key]) {
       await mutexPromise[key];
     }
     if (globalCache[key]) {
@@ -50,7 +51,7 @@ export class CacheService {
 
   async httpGet<R = any>(
     url: string,
-    params?: IHttpParams,
+    params?: IHttpParams
   ): Promise<{ value: R; response: IHttpResponse }> {
     return this.fromCacheIfPossible<{ value: R; response: IHttpResponse }>(
       url,
@@ -66,7 +67,7 @@ export class CacheService {
         } else {
           return true;
         }
-      },
+      }
     );
   }
 

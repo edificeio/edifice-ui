@@ -1,5 +1,8 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 
+import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+import { mergeConfig } from 'vite';
+
 const config: StorybookConfig = {
   stories: [
     '../src/lib/**/*.mdx',
@@ -8,11 +11,7 @@ const config: StorybookConfig = {
   addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],
   framework: {
     name: '@storybook/react-vite',
-    options: {
-      builder: {
-        viteConfigPath: 'vite.config.ts',
-      },
-    },
+    options: {},
   },
   staticDirs: ['../public'],
   typescript: {
@@ -22,6 +21,10 @@ const config: StorybookConfig = {
     autodocs: true,
     defaultName: 'Documentation',
   },
+  viteFinal: async (config) =>
+    mergeConfig(config, {
+      plugins: [nxViteTsPaths()],
+    }),
 };
 
 export default config;

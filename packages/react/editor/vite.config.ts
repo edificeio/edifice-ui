@@ -9,7 +9,7 @@ import packageJson from './package.json';
 
 export default defineConfig({
   root: __dirname,
-  cacheDir: '../../../node_modules/.vite/editor',
+  cacheDir: '../../../node_modules/.vite/packages/react/editor',
 
   plugins: [
     react(),
@@ -17,7 +17,6 @@ export default defineConfig({
     dts({
       entryRoot: 'src',
       tsConfigFilePath: path.join(__dirname, 'tsconfig.lib.json'),
-      skipDiagnostics: true,
     }),
   ],
 
@@ -29,7 +28,7 @@ export default defineConfig({
   // Configuration for building your library.
   // See: https://vitejs.dev/guide/build.html#library-mode
   build: {
-    outDir: '../../dist/packages/editor',
+    outDir: '../../../dist/packages/editor',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
@@ -42,7 +41,7 @@ export default defineConfig({
       fileName: 'index',
       // Change this to the formats you want to support.
       // Don't forget to update your package.json as well.
-      formats: ['es'],
+      formats: ['es', 'cjs'],
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.
@@ -54,16 +53,17 @@ export default defineConfig({
   },
 
   test: {
+    watch: false,
     globals: true,
     cache: {
-      dir: '../../../node_modules/.vitest',
+      dir: '../../../node_modules/.vitest/packages/react/editor',
     },
     environment: 'jsdom',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
 
     reporters: ['default'],
     coverage: {
-      reportsDirectory: '../../../coverage/editor',
+      reportsDirectory: '../../../coverage/packages/react/editor',
       provider: 'v8',
     },
   },

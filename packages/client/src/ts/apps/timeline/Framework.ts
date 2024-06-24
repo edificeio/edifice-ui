@@ -1,12 +1,12 @@
-import { APP } from "../../globals";
+import { APP } from '../../globals';
 import {
   IFlashMessageModel,
   ITimelineApp,
   NotificationModel,
-} from "./interfaces";
-import { configure } from "../../configure/Framework";
-import { transport } from "../../transport/Framework";
-import { Notification } from "./Notification.model";
+} from './interfaces';
+import { configure } from '../../configure/Framework';
+import { transport } from '../../transport/Framework';
+import { Notification } from './Notification.model';
 
 //-------------------------------------
 export class TimelineApp implements ITimelineApp {
@@ -19,7 +19,7 @@ export class TimelineApp implements ITimelineApp {
   private _lastPage = false;
   private _loading = false;
 
-  public showMine: boolean = false;
+  public showMine = false;
 
   get notifications(): Array<Notification> {
     return this._notifications;
@@ -60,7 +60,7 @@ export class TimelineApp implements ITimelineApp {
   initialize(): Promise<void> {
     return Promise.all([
       configure.User.loadAppPrefs(APP.TIMELINE),
-      transport.http.get("/timeline/types"),
+      transport.http.get('/timeline/types'),
     ]).then((result) => {
       this._notificationTypes = result[1];
     });
@@ -77,7 +77,7 @@ export class TimelineApp implements ITimelineApp {
       this._lastPage = false;
     }
 
-    let types = this.selectedNotificationTypes;
+    const types = this.selectedNotificationTypes;
     // if(types.length===0) {
     //     types = this._notificationTypes;
     // }
@@ -87,7 +87,7 @@ export class TimelineApp implements ITimelineApp {
       return Promise.resolve();
     }
 
-    let params: { page: number; mine?: number } = {
+    const params: { page: number; mine?: number } = {
       page: this.page,
       mine: 1,
     };
@@ -101,7 +101,7 @@ export class TimelineApp implements ITimelineApp {
     }
 
     return transport.http
-      .get(`/timeline/lastNotifications?type=${types.join("&type=")}`, {
+      .get(`/timeline/lastNotifications?type=${types.join('&type=')}`, {
         queryParams: params,
       })
       .then(
@@ -112,7 +112,7 @@ export class TimelineApp implements ITimelineApp {
         }) => {
           this._loading = false;
 
-          if (response.status !== "ok") {
+          if (response.status !== 'ok') {
             //TODO notify error
             return;
           }
@@ -123,8 +123,8 @@ export class TimelineApp implements ITimelineApp {
               .filter(
                 (result) =>
                   this._notifications.findIndex(
-                    (_notification) => _notification._id === result._id,
-                  ) === -1,
+                    (_notification) => _notification._id === result._id
+                  ) === -1
               )
               .map((notification) => new Notification(notification));
             this._notifications = this._notifications.concat(toAdd);
@@ -133,7 +133,7 @@ export class TimelineApp implements ITimelineApp {
             this._lastPage = true;
             //FIXME model.trigger('notifications.change')
           }
-        },
+        }
       )
       .catch((data) => {
         this._loading = false;
@@ -143,13 +143,13 @@ export class TimelineApp implements ITimelineApp {
 
   loadFlashMessages(): Promise<void> {
     return transport.http
-      .get<Array<IFlashMessageModel>>("/timeline/flashmsg/listuser")
+      .get<Array<IFlashMessageModel>>('/timeline/flashmsg/listuser')
       .then((results) => {
         this._flashMessages = results;
       });
   }
 
   markAsRead(msg: IFlashMessageModel): Promise<void> {
-    return transport.http.put("/timeline/flashmsg/" + msg.id + "/markasread");
+    return transport.http.put('/timeline/flashmsg/' + msg.id + '/markasread');
   }
 }

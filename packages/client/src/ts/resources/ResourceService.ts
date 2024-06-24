@@ -14,9 +14,9 @@ import {
   DeleteParameters,
   ResourceType,
   App,
-} from "..";
-import { IOdeServices } from "../services/OdeServices";
-import { ServiceRegistry } from "./ServiceRegistry";
+} from '..';
+import { IOdeServices } from '../services/OdeServices';
+import { ServiceRegistry } from './ServiceRegistry';
 import {
   CopyParameters,
   CopyResult,
@@ -28,7 +28,7 @@ import {
   IWebResourceService,
   UpdateParameters,
   UpdateResult,
-} from "./interface";
+} from './interface';
 
 export abstract class ResourceService
   implements IResourceService, IWebResourceService
@@ -68,11 +68,11 @@ export abstract class ResourceService
   abstract getEditUrl(resourceId?: string): string;
 
   abstract create<T extends CreateParameters>(
-    parameters: T,
+    parameters: T
   ): Promise<CreateResult>;
 
   abstract update<T extends UpdateParameters>(
-    parameters: T,
+    parameters: T
   ): Promise<UpdateResult>;
 
   abstract getResourceType(): ResourceType;
@@ -84,7 +84,7 @@ export abstract class ResourceService
   }
 
   async copy(parameters: CopyParameters): Promise<CopyResult> {
-    const res = await this.http.post<CopyResult>("/archive/duplicate", {
+    const res = await this.http.post<CopyResult>('/archive/duplicate', {
       application: parameters.application,
       resourceId: parameters.resourceId,
     });
@@ -93,52 +93,52 @@ export abstract class ResourceService
 
   async publish(parameters: PublishParameters): Promise<PublishResult> {
     const publicationAsFormData = new FormData();
-    publicationAsFormData.append("title", parameters.title);
-    publicationAsFormData.append("cover", parameters.cover);
-    publicationAsFormData.append("coverName", (parameters.cover as File).name);
-    publicationAsFormData.append("coverType", parameters.cover.type);
-    publicationAsFormData.append("teacherAvatar", parameters.teacherAvatar);
+    publicationAsFormData.append('title', parameters.title);
+    publicationAsFormData.append('cover', parameters.cover);
+    publicationAsFormData.append('coverName', (parameters.cover as File).name);
+    publicationAsFormData.append('coverType', parameters.cover.type);
+    publicationAsFormData.append('teacherAvatar', parameters.teacherAvatar);
     publicationAsFormData.append(
-      "teacherAvatarName",
+      'teacherAvatarName',
       (parameters.teacherAvatar as File).name ||
-        `teacherAvatar_${parameters.userId}`,
+        `teacherAvatar_${parameters.userId}`
     );
     publicationAsFormData.append(
-      "teacherAvatarType",
-      parameters.teacherAvatar.type,
+      'teacherAvatarType',
+      parameters.teacherAvatar.type
     );
-    publicationAsFormData.append("language", parameters.language);
+    publicationAsFormData.append('language', parameters.language);
     parameters.activityType.forEach((activityType) => {
-      publicationAsFormData.append("activityType[]", activityType);
+      publicationAsFormData.append('activityType[]', activityType);
     });
     parameters.subjectArea.forEach((subjectArea) => {
-      publicationAsFormData.append("subjectArea[]", subjectArea);
+      publicationAsFormData.append('subjectArea[]', subjectArea);
     });
     parameters.age.forEach((age) => {
-      publicationAsFormData.append("age[]", age.toString());
+      publicationAsFormData.append('age[]', age.toString());
     });
-    publicationAsFormData.append("description", parameters.description);
-    let keyWordsArray = parameters.keyWords.split(",");
+    publicationAsFormData.append('description', parameters.description);
+    const keyWordsArray = parameters.keyWords.split(',');
     keyWordsArray.forEach((keyWord) => {
-      publicationAsFormData.append("keyWords[]", keyWord.trim());
+      publicationAsFormData.append('keyWords[]', keyWord.trim());
     });
-    publicationAsFormData.append("licence", parameters.licence);
+    publicationAsFormData.append('licence', parameters.licence);
     publicationAsFormData.append(
-      "pdfUri",
-      `${window.location.origin}${this.getPrintUrl(parameters.resourceEntId)}`,
+      'pdfUri',
+      `${window.location.origin}${this.getPrintUrl(parameters.resourceEntId)}`
     );
     publicationAsFormData.append(
-      "application",
-      parameters.application ? parameters.application : "",
+      'application',
+      parameters.application ? parameters.application : ''
     );
-    publicationAsFormData.append("resourceId", parameters.resourceId);
-    publicationAsFormData.append("teacherSchool", parameters.userStructureName);
+    publicationAsFormData.append('resourceId', parameters.resourceId);
+    publicationAsFormData.append('teacherSchool', parameters.userStructureName);
     const res = await this.http.post<PublishResult>(
-      "/appregistry/library/resource",
+      '/appregistry/library/resource',
       publicationAsFormData,
       {
-        headers: { "Content-Type": "multipart/form-data" },
-      },
+        headers: { 'Content-Type': 'multipart/form-data' },
+      }
     );
     return this.checkHttpResponse(res);
   }
@@ -147,22 +147,22 @@ export abstract class ResourceService
   // FOLDER METHODS
   //
   async createContext(
-    parameters: GetContextParameters,
+    parameters: GetContextParameters
   ): Promise<GetContextResult> {
-    const result = await this.http.get<GetContextResult>("/explorer/context", {
+    const result = await this.http.get<GetContextResult>('/explorer/context', {
       queryParams: this.toQueryParams(parameters),
     });
     return this.checkHttpResponse(result);
   }
 
   async searchContext(
-    parameters: GetContextParameters,
+    parameters: GetContextParameters
   ): Promise<ISearchResults> {
     const result = await this.http.get<GetContextResult>(
-      "/explorer/resources",
+      '/explorer/resources',
       {
         queryParams: this.toQueryParams(parameters),
-      },
+      }
     );
     return this.checkHttpResponse(result);
   }
@@ -172,34 +172,34 @@ export abstract class ResourceService
       `/explorer/resources/${parameters.id}`,
       {
         queryParams: this.getResourceParams(parameters),
-      },
+      }
     );
     return this.checkHttpResponse(result);
   }
 
   async createFolder(
-    parameters: CreateFolderParameters,
+    parameters: CreateFolderParameters
   ): Promise<CreateFolderResult> {
     const result = await this.http.post<CreateFolderResult>(
-      "/explorer/folders",
-      this.createFolderToBodyParams(parameters),
+      '/explorer/folders',
+      this.createFolderToBodyParams(parameters)
     );
     return this.checkHttpResponse(result);
   }
 
   async updateFolder(
-    parameters: UpdateFolderParameters,
+    parameters: UpdateFolderParameters
   ): Promise<CreateFolderResult> {
     const result = await this.http.put<CreateFolderResult>(
       `/explorer/folders/${parameters.folderId}`,
-      this.createFolderToBodyParams(parameters),
+      this.createFolderToBodyParams(parameters)
     );
     return this.checkHttpResponse(result);
   }
 
   async moveToFolder(
     parameters: MoveParameters,
-    useAssetId = false,
+    useAssetId = false
   ): Promise<IActionResult> {
     parameters.resourceIds = useAssetId
       ? await this.mapAssetIdToIds({
@@ -209,21 +209,21 @@ export abstract class ResourceService
       : parameters.resourceIds;
     const result = await this.http.post<IActionResult>(
       `/explorer/folders/${parameters.folderId}/move`,
-      this.moveToBodyParams(parameters),
+      this.moveToBodyParams(parameters)
     );
     return this.checkHttpResponse(result);
   }
 
   async listSubfolders(folderId: ID): Promise<GetSubFoldersResult> {
     const result = await this.http.get<GetSubFoldersResult>(
-      `/explorer/folders/${folderId}`,
+      `/explorer/folders/${folderId}`
     );
     return this.checkHttpResponse(result);
   }
 
   async deleteAll(
     parameters: DeleteParameters,
-    useAssetId = false,
+    useAssetId = false
   ): Promise<IActionResult> {
     parameters.resourceIds = useAssetId
       ? await this.mapAssetIdToIds({
@@ -233,14 +233,14 @@ export abstract class ResourceService
       : parameters.resourceIds;
     const result = await this.http.deleteJson<IActionResult>(
       `/explorer`,
-      parameters,
+      parameters
     );
     return this.checkHttpResponse(result);
   }
 
   async trashAll(
     { resourceType, ...parameters }: DeleteParameters,
-    useAssetId = false,
+    useAssetId = false
   ): Promise<IActionResult> {
     parameters.resourceIds = useAssetId
       ? await this.mapAssetIdToIds({
@@ -250,14 +250,14 @@ export abstract class ResourceService
       : parameters.resourceIds;
     const result = await this.http.putJson<IActionResult>(
       `/explorer/trash`,
-      parameters,
+      parameters
     );
     return this.checkHttpResponse(result);
   }
   /** Trash folders and/or resources. */
   async restoreAll(
     { resourceType, ...parameters }: DeleteParameters,
-    useAssetId = false,
+    useAssetId = false
   ): Promise<IActionResult> {
     parameters.resourceIds = useAssetId
       ? await this.mapAssetIdToIds({
@@ -267,7 +267,7 @@ export abstract class ResourceService
       : parameters.resourceIds;
     const result = await this.http.putJson<IActionResult>(
       `/explorer/restore`,
-      parameters,
+      parameters
     );
     return this.checkHttpResponse(result);
   }
@@ -297,23 +297,23 @@ export abstract class ResourceService
     });
     return assetIds.map((assetId) => {
       const resource = resources.resources.find(
-        (resource) => resource.assetId === assetId,
+        (resource) => resource.assetId === assetId
       );
       if (resource === undefined) {
-        throw "explorer.assetid.notfound";
+        throw 'explorer.assetid.notfound';
       }
       return resource.id;
     });
   }
 
   protected async getThumbnailPath(file: string | Blob | File | undefined) {
-    if (typeof file === "undefined") {
+    if (typeof file === 'undefined') {
       return file;
-    } else if (typeof file === "string") {
-      if (file.startsWith("blob:")) {
+    } else if (typeof file === 'string') {
+      if (file.startsWith('blob:')) {
         const blob = await fetch(file).then((r) => r.blob());
         const res = await this.context.workspace().saveFile(blob, {
-          visibility: "protected",
+          visibility: 'protected',
           application: this.getApplication(),
         });
 
@@ -323,7 +323,7 @@ export abstract class ResourceService
       }
     } else {
       const res = await this.context.workspace().saveFile(file, {
-        visibility: "protected",
+        visibility: 'protected',
         application: this.getApplication(),
       });
       return `/workspace/document/${res._id}`;
@@ -334,9 +334,9 @@ export abstract class ResourceService
   // PRIVATE HELPERS
   //
   private toQueryParams(
-    parameters: GetContextParameters,
+    parameters: GetContextParameters
   ): Record<string, string> {
-    let ret = {
+    const ret = {
       application: parameters.application,
       start_idx: parameters.pagination.startIdx,
       page_size: parameters.pagination.pageSize,
@@ -353,13 +353,13 @@ export abstract class ResourceService
     if (parameters.filters) {
       Object.assign(ret, parameters.filters);
     }
-    if (typeof parameters.search === "string") {
+    if (typeof parameters.search === 'string') {
       ret.search = parameters.search;
     }
-    if (typeof parameters.asset_id !== "undefined") {
+    if (typeof parameters.asset_id !== 'undefined') {
       ret.asset_id = [...parameters.asset_id];
     }
-    if (typeof parameters.id !== "undefined") {
+    if (typeof parameters.id !== 'undefined') {
       ret.id = parameters.id;
     }
     return ret;

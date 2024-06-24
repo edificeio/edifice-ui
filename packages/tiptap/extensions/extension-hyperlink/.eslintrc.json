@@ -1,5 +1,5 @@
 {
-  "extends": ["../../../../.eslintrc.base.json"],
+  "extends": ["../../../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
@@ -11,6 +11,7 @@
         "@typescript-eslint/no-empty-interface": "off",
         "@typescript-eslint/ban-types": "off",
         "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/ban-ts-comment" : "off",
         "no-async-promise-executor": "off",
         "no-useless-escape": "off",
         "prefer-rest-params": "off",

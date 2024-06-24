@@ -2,10 +2,13 @@
   "name": "@edifice-tiptap-extensions/extension-video",
   "description": "Rich Text Editor Video Extension",
   "type": "module",
+  "main": "./index.js",
+  "module": "./index.mjs",
+  "types": "./index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": "./index.mjs",
+      "require": "./index.js"
     }
   },
   "version": "0.0.1",
@@ -16,9 +19,6 @@
   "dependencies": {
     "@tiptap/core": "2.3.0"
   },
-  "main": "./index.js",
-  "module": "./index.mjs",
-  "typings": "./index.d.ts",
   "publishConfig": {
     "access": "public"
   }

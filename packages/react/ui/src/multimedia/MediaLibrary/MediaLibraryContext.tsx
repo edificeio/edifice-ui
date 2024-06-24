@@ -1,12 +1,12 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext } from 'react';
 
-import { WorkspaceElement, WorkspaceVisibility } from "edifice-ts-client";
+import { WorkspaceElement, WorkspaceVisibility } from 'edifice-ts-client';
 
 import {
   MediaLibraryType,
   AvailableTab,
   MediaLibraryResult,
-} from "./MediaLibrary";
+} from './MediaLibrary';
 
 export const MediaLibraryContext = createContext<{
   /** Application code (example: "blog") */
@@ -45,7 +45,7 @@ export const MediaLibraryContext = createContext<{
    * Allow an innertab to set action to execute before triggering onSuccess.
    */
   setPreSuccess: (
-    onSuccessAction?: () => () => Promise<MediaLibraryResult>,
+    onSuccessAction?: () => () => Promise<MediaLibraryResult>
   ) => void;
 }>(null!);
 
@@ -53,7 +53,7 @@ export function useMediaLibraryContext() {
   const context = useContext(MediaLibraryContext);
   if (!context) {
     throw new Error(
-      `Innertabs compound components cannot be rendered outside the MediaLibrary component`,
+      `Innertabs compound components cannot be rendered outside the MediaLibrary component`
     );
   }
   return context;

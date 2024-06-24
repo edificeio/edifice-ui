@@ -45,13 +45,13 @@ export class ConfService {
     return appConf;
   }
 
-  async getPublicConf<T extends any>(app: App): Promise<T> {
+  async getPublicConf<T>(app: App): Promise<T> {
     // Public confs do not change until redeployed
     const { response, value } = await this.cache.httpGet<any>(
       `/${app}/conf/public`,
       {
         queryParams: { _: configure.Platform.deploymentTag },
-      },
+      }
     );
     if (response.status < 200 || response.status >= 300)
       throw ERROR_CODE.APP_NOT_FOUND;

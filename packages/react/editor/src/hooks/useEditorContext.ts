@@ -1,6 +1,6 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext } from 'react';
 
-import { Editor } from "@tiptap/react";
+import { Editor } from '@tiptap/react';
 
 export const EditorContext = createContext<{
   /**
@@ -26,7 +26,7 @@ export function useEditorContext() {
   const context = useContext(EditorContext);
   if (!context) {
     throw new Error(
-      `Editor compound components cannot be rendered outside the Editor component`,
+      `Editor compound components cannot be rendered outside the Editor component`
     );
   }
   return context;

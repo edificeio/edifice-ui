@@ -19,25 +19,25 @@
   },
   "version": "0.0.1",
   "type": "module",
+  "main": "./index.cjs",
   "module": "./index.js",
   "types": "./index.d.ts",
   "exports": {
     ".": {
-      "import": "./index.js"
+      "import": "./index.js",
+      "require": "./index.cjs"
     }
   },
   "sideEffects": false,
   "dependencies": {
-    "react": "18.2.0",
+    "react": "18.3.1",
     "@edifice-ui/icons": "0.0.1",
     "@edifice-ui/react": "0.0.1",
     "@tiptap/react": "2.3.0",
     "react-i18next": "14.1.0",
-    "@edifice-ui/multimedia": "0.0.1",
     "clsx": "2.1.0",
     "@tiptap/starter-kit": "2.3.0",
     "@tiptap-pro/extension-mathematics": "2.7.7",
-    "react-dom": "18.2.0",
     "edifice-ts-client": "0.0.1",
     "@tiptap/extension-text-align": "2.3.0",
     "@tiptap/extension-text-style": "2.3.0",
@@ -67,9 +67,8 @@
     "@edifice-tiptap-extensions/extension-speechrecognition": "0.0.1",
     "@edifice-tiptap-extensions/extension-speechsynthesis": "0.0.1",
     "@tiptap/pm": "2.3.0",
-    "katex": "0.16.8",
-    "@tiptap/extension-character-count": "^2.4.0",
-    "@tiptap/extension-placeholder": "^2.4.0"
+    "@tiptap/extension-character-count": "2.3.0",
+    "@tiptap/extension-placeholder": "2.3.0"
   },
   "publishConfig": {
     "access": "public"

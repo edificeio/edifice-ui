@@ -1,1 +1,1 @@
-export { default as useImageResizer } from "./useImageResizer";
+export { default as useImageResizer } from './useImageResizer';

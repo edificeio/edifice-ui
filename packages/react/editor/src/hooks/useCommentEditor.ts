@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { Hyperlink } from "@edifice-tiptap-extensions/extension-hyperlink";
-import CharacterCount from "@tiptap/extension-character-count";
-import { Content, HTMLContent, useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
+import { Hyperlink } from '@edifice-tiptap-extensions/extension-hyperlink';
+import CharacterCount from '@tiptap/extension-character-count';
+import { Content, HTMLContent, useEditor } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
 
 /**
  * Hook that creates a tiptap editor instance with plugins for editing comments.
@@ -14,7 +14,7 @@ import StarterKit from "@tiptap/starter-kit";
 export const useCommentEditor = (
   editable: boolean,
   content: Content,
-  maxLength: number = 800,
+  maxLength = 800
 ) => {
   const [commentLength, setCommentLength] = useState(0);
 
@@ -45,10 +45,10 @@ export const useCommentEditor = (
       setCommentLength(length);
     }
 
-    editor?.on("update", setCounter);
+    editor?.on('update', setCounter);
 
     return () => {
-      editor?.off("update", setCounter);
+      editor?.off('update', setCounter);
     };
   }, [editor]);
 

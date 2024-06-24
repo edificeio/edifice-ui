@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState } from 'react';
 
 import {
   ERROR_CODE,
@@ -6,16 +6,16 @@ import {
   WorkspaceElement,
   WorkspaceVisibility,
   odeServices,
-} from "edifice-ts-client";
+} from 'edifice-ts-client';
 
-import { useBrowserInfo } from "../../hooks";
-import { Status } from "../../types";
-import { getOrGenerateBlobId } from "../../utils";
-import { useWorkspaceFile } from "../useWorkspaceFile";
+import { useBrowserInfo } from '../../hooks';
+import { Status } from '../../types';
+import { getOrGenerateBlobId } from '../../utils';
+import { useWorkspaceFile } from '../useWorkspaceFile';
 
 const useUpload = (
   visibility?: WorkspaceVisibility,
-  application: string = "media-library",
+  application = 'media-library'
 ) => {
   const [status, setStatus] = useState<Record<string, Status>>({});
 
@@ -26,7 +26,7 @@ const useUpload = (
   const getUploadStatus: (upload: File | Blob) => Status | undefined =
     useCallback(
       (upload: File | Blob) => status[getOrGenerateBlobId(upload)],
-      [status],
+      [status]
     );
 
   /** Set the status of an uploaded file or blob. */
@@ -52,10 +52,10 @@ const useUpload = (
 
   /** Upload a file. */
   async function uploadFile(file: File, metadata?: { duration: number }) {
-    setUploadStatus(file, "loading");
+    setUploadStatus(file, 'loading');
     try {
       let resource;
-      if (application === "media-library" && file.type.includes("video")) {
+      if (application === 'media-library' && file.type.includes('video')) {
         // In media-library, video files are reencoded to streamable mp4.
         resource = await uploadVideo(file, {
           filename: file.name,
@@ -64,10 +64,10 @@ const useUpload = (
       } else {
         resource = await create(file, { application, visibility });
       }
-      setUploadStatus(file, "success");
+      setUploadStatus(file, 'success');
       return resource;
     } catch (error) {
-      setUploadStatus(file, "error");
+      setUploadStatus(file, 'error');
       return null;
     }
   }
@@ -75,29 +75,29 @@ const useUpload = (
   /** Upload a blob. */
   async function uploadBlob(
     blob: Blob,
-    metadata?: { filename?: string; duration?: number },
+    metadata?: { filename?: string; duration?: number }
   ) {
-    setUploadStatus(blob, "loading");
+    setUploadStatus(blob, 'loading');
     try {
       let resource;
-      if (blob.type.includes("video")) {
+      if (blob.type.includes('video')) {
         // Video blobs are reencoded to streamable mp4.
         resource = await uploadVideo(blob, metadata);
       } else {
         // Other blobs not supported at the moment
         throw new Error(ERROR_CODE.NOT_SUPPORTED);
       }
-      setUploadStatus(blob, "success");
+      setUploadStatus(blob, 'success');
       return resource;
     } catch (error) {
-      setUploadStatus(blob, "error");
+      setUploadStatus(blob, 'error');
       return null;
     }
   }
 
   const uploadVideo = async (
     blob: Blob,
-    metadata?: { filename?: string; duration?: number },
+    metadata?: { filename?: string; duration?: number }
   ) => {
     const params: VideoUploadParams = {
       data: {
@@ -105,7 +105,7 @@ const useUpload = (
         browser: { name: browser.name, version: browser.version },
         url: window.location.hostname,
         file: blob,
-        filename: metadata?.filename ?? "filename",
+        filename: metadata?.filename ?? 'filename',
         weight: blob.size,
       },
       appCode: application,
@@ -114,31 +114,31 @@ const useUpload = (
     };
 
     const uploadResponse = await odeServices.video().upload(params);
-    if (uploadResponse.state === "succeed") {
+    if (uploadResponse.state === 'succeed') {
       const resVideo: WorkspaceElement = {
         _id: uploadResponse.videoworkspaceid,
         file: uploadResponse.videoid,
         name: params.data.filename,
-        eType: "file",
-        eParent: "",
+        eType: 'file',
+        eParent: '',
         children: [],
         created: new Date(),
         _shared: [],
         _isShared: false,
-        owner: { userId: "", displayName: "" },
+        owner: { userId: '', displayName: '' },
       };
       return resVideo;
-    } else if (uploadResponse.state === "error") {
-      throw new Error(uploadResponse.code || "Error while uploading video");
+    } else if (uploadResponse.state === 'error') {
+      throw new Error(uploadResponse.code || 'Error while uploading video');
     } else {
-      throw new Error("Video encoding is still running");
+      throw new Error('Video encoding is still running');
     }
   };
 
   function uploadAlternateFile(
     original: File,
     replacement: File,
-    metadata?: { duration: number },
+    metadata?: { duration: number }
   ) {
     // The original and its alternate must share the same virtual id.
     getOrGenerateBlobId(replacement, getOrGenerateBlobId(original));

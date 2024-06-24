@@ -40,12 +40,12 @@ const useDropzone = (props?: {
     if (inputRef.current?.accept) {
       // Reject files which do not pass the `accept` filter.
       const filters = inputRef.current.accept
-        .split(",")
+        .split(',')
         .map((filter) => filter.trim().toLowerCase());
-      const extensions = filters.filter((filter) => filter.startsWith("."));
+      const extensions = filters.filter((filter) => filter.startsWith('.'));
       const mimes = filters
-        .filter((filter) => !filter.startsWith("."))
-        .map((mime) => mime.replace("*", ""));
+        .filter((filter) => !filter.startsWith('.'))
+        .map((mime) => mime.replace('*', ''));
 
       filteredFiles = [];
       files.forEach((file) => {
@@ -87,7 +87,7 @@ const useDropzone = (props?: {
   };
 
   const handleDragLeave = <T extends HTMLElement>(
-    event: React.DragEvent<T>,
+    event: React.DragEvent<T>
   ) => {
     event.preventDefault();
     event.stopPropagation();

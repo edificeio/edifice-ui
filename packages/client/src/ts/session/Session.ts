@@ -31,8 +31,8 @@ type PersonApiResult = {
 export class Session implements ISession {
   private _me: IUserInfo = null as unknown as IUserInfo;
 
-  private _currentLanguage: string = '';
-  private _notLoggedIn: boolean = true;
+  private _currentLanguage = '';
+  private _notLoggedIn = true;
   private _description?: IUserDescription;
   private _profile?: UserProfile;
 
@@ -147,7 +147,7 @@ export class Session implements ISession {
     }
     const rightName = right.right || right;
 
-    let currentSharedRights: Array<IResourceRight> = (
+    const currentSharedRights: Array<IResourceRight> = (
       resource.shared as Array<IResourceRight>
     ).filter((sharedRight) => {
       return (

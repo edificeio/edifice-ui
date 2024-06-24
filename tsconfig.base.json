@@ -10,10 +10,7 @@
     "importHelpers": true,
     "target": "ES2021",
     "module": "esnext",
-    "lib": [
-      "ES2021",
-      "dom"
-    ],
+    "lib": ["ES2021", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
@@ -75,34 +72,15 @@
       "@edifice-tiptap-extensions/extension-video": [
         "packages/tiptap/extensions/extension-video/src/index.ts"
       ],
-      "@edifice-ui/docs": [
-        "docs/src/index.ts"
-      ],
-      "@edifice-ui/editor": [
-        "packages/react/editor/src/index.ts"
-      ],
-      "@edifice-ui/icons": [
-        "packages/react/icons/src/index.ts"
-      ],
-      "@edifice-ui/icons/nav": [
-        "packages/react/icons/src/nav/index.ts"
-      ],
-      "@edifice-ui/multimedia": [
-        "packages/react/multimedia/src/index.ts"
-      ],
-      "@edifice-ui/react": [
-        "packages/react/ui/src/index.ts"
-      ],
-      "edifice-bootstrap": [
-        "packages/bootstrap/scss/index.scss"
-      ],
-      "edifice-ts-client": [
-        "packages/client/src/ts/index.ts"
-      ]
+      "@edifice-ui/docs": ["docs/src/index.ts"],
+      "@edifice-ui/editor": ["packages/react/editor/src/index.ts"],
+      "@edifice-ui/icons": ["packages/react/icons/src/index.ts"],
+      "@edifice-ui/icons/nav": ["packages/react/icons/src/nav/index.ts"],
+      "@edifice-ui/multimedia": ["packages/react/multimedia/src/index.ts"],
+      "@edifice-ui/react": ["packages/react/ui/src/index.ts"],
+      "edifice-bootstrap": ["packages/bootstrap/scss/index.scss"],
+      "edifice-ts-client": ["packages/client/src/ts/index.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

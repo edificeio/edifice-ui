@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 // @ts-nocheck
 import { useEffect, useState } from 'react';
 

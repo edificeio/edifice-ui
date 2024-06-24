@@ -12,3 +12,4 @@
 
 # Check subdirectories too
 !*/
+/.nx/workspace-data

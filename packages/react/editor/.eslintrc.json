@@ -1,9 +1,5 @@
 {
-  "extends": [
-    "plugin:@nx/react",
-    "../../../.eslintrc.json",
-    "../../../.eslintrc.base.json"
-  ],
+  "extends": ["plugin:@nx/react", "../../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
@@ -22,10 +18,6 @@
         "@nx/dependency-checks": [
           "error",
           {
-            "buildTargets": ["build"],
-            "checkMissingDependencies": true,
-            "checkObsoleteDependencies": true,
-            "checkVersionMismatches": true,
             "ignoredFiles": ["{projectRoot}/vite.config.{js,ts,mjs,mts}"]
           }
         ]

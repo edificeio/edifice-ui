@@ -233,13 +233,13 @@ export class SessionService {
       };
     }
 
-    let bookmarkedApps: IWebApp[] = [];
+    const bookmarkedApps: IWebApp[] = [];
     myApps.bookmarks.forEach((appName, index) => {
       const foundApp = (user?.apps || []).find(
         (app: IWebApp) => app.name === appName
       );
       if (foundApp) {
-        let app = Object.assign({}, foundApp);
+        const app = Object.assign({}, foundApp);
         bookmarkedApps.push(app);
       }
     });

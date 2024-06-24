@@ -14,7 +14,7 @@
     "url": "https://github.com/ccreusat/nx-monorepo"
   },
   "dependencies": {
-    "@tiptap/core": "2.3.0"
+    "@tiptap/extension-table-cell": "2.3.0"
   },
   "main": "./index.js",
   "module": "./index.mjs",

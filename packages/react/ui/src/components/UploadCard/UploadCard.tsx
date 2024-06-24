@@ -1,13 +1,13 @@
-import { Close, Reset, SuccessOutline, Wand } from "@edifice-ui/icons";
-import { useTranslation } from "react-i18next";
+import { Close, Reset, SuccessOutline, Wand } from '@edifice-ui/icons';
+import { useTranslation } from 'react-i18next';
 
-import { Tooltip } from "..";
-import { usePaths } from "../../core";
-import { Status } from "../../types";
-import { Button, IconButton } from "../Button";
-import { Card, CardProps } from "../Card";
-import { Image } from "../Image";
-import { Loading } from "../Loading";
+import { Tooltip } from '..';
+import { usePaths } from '../../core';
+import { Status } from '../../types';
+import { Button, IconButton } from '../Button';
+import { Card, CardProps } from '../Card';
+import { Image } from '../Image';
+import { Loading } from '../Loading';
 
 export interface UploadItemProps {
   /**
@@ -49,7 +49,7 @@ export interface UploadCardProps extends CardProps {
 
 const UploadCard = ({
   item,
-  status = "idle",
+  status = 'idle',
   isClickable = false,
   isSelectable = false,
   onDelete,
@@ -62,11 +62,11 @@ const UploadCard = ({
 
   const { src, name, info } = item;
 
-  const isIdle = status === "idle";
-  const isLoading = status === "loading";
-  const isSuccess = status === "success";
+  const isIdle = status === 'idle';
+  const isLoading = status === 'loading';
+  const isSuccess = status === 'success';
 
-  const isTypeImage = info?.type.startsWith("image");
+  const isTypeImage = info?.type.startsWith('image');
 
   /**
    * WB-3053: add mapping object to store information
@@ -74,7 +74,7 @@ const UploadCard = ({
    */
   const imgPlaceholder = `${imagePath}/common/image-placeholder.png`;
   const defaultMapping = {
-    text: "",
+    text: '',
     context: null,
     image: <img src={imgPlaceholder} alt="" width="48" height="48" />,
   };
@@ -84,7 +84,7 @@ const UploadCard = ({
       text: (
         <strong>
           <small className="text-danger caption">
-            {t("tiptap.upload.error")}
+            {t('tiptap.upload.error')}
           </small>
         </strong>
       ),
@@ -95,7 +95,7 @@ const UploadCard = ({
           color="tertiary"
           onClick={onRetry}
         >
-          {t("tiptap.upload.retry")}
+          {t('tiptap.upload.retry')}
         </Button>
       ),
       image: (
@@ -108,9 +108,9 @@ const UploadCard = ({
     },
     idle: defaultMapping,
     loading: {
-      text: "",
+      text: '',
       context: (
-        <Tooltip message={t("tiptap.tooltip.upload.loading")} placement="top">
+        <Tooltip message={t('tiptap.tooltip.upload.loading')} placement="top">
           <Loading
             isLoading
             loadingPosition="left"
@@ -128,14 +128,14 @@ const UploadCard = ({
         </em>
       ),
       context: (
-        <Tooltip message={t("tiptap.tooltip.upload.loaded")} placement="top">
+        <Tooltip message={t('tiptap.tooltip.upload.loaded')} placement="top">
           <SuccessOutline className="text-success" />
         </Tooltip>
       ),
       image: (
         <Image
           alt=""
-          src={src ?? ""}
+          src={src ?? ''}
           width="48"
           objectFit="cover"
           className="rounded"
@@ -148,11 +148,11 @@ const UploadCard = ({
 
   const canEditItem = () =>
     isTypeImage && (
-      <Tooltip message={t("tiptap.tooltip.upload.edit")} placement="top">
+      <Tooltip message={t('tiptap.tooltip.upload.edit')} placement="top">
         <IconButton
           icon={<Wand />}
           variant="ghost"
-          aria-label={t("tiptap.tooltip.upload.loading")}
+          aria-label={t('tiptap.tooltip.upload.loading')}
           disabled={isLoading || !isSuccess}
           onClick={onEdit}
           color="secondary"
@@ -179,13 +179,13 @@ const UploadCard = ({
               {!isIdle && <div className="vr"></div>}
               {canEditItem()}
               <Tooltip
-                message={t("tiptap.tooltip.upload.delete")}
+                message={t('tiptap.tooltip.upload.delete')}
                 placement="top"
               >
                 <IconButton
                   icon={<Close />}
                   variant="ghost"
-                  aria-label={t("tiptap.tooltip.upload.delete")}
+                  aria-label={t('tiptap.tooltip.upload.delete')}
                   color="tertiary"
                   onClick={onDelete}
                 />

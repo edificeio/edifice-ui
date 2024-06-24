@@ -1,39 +1,17 @@
 {
   "name": "edifice-ts-client",
   "version": "0.0.1",
-  "description": "Edifice TypeScript Client",
-  "homepage": "https://github.com/edificeio/edifice-ui/tree/main/packages/client#readme",
-  "bugs": {
-    "url": "https://github.com/edificeio/edifice-ui/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/edificeio/edifice-ui.git"
-  },
-  "license": "AGPL-3.0",
-  "author": "Edifice",
-  "type": "module",
-  "exports": {
-    ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    }
-  },
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "vite build",
-    "docs": "npx rimraf ./docs/ && npx typedoc src/ts/index.ts --excludePrivate --disableSources --plugin typedoc-plugin-markdown",
-    "format": "pnpm run format:write && pnpm run format:check",
-    "format:check": "npx prettier --check \"src/ts/**/*.ts\"",
-    "format:write": "npx prettier --write \"src/ts/**/*.ts\""
-  },
   "dependencies": {
     "axios": "1.6.8"
+  },
+  "type": "module",
+  "main": "./index.cjs",
+  "module": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "require": "./index.cjs"
+    }
   }
 }

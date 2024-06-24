@@ -32,14 +32,12 @@ jobs:
         with:
           path: |
             node_modules
-            ~/.cache/Cypress # needed for the Cypress binary
           key: npm-dependencies-${{ hashFiles('pnpm-lock.yaml') }}
       - name: Cache npm dependencies
         uses: actions/cache/save@v3
         with:
           path: |
             node_modules
-            ~/.cache/Cypress # needed for the Cypress binary
           key: npm-dependencies-${{ hashFiles('pnpm-lock.yaml') }}
       - name: Generate .npmrc
         run: |

@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { useToggle, useWorkspaceFile } from "@edifice-ui/react";
-import { Editor } from "@tiptap/react";
-import { WorkspaceVisibility } from "edifice-ts-client";
+import { useToggle, useWorkspaceFile } from '@edifice-ui/react';
+import { Editor } from '@tiptap/react';
+import { WorkspaceVisibility } from 'edifice-ts-client';
 
-import { useImageSelection } from "./useImageSelection";
+import { useImageSelection } from './useImageSelection';
 
 type EditedImage = { src: string; alt?: string; title?: string } | undefined;
 
@@ -22,10 +22,10 @@ type EditedImage = { src: string; alt?: string; title?: string } | undefined;
 export const useImageModal = (
   editor: Editor | null,
   application?: string,
-  visibility?: WorkspaceVisibility,
+  visibility?: WorkspaceVisibility
 ) => {
   const [currentImage, setCurrentImage] = useState<EditedImage | undefined>(
-    undefined,
+    undefined
   );
 
   const [isOpen, toggle] = useToggle(false);
@@ -73,7 +73,7 @@ export const useImageModal = (
      * src path
      * }
      */
-    if (typeof res === "object") {
+    if (typeof res === 'object') {
       setAttributes({
         url: res.src,
         alt,
