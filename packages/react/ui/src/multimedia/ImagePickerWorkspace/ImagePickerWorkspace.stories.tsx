@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import ImagePickerWorkspace, {
   ImagePickerWorkspaceProps,
 } from "./ImagePickerWorkspace";
-import { MediaLibrary } from "../../multimedia";
+import { MediaLibrary } from "..";
 import { useMediaLibrary, useOdeClient } from "../../core";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
