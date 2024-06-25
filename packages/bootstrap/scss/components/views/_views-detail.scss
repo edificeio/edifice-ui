@@ -1,0 +1,30 @@
+@use "../../abstracts/" as *;
+
+.views-detail-line {
+  border-bottom: 1px $border-color solid;
+}
+
+.views-detail-icon {
+  background: $gray-300;
+
+  &-student {
+    background: $orange;
+    color: $white;
+  }
+  &-parent {
+    background: $blue;
+    color: $white;
+  }
+  &-teacher {
+    background: $green;
+    color: $white;
+  }
+  &-personal {
+    background: $purple;
+    color: $white;
+  }
+  &-guest {
+    background: $red;
+    color: $white;
+  }
+}

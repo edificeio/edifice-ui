@@ -25,7 +25,7 @@ export type ViewsDetail = {
     parents: number;
     teachers: number;
     students: number;
-    personnel: number;
+    personal: number;
     guest: number;
   };
 };
