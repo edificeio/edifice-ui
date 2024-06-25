@@ -30,7 +30,7 @@
       "require": "./dist/nav.cjs"
     },
     "./views": {
-      "types": "./dist/views.index.d.ts",
+      "types": "./dist/views/index.d.ts",
       "import": "./dist/views.js",
       "require": "./dist/views.cjs"
     }

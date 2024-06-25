@@ -1,0 +1,31 @@
+import { Meta, Story } from "@storybook/blocks";
+import { Icons } from "../../components/Icons";
+import * as IconsViewsStories from "./Icons.Views.stories";
+
+import * as icons from "@edifice-ui/icons/views";
+
+<Meta title="Icons/Views Icons" />
+
+# Views Icons
+
+To use this set of icons, import `@edifice-ui/icons/views` into your code:
+
+- `import { Parent, Student, Teacher } from "@edifice-ui/icons/views;"`
+
+## Usage
+
+Then you can use any icon as follows:
+
+```jsx
+function MyComponent() {
+  return (
+    <div>
+      <Parent />
+    </div>
+  );
+}
+```
+
+## Icons
+
+<Icons icons={icons} />

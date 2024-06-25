@@ -444,8 +444,8 @@ importers:
         specifier: 7.23.3
         version: 7.23.3(@babel/core@7.24.6)
       "@edifice-ui/icons":
-        specifier: ^1.5.10-develop-b2school.0
-        version: 1.5.10-develop-pedago.0(react-dom@18.2.0)(react@18.2.0)
+        specifier: workspace:*
+        version: link:../icons
       "@react-spring/web":
         specifier: 9.7.3
         version: 9.7.3(react-dom@18.2.0)(react@18.2.0)
@@ -2897,19 +2897,6 @@ packages:
         integrity: sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==,
       }
     engines: { node: ">=10.0.0" }
-    dev: true
-
-  /@edifice-ui/icons@1.5.10-develop-pedago.0(react-dom@18.2.0)(react@18.2.0):
-    resolution:
-      {
-        integrity: sha512-UwXnZ8llzdkfd6Kyy3oFIO1ovsLkvUO1drsV6s8R224kzbK2yztvdiMy4vXLBG3WKdPr8WhsbOZYzAUW9loHXA==,
-      }
-    peerDependencies:
-      react: 18.2.0
-      react-dom: 18.2.0
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
     dev: true
 
   /@emotion/use-insertion-effect-with-fallbacks@1.0.1(react@18.2.0):
@@ -7225,7 +7212,7 @@ packages:
       {
         integrity: sha512-L8sXFJUHmrlyU2BsWWZGuAjv39Jl1uAqUHdxmN42JY15M4+XCMjGlArdCCjDe1wpTSW6USYISA9axjZojgtvnw==,
       }
-    deprecated: In Storybook 8, this package functionality has been integrated to a new package called @storybook/test, which uses Vitest APIs for an improved experience. When upgrading to Storybook 8 with 'npx storybook@latest upgrade', you will get prompted and will get an automigration for the new package. Please migrate when you can.
+    deprecated: In Storybook 8, this package functionality has been integrated to a new package called @storybook/test, which uses Vitest APIs for an improved experience. When upgrading to Storybook 8 with "npx storybook@latest upgrade", you will get prompted and will get an automigration for the new package. Please migrate when you can.
     dependencies:
       "@testing-library/dom": 9.3.4
       "@testing-library/user-event": 14.5.2(@testing-library/dom@9.3.4)

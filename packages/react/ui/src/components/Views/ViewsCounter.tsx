@@ -24,6 +24,6 @@ const ViewsCounter = ({ viewsCounter, onClick }: ViewsCounterProps) => {
   );
 };
 
-ViewsCounter.displayName = "ReactionSummary";
+ViewsCounter.displayName = "ViewsCounter";
 
 export default ViewsCounter;
