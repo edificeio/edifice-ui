@@ -60,9 +60,23 @@ export function OdeClientProvider({ children, params }: OdeClientProps) {
   const init = confQuery?.isSuccess && sessionQuery?.isSuccess;
 
   useEffect(() => {
-    document
-      .querySelector("html")
-      ?.setAttribute("lang", sessionQuery?.data?.currentLanguage || "fr");
+    const attributes = [
+      {
+        data: "html",
+        value: sessionQuery?.data?.currentLanguage || "fr",
+      },
+      // #WB-3137 Disable the translation of the content of the page which provoced issues
+      {
+        data: "translate",
+        value: "no",
+      },
+    ];
+
+    attributes.forEach((attribute) => {
+      return document
+        .querySelector("html")
+        ?.setAttribute(attribute.data, attribute.value as string);
+    });
   }, [sessionQuery?.data]);
 
   useEffect(() => {
