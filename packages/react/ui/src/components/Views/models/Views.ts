@@ -11,9 +11,11 @@ export type ViewsCounters = {
 export type ViewsDetail = {
   totalViews: number;
   totalUniqueViews: number;
-  counterDetails: {
+  counterDetails?: {
     parents: number;
     teachers: number;
     students: number;
+    personnel: number;
+    guest: number;
   };
 };

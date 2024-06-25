@@ -28,6 +28,11 @@
     "./nav": {
       "import": "./dist/nav.js",
       "require": "./dist/nav.cjs"
+    },
+    "./views": {
+      "types": "./dist/views.index.d.ts",
+      "import": "./dist/views.js",
+      "require": "./dist/views.cjs"
     }
   },
   "main": "dist/index.cjs",
