@@ -14,15 +14,15 @@ export class ViewsService implements IViewsService {
 
   getCounters(resourceIds: string[]) {
     return this.http.get<ViewsCounters>(
-      `/audience/views/${this.module}/${
+      `/audience/views/count/${this.module}/${
         this.resourceType
-      }?ressourceIds=${resourceIds.join(",")}`,
+      }?resourceIds=${resourceIds.join(",")}`,
     );
   }
 
   getDetail(resourceId: string) {
     return this.http.get<ViewsDetail>(
-      `/audience/views/${this.module}/${this.resourceType}/${resourceId}`,
+      `/audience/views/details/${this.module}/${this.resourceType}/${resourceId}`,
     );
   }
 
