@@ -28,6 +28,11 @@
     "./nav": {
       "import": "./dist/nav.js",
       "require": "./dist/nav.cjs"
+    },
+    "./audience": {
+      "types": "./dist/audience/index.d.ts",
+      "import": "./dist/audience.js",
+      "require": "./dist/audience.cjs"
     }
   },
   "main": "dist/index.cjs",

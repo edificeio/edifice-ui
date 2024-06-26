@@ -7,7 +7,11 @@ export default defineConfig({
   build: {
     sourcemap: false,
     rollupOptions: {
-      external: ["@edifice-ui/icons", "@edifice-ui/icons/nav"],
+      external: [
+        "@edifice-ui/icons",
+        "@edifice-ui/icons/nav",
+        "@edifice-ui/icons/audience",
+      ],
     },
   },
 });

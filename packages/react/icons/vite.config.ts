@@ -16,6 +16,7 @@ export default defineConfig({
       entry: {
         index: resolve(__dirname, "src/index.ts"),
         nav: resolve(__dirname, "src/nav/index.ts"),
+        views: resolve(__dirname, "src/audience/index.ts"),
       },
       formats: ["es"],
     },
