@@ -38,3 +38,4 @@ export * from "./Tooltip";
 export * from "./TreeView";
 export * from "./UploadCard";
 export * from "./VisuallyHidden";
+export * from "./Views";

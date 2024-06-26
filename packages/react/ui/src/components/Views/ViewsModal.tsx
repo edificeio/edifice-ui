@@ -15,19 +15,15 @@ import {
 export interface ViewsModalProps {
   viewsDetail: ViewsDetail;
   isOpen: boolean;
-  onModalClose?: () => void;
+  onModalClose: () => void;
 }
 
 const ViewsModal = ({ viewsDetail, isOpen, onModalClose }: ViewsModalProps) => {
   const { t } = useTranslation();
 
-  const handleOnCancel = () => {
-    onModalClose?.();
-  };
-
   return createPortal(
-    <Modal id="ViewsModal" isOpen={isOpen} onModalClose={handleOnCancel}>
-      <Modal.Header onModalClose={handleOnCancel}>
+    <Modal id="ViewsModal" isOpen={isOpen} onModalClose={onModalClose}>
+      <Modal.Header onModalClose={onModalClose}>
         {t("audience.views.title")}
       </Modal.Header>
       <Modal.Body>
@@ -103,7 +99,7 @@ const ViewsModal = ({ viewsDetail, isOpen, onModalClose }: ViewsModalProps) => {
       <Modal.Footer>
         <Button
           color="primary"
-          onClick={handleOnCancel}
+          onClick={onModalClose}
           type="button"
           variant="filled"
         >
