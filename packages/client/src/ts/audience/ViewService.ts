@@ -1,5 +1,5 @@
 import { IOdeServices } from "../services/OdeServices";
-import { IViewsService, ViewsCounters, ViewsDetail } from "./interface";
+import { IViewsService, ViewsCounters, ViewsDetails } from "./interface";
 
 export class ViewsService implements IViewsService {
   constructor(
@@ -20,8 +20,8 @@ export class ViewsService implements IViewsService {
     );
   }
 
-  getDetail(resourceId: string) {
-    return this.http.get<ViewsDetail>(
+  getDetails(resourceId: string) {
+    return this.http.get<ViewsDetails>(
       `/audience/views/details/${this.module}/${this.resourceType}/${resourceId}`,
     );
   }

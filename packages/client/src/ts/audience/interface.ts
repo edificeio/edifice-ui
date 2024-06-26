@@ -1,10 +1,12 @@
+import { UserProfile } from "../session/interfaces";
+
 export interface IAudienceService {
   readonly views: IViewsService;
 }
 
 export interface IViewsService {
   getCounters(resourceIds: string[]): Promise<ViewsCounters>;
-  getDetail(resourceId: string): Promise<ViewsDetail>;
+  getDetails(resourceId: string): Promise<ViewsDetails>;
   trigger(resourceId: string): Promise<void>;
 }
 
@@ -16,16 +18,18 @@ export type ViewsCounters = {
 };
 
 /**
- * Views detail model
+ * Views details
  */
-export type ViewsDetail = {
-  totalViews: number;
-  totalUniqueViews: number;
-  counterDetails?: {
-    parents: number;
-    teachers: number;
-    students: number;
-    personal: number;
-    guest: number;
-  };
-};
+export interface ViewsDetails {
+  viewsCounter: number;
+  uniqueViewsCounter: number;
+  uniqueViewsPerProfile?: ViewsDetailsProfile[];
+}
+
+/**
+ * Views details
+ */
+export interface ViewsDetailsProfile {
+  profile: UserProfile[number];
+  counter: number;
+}
