@@ -441,7 +441,7 @@ importers:
         specifier: 7.23.3
         version: 7.23.3(@babel/core@7.24.7)
       "@edifice-ui/icons":
-        specifier: ^1.5.10
+        specifier: workspace:*
         version: link:../icons
       "@react-spring/web":
         specifier: 9.7.3
@@ -7467,7 +7467,7 @@ packages:
       {
         integrity: sha512-L8sXFJUHmrlyU2BsWWZGuAjv39Jl1uAqUHdxmN42JY15M4+XCMjGlArdCCjDe1wpTSW6USYISA9axjZojgtvnw==,
       }
-    deprecated: In Storybook 8, this package functionality has been integrated to a new package called @storybook/test, which uses Vitest APIs for an improved experience. When upgrading to Storybook 8 with 'npx storybook@latest upgrade', you will get prompted and will get an automigration for the new package. Please migrate when you can.
+    deprecated: In Storybook 8, this package functionality has been integrated to a new package called @storybook/test, which uses Vitest APIs for an improved experience. When upgrading to Storybook 8 with "npx storybook@latest upgrade", you will get prompted and will get an automigration for the new package. Please migrate when you can.
     dependencies:
       "@testing-library/dom": 9.3.4
       "@testing-library/user-event": 14.5.2(@testing-library/dom@9.3.4)

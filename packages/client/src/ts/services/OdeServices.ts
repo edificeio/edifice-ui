@@ -9,6 +9,7 @@ import { ShareService } from "../share/Service";
 import { WorkspaceService } from "../workspace/Service";
 import { IdiomService } from "../idiom/Service";
 import { AnalyticsService } from "../analytics/Service";
+import { IAudienceService } from "../audience/interface";
 import { VideoService } from "../video/Service";
 import { App, ResourceType } from "../globals";
 import {
@@ -21,9 +22,11 @@ import { INotifyFramework, NotifyFrameworkFactory } from "../notify/interfaces";
 import { SnipletsService } from "../resources/SnipletsService";
 import { DataService } from "../data/Service";
 import { IDataService } from "../data/interface";
+import { AudienceService } from "../audience/Service";
 
 export interface IOdeServices {
   analytics(): AnalyticsService;
+  audience(application: App, resourceType: ResourceType): IAudienceService;
   cache(): CacheService;
   conf(): ConfService;
   data(): IDataService;
@@ -84,6 +87,10 @@ export class OdeServices implements IOdeServices {
 
   analytics() {
     return this._analytics;
+  }
+
+  audience(application: App, resourceType: ResourceType): IAudienceService {
+    return new AudienceService(this, application, resourceType);
   }
 
   cache() {

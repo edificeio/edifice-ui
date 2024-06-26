@@ -36,6 +36,7 @@ export default defineConfig({
         "react/jsx-runtime",
         "edifice-ts-client",
         "@edifice-ui/icons/nav",
+        "@edifice-ui/icons/audience",
       ],
     },
   },
