@@ -204,6 +204,15 @@ export default function useShare({
     });
   };
 
+  const notifySuccess = (value: string | Object) => {
+    if (typeof value === "string") {
+      toast.error(t("explorer.shared.status.error"));
+      console.error("Failed to save share", value);
+    } else {
+      toast.success(t("explorer.shared.status.saved"));
+    }
+  };
+
   const handleShare = async () => {
     dispatch({
       type: "isSharing",
@@ -243,10 +252,12 @@ export default function useShare({
           resourceId: resourceId,
           rights: shares,
         });
+        notifySuccess(result);
       } else {
         const result = await odeServices
           .share()
           .saveRights(appCode, resourceId, shares);
+        notifySuccess(result);
       }
       toast.success(t("explorer.shared.status.saved"));
       onSuccess();
