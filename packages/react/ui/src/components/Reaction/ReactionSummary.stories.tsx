@@ -27,18 +27,23 @@ export const Base: Story = {
     const [currentSummary, setCurrentSummary] =
       useState<ReactionSummaryData>(summary);
 
-    const handleOnChange = (newReaction?: ReactionType | undefined) => {
+    const handleChange = (newReaction?: ReactionType | undefined) => {
       setCurrentSummary(({ userReaction, ...restSummary }) => {
         alert(`Reaction changed from ${userReaction} to ${newReaction}`);
         return { ...restSummary, userReaction: newReaction };
       });
     };
 
+    const handleClick = () => {
+      alert("Show details, please");
+    };
+
     return (
       <ReactionSummary
         summary={currentSummary}
         availableReactions={availableReactions}
-        onChange={handleOnChange}
+        onClick={handleClick}
+        onChange={handleChange}
       />
     );
   },

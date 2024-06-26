@@ -8,12 +8,14 @@ export interface ReactionSummaryProps {
   availableReactions: ReactionType[];
   summary: ReactionSummaryData;
   onChange?: (chosenReaction?: ReactionType) => void;
+  onClick?: () => void;
 }
 
 const ReactionSummary = ({
   availableReactions,
   summary,
   onChange,
+  onClick: handleDetailsClick,
 }: ReactionSummaryProps) => {
   const { totalReactionsCounter, reactionTypes, userReaction } = summary;
 
@@ -31,14 +33,20 @@ const ReactionSummary = ({
 
   return (
     <div className="reaction-summary">
-      <div className="d-flex">
-        <div className="text-gray-700 me-16">{totalReactionsCounter}</div>
-        {reactionTypes?.map((reactionType) => (
-          <div className="reaction-overlap">
-            {getReactionIcon(reactionType, true)}
-          </div>
-        ))}
-      </div>
+      <Button
+        variant="ghost"
+        className="m-0 p-0 btn-icon"
+        onClick={handleDetailsClick}
+      >
+        <div className="d-flex">
+          <div className="text-gray-700 me-16">{totalReactionsCounter}</div>
+          {reactionTypes?.map((reactionType) => (
+            <div className="reaction-overlap">
+              {getReactionIcon(reactionType, true)}
+            </div>
+          ))}
+        </div>
+      </Button>
       <div className="mt-4">
         <Dropdown placement="top">
           {(
