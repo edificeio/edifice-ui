@@ -9,13 +9,13 @@ export interface ViewsCounterProps {
 const ViewsCounter = ({ viewsCounter, onClick }: ViewsCounterProps) => {
   return (
     <Button
+      rightIcon={<See />}
       variant="ghost"
       type="button"
       className="text-gray-700 d-flex"
       onClick={onClick}
     >
-      <div className="me-8">{viewsCounter}</div>
-      <See />
+      {viewsCounter}
     </Button>
   );
 };

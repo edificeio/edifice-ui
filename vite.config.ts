@@ -10,7 +10,7 @@ export default defineConfig({
       external: [
         "@edifice-ui/icons",
         "@edifice-ui/icons/nav",
-        "@edifice-ui/icons/views",
+        "@edifice-ui/icons/audience",
       ],
     },
   },

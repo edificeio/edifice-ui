@@ -4,7 +4,7 @@ import ViewsCounter, { ViewsCounterProps } from "./ViewsCounter";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof ViewsCounter> = {
-  title: "Components/Views counter",
+  title: "Components/Audience/Views counter",
   component: ViewsCounter,
   args: {
     viewsCounter: 3,
@@ -19,7 +19,7 @@ export default meta;
 type Story = StoryObj<typeof ViewsCounter>;
 
 export const Base: Story = {
-  render: ({ viewsCounter, onClick }: ViewsCounterProps) => {
-    return <ViewsCounter viewsCounter={viewsCounter} onClick={onClick} />;
+  render: (props: ViewsCounterProps) => {
+    return <ViewsCounter {...props} />;
   },
 };
