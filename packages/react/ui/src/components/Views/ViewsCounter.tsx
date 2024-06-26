@@ -7,16 +7,12 @@ export interface ViewsCounterProps {
 }
 
 const ViewsCounter = ({ viewsCounter, onClick }: ViewsCounterProps) => {
-  const handleOnClick = () => {
-    onClick?.();
-  };
-
   return (
     <Button
       variant="ghost"
       type="button"
       className="text-gray-700 d-flex"
-      onClick={handleOnClick}
+      onClick={onClick}
     >
       <div className="me-8">{viewsCounter}</div>
       <See />
