@@ -46,15 +46,15 @@ export default function useReactionIcons() {
   const getReactionLabel = (reactionType?: ReactionType | null) => {
     switch (reactionType) {
       case "REACTION_1":
-        return "reaction.reaction_1";
+        return "audience.reaction.thanks";
       case "REACTION_2":
-        return "reaction.reaction_2";
+        return "audience.reaction.great";
       case "REACTION_3":
-        return "reaction.reaction_3";
+        return "audience.reaction.congrats";
       case "REACTION_4":
-        return "reaction.reaction_4";
+        return "audience.reaction.interesting";
       default:
-        return "reaction.default";
+        return "audience.reaction.default";
     }
   };
 
