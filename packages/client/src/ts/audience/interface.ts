@@ -2,6 +2,7 @@ import { UserProfile } from "../session/interfaces";
 
 export interface IAudienceService {
   readonly views: IViewsService;
+  readonly reactions: IReactionsService;
 }
 
 export interface IViewsService {
@@ -47,3 +48,66 @@ export interface ViewsDetailsProfile {
   profile: UserProfile[number];
   counter: number;
 }
+
+export interface IReactionsService {
+  /**
+   * Load the list of available reactions types, which is configured on the platform.
+   * @return a list of types, or undefined if an error occured.
+   */
+  loadAvailableReactions(): Promise<ReactionType[] | undefined>;
+  /**
+   * Load the reactions summary for a list of resources.
+   * @param resourceIds list of resource ids
+   * @returns map of summaries, indexed by resource id.
+   */
+  loadReactionSummaries(resourceIds: string[]): Promise<{
+    [resourceId: string]: ReactionSummaryData | undefined;
+  }>;
+  /**
+   * Remove the current user reaction to a resource.
+   * @param resourceId id
+   */
+  deleteReaction(resourceId: string): Promise<void>;
+  /**
+   * Change the current user reaction to a resource.
+   * @param resourceId id
+   * @param reactionType reaction to set
+   */
+  updateReaction(resourceId: string, reactionType: ReactionType): Promise<void>;
+  /**
+   * Set the current user reaction to a resource.
+   * @param resourceId id
+   * @param reactionType reaction to set
+   */
+  createReaction(resourceId: string, reactionType: ReactionType): Promise<void>;
+}
+
+/** Typing of a Reaction */
+export type ReactionType =
+  | "REACTION_1"
+  | "REACTION_2"
+  | "REACTION_3"
+  | "REACTION_4";
+
+/** Typing of a Reaction summary */
+export type ReactionSummaryData = {
+  reactionTypes?: Array<ReactionType> | null;
+  userReaction?: ReactionType | null;
+  totalReactionsCounter: number;
+};
+
+/** Typing of a Reaction detail */
+export type ReactionDetail = {
+  reactionCounters: {
+    countByType: {
+      [type in ReactionType]?: number;
+    };
+    allReactionsCounter: number;
+  };
+  userReactions: Array<{
+    userId: string;
+    profile: string;
+    reactionType: ReactionType;
+    displayName: string;
+  }>;
+};

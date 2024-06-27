@@ -290,7 +290,7 @@ const useDropdown = (
     /* MenuProps to spread to any Menu Component */
     menuProps: {
       ref: mergeRefs(menuRef, refs.setFloating),
-      className: "dropdown-menu bg-white shadow rounded-4 p-8",
+      className: "dropdown-menu",
       "aria-labelledby": `dropdown-toggle-${id}`,
       style: { ...floatingStyles },
     },

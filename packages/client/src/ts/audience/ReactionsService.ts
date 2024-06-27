@@ -1,0 +1,67 @@
+import { IOdeServices } from "../services/OdeServices";
+import {
+  IReactionsService,
+  ReactionSummaryData,
+  ReactionType,
+} from "./interface";
+
+export type ReactionSummariesData = {
+  reactionsByResource: {
+    [resourceId: string]: ReactionSummaryData | undefined;
+  };
+};
+
+export class ReactionsService implements IReactionsService {
+  constructor(
+    private context: IOdeServices,
+    private module: string,
+    private resourceType: string,
+  ) {}
+
+  private get http() {
+    return this.context.http();
+  }
+
+  async loadAvailableReactions() {
+    const reactions = await this.http.get<ReactionType[]>(
+      "/audience/conf/public",
+    );
+    return this.http.isResponseError() || !Array.isArray(reactions)
+      ? undefined
+      : reactions;
+  }
+
+  async loadReactionSummaries(resourceIds: string[]) {
+    const summaries = await this.http.get<ReactionSummariesData>(
+      `/audience/reactions/${this.module}/${this.resourceType}?resourceIds=${resourceIds.join(
+        ",",
+      )}`,
+    );
+    return this.http.isResponseError() ? {} : summaries.reactionsByResource;
+  }
+
+  async deleteReaction(resourceId: string) {
+    await this.http.delete<void>(
+      `/audience/reactions/${this.module}/${this.resourceType}/${resourceId}`,
+    );
+  }
+
+  async updateReaction(resourceId: string, reactionType: ReactionType) {
+    await this.http.putJson<void>(
+      `/audience/reactions/${this.module}/${this.resourceType}`,
+      {
+        resourceId,
+        reactionType,
+      },
+    );
+  }
+  async createReaction(resourceId: string, reactionType: ReactionType) {
+    await this.http.postJson<void>(
+      `/audience/reactions/${this.module}/${this.resourceType}`,
+      {
+        resourceId,
+        reactionType,
+      },
+    );
+  }
+}
