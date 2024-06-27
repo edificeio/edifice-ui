@@ -1,9 +1,10 @@
-import { RefAttributes, useRef } from "react";
+import { RefAttributes, useEffect, useState } from "react";
 import { default as useReactionIcons } from "./hooks/useReactionIcons";
 import { Button, ButtonProps, IconButton } from "../Button";
 import { Dropdown } from "../Dropdown";
 import { ReactionSummaryData, ReactionType } from "edifice-ts-client";
 import { Tooltip } from "../Tooltip";
+import { useHover } from "../../hooks";
 
 export interface ReactionSummaryProps {
   availableReactions: ReactionType[];
@@ -18,11 +19,21 @@ const ReactionSummary = ({
   onChange,
   onClick: handleDetailsClick,
 }: ReactionSummaryProps) => {
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const { totalReactionsCounter, reactionTypes, userReaction } = summary;
 
   const { getReactionIcon, getReactionLabel } = useReactionIcons();
 
-  const triggerButtonRef = useRef<HTMLButtonElement>(null);
+  const [triggerButtonRef, isHovered] = useHover<HTMLButtonElement>();
+
+  useEffect(() => {
+    if (isHovered && !isDropdownVisible) triggerButtonRef.current?.click();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isHovered, isDropdownVisible]);
+
+  const handleDropDownOnToggle = (visible: boolean) => {
+    setIsDropdownVisible(visible);
+  };
 
   const handleReactionOnClick = (reactionType: ReactionType) => {
     // Reaction is reset to `undefined` when same value is clicked.
@@ -49,7 +60,7 @@ const ReactionSummary = ({
         </div>
       </Button>
       <div className="mt-4">
-        <Dropdown placement="top">
+        <Dropdown placement="top" onToggle={handleDropDownOnToggle}>
           {(
             triggerProps: JSX.IntrinsicAttributes &
               Omit<ButtonProps, "ref"> &
