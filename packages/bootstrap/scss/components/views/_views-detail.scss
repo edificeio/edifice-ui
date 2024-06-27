@@ -1,0 +1,35 @@
+@use "../../abstracts/" as *;
+
+.views-detail {
+  &-line {
+    display: flex;
+    align-items: center;
+    gap: $spacer-12;
+    border-bottom: 1px $border-color solid;
+  }
+
+  &-icon {
+    background: $gray-300;
+
+    &-student {
+      background: $orange;
+      color: $white;
+    }
+    &-parent {
+      background: $blue;
+      color: $white;
+    }
+    &-teacher {
+      background: $green;
+      color: $white;
+    }
+    &-personnel {
+      background: $purple;
+      color: $white;
+    }
+    &-guest {
+      background: $red;
+      color: $white;
+    }
+  }
+}
