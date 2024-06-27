@@ -1,4 +1,4 @@
-import { ReactNode, useMemo } from "react";
+import { ReactNode, useEffect, useMemo } from "react";
 
 import { Placement } from "@floating-ui/react";
 import clsx from "clsx";
@@ -35,6 +35,10 @@ export interface DropdownProps {
   extraTriggerKeyDownHandler?: (
     event: React.KeyboardEvent<HTMLButtonElement>,
   ) => void;
+  /**
+   * Callback to get notified when dropdown `visible` state changes (opened/closed).
+   */
+  onToggle?: (visible: boolean) => void;
 }
 
 export type DropdownMenuOptions =
@@ -69,6 +73,7 @@ const Root = ({
   overflow = true,
   placement = "bottom-start",
   extraTriggerKeyDownHandler,
+  onToggle,
 }: DropdownProps) => {
   const {
     visible,
@@ -110,6 +115,11 @@ const Root = ({
     "w-100": block,
     overflow,
   });
+
+  useEffect(() => {
+    onToggle?.(visible);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible]);
 
   return (
     <DropdownContext.Provider value={value}>

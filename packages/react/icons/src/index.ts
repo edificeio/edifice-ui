@@ -88,6 +88,7 @@ export { default as RafterDown } from "./RafterDown";
 export { default as RafterLeft } from "./RafterLeft";
 export { default as RafterRight } from "./RafterRight";
 export { default as RafterUp } from "./RafterUp";
+export { default as Reaction } from "./Reaction";
 export { default as RecordPause } from "./RecordPause";
 export { default as RecordStop } from "./RecordStop";
 export { default as RecordVideo } from "./RecordVideo";
