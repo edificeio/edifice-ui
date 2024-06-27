@@ -11,7 +11,6 @@ import usePublishModal from "./hooks/usePublishModal";
 import {
   Modal,
   Heading,
-  ImagePicker,
   FormControl,
   Label,
   Input,
@@ -19,8 +18,10 @@ import {
   Button,
   LoadingScreen,
 } from "../../components";
-import { useOdeClient } from "../../core";
+import { useMediaLibrary, useOdeClient } from "../../core";
 import { useResource } from "../../core/useResource";
+import ImagePickerWorkspace from "../../multimedia/ImagePickerWorkspace/ImagePickerWorkspace";
+import { MediaLibrary } from "../../multimedia";
 
 interface PublishModalProps {
   isOpen: boolean;
@@ -36,6 +37,13 @@ export default function PublishModal({
   onCancel,
 }: PublishModalProps) {
   const { appCode: application, currentApp } = useOdeClient();
+
+  const {
+    ref: mediaLibraryRef,
+    libraryMedia,
+    ...mediaLibraryHandlers
+  } = useMediaLibrary();
+
   const { t } = useTranslation();
 
   const resource = useResource(application, resourceId);
@@ -75,10 +83,9 @@ export default function PublishModal({
               <div className="form-label">
                 {t("bpr.form.publication.cover.title")}
               </div>
-              <ImagePicker
+              <ImagePickerWorkspace
                 app={currentApp}
                 src={resource?.thumbnail}
-                label={t("bpr.form.publication.cover.upload.label")}
                 addButtonLabel={t("bpr.form.publication.cover.upload.add")}
                 deleteButtonLabel={t(
                   "bpr.form.publication.cover.upload.remove",
@@ -86,6 +93,8 @@ export default function PublishModal({
                 onUploadImage={handleUploadImage}
                 onDeleteImage={handleDeleteImage}
                 className="align-self-center"
+                libraryMedia={libraryMedia}
+                mediaLibraryRef={mediaLibraryRef}
               />
               {!cover && (
                 <p className="form-text is-invalid">
@@ -210,6 +219,13 @@ export default function PublishModal({
           {t("bpr.form.submit")}
         </Button>
       </Modal.Footer>
+      <MediaLibrary
+        appCode={application}
+        ref={mediaLibraryRef}
+        multiple={false}
+        visibility="protected"
+        {...mediaLibraryHandlers}
+      />
     </Modal>,
     document.getElementById("portal") as HTMLElement,
   );
