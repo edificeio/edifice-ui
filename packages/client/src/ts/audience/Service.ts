@@ -1,6 +1,7 @@
 import { App, ResourceType } from "../globals";
 import { IOdeServices } from "../services/OdeServices";
-import { ViewsService } from "./ViewService";
+import { ReactionsService } from "./ReactionsService";
+import { ViewsService } from "./ViewsService";
 import { IAudienceService } from "./interface";
 
 export class AudienceService implements IAudienceService {
@@ -12,5 +13,9 @@ export class AudienceService implements IAudienceService {
 
   public get views() {
     return new ViewsService(this.context, this.module, this.resourceType);
+  }
+
+  public get reactions() {
+    return new ReactionsService(this.context, this.module, this.resourceType);
   }
 }

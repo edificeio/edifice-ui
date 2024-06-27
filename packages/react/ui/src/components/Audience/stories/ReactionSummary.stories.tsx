@@ -1,12 +1,12 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import ReactionSummary, { ReactionSummaryProps } from "./ReactionSummary";
+import ReactionSummary, { ReactionSummaryProps } from "../ReactionSummary";
 import { useState } from "react";
-import { ReactionSummaryData, ReactionType } from "./ReactionTypes";
+import { ReactionSummaryData, ReactionType } from "edifice-ts-client";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof ReactionSummary> = {
-  title: "Components/Reaction summary",
+  title: "Components/Audience/Reactions summary",
   component: ReactionSummary,
   args: {
     availableReactions: ["REACTION_2", "REACTION_3", "REACTION_4"],

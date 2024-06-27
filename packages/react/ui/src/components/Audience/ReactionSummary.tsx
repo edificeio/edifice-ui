@@ -1,8 +1,8 @@
 import { RefAttributes, useRef } from "react";
-import { default as useReactionIcons } from "./hook/useReactionIcons";
-import { ReactionType, ReactionSummaryData } from "./ReactionTypes";
+import { default as useReactionIcons } from "./hooks/useReactionIcons";
 import { Button, IconButton, IconButtonProps } from "../Button";
 import { Dropdown } from "../Dropdown";
+import { ReactionSummaryData, ReactionType } from "edifice-ts-client";
 
 export interface ReactionSummaryProps {
   availableReactions: ReactionType[];

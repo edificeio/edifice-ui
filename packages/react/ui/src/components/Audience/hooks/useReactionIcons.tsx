@@ -10,7 +10,7 @@ import {
 } from "@edifice-ui/icons/audience";
 
 import { Reaction as ReactionIcon } from "@edifice-ui/icons";
-import { ReactionType } from "../ReactionTypes";
+import { ReactionType } from "edifice-ts-client";
 
 export default function useReactionIcons() {
   /**

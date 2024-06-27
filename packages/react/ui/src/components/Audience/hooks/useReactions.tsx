@@ -1,12 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
-import { ReactionSummaryData, ReactionType } from "../ReactionTypes";
-import { ERROR_CODE, odeServices } from "edifice-ts-client";
-
-type ReactionSummariesData = {
-  reactionsByResource: {
-    [resourceId: string]: ReactionSummaryData | undefined;
-  };
-};
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ERROR_CODE, odeServices, ReactionType } from "edifice-ts-client";
 
 /**
  * This hook implements some logic and provides functions to easily call "audience" backend endpoints.
@@ -15,21 +8,18 @@ type ReactionSummariesData = {
  * @returns functions to easily call "audience" backend endpoints
  */
 export default function useReactions(module: string, resourceType: string) {
+  const { reactions } = useRef(
+    odeServices.audience(module, resourceType),
+  ).current;
   const [availableReactions, setAvailableReactions] = useState<ReactionType[]>(
     [],
   );
 
-  // Useful shortcuts
-  const _get = odeServices.http().get;
-  const _putJson = odeServices.http().putJson;
-  const _postJson = odeServices.http().postJson;
-  const _delete = odeServices.http().delete;
-
-  /** Get the list of available reactions types, which is configured on the platform. */
+  /** Load available reactions types. */
   async function loadAvailableReactions() {
-    const reactions = await _get<ReactionType[]>("/audience/conf/public");
-    if (!odeServices.http().isResponseError() && Array.isArray(reactions)) {
-      setAvailableReactions(reactions);
+    const results = await reactions.loadAvailableReactions();
+    if (results) {
+      setAvailableReactions(results);
     }
   }
 
@@ -38,18 +28,9 @@ export default function useReactions(module: string, resourceType: string) {
    * @param resourceIds list of resource ids
    * @returns map of summaries, indexed by resource id.
    */
-  const loadReactionSummaries: (resourceIds: string[]) => Promise<{
-    [resourceId: string]: ReactionSummaryData | undefined;
-  }> = async (resourceIds) => {
-    const summaries = await _get<ReactionSummariesData>(
-      `/audience/reactions/${module}/${resourceType}?resourceIds=${resourceIds.join(
-        ",",
-      )}`,
-    );
-    return odeServices.http().isResponseError()
-      ? {}
-      : summaries.reactionsByResource;
-  };
+  async function loadReactionSummaries(resourceIds: string[]) {
+    return await reactions.loadReactionSummaries(resourceIds);
+  }
 
   /**
    * Set, update or remove a reaction to a resource.
@@ -76,27 +57,16 @@ export default function useReactions(module: string, resourceType: string) {
       if (oldReaction) {
         if (newReaction === oldReaction) {
           // Reset the reaction
-          await _delete<void>(
-            `/audience/reactions/${module}/${resourceType}/${resourceId}`,
-          );
+          await reactions.deleteReaction(resourceId);
           result = "-";
         } else {
-          // Put a reaction change
-          await _putJson<void>(
-            `/audience/reactions/${module}/${resourceType}`,
-            {
-              resourceId,
-              reactionType: newReaction,
-            },
-          );
+          // Change reaction
+          await reactions.updateReaction(resourceId, newReaction);
           result = "=";
         }
       } else {
         // Post a new reaction
-        await _postJson<void>(`/audience/reactions/${module}/${resourceType}`, {
-          resourceId,
-          reactionType: newReaction,
-        });
+        await reactions.createReaction(resourceId, newReaction);
       }
       if (odeServices.http().isResponseError())
         return Promise.reject(ERROR_CODE.UNKNOWN);
