@@ -1,8 +1,9 @@
 import { RefAttributes, useRef } from "react";
 import { default as useReactionIcons } from "./hooks/useReactionIcons";
-import { Button, IconButton, IconButtonProps } from "../Button";
+import { Button, ButtonProps, IconButton } from "../Button";
 import { Dropdown } from "../Dropdown";
 import { ReactionSummaryData, ReactionType } from "edifice-ts-client";
+import { Tooltip } from "../Tooltip";
 
 export interface ReactionSummaryProps {
   availableReactions: ReactionType[];
@@ -51,7 +52,7 @@ const ReactionSummary = ({
         <Dropdown placement="top">
           {(
             triggerProps: JSX.IntrinsicAttributes &
-              Omit<IconButtonProps, "ref"> &
+              Omit<ButtonProps, "ref"> &
               RefAttributes<HTMLButtonElement>,
           ) => (
             <>
@@ -73,13 +74,17 @@ const ReactionSummary = ({
               >
                 <div className="d-flex align-items-center justify-content-between">
                   {availableReactions?.map((reactionType) => (
-                    <IconButton
-                      className="reaction-available m-4"
-                      variant="ghost"
-                      title={getReactionLabel(reactionType)}
-                      icon={getReactionIcon(reactionType)}
-                      onClick={() => handleReactionOnClick(reactionType)}
-                    />
+                    <Tooltip
+                      message={getReactionLabel(reactionType)}
+                      placement="top"
+                    >
+                      <IconButton
+                        className="reaction-available m-4"
+                        variant="ghost"
+                        icon={getReactionIcon(reactionType)}
+                        onClick={() => handleReactionOnClick(reactionType)}
+                      />
+                    </Tooltip>
                   ))}
                 </div>
               </Dropdown.Menu>

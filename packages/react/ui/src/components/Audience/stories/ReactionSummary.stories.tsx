@@ -8,6 +8,16 @@ import { ReactionSummaryData, ReactionType } from "edifice-ts-client";
 const meta: Meta<typeof ReactionSummary> = {
   title: "Components/Audience/Reactions summary",
   component: ReactionSummary,
+  decorators: [
+    (Story) => (
+      <div>
+        <p style={{ height: "5em" }}>
+          Here is a very informative and interesting paragraph.
+        </p>
+        {Story()}
+      </div>
+    ),
+  ],
   args: {
     availableReactions: ["REACTION_2", "REACTION_3", "REACTION_4"],
     summary: {
