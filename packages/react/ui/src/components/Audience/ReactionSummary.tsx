@@ -23,7 +23,7 @@ const ReactionSummary = ({
 
   const triggerButtonRef = useRef<HTMLButtonElement>(null);
 
-  const handleReactionClick = (reactionType: ReactionType) => {
+  const handleReactionOnClick = (reactionType: ReactionType) => {
     // Reaction is reset to `undefined` when same value is clicked.
     onChange?.(userReaction === reactionType ? undefined : reactionType);
 
@@ -78,7 +78,7 @@ const ReactionSummary = ({
                       variant="ghost"
                       title={getReactionLabel(reactionType)}
                       icon={getReactionIcon(reactionType)}
-                      onClick={() => handleReactionClick(reactionType)}
+                      onClick={() => handleReactionOnClick(reactionType)}
                     />
                   ))}
                 </div>
