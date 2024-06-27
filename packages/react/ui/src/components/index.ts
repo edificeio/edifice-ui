@@ -3,6 +3,7 @@ export * from "./Alert";
 export * from "./AppHeader";
 export * from "./AppIcon";
 export * from "./Attachment";
+export * from "./Audience";
 export * from "./Avatar";
 export * from "./Badge";
 export * from "./Breadcrumb";

@@ -11,3 +11,4 @@ export * from "./utils";
 export * from "./embedder/interface";
 export * from "./video/interface";
 export * from "./workspace/interface";
+export * from "./audience/interface";

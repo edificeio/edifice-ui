@@ -1,5 +1,5 @@
 import { IOdeServices } from "../services/OdeServices";
-import { IViewsService, ViewsCounters, ViewsDetail } from "./interface";
+import { IViewsService, ViewsCounters, ViewsDetails } from "./interface";
 
 export class ViewsService implements IViewsService {
   constructor(
@@ -12,18 +12,20 @@ export class ViewsService implements IViewsService {
     return this.context.http();
   }
 
-  getCounters(resourceIds: string[]) {
-    return this.http.get<ViewsCounters>(
-      `/audience/views/${this.module}/${
+  async getCounters(resourceIds: string[]) {
+    const result = await this.http.get<ViewsCounters>(
+      `/audience/views/count/${this.module}/${
         this.resourceType
-      }?ressourceIds=${resourceIds.join(",")}`,
+      }?resourceIds=${resourceIds.join(",")}`,
     );
+    return this.http.isResponseError() ? {} : result;
   }
 
-  getDetail(resourceId: string) {
-    return this.http.get<ViewsDetail>(
-      `/audience/views/${this.module}/${this.resourceType}/${resourceId}`,
+  async getDetails(resourceId: string) {
+    const details = await this.http.get<ViewsDetails>(
+      `/audience/views/details/${this.module}/${this.resourceType}/${resourceId}`,
     );
+    return this.http.isResponseError() ? undefined : details;
   }
 
   trigger(resourceId: string) {
