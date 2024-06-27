@@ -12,18 +12,20 @@ export class ViewsService implements IViewsService {
     return this.context.http();
   }
 
-  getCounters(resourceIds: string[]) {
-    return this.http.get<ViewsCounters>(
+  async getCounters(resourceIds: string[]) {
+    const result = await this.http.get<ViewsCounters>(
       `/audience/views/count/${this.module}/${
         this.resourceType
       }?resourceIds=${resourceIds.join(",")}`,
     );
+    return this.http.isResponseError() ? {} : result;
   }
 
-  getDetails(resourceId: string) {
-    return this.http.get<ViewsDetails>(
+  async getDetails(resourceId: string) {
+    const details = await this.http.get<ViewsDetails>(
       `/audience/views/details/${this.module}/${this.resourceType}/${resourceId}`,
     );
+    return this.http.isResponseError() ? undefined : details;
   }
 
   trigger(resourceId: string) {
