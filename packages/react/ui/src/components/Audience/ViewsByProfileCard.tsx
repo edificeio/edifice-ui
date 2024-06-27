@@ -36,10 +36,7 @@ const ViewsByProfileCard = ({ viewsByProfile }: ViewsCardProps) => {
   }
 
   return (
-    <div
-      key={profile}
-      className="d-flex align-items-center views-detail-line p-8 ms-32 mb-12 gap-12"
-    >
+    <div key={profile} className="views-detail-line p-8 ms-32 mb-12">
       <div className={classNameIcon}>{getIcon(profile)}</div>
       <div className="h3">{viewsByProfile.counter}</div>
       <div>{t(`audience.views.uniqueViewsPerProfile.${profile}`)}</div>

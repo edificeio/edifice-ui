@@ -27,31 +27,31 @@ const ViewsModal = ({
         {t("audience.views.title")}
       </Modal.Header>
       <Modal.Body>
-        <div>
-          <div className="d-flex align-items-center views-detail-line p-8 mb-12 gap-12 ">
-            <div className="views-detail-icon rounded p-8">
-              <See />
-            </div>
-            <div className="h3">{viewsDetails.viewsCounter}</div>
-            <div>{t("audience.views.detail.viewsCounter")}</div>
+        <div className="views-detail-line p-8 mb-12">
+          <div className="views-detail-icon rounded p-8">
+            <See />
           </div>
-          <div className="d-flex align-items-center views-detail-line p-8 mb-12 gap-12 ">
-            <div className="views-detail-icon rounded p-8">
-              <Users />
-            </div>
-            {hasUniqueViews ? (
-              <>
-                <div className="h3">{viewsDetails.uniqueViewsCounter}</div>
-                <div>{t("audience.views.detail.uniqueViewsCounter")}</div>
-              </>
-            ) : (
-              <div>{t("audience.views.detail.noUniqueViews")}</div>
-            )}
-          </div>
-          {viewsDetails.uniqueViewsPerProfile?.map((viewsByProfile) => (
-            <ViewsByProfileCard viewsByProfile={viewsByProfile} />
-          ))}
+          <div className="h3">{viewsDetails.viewsCounter}</div>
+          <div>{t("audience.views.detail.viewsCounter")}</div>
         </div>
+        <div className="views-detail-line p-8 mb-12">
+          <div className="views-detail-icon rounded p-8">
+            <Users />
+          </div>
+          {hasUniqueViews ? (
+            <>
+              <div className="h3">{viewsDetails.uniqueViewsCounter}</div>
+              <div>{t("audience.views.detail.uniqueViewsCounter")}</div>
+            </>
+          ) : (
+            <div>{t("audience.views.detail.noUniqueViews")}</div>
+          )}
+        </div>
+        {hasUniqueViews
+          ? viewsDetails.uniqueViewsPerProfile?.map((viewsByProfile) => (
+              <ViewsByProfileCard viewsByProfile={viewsByProfile} />
+            ))
+          : null}
       </Modal.Body>
       <Modal.Footer>
         <Button

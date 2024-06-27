@@ -2,6 +2,9 @@
 
 .views-detail {
   &-line {
+    display: flex;
+    align-items: center;
+    gap: $spacer-12;
     border-bottom: 1px $border-color solid;
   }
 

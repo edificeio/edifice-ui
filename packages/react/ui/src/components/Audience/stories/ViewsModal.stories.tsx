@@ -34,7 +34,7 @@ const viewsDetailsMockedData: ViewsDetails = {
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof ViewsModal> = {
-  title: "Components/Audience/ViewsModal",
+  title: "Components/Audience/Views modal",
   component: ViewsModal,
   decorators: [(Story) => <div style={{ height: "25em" }}>{Story()}</div>],
   args: {
