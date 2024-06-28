@@ -1,6 +1,7 @@
 import { IOdeServices } from "../services/OdeServices";
 import {
   IReactionsService,
+  ReactionDetailsData,
   ReactionSummaryData,
   ReactionType,
 } from "./interface";
@@ -38,6 +39,13 @@ export class ReactionsService implements IReactionsService {
       )}`,
     );
     return this.http.isResponseError() ? {} : summaries.reactionsByResource;
+  }
+
+  async loadReactionDetails(resourceId: string, page: number, size: number) {
+    const details = await this.http.get<ReactionDetailsData>(
+      `/audience/reactions/${this.module}/${this.resourceType}/${resourceId}?page=${page}&size=${size}`,
+    );
+    return this.http.isResponseError() ? undefined : details;
   }
 
   async deleteReaction(resourceId: string) {

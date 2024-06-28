@@ -160,15 +160,17 @@ export class SessionService {
     const { response, value } = await this.cache.httpGet<IUserInfo>(
       "/auth/oauth2/userinfo",
     );
-    if (response.status < 200 || response.status >= 300) {
-      // Backend tries to redirect the user => not logged in !
-      return;
+    if (
+      !(response.status < 200 || response.status >= 300) &&
+      typeof value === "object"
+    ) {
+      return value;
+    } else {
+      // Utilisateur non-connecté.
+      // /!\ WARNING /!\ ne pas modifier ce `throw` sous peine de casser
+      // la redirection auto vers la page d'accueil, depuis une application React.
+      throw ERROR_CODE.NOT_LOGGED_IN;
     }
-    if (typeof value === "string") {
-      // This is not a JSON object => not logged in !
-      return;
-    }
-    return value;
   }
 
   hasWorkflow({
