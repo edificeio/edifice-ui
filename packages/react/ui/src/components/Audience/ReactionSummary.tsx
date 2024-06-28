@@ -2,9 +2,11 @@ import { RefAttributes, useEffect, useState } from "react";
 import { default as useReactionIcons } from "./hooks/useReactionIcons";
 import { Button, ButtonProps, IconButton } from "../Button";
 import { Dropdown } from "../Dropdown";
+import { useTranslation } from "react-i18next";
 import { ReactionSummaryData, ReactionType } from "edifice-ts-client";
 import { Tooltip } from "../Tooltip";
 import { useHover } from "../../hooks";
+import { StringUtils } from "../../utils";
 
 export interface ReactionSummaryProps {
   availableReactions: ReactionType[];
@@ -20,11 +22,11 @@ const ReactionSummary = ({
   onClick: handleDetailsClick,
 }: ReactionSummaryProps) => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const { totalReactionsCounter, reactionTypes, userReaction } = summary;
-
+  const { t } = useTranslation();
   const { getReactionIcon, getReactionLabel } = useReactionIcons();
-
   const [triggerButtonRef, isHovered] = useHover<HTMLButtonElement>();
+
+  const { totalReactionsCounter, reactionTypes, userReaction } = summary;
 
   useEffect(() => {
     if (isHovered && !isDropdownVisible) triggerButtonRef.current?.click();
@@ -43,20 +45,31 @@ const ReactionSummary = ({
     triggerButtonRef.current?.click();
   };
 
+  const hasNoReactions = totalReactionsCounter === 0;
+
   return (
     <div className="reaction-summary">
       <Button
         variant="ghost"
         className="m-0 p-0 btn-icon"
+        disabled={hasNoReactions}
         onClick={handleDetailsClick}
       >
         <div className="d-flex">
-          <div className="text-gray-700 me-16">{totalReactionsCounter}</div>
-          {reactionTypes?.map((reactionType) => (
+          <div className="text-gray-700 me-16">
+            {StringUtils.toCounter(totalReactionsCounter)}
+          </div>
+          {hasNoReactions ? (
             <div className="reaction-overlap">
-              {getReactionIcon(reactionType, true)}
+              {getReactionIcon("REACTION_1", true)}
             </div>
-          ))}
+          ) : (
+            reactionTypes?.map((reactionType) => (
+              <div className="reaction-overlap">
+                {getReactionIcon(reactionType, true)}
+              </div>
+            ))
+          )}
         </div>
       </Button>
       <div className="mt-4">
@@ -76,7 +89,7 @@ const ReactionSummary = ({
                 leftIcon={getReactionIcon(userReaction)}
                 className="ps-4 pe-8 reaction-overlap"
               >
-                {getReactionLabel(userReaction)}
+                {t(getReactionLabel(userReaction))}
               </Button>
 
               <Dropdown.Menu
@@ -86,7 +99,7 @@ const ReactionSummary = ({
                 <div className="d-flex align-items-center justify-content-between">
                   {availableReactions?.map((reactionType) => (
                     <Tooltip
-                      message={getReactionLabel(reactionType)}
+                      message={t(getReactionLabel(reactionType))}
                       placement="top"
                     >
                       <IconButton

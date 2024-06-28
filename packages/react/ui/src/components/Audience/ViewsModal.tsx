@@ -5,6 +5,7 @@ import { Button } from "../Button";
 import { See, Users } from "@edifice-ui/icons";
 import { ViewsDetails } from "edifice-ts-client";
 import ViewsByProfileCard from "./ViewsByProfileCard";
+import { StringUtils } from "../../utils";
 
 export interface ViewsModalProps {
   viewsDetails: ViewsDetails;
@@ -31,7 +32,9 @@ const ViewsModal = ({
           <div className="views-detail-icon rounded p-8">
             <See />
           </div>
-          <div className="h3">{viewsDetails.viewsCounter}</div>
+          <div className="h3">
+            {StringUtils.toCounter(viewsDetails.viewsCounter)}
+          </div>
           <div>{t("audience.views.detail.viewsCounter")}</div>
         </div>
         <div className="views-detail-line p-8 mb-12">
@@ -40,7 +43,9 @@ const ViewsModal = ({
           </div>
           {hasUniqueViews ? (
             <>
-              <div className="h3">{viewsDetails.uniqueViewsCounter}</div>
+              <div className="h3">
+                {StringUtils.toCounter(viewsDetails.uniqueViewsCounter)}
+              </div>
               <div>{t("audience.views.detail.uniqueViewsCounter")}</div>
             </>
           ) : (
