@@ -2,6 +2,10 @@
 export { default as ViewsCounter } from "./ViewsCounter";
 export * from "./ViewsCounter";
 
+// Component "views modal"
+export { default as ViewsModal } from "./ViewsModal";
+export * from "./ViewsModal";
+
 // Component "reactions summary"
 export { default as ReactionSummary } from "./ReactionSummary";
 export * from "./ReactionSummary";
