@@ -8,6 +8,7 @@ import {
 } from "@edifice-ui/icons/audience";
 import { ViewsDetailsProfile } from "edifice-ts-client";
 import { Users } from "@edifice-ui/icons";
+import { StringUtils } from "../../utils";
 
 export interface ViewsCardProps {
   viewsByProfile: ViewsDetailsProfile;
@@ -38,7 +39,7 @@ const ViewsByProfileCard = ({ viewsByProfile }: ViewsCardProps) => {
   return (
     <div key={profile} className="views-detail-line p-8 ms-32 mb-12">
       <div className={classNameIcon}>{getIcon(profile)}</div>
-      <div className="h3">{viewsByProfile.counter}</div>
+      <div className="h3">{StringUtils.toCounter(viewsByProfile.counter)}</div>
       <div>{t(`audience.views.uniqueViewsPerProfile.${profile}`)}</div>
     </div>
   );

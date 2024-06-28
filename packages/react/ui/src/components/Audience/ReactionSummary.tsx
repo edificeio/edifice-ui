@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { ReactionSummaryData, ReactionType } from "edifice-ts-client";
 import { Tooltip } from "../Tooltip";
 import { useHover } from "../../hooks";
+import { StringUtils } from "../../utils";
 
 export interface ReactionSummaryProps {
   availableReactions: ReactionType[];
@@ -44,20 +45,31 @@ const ReactionSummary = ({
     triggerButtonRef.current?.click();
   };
 
+  const hasNoReactions = totalReactionsCounter === 0;
+
   return (
     <div className="reaction-summary">
       <Button
         variant="ghost"
         className="m-0 p-0 btn-icon"
+        disabled={hasNoReactions}
         onClick={handleDetailsClick}
       >
         <div className="d-flex">
-          <div className="text-gray-700 me-16">{totalReactionsCounter}</div>
-          {reactionTypes?.map((reactionType) => (
+          <div className="text-gray-700 me-16">
+            {StringUtils.toCounter(totalReactionsCounter)}
+          </div>
+          {hasNoReactions ? (
             <div className="reaction-overlap">
-              {getReactionIcon(reactionType, true)}
+              {getReactionIcon("REACTION_1", true)}
             </div>
-          ))}
+          ) : (
+            reactionTypes?.map((reactionType) => (
+              <div className="reaction-overlap">
+                {getReactionIcon(reactionType, true)}
+              </div>
+            ))
+          )}
         </div>
       </Button>
       <div className="mt-4">

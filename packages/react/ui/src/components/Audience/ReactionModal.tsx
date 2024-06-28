@@ -10,6 +10,7 @@ import {
 } from "edifice-ts-client";
 import { Tabs, TabsItemProps } from "../Tabs";
 import { ReactionModalCard } from "./ReactionModal.Card";
+import { StringUtils } from "../../utils";
 
 export interface ReactionModalProps {
   /** Id of resource. */
@@ -60,13 +61,34 @@ const ReactionModal = ({
   const { t } = useTranslation();
   const { getReactionIcon } = useReactionIcons();
 
-  const handleMoreClick = useCallback(() => {
-    const pageNumber = Math.floor((reactions.length + 1) / pageSize);
-    loadReactionDetails(resourceId, pageNumber, pageSize).then((data) => {
-      data &&
-        setReactions((reactions) => [...reactions, ...data.userReactions]);
-    });
-  }, [loadReactionDetails, pageSize, reactions.length, resourceId]);
+  const loadPage = useCallback(
+    async (pageNumber: number) => {
+      if (pageNumber >= 0) {
+        const data = await loadReactionDetails(
+          resourceId,
+          pageNumber,
+          pageSize,
+        );
+        if (data) {
+          const { reactionCounters, userReactions } = data;
+          if (pageNumber === 0) setCounters(reactionCounters);
+          setReactions((old) => [...old, ...userReactions]);
+        }
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [setCounters, setReactions],
+  );
+
+  const handleMoreClick = useCallback(async () => {
+    if (pageSize > 0) {
+      // Load NEXT page.
+      // Choosing an arbitrary page number will not work (bad array indexes).
+      const pageNumber = Math.floor((reactions.length + 1) / pageSize);
+      loadPage(pageNumber);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pageSize, reactions.length]);
 
   // Displayed panel.
   const panel = useMemo(() => {
@@ -95,7 +117,7 @@ const ReactionModal = ({
     ).map((type) => ({
       id: type,
       icon: getReactionIcon(type),
-      label: `${counters.countByType[type] as number}`,
+      label: StringUtils.toCounter(counters.countByType[type] as number),
       content: panel,
     }));
 
@@ -103,7 +125,7 @@ const ReactionModal = ({
       {
         id: ALL_TAB_ID,
         icon: null,
-        label: t("portal.all"),
+        label: t("audience.reaction.tab.all"),
         content: panel,
       },
       ...items,
@@ -111,12 +133,9 @@ const ReactionModal = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [counters, reactions, panel]);
 
-  // Load first page
+  // Load first page, once
   useEffect(() => {
-    loadReactionDetails(resourceId, 0, pageSize).then((data) => {
-      data && setCounters(data.reactionCounters);
-      data && setReactions(data.userReactions);
-    });
+    loadPage(0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -143,7 +162,7 @@ const ReactionModal = ({
       <Modal.Footer>
         {hasMore && (
           <Button color="tertiary" onClick={handleMoreClick}>
-            {t("seemore")}
+            {t("audience.reaction.modal.more")}
           </Button>
         )}
         <Button

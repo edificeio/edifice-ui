@@ -1,5 +1,6 @@
 import { See } from "@edifice-ui/icons";
 import { Button } from "../Button";
+import { StringUtils } from "../../utils";
 
 export interface ViewsCounterProps {
   viewsCounter: number;
@@ -15,7 +16,7 @@ const ViewsCounter = ({ viewsCounter, onClick }: ViewsCounterProps) => {
       className="text-gray-700 d-flex"
       onClick={onClick}
     >
-      {viewsCounter}
+      {StringUtils.toCounter(viewsCounter)}
     </Button>
   );
 };
