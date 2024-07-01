@@ -90,7 +90,7 @@ export const Base: Story = {
     }
 
     return (
-      <>
+      <div id="portal">
         <Button
           type="button"
           variant="filled"
@@ -107,7 +107,7 @@ export const Base: Story = {
             onModalClose={handleCloseModal}
           />
         )}
-      </>
+      </div>
     );
   },
 };

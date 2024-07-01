@@ -11,6 +11,7 @@ import {
 import { Tabs, TabsItemProps } from "../Tabs";
 import { ReactionModalCard } from "./ReactionModal.Card";
 import { StringUtils } from "../../utils";
+import { createPortal } from "react-dom";
 
 export interface ReactionModalProps {
   /** Id of resource. */
@@ -145,7 +146,7 @@ const ReactionModal = ({
 
   const hasMore = reactions.length < counters.allReactionsCounter;
 
-  return (
+  return createPortal(
     <Modal id={id} {...restProps} onModalClose={onModalClose} size="md">
       <Modal.Header onModalClose={onModalClose}>
         <h2>{t("audience.reaction.modal.header")}</h2>
@@ -174,7 +175,8 @@ const ReactionModal = ({
           {t("close")}
         </Button>
       </Modal.Footer>
-    </Modal>
+    </Modal>,
+    document.getElementById("portal") as HTMLElement,
   );
 };
 
