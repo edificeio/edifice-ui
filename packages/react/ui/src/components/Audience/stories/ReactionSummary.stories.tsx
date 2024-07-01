@@ -33,7 +33,11 @@ export default meta;
 type Story = StoryObj<typeof ReactionSummary>;
 
 export const Base: Story = {
-  render: ({ summary, availableReactions }: ReactionSummaryProps) => {
+  render: ({
+    summary,
+    availableReactions,
+    flexDirection,
+  }: ReactionSummaryProps) => {
     const [currentSummary, setCurrentSummary] =
       useState<ReactionSummaryData>(summary);
 
@@ -50,6 +54,7 @@ export const Base: Story = {
 
     return (
       <ReactionSummary
+        flexDirection={flexDirection}
         summary={currentSummary}
         availableReactions={availableReactions}
         onClick={handleClick}
