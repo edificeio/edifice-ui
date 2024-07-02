@@ -223,18 +223,19 @@ const ResourceModal = ({
 
         <form id={formId} onSubmit={handleSubmit(onSubmit)}>
           <div className="d-block d-md-flex gap-16 mb-24">
-            <ImagePickerWorkspace
-              app={currentApp}
-              src={isUpdating ? resource?.thumbnail || "" : ""}
-              addButtonLabel={t("explorer.imagepicker.button.add")}
-              deleteButtonLabel={t("explorer.imagepicker.button.delete")}
-              onUploadImage={handleUploadImage}
-              onDeleteImage={handleDeleteImage}
-              className="align-self-center mt-8"
-              libraryMedia={libraryMedia}
-              mediaLibraryRef={mediaLibraryRef}
-            />
-
+            <div>
+              <ImagePickerWorkspace
+                app={currentApp}
+                src={isUpdating ? resource?.thumbnail || "" : ""}
+                addButtonLabel={t("explorer.imagepicker.button.add")}
+                deleteButtonLabel={t("explorer.imagepicker.button.delete")}
+                onUploadImage={handleUploadImage}
+                onDeleteImage={handleDeleteImage}
+                className="align-self-center mt-8"
+                libraryMedia={libraryMedia}
+                mediaLibraryRef={mediaLibraryRef}
+              />
+            </div>
             <div className="col">
               <FormControl id="title" className="mb-16" isRequired>
                 <Label>{t("title")}</Label>
