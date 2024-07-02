@@ -3,6 +3,7 @@ import "../resources/services/BlogResourceService";
 import "../resources/services/MindmapResourceService";
 import "../resources/services/ScrapbookResourceService";
 import "../resources/services/CollaborativewallResourceService";
+import "../resources/services/WikiResourceService";
 
 import { IOdeServices, OdeServices } from "./OdeServices";
 
