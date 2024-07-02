@@ -53,8 +53,11 @@ const ViewsModal = ({
           )}
         </div>
         {hasUniqueViews
-          ? viewsDetails.uniqueViewsPerProfile?.map((viewsByProfile) => (
-              <ViewsByProfileCard viewsByProfile={viewsByProfile} />
+          ? viewsDetails.uniqueViewsPerProfile?.map((viewsByProfile, index) => (
+              <ViewsByProfileCard
+                viewsByProfile={viewsByProfile}
+                key={viewsByProfile.profile + index}
+              />
             ))
           : null}
       </Modal.Body>

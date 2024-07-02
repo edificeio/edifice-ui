@@ -4,17 +4,31 @@ import { StringUtils } from "../../utils";
 
 export interface ViewsCounterProps {
   viewsCounter: number;
-  onClick?: () => void;
+  onClick?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
+  className?: string;
 }
 
-const ViewsCounter = ({ viewsCounter, onClick }: ViewsCounterProps) => {
+const ViewsCounter = ({
+  viewsCounter,
+  onClick,
+  className,
+}: ViewsCounterProps) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    onClick?.();
+  };
+
+  className = `text-gray-700 fw-normal py-4 px-8 btn-icon ${className || ""} `;
+
   return (
     <Button
       rightIcon={<See />}
       variant="ghost"
       type="button"
-      className="text-gray-700 fw-normal p-4 btn-icon"
-      onClick={onClick}
+      className={className}
+      onClick={handleClick}
+      disabled={!viewsCounter}
     >
       {StringUtils.toCounter(viewsCounter)}
     </Button>
