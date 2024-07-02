@@ -13,7 +13,7 @@ const ViewsCounter = ({ viewsCounter, onClick }: ViewsCounterProps) => {
       rightIcon={<See />}
       variant="ghost"
       type="button"
-      className="text-gray-700 fw-normal d-flex m-0 p-0"
+      className="text-gray-700 fw-normal p-4 btn-icon"
       onClick={onClick}
     >
       {StringUtils.toCounter(viewsCounter)}
