@@ -1,6 +1,7 @@
 import { See } from "@edifice-ui/icons";
 import { Button } from "../Button";
 import { StringUtils } from "../../utils";
+import clsx from "clsx";
 
 export interface ViewsCounterProps {
   viewsCounter: number;
@@ -13,13 +14,13 @@ const ViewsCounter = ({
   onClick,
   className,
 }: ViewsCounterProps) => {
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     event.stopPropagation();
     onClick?.();
   };
 
-  className = `text-gray-700 fw-normal py-4 px-8 btn-icon ${className || ""} `;
+  className = clsx("text-gray-700 fw-normal py-4 px-8 btn-icon", className);
 
   return (
     <Button
@@ -27,7 +28,7 @@ const ViewsCounter = ({
       variant="ghost"
       type="button"
       className={className}
-      onClick={handleClick}
+      onClick={handleButtonClick}
       disabled={!viewsCounter}
     >
       {StringUtils.toCounter(viewsCounter)}
