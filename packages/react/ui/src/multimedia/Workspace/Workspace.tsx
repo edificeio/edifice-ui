@@ -25,7 +25,7 @@ import {
 } from "../../components";
 import { useWorkspaceSearch } from "../../core";
 import { FolderNode } from "../../core/useWorkspaceSearch/useWorkspaceSearch";
-import { findTreeNode } from "../../utils";
+import { TreeData } from "../../types";
 
 /**
  * MediaLibrary component properties
@@ -199,6 +199,20 @@ const Workspace = ({
     loadSharedDocs,
   ]);
 
+  /**
+   * Utility function to find a node in a tree.
+   */
+  function findTreeNode(
+    root: TreeData,
+    predicate: (node: TreeData) => boolean,
+  ): TreeData | undefined {
+    if (predicate(root)) return root;
+    return (
+      Array.isArray(root.children) &&
+      root.children.find((child) => findTreeNode(child, predicate))
+    );
+  }
+
   function selectAndLoadContent(filter: WorkspaceSearchFilter, nodeId: string) {
     // Apply filters and nodeId, and send a command to the node's Tree
     setCurrentFilter(filter);
@@ -317,15 +331,13 @@ const Workspace = ({
           <TreeView
             ref={ownerRef}
             data={ownerRoot}
-            onTreeItemSelect={(nodeId) => selectAndLoadContent("owner", nodeId)}
+            onTreeItemClick={(nodeId) => selectAndLoadContent("owner", nodeId)}
             onTreeItemUnfold={(nodeId) => selectAndLoadContent("owner", nodeId)}
           />
           <TreeView
             ref={sharedRef}
             data={sharedRoot}
-            onTreeItemSelect={(nodeId) =>
-              selectAndLoadContent("shared", nodeId)
-            }
+            onTreeItemClick={(nodeId) => selectAndLoadContent("shared", nodeId)}
             onTreeItemUnfold={(nodeId) =>
               selectAndLoadContent("shared", nodeId)
             }
@@ -333,7 +345,7 @@ const Workspace = ({
           <TreeView
             ref={protectRef}
             data={protectRoot}
-            onTreeItemSelect={(nodeId) =>
+            onTreeItemClick={(nodeId) =>
               selectAndLoadContent("protected", nodeId)
             }
             onTreeItemUnfold={(nodeId) =>
@@ -344,7 +356,7 @@ const Workspace = ({
             <TreeView
               ref={publicRef}
               data={publicRoot}
-              onTreeItemSelect={(nodeId) =>
+              onTreeItemClick={(nodeId) =>
                 selectAndLoadContent("public", nodeId)
               }
               onTreeItemUnfold={(nodeId) =>
