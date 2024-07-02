@@ -6,6 +6,10 @@ import {
   ReactionType,
 } from "./interface";
 
+type ReactionAvailableData = {
+  "reaction-types": ReactionType[];
+};
+
 export type ReactionSummariesData = {
   reactionsByResource: {
     [resourceId: string]: ReactionSummaryData | undefined;
@@ -24,9 +28,8 @@ export class ReactionsService implements IReactionsService {
   }
 
   async loadAvailableReactions() {
-    const reactions = await this.http.get<ReactionType[]>(
-      "/audience/conf/public",
-    );
+    const { "reaction-types": reactions } =
+      await this.http.get<ReactionAvailableData>("/audience/conf/public");
     return this.http.isResponseError() || !Array.isArray(reactions)
       ? undefined
       : reactions;
