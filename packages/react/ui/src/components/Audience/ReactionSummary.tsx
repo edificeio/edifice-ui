@@ -21,7 +21,7 @@ const ReactionSummary = ({
   return (
     <Button
       variant="ghost"
-      className="p-0 btn-icon"
+      className="p-4 btn-icon"
       disabled={hasNoReactions}
       onClick={handleDetailsClick}
     >
