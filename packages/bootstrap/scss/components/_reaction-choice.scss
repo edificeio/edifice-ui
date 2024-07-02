@@ -1,0 +1,17 @@
+@use "../abstracts/" as *;
+
+.reaction-choice {
+  .btn.reaction-available {
+    svg {
+      transform: scale(1.6);
+    }
+
+    &:hover {
+      background-color: transparent;
+
+      svg {
+        animation: 0.3s ease-out 0s both zoomIn;
+      }
+    }
+  }
+}
