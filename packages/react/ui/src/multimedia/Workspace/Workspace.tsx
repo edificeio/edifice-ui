@@ -25,7 +25,7 @@ import {
 } from "../../components";
 import { useWorkspaceSearch } from "../../core";
 import { FolderNode } from "../../core/useWorkspaceSearch/useWorkspaceSearch";
-import { TreeData } from "../../types";
+import { findTreeNode } from "../../utils";
 
 /**
  * MediaLibrary component properties
@@ -198,20 +198,6 @@ const Workspace = ({
     loadPublicDocs,
     loadSharedDocs,
   ]);
-
-  /**
-   * Utility function to find a node in a tree.
-   */
-  function findTreeNode(
-    root: TreeData,
-    predicate: (node: TreeData) => boolean,
-  ): TreeData | undefined {
-    if (predicate(root)) return root;
-    return (
-      Array.isArray(root.children) &&
-      root.children.find((child) => findTreeNode(child, predicate))
-    );
-  }
 
   function selectAndLoadContent(filter: WorkspaceSearchFilter, nodeId: string) {
     // Apply filters and nodeId, and send a command to the node's Tree
