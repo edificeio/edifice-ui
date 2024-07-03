@@ -62,9 +62,12 @@ const ReactionModal = ({
   const { t } = useTranslation();
   const { getReactionIcon } = useReactionIcons();
 
+  const [latestPage, setLatestPage] = useState(0);
+
   const loadPage = useCallback(
     async (pageNumber: number) => {
-      if (pageNumber > 0) {
+      if (pageNumber > 0 && pageNumber > latestPage) {
+        setLatestPage(pageNumber);
         const data = await loadReactionDetails(
           resourceId,
           pageNumber,
@@ -77,19 +80,14 @@ const ReactionModal = ({
         }
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [setCounters, setReactions],
+    [latestPage, loadReactionDetails, pageSize, resourceId],
   );
 
-  const handleMoreClick = useCallback(async () => {
-    if (pageSize > 0) {
-      // Load NEXT page.
-      // Choosing an arbitrary page number will not work (bad array indexes).
-      const pageNumber = Math.floor((reactions.length + 1) / pageSize) + 1;
-      loadPage(pageNumber);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pageSize, reactions.length]);
+  const handleMoreClick = useCallback(() => {
+    // Load NEXT page.
+    // Choosing an arbitrary page number will not work (bad array indexes).
+    loadPage(latestPage + 1);
+  }, [latestPage, loadPage]);
 
   // Displayed panel.
   const panel = useMemo(() => {
@@ -108,8 +106,7 @@ const ReactionModal = ({
           })}
       </div>
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reactions, currentTabId]);
+  }, [currentTabId, reactions]);
 
   // Displayed tabs list.
   const tabs = useMemo(() => {
@@ -132,7 +129,7 @@ const ReactionModal = ({
       ...items,
     ];
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [counters, reactions, panel]);
+  }, [counters.countByType]);
 
   // Load first page, once
   useEffect(() => {

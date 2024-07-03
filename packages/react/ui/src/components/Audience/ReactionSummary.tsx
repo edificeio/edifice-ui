@@ -38,7 +38,7 @@ const ReactionSummary = ({ summary, onClick }: ReactionSummaryProps) => {
           </div>
         ) : (
           reactionTypes?.map((reactionType) => (
-            <div className="reaction-overlap">
+            <div key={reactionType} className="reaction-overlap">
               {getReactionIcon(reactionType, true)}
             </div>
           ))

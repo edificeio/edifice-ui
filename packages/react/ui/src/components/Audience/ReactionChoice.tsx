@@ -53,6 +53,7 @@ const ReactionChoice = ({
               <div className="d-flex align-items-center justify-content-between">
                 {availableReactions?.map((reactionType) => (
                   <Tooltip
+                    key={reactionType}
                     message={t(getReactionLabel(reactionType))}
                     placement="top"
                     key={reactionType}
