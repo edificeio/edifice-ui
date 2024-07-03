@@ -35,10 +35,8 @@ const ReactionChoice = ({
   };
 
   const handleReactionOnClick = (reactionType: ReactionType) => {
-    // Reaction is reset to `undefined` when same value is clicked.
-    onChange?.(userReaction === reactionType ? undefined : reactionType);
-
-    // Then close dropdown menu
+    onChange?.(reactionType);
+    // Close dropdown menu
     triggerButtonRef.current?.click();
   };
 

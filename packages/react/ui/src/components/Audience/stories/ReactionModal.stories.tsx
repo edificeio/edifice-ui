@@ -58,8 +58,12 @@ const meta: Meta<typeof ReactionModal> = {
   args: {
     pageSize: 2,
     async reactionDetailsLoader(_resourceId, page, size) {
+      const asIndex = page - 1;
       const { reactionCounters, userReactions } = mockedData;
-      const from = Math.max(0, Math.min(userReactions.length - 1, page * size));
+      const from = Math.max(
+        0,
+        Math.min(userReactions.length - 1, asIndex * size),
+      );
       const to = Math.min(userReactions.length, from + size);
       return {
         reactionCounters,

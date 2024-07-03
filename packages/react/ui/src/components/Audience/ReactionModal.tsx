@@ -64,7 +64,7 @@ const ReactionModal = ({
 
   const loadPage = useCallback(
     async (pageNumber: number) => {
-      if (pageNumber >= 0) {
+      if (pageNumber > 0) {
         const data = await loadReactionDetails(
           resourceId,
           pageNumber,
@@ -72,7 +72,7 @@ const ReactionModal = ({
         );
         if (data) {
           const { reactionCounters, userReactions } = data;
-          if (pageNumber === 0) setCounters(reactionCounters);
+          if (pageNumber === 1) setCounters(reactionCounters);
           setReactions((old) => [...old, ...userReactions]);
         }
       }
@@ -85,7 +85,7 @@ const ReactionModal = ({
     if (pageSize > 0) {
       // Load NEXT page.
       // Choosing an arbitrary page number will not work (bad array indexes).
-      const pageNumber = Math.floor((reactions.length + 1) / pageSize);
+      const pageNumber = Math.floor((reactions.length + 1) / pageSize) + 1;
       loadPage(pageNumber);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -136,7 +136,7 @@ const ReactionModal = ({
 
   // Load first page, once
   useEffect(() => {
-    loadPage(0);
+    loadPage(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
