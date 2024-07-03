@@ -91,8 +91,6 @@
   }
 
   &-dialog {
-    border-radius: var(--#{$prefix}modal-border-radius);
-    background-color: var(--#{$prefix}modal-bg);
     max-width: var(--#{$prefix}modal-width);
     margin-inline: auto;
   }
@@ -113,6 +111,7 @@
     .modal-content {
       max-height: 100%;
       overflow: hidden;
+      min-height: auto;
     }
 
     .modal-body {
