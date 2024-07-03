@@ -22,11 +22,6 @@ const ReactionChoice = ({
 
   const { userReaction } = summary;
 
-  const handleReactionOnClick = (reactionType: ReactionType) => {
-    // Reaction is reset to `undefined` when same value is clicked.
-    onChange?.(userReaction === reactionType ? undefined : reactionType);
-  };
-
   return (
     <div className="reaction-choice">
       <Dropdown placement="top-start" isTriggerHovered={true}>
@@ -61,7 +56,7 @@ const ReactionChoice = ({
                       className="reaction-available m-4"
                       variant="ghost"
                       icon={getReactionIcon(reactionType)}
-                      onClick={() => handleReactionOnClick(reactionType)}
+                      onClick={() => onChange?.(reactionType)}
                     />
                   </Tooltip>
                 ))}
