@@ -28,11 +28,15 @@ export class ReactionsService implements IReactionsService {
   }
 
   async loadAvailableReactions() {
-    const { "reaction-types": reactions } =
-      await this.http.get<ReactionAvailableData>("/audience/conf/public");
-    return this.http.isResponseError() || !Array.isArray(reactions)
-      ? undefined
-      : reactions;
+    try {
+      const { "reaction-types": reactions } = await this.context
+        .conf()
+        .getPublicConf<ReactionAvailableData>("audience");
+      return Array.isArray(reactions) ? reactions : undefined;
+    } catch (e) {
+      console.error("Audience configuration not found");
+      return undefined;
+    }
   }
 
   async loadReactionSummaries(resourceIds: string[]) {

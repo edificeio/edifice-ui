@@ -44,7 +44,7 @@ export class ConfService {
     return appConf;
   }
 
-  async getPublicConf<T extends any>(app: App): Promise<T> {
+  async getPublicConf<T>(app: App): Promise<T> {
     // Public confs do not change until redeployed
     const { response, value } = await this.cache.httpGet<any>(
       `/${app}/conf/public`,
