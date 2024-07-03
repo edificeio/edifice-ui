@@ -19,7 +19,6 @@ import {
   size,
   useFloating,
   useHover,
-  useInteractions,
 } from "@floating-ui/react";
 
 import { mergeRefs } from "../../utils/ref";
@@ -84,7 +83,7 @@ const useDropdown = (
   });
 
   // Hover interaction for the dropdown trigger. This is used to open the dropdown on hover. The dropdown should be closed on mouse leave.
-  const hover = useHover(context, {
+  useHover(context, {
     enabled: isTriggerHovered,
     // Configure the delay for opening and closing separately.
     restMs: 200,
@@ -93,7 +92,6 @@ const useDropdown = (
     },
     handleClose: safePolygon(),
   });
-  const { getReferenceProps, getFloatingProps } = useInteractions([hover]);
 
   /* refs */
   const menuRef = useRef<HTMLUListElement | null>(null);
@@ -302,7 +300,6 @@ const useDropdown = (
       onClick: onTriggerClick,
       onKeyDown: onTriggerKeyDown,
       "aria-activedescendant": isFocused,
-      ...getReferenceProps(),
     },
     /* MenuProps to spread to any Menu Component */
     menuProps: {
@@ -310,7 +307,6 @@ const useDropdown = (
       className: "dropdown-menu",
       "aria-labelledby": `dropdown-toggle-${id}`,
       style: { ...floatingStyles },
-      ...getFloatingProps(),
     },
     /* ItemProps to spread to any item Component */
     itemProps: {
