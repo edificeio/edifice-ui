@@ -64,30 +64,23 @@ const ReactionModal = ({
 
   const [latestPage, setLatestPage] = useState(0);
 
-  const loadPage = useCallback(
-    async (pageNumber: number) => {
-      if (pageNumber > 0 && pageNumber > latestPage) {
-        setLatestPage(pageNumber);
-        const data = await loadReactionDetails(
-          resourceId,
-          pageNumber,
-          pageSize,
-        );
-        if (data) {
-          const { reactionCounters, userReactions } = data;
-          if (pageNumber === 1) setCounters(reactionCounters);
-          setReactions((old) => [...old, ...userReactions]);
-        }
-      }
-    },
-    [latestPage, loadReactionDetails, pageSize, resourceId],
-  );
+  const loadNextPage = useCallback(async () => {
+    const nextPage = latestPage + 1;
+    setLatestPage(nextPage);
 
-  const handleMoreClick = useCallback(() => {
-    // Load NEXT page.
-    // Choosing an arbitrary page number will not work (bad array indexes).
-    loadPage(latestPage + 1);
-  }, [latestPage, loadPage]);
+    const data = await loadReactionDetails(resourceId, nextPage, pageSize);
+    if (data) {
+      const { reactionCounters, userReactions } = data;
+      if (nextPage === 1) setCounters(reactionCounters);
+      setReactions((old) => [
+        ...old,
+        ...userReactions.filter(
+          (reaction) =>
+            !old.some((oldReaction) => oldReaction.userId === reaction.userId),
+        ),
+      ]);
+    }
+  }, [latestPage, loadReactionDetails, pageSize, resourceId]);
 
   // Displayed panel.
   const panel = useMemo(() => {
@@ -129,11 +122,11 @@ const ReactionModal = ({
       ...items,
     ];
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [counters.countByType]);
+  }, [counters.countByType, panel]);
 
   // Load first page, once
   useEffect(() => {
-    loadPage(1);
+    loadNextPage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -159,7 +152,7 @@ const ReactionModal = ({
 
       <Modal.Footer>
         {hasMore && (
-          <Button color="tertiary" onClick={handleMoreClick}>
+          <Button color="tertiary" onClick={loadNextPage}>
             {t("audience.reaction.modal.more")}
           </Button>
         )}

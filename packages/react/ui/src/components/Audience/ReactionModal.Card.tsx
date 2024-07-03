@@ -41,7 +41,7 @@ export function ReactionModalCard({
           </strong>
         </div>
         <p className="caption text-gray-700">
-          {getReactionLabel(reaction.reactionType)}
+          {t(getReactionLabel(reaction.reactionType))}
         </p>
       </div>
     </div>
