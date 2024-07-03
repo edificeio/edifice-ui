@@ -1,4 +1,4 @@
-import { RefAttributes, useEffect, useState } from "react";
+import { RefAttributes, useEffect, useRef, useState } from "react";
 import { default as useReactionIcons } from "./hooks/useReactionIcons";
 import { Button, ButtonProps, IconButton } from "../Button";
 import { Dropdown } from "../Dropdown";
@@ -21,7 +21,7 @@ const ReactionChoice = ({
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const { t } = useTranslation();
   const { getReactionIcon, getReactionLabel } = useReactionIcons();
-  const [triggerButtonRef, isHovered] = useHover<HTMLButtonElement>();
+  const [triggerButtonRef, isHovered] = useHover<HTMLSpanElement>();
 
   const { userReaction } = summary;
 
@@ -51,13 +51,15 @@ const ReactionChoice = ({
           <>
             <Button
               {...triggerProps}
-              ref={triggerButtonRef}
+              ref={triggerProps.ref}
               color="tertiary"
               variant="ghost"
               size="sm"
               leftIcon={getReactionIcon(userReaction)}
             >
-              {t(getReactionLabel(userReaction))}
+              <span ref={triggerButtonRef}>
+                {t(getReactionLabel(userReaction))}
+              </span>
             </Button>
 
             <Dropdown.Menu
