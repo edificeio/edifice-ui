@@ -1,0 +1,8 @@
+@use "../../abstracts/" as *;
+@use "../../vendors/bootstrap";
+
+.modal-body {
+  & .audio-recorder {
+    min-height: 25rem;
+  }
+}
