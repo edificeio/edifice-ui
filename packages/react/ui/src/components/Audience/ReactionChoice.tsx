@@ -55,6 +55,7 @@ const ReactionChoice = ({
                   <Tooltip
                     message={t(getReactionLabel(reactionType))}
                     placement="top"
+                    key={reactionType}
                   >
                     <IconButton
                       className="reaction-available m-4"
