@@ -39,6 +39,11 @@ export interface DropdownProps {
    * Callback to get notified when dropdown `visible` state changes (opened/closed).
    */
   onToggle?: (visible: boolean) => void;
+
+  /**
+   * Whether the trigger is hovered or not.
+   */
+  isTriggerHovered?: boolean;
 }
 
 export type DropdownMenuOptions =
@@ -74,6 +79,7 @@ const Root = ({
   placement = "bottom-start",
   extraTriggerKeyDownHandler,
   onToggle,
+  isTriggerHovered = false,
 }: DropdownProps) => {
   const {
     visible,
@@ -83,7 +89,7 @@ const Root = ({
     itemProps,
     itemRefs,
     setVisible,
-  } = useDropdown(placement, extraTriggerKeyDownHandler);
+  } = useDropdown(placement, extraTriggerKeyDownHandler, isTriggerHovered);
 
   /* Ref to close dropdown when clicking outside */
   const ref = useClickOutside(() => setVisible(false));

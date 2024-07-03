@@ -46,6 +46,26 @@ export const Base: Story = {
   },
 };
 
+export const Hover: Story = {
+  render: (args) => {
+    return (
+      <Dropdown isTriggerHovered={true}>
+        <Dropdown.Trigger label="Dropdown" />
+        <Dropdown.Menu>
+          <Dropdown.Item onClick={() => alert("click")}>
+            Dropdown Item
+          </Dropdown.Item>
+          <Dropdown.Separator />
+          <Dropdown.Item>Dropdown Item</Dropdown.Item>
+          <Dropdown.Item>Dropdown Item</Dropdown.Item>
+          <Dropdown.Separator />
+          <Dropdown.Item>Dropdown Item</Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+    );
+  },
+};
+
 export const MenuGroup: Story = {
   render: (args) => {
     return (

@@ -1,11 +1,10 @@
-import { RefAttributes, useEffect, useState } from "react";
+import { MouseEvent, RefAttributes } from "react";
 import { default as useReactionIcons } from "./hooks/useReactionIcons";
 import { Button, ButtonProps, IconButton } from "../Button";
 import { Dropdown } from "../Dropdown";
 import { useTranslation } from "react-i18next";
 import { ReactionSummaryData, ReactionType } from "edifice-ts-client";
 import { Tooltip } from "../Tooltip";
-import { useHover } from "../../hooks";
 
 export interface ReactionChoiceProps {
   availableReactions: ReactionType[];
@@ -18,31 +17,19 @@ const ReactionChoice = ({
   summary,
   onChange,
 }: ReactionChoiceProps) => {
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const { t } = useTranslation();
   const { getReactionIcon, getReactionLabel } = useReactionIcons();
-  const [triggerButtonRef, isHovered] = useHover<HTMLButtonElement>();
 
   const { userReaction } = summary;
 
-  useEffect(() => {
-    if (isHovered && !isDropdownVisible) triggerButtonRef.current?.click();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isHovered, isDropdownVisible]);
-
-  const handleDropDownOnToggle = (visible: boolean) => {
-    setIsDropdownVisible(visible);
-  };
-
   const handleReactionOnClick = (reactionType: ReactionType) => {
-    onChange?.(reactionType);
-    // Close dropdown menu
-    triggerButtonRef.current?.click();
+    // Reaction is reset to `undefined` when same value is clicked.
+    onChange?.(userReaction === reactionType ? undefined : reactionType);
   };
 
   return (
     <div className="reaction-choice">
-      <Dropdown placement="top" onToggle={handleDropDownOnToggle}>
+      <Dropdown placement="top-start" isTriggerHovered={true}>
         {(
           triggerProps: JSX.IntrinsicAttributes &
             Omit<ButtonProps, "ref"> &
@@ -51,7 +38,6 @@ const ReactionChoice = ({
           <>
             <Button
               {...triggerProps}
-              ref={triggerButtonRef}
               color="tertiary"
               variant="ghost"
               size="sm"
