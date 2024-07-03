@@ -1,4 +1,4 @@
-import { MouseEvent, RefAttributes } from "react";
+import { RefAttributes } from "react";
 import { default as useReactionIcons } from "./hooks/useReactionIcons";
 import { Button, ButtonProps, IconButton } from "../Button";
 import { Dropdown } from "../Dropdown";
