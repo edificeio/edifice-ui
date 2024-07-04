@@ -7,13 +7,13 @@ import { Tooltip } from "../Tooltip";
 
 export interface ReactionChoiceProps {
   availableReactions: ReactionType[];
-  summary: ReactionSummaryData;
+  summary?: ReactionSummaryData;
   onChange?: (chosenReaction?: ReactionType) => void;
 }
 
 const ReactionChoice = ({
   availableReactions,
-  summary,
+  summary = { totalReactionsCounter: 0, userReaction: null },
   onChange,
 }: ReactionChoiceProps) => {
   const { t } = useTranslation();
