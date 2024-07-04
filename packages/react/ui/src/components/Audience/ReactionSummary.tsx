@@ -4,11 +4,14 @@ import { ReactionSummaryData } from "edifice-ts-client";
 import { StringUtils } from "../../utils";
 
 export interface ReactionSummaryProps {
-  summary: ReactionSummaryData;
+  summary?: ReactionSummaryData;
   onClick?: () => void;
 }
 
-const ReactionSummary = ({ summary, onClick }: ReactionSummaryProps) => {
+const ReactionSummary = ({
+  summary = { userReaction: null, totalReactionsCounter: 0 },
+  onClick,
+}: ReactionSummaryProps) => {
   const { getReactionIcon } = useReactionIcons();
 
   const { totalReactionsCounter, reactionTypes } = summary;
@@ -38,7 +41,7 @@ const ReactionSummary = ({ summary, onClick }: ReactionSummaryProps) => {
           </div>
         ) : (
           reactionTypes?.map((reactionType) => (
-            <div key={reactionType} className="reaction-overlap">
+            <div className="reaction-overlap" key={reactionType}>
               {getReactionIcon(reactionType, true)}
             </div>
           ))
