@@ -92,7 +92,9 @@ const Root = ({
   } = useDropdown(placement, extraTriggerKeyDownHandler, isTriggerHovered);
 
   /* Ref to close dropdown when clicking outside */
-  const ref = useClickOutside(() => setVisible(false));
+  const ref = useClickOutside(() => {
+    setVisible(false);
+  });
 
   const value = useMemo(
     () => ({

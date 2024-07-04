@@ -1,6 +1,5 @@
-import { RefAttributes } from "react";
 import { default as useReactionIcons } from "./hooks/useReactionIcons";
-import { Button, ButtonProps, IconButton } from "../Button";
+import { IconButton } from "../Button";
 import { Dropdown } from "../Dropdown";
 import { useTranslation } from "react-i18next";
 import { ReactionSummaryData, ReactionType } from "edifice-ts-client";
@@ -24,46 +23,39 @@ const ReactionChoice = ({
 
   return (
     <div className="reaction-choice">
-      <Dropdown placement="top-start" isTriggerHovered={true}>
-        {(
-          triggerProps: JSX.IntrinsicAttributes &
-            Omit<ButtonProps, "ref"> &
-            RefAttributes<HTMLButtonElement>,
-        ) => (
-          <>
-            <Button
-              {...triggerProps}
-              color="tertiary"
-              variant="ghost"
-              size="sm"
-              leftIcon={getReactionIcon(userReaction)}
-            >
-              {t(getReactionLabel(userReaction))}
-            </Button>
-
-            <Dropdown.Menu
-              unstyled
-              className="bg-white shadow rounded-8 overflow-visible"
-            >
-              <div className="d-flex align-items-center justify-content-between">
-                {availableReactions?.map((reactionType) => (
-                  <Tooltip
-                    key={reactionType}
-                    message={t(getReactionLabel(reactionType))}
-                    placement="top"
-                  >
-                    <IconButton
-                      className="reaction-available m-4"
-                      variant="ghost"
-                      icon={getReactionIcon(reactionType)}
-                      onClick={() => onChange?.(reactionType)}
-                    />
-                  </Tooltip>
-                ))}
-              </div>
-            </Dropdown.Menu>
-          </>
-        )}
+      <Dropdown placement="top-start" isTriggerHovered>
+        <Dropdown.Trigger
+          color="tertiary"
+          variant="ghost"
+          size="sm"
+          icon={getReactionIcon(userReaction)}
+          hideCarret
+          label={t(getReactionLabel(userReaction))}
+        ></Dropdown.Trigger>
+        <Dropdown.Menu
+          unstyled
+          className="bg-white shadow rounded-8 overflow-visible"
+        >
+          <div className="d-flex align-items-center justify-content-between">
+            {availableReactions?.map((reactionType) => (
+              <Dropdown.Item className="p-0">
+                <Tooltip
+                  key={reactionType}
+                  message={t(getReactionLabel(reactionType))}
+                  placement="top"
+                >
+                  <IconButton
+                    className="reaction-available m-4"
+                    variant="ghost"
+                    size="sm"
+                    icon={getReactionIcon(reactionType)}
+                    onClick={() => onChange?.(reactionType)}
+                  />
+                </Tooltip>
+              </Dropdown.Item>
+            ))}
+          </div>
+        </Dropdown.Menu>
       </Dropdown>
     </div>
   );

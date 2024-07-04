@@ -35,6 +35,10 @@ export interface DropdownTriggerProps
    * Stretch the dropdown trigger.
    */
   block?: boolean;
+  /**
+   * Hide the carret
+   */
+  hideCarret?: boolean;
 }
 
 export type DropdownTriggerType = React.ReactElement<DropdownTriggerProps>;
@@ -48,6 +52,7 @@ const DropdownTrigger = forwardRef(
       disabled = false,
       size,
       badgeContent,
+      hideCarret = false,
       ...restProps
     }: DropdownTriggerProps,
     forwardRef: Ref<HTMLButtonElement>,
@@ -78,7 +83,13 @@ const DropdownTrigger = forwardRef(
             {badgeContent}
           </span>
         ) : (
-          <RafterUp width={16} height={16} className="dropdown-toggle-caret" />
+          !hideCarret && (
+            <RafterUp
+              width={16}
+              height={16}
+              className="dropdown-toggle-caret"
+            />
+          )
         )}
       </button>
     );
