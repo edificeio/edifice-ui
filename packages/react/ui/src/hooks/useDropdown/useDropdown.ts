@@ -88,7 +88,7 @@ const useDropdown = (
     // Configure the delay for opening and closing separately.
     restMs: 200,
     delay: {
-      open: 600,
+      open: 400,
     },
     handleClose: safePolygon(),
   });
