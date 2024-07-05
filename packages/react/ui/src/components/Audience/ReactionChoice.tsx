@@ -4,6 +4,7 @@ import { Dropdown } from "../Dropdown";
 import { useTranslation } from "react-i18next";
 import { ReactionSummaryData, ReactionType } from "edifice-ts-client";
 import { Tooltip } from "../Tooltip";
+import clsx from "clsx";
 
 export interface ReactionChoiceProps {
   availableReactions: ReactionType[];
@@ -20,11 +21,15 @@ const ReactionChoice = ({
   const { getReactionIcon, getReactionLabel } = useReactionIcons();
 
   const { userReaction } = summary;
+  const classes = clsx({
+    "fw-bold": !!userReaction,
+  });
 
   return (
     <div className="reaction-choice">
       <Dropdown placement="top-start" isTriggerHovered>
         <Dropdown.Trigger
+          className={classes}
           color="tertiary"
           variant="ghost"
           size="sm"
