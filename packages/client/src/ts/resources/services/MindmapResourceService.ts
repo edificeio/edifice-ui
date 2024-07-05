@@ -11,6 +11,9 @@ const APP = "mindmap";
 const RESOURCE = "mindmap";
 
 export class MindmapResourceService extends ResourceService {
+  getEditUrl(resourceId?: string | undefined): string {
+    throw new Error("Method not implemented.");
+  }
   async create(parameters: CreateParameters): Promise<CreateResult> {
     const thumbnail = parameters.thumbnail
       ? await this.getThumbnailPath(parameters.thumbnail)

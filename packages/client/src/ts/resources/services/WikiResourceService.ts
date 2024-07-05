@@ -2,6 +2,7 @@ import { ResourceService } from "../ResourceService";
 import {
   CreateParameters,
   CreateResult,
+  IResource,
   UpdateParameters,
   UpdateResult,
 } from "../interface";
@@ -33,15 +34,36 @@ export class WikiResourceService extends ResourceService {
   }
 
   async create(parameters: CreateParameters): Promise<CreateResult> {
-    const res = await this.http.post("/wiki", parameters);
+    const thumbnail = parameters.thumbnail
+      ? await this.getThumbnailPath(parameters.thumbnail)
+      : "";
+
+    const res = await this.http.post<{ _id: string }>(`/wiki`, {
+      title: parameters.name,
+      description: parameters.description,
+      thumbnail,
+      folder: parameters.folder,
+      trashed: false,
+    });
+
     this.checkHttpResponse(res);
-    return res;
+
+    return { entId: res._id, thumbnail };
   }
 
   async update(parameters: UpdateParameters): Promise<UpdateResult> {
-    const res = await this.http.put(`/wiki/${parameters.entId}`, parameters);
+    const thumbnail = parameters.thumbnail
+      ? await this.getThumbnailPath(parameters.thumbnail)
+      : "";
+
+    const res = await this.http.put<IResource>(`/wiki/${parameters.entId}`, {
+      trashed: parameters.trashed,
+      title: parameters.name,
+      thumbnail,
+      description: parameters.description,
+    });
     this.checkHttpResponse(res);
-    return res;
+    return { thumbnail: thumbnail, entId: parameters.entId } as UpdateResult;
   }
 
   getResourceType(): string {
