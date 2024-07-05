@@ -11,6 +11,9 @@ const APP = "blog";
 const RESOURCE = "blog";
 
 export class BlogResourceService extends ResourceService {
+  getEditUrl(resourceId?: string | undefined): string {
+    throw new Error("Method not implemented.");
+  }
   async create(parameters: CreateParameters): Promise<CreateResult> {
     const thumbnail = parameters.thumbnail
       ? await this.getThumbnailPath(parameters.thumbnail)
