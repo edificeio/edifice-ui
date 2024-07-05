@@ -86,9 +86,8 @@ const useDropdown = (
   useHover(context, {
     enabled: isTriggerHovered,
     // Configure the delay for opening and closing separately.
-    restMs: 200,
     delay: {
-      open: 400,
+      open: 200,
     },
     handleClose: safePolygon(),
   });
