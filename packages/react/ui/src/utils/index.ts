@@ -1,5 +1,6 @@
 export * from "./MockedDataProvider";
 export * from "./StringUtils";
+export * from "./TreeHelper";
 export * from "./addTimestampToUrl";
 export * from "./blob";
 export * from "./checkUserRight";
