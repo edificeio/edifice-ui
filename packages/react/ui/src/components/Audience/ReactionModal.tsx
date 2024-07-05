@@ -137,7 +137,13 @@ const ReactionModal = ({
   const hasMore = reactions.length < counters.allReactionsCounter;
 
   return createPortal(
-    <Modal id={id} {...restProps} onModalClose={onModalClose} size="md">
+    <Modal
+      id={id}
+      {...restProps}
+      onModalClose={onModalClose}
+      size="md"
+      scrollable
+    >
       <Modal.Header onModalClose={onModalClose}>
         <h2>{t("audience.reaction.modal.header")}</h2>
       </Modal.Header>
