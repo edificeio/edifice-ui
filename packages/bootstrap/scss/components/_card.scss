@@ -203,7 +203,7 @@
       --#{$prefix}card-selected: var(--#{$prefix}orange);
     }
 
-    .btn {
+    .card-header .btn {
       background-color: var(--#{$prefix}secondary-200) !important;
       opacity: 1;
     }
