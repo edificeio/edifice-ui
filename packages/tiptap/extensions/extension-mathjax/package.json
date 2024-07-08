@@ -1,6 +1,6 @@
 {
   "name": "@edifice-tiptap-extensions/extension-mathjax",
-  "version": "1.5.10",
+  "version": "1.5.11-hotfix.0",
   "description": "Rich Text Editor MathJax Extension",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
