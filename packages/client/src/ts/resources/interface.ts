@@ -87,10 +87,6 @@ export interface IWebResourceService {
   getEditUrl(resourceId: string): string;
   /** URL where to create a new resource. */
   getFormUrl(folderId?: string): string;
-  // /** FIXME doc  */
-  // getShareReadUrl(id: string): string;
-  // /** FIXME doc  */
-  // getSaveShareUrl(id: string): string;
 }
 
 //---------------------------------------------------------------------

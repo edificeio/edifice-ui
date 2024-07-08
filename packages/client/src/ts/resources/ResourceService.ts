@@ -82,12 +82,6 @@ export abstract class ResourceService
   ): Promise<UpdateResult>;
 
   abstract getResourceType(): ResourceType;
-  /* getShareReadUrl(id: string) {
-    return `/${this.getApplication()}/share/json/${id}?search=`;
-  } */
-  /* getSaveShareUrl(id: string) {
-    return `/${this.getApplication()}/share/resource/${id}`;
-  } */
 
   async copy(parameters: CopyParameters): Promise<CopyResult> {
     const res = await this.http.post<CopyResult>("/archive/duplicate", {
