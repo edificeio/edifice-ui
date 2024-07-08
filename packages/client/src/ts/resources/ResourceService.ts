@@ -49,12 +49,6 @@ export abstract class ResourceService
   // IMPLEMENTATION
   //
   constructor(protected context: IOdeServices) {}
-  /*   getShareReadUrl(id: string): string {
-    throw new Error("Method not implemented.");
-  }
-  getSaveShareUrl(id: string): string {
-    throw new Error("Method not implemented.");
-  } */
 
   protected get http() {
     return this.context.http();
