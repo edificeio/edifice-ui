@@ -1,19 +1,19 @@
-import { StringUtils } from "../utils/StringUtils";
 import { IOdeServices } from "../services/OdeServices";
+import { StringUtils } from "../utils/StringUtils";
 
+import { Bookmark, Group, User } from "../directory/interface";
 import {
   GetResourceRightPayload,
-  ShareMapping,
-  ShareRightWithVisibles,
-  SharingRight,
-  PutShareResponse,
   PutSharePayload,
-  ShareSubject,
+  PutShareResponse,
+  ShareMapping,
   ShareRight,
   ShareRightAction,
   ShareRightActionDisplayName,
+  ShareRightWithVisibles,
+  ShareSubject,
+  SharingRight,
 } from "./interface";
-import { Bookmark, Group, User } from "../directory/interface";
 
 export class ShareService {
   //
@@ -154,7 +154,7 @@ export class ShareService {
     // fetch bookmarks
     const visibleBookmarks = await this.directory.getBookMarks();
     // get rights for this ressources
-    const url = this.context.resource(app, app).getShareReadUrl(resourceId);
+    const url = `/${app}/share/json/${resourceId}?search=`;
     const rightsPayload =
       await this.cache.httpGetJson<GetResourceRightPayload>(url);
     // get mapping between rights and normalized rights
@@ -317,10 +317,9 @@ export class ShareService {
         }
       }
     }
-    const resourceService = this.context.resource(app, app);
-    const url = resourceService.getSaveShareUrl(resourceId);
+    const url = `/${app}/share/resource/${resourceId}`;
     //clear cache for rights
-    this.cache.clearCache(resourceService.getShareReadUrl(resourceId));
+    this.cache.clearCache(`/${app}/share/json/${resourceId}?search=`);
     const res = await this.http.putJson<PutShareResponse>(url, payload);
     return res;
   }

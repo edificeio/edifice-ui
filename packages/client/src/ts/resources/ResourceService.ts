@@ -1,19 +1,19 @@
 import {
-  PublishParameters,
-  PublishResult,
+  App,
+  CreateFolderParameters,
+  CreateFolderResult,
+  DeleteParameters,
   GetContextParameters,
   GetContextResult,
-  ISearchResults,
-  CreateFolderParameters,
-  MoveParameters,
-  IActionResult,
-  CreateFolderResult,
-  UpdateFolderParameters,
-  ID,
   GetSubFoldersResult,
-  DeleteParameters,
+  IActionResult,
+  ID,
+  ISearchResults,
+  MoveParameters,
+  PublishParameters,
+  PublishResult,
   ResourceType,
-  App,
+  UpdateFolderParameters,
 } from "..";
 import { IOdeServices } from "../services/OdeServices";
 import { ServiceRegistry } from "./ServiceRegistry";
@@ -49,6 +49,12 @@ export abstract class ResourceService
   // IMPLEMENTATION
   //
   constructor(protected context: IOdeServices) {}
+  /*   getShareReadUrl(id: string): string {
+    throw new Error("Method not implemented.");
+  }
+  getSaveShareUrl(id: string): string {
+    throw new Error("Method not implemented.");
+  } */
 
   protected get http() {
     return this.context.http();
@@ -76,12 +82,12 @@ export abstract class ResourceService
   ): Promise<UpdateResult>;
 
   abstract getResourceType(): ResourceType;
-  getShareReadUrl(id: string) {
+  /* getShareReadUrl(id: string) {
     return `/${this.getApplication()}/share/json/${id}?search=`;
-  }
-  getSaveShareUrl(id: string) {
+  } */
+  /* getSaveShareUrl(id: string) {
     return `/${this.getApplication()}/share/resource/${id}`;
-  }
+  } */
 
   async copy(parameters: CopyParameters): Promise<CopyResult> {
     const res = await this.http.post<CopyResult>("/archive/duplicate", {
@@ -118,7 +124,7 @@ export abstract class ResourceService
       publicationAsFormData.append("age[]", age.toString());
     });
     publicationAsFormData.append("description", parameters.description);
-    let keyWordsArray = parameters.keyWords.split(",");
+    const keyWordsArray = parameters.keyWords.split(",");
     keyWordsArray.forEach((keyWord) => {
       publicationAsFormData.append("keyWords[]", keyWord.trim());
     });
@@ -336,7 +342,7 @@ export abstract class ResourceService
   private toQueryParams(
     parameters: GetContextParameters,
   ): Record<string, string> {
-    let ret = {
+    const ret = {
       application: parameters.application,
       start_idx: parameters.pagination.startIdx,
       page_size: parameters.pagination.pageSize,
