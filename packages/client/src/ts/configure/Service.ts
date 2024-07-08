@@ -1,8 +1,8 @@
+import { App, ERROR_CODE } from "../globals";
+import { IOdeServices } from "../services/OdeServices";
+import { IWebApp } from "../session/interfaces";
 import { configure } from "./Framework";
 import { IGetConf, IOdeTheme, IThemeConf } from "./interfaces";
-import { App, ERROR_CODE } from "../globals";
-import { IWebApp } from "../session/interfaces";
-import { IOdeServices } from "../services/OdeServices";
 
 export class ConfService {
   constructor(private context: IOdeServices) {}
@@ -59,7 +59,6 @@ export class ConfService {
 
   getCdnUrl(): string | undefined {
     //TODO to implement
-    console.warn("[getCdnUrl] Not implemented yet");
     return undefined;
   }
 
