@@ -1,15 +1,20 @@
 import { useCallback } from "react";
 
 import dayjs, { Dayjs } from "dayjs";
-import customParseFormat from "dayjs/plugin/customParseFormat";
-import localizedFormat from "dayjs/plugin/localizedFormat";
-import relativeTime from "dayjs/plugin/relativeTime";
 
-import "dayjs/locale/de";
-import "dayjs/locale/es";
-import "dayjs/locale/fr";
-import "dayjs/locale/it";
-import "dayjs/locale/pt";
+/**
+ * DO NOT REMOVE .js extensions from dayjs imports
+ */
+import customParseFormat from "dayjs/plugin/customParseFormat.js";
+import localizedFormat from "dayjs/plugin/localizedFormat.js";
+import relativeTime from "dayjs/plugin/relativeTime.js";
+
+import "dayjs/locale/de.js";
+import "dayjs/locale/es.js";
+import "dayjs/locale/fr.js";
+import "dayjs/locale/it.js";
+import "dayjs/locale/pt.js";
+
 import { useOdeClient } from "../OdeClientProvider";
 
 dayjs.extend(relativeTime);
