@@ -259,7 +259,6 @@ export default function useShare({
           .saveRights(appCode, resourceId, shares);
         notifySuccess(result);
       }
-      toast.success(t("explorer.shared.status.saved"));
       onSuccess();
     } catch (error) {
       if (typeof error === "string")
