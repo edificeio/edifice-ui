@@ -2,6 +2,7 @@ import { useEffect, useReducer } from "react";
 
 import {
   odeServices,
+  PutShareResponse,
   type ShareRight,
   type ShareRightAction,
   type ShareRightActionDisplayName,
@@ -204,8 +205,8 @@ export default function useShare({
     });
   };
 
-  const notifySuccess = (value: string | Object) => {
-    if (typeof value === "string") {
+  const notifySuccess = (value: PutShareResponse) => {
+    if (Object.keys(value)[0] === "error") {
       toast.error(t("explorer.shared.status.error"));
       console.error("Failed to save share", value);
     } else {
