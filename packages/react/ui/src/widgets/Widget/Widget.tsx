@@ -29,7 +29,7 @@ const Body = ({ children }: { children: ReactNode }) => {
   return <div className="widget-body p-12 d-flex flex-wrap">{children}</div>;
 };
 
-export default function Widget({ children }: { children: ReactNode }) {
+const  Widget = ({ children }: { children: ReactNode }) => {
   return <div className="widget">{children}</div>;
 }
 
@@ -38,3 +38,5 @@ Widget.Body = Body;
 Widget.Footer = Footer;
 
 Widget.displayName = "Widget";
+
+export default Widget;

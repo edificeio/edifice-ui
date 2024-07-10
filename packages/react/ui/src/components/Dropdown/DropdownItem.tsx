@@ -22,10 +22,6 @@ export interface DropdownItemProps {
    * Action on click
    */
   onClick?: (event: React.MouseEvent) => void;
-  /**
-   * Additional class name
-   */
-  className?: string;
 }
 
 const DropdownItem = ({
@@ -33,7 +29,6 @@ const DropdownItem = ({
   icon,
   onClick,
   children,
-  className,
   ...restProps
 }: DropdownItemProps) => {
   const { itemProps, itemRefs, isFocused } = useDropdownContext();
@@ -45,19 +40,14 @@ const DropdownItem = ({
 
     if (type === "action") {
       onMenuItemClick();
-      event.stopPropagation();
     }
   };
 
   const id = useId();
 
-  const dropdownItem = clsx(
-    "dropdown-item",
-    {
-      focus: isFocused === id,
-    },
-    className,
-  );
+  const dropdownItem = clsx("dropdown-item", {
+    focus: isFocused === id,
+  });
 
   return (
     <div

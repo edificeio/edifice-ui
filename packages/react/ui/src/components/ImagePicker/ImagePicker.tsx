@@ -4,20 +4,20 @@ import {
   Ref,
   useEffect,
   useState,
-} from "react";
+} from 'react';
 
-import { Delete, Edit } from "@edifice-ui/icons";
-import clsx from "clsx";
-import { IWebApp } from "edifice-ts-client";
+import { Delete, Edit } from '@edifice-ui/icons';
+import clsx from 'clsx';
+import { IWebApp } from 'edifice-ts-client';
 
-import { useDropzone } from "../../hooks";
-import { AppIcon } from "../AppIcon";
-import { Avatar } from "../Avatar";
-import { IconButton } from "../Button";
-import { FormControl } from "../Form";
-import { Input } from "../Input";
+import { useDropzone } from '../../hooks';
+import { AppIcon } from '../AppIcon';
+import { Avatar } from '../Avatar';
+import { IconButton } from '../Button';
+import { FormControl } from '../Form';
+import { Input } from '../Input';
 
-export interface ImagePickerProps extends ComponentPropsWithRef<"input"> {
+export interface ImagePickerProps extends ComponentPropsWithRef<'input'> {
   /**
    * Description of the ImagePicker label.
    */
@@ -58,17 +58,17 @@ const ImagePicker = forwardRef(
   (
     {
       label,
-      addButtonLabel = "Add image",
-      deleteButtonLabel = "Delete image",
+      addButtonLabel = 'Add image',
+      deleteButtonLabel = 'Delete image',
       src,
       className,
       app,
       onUploadImage,
       onDeleteImage,
     }: ImagePickerProps,
-    ref: Ref<HTMLInputElement>,
+    ref: Ref<HTMLInputElement>
   ) => {
-    const [preview, setPreview] = useState<string>(src || "");
+    const [preview, setPreview] = useState<string>(src || '');
 
     const {
       inputRef,
@@ -83,7 +83,7 @@ const ImagePicker = forwardRef(
     useEffect(() => {
       if (files.length > 0) {
         deleteFile(files[0]);
-        setPreview("");
+        setPreview('');
 
         const file = files?.[0];
         if (!file) return;
@@ -100,15 +100,15 @@ const ImagePicker = forwardRef(
 
     const handleClean = () => {
       if (inputRef.current) {
-        inputRef.current.value = "";
+        inputRef.current.value = '';
       }
 
       deleteFile(files[0]);
-      setPreview("");
+      setPreview('');
       onDeleteImage();
     };
 
-    const classes = clsx("image-input", className);
+    const classes = clsx('image-input', className);
 
     return (
       <FormControl
@@ -157,9 +157,9 @@ const ImagePicker = forwardRef(
         </FormControl.Label>
       </FormControl>
     );
-  },
+  }
 );
 
-ImagePicker.displayName = "ImagePicker";
+ImagePicker.displayName = 'ImagePicker';
 
 export default ImagePicker;

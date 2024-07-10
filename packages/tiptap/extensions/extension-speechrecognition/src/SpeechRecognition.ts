@@ -1,10 +1,11 @@
-import { Node } from "@tiptap/core";
+// @ts-nocheck
+import { Node } from '@tiptap/core';
 
 export interface SpeechRecognitionOptions {
   lang: string;
 }
 
-declare module "@tiptap/core" {
+declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     SpeechRecognition: {
       startSpeechRecognition: () => ReturnType;
@@ -19,7 +20,7 @@ class SR_Node<O = any, S = any> extends Node<O, S> {
     super();
   }
 
-  recognition: SpeechRecognition | undefined;
+  recognition: typeof SpeechRecognition | undefined;
   readonly isStarted: boolean = false;
 
   static create<O = any, S = any>(config?: any) {
@@ -28,20 +29,20 @@ class SR_Node<O = any, S = any> extends Node<O, S> {
 }
 
 export const SpeechRecognition = SR_Node.create<SpeechRecognitionOptions>({
-  name: "SpeechRecognition",
+  name: 'SpeechRecognition',
 
   addOptions() {
     return {
-      lang: "fr-FR",
+      lang: 'fr-FR',
     };
   },
 
   onCreate() {
     if (
-      !("SpeechRecognition" in window || "webkitSpeechRecognition" in window)
+      !('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)
     ) {
       console.warn(
-        '"@edifice-tiptap-extensions/extension-speechrecognition" requires a browser supporting the SpeechRecognition API".',
+        '"@edifice-tiptap-extensions/extension-speechrecognition" requires a browser supporting the SpeechRecognition API".'
       );
     }
   },
@@ -66,7 +67,7 @@ export const SpeechRecognition = SR_Node.create<SpeechRecognitionOptions>({
           let { from, to } = this.editor.state.selection;
 
           this.recognition.onresult = (event: SpeechRecognitionEvent) => {
-            let currentResult = "";
+            let currentResult = '';
 
             // Add to the currentResult variable the content of the last recognized sentence
             for (let i = event.resultIndex; i < event.results.length; i++) {
@@ -81,7 +82,7 @@ export const SpeechRecognition = SR_Node.create<SpeechRecognitionOptions>({
             this.editor.commands.insertContentAt(
               from,
               isFinal ? currentResult : `<code>${currentResult}</code>`,
-              { updateSelection: !isFinal },
+              { updateSelection: !isFinal }
             );
             to = this.editor.state.selection.to;
 
@@ -94,7 +95,7 @@ export const SpeechRecognition = SR_Node.create<SpeechRecognitionOptions>({
           this.recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
             // TODO create a "feedback" tiptap extension, to display user friendly error messages ?
             console.log(
-              `[@edifice-tiptap-extensions/extension-speechrecognition][error][${event.error}]: ${event.message}`,
+              `[@edifice-tiptap-extensions/extension-speechrecognition][error][${event.error}]: ${event.message}`
             );
           };
 

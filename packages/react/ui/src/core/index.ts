@@ -1,6 +1,5 @@
 export * from "./OdeClientProvider";
 export * from "./ThemeProvider";
-export * from "./useAvatar";
 export * from "./useBookmark";
 export * from "./useConf";
 export * from "./useConversation";

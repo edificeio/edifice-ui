@@ -5,18 +5,18 @@ import {
   lazy,
   useId,
   useImperativeHandle,
-} from "react";
+} from 'react';
 
-import "@edifice-tiptap-extensions/extension-image";
-import { LoadingScreen, MediaLibrary, useOdeClient } from "@edifice-ui/react";
+import '@edifice-tiptap-extensions/extension-image';
+import { LoadingScreen, MediaLibrary, useOdeClient } from '@edifice-ui/react';
 import {
   Content,
   EditorContent,
   FocusPosition,
   JSONContent,
-} from "@tiptap/react";
-import clsx from "clsx";
-import { WorkspaceVisibility } from "edifice-ts-client";
+} from '@tiptap/react';
+import clsx from 'clsx';
+import { WorkspaceVisibility } from 'edifice-ts-client';
 
 import {
   BubbleMenuEditImage,
@@ -30,16 +30,16 @@ import {
   useMediaLibraryModal,
   useSpeechSynthetisis,
   useTipTapEditor,
-} from "../..";
-import { useMathsStyles } from "../../hooks/useMathsStyles";
+} from '../..';
+import { useMathsStyles } from '../../hooks/useMathsStyles';
 
-const MathsModal = lazy(async () => await import("./MathsModal"));
-const ImageEditor = lazy(async () => await import("./ImageEditor"));
+const MathsModal = lazy(async () => await import('./MathsModal'));
+const ImageEditor = lazy(async () => await import('./ImageEditor'));
 
 export interface EditorRef {
   /** Get the current content. */
   getContent: (
-    as: "html" | "json" | "plain",
+    as: 'html' | 'json' | 'plain'
   ) => undefined | string | JSONContent;
 
   /** Get speech synthetisis current state */
@@ -64,11 +64,11 @@ export interface EditorProps {
    * Switching to `edit` mode will also render the toolbar
    * (unless `toolbar` property is `none`).
    */
-  mode?: "edit" | "read" /* | "preview" */;
+  mode?: 'edit' | 'read' /* | "preview" */;
   /** Toolbar to display in `edit` mode. */
-  toolbar?: "full" | "none";
+  toolbar?: 'full' | 'none';
   /** Display with or without a border */
-  variant?: "outline" | "ghost";
+  variant?: 'outline' | 'ghost';
   /** Set focus position to the editor */
   focus?: FocusPosition;
   /** Editor placeholder content */
@@ -85,30 +85,30 @@ const Editor = forwardRef(
     {
       id,
       content,
-      mode = "read",
-      toolbar = "full",
-      variant = "outline",
-      focus = "start",
-      placeholder = "",
-      visibility = "protected",
+      mode = 'read',
+      toolbar = 'full',
+      variant = 'outline',
+      focus = 'start',
+      placeholder = '',
+      visibility = 'protected',
       onContentChange,
     }: EditorProps,
-    ref: Ref<EditorRef>,
+    ref: Ref<EditorRef>
   ) => {
     const editorId = useId();
     const { appCode } = useOdeClient();
     const { editor, editable } = useTipTapEditor(
-      mode === "edit",
+      mode === 'edit',
       content,
       focus,
       placeholder,
-      onContentChange,
+      onContentChange
     );
     const { ref: mediaLibraryModalRef, ...mediaLibraryModalHandlers } =
       useMediaLibraryModal(editor);
     const { toggle: toggleMathsModal, ...mathsModalHandlers } =
       useMathsModal(editor);
-    const imageModal = useImageModal(editor, "media-library", visibility);
+    const imageModal = useImageModal(editor, 'media-library', visibility);
     const linkToolbarHandlers = useLinkToolbar(editor, mediaLibraryModalRef);
     const speechSynthetisis = useSpeechSynthetisis(editor);
 
@@ -116,16 +116,16 @@ const Editor = forwardRef(
 
     //----- Editor API
     useImperativeHandle(ref, () => ({
-      getContent: (as: "html" | "json" | "plain") => {
+      getContent: (as: 'html' | 'json' | 'plain') => {
         switch (as) {
-          case "html":
+          case 'html':
             return editor?.getHTML();
-          case "json":
+          case 'json':
             return editor?.getJSON();
-          case "plain":
+          case 'plain':
             return editor?.getText();
           default:
-            throw `[Editor] Unknown content format ${as}`;
+            throw new Error(`[Editor] Unknown content format ${as}`);
         }
       },
       toogleSpeechSynthetisis: speechSynthetisis.toggle,
@@ -134,8 +134,8 @@ const Editor = forwardRef(
 
     if (!editor) return null;
 
-    const borderClass = clsx(variant === "outline" && "border rounded-3");
-    const contentClass = clsx(variant === "outline" && "py-12 px-16");
+    const borderClass = clsx(variant === 'outline' && 'border rounded-3');
+    const contentClass = clsx(variant === 'outline' && 'py-12 px-16');
 
     return (
       <EditorContext.Provider
@@ -147,7 +147,7 @@ const Editor = forwardRef(
         }}
       >
         <div className={borderClass}>
-          {toolbar !== "none" && editable && (
+          {toolbar !== 'none' && editable && (
             <EditorToolbar
               {...{
                 mediaLibraryRef: mediaLibraryModalRef,
@@ -204,7 +204,7 @@ const Editor = forwardRef(
         </Suspense>
       </EditorContext.Provider>
     );
-  },
+  }
 );
 
 export default Editor;

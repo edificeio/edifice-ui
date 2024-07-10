@@ -1,12 +1,12 @@
-import { ReactNode, useMemo } from "react";
+import { ReactNode, useMemo } from 'react';
 
-import clsx from "clsx";
+import clsx from 'clsx';
 
-import { DropzoneContext } from "./DropzoneContext";
-import DropzoneDrag from "./DropzoneDrag";
-import DropzoneFile from "./DropzoneFile";
-import DropzoneImport from "./DropzoneImport";
-import { useDropzone } from "../../hooks";
+import { DropzoneContext } from './DropzoneContext';
+import DropzoneDrag from './DropzoneDrag';
+import DropzoneFile from './DropzoneFile';
+import DropzoneImport from './DropzoneImport';
+import { useDropzone } from '../../hooks';
 
 interface DropzoneProps {
   className?: string;
@@ -38,12 +38,12 @@ const Dropzone = ({
   } = useDropzone(accept ? { forceFilters: true } : undefined);
 
   const classes = clsx(
-    "dropzone",
+    'dropzone',
     {
-      "is-dragging": !multiple ? files.length < 1 && dragging : dragging,
-      "is-drop-files": files.length !== 0 && !handle ? false : true,
+      'is-dragging': !multiple ? files.length < 1 && dragging : dragging,
+      'is-drop-files': files.length !== 0 && !handle ? false : true,
     },
-    className,
+    className
   );
 
   const value = useMemo(
@@ -54,7 +54,7 @@ const Dropzone = ({
       deleteFile,
       replaceFileAt,
     }),
-    [addFile, deleteFile, replaceFileAt, files, inputRef],
+    [addFile, deleteFile, replaceFileAt, files, inputRef]
   );
 
   return (
@@ -77,7 +77,7 @@ const Dropzone = ({
         </div>
         <input
           ref={inputRef}
-          accept={accept?.join(",")}
+          accept={accept?.join(',')}
           multiple={multiple}
           type="file"
           name="attachment-input"
@@ -94,6 +94,6 @@ Dropzone.File = DropzoneFile;
 Dropzone.Import = DropzoneImport;
 Dropzone.Drag = DropzoneDrag;
 
-Dropzone.displayName = "Dropzone";
+Dropzone.displayName = 'Dropzone';
 
 export default Dropzone;

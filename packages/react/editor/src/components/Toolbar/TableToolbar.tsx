@@ -1,18 +1,18 @@
-import { RefAttributes, useEffect, useMemo, useState } from "react";
+import { RefAttributes, useEffect, useMemo, useState } from 'react';
 
-import { MergeCells, SplitCells } from "@edifice-ui/icons";
-import { IconButtonProps, Toolbar } from "@edifice-ui/react";
+import { MergeCells, SplitCells } from '@edifice-ui/icons';
+import { IconButtonProps, Toolbar } from '@edifice-ui/react';
 import {
+  Editor,
   FloatingMenu,
   FloatingMenuProps,
-  Editor,
   findParentNodeClosestToPos,
-} from "@tiptap/react";
-import { useTranslation } from "react-i18next";
+} from '@tiptap/react';
+import { useTranslation } from 'react-i18next';
 
-import { TableToolbarAddMenu } from "./TableToolbar.AddMenu";
-import { TableToolbarCellColor } from "./TableToolbar.CellColor";
-import { TableToolbarDelMenu } from "./TableToolbar.DelMenu";
+import { TableToolbarAddMenu } from './TableToolbar.AddMenu';
+import { TableToolbarCellColor } from './TableToolbar.CellColor';
+import { TableToolbarDelMenu } from './TableToolbar.DelMenu';
 
 interface TableToolbarProps {
   /**
@@ -28,7 +28,7 @@ const TableToolbar = ({ editor }: TableToolbarProps) => {
   const [isSpan, setSpan] = useState<boolean | undefined>(undefined);
 
   // Options need some computing
-  const tippyOptions: FloatingMenuProps["tippyOptions"] = useMemo(() => {
+  const tippyOptions: FloatingMenuProps['tippyOptions'] = useMemo(() => {
     // Adjust a DOMRect to make it visible at a correct place.
     function adjustRect(rect: DOMRect) {
       let yOffset = 0;
@@ -43,16 +43,16 @@ const TableToolbar = ({ editor }: TableToolbarProps) => {
     }
 
     return {
-      placement: "bottom",
+      placement: 'bottom',
       offset: [0, 0],
       zIndex: 999,
       // popperOptions: {modifiers: [ /*see popper v2 modifiers*/ ]},
       // Try to get the bounding rect of the table.
       getReferenceClientRect: () => {
-        const parentDiv = editor?.isActive("table")
+        const parentDiv = editor?.isActive('table')
           ? findParentNodeClosestToPos(
               editor.state.selection.$anchor,
-              (node) => node.type.name === "table",
+              (node) => node.type.name === 'table'
             )
           : null;
 
@@ -63,7 +63,7 @@ const TableToolbar = ({ editor }: TableToolbarProps) => {
             | undefined;
 
           const tableDomNode =
-            parentDomNode?.querySelector("table") || parentDomNode;
+            parentDomNode?.querySelector('table') || parentDomNode;
           if (tableDomNode) {
             return adjustRect(tableDomNode.getBoundingClientRect());
           }
@@ -76,14 +76,14 @@ const TableToolbar = ({ editor }: TableToolbarProps) => {
   }, [editor]);
 
   useEffect(() => {
-    const cellAttr = editor?.getAttributes("tableCell");
-    const headAttr = editor?.getAttributes("tableHeader");
-    if (typeof cellAttr !== "undefined" || typeof headAttr !== "undefined") {
+    const cellAttr = editor?.getAttributes('tableCell');
+    const headAttr = editor?.getAttributes('tableHeader');
+    if (typeof cellAttr !== 'undefined' || typeof headAttr !== 'undefined') {
       const newSpan =
-        cellAttr?.["colspan"] > 1 ||
-        cellAttr?.["rowspan"] > 1 ||
-        headAttr?.["colspan"] > 1 ||
-        headAttr?.["rowspan"] > 1;
+        cellAttr?.['colspan'] > 1 ||
+        cellAttr?.['rowspan'] > 1 ||
+        headAttr?.['colspan'] > 1 ||
+        headAttr?.['rowspan'] > 1;
       newSpan !== isSpan && setSpan(newSpan);
     } else {
       isSpan && setSpan(undefined);
@@ -91,80 +91,75 @@ const TableToolbar = ({ editor }: TableToolbarProps) => {
   }, [editor, editor?.state, isSpan]);
 
   const handleShouldShow = () =>
-    (editor?.isEditable && editor.isActive("table")) || false;
+    (editor?.isEditable && editor.isActive('table')) || false;
 
   return (
-    <>
-      {editor && (
-        <FloatingMenu
-          editor={editor}
-          tippyOptions={tippyOptions}
-          shouldShow={handleShouldShow}
-        >
-          <Toolbar
-            className="p-4"
-            items={[
-              {
-                type: "dropdown",
-                name: "bkg-col",
-                // isEnable:
-                //   typeof editor?.getAttributes("tableCell") !== "undefined",
-                props: {
-                  children: (
-                    triggerProps: JSX.IntrinsicAttributes &
-                      Omit<IconButtonProps, "ref"> &
-                      RefAttributes<HTMLButtonElement>,
-                    itemRefs,
-                  ) => (
-                    <TableToolbarCellColor
-                      editor={editor}
-                      itemRefs={itemRefs}
-                    />
-                  ),
-                },
+    editor && (
+      <FloatingMenu
+        editor={editor}
+        tippyOptions={tippyOptions}
+        shouldShow={handleShouldShow}
+      >
+        <Toolbar
+          className="p-4"
+          items={[
+            {
+              type: 'dropdown',
+              name: 'bkg-col',
+              // isEnable:
+              //   typeof editor?.getAttributes("tableCell") !== "undefined",
+              props: {
+                children: (
+                  triggerProps: JSX.IntrinsicAttributes &
+                    Omit<IconButtonProps, 'ref'> &
+                    RefAttributes<HTMLButtonElement>,
+                  itemRefs
+                ) => (
+                  <TableToolbarCellColor editor={editor} itemRefs={itemRefs} />
+                ),
               },
-              {
-                type: "icon",
-                name: "mergeorsplit",
-                // isEnable: typeof isSpan !== "undefined",
-                props: {
-                  icon: isSpan ? <SplitCells /> : <MergeCells />,
-                  "aria-label": isSpan
-                    ? t("tiptap.table.toolbar.split")
-                    : t("tiptap.table.toolbar.merge"),
-                  onClick: () => editor?.chain().focus().mergeOrSplit().run(),
-                },
-                tooltip: isSpan
-                  ? t("tiptap.table.toolbar.split")
-                  : t("tiptap.table.toolbar.merge"),
+            },
+            {
+              type: 'icon',
+              name: 'mergeorsplit',
+              // isEnable: typeof isSpan !== "undefined",
+              props: {
+                'icon': isSpan ? <SplitCells /> : <MergeCells />,
+                'aria-label': isSpan
+                  ? t('tiptap.table.toolbar.split')
+                  : t('tiptap.table.toolbar.merge'),
+                'onClick': () => editor?.chain().focus().mergeOrSplit().run(),
               },
-              {
-                type: "divider",
-                name: "add-d0",
+              tooltip: isSpan
+                ? t('tiptap.table.toolbar.split')
+                : t('tiptap.table.toolbar.merge'),
+            },
+            {
+              type: 'divider',
+              name: 'add-d0',
+            },
+            {
+              type: 'dropdown',
+              name: 'add',
+              props: {
+                children: () => <TableToolbarAddMenu editor={editor} />,
               },
-              {
-                type: "dropdown",
-                name: "add",
-                props: {
-                  children: () => <TableToolbarAddMenu editor={editor} />,
-                },
+            },
+            {
+              type: 'divider',
+              name: 'add-d1',
+            },
+            {
+              type: 'dropdown',
+              name: 'del',
+              props: {
+                children: () => <TableToolbarDelMenu editor={editor} />,
               },
-              {
-                type: "divider",
-                name: "add-d1",
-              },
-              {
-                type: "dropdown",
-                name: "del",
-                props: {
-                  children: () => <TableToolbarDelMenu editor={editor} />,
-                },
-              },
-            ]}
-          />
-        </FloatingMenu>
-      )}
-    </>
+            },
+          ]}
+        />
+      </FloatingMenu>
+    )
   );
 };
 

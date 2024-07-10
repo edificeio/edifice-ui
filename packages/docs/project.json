@@ -1,0 +1,22 @@
+{
+    "name": "docs",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "packages/docs/src",
+    "projectType": "library",
+    "tags": [],
+    "// targets": "to see all targets run: nx show project docs --web",
+    "targets": {
+        "storybook": {
+            "executor": "@nx/storybook:storybook",
+            "options": {
+                "port": 4400,
+                "configDir": "packages/docs/.storybook"
+            },
+            "configurations": {
+                "ci": {
+                    "quiet": true
+                }
+            }
+        }
+    }
+}

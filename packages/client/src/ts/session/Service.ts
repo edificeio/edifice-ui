@@ -1,4 +1,5 @@
-import { App, ERROR_CODE } from "../globals";
+// @ts-nocheck
+import { App, ERROR_CODE } from '../globals';
 import {
   IGetSession,
   IQuotaAndUsage,
@@ -6,9 +7,9 @@ import {
   IUserInfo,
   IWebApp,
   UserProfile,
-} from "./interfaces";
+} from './interfaces';
 
-import { IOdeServices } from "../services/OdeServices";
+import { IOdeServices } from '../services/OdeServices';
 
 export class SessionService {
   constructor(private context: IOdeServices) {}
@@ -65,21 +66,21 @@ export class SessionService {
     email: string,
     password: string,
     rememberMe?: boolean,
-    secureLocation?: boolean,
+    secureLocation?: boolean
   ): Promise<void> {
     const data = new FormData();
-    data.append("email", email);
-    data.append("password", password);
-    if (typeof rememberMe !== "undefined") {
-      data.append("rememberMe", "" + rememberMe);
+    data.append('email', email);
+    data.append('password', password);
+    if (typeof rememberMe !== 'undefined') {
+      data.append('rememberMe', '' + rememberMe);
     }
-    if (typeof secureLocation !== "undefined") {
-      data.append("secureLocation", "" + secureLocation);
+    if (typeof secureLocation !== 'undefined') {
+      data.append('secureLocation', '' + secureLocation);
     }
 
     return this.http
-      .post<void>("/auth/login", data, {
-        headers: { "content-type": "application/x-www-form-urlencoded" },
+      .post<void>('/auth/login', data, {
+        headers: { 'content-type': 'application/x-www-form-urlencoded' },
       })
       .finally(() => {
         switch (this.http.latestResponse.status) {
@@ -93,20 +94,20 @@ export class SessionService {
   }
 
   logout(): Promise<void> {
-    return this.http.get<void>("/auth/logout").finally(() => {
+    return this.http.get<void>('/auth/logout').finally(() => {
       // void, always successful
     });
   }
 
   async latestQuotaAndUsage(
-    user: IUserInfo | undefined,
+    user: IUserInfo | undefined
   ): Promise<IQuotaAndUsage> {
     const defaultQuota = { quota: 0, storage: 0 };
     if (!user) return defaultQuota;
 
     try {
       const infos = await this.http.get<IQuotaAndUsage>(
-        `/workspace/quota/user/${user?.userId}`,
+        `/workspace/quota/user/${user?.userId}`
       );
       return infos;
     } catch (error) {
@@ -116,7 +117,7 @@ export class SessionService {
   }
 
   async getCurrentLanguage(
-    user: IUserInfo | undefined,
+    user: IUserInfo | undefined
   ): Promise<string | undefined> {
     const isUserSignin = user?.sessionMetadata && user?.sessionMetadata.userId;
 
@@ -138,9 +139,9 @@ export class SessionService {
     try {
       // don't cache preference it could change
       const response = await this.http.get<{ preference: any }>(
-        "/userbook/preference/language",
+        '/userbook/preference/language'
       );
-      return JSON.parse(response.preference)["default-domain"];
+      return JSON.parse(response.preference)['default-domain'];
     } catch (error) {
       const response = await this.loadDefaultLanguage();
       return response;
@@ -150,7 +151,7 @@ export class SessionService {
   private async loadDefaultLanguage(): Promise<string> {
     // locale does not change until onLogout
     const response = await this.cache.httpGetJson<{ locale: string }>(
-      "/locale",
+      '/locale'
     );
     return response.locale;
   }
@@ -158,19 +159,17 @@ export class SessionService {
   public async getUser(): Promise<IUserInfo | undefined> {
     // session does not change until onLogout
     const { response, value } = await this.cache.httpGet<IUserInfo>(
-      "/auth/oauth2/userinfo",
+      '/auth/oauth2/userinfo'
     );
-    if (
-      !(response.status < 200 || response.status >= 300) &&
-      typeof value === "object"
-    ) {
-      return value;
-    } else {
-      // Utilisateur non-connecté.
-      // /!\ WARNING /!\ ne pas modifier ce `throw` sous peine de casser
-      // la redirection auto vers la page d'accueil, depuis une application React.
-      throw ERROR_CODE.NOT_LOGGED_IN;
+    if (response.status < 200 || response.status >= 300) {
+      // Backend tries to redirect the user => not logged in !
+      return;
     }
+    if (typeof value === 'string') {
+      // This is not a JSON object => not logged in !
+      return;
+    }
+    return value;
   }
 
   hasWorkflow({
@@ -189,20 +188,20 @@ export class SessionService {
   }
 
   private async loadDescription(
-    user: IUserInfo | undefined,
+    user: IUserInfo | undefined
   ): Promise<Partial<IUserDescription>> {
     if (!user) return {};
 
     try {
       const [data, userbook] = await Promise.all([
         // FIXME The full user's description should be obtainable from a single endpoint in the backend.
-        this.getUserProfile({
-          requestName: "refreshAvatar",
-        }),
-        this.http.get<IUserDescription>("/directory/userbook/" + user?.userId),
-      ]);
 
-      return { ...userbook, profiles: data };
+        this.getUserProfile({
+          requestName: 'refreshAvatar',
+        }),
+        this.http.get<IUserDescription>('/directory/userbook/' + user?.userId),
+      ]);
+      return { ...data, ...userbook };
     } catch (error) {
       console.error(error);
       return {};
@@ -213,7 +212,7 @@ export class SessionService {
     // Not logged-in users have no bookmarks.
     if (!user) return [];
 
-    const data = await this.http.get("/userbook/preference/apps");
+    const data = await this.http.get('/userbook/preference/apps');
 
     if (!data.preference) {
       data.preference = null;
@@ -237,7 +236,7 @@ export class SessionService {
     const bookmarkedApps: IWebApp[] = [];
     myApps.bookmarks.forEach((appName, index) => {
       const foundApp = (user?.apps || []).find(
-        (app: IWebApp) => app.name === appName,
+        (app: IWebApp) => app.name === appName
       );
       if (foundApp) {
         const app = Object.assign({}, foundApp);
@@ -250,18 +249,18 @@ export class SessionService {
 
   async getUserProfile(options?: any): Promise<UserProfile> {
     const { response, value } = await this.cache.httpGet<any>(
-      "/userbook/api/person",
-      options,
+      '/userbook/api/person',
+      options
     );
     if (
       response.status < 200 ||
       response.status >= 300 ||
-      typeof value === "string"
+      typeof value === 'string'
     ) {
       // Backend tries to redirect the user => not logged in !
-      return ["Guest"];
+      return ['Guest'];
     }
-    return value?.result?.[0]?.type || ["Guest"];
+    return value?.result?.[0]?.type || ['Guest'];
   }
 
   public async isAdml(): Promise<boolean> {
@@ -278,9 +277,9 @@ export class SessionService {
     const user = await this.getUser();
     return user?.apps.find((app) => {
       if (app?.prefix) {
-        return app?.prefix.replace("/", "") === application || false;
+        return app?.prefix.replace('/', '') === application || false;
       } else if (app?.address) {
-        return app.address?.split("/")[1] === application || false;
+        return app.address?.split('/')[1] === application || false;
       }
       return false;
     });

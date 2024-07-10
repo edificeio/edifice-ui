@@ -1,6 +1,6 @@
 {
   "name": "edifice-bootstrap",
-  "version": "1.5.12-develop-b2school.0",
+  "version": "0.0.1",
   "description": "Edifice CSS framework based on Bootstrap",
   "keywords": [
     "Bootstrap",
@@ -20,8 +20,7 @@
   "author": "Edifice",
   "main": "dist/index.css",
   "files": [
-    "dist",
-    "version.txt"
+    "dist"
   ],
   "scripts": {
     "compile": "sass --load-path=node_modules/ --style=compressed scss/index.scss dist/index.css",
@@ -34,7 +33,7 @@
     "generate-commit-version": "node scripts/version.cjs",
     "build": "rm -rf dist && cp -r assets dist && pnpm run compile",
     "watch": "sass --watch --load-path=node_modules/ --style=compressed scss/index.scss dist/index.css",
-    "watch:react": "sass --watch --style compressed --load-path=node_modules/ --no-source-map scss/index.scss ../../public/assets/themes/edifice-bootstrap/index.css",
+    "watch:react": "sass --watch --style compressed --load-path=node_modules/ --no-source-map scss/index.scss ../edifice-ui/public/assets/themes/edifice-bootstrap/index.css",
     "watch:sb": "sass --watch --style compressed --load-path=node_modules/ --no-source-map scss/index.scss ../ode-dev-server/assets/themes/edifice-bootstrap/index.css"
   },
   "dependencies": {

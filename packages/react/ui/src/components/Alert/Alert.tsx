@@ -9,34 +9,34 @@ import {
   useLayoutEffect,
   useRef,
   useState,
-} from "react";
+} from 'react';
 
 import {
   AlertCircle,
   Error,
   InfoCircle,
   SuccessOutline,
-} from "@edifice-ui/icons";
-import clsx from "clsx";
-import { useTranslation } from "react-i18next";
+} from '@edifice-ui/icons';
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
-import { Button } from "../Button";
+import { Button } from '../Button';
 
 export interface AlertRef {
   show: () => void;
   hide: () => void;
 }
 
-export type AlertTypes = "success" | "warning" | "info" | "danger";
+export type AlertTypes = 'success' | 'warning' | 'info' | 'danger';
 
 export type AlertPosition =
-  | "none"
-  | "top-left"
-  | "top-right"
-  | "bottom-left"
-  | "bottom-right";
+  | 'none'
+  | 'top-left'
+  | 'top-right'
+  | 'bottom-left'
+  | 'bottom-right';
 
-export interface AlertProps extends ComponentPropsWithRef<"div"> {
+export interface AlertProps extends ComponentPropsWithRef<'div'> {
   /**
    * Type of alert
    */
@@ -102,20 +102,20 @@ export interface AlertProps extends ComponentPropsWithRef<"div"> {
 const Alert = forwardRef(
   (
     {
-      type = "success",
-      className = "",
+      type = 'success',
+      className = '',
       children,
       button,
       isDismissible = false,
       isToast = false,
       isConfirm = false,
-      position = "none",
+      position = 'none',
       autoClose = false,
       autoCloseDelay = 3000,
       onClose,
       onVisibilityChange,
     }: AlertProps,
-    ref: Ref<AlertRef>,
+    ref: Ref<AlertRef>
   ) => {
     const [isVisible, setVisibleStatus] = useState<boolean>(true);
 
@@ -159,70 +159,65 @@ const Alert = forwardRef(
     // Here we are mapping alert type with icon Component and bootstrap class
     // https://getbootstrap.com/docs/5.2/components/alerts/
     const mapping = {
-      success: { icon: <SuccessOutline />, classModifier: "alert-success" },
-      warning: { icon: <AlertCircle />, classModifier: "alert-warning" },
-      info: { icon: <InfoCircle />, classModifier: "alert-info" },
-      danger: { icon: <Error />, classModifier: "alert-danger" },
+      success: { icon: <SuccessOutline />, classModifier: 'alert-success' },
+      warning: { icon: <AlertCircle />, classModifier: 'alert-warning' },
+      info: { icon: <InfoCircle />, classModifier: 'alert-info' },
+      danger: { icon: <Error />, classModifier: 'alert-danger' },
     };
 
     // Create className Attribute from component parameters
     const toastClasses = {
-      "is-dismissible": isDismissible,
-      "is-toast ": isToast,
+      'is-dismissible': isDismissible,
+      'is-toast ': isToast,
     };
     // class for Confirm box style
     const confirmClasses = {
-      "is-confirm": isConfirm,
+      'is-confirm': isConfirm,
     };
 
     const divContainerClasses = clsx(
-      "alert gap-12",
+      'alert gap-12',
       mapping[type].classModifier,
       toastClasses,
       confirmClasses,
       position,
-      className,
+      className
     );
 
-    return (
-      <>
-        {isVisible ? (
-          <div ref={refAlert} className={divContainerClasses} role="alert">
-            {!isConfirm && mapping[type].icon}
-            <div className="alert-content small">{children}</div>
-            {button && (
-              <div className="ms-12">
-                {button}{" "}
-                {isConfirm && <Button onClick={hide}>{t("close")}</Button>}
-              </div>
-            )}
-            {(isDismissible || isConfirm) && (
-              <div className="btn-close-container">
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="alert"
-                  aria-label={t("close")}
-                  onClick={hide}
-                ></button>
-              </div>
-            )}
-            {/* Waiting animation library */}
-            {autoClose && (
-              <div
-                className="alert-progress"
-                style={{
-                  transform: `scaleX(0)`,
-                }}
-              ></div>
-            )}
+    return isVisible ? (
+      <div ref={refAlert} className={divContainerClasses} role="alert">
+        {!isConfirm && mapping[type].icon}
+        <div className="alert-content small">{children}</div>
+        {button && (
+          <div className="ms-12">
+            {button} {isConfirm && <Button onClick={hide}>{t('close')}</Button>}
           </div>
-        ) : null}
-      </>
-    );
-  },
+        )}
+        {(isDismissible || isConfirm) && (
+          <div className="btn-close-container">
+            <button
+              type="button"
+              className="btn-close"
+              data-bs-dismiss="alert"
+              aria-label={t('close')}
+              onClick={hide}
+            ></button>
+          </div>
+        )}
+        {/* Waiting animation library */}
+        {autoClose && (
+          <div
+            className="alert-progress"
+            style={{
+              transform: `scaleX(0)`,
+            }}
+          ></div>
+        )}
+      </div>
+    ) : null;
+  }
 );
 
-Alert.displayName = "Alert";
+Alert.displayName = 'Alert';
 
 export default Alert;

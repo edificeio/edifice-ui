@@ -1,15 +1,15 @@
-import { StoryObj } from "@storybook/react";
+import { StoryObj } from '@storybook/react';
 
-import { IconButton } from "../Button";
-import Attachment, { AttachmentProps } from "./Attachment";
-import { Delete, Download } from "@edifice-ui/icons";
-import { Grid } from "../Grid";
+import { IconButton } from '../Button';
+import Attachment, { AttachmentProps } from './Attachment';
+import { Delete, Download } from '@edifice-ui/icons';
+import { Grid } from '../Grid';
 
 const meta = {
-  title: "Components/Attachment",
+  title: 'Components/Attachment',
   component: Attachment,
   args: {
-    name: "Lorem ipsum",
+    name: 'Lorem ipsum',
   },
 };
 
@@ -78,15 +78,13 @@ export const VisualisationMode: Story = {
       <Attachment
         name="Attachment Name"
         options={
-          <>
-            <IconButton
-              aria-label="Add User"
-              color="tertiary"
-              type="button"
-              icon={<Download />}
-              variant="ghost"
-            />
-          </>
+          <IconButton
+            aria-label="Add User"
+            color="tertiary"
+            type="button"
+            icon={<Download />}
+            variant="ghost"
+          />
         }
       />
     );
@@ -153,9 +151,9 @@ export const BlocAttachment: Story = {
     return (
       <div
         style={{
-          backgroundColor: "#F2F2F2",
-          borderRadius: "8px",
-          padding: "12px",
+          backgroundColor: '#F2F2F2',
+          borderRadius: '8px',
+          padding: '12px',
         }}
       >
         <p className="m-12">Pièce.s jointe.s</p>

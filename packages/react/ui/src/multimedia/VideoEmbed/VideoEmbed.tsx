@@ -1,8 +1,8 @@
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useState } from 'react';
 
-import { ArrowRight, Globe } from "@edifice-ui/icons";
-import { Embedder, odeServices } from "edifice-ts-client";
-import { useTranslation } from "react-i18next";
+import { ArrowRight, Globe } from '@edifice-ui/icons';
+import { Embedder, odeServices } from 'edifice-ts-client';
+import { useTranslation } from 'react-i18next';
 
 import {
   Button,
@@ -10,10 +10,10 @@ import {
   FormControl,
   Image,
   Input,
-} from "../../components";
-import { usePaths } from "../../core";
-import { useDebounce } from "../../hooks";
-import { useMediaLibraryContext } from "../MediaLibrary/MediaLibraryContext";
+} from '../../components';
+import { usePaths } from '../../core';
+import { useDebounce } from '../../hooks';
+import { useMediaLibraryContext } from '../MediaLibrary/MediaLibraryContext';
 
 export interface VideoEmbedProps {
   onSuccess: (resource?: string) => void;
@@ -27,7 +27,7 @@ const VideoEmbed = ({ onSuccess }: VideoEmbedProps) => {
   const [embedVideo, setEmbedVideo] = useState<string>();
   const [embedder, setEmbedder] = useState<Embedder | undefined>(undefined);
   const [whiteListProvider, setWhiteListProvider] = useState<Embedder[]>();
-  const debounceChangeUrl = useDebounce<string>(url || "", 300);
+  const debounceChangeUrl = useDebounce<string>(url || '', 300);
   const formControlId = useId();
 
   const [imagePath] = usePaths();
@@ -71,7 +71,7 @@ const VideoEmbed = ({ onSuccess }: VideoEmbedProps) => {
   }
 
   function handleSwitchToEmbedderClick() {
-    switchType("embedder");
+    switchType('embedder');
   }
 
   const renderContent = () => {
@@ -82,7 +82,7 @@ const VideoEmbed = ({ onSuccess }: VideoEmbedProps) => {
             <div className="video-embed-provider d-flex align-items-center">
               <Image
                 src={embedder.logo}
-                alt={"Logo " + embedder.displayName}
+                alt={'Logo ' + embedder.displayName}
                 className="video-embed-provider-logo"
               ></Image>
               {embedder.displayName}
@@ -102,8 +102,8 @@ const VideoEmbed = ({ onSuccess }: VideoEmbedProps) => {
           <div className="d-flex flex-column align-items-center m-16">
             <EmptyScreen
               imageSrc={`${imagePath}/emptyscreen/illu-error.svg`}
-              title={t("bbm.video.previewError.title")}
-              text={t("bbm.video.previewError.text")}
+              title={t('bbm.video.previewError.title')}
+              text={t('bbm.video.previewError.text')}
             />
             <Button
               variant="ghost"
@@ -111,7 +111,7 @@ const VideoEmbed = ({ onSuccess }: VideoEmbedProps) => {
               onClick={handleSwitchToEmbedderClick}
               className="align-items-start mt-16"
             >
-              {t("bbm.video.useEmbedCode")} <ArrowRight />
+              {t('bbm.video.useEmbedCode')} <ArrowRight />
             </Button>
           </div>
         );
@@ -125,7 +125,7 @@ const VideoEmbed = ({ onSuccess }: VideoEmbedProps) => {
             onClick={handleSwitchToEmbedderClick}
             className="align-items-start"
           >
-            {t("bbm.video.useEmbedCode")} <ArrowRight />
+            {t('bbm.video.useEmbedCode')} <ArrowRight />
           </Button>
         </div>
       );
@@ -136,17 +136,17 @@ const VideoEmbed = ({ onSuccess }: VideoEmbedProps) => {
     <div className="d-flex flex-column flex-fill video-embed">
       <div className="mb-8 d-flex">
         <Globe className="me-8"></Globe>
-        {t("bbm.video.url.title")}
+        {t('bbm.video.url.title')}
       </div>
       <FormControl id={formControlId}>
         <Input
           size="md"
           type="text"
-          placeholder={t("bbm.video.url.placeholder")}
+          placeholder={t('bbm.video.url.placeholder')}
           onChange={handleUrlChange}
         />
       </FormControl>
-      <>{renderContent()}</>
+      {renderContent()}
     </div>
   );
 };

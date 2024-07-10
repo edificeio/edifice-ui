@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useMemo } from "react";
+import { ReactNode, useMemo } from "react";
 
 import { Placement } from "@floating-ui/react";
 import clsx from "clsx";
@@ -35,15 +35,6 @@ export interface DropdownProps {
   extraTriggerKeyDownHandler?: (
     event: React.KeyboardEvent<HTMLButtonElement>,
   ) => void;
-  /**
-   * Callback to get notified when dropdown `visible` state changes (opened/closed).
-   */
-  onToggle?: (visible: boolean) => void;
-
-  /**
-   * Whether the trigger is hovered or not.
-   */
-  isTriggerHovered?: boolean;
 }
 
 export type DropdownMenuOptions =
@@ -78,8 +69,6 @@ const Root = ({
   overflow = true,
   placement = "bottom-start",
   extraTriggerKeyDownHandler,
-  onToggle,
-  isTriggerHovered = false,
 }: DropdownProps) => {
   const {
     visible,
@@ -89,12 +78,10 @@ const Root = ({
     itemProps,
     itemRefs,
     setVisible,
-  } = useDropdown(placement, extraTriggerKeyDownHandler, isTriggerHovered);
+  } = useDropdown(placement, extraTriggerKeyDownHandler);
 
   /* Ref to close dropdown when clicking outside */
-  const ref = useClickOutside(() => {
-    setVisible(false);
-  });
+  const ref = useClickOutside(() => setVisible(false));
 
   const value = useMemo(
     () => ({
@@ -123,11 +110,6 @@ const Root = ({
     "w-100": block,
     overflow,
   });
-
-  useEffect(() => {
-    onToggle?.(visible);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible]);
 
   return (
     <DropdownContext.Provider value={value}>

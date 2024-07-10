@@ -1,27 +1,11 @@
-# extension-table-cell
+# tiptap-extension-table-cell
 
-![npm](https://img.shields.io/npm/v/@edifice-tiptap-extensions/extension-table-cell?style=flat-square)
-![bundlephobia](https://img.shields.io/bundlephobia/min/@edifice-tiptap-extensions/extension-table-cell?style=flat-square)
+This library was generated with [Nx](https://nx.dev).
 
-A Tiptap extension that extends TableCell.
-Adds background-color style.
+## Building
 
-## Installation
+Run `nx build tiptap-extension-table-cell` to build the library.
 
-With `npm`:
+## Running unit tests
 
-```bash
-npm install @edifice-tiptap-extensions/extension-table-cell
-```
-
-With `yarn`:
-
-```bash
-yarn add @edifice-tiptap-extensions/extension-table-cell
-```
-
-With `pnpm`:
-
-```bash
-pnpm add @edifice-tiptap-extensions/extension-table-cell
-```
+Run `nx test tiptap-extension-table-cell` to execute the unit tests via [Vitest](https://vitest.dev/).

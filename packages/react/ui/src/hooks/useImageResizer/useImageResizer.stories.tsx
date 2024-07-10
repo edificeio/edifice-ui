@@ -1,12 +1,12 @@
-import { Meta, StoryObj } from "@storybook/react";
-import useImageResizer from "./useImageResizer";
-import docs from "./useImageResizer.mdx";
-import { useEffect, useState } from "react";
-import { FormControl, Image, Input, Label } from "../../components";
-import { customSize } from "../../utils/fileSize";
+import { Meta, StoryObj } from '@storybook/react';
+import useImageResizer from './useImageResizer';
+import docs from './useImageResizer.mdx';
+import { useEffect, useState } from 'react';
+import { FormControl, Image, Input, Label } from '../../components';
+import { customSize } from '../../utils/fileSize';
 
 const meta: Meta<typeof useImageResizer> = {
-  title: "Hooks/useImageResizer",
+  title: 'Hooks/useImageResizer',
   parameters: {
     docs: { page: docs },
   },
@@ -22,17 +22,17 @@ export const Example: Story = {
     const [maxSize, setMaxSize] = useState(1440);
     const [quality, setQuality] = useState(80);
     const [file, setFile] = useState<File | undefined>();
-    const [imgSrc, setImgSrc] = useState("");
+    const [imgSrc, setImgSrc] = useState('');
     const { resizeImageFile } = useImageResizer();
 
     useEffect(() => {
       if (file) {
         setfileSize(file.size);
-        resizeImageFile(file, maxSize, maxSize, "jpeg", quality).then(
+        resizeImageFile(file, maxSize, maxSize, 'jpeg', quality).then(
           (resizedImageFile) => {
             setImgSrc(URL.createObjectURL(resizedImageFile));
             setResizedFileSize(resizedImageFile.size);
-          },
+          }
         );
       }
     }, [file, maxSize, maxSize, quality]);

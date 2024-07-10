@@ -2,10 +2,10 @@ import {
   WorkspaceElement,
   WorkspaceSearchFilter,
   WorkspaceVisibility,
-} from "./interface";
-import { ID } from "../globals";
-import { IOdeServices } from "../services/OdeServices";
-import { DocumentHelper } from "../utils/DocumentHelper";
+} from './interface';
+import { ID } from '../globals';
+import { IOdeServices } from '../services/OdeServices';
+import { DocumentHelper } from '../utils/DocumentHelper';
 
 interface ElementQuery {
   /**
@@ -53,21 +53,21 @@ export class WorkspaceService {
   }
 
   private extractMetadata(file: Blob | File) {
-    const tmpName = file.name || "";
-    const nameSplit = tmpName.split(".");
-    const contentType = file.type || "application/octet-stream";
+    const tmpName = file.name || '';
+    const nameSplit = tmpName.split('.');
+    const contentType = file.type || 'application/octet-stream';
     const extension =
-      nameSplit.length > 1 ? nameSplit[nameSplit.length - 1] : "";
+      nameSplit.length > 1 ? nameSplit[nameSplit.length - 1] : '';
     const metadata = {
-      "content-type": contentType,
-      filename: tmpName,
-      size: file.size,
+      'content-type': contentType,
+      'filename': tmpName,
+      'size': file.size,
       extension,
-      role: DocumentHelper.role(contentType, false, extension),
+      'role': DocumentHelper.role(contentType, false, extension),
     };
-    const basename = tmpName.replace("." + metadata.extension, "");
+    const basename = tmpName.replace('.' + metadata.extension, '');
     const fullname = metadata.extension
-      ? basename + "." + metadata.extension
+      ? basename + '.' + metadata.extension
       : basename;
     return { basename, fullname, metadata };
   }
@@ -78,22 +78,22 @@ export class WorkspaceService {
       parentId?: string;
       visibility?: WorkspaceVisibility;
       application?: string;
-    },
+    }
   ) {
     //prepare metadata
     const { fullname, metadata } = this.extractMetadata(file);
     //prepare form data
     const formData = new FormData();
-    formData.append("file", file, fullname);
+    formData.append('file', file, fullname);
     //add query params
     const args = [];
-    if (params?.visibility === "public" || params?.visibility === "protected") {
+    if (params?.visibility === 'public' || params?.visibility === 'protected') {
       args.push(`${params.visibility}=true`);
     }
     if (params?.application) {
       args.push(`application=${params.application}`);
     }
-    if (metadata.role === "img") {
+    if (metadata.role === 'img') {
       args.push(`quality=1`);
     }
     if (params?.parentId) {
@@ -101,8 +101,8 @@ export class WorkspaceService {
     }
     //make query
     const res = await this.http.postFile<WorkspaceElement>(
-      `/workspace/document?${args.join("&")}`,
-      formData,
+      `/workspace/document?${args.join('&')}`,
+      formData
     );
     if (this.http.isResponseError()) {
       throw this.http.latestResponse.statusText;
@@ -117,16 +117,16 @@ export class WorkspaceService {
       alt?: string;
       legend?: string;
       name?: string;
-    },
+    }
   ) {
     //prepare metadata
     const { fullname, metadata } = this.extractMetadata(file);
     //prepare form data
     const formData = new FormData();
-    formData.append("file", file, fullname);
+    formData.append('file', file, fullname);
     //add query params
     const args = [];
-    if (metadata.role === "img") {
+    if (metadata.role === 'img') {
       args.push(`quality=1`);
     }
     if (params?.alt) {
@@ -140,8 +140,8 @@ export class WorkspaceService {
     }
     //make query
     const res = await this.http.putFile<WorkspaceElement>(
-      `/workspace/document/${id}?${args.join("&")}`,
-      formData,
+      `/workspace/document/${id}?${args.join('&')}`,
+      formData
     );
     if (this.http.isResponseError()) {
       throw this.http.latestResponse.statusText;
@@ -184,8 +184,8 @@ export class WorkspaceService {
 
   async searchDocuments(params: ElementQuery): Promise<WorkspaceElement[]> {
     const filesO: WorkspaceElement[] =
-      params.filter !== "external" || params.parentId
-        ? await this.http.get<WorkspaceElement[]>("/workspace/documents", {
+      params.filter !== 'external' || params.parentId
+        ? await this.http.get<WorkspaceElement[]>('/workspace/documents', {
             queryParams: { ...params, _: new Date().getTime() },
           })
         : [];
@@ -195,7 +195,7 @@ export class WorkspaceService {
 
   async listDocuments(
     filter: WorkspaceSearchFilter,
-    parentId?: ID,
+    parentId?: ID
   ): Promise<WorkspaceElement[]> {
     return this.searchDocuments({ filter, parentId, includeall: true });
   }
@@ -210,12 +210,12 @@ export class WorkspaceService {
   async transferDocuments(
     documents: WorkspaceElement[],
     application: string,
-    visibility: WorkspaceVisibility = "protected",
+    visibility: WorkspaceVisibility = 'protected'
   ): Promise<WorkspaceElement[]> {
     const documentsToTransfer: WorkspaceElement[] = [];
     // Copy files from shared/owner to protected/public
     documents.forEach((document: WorkspaceElement) => {
-      if (visibility === "public" && !document.public) {
+      if (visibility === 'public' && !document.public) {
         // Copy file to public
         documentsToTransfer.push(document);
       } else if (!document.public && !document.protected) {
@@ -230,7 +230,7 @@ export class WorkspaceService {
           application: application,
           visibility: visibility,
           ids: documentsToTransfer.map((doc) => doc._id),
-        },
+        }
       );
       if (this.http.isResponseError()) {
         throw this.http.latestResponse.statusText;
@@ -239,7 +239,7 @@ export class WorkspaceService {
       // Update the documents array with the new documents
       documentsToTransfer.forEach((document, index) => {
         const documentIndex = documents.findIndex(
-          (doc) => doc._id === document._id,
+          (doc) => doc._id === document._id
         );
         if (0 <= documentIndex && documentIndex < documents.length) {
           documents[documentIndex] = res[index];
@@ -257,26 +257,22 @@ export class WorkspaceService {
    * Get the URL of the thumbnail of a workspace element (or its URL),
    * or `null` if none exists or can be created.
    */
-  getThumbnailUrl(
-    doc: WorkspaceElement | string,
-    width: number = 0,
-    height: number = 0,
-  ) {
+  getThumbnailUrl(doc: WorkspaceElement | string, width = 0, height = 0) {
     const thumbnailSize =
-      width > 0 || height > 0 ? `${width}x${height}` : "120x120";
+      width > 0 || height > 0 ? `${width}x${height}` : '120x120';
 
-    if (typeof doc === "string") {
-      if (doc.includes("data:image") || doc.includes("thumbnail")) {
+    if (typeof doc === 'string') {
+      if (doc.includes('data:image') || doc.includes('thumbnail')) {
         return doc;
       }
-      return `${doc}${doc.includes("?") ? "&" : "?"}thumbnail=${thumbnailSize}`;
+      return `${doc}${doc.includes('?') ? '&' : '?'}thumbnail=${thumbnailSize}`;
     } else {
-      const urlPrefix = `/workspace/${doc.public ? "pub/" : ""}document/${
+      const urlPrefix = `/workspace/${doc.public ? 'pub/' : ''}document/${
         doc._id
       }?thumbnail=`;
       const thumbnails = doc.thumbnails;
 
-      if (doc.metadata?.["content-type"]?.includes("video")) {
+      if (doc.metadata?.['content-type']?.includes('video')) {
         // Videos may have only 1 thumbnail, and the backend cannot create new ones at the moment.
         // Return the first thumbnail, or `null` if none is available.
         const firstThumbnail =

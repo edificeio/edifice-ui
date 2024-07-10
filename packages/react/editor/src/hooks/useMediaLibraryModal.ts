@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useRef } from 'react';
 
 import {
   IExternalLink,
@@ -9,9 +9,9 @@ import {
   TabsItemProps,
   addTimestampToImageUrl,
   useWorkspaceFile,
-} from "@edifice-ui/react";
-import { Editor } from "@tiptap/react";
-import { WorkspaceElement } from "edifice-ts-client";
+} from '@edifice-ui/react';
+import { Editor } from '@tiptap/react';
+import { WorkspaceElement } from 'edifice-ts-client';
 
 /**
  * Custom hook to manage MediaLibrary events in an editor.
@@ -39,12 +39,12 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
 
       switch (type) {
         // Image type => result is of type WorkspaceElement[]
-        case "image": {
+        case 'image': {
           const images = result as WorkspaceElement[];
           const imagesSize = images.length - 1;
 
           images.forEach((image, index) => {
-            const url = `/workspace/${image.public ? "pub/" : ""}document/${
+            const url = `/workspace/${image.public ? 'pub/' : ''}document/${
               image._id
             }`;
 
@@ -69,7 +69,7 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
         }
 
         // Audio type => result is of type WorkspaceElement[]
-        case "audio": {
+        case 'audio': {
           const sounds = Array.isArray(result)
             ? (result as WorkspaceElement[])
             : [result];
@@ -78,8 +78,8 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
           const { from } = editor.state.selection;
           sounds.reverse().forEach((sound: WorkspaceElement) => {
             editor?.commands.setAudio(
-              sound._id || "",
-              `/workspace/${sound.public ? "pub/" : ""}document/${sound._id}`,
+              sound._id || '',
+              `/workspace/${sound.public ? 'pub/' : ''}document/${sound._id}`
             );
             editor?.commands.setTextSelection(from);
           });
@@ -87,12 +87,12 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
         }
 
         // Video type => result is of type WorkspaceElement[] or string
-        case "video": {
-          if (typeof result === "string") {
+        case 'video': {
+          if (typeof result === 'string') {
             // This is a video Embedded code (iframe from trusted media provider)
             editor?.commands.insertContentAt(
               editor.view.state.selection,
-              result,
+              result
             );
           } else {
             const videos = result as WorkspaceElement[];
@@ -101,9 +101,9 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
             const { from } = editor.state.selection;
             videos.reverse().forEach((video) => {
               editor?.commands.setVideo(
-                video._id || "",
-                `/workspace/${video.public ? "pub/" : ""}document/${video._id}`,
-                true,
+                video._id || '',
+                `/workspace/${video.public ? 'pub/' : ''}document/${video._id}`,
+                true
               );
               editor?.commands.setTextSelection(from);
             });
@@ -111,12 +111,12 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
           break;
         }
 
-        case "attachment": {
-          let innerHtml = "";
+        case 'attachment': {
+          let innerHtml = '';
           for (let i = 0; i < result.length; i++) {
             const link = (result as WorkspaceElement[])[i];
             innerHtml += `<a href="/workspace/${
-              link.public ? "pub/" : ""
+              link.public ? 'pub/' : ''
             }document/${link._id}">${link.name}
             </a>`;
           }
@@ -125,18 +125,18 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
           </div>`;
           editor?.commands.insertContentAt(
             editor.view.state.selection,
-            richContent,
+            richContent
           );
           editor?.commands.enter();
           break;
         }
 
-        case "hyperlink": {
+        case 'hyperlink': {
           const resourceTabResult = result as InternalLinkTabResult;
           // Cancel any pre-selected link
-          if (editor?.isActive("linker")) editor.commands.unsetLinker();
-          if (editor?.isActive("hyperlink"))
-            editor.commands.toggleMark("hyperlink");
+          if (editor?.isActive('linker')) editor.commands.unsetLinker();
+          if (editor?.isActive('hyperlink'))
+            editor.commands.toggleMark('hyperlink');
 
           // Manage new links
           editor?.commands.focus();
@@ -147,11 +147,11 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
             // One or more internal link(s) are rendered as a Badge.
             resourceTabResult.resources.forEach((link) => {
               editor?.commands.setLinker({
-                href: link.path,
-                "data-app-prefix": link.application,
-                "data-id": link.assetId,
-                target: resourceTabResult.target ?? null,
-                title: link.name,
+                'href': link.path,
+                'data-app-prefix': link.application,
+                'data-id': link.assetId,
+                'target': resourceTabResult.target ?? null,
+                'title': link.name,
               });
               // Add next links afterward.
               if (
@@ -225,7 +225,7 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
                         from,
                         to,
                       },
-                      text,
+                      text
                     )
                     .setTextSelection({
                       from,
@@ -236,7 +236,7 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
               }
               editor?.commands.setLink({
                 href: url,
-                title: "",
+                title: '',
                 target,
               });
             }
@@ -244,7 +244,7 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
           break;
         }
 
-        case "embedder": {
+        case 'embedder': {
           editor?.commands.insertContentAt(editor.view.state.selection, result);
           editor?.commands.enter();
           break;
@@ -254,7 +254,7 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
           return `<div>[useMediaLibraryModal/onSuccess] Le contenu de type "${type}" n'est pas convertissable pour l'instant !</div>`;
       }
     },
-    [editor],
+    [editor]
   );
 
   const mediaLibraryRef = useRef<MediaLibraryRef>(null);
@@ -275,7 +275,7 @@ export const useMediaLibraryModal = (editor: Editor | null) => {
   };
   const onTabChange = async (
     _tab: TabsItemProps,
-    uploads?: WorkspaceElement[],
+    uploads?: WorkspaceElement[]
   ) => {
     if (mediaLibraryRef.current?.type && uploads && uploads.length > 0) {
       await remove(uploads);

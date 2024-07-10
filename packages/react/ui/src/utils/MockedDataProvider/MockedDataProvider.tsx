@@ -1,4 +1,5 @@
-import { createContext, type ReactNode, useMemo, useContext } from "react";
+// @ts-nocheck
+import { createContext, useContext, useMemo, type ReactNode } from 'react';
 
 import {
   App,
@@ -6,7 +7,7 @@ import {
   IResource,
   ResourceType,
   WorkspaceElement,
-} from "edifice-ts-client";
+} from 'edifice-ts-client';
 
 export interface MockedDataProps {
   children: ReactNode;
@@ -38,7 +39,7 @@ export function MockedDataProvider({ children, mocks }: MockedDataProps) {
   const values = useMemo<MockedContextProps>(() => {
     const value: MockedContextProps = {};
 
-    if (typeof mocks.app !== "undefined") {
+    if (typeof mocks.app !== 'undefined') {
       value.app = mocks.app;
     }
 
@@ -46,7 +47,7 @@ export function MockedDataProvider({ children, mocks }: MockedDataProps) {
       value.availableApps = Promise.resolve(mocks.availableApps);
     }
 
-    if (typeof mocks.workflows !== "undefined") {
+    if (typeof mocks.workflows !== 'undefined') {
       value.hasWorkflow = async (workflow) =>
         mocks.workflows?.findIndex((w) => w === workflow) !== -1;
     }
@@ -60,7 +61,7 @@ export function MockedDataProvider({ children, mocks }: MockedDataProps) {
         mocks.appResources?.[filters.types[0]]?.filter(() => {
           // TODO pseudo-filter
           if (filters) {
-            console.log(filters.search || "none");
+            console.log(filters.search || 'none');
           }
           return true;
         }) || [];

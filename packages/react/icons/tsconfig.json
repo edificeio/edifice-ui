@@ -1,5 +1,22 @@
 {
-  "extends": "../../../tsconfig.json",
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "jsx": "react-jsx",
+    "allowJs": false,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "types": ["vite/client", "vitest"]
+  },
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./tsconfig.lib.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ],
+  "extends": "../../../tsconfig.base.json"
 }

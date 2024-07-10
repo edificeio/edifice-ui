@@ -1,26 +1,11 @@
-# extension-hyperlink
+# tiptap-extension-hyperlink
 
-![npm](https://img.shields.io/npm/v/@edifice-tiptap-extensions/extension-hyperlink?style=flat-square)
-![bundlephobia](https://img.shields.io/bundlephobia/min/@edifice-tiptap-extensions/extension-hyperlink?style=flat-square)
+This library was generated with [Nx](https://nx.dev).
 
-A Tiptap extension that extends Link for linking external resources.
+## Building
 
-## Installation
+Run `nx build tiptap-extension-hyperlink` to build the library.
 
-With `npm`:
+## Running unit tests
 
-```bash
-npm install @edifice-tiptap-extensions/extension-hyperlink
-```
-
-With `yarn`:
-
-```bash
-yarn add @edifice-tiptap-extensions/extension-hyperlink
-```
-
-With `pnpm`:
-
-```bash
-pnpm add @edifice-tiptap-extensions/extension-hyperlink
-```
+Run `nx test tiptap-extension-hyperlink` to execute the unit tests via [Vitest](https://vitest.dev/).

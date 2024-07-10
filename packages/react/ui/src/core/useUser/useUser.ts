@@ -1,27 +1,35 @@
-import { IUserDescription, IUserInfo } from "edifice-ts-client";
-import { useOdeClient } from "../OdeClientProvider";
-import { useOdeTheme } from "../ThemeProvider";
+import { IUserDescription, IUserInfo, UserProfile } from 'edifice-ts-client';
+
+import { useOdeClient } from '../OdeClientProvider';
+import { useOdeTheme } from '../ThemeProvider';
+
+export interface UserInfo extends Omit<IUserInfo, 'type'> {
+  type: UserProfile;
+}
 
 export interface useUserProps {
-  user: IUserInfo | undefined;
+  user: UserInfo | undefined;
   avatar: string;
   userDescription: Partial<IUserDescription> | undefined;
 }
 
 export default function useUser(): useUserProps {
-  const { user, userDescription } = useOdeClient();
+  const { user, userDescription, userProfile } = useOdeClient();
   const { theme } = useOdeTheme();
 
   function avatarUrl(): string {
     let avatar = userDescription?.picture;
-    if (!avatar || avatar === "no-avatar.jpg" || avatar === "no-avatar.svg") {
+    if (!avatar || avatar === 'no-avatar.jpg' || avatar === 'no-avatar.svg') {
       avatar = `${theme?.basePath}/img/illustrations/no-avatar.svg`;
     }
     return avatar;
   }
 
   return {
-    user,
+    user: {
+      ...user,
+      type: userProfile as UserProfile,
+    } as UserInfo,
     avatar: avatarUrl(),
     userDescription,
   };

@@ -1,0 +1,286 @@
+import { Alert } from '@edifice-ui/react';
+import { ColorItem, ColorPalette, Meta } from '@storybook/blocks';
+import { RenderTheme } from "../components/RenderTheme";
+
+<Meta title="Design Tokens/Colors" />
+
+export const colors = {
+  primary: {"primary": "var(--edifice-primary)","primary 800": "var(--edifice-primary-800)","primary 300": "var(--edifice-primary-300)","primary 200": "var(--edifice-primary-200)"},
+  secondary: {"secondary": "var(--edifice-secondary)","secondary 800": "var(--edifice-secondary-800)","secondary 300": "var(--edifice-secondary-300)","secondary 200": "var(--edifice-secondary-200)"},
+  purple: {"default": "var(--edifice-purple)","dark": "var(--edifice-purple-800)","light": "var(--edifice-purple-300)","pale": "var(--edifice-purple-200)"},
+  blue: {"default": "var(--edifice-blue)","dark": "var(--edifice-blue-800)","light": "var(--edifice-blue-300)","pale": "var(--edifice-blue-200)"},
+  green: {"default": "var(--edifice-green)","dark": "var(--edifice-green-800)","light": "var(--edifice-green-300)","pale": "var(--edifice-green-200)"},
+  yellow: {"default": "var(--edifice-yellow)","dark": "var(--edifice-yellow-800)","light": "var(--edifice-yellow-300)","pale": "var(--edifice-yellow-200)"},
+  red: {"default": "var(--edifice-red)","dark": "var(--edifice-red-800)","light": "var(--edifice-red-300)","pale": "var(--edifice-red-200)"},
+  orange: {"default": "var(--edifice-orange)","dark": "var(--edifice-orange-800)","light": "var(--edifice-orange-300)","pale": "var(--edifice-orange-200)"},
+  indigo: {"default": "var(--edifice-indigo)","dark": "var(--edifice-indigo-800)","light": "var(--edifice-indigo-300)","pale": "var(--edifice-indigo-200)"},
+  pink: {"default": "var(--edifice-pink)","dark": "var(--edifice-pink-800)","light": "var(--edifice-pink-300)","pale": "var(--edifice-pink-200)"},
+  darkness: {"darkness": "var(--edifice-black)"},
+  black: {"black": "var(--edifice-gray-800)","graphite": "var(--edifice-gray-700)","stone": "var(--edifice-gray-600)"},
+  grey: {"grey": "var(--edifice-gray-500)"},
+  cloudy: {"cloudy": "var(--edifice-gray-400)", "pearl": "var(--edifice-gray-300)", "fog": "var(--edifice-gray-200)"},
+  white: {"white": "var(--edifice-white)"},
+  danger: {"default": "var(--edifice-danger)", "dark": "var(--edifice-danger-800)", "light": "var(--edifice-danger-300)", "pale":"var(--edifice-danger-200)"},
+  warning: {"default": "var(--edifice-warning)", "dark": "var(--edifice-warning-800)", "light": "var(--edifice-warning-300)", "pale":"var(--edifice-warning-200)"},
+  success: {"default": "var(--edifice-success)", "dark": "var(--edifice-success-800)", "light": "var(--edifice-success-300)", "pale":"var(--edifice-success-200)"},
+  info: {"default": "var(--edifice-info)", "dark": "var(--edifice-info-800)", "light": "var(--edifice-info-300)", "pale":"var(--edifice-info-200)"},
+  accessibility: {
+    first: {"blue": "var(--edifice-accessible-blue)", "deep blue": "var(--edifice-accessible-deep-blue)","pink": "var(--edifice-accessible-pink)",},
+    second: {"salamander":"var(--edifice-accessible-salamander)","sunshade": "var(--edifice-accessible-sunshade)", "yellow": "var(--edifice-accessible-yellow)"},
+  }
+}
+
+# Colors
+[![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/design/pFK2b3yRo1wLAuzoA6YvVf/Public_Web_Library_Guidelines?node-id=2-330&t=j2GI81J9748p386C-1)
+
+## Primary and Secondary Colors
+
+Primary color of each plateform is used as secondary color for the other one. They are use for interactions. Can be use for specific titles.
+
+<ColorPalette>
+  {/* Primary */}
+  <RenderTheme theme="one">
+    <ColorItem
+      title="One"
+      subtitle="Primary"
+      colors={colors.primary}
+    />
+  </RenderTheme>
+  <RenderTheme theme="neo">
+    <ColorItem
+      title="Neo"
+      subtitle="Primary"
+      colors={colors.primary}
+    />
+  </RenderTheme>
+
+  {/* Secondary */}
+  <RenderTheme theme="one">
+    <ColorItem
+      title="One"
+      subtitle="Secondary"
+      colors={colors.secondary}
+    />
+  </RenderTheme>
+  <RenderTheme theme="neo">
+    <ColorItem
+      title="Neo"
+      subtitle="Secondary"
+      colors={colors.secondary}
+    />
+  </RenderTheme>
+</ColorPalette>
+
+## Complementary Colors
+
+Complementary colors are use for graphic elements, illustrations, days of the week representation elements, calendar and some specifique titles.
+
+- Dark, Light and Pale colors can be used for hover effects, graphic elements and illustrations.
+
+### One
+
+<ColorPalette>
+  {/* Purple */}
+  <RenderTheme theme="one">
+    <ColorItem
+      title="One"
+      subtitle="Purple"
+      colors={colors.purple}
+    />
+  </RenderTheme>
+  <RenderTheme theme="neo">
+    <ColorItem
+      title="Neo"
+      subtitle="Purple"
+      colors={colors.purple}
+    />
+  </RenderTheme>
+  
+  {/* Blue */}
+  <RenderTheme theme="one">
+    <ColorItem
+      title="One"
+      subtitle="Blue"
+      colors={colors.blue}
+    />
+  </RenderTheme>
+  <RenderTheme theme="neo">
+    <ColorItem
+      title="Neo"
+      subtitle="Blue"
+      colors={colors.blue}
+    />
+  </RenderTheme>
+
+  {/* Green */}
+  <RenderTheme theme="one">
+    <ColorItem
+      title="One"
+      subtitle="Green"
+      colors={colors.green}
+    />
+  </RenderTheme>
+  <RenderTheme theme="neo">
+    <ColorItem
+      title="Neo"
+      subtitle="Green"
+      colors={colors.green}
+    />
+  </RenderTheme>
+
+  {/* Yellow */}
+  <RenderTheme theme="one">
+    <ColorItem
+      title="One"
+      subtitle="Yellow"
+      colors={colors.yellow}
+    />
+  </RenderTheme>
+  <RenderTheme theme="neo">
+    <ColorItem
+      title="Neo"
+      subtitle="Yellow"
+      colors={colors.yellow}
+    />
+  </RenderTheme>
+
+  {/* Red */}
+  <RenderTheme theme="one">
+    <ColorItem
+      title="One"
+      subtitle="Red"
+      colors={colors.red}
+    />
+  </RenderTheme>
+  <RenderTheme theme="neo">
+    <ColorItem
+      title="Neo"
+      subtitle="Red"
+      colors={colors.red}
+    />
+  </RenderTheme>
+
+  {/* Orange */}
+  <RenderTheme theme="one">
+    <ColorItem
+      title="One"
+      subtitle="Orange"
+      colors={colors.orange}
+    />
+  </RenderTheme>
+  <RenderTheme theme="neo">
+    <ColorItem
+      title="Neo"
+      subtitle="Orange"
+      colors={colors.orange}
+    />
+  </RenderTheme>
+
+  {/* Indigo */}
+  <RenderTheme theme="one">
+    <ColorItem
+      title="One"
+      subtitle="Indigo"
+      colors={colors.indigo}
+    />
+  </RenderTheme>
+  <RenderTheme theme="neo">
+    <ColorItem
+      title="Neo"
+      subtitle="Indigo"
+      colors={colors.indigo}
+    />
+  </RenderTheme>
+
+  {/* Pink */}
+  <RenderTheme theme="one">
+    <ColorItem
+      title="One"
+      subtitle="Pink"
+      colors={colors.pink}
+    />
+  </RenderTheme>
+  <RenderTheme theme="neo">
+    <ColorItem
+      title="Neo"
+      subtitle="Pink"
+      colors={colors.pink}
+    />
+  </RenderTheme>
+</ColorPalette>
+
+## Grey Colors
+
+Grey palette is used for text elements, graphic elements, illustrations, etc.
+
+<ColorPalette>
+  <ColorItem
+    title="Darkness"
+    subtitle=""
+    colors={colors.darkness}
+  />
+  <ColorItem
+    title="Black / Graphite /Stone"
+    subtitle=""
+    colors={colors.black}
+  />
+  <ColorItem
+    title="Grey"
+    subtitle=""
+    colors={colors.grey}
+  />
+  <ColorItem
+    title="Cloudy / Pearl / Fog"
+    subtitle=""
+    colors={colors.cloudy}
+  />
+  <ColorItem
+    title="White"
+    subtitle=""
+    colors={colors.white}
+  />
+</ColorPalette>
+
+## Support Colors
+
+Complementary colors are use for graphic elements, illustrations, days of the week representation elements, calendar and some specifique titles
+
+<ColorPalette>
+  <ColorItem
+    title="Error"
+    subtitle=""
+    colors={colors.danger}
+  />
+  <ColorItem
+    title="Warning"
+    subtitle=""
+    colors={colors.warning}
+  />
+  <ColorItem
+    title="Success"
+    subtitle=""
+    colors={colors.success}
+  />
+  <ColorItem
+    title="Info"
+    subtitle=""
+    colors={colors.info}
+  />
+</ColorPalette>
+
+## Accessible Colors
+
+Complementary colors are use for graphic elements, illustrations, days of the week representation elements, calendar and some specifique titles
+
+<ColorPalette>
+  <ColorItem
+    title="Accessibility"
+    subtitle=""
+    colors={colors.accessibility.first}
+  />
+  <ColorItem
+    title=""
+    subtitle=""
+    colors={colors.accessibility.second}
+  />
+</ColorPalette>

@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import * as PIXI from "pixi.js";
+import * as PIXI from 'pixi.js';
 
-import { ImageSettings, toBlob } from "../effects/misc";
+import { ImageSettings, toBlob } from '../effects/misc';
 
 // Define how much backup are stored in history
 const DEFAULT_MAX_HISTORY = 20;
@@ -56,39 +56,37 @@ const useHistoryTool = ({
     return arr;
   };
   const historize = async <T extends (...args: any[]) => any>(callback: T) => {
-    {
-      if (!application) {
-        return;
-      }
-      const sprite = application.stage.getChildByName(spriteName, true) as
-        | PIXI.Sprite
-        | null
-        | undefined;
-      if (sprite === undefined || sprite === null) {
-        return;
-      }
-      const promise = toBlob(application);
-      const state: HistoryState = {
-        backup: promise,
-        sprite: {
-          rotation: sprite.rotation,
-          size: { width: sprite.width, height: sprite.height },
-          position: { x: sprite.position.x, y: sprite.position.y },
-          scale: { x: sprite.scale.x, y: sprite.scale.y },
-          anchor: { x: sprite.anchor.x, y: sprite.anchor.y },
-        },
-        stage: {
-          size: {
-            width: application.stage.width,
-            height: application.stage.height,
-          },
-          scale: { x: application.stage.scale.x, y: application.stage.scale.y },
-        },
-      };
-      setHistory([...listSize(history), state]);
-      await promise;
-      return callback.call(callback);
+    if (!application) {
+      return;
     }
+    const sprite = application.stage.getChildByName(spriteName, true) as
+      | PIXI.Sprite
+      | null
+      | undefined;
+    if (sprite === undefined || sprite === null) {
+      return;
+    }
+    const promise = toBlob(application);
+    const state: HistoryState = {
+      backup: promise,
+      sprite: {
+        rotation: sprite.rotation,
+        size: { width: sprite.width, height: sprite.height },
+        position: { x: sprite.position.x, y: sprite.position.y },
+        scale: { x: sprite.scale.x, y: sprite.scale.y },
+        anchor: { x: sprite.anchor.x, y: sprite.anchor.y },
+      },
+      stage: {
+        size: {
+          width: application.stage.width,
+          height: application.stage.height,
+        },
+        scale: { x: application.stage.scale.x, y: application.stage.scale.y },
+      },
+    };
+    setHistory([...listSize(history), state]);
+    await promise;
+    return callback.call(callback);
   };
 
   return {
