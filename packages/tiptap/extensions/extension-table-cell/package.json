@@ -1,6 +1,6 @@
 {
   "name": "@edifice-tiptap-extensions/extension-table-cell",
-  "version": "1.5.12-develop-pedago.3",
+  "version": "1.5.12-develop-pedago.4",
   "description": "Rich Text Editor TypoSize Extension",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
