@@ -9,9 +9,16 @@ const config: StorybookConfig = {
     '../../react/**/src/**/*.stories.@(js|jsx|ts|tsx|mdx)',
   ],
   addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],
+  staticDirs: ["../public"],
   framework: {
     name: '@storybook/react-vite',
-    options: {},
+    options: { strictMode: false },
+  },
+  typescript: {
+    reactDocgen: "react-docgen",
+  },
+  docs: {
+    autodocs: true,
   },
 
   viteFinal: async (config) =>

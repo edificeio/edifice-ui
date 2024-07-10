@@ -10,6 +10,7 @@
             "executor": "@nx/storybook:storybook",
             "options": {
                 "port": 4400,
+                "docs": true,
                 "configDir": "packages/docs/.storybook"
             },
             "configurations": {

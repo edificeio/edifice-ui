@@ -1,10 +1,19 @@
 import * as Icons from "@edifice-ui/icons";
 import * as NavIcons from "@edifice-ui/icons/nav";
+import { Alert } from '@edifice-ui/react';
 import { IconGallery, IconItem, Meta, Title } from '@storybook/blocks';
 
 import { SvgIcon } from "../components/SvgIcon";
 
 <Meta title="Design Tokens/Iconography" />
+
+<style>
+  {`
+  .icon-item > div > div + div {
+    width: min(210px, 50%);
+  }
+  `}
+</style>
 
 # Iconography
 [![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/design/pFK2b3yRo1wLAuzoA6YvVf/Public_Web_Library_Guidelines?node-id=2202-17493&t=buVzHWOLl8QWf6Qu-1)
@@ -20,16 +29,30 @@ import { SvgIcon } from "../components/SvgIcon";
 
 To use this set of icons, import `@edifice-ui/icons` into your code: `import { Add } from "@edifice-ui/icons"`
 
+<Alert
+  type="info"
+  className="mt-16 mb-24"
+>
+  Click on one icon to copy its component name
+</Alert>
+
 <IconGallery>
-  { Object.entries(Icons).map(([name, Icon]) => (<IconItem name={name}><Icon/></IconItem>)) }
+  { Object.entries(Icons).map(([name, Icon]) => (<div className="icon-item" onClick={() => navigator.clipboard.writeText(`<${name} />`)}><IconItem name={name}><Icon/></IconItem></div>)) }
 </IconGallery>
 
 ## Navbar Icons
 
 To use this set of icons, import `@edifice-ui/icons/nav` into your code: `import { NeoAssistance, Search, MyApps } from "@edifice-ui/icons/nav"`
 
+<Alert
+  type="info"
+  className="mt-16 mb-24"
+>
+  Click on one icon to copy its component name
+</Alert>
+
 <IconGallery>
-  { Object.entries(NavIcons).map(([name, Icon]) => (<IconItem name={name}><Icon/></IconItem>)) }
+  { Object.entries(NavIcons).map(([name, Icon]) => (<div className="icon-item" onClick={() => navigator.clipboard.writeText(`<${name} />`)}><IconItem name={name}><Icon/></IconItem></div>)) }
 </IconGallery>
 
 ## Apps and Connectors Icons

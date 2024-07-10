@@ -52,8 +52,8 @@ jobs:
       - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
         with:
           install_command: pnpm install # default: npm ci
-          build_command: pnpm run build && pnpm run docs:build # default: npm run build-storybook
-          path: dist/ # default: dist/storybook
+          build_command: pnpm run build && pnpm run build:storybook # default: nx run docs:build-storybook
+          path: packages/docs/storybook-static # default: dist/storybook
           checkout: false # default: true
         env:
           TIPTAP_PRO_TOKEN: ${{ secrets.TIPTAP_PRO_TOKEN }}
