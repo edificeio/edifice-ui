@@ -18,7 +18,7 @@ export interface TreeViewProps {
   /**
    * TreeNode data
    */
-  data: TreeNode;
+  data: TreeNode | TreeNode[];
 
   /**
    * Node ID used for navigation folders
@@ -114,6 +114,7 @@ const TreeView = forwardRef<TreeViewHandlers, TreeViewProps>(
         nodeId={node.id}
         label={node.name}
         section={node.section}
+        showIconSection={node.showIconSection}
         selectedNodesIds={selectedNodesIds}
         selected={selectedItem === node.id}
         onItemSelect={handlers.select}
@@ -128,7 +129,13 @@ const TreeView = forwardRef<TreeViewHandlers, TreeViewProps>(
       </TreeItem>
     );
 
-    return <div className="treeview">{renderTree(data)}</div>;
+    return (
+      <div className="treeview">
+        {Array.isArray(data)
+          ? data.map((page) => renderTree(page))
+          : renderTree(data)}
+      </div>
+    );
   },
 );
 

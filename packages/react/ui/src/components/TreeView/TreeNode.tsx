@@ -15,6 +15,11 @@ export interface TreeNode {
   section?: boolean;
 
   /**
+   * Is Node needed icon
+   */
+  showIconSection?: boolean;
+
+  /**
    * Is this node contains children ?
    */
   children?: readonly TreeNode[];
