@@ -29,7 +29,13 @@ import {
   PopoverBody,
   PopoverFooter,
 } from "../../components";
-import { useConversation, useUser, useHeader, useOdeClient } from "../../core";
+import {
+  useConversation,
+  useUser,
+  useHeader,
+  useOdeClient,
+  useHasWorkflow,
+} from "../../core";
 import { Help } from "../Help";
 import { useHelp } from "../Help/hooks/useHelp";
 import SearchEngine from "../SearchEngine/SearchEngine";
@@ -44,6 +50,10 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
   const { messages, msgLink, zimbraWorkflow } = useConversation();
   const { user, avatar } = useUser();
   const { currentLanguage, currentApp } = useOdeClient();
+  const hasOldHelpEnableWorkflow =
+    useHasWorkflow(
+      "org.entcore.portal.controllers.PortalController|oldHelpEnable",
+    ) || false;
 
   const {
     isModalOpen: isHelpOpen,
@@ -123,7 +133,7 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                     <OneProfile className="icon user" />
                   </NavLink>
                 </NavItem>
-                {currentLanguage === "fr" ? (
+                {currentLanguage === "fr" && hasOldHelpEnableWorkflow ? (
                   <NavItem>
                     <button
                       className="nav-link"
@@ -279,7 +289,7 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                   </NavLink>
                 </NavItem>
               )}
-              {currentLanguage === "fr" ? (
+              {currentLanguage === "fr" && hasOldHelpEnableWorkflow ? (
                 <NavItem>
                   <button
                     className="nav-link btn btn-naked"
