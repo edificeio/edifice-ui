@@ -1,6 +1,6 @@
 {
   "name": "@edifice-tiptap-extensions/extension-heading",
-  "version": "1.5.12-develop-pedago.4",
+  "version": "1.5.12-develop.1",
   "description": "Rich Text Editor Heading Extension",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
