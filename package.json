@@ -9,7 +9,8 @@
     "test": "nx run-many -t test --exclude=docs",
     "storybook": "nx run docs:storybook",
     "build:storybook": "nx run docs:build-storybook",
-    "preview:storybook": "nx run docs:static-storybook"
+    "preview:storybook": "nx run docs:static-storybook",
+    "prepare": "husky"
   },
   "dependencies": {
     "@floating-ui/react": "0.26.10",
