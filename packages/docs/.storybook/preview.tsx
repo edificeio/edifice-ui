@@ -1,11 +1,15 @@
-import { OdeClientProvider } from '@edifice-ui/react';
+import { OdeClientProvider, ThemeProvider } from '@edifice-ui/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { HttpResponse, http } from 'msw';
 import { initialize, mswLoader } from 'msw-storybook-addon';
 import React from 'react';
 
+import 'dist/packages/bootstrap/index.css';
+
 // Initialize MSW
-initialize();
+initialize({
+  onUnhandledRequest: 'bypass',
+});
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -292,15 +296,17 @@ const preview = {
   // Provide the MSW addon loader globally
   loaders: [mswLoader],
   decorators: [
-    (Story, context) => {
+    (Story, { globals, parameters }) => {
       /**
        * App value default to "one"
        */
-      const theme = context.globals.theme;
+      const theme = globals.theme;
       /**
        * App value default to "blog"
        */
-      const app = context.globals.app;
+      // const app = globals.app;
+
+      const { app = 'blog' } = parameters;
 
       const StoryTheme = ({ themePath }: { themePath: string }) => {
         return (
@@ -339,7 +345,7 @@ const preview = {
               app,
             }}
           >
-            {renderStoryTheme()}
+            <ThemeProvider>{renderStoryTheme()}</ThemeProvider>
           </OdeClientProvider>
         </QueryClientProvider>
       );

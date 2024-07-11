@@ -1,0 +1,37 @@
+{
+  "name": "bootstrap",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/bootstrap/scss",
+  "projectType": "library",
+  "targets": {
+    "compile": {
+      "command": "rm -rf dist/packages/bootstrap && sass --load-path=node_modules/ --style=compressed packages/bootstrap/scss/index.scss dist/packages/bootstrap/index.css && cp -r packages/bootstrap/assets dist/packages/bootstrap && cp -r packages/bootstrap/package.json dist/packages/bootstrap",
+      "outputs": [
+        "{options.outputPath}"
+      ]
+    },
+    "build": {
+      "dependsOn": [
+        "compile"
+      ],
+      "command": "cp -r packages/bootstrap/package.json dist/packages/bootstrap",
+      "outputs": [
+        "{options.outputPath}"
+      ]
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/packages/{projectName}"
+      }
+    }
+  },
+  "tags": [],
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist/packages/{projectName}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  }
+}

@@ -1,15 +1,12 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { Toolbar, IconButtonProps, IconButton, Dropdown } from '..';
 import {
   AlignLeft,
-  Paperclip,
   BulletList,
   Landscape,
   Link,
   Mic,
+  Paperclip,
   RecordVideo,
   Smiley,
-  Table,
   TextBold,
   TextColor,
   TextHighlight,
@@ -18,10 +15,17 @@ import {
   TextTypo,
   TextUnderline,
 } from '@edifice-ui/icons';
+import { Meta, StoryObj } from '@storybook/react';
 import { RefAttributes } from 'react';
+import {
+  Dropdown,
+  IconButton,
+  IconButtonProps,
+  Toolbar,
+} from '../../../../ui/src/components';
 
 const meta: Meta<typeof Toolbar> = {
-  title: 'Tiptap/EditorToolbar',
+  title: 'Editor/Toolbar',
   component: Toolbar,
   parameters: {
     docs: {
@@ -46,40 +50,40 @@ const meta: Meta<typeof Toolbar> = {
       {
         type: 'icon',
         props: {
-          'icon': <Landscape />,
-          'className': 'bg-green-200',
+          icon: <Landscape />,
+          className: 'bg-green-200',
           'aria-label': 'Insérer une image',
-          'onClick': () => {},
+          onClick: () => {},
         },
         name: 'image',
       },
       {
         type: 'icon',
         props: {
-          'icon': <RecordVideo />,
-          'className': 'bg-purple-200',
+          icon: <RecordVideo />,
+          className: 'bg-purple-200',
           'aria-label': 'Insérer une vidéo',
-          'onClick': () => {},
+          onClick: () => {},
         },
         name: 'video',
       },
       {
         type: 'icon',
         props: {
-          'icon': <Mic />,
-          'className': 'bg-red-200',
+          icon: <Mic />,
+          className: 'bg-red-200',
           'aria-label': 'Insérer une piste audio',
-          'onClick': () => {},
+          onClick: () => {},
         },
         name: 'audio',
       },
       {
         type: 'icon',
         props: {
-          'icon': <Paperclip />,
-          'className': 'bg-yellow-200',
+          icon: <Paperclip />,
+          className: 'bg-yellow-200',
           'aria-label': 'Insérer une pièce jointe',
-          'onClick': () => {},
+          onClick: () => {},
         },
         name: 'attachment',
       },
@@ -181,10 +185,10 @@ const meta: Meta<typeof Toolbar> = {
       {
         type: 'icon',
         props: {
-          'icon': <TextBold />,
+          icon: <TextBold />,
           'aria-label': 'Ajout de gras',
-          'className': '',
-          'onClick': () => {},
+          className: '',
+          onClick: () => {},
         },
         name: 'bold',
         visibility: 'show',
@@ -192,10 +196,10 @@ const meta: Meta<typeof Toolbar> = {
       {
         type: 'icon',
         props: {
-          'icon': <TextItalic />,
+          icon: <TextItalic />,
           'aria-label': 'Incliner le text',
-          'className': '',
-          'onClick': () => {},
+          className: '',
+          onClick: () => {},
         },
         name: 'italic',
         visibility: 'show',
@@ -203,10 +207,10 @@ const meta: Meta<typeof Toolbar> = {
       {
         type: 'icon',
         props: {
-          'icon': <TextUnderline />,
+          icon: <TextUnderline />,
           'aria-label': 'Souligner le texte',
-          'className': '',
-          'onClick': () => {},
+          className: '',
+          onClick: () => {},
         },
         name: 'underline',
         visibility: 'show',
@@ -239,10 +243,10 @@ const meta: Meta<typeof Toolbar> = {
       {
         type: 'icon',
         props: {
-          'icon': <Link />,
+          icon: <Link />,
           'aria-label': "Ajout d'un lien",
-          'className': '',
-          'onClick': () => console.log('click'),
+          className: '',
+          onClick: () => console.log('click'),
         },
         name: 'linker',
       },

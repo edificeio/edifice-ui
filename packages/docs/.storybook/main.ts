@@ -9,13 +9,16 @@ const config: StorybookConfig = {
     '../../react/**/src/**/*.stories.@(js|jsx|ts|tsx|mdx)',
   ],
   addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],
-  staticDirs: ["../public"],
+  staticDirs: [
+    '../public',
+    { from: '../../bootstrap/assets', to: '/assets/themes/edifice-bootstrap' },
+  ],
   framework: {
     name: '@storybook/react-vite',
     options: { strictMode: false },
   },
   typescript: {
-    reactDocgen: "react-docgen",
+    reactDocgen: 'react-docgen',
   },
   docs: {
     autodocs: true,
