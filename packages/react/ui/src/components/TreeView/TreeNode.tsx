@@ -2,7 +2,7 @@ import { TreeData } from "../../types";
 import { TreeItem } from "./TreeItem";
 
 export interface TreeNodeProps {
-  node: TreeData;
+  node: TreeData | TreeData;
   expandedNodes: Set<string>;
   selectedNodeId?: string;
   draggedNodeId?: string | undefined;
@@ -28,6 +28,7 @@ export const TreeNode = ({
       nodeId={node.id}
       label={node.name}
       section={node.section}
+      showIconSection={node.showIconSection}
       selected={selected}
       expanded={expanded}
       focused={focused}
