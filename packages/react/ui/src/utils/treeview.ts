@@ -196,6 +196,28 @@ export function updateNode(
   });
 }
 
+export function findPathById(tree: TreeData, nodeId: string) {
+  let path: string[] = [];
+
+  function traverse(node: TreeData, currentPath: string[]) {
+    if (node.id === nodeId) {
+      path = currentPath.concat(node.id);
+      return true;
+    }
+    if (node.children) {
+      for (const child of node.children) {
+        if (traverse(child, currentPath.concat(node.id))) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  traverse(tree, []);
+  return path;
+}
+
 export class TreeNodeFolderWrapper implements TreeData {
   constructor(public readonly folder: IFolder) {
     this.id = folder.id;

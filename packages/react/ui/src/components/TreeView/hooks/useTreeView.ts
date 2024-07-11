@@ -36,7 +36,6 @@ export const useTreeView = ({
     string | undefined
   >(undefined);
   const selectedNodeId = internalSelectedNodeId ?? externalSelectedNodeId;
-  // const expandedNodes = useRef<Set<string>>(new Set());
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
 
   useEffect(() => {
