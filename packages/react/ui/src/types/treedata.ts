@@ -14,6 +14,10 @@ export interface TreeData {
    */
   section?: boolean;
   /**
+   * @param showIconSection: indicate if need icon folder
+   */
+  showIconSection?: boolean;
+  /**
    * @param selected: if first node is a section, it is selected by default
    */
   selected?: boolean;
