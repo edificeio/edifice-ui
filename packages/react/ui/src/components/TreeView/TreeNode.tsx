@@ -77,7 +77,7 @@ export const TreeNode = ({
     arrow: clsx({
       "py-4": !node.section,
       "py-8": node.section,
-      "invisible": !Array.isArray(node.children) || node.children.length === 0,
+      invisible: !Array.isArray(node.children) || node.children.length === 0,
     }),
     button: clsx("flex-fill d-flex align-items-center text-truncate gap-8", {
       "py-8": node.section,
