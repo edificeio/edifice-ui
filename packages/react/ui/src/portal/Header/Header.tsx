@@ -4,8 +4,10 @@ import {
   Disconnect,
   Home,
   MyApps,
+  NeoAssistance,
   NeoMessaging,
   NewRelease,
+  OneAssistance as Assistance,
   OneMessaging,
   OneProfile,
   Userbook,
@@ -27,7 +29,15 @@ import {
   PopoverBody,
   PopoverFooter,
 } from "../../components";
-import { useConversation, useUser, useHeader, useOdeClient } from "../../core";
+import {
+  useConversation,
+  useUser,
+  useHeader,
+  useOdeClient,
+  useHasWorkflow,
+} from "../../core";
+import { Help } from "../Help";
+import { useHelp } from "../Help/hooks/useHelp";
 import SearchEngine from "../SearchEngine/SearchEngine";
 
 export interface HeaderProps {
@@ -39,7 +49,19 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
   const { t } = useTranslation();
   const { messages, msgLink, zimbraWorkflow } = useConversation();
   const { user, avatar } = useUser();
-  const { currentApp } = useOdeClient();
+  const { currentLanguage, currentApp } = useOdeClient();
+  const hasOldHelpEnableWorkflow =
+    useHasWorkflow(
+      "org.entcore.portal.controllers.PortalController|oldHelpEnable",
+    ) || false;
+
+  const {
+    isModalOpen: isHelpOpen,
+    setIsModalOpen: setIsHelpOpen,
+    parsedContent,
+    parsedHeadline,
+    error,
+  } = useHelp();
 
   const classes = clsx("header", {
     "no-2d": is1d,
@@ -111,6 +133,27 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                     <OneProfile className="icon user" />
                   </NavLink>
                 </NavItem>
+                {currentLanguage === "fr" && hasOldHelpEnableWorkflow ? (
+                  <NavItem>
+                    <button
+                      className="nav-link"
+                      onClick={() => {
+                        setIsHelpOpen(true);
+                      }}
+                    >
+                      <Assistance className="icon help" />
+                      <VisuallyHidden>{t("navbar.help")}</VisuallyHidden>
+                    </button>
+
+                    <Help
+                      isHelpOpen={isHelpOpen}
+                      setIsHelpOpen={setIsHelpOpen}
+                      parsedContent={parsedContent}
+                      parsedHeadline={parsedHeadline}
+                      error={error}
+                    />
+                  </NavItem>
+                ) : null}
                 <NavItem>
                   <button className="nav-link" onClick={handleLogout}>
                     <Disconnect className="icon logout" />
@@ -246,6 +289,27 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                   </NavLink>
                 </NavItem>
               )}
+              {currentLanguage === "fr" && hasOldHelpEnableWorkflow ? (
+                <NavItem>
+                  <button
+                    className="nav-link btn btn-naked"
+                    onClick={() => {
+                      setIsHelpOpen(true);
+                    }}
+                  >
+                    <NeoAssistance color="#fff" />
+                    <VisuallyHidden>{t("support")}</VisuallyHidden>
+                  </button>
+
+                  <Help
+                    isHelpOpen={isHelpOpen}
+                    setIsHelpOpen={setIsHelpOpen}
+                    parsedContent={parsedContent}
+                    parsedHeadline={parsedHeadline}
+                    error={error}
+                  />
+                </NavItem>
+              ) : null}
               <NavItem>
                 <div className="dropdown">
                   <button

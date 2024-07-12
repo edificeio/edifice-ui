@@ -195,6 +195,12 @@ export class Theme implements ITheme {
           return this.skins;
         });
   }
+
+  async getHelpPath(): Promise<String> {
+    const overrides = await this.listSkins();
+    const override = overrides.find((t) => t.child === this.skin);
+    return override?.help ?? "/help";
+  }
 }
 
 /*
