@@ -29,7 +29,7 @@ pnpm watch:react
 
 ### Watch + SB
 
-Watch styles to `ode-dev-server` when local develop.
+Watch styles to `recette` when local develop.
 
 ```
 pnpm watch:sb
