@@ -2,7 +2,7 @@ import { TreeData } from "../../types";
 import { TreeItem } from "./TreeItem";
 
 export interface TreeNodeProps {
-  node: TreeData | TreeData;
+  node: TreeData;
   expandedNodes: Set<string>;
   selectedNodeId?: string;
   draggedNodeId?: string | undefined;
