@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.14](https://github.com/edificeio/edifice-ui/compare/v1.5.14-develop.0...v1.5.14) (2024-07-12)
+
+**Note:** Version bump only for package @edifice-tiptap-extensions/extension-alert
+
 ## [1.5.13](https://github.com/edificeio/edifice-ui/compare/v1.5.13-develop.2...v1.5.13) (2024-07-12)
 
 **Note:** Version bump only for package @edifice-tiptap-extensions/extension-alert
