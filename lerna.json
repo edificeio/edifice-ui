@@ -1,10 +1,6 @@
 {
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
-<<<<<<< HEAD
   "version": "1.5.17",
-=======
-  "version": "1.5.15-develop-pedago.0",
->>>>>>> 8aea6d07 (chore(release): version & publish)
   "npmClient": "pnpm",
   "command": {
     "version": {
