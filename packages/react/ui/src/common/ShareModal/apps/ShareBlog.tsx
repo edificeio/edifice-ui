@@ -46,13 +46,13 @@ export default function ShareBlog({
     const value = event.target.value as PublicationType;
     (async () => {
       const params = {
-        description: resource.description || "",
-        entId: resource.assetId,
-        name: resource.name,
-        public: !!resource.public,
-        slug: resource.slug || "",
-        thumbnail: resource.thumbnail,
-        trashed: resource.trashed,
+        "description": resource.description || "",
+        "entId": resource.assetId,
+        "name": resource.name,
+        "public": !!resource.public,
+        "slug": resource.slug || "",
+        "thumbnail": resource.thumbnail,
+        "trashed": resource.trashed,
         "publish-type": value,
       } as BlogUpdate;
 
