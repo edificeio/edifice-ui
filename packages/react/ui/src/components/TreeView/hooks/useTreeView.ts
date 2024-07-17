@@ -1,4 +1,11 @@
-import { Ref, useEffect, useImperativeHandle, useMemo, useState } from "react";
+import {
+  Ref,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { TreeData } from "../../../types";
 import { findNodeById, findPathById } from "../../../utils/treeview";
 import { TreeViewHandlers } from "../TreeView";
@@ -37,7 +44,7 @@ export const useTreeView = ({
     string | undefined
   >(undefined);
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
-  const [siblingsNodes, setSiblingsNodes] = useState<Set<string>>(new Set());
+  const siblingsNodes = useRef<Set<string>>(new Set());
   const [draggedNodeId, setDraggedNodeId] = useState<string | undefined>(
     undefined,
   );
@@ -45,10 +52,9 @@ export const useTreeView = ({
   const selectedNodeId = internalSelectedNodeId ?? externalSelectedNodeId;
 
   function addNodesWithSiblingHavingChildren(data: TreeData | TreeData[]) {
-    const resultSet = new Set(siblingsNodes);
-
     if (Array.isArray(data)) {
       data.forEach((node) => {
+        const resultSet = new Set(siblingsNodes.current);
         const siblings = data.filter(({ id }) => id !== node.id);
         const hasSiblingWithChildren = siblings.some(
           (sibling) => sibling.children && sibling.children.length > 0,
@@ -56,7 +62,6 @@ export const useTreeView = ({
 
         if (hasSiblingWithChildren) {
           resultSet.add(node.id);
-          setSiblingsNodes(resultSet);
         }
 
         if (node.children && node.children.length > 0) {
@@ -70,17 +75,15 @@ export const useTreeView = ({
 
             if (hasChildSiblingWithChildren) {
               resultSet.add(child.id);
-              setSiblingsNodes(resultSet);
             }
 
-            addNodesWithSiblingHavingChildren(
-              child.children as TreeData | TreeData[],
-            );
+            addNodesWithSiblingHavingChildren(child);
           });
         }
       });
     } else {
       data.children?.forEach((child) => {
+        const resultSet = new Set(siblingsNodes.current);
         const siblings = data.children?.filter((c) => c.id !== child.id);
 
         const hasSiblingWithChildren = siblings?.some(
@@ -89,7 +92,7 @@ export const useTreeView = ({
 
         if (hasSiblingWithChildren) {
           resultSet.add(child.id);
-          setSiblingsNodes(resultSet);
+          siblingsNodes.current = resultSet;
         }
 
         addNodesWithSiblingHavingChildren(child);
@@ -133,12 +136,6 @@ export const useTreeView = ({
   );
 
   useImperativeHandle(ref, () => handlers, [handlers]);
-
-  /* useEffect(() => {
-    if (data && !Array.isArray(data)) {
-      setInternalSelectedNodeId(data.id);
-    }
-  }, [data]); */
 
   /**
    * Effect runs only when controlling treeview with selectedNodeId props
@@ -241,9 +238,9 @@ export const useTreeView = ({
   };
 
   const handleFoldUnfold = (nodeId: string) => {
-    handleSelectedItem(nodeId);
+    // handleSelectedItem(nodeId);
     handleToggleNode(nodeId);
-    onTreeItemClick?.(nodeId);
+    // onTreeItemClick?.(nodeId);
   };
 
   /**
