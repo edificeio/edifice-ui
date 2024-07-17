@@ -1,9 +1,7 @@
 .iframe-wrapper {
   position: relative;
-  padding-bottom: 56.25%;
-  padding-top: 0;
-  height: 0;
-  
+  min-height: 56vh;
+
   iframe {
     max-width: 100%;
   }
