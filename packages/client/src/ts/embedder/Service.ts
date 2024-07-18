@@ -35,11 +35,38 @@ export class EmbedderService {
     url: string,
   ): Embedder | undefined {
     for (const embedder of embedderList) {
-      if (!!this.isUrlFromProvider(url, embedder)) {
+      if (this.isUrlFromProvider(url, embedder)) {
         return embedder;
       }
     }
     return;
+  }
+
+  private urlIsFromPattern(url: string, pattern: string): boolean {
+    const splitURLRegex = new RegExp("[^{}]+(?=(?:[^{}]*{[^}]*})*[^}]*$)", "g");
+    const splitVariableRegex = new RegExp("{[^}]*}", "g");
+    let isFromPattern = true;
+    const urlParts = pattern.match(splitURLRegex) || [];
+    const urlPartsFiltered: string[] = [];
+    const variableParts = pattern.match(splitVariableRegex) || [];
+
+    // Filter urlParts we want to check with the URL given
+    variableParts.forEach((variablePart, index) => {
+      if (variablePart.includes("ignore")) {
+        // If the variable is an ignore, we don't need to check the rest of the URL
+        return;
+      }
+      urlPartsFiltered.push(urlParts[index]);
+    });
+
+    urlPartsFiltered.forEach((urlPart) => {
+      if (!url.includes(urlPart)) {
+        isFromPattern = false;
+        return;
+      }
+    });
+
+    return isFromPattern;
   }
 
   /**
@@ -50,40 +77,16 @@ export class EmbedderService {
    */
   private isUrlFromProvider(url: string, embedder: Embedder): boolean {
     // Regex to remove the variable from the URL pattern (remove everything inside {...})
-    const splitURLRegex = new RegExp("[^{}]+(?=(?:[^{}]*{[^}]*})*[^}]*$)", "g");
-    const splitVariableRegex = new RegExp("{[^}]*}", "g");
     if (typeof embedder.url === "string") {
       embedder.url = [embedder.url];
     }
 
-    let isFromProvider = false;
     for (const pattern of embedder.url) {
-      let isFromPattern = true;
-      const urlParts = pattern.match(splitURLRegex) || [];
-      const urlPartsFiltered: string[] = [];
-      const variableParts = pattern.match(splitVariableRegex) || [];
-
-      // Filter urlParts we want to check with the URL given
-      variableParts.forEach((variablePart, index) => {
-        if (variablePart.includes("ignore")) {
-          // If the variable is an ignore, we don't need to check the rest of the URL
-          return;
-        }
-        urlPartsFiltered.push(urlParts[index]);
-      });
-
-      urlPartsFiltered.forEach((urlPart) => {
-        if (!url.includes(urlPart)) {
-          isFromPattern = false;
-          return;
-        }
-      });
-
-      if (isFromPattern) {
-        isFromProvider = true;
+      if (this.urlIsFromPattern(url, pattern)) {
+        return true;
       }
     }
-    return isFromProvider;
+    return false;
   }
 
   /**
@@ -94,29 +97,31 @@ export class EmbedderService {
    */
   public getEmbedCodeForProvider(embedder: Embedder, url: string): string {
     for (const pattern of embedder.url) {
-      const matchParams = new RegExp("{[a-zA-Z0-9_.]+}", "g");
-      const params = pattern.match(matchParams) || [];
-      let computedEmbed = embedder.embed;
+      if (this.urlIsFromPattern(url, pattern)) {
+        const matchParams = new RegExp("{[a-zA-Z0-9_.]+}", "g");
+        const params = pattern.match(matchParams) || [];
+        let computedEmbed = embedder.embed;
 
-      for (const param of params) {
-        let paramBefore = pattern.split(param)[0];
-        const additionnalSplit = paramBefore.split("}");
-        if (additionnalSplit.length > 1) {
-          paramBefore = additionnalSplit[additionnalSplit.length - 1];
-        }
-        let paramValue = url.split(paramBefore)[1];
-        if (!paramValue) {
-          continue;
-        }
-        const paramAfter = pattern.split(param)[1].split("{")[0];
-        if (paramAfter) {
-          paramValue = paramValue.split(paramAfter)[0];
-        }
+        for (const param of params) {
+          let paramBefore = pattern.split(param)[0];
+          const additionnalSplit = paramBefore.split("}");
+          if (additionnalSplit.length > 1) {
+            paramBefore = additionnalSplit[additionnalSplit.length - 1];
+          }
+          let paramValue = url.split(paramBefore)[1];
+          if (!paramValue) {
+            continue;
+          }
+          const paramAfter = pattern.split(param)[1].split("{")[0];
+          if (paramAfter) {
+            paramValue = paramValue.split(paramAfter)[0];
+          }
 
-        const replace = new RegExp("\\" + param.replace(/}/, "\\}"), "g");
-        computedEmbed = computedEmbed.replace(replace, paramValue);
+          const replace = new RegExp("\\" + param.replace(/}/, "\\}"), "g");
+          computedEmbed = computedEmbed.replace(replace, paramValue);
+        }
+        return computedEmbed;
       }
-      return computedEmbed;
     }
     return "";
   }
