@@ -121,6 +121,10 @@
       background-color: transparent;
       border: 0;
 
+      &:hover {
+        background-color: $gray-300;
+      }
+
       &.focus {
         background-color: var(--#{$prefix}gray-200);
         outline: 1px solid var(--#{$prefix}gray-400);
