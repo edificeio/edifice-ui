@@ -15,6 +15,7 @@ export const useTreeView = ({
   ref,
   externalSelectedNodeId,
   draggedNode,
+  allExpandedNodes,
   onTreeItemUnfold,
   onTreeItemFold,
   onTreeItemClick,
@@ -27,6 +28,7 @@ export const useTreeView = ({
     overId: string | undefined;
     isTreeview: boolean;
   };
+  allExpandedNodes?: boolean;
   /**
    * Callback function to provide unfolded item to parent component
    */
@@ -100,6 +102,16 @@ export const useTreeView = ({
     }
   }
 
+  const expandedAllNodes = (allExpandedNodes: boolean | undefined) => {
+    const initExpandedNodes = new Set("");
+    if (data && Array.isArray(data) && allExpandedNodes) {
+      data.forEach((node) => {
+        initExpandedNodes.add(node.id);
+      });
+      setExpandedNodes(initExpandedNodes);
+    }
+  };
+
   useEffect(() => {
     if (data) {
       addNodesWithSiblingHavingChildren(data);
@@ -130,6 +142,9 @@ export const useTreeView = ({
       select(nodeId: string) {
         handleItemClick(nodeId);
       },
+      allExpandedNodes() {
+        expandedAllNodes(allExpandedNodes);
+      },
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
@@ -137,11 +152,16 @@ export const useTreeView = ({
 
   useImperativeHandle(ref, () => handlers, [handlers]);
 
+  useEffect(() => {
+    expandedAllNodes(allExpandedNodes);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   /**
    * Effect runs only when controlling treeview with selectedNodeId props
    */
   useEffect(() => {
-    if (externalSelectedNodeId) {
+    if (externalSelectedNodeId && !allExpandedNodes) {
       handleExternalSelectedNodeId(externalSelectedNodeId);
       setInternalSelectedNodeId(externalSelectedNodeId);
     }

@@ -26,6 +26,11 @@ export interface TreeViewProps {
   showIcon?: boolean;
 
   /**
+   * Open all treeview nodes
+   */
+  allExpandedNodes?: boolean;
+
+  /**
    * Pass draggeNode when you drag an element from another context (resource / folder)
    */
   draggedNode?: {
@@ -63,6 +68,7 @@ const TreeView = forwardRef(
       onTreeItemFold,
       draggedNode,
       showIcon = true,
+      allExpandedNodes = false,
       selectedNodeId: externalSelectedNodeId,
     } = props;
 
@@ -78,6 +84,7 @@ const TreeView = forwardRef(
       ref,
       externalSelectedNodeId,
       draggedNode,
+      allExpandedNodes,
       onTreeItemClick,
       onTreeItemFold,
       onTreeItemUnfold,
