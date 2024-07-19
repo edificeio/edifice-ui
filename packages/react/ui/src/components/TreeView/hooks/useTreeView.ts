@@ -110,7 +110,7 @@ export const useTreeView = ({
       });
       setExpandedNodes(initExpandedNodes);
     }
-  }
+  };
 
   useEffect(() => {
     if (data) {
@@ -140,12 +140,11 @@ export const useTreeView = ({
         setInternalSelectedNodeId(undefined);
       },
       select(nodeId: string) {
-        
-        (nodeId);
+        handleItemClick(nodeId);
       },
-      allExpandedNodes(){
+      allExpandedNodes() {
         expandedAllNodes(allExpandedNodes);
-      }
+      },
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
@@ -155,9 +154,9 @@ export const useTreeView = ({
 
   useEffect(() => {
     expandedAllNodes(allExpandedNodes);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
+
   /**
    * Effect runs only when controlling treeview with selectedNodeId props
    */
