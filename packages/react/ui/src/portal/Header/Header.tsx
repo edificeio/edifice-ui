@@ -35,6 +35,7 @@ import {
   useHeader,
   useOdeClient,
   useHasWorkflow,
+  useOdeTheme,
 } from "../../core";
 import { Help } from "../Help";
 import { useHelp } from "../Help/hooks/useHelp";
@@ -86,6 +87,8 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
   } = useHeader({ user, avatar });
 
   const hasMessages = messages > 0;
+
+  const { theme } = useOdeTheme();
 
   return (
     <header className={classes}>
@@ -368,7 +371,10 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                     </NavItem>
                     <NavItem>
                       <a
-                        href="/auth/logout?callback="
+                        href={
+                          "/auth/logout?callback=" +
+                          (theme?.logoutCallback ?? "/")
+                        }
                         className="nav-link dropdown-item"
                       >
                         <Disconnect className="icon logout" />
