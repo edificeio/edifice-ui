@@ -1,6 +1,6 @@
 {
   "name": "@edifice-ui/react",
-  "version": "1.5.15-develop-hotfix.1",
+  "version": "1.5.15-develop-hotfix.2",
   "description": "Edifice React Library",
   "keywords": [
     "react",
@@ -61,6 +61,8 @@
   "devDependencies": {
     "@babel/plugin-transform-react-pure-annotations": "7.23.3",
     "@edifice-ui/icons": "workspace:*",
+    "@pixi/mixin-get-child-by-name": "7.4.2",
+    "@pixi/react": "7.1.2",
     "@react-spring/web": "9.7.3",
     "@tanstack/react-query": "5.8.4",
     "@types/node": "20.8.4",
@@ -69,21 +71,19 @@
     "@types/react-dom": "18.2.13",
     "@types/ua-parser-js": "0.7.37",
     "edifice-ts-client": "workspace:*",
+    "pixi.js": "7.4.2",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-hook-form": "7.49.2",
-    "react-i18next": "14.1.0",
-    "@pixi/mixin-get-child-by-name": "7.4.2",
-    "@pixi/react": "7.1.2",
-    "pixi.js": "7.4.2"
+    "react-i18next": "14.1.0"
   },
   "peerDependencies": {
+    "@edifice-ui/icons": "*",
     "@pixi/mixin-get-child-by-name": "7.4.2",
     "@pixi/react": "7.1.2",
-    "pixi.js": "7.4.2",
-    "@edifice-ui/icons": "*",
     "@react-spring/web": "9.7.3",
     "@tanstack/react-query": "5.8.4",
+    "pixi.js": "7.4.2",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-hook-form": "7.49.2",
