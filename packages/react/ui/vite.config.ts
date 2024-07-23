@@ -21,16 +21,24 @@ export default defineConfig({
       formats: ["es"],
     },
     rollupOptions: {
+      output: {
+        preserveModules: true,
+        preserveModulesRoot: "src",
+        entryFileNames: ({ name: fileName }) => {
+          return `${fileName}.js`;
+        },
+      },
       external: [
         ...Object.keys(dependencies),
         ...Object.keys(peerDependencies),
-        "dayjs/plugin/customParseFormat",
-        "dayjs/plugin/relativeTime",
-        "dayjs/locale/de",
-        "dayjs/locale/es",
-        "dayjs/locale/pt",
-        "dayjs/locale/fr",
-        "dayjs/locale/it",
+        "dayjs/plugin/customParseFormat.js",
+        "dayjs/plugin/relativeTime.js",
+        "dayjs/plugin/localizedFormat.js",
+        "dayjs/locale/de.js",
+        "dayjs/locale/es.js",
+        "dayjs/locale/pt.js",
+        "dayjs/locale/fr.js",
+        "dayjs/locale/it.js",
         "swiper/react",
         "swiper/modules",
         "react/jsx-runtime",

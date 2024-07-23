@@ -19,6 +19,13 @@ export default defineConfig({
       formats: ["es"],
     },
     rollupOptions: {
+      output: {
+        preserveModules: true,
+        preserveModulesRoot: "src",
+        entryFileNames: ({ name: fileName }) => {
+          return `${fileName}.js`;
+        },
+      },
       external: [
         ...Object.keys(dependencies),
         ...Object.keys(peerDependencies),

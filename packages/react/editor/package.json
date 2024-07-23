@@ -91,19 +91,17 @@
     "@types/node": "20.4.9",
     "@types/react": "18.2.33",
     "@types/react-dom": "18.2.14",
-    "concurrently": "8.2.0",
     "edifice-ts-client": "workspace:*",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-i18next": "14.1.0",
-    "sass": "1.68.0"
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-i18next": "14.1.0"
   },
   "peerDependencies": {
     "@edifice-ui/icons": "*",
     "@edifice-ui/react": "*",
     "@react-spring/web": "9.7.3",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "react-i18next": "14.1.0"
   },
   "publishConfig": {

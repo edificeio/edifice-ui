@@ -1,7 +1,7 @@
 import { resolve } from "path";
+import { visualizer } from "rollup-plugin-visualizer";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
-import { visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig({
   build: {
