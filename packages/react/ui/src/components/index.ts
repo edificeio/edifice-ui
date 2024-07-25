@@ -26,6 +26,7 @@ export * from "./Label";
 export * from "./Loading";
 export * from "./LoadingScreen";
 export * from "./Logo";
+export * from "./Menu";
 export * from "./Modal";
 export * from "./Popover";
 export * from "./Radio";
