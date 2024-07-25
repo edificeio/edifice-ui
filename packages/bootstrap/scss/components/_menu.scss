@@ -1,33 +1,36 @@
 .menu {
-    .btn.stack {
-        --edifice-btn-padding-x: 0.8rem;
-        --edifice-btn-font-weight: 400;
-    }
-    
-    .btn.stack span {
+  .btn {
+    &.stack {
+      --edifice-btn-padding-x: 0.8rem;
+      --edifice-btn-font-weight: 400;
+
+      span {
         justify-content: start;
-    }
-    
-    .btn.stack.selected,
-    .btn.stack.selected:hover {
+
+        & > *:nth-child(2) {
+          margin-left: auto;
+        }
+      }
+
+      &.selected {
+        --edifice-btn-font-weight: 700;
+      }
+
+      &.selected,
+      &.selected:hover {
         --edifice-btn-bg: var(--edifice-secondary-200);
         --edifice-btn-hover-bg: var(--edifice-secondary-200);
+      }
     }
-    
-    .btn.stack.selected {
-        --edifice-btn-font-weight: 700;
-    }
-    
-    .btn.stack span > *:nth-child(2) {
-        margin-left: auto;
-    }
-    
-    [data-menubar-list]:focus,
-    [data-menubar-menuitem]:focus {
-        outline: none;
-    }
-    
-    [data-menubar-menuitem].focus > .btn:not(.selected) {
-        background-color: var(--edifice-gray-300);
-    }
+  
+  }
+
+  [data-menubar-list]:focus,
+  [data-menubar-menuitem]:focus {
+    outline: none;
+  }
+
+  [data-menubar-menuitem].focus > .btn:not(.selected) {
+    background-color: var(--edifice-gray-300);
+  }
 }
