@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      react-router-dom:
-        specifier: ^6.25.1
-        version: 6.25.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@babel/plugin-transform-react-pure-annotations':
         specifier: 7.23.3
@@ -3167,10 +3163,6 @@ packages:
 
   '@remirror/core-constants@2.0.2':
     resolution: {integrity: sha512-dyHY+sMF0ihPus3O27ODd4+agdHMEmuRdyiZJ2CCWjPV5UFmn17ZbElvk6WOGVE4rdCJKZQCrPV2BcikOMLUGQ==}
-
-  '@remix-run/router@1.18.0':
-    resolution: {integrity: sha512-L3jkqmqoSVBVKHfpGZmLrex0lxR5SucGA0sUfFzGctehw+S/ggL9L/0NnC5mw6P8HUWpFZ3nQw3cRApjjWx9Sw==}
-    engines: {node: '>=14.0.0'}
 
   '@rollup/plugin-babel@6.0.4':
     resolution: {integrity: sha512-YF7Y52kFdFT/xVSuVdjkV5ZdX/3YtmX0QulG+x0taQOtJdHYzVU61aSSkAgVJ7NOv6qPkIYiJSgSWWN/DM5sGw==}
@@ -8209,19 +8201,6 @@ packages:
       '@types/react':
         optional: true
 
-  react-router-dom@6.25.1:
-    resolution: {integrity: sha512-0tUDpbFvk35iv+N89dWNrJp+afLgd+y4VtorJZuOCXK0kkCWjEvb3vTJM++SYvMEpbVwXKf3FjeVveVEb6JpDQ==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
-
-  react-router@6.25.1:
-    resolution: {integrity: sha512-u8ELFr5Z6g02nUtpPAggP73Jigj1mRePSwhS/2nkTrlPU5yEkH1vYzWNyvSnSzeeE2DNqWdH+P8OhIh9wuXhTw==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      react: '>=16.8'
-
   react-slugify@3.0.3:
     resolution: {integrity: sha512-CWQvLIyG8vOH8DWBY+fKvJHtd2IWLHVk0mfQlFS28kVckQBv06NGJajAOurS3+HSgsmYP/6R9qDAdJYSotXMWA==}
 
@@ -11944,8 +11923,6 @@ snapshots:
       react-dom: 18.2.0(react@18.2.0)
 
   '@remirror/core-constants@2.0.2': {}
-
-  '@remix-run/router@1.18.0': {}
 
   '@rollup/plugin-babel@6.0.4(@babel/core@7.24.7)(@types/babel__core@7.20.5)(rollup@3.29.4)':
     dependencies:
@@ -18170,18 +18147,6 @@ snapshots:
       use-sidecar: 1.1.2(@types/react@18.3.1)(react@18.2.0)
     optionalDependencies:
       '@types/react': 18.3.1
-
-  react-router-dom@6.25.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
-    dependencies:
-      '@remix-run/router': 1.18.0
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-router: 6.25.1(react@18.2.0)
-
-  react-router@6.25.1(react@18.2.0):
-    dependencies:
-      '@remix-run/router': 1.18.0
-      react: 18.2.0
 
   react-slugify@3.0.3: {}
 
