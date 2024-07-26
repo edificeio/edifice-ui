@@ -71,7 +71,6 @@ export default function useHeader({
 
   const handleLogout = async () => {
     await odeServices.session().logout();
-    window.location.href = "/auth/login";
   };
 
   return useMemo(

@@ -20,6 +20,10 @@ export class SessionService {
     return this.context.cache();
   }
 
+  private get conf() {
+    return this.context.conf();
+  }
+
   /**
    * Callback to call when user logout
    */
@@ -92,10 +96,14 @@ export class SessionService {
       });
   }
 
-  logout(): Promise<void> {
-    return this.http.get<void>("/auth/logout").finally(() => {
-      // void, always successful
-    });
+  async logout(): Promise<void> {
+    const logoutCallback = await this.conf.getLogoutCallback();
+
+    return this.http
+      .get<void>("/auth/logout?callback=" + logoutCallback)
+      .finally(() => {
+        // void, always successful
+      });
   }
 
   async latestQuotaAndUsage(
