@@ -1,6 +1,6 @@
 {
   "name": "@edifice-tiptap-extensions/extension-speechrecognition",
-  "version": "1.5.15",
+  "version": "1.5.16-develop",
   "description": "Rich Text Editor Speech Recognition Extension",
   "type": "module",
   "exports": {
