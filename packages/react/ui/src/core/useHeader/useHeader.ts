@@ -7,6 +7,7 @@ import { useHover } from "../../hooks";
 import { useOdeClient } from "../OdeClientProvider/OdeClientProvider";
 import { useBookmark } from "../useBookmark";
 import { useHasWorkflow } from "../useHasWorkflow";
+import { useOdeTheme } from "..";
 
 export default function useHeader({
   user,
@@ -17,6 +18,8 @@ export default function useHeader({
 }): any {
   const { appCode } = useOdeClient();
   const { t } = useTranslation();
+
+  const { theme } = useOdeTheme();
 
   /**
    * Get document title for responsive usage
@@ -71,6 +74,8 @@ export default function useHeader({
 
   const handleLogout = async () => {
     await odeServices.session().logout();
+    console.log("Logout" + theme?.logoutCallback ?? "/auth/login");
+    window.location.href = theme?.logoutCallback ?? "/auth/login";
   };
 
   return useMemo(
