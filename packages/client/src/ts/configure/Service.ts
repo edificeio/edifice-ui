@@ -121,11 +121,12 @@ export class ConfService {
     conf: any;
     publicTheme?: boolean;
   }): Promise<IOdeTheme> {
-    const theme = !publicTheme
-      ? await this.http.get<IOdeTheme>("/theme", {
-          queryParams: { _: version },
-        })
-      : null;
+    const { value } = await this.cache.httpGet<IOdeTheme>("/theme", {
+      queryParams: { _: version },
+    });
+
+    const theme = !publicTheme ? value : null;
+
     const themeOverride = conf?.overriding.find(
       (item: { child: any }) =>
         // Public access => simply use the 1st override
@@ -147,12 +148,24 @@ export class ConfService {
       bootstrapPath,
       bootstrapVersion,
       is1d,
-      logoutCallback: theme?.logoutCallback || "",
+      logoutCallback: theme?.logoutCallback || "/",
       skin: themeOverride.child,
       skinName,
       skins,
       themeName: themeOverride.child,
       themeUrl,
     };
+  }
+
+  async getLogoutCallback(version?: string) {
+    const { response, value } = await this.cache.httpGet<any>(`/theme`, {
+      queryParams: { _: version },
+    });
+
+    if (response.status < 200 || response.status >= 300) {
+      throw ERROR_CODE.NOT_LOGGED_IN;
+    }
+
+    return value.logoutCallback;
   }
 }

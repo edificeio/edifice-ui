@@ -1,6 +1,6 @@
 {
   "name": "@edifice-ui/react",
-  "version": "1.5.14",
+  "version": "1.5.15-develop.2",
   "description": "Edifice React Library",
   "keywords": [
     "react",
@@ -48,6 +48,7 @@
     "@tiptap/pm": "2.3.0",
     "@tiptap/react": "2.3.0",
     "@tiptap/starter-kit": "2.3.0",
+    "@uidotdev/usehooks": "^2.4.1",
     "clsx": "2.1.0",
     "dayjs": "1.11.10",
     "html-react-parser": "4.2.1",
