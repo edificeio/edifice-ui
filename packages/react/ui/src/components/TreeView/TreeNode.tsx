@@ -1,9 +1,15 @@
-import { useDroppable } from "@dnd-kit/core";
-import { Folder, RafterDown, RafterRight } from "@edifice-ui/icons";
+import { CSS } from "@dnd-kit/utilities";
+import {
+  AnimateLayoutChanges,
+  SortableContext,
+  useSortable,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { Folder, Move, RafterDown, RafterRight } from "@edifice-ui/icons";
 import clsx from "clsx";
-import { useId } from "react";
 import { useTranslation } from "react-i18next";
 import { TreeData } from "../../types";
+import { CSSProperties } from "react";
 
 export interface TreeNodeProps {
   /**
@@ -79,15 +85,56 @@ export const TreeNode = ({
 
   const { t } = useTranslation();
 
-  const { setNodeRef } = useDroppable({
-    id: useId(),
+  /* const { setNodeRef: setDroppableRef } = useDroppable({
+    id: newId,
     data: {
       id: node.id,
       name: node.name,
       isTreeview: true,
-      accepts: ["folder", "resource"],
+      accepts: ["folder", "resource", "page"],
     },
-  });
+  }); */
+
+  /* const { attributes, listeners, setDraggableNodeRef, transform, transition } =
+    useSortable({ id: node.id }); */
+
+  /* const style = {
+    transform: transform ? CSS.Transform.toString(transform) : undefined,
+    transition,
+  }; */
+
+  const animateLayoutChanges: AnimateLayoutChanges = ({
+    isSorting,
+    wasDragging,
+  }) => (isSorting || wasDragging ? false : true);
+
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({
+      id: node.id,
+      animateLayoutChanges,
+    });
+
+  const style: CSSProperties = {
+    transform: CSS.Translate.toString(transform),
+    transition,
+  };
+
+  console.log(style);
+
+  //const cursor = "default";
+
+  /* const combinedRef = (element: HTMLElement | null) => {
+    setDraggableRef(element);
+    setDroppableRef(element);
+  }; */
+
+  /* const styles = {
+    transform: `translate3d(${(transform?.x ?? 0) / 1}px, ${
+      (transform?.y ?? 0) / 1
+    }px, 0)`,
+    cursor,
+    transition,
+  } as React.CSSProperties; */
 
   const handleOnItemClick = (nodeId: string) => handleItemClick?.(nodeId);
   const handleOnToggleNode = (nodeId: string) => handleToggleNode?.(nodeId);
@@ -139,9 +186,13 @@ export const TreeNode = ({
       role="treeitem"
       aria-selected={selected && selected}
       aria-expanded={expanded && expanded}
+      style={style}
     >
       <div>
         <div className={treeItemClasses.action}>
+          <div {...listeners} {...attributes}>
+            <Move height={16} width={16} />
+          </div>
           <div
             className={treeItemClasses.arrow}
             tabIndex={0}
@@ -167,22 +218,27 @@ export const TreeNode = ({
         </div>
 
         {Array.isArray(node.children) && !!node.children.length && expanded && (
-          <ul role="group">
-            {node.children.map((child) => {
-              return (
-                <TreeNode
-                  key={child.id}
-                  node={child}
-                  selectedNodeId={selectedNodeId}
-                  expandedNodes={expandedNodes}
-                  siblingsNodes={siblingsNodes}
-                  draggedNodeId={draggedNodeId}
-                  handleItemClick={handleItemClick}
-                  handleToggleNode={handleToggleNode}
-                />
-              );
-            })}
-          </ul>
+          <SortableContext
+            items={node.children}
+            strategy={verticalListSortingStrategy}
+          >
+            <ul role="group">
+              {node.children.map((child) => {
+                return (
+                  <TreeNode
+                    key={child.id}
+                    node={child}
+                    selectedNodeId={selectedNodeId}
+                    expandedNodes={expandedNodes}
+                    siblingsNodes={siblingsNodes}
+                    draggedNodeId={draggedNodeId}
+                    handleItemClick={handleItemClick}
+                    handleToggleNode={handleToggleNode}
+                  />
+                );
+              })}
+            </ul>
+          </SortableContext>
         )}
       </div>
     </li>

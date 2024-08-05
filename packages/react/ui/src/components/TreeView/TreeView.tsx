@@ -53,6 +53,7 @@ export interface TreeViewProps {
    * Callback function to provide unfolded item to parent component
    */
   onTreeItemUnfold?: (nodeId: string) => void;
+  handleTreeButtonClick?: (nodeId: string) => void;
 }
 
 /**
