@@ -61,10 +61,10 @@ $selected-background-color: var(--#{$prefix}blue-200);
   .tree-btn {
     height: 24px;
     border: 1px solid var(--#{$prefix}gray-200);
-    border-radius: 4px;
+    border-radius: $border-radius-sm;
     background-color: var(--#{$prefix}gray-200);
     color: var(--#{$prefix}$gray-800);
-    padding-inline: 2px;
+    padding-inline: $spacer-2;
   }
 
   [role="group"] {
