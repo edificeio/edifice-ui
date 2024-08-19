@@ -9,3 +9,14 @@
     }
   }
 }
+
+[data-product="neo"][data-theme="cg77"] {
+  --#{$prefix}primary: #004899;
+  --#{$prefix}secondary: #00ace9;
+
+  .header {
+    .navbar {
+      background: var(--#{$prefix}secondary);
+    }
+  }
+}
