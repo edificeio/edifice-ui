@@ -74,7 +74,6 @@ export default function useHeader({
 
   const handleLogout = async () => {
     await odeServices.session().logout();
-    console.log("Logout" + theme?.logoutCallback ?? "/auth/login");
     window.location.href = theme?.logoutCallback ?? "/auth/login";
   };
 
