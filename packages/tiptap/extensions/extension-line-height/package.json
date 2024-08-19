@@ -1,6 +1,6 @@
 {
   "name": "@edifice-tiptap-extensions/extension-line-height",
-  "version": "1.5.16",
+  "version": "1.5.17-develop-integration",
   "description": "Rich Text Editor LineHeight Extension",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
