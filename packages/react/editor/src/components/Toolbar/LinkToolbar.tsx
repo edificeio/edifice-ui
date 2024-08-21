@@ -1,11 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from 'react';
 
-import { Edit, ExternalLink, Unlink } from "@edifice-ui/icons";
-import { Toolbar, ToolbarItem } from "@edifice-ui/react";
-import { FloatingMenu, Editor } from "@tiptap/react";
-import { useTranslation } from "react-i18next";
+import { Edit, ExternalLink, Unlink } from '@edifice-ui/icons';
+import { Toolbar, ToolbarItem } from '@edifice-ui/react';
+import { FloatingMenu, Editor } from '@tiptap/react';
+import { useTranslation } from 'react-i18next';
 
-import { tippyOptions } from "./LinkToolbar.TippyOptions";
+import { tippyOptions } from './LinkToolbar.TippyOptions';
 
 interface LinkToolbarProps {
   /**
@@ -34,42 +34,42 @@ const LinkToolbar = ({
   const LinkToolbarItems: ToolbarItem[] = useMemo(() => {
     return [
       {
-        type: "icon",
-        name: "edit",
+        type: 'icon',
+        name: 'edit',
         props: {
           icon: <Edit />,
-          "aria-label": t("tiptap.link.toolbar.edit"),
+          'aria-label': t('tiptap.link.toolbar.edit'),
           onClick: () => onEdit?.(linkAttrs),
         },
         tooltip: {
-          message: t("tiptap.link.toolbar.tooltip.edit"),
-          position: "bottom",
+          message: t('tiptap.link.toolbar.tooltip.edit'),
+          position: 'bottom',
         },
       },
       {
-        type: "icon",
-        name: "open",
+        type: 'icon',
+        name: 'open',
         props: {
           icon: <ExternalLink />,
-          "aria-label": t("tiptap.link.toolbar.open"),
+          'aria-label': t('tiptap.link.toolbar.open'),
           onClick: () => onOpen?.(linkAttrs),
         },
         tooltip: {
-          message: t("tiptap.link.toolbar.tooltip.open"),
-          position: "bottom",
+          message: t('tiptap.link.toolbar.tooltip.open'),
+          position: 'bottom',
         },
       },
       {
-        type: "icon",
-        name: "unlink",
+        type: 'icon',
+        name: 'unlink',
         props: {
           icon: <Unlink className="text-danger" />,
-          "aria-label": t("tiptap.link.toolbar.unlink"),
+          'aria-label': t('tiptap.link.toolbar.unlink'),
           onClick: () => onUnlink?.(linkAttrs),
         },
         tooltip: {
-          message: t("tiptap.link.toolbar.tooltip.unlink"),
-          position: "bottom",
+          message: t('tiptap.link.toolbar.tooltip.unlink'),
+          position: 'bottom',
         },
       },
     ];
@@ -77,17 +77,17 @@ const LinkToolbar = ({
 
   // Retrieve any selected linker node ONLY WHEN EDITOR STATE CHANGES
   useEffect(() => {
-    if (editor?.isActive("linker"))
-      setLinkAttrs(editor.getAttributes("linker"));
-    else if (editor?.isActive("hyperlink"))
-      setLinkAttrs(editor.getAttributes("hyperlink"));
+    if (editor?.isActive('linker'))
+      setLinkAttrs(editor.getAttributes('linker'));
+    else if (editor?.isActive('hyperlink'))
+      setLinkAttrs(editor.getAttributes('hyperlink'));
     else setLinkAttrs(undefined);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editor?.state]);
 
   const handleShouldShow = () =>
     (editor?.isEditable &&
-      (editor?.isActive("linker") || editor?.isActive("hyperlink"))) ||
+      (editor?.isActive('linker') || editor?.isActive('hyperlink'))) ||
     false;
 
   return (

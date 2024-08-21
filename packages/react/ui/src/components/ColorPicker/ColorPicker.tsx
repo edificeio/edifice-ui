@@ -1,10 +1,10 @@
-import { forwardRef } from "react";
-import { Ref } from "react";
-import { ComponentPropsWithRef } from "react";
+import { forwardRef } from 'react';
+import { Ref } from 'react';
+import { ComponentPropsWithRef } from 'react';
 
-import { DeleteColor, InfoCircle } from "@edifice-ui/icons";
-import clsx from "clsx";
-import { useTranslation } from "react-i18next";
+import { DeleteColor, InfoCircle } from '@edifice-ui/icons';
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 import {
   AccessiblePalette,
@@ -12,11 +12,11 @@ import {
   ColorPaletteHues,
   ColorPaletteItem,
   DefaultPalette,
-} from "./ColorPalette";
-import ColorPickerItem from "./ColorPickerItem";
-import { Tooltip } from "../Tooltip";
+} from './ColorPalette';
+import ColorPickerItem from './ColorPickerItem';
+import { Tooltip } from '../Tooltip';
 
-export interface ColorPickerProps extends ComponentPropsWithRef<"div"> {
+export interface ColorPickerProps extends ComponentPropsWithRef<'div'> {
   /**
    * Palettes of pickable colors
    */
@@ -37,7 +37,7 @@ const ColorPicker = forwardRef(
   (
     {
       palettes = [DefaultPalette, AccessiblePalette],
-      model = "#4A4A4A",
+      model = '#4A4A4A',
       onSuccess,
       ...restProps
     }: ColorPickerProps,
@@ -53,7 +53,7 @@ const ColorPicker = forwardRef(
         {palettes.map((palette: ColorPalette, paletteIdx) => (
           <div
             key={paletteIdx}
-            className={clsx("color-picker mx-8", palette.className)}
+            className={clsx('color-picker mx-8', palette.className)}
           >
             <div className="color-picker-label small mt-4 mb-8">
               {t(palette.label)}
@@ -63,7 +63,7 @@ const ColorPicker = forwardRef(
                     width={18}
                     height={18}
                     className="mx-4 position-relative"
-                    style={{ top: "4px" }}
+                    style={{ top: '4px' }}
                   />
                 </Tooltip>
               )}
@@ -112,6 +112,6 @@ const ColorPicker = forwardRef(
   },
 );
 
-ColorPicker.displayName = "ColorPicker";
+ColorPicker.displayName = 'ColorPicker';
 
 export default ColorPicker;

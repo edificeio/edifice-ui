@@ -1,9 +1,9 @@
-import * as PIXI from "pixi.js";
+import * as PIXI from 'pixi.js';
 
-import * as blurEffect from "../effects/blur";
-import * as cropEffect from "../effects/crop";
-import * as resizeEffect from "../effects/resize";
-import * as rotateEffect from "../effects/rotate";
+import * as blurEffect from '../effects/blur';
+import * as cropEffect from '../effects/crop';
+import * as resizeEffect from '../effects/resize';
+import * as rotateEffect from '../effects/rotate';
 
 export interface UseImageEffectsProps {
   spriteName: string;

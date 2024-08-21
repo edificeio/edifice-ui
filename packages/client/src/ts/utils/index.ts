@@ -1,3 +1,3 @@
-export * from "./DocumentHelper";
-export * from "./MimeTypeUtils";
-export * from "./StringUtils";
+export * from './DocumentHelper';
+export * from './MimeTypeUtils';
+export * from './StringUtils';

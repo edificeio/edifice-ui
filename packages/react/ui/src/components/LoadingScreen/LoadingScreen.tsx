@@ -1,8 +1,8 @@
-import { forwardRef, Ref } from "react";
+import { forwardRef, Ref } from 'react';
 
-import clsx from "clsx";
+import clsx from 'clsx';
 
-import usePaths from "../../core/usePaths/usePaths";
+import usePaths from '../../core/usePaths/usePaths';
 
 export interface LoadingScreenProps {
   position?: boolean;
@@ -18,15 +18,15 @@ const LoadingScreen = forwardRef(
     const image = `${imagePath}/loading/screen-loading.gif`;
 
     const containerClasses = clsx(
-      "top-0 end-0 start-0 bottom-0 d-grid justify-content-center align-content-center align-items-center z-2000",
+      'top-0 end-0 start-0 bottom-0 d-grid justify-content-center align-content-center align-items-center z-2000',
       {
-        "position-fixed": !position,
-        "position-static": position,
+        'position-fixed': !position,
+        'position-static': position,
       },
     );
 
-    const captionClasses = clsx("text-center pt-12", {
-      "text-white": !position,
+    const captionClasses = clsx('text-center pt-12', {
+      'text-white': !position,
     });
 
     return (
@@ -43,6 +43,6 @@ const LoadingScreen = forwardRef(
   },
 );
 
-LoadingScreen.displayName = "LoadingScreen";
+LoadingScreen.displayName = 'LoadingScreen';
 
 export default LoadingScreen;

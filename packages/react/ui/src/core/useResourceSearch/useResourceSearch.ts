@@ -1,18 +1,18 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 
 import {
   App,
   GetContextParameters,
   odeServices,
   SnipletsService,
-} from "edifice-ts-client";
+} from 'edifice-ts-client';
 /*
  * Augmented definition of a resource, until behaviours are dropped.
  * The path would otherwise be found by using `IWebResourceService.getViewUrl(resource)`
  */
-import { ILinkedResource } from "edifice-ts-client";
+import { ILinkedResource } from 'edifice-ts-client';
 
-import { useMockedData } from "../../utils";
+import { useMockedData } from '../../utils';
 
 /**
  * A hook to search for resources produced by applications.
@@ -62,7 +62,7 @@ export const useResourceSearch = (appCode: App) => {
               // Generate random IDs to prevent infinite recursion
               return {
                 ...r,
-                _id: "" + Math.round(Math.random() * 9999),
+                _id: '' + Math.round(Math.random() * 9999),
               };
             }),
           )

@@ -4,9 +4,9 @@ import {
   useEffect,
   useMemo,
   type ReactNode,
-} from "react";
+} from 'react';
 
-import { UseQueryResult } from "@tanstack/react-query";
+import { UseQueryResult } from '@tanstack/react-query';
 import {
   App,
   IGetConf,
@@ -15,11 +15,11 @@ import {
   IUserInfo,
   IWebApp,
   UserProfile,
-} from "edifice-ts-client";
-import { useTranslation } from "react-i18next";
+} from 'edifice-ts-client';
+import { useTranslation } from 'react-i18next';
 
-import { useConf } from "../useConf";
-import { useSession } from "../useSession";
+import { useConf } from '../useConf';
+import { useSession } from '../useSession';
 
 export interface OdeProviderParams {
   alternativeApp?: boolean;
@@ -62,19 +62,19 @@ export function OdeClientProvider({ children, params }: OdeClientProps) {
   useEffect(() => {
     const attributes = [
       {
-        data: "html",
-        value: sessionQuery?.data?.currentLanguage || "fr",
+        data: 'html',
+        value: sessionQuery?.data?.currentLanguage || 'fr',
       },
       // #WB-3137 Disable the translation of the content of the page which provoced issues
       {
-        data: "translate",
-        value: "no",
+        data: 'translate',
+        value: 'no',
       },
     ];
 
     attributes.forEach((attribute) => {
       return document
-        .querySelector("html")
+        .querySelector('html')
         ?.setAttribute(attribute.data, attribute.value as string);
     });
   }, [sessionQuery?.data]);

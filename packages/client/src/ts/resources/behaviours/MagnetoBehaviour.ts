@@ -1,4 +1,4 @@
-import { AbstractBehaviourService } from "./AbstractBehaviourService";
+import { AbstractBehaviourService } from './AbstractBehaviourService';
 
 type MagnetoData = {
   _id: string;
@@ -11,8 +11,8 @@ type MagnetoData = {
 };
 
 export class MagnetoBehaviour extends AbstractBehaviourService {
-  APP = "magneto";
-  RESOURCE = "magneto";
+  APP = 'magneto';
+  RESOURCE = 'magneto';
 
   async loadResources() {
     const magnetos = await this.httpGet<MagnetoData[]>(
@@ -27,7 +27,7 @@ export class MagnetoBehaviour extends AbstractBehaviourService {
         ownerName: data.ownerName,
         path: `/magneto#/board/view/${data._id}`,
         shared: data.shared && data.shared.length >= 0 ? true : false,
-        modified: "" + data.modificationDate,
+        modified: '' + data.modificationDate,
       });
     });
   }

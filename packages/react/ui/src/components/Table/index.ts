@@ -1,2 +1,2 @@
-export { default as TableExplorer } from "./TableExplorer";
-export * from "./TableExplorer";
+export { default as TableExplorer } from './TableExplorer';
+export * from './TableExplorer';

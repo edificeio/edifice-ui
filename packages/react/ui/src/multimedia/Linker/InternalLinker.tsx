@@ -1,19 +1,19 @@
-import { FormEvent, useCallback, useEffect, useState } from "react";
+import { FormEvent, useCallback, useEffect, useState } from 'react';
 
-import { Applications } from "@edifice-ui/icons";
-import { App, odeServices } from "edifice-ts-client";
+import { Applications } from '@edifice-ui/icons';
+import { App, odeServices } from 'edifice-ts-client';
 /*
  * Augmented definition of a resource, until behaviours are dropped.
  * The path would otherwise be found by using `IWebResourceService.getViewUrl(resource)`
  */
-import { ILinkedResource } from "edifice-ts-client";
-import { useTranslation } from "react-i18next";
+import { ILinkedResource } from 'edifice-ts-client';
+import { useTranslation } from 'react-i18next';
 
-import { AppIcon, Dropdown, EmptyScreen } from "../../components";
-import { SearchBar } from "../../components/SearchBar";
-import { useOdeTheme, usePaths, useResourceSearch } from "../../core";
-import { useDebounce } from "../../hooks";
-import LinkerCard from "../LinkerCard/LinkerCard";
+import { AppIcon, Dropdown, EmptyScreen } from '../../components';
+import { SearchBar } from '../../components/SearchBar';
+import { useOdeTheme, usePaths, useResourceSearch } from '../../core';
+import { useDebounce } from '../../hooks';
+import LinkerCard from '../LinkerCard/LinkerCard';
 
 /**
  * Definition of an internal link.
@@ -65,7 +65,7 @@ const InternalLinker = ({
   >();
   // User search terms (typed in an input) and its debounced equivalent.
   const [searchTerms, setSearchTerms] = useState<string | undefined>();
-  const debounceSearch = useDebounce<string>(searchTerms || "", 500);
+  const debounceSearch = useDebounce<string>(searchTerms || '', 500);
 
   // List of resources to display.
   const [resources, setResources] = useState<ILinkedResource[] | undefined>([]);
@@ -219,7 +219,7 @@ const InternalLinker = ({
         (option) => defaultAppCode === option.application,
       );
       setSelectedApplication(option);
-      loadAndDisplayResources("");
+      loadAndDisplayResources('');
     }
     /* Note : when options changes, `defaultAppCode` and `loadAndDisplayResources` are
      * already set at a correct value. So we remove them from the dependency array,
@@ -256,7 +256,7 @@ const InternalLinker = ({
                 </div>
               }
               label={t(
-                selectedApplication?.displayName || "bbm.linker.int.choose",
+                selectedApplication?.displayName || 'bbm.linker.int.choose',
               )}
               variant="ghost"
               size="md"
@@ -281,7 +281,7 @@ const InternalLinker = ({
           >
             <SearchBar
               isVariant
-              placeholder={t("search")}
+              placeholder={t('search')}
               size="lg"
               className="w-100"
               disabled={selectedApplication ? false : true}
@@ -315,7 +315,7 @@ const InternalLinker = ({
           <div className="d-flex justify-content-center mt-16">
             <EmptyScreen
               imageSrc={`${imagePath}/${theme?.bootstrapVersion}/illu-empty-search-${selectedApplication.application}.svg`}
-              text={t("bbm.linker.int.notfound")}
+              text={t('bbm.linker.int.notfound')}
               className="mt-16"
             />
           </div>
@@ -325,7 +325,7 @@ const InternalLinker = ({
           <div className="d-flex justify-content-center mt-32">
             <EmptyScreen
               imageSrc={`${imagePath}/${theme?.bootstrapVersion}/illu-empty-search.svg`}
-              text={t("bbm.linker.int.empty")}
+              text={t('bbm.linker.int.empty')}
               className="mt-32"
             />
           </div>

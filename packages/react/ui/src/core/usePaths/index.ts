@@ -1,1 +1,1 @@
-export { default as usePaths } from "./usePaths";
+export { default as usePaths } from './usePaths';

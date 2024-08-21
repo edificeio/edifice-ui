@@ -1,19 +1,19 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react';
 
-import { MockedDataProvider } from "../../utils";
-import { APP, IResource, WorkspaceElement } from "edifice-ts-client";
-import InternalLinker from "./InternalLinker";
-import { OdeClientProvider } from "../../core";
+import { MockedDataProvider } from '../../utils';
+import { APP, IResource, WorkspaceElement } from 'edifice-ts-client';
+import InternalLinker from './InternalLinker';
+import { OdeClientProvider } from '../../core';
 import {
   QueryCache,
   QueryClient,
   QueryClientProvider,
-} from "@tanstack/react-query";
+} from '@tanstack/react-query';
 
 const mockedDocuments: WorkspaceElement[] = [];
 
 const meta: Meta<typeof InternalLinker> = {
-  title: "Multimedia/InternalLinker",
+  title: 'Multimedia/InternalLinker',
   component: InternalLinker,
   args: {},
 };
@@ -27,7 +27,7 @@ export const Base: Story = {
   parameters: {
     docs: {
       description: {
-        story: "",
+        story: '',
       },
     },
   },
@@ -38,40 +38,40 @@ export const Base: Story = {
           appResources: {
             timelinegenerator: [
               {
-                application: "timelinegenerator",
-                modifiedAt: "2023-10-23T00:00:00.000Z",
-                name: "A fake timelinegenerator",
-                modifierId: "major",
-                modifierName: "Motoko",
-                thumbnail: "",
+                application: 'timelinegenerator',
+                modifiedAt: '2023-10-23T00:00:00.000Z',
+                name: 'A fake timelinegenerator',
+                modifierId: 'major',
+                modifierName: 'Motoko',
+                thumbnail: '',
               } as IResource,
               {
-                application: "timelinegenerator",
-                modifiedAt: "2023-10-23T01:00:00.000Z",
+                application: 'timelinegenerator',
+                modifiedAt: '2023-10-23T01:00:00.000Z',
                 name: "Another fake timelinegenerator with a very long name that should now overflow aloooooot, don't you think ?",
-                modifierId: "sarge",
-                modifierName: "Batou",
-                thumbnail: "",
+                modifierId: 'sarge',
+                modifierName: 'Batou',
+                thumbnail: '',
               } as IResource,
               {
-                application: "timelinegenerator",
-                modifiedAt: "2023-10-23T02:00:00.000Z",
-                name: "A real timelinegenerator ?",
-                modifierId: "newbie",
-                modifierName: "Togusa",
-                thumbnail: "",
+                application: 'timelinegenerator',
+                modifiedAt: '2023-10-23T02:00:00.000Z',
+                name: 'A real timelinegenerator ?',
+                modifierId: 'newbie',
+                modifierName: 'Togusa',
+                thumbnail: '',
               } as IResource,
             ],
           },
           workflows: [
-            "org.entcore.workspace.controllers.WorkspaceController|listDocuments",
-            "org.entcore.workspace.controllers.WorkspaceController|listFolders",
+            'org.entcore.workspace.controllers.WorkspaceController|listDocuments',
+            'org.entcore.workspace.controllers.WorkspaceController|listFolders',
           ],
           workspaceDocuments: mockedDocuments,
         }}
       >
         <QueryClientProvider client={null as unknown as QueryClient}>
-          <OdeClientProvider params={{ app: "timelinegenerator" }}>
+          <OdeClientProvider params={{ app: 'timelinegenerator' }}>
             <InternalLinker {...args}></InternalLinker>
           </OdeClientProvider>
         </QueryClientProvider>

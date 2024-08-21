@@ -8,12 +8,12 @@ import {
   useMemo,
   useRef,
   useState,
-} from "react";
+} from 'react';
 
-import { TabsContext } from "./TabsContext";
-import TabsItem, { TabsItemProps } from "./TabsItem";
-import TabsList from "./TabsList";
-import TabsPanel from "./TabsPanel";
+import { TabsContext } from './TabsContext';
+import TabsItem, { TabsItemProps } from './TabsItem';
+import TabsList from './TabsList';
+import TabsPanel from './TabsPanel';
 
 export interface TabsProps {
   /**
@@ -38,7 +38,7 @@ export interface TabsProps {
  * Tab Content displayed one at a time when a Tab Item is selected
  */
 const Tabs = ({ defaultId, items, onChange, children }: TabsProps) => {
-  const [activeTab, setActiveTab] = useState<string>(defaultId || "");
+  const [activeTab, setActiveTab] = useState<string>(defaultId || '');
   const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
   const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
 
@@ -61,7 +61,7 @@ const Tabs = ({ defaultId, items, onChange, children }: TabsProps) => {
        * The focus on input element with a reponse device will cause the keyboard to be displayed and trigger the resize event.
        * Which will cause the tab to be focused again and the keyboard to be closed. #WB-2841
        */
-      if (document?.activeElement?.tagName !== "INPUT") {
+      if (document?.activeElement?.tagName !== 'INPUT') {
         const currentTabIndex = items.findIndex(
           (item) => item.id === activeTab,
         );
@@ -78,9 +78,9 @@ const Tabs = ({ defaultId, items, onChange, children }: TabsProps) => {
     }
 
     setTabPosition();
-    window.addEventListener("resize", setTabPosition);
+    window.addEventListener('resize', setTabPosition);
 
-    return () => window.removeEventListener("resize", setTabPosition);
+    return () => window.removeEventListener('resize', setTabPosition);
   }, [activeTab, items, defaultId]);
 
   const moveFocusToPreviousTab = useCallback(
@@ -112,19 +112,19 @@ const Tabs = ({ defaultId, items, onChange, children }: TabsProps) => {
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLButtonElement>) => {
       switch (event.code) {
-        case "ArrowLeft":
+        case 'ArrowLeft':
           moveFocusToPreviousTab(activeTab);
           break;
 
-        case "ArrowRight":
+        case 'ArrowRight':
           moveFocusToNextTab(activeTab);
           break;
 
-        case "Home":
+        case 'Home':
           setActiveTab(items[0]?.id);
           break;
 
-        case "End":
+        case 'End':
           setActiveTab(items[items.length - 1]?.id);
           break;
 
@@ -159,7 +159,7 @@ const Tabs = ({ defaultId, items, onChange, children }: TabsProps) => {
 
   return (
     <TabsContext.Provider value={value}>
-      {typeof children === "function" ? (
+      {typeof children === 'function' ? (
         children(currentItem)
       ) : (
         <>
@@ -177,6 +177,6 @@ Tabs.Item = TabsItem;
 Tabs.Panel = TabsPanel;
 Tabs.List = TabsList;
 
-Tabs.displayName = "Tabs";
+Tabs.displayName = 'Tabs';
 
 export default Tabs;

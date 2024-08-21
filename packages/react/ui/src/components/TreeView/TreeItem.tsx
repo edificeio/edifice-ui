@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { Folder, RafterRight, RafterDown } from "@edifice-ui/icons";
-import { useTranslation } from "react-i18next";
+import { Folder, RafterRight, RafterDown } from '@edifice-ui/icons';
+import { useTranslation } from 'react-i18next';
 
-import useTreeItemEvents from "./hooks/useTreeItemEvents";
+import useTreeItemEvents from './hooks/useTreeItemEvents';
 
 export interface TreeItemProps {
   /**
@@ -130,16 +130,16 @@ const TreeItem = (props: TreeItemProps) => {
       <div>
         <div className="action-container d-flex align-items-center gap-8 px-2">
           <div
-            className={`py-8 ${!Array.isArray(children) ? "invisible" : null}`}
+            className={`py-8 ${!Array.isArray(children) ? 'invisible' : null}`}
             tabIndex={0}
             role="button"
             onClick={handleItemFoldUnfoldClick}
             onKeyDown={handleItemFoldUnfoldKeyDown}
-            aria-label={t("foldUnfold")}
+            aria-label={t('foldUnfold')}
           >
             {Array.isArray(children) && !!children.length && !expanded && (
               <RafterRight
-                title={t("foldUnfold")}
+                title={t('foldUnfold')}
                 width={rafterSize}
                 height={rafterSize}
               />
@@ -147,7 +147,7 @@ const TreeItem = (props: TreeItemProps) => {
 
             {Array.isArray(children) && !!children.length && expanded && (
               <RafterDown
-                title={t("foldUnfold")}
+                title={t('foldUnfold')}
                 width={rafterSize}
                 height={rafterSize}
               />
@@ -156,7 +156,7 @@ const TreeItem = (props: TreeItemProps) => {
             {/* Hide rafter when no children to keep alignment */}
             {!Array.isArray(children) && (
               <RafterRight
-                title={t("foldUnfold")}
+                title={t('foldUnfold')}
                 width={rafterSize}
                 height={rafterSize}
                 aria-hidden="true"
@@ -172,7 +172,7 @@ const TreeItem = (props: TreeItemProps) => {
             onFocus={handleItemFocus}
             onBlur={handleItemBlur}
           >
-            {section && <Folder title={t("folder")} width={20} height={20} />}
+            {section && <Folder title={t('folder')} width={20} height={20} />}
             <span className="text-truncate">{label}</span>
           </div>
         </div>
@@ -191,6 +191,6 @@ const TreeItem = (props: TreeItemProps) => {
   );
 };
 
-TreeItem.displayName = "TreeItem";
+TreeItem.displayName = 'TreeItem';
 
 export default TreeItem;

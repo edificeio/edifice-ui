@@ -2,8 +2,8 @@ import {
   UseMutationOptions,
   UseMutationResult,
   useMutation,
-} from "@tanstack/react-query";
-import { UpdateParameters, UpdateResult, odeServices } from "edifice-ts-client";
+} from '@tanstack/react-query';
+import { UpdateParameters, UpdateResult, odeServices } from 'edifice-ts-client';
 
 const useUpdateMutation = ({
   application,

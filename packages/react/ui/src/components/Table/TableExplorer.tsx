@@ -6,7 +6,7 @@
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/table/
  */
 
-import { forwardRef, Ref } from "react";
+import { forwardRef, Ref } from 'react';
 
 export type TableExplorerRef = HTMLTableElement;
 
@@ -26,6 +26,6 @@ const TableExplorer = forwardRef(
   },
 );
 
-TableExplorer.displayName = "TableExplorer";
+TableExplorer.displayName = 'TableExplorer';
 
 export default TableExplorer;

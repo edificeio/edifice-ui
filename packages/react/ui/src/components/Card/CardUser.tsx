@@ -1,6 +1,6 @@
-import { OneProfile } from "@edifice-ui/icons/nav";
+import { OneProfile } from '@edifice-ui/icons/nav';
 
-import { Avatar } from "../Avatar";
+import { Avatar } from '../Avatar';
 
 const CardUser = ({
   userSrc,
@@ -11,7 +11,7 @@ const CardUser = ({
 }) => {
   return userSrc ? (
     <Avatar
-      alt={creatorName || ""}
+      alt={creatorName || ''}
       size="xs"
       src={userSrc}
       variant="circle"
@@ -23,6 +23,6 @@ const CardUser = ({
   );
 };
 
-CardUser.displayName = "Card.User";
+CardUser.displayName = 'Card.User';
 
 export default CardUser;

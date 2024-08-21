@@ -1,37 +1,37 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 // Import TipTap module overloaded typings (custom commands)
-import "@edifice-tiptap-extensions/extension-audio";
-import "@edifice-tiptap-extensions/extension-image";
-import "@edifice-tiptap-extensions/extension-video";
+import '@edifice-tiptap-extensions/extension-audio';
+import '@edifice-tiptap-extensions/extension-image';
+import '@edifice-tiptap-extensions/extension-video';
 
-import { Alert } from "@edifice-tiptap-extensions/extension-alert";
-import { FontSize } from "@edifice-tiptap-extensions/extension-font-size";
-import { CustomHeading } from "@edifice-tiptap-extensions/extension-heading";
-import { CustomHighlight } from "@edifice-tiptap-extensions/extension-highlight";
-import { Hyperlink } from "@edifice-tiptap-extensions/extension-hyperlink";
-import { Iframe } from "@edifice-tiptap-extensions/extension-iframe";
-import { SpeechRecognition } from "@edifice-tiptap-extensions/extension-speechrecognition";
-import { SpeechSynthesis } from "@edifice-tiptap-extensions/extension-speechsynthesis";
-import { TableCell } from "@edifice-tiptap-extensions/extension-table-cell";
-import { useOdeClient } from "@edifice-ui/react";
-import Color from "@tiptap/extension-color";
-import Focus from "@tiptap/extension-focus";
-import FontFamily from "@tiptap/extension-font-family";
-import Placeholder from "@tiptap/extension-placeholder";
-import Subscript from "@tiptap/extension-subscript";
-import Superscript from "@tiptap/extension-superscript";
-import Table from "@tiptap/extension-table";
-import TableHeader from "@tiptap/extension-table-header";
-import TableRow from "@tiptap/extension-table-row";
-import TextAlign from "@tiptap/extension-text-align";
-import TextStyle from "@tiptap/extension-text-style";
-import Typography from "@tiptap/extension-typography";
-import Underline from "@tiptap/extension-underline";
-import { Content, FocusPosition, useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import { Mathematics } from "@tiptap-pro/extension-mathematics";
-import { useTranslation } from "react-i18next";
+import { Alert } from '@edifice-tiptap-extensions/extension-alert';
+import { FontSize } from '@edifice-tiptap-extensions/extension-font-size';
+import { CustomHeading } from '@edifice-tiptap-extensions/extension-heading';
+import { CustomHighlight } from '@edifice-tiptap-extensions/extension-highlight';
+import { Hyperlink } from '@edifice-tiptap-extensions/extension-hyperlink';
+import { Iframe } from '@edifice-tiptap-extensions/extension-iframe';
+import { SpeechRecognition } from '@edifice-tiptap-extensions/extension-speechrecognition';
+import { SpeechSynthesis } from '@edifice-tiptap-extensions/extension-speechsynthesis';
+import { TableCell } from '@edifice-tiptap-extensions/extension-table-cell';
+import { useOdeClient } from '@edifice-ui/react';
+import Color from '@tiptap/extension-color';
+import Focus from '@tiptap/extension-focus';
+import FontFamily from '@tiptap/extension-font-family';
+import Placeholder from '@tiptap/extension-placeholder';
+import Subscript from '@tiptap/extension-subscript';
+import Superscript from '@tiptap/extension-superscript';
+import Table from '@tiptap/extension-table';
+import TableHeader from '@tiptap/extension-table-header';
+import TableRow from '@tiptap/extension-table-row';
+import TextAlign from '@tiptap/extension-text-align';
+import TextStyle from '@tiptap/extension-text-style';
+import Typography from '@tiptap/extension-typography';
+import Underline from '@tiptap/extension-underline';
+import { Content, FocusPosition, useEditor } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import { Mathematics } from '@tiptap-pro/extension-mathematics';
+import { useTranslation } from 'react-i18next';
 
 import {
   AttachmentNodeView,
@@ -43,7 +43,7 @@ import {
   LinkerRenderer,
   MediaRenderer,
   VideoNodeView,
-} from "../components";
+} from '../components';
 
 /**
  * Hook that creates a tiptap editor instance.
@@ -71,11 +71,11 @@ export const useTipTapEditor = (
     extensions: [
       StarterKit,
       Focus.configure({
-        className: "has-focus",
-        mode: "all",
+        className: 'has-focus',
+        mode: 'all',
       }),
       Placeholder.configure({
-        placeholder: t(placeholder || "tiptap.placeholder"),
+        placeholder: t(placeholder || 'tiptap.placeholder'),
       }),
       CustomHighlight.configure({
         multicolor: true,
@@ -92,7 +92,7 @@ export const useTipTapEditor = (
       TableHeader,
       TableCell,
       TextAlign.configure({
-        types: ["heading", "paragraph", "custom-image", "video"],
+        types: ['heading', 'paragraph', 'custom-image', 'video'],
       }),
       CustomHeading.configure({
         levels: [1, 2],
@@ -104,7 +104,7 @@ export const useTipTapEditor = (
         lang:
           currentLanguage?.length === 2
             ? `${currentLanguage}-${currentLanguage.toUpperCase()}` // FIXME very dirty hack for demo
-            : "fr-FR",
+            : 'fr-FR',
       }),
       Iframe,
       Hyperlink,

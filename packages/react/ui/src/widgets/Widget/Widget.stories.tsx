@@ -1,13 +1,13 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react';
 
-import Widget from "./Widget";
+import Widget from './Widget';
 
 const meta: Meta<typeof Widget> = {
-  title: "Widgets/Widget Box",
+  title: 'Widgets/Widget Box',
   component: Widget,
   decorators: [
     (Story) => (
-      <div style={{ width: "300px" }}>
+      <div style={{ width: '300px' }}>
         <Story />
       </div>
     ),

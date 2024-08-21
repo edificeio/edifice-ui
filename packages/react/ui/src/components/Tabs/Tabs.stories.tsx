@@ -1,14 +1,14 @@
-import { Video, Mic, Landscape } from "@edifice-ui/icons";
-import { Meta, StoryObj } from "@storybook/react";
+import { Video, Mic, Landscape } from '@edifice-ui/icons';
+import { Meta, StoryObj } from '@storybook/react';
 
-import { TabsItemProps } from "./TabsItem";
-import Tabs, { TabsProps } from "./Tabs";
+import { TabsItemProps } from './TabsItem';
+import Tabs, { TabsProps } from './Tabs';
 
 const meta: Meta<typeof Tabs> = {
-  title: "Components/Tabs",
+  title: 'Components/Tabs',
   component: Tabs,
   args: {
-    defaultId: "1",
+    defaultId: '1',
   },
 };
 
@@ -18,9 +18,9 @@ type Story = StoryObj<typeof Tabs>;
 
 const data: TabsItemProps[] = [
   {
-    id: "1",
+    id: '1',
     icon: <Landscape />,
-    label: "Tab item",
+    label: 'Tab item',
     content: (
       <div className="p-24">
         <p>Panel 1</p>
@@ -28,9 +28,9 @@ const data: TabsItemProps[] = [
     ),
   },
   {
-    id: "2",
+    id: '2',
     icon: <Landscape />,
-    label: "Tab item",
+    label: 'Tab item',
     content: (
       <div className="p-24">
         <p>Panel 2</p>
@@ -38,9 +38,9 @@ const data: TabsItemProps[] = [
     ),
   },
   {
-    id: "3",
+    id: '3',
     icon: <Landscape />,
-    label: "Tab item",
+    label: 'Tab item',
     content: (
       <div className="p-24">
         <p>Panel 3</p>
@@ -48,9 +48,9 @@ const data: TabsItemProps[] = [
     ),
   },
   {
-    id: "4",
+    id: '4',
     icon: <Landscape />,
-    label: "Tab item",
+    label: 'Tab item',
     content: (
       <div className="p-24">
         <p>Panel 4</p>
@@ -76,9 +76,9 @@ export const Scroll: Story = {
   args: {
     items: [
       {
-        id: "1",
+        id: '1',
         icon: <Landscape />,
-        label: "Tab item",
+        label: 'Tab item',
         content: (
           <div className="p-24">
             <p>Panel 1</p>
@@ -86,9 +86,9 @@ export const Scroll: Story = {
         ),
       },
       {
-        id: "2",
+        id: '2',
         icon: <Landscape />,
-        label: "Tab item",
+        label: 'Tab item',
         content: (
           <div className="p-24">
             <p>Panel 2</p>
@@ -96,9 +96,9 @@ export const Scroll: Story = {
         ),
       },
       {
-        id: "3",
+        id: '3',
         icon: <Landscape />,
-        label: "Tab item",
+        label: 'Tab item',
         content: (
           <div className="p-24">
             <p>Panel 3</p>
@@ -106,9 +106,9 @@ export const Scroll: Story = {
         ),
       },
       {
-        id: "4",
+        id: '4',
         icon: <Landscape />,
-        label: "Tab item",
+        label: 'Tab item',
         content: (
           <div className="p-24">
             <p>Panel 4</p>
@@ -116,9 +116,9 @@ export const Scroll: Story = {
         ),
       },
       {
-        id: "5",
+        id: '5',
         icon: <Landscape />,
-        label: "Tab item",
+        label: 'Tab item',
         content: (
           <div className="p-24">
             <p>Panel 5</p>
@@ -126,9 +126,9 @@ export const Scroll: Story = {
         ),
       },
       {
-        id: "6",
+        id: '6',
         icon: <Landscape />,
-        label: "Tab item",
+        label: 'Tab item',
         content: (
           <div className="p-24">
             <p>Panel 6</p>
@@ -136,9 +136,9 @@ export const Scroll: Story = {
         ),
       },
       {
-        id: "7",
+        id: '7',
         icon: <Landscape />,
-        label: "Tab item",
+        label: 'Tab item',
         content: (
           <div className="p-24">
             <p>Panel 7</p>
@@ -146,9 +146,9 @@ export const Scroll: Story = {
         ),
       },
       {
-        id: "8",
+        id: '8',
         icon: <Landscape />,
-        label: "Tab item",
+        label: 'Tab item',
         content: (
           <div className="p-24">
             <p>Panel 8</p>
@@ -156,9 +156,9 @@ export const Scroll: Story = {
         ),
       },
       {
-        id: "9",
+        id: '9',
         icon: <Landscape />,
-        label: "Tab item",
+        label: 'Tab item',
         content: (
           <div className="p-24">
             <p>Panel 9</p>
@@ -166,9 +166,9 @@ export const Scroll: Story = {
         ),
       },
       {
-        id: "10",
+        id: '10',
         icon: <Landscape />,
-        label: "Tab item",
+        label: 'Tab item',
         content: (
           <div className="p-24">
             <p>Panel 10</p>
@@ -181,7 +181,7 @@ export const Scroll: Story = {
     docs: {
       description: {
         story:
-          "Tabs becomes horizontaly scrollable when layout is too small and content start to overflow.",
+          'Tabs becomes horizontaly scrollable when layout is too small and content start to overflow.',
       },
     },
   },

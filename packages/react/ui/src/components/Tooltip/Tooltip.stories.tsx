@@ -1,18 +1,18 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react';
 
-import { Button } from "../Button";
-import Tooltip, { TooltipProps } from "./Tooltip";
-import { AlertCircle } from "@edifice-ui/icons";
-import React from "react";
+import { Button } from '../Button';
+import Tooltip, { TooltipProps } from './Tooltip';
+import { AlertCircle } from '@edifice-ui/icons';
+import React from 'react';
 
 const meta: Meta<typeof Tooltip> = {
-  title: "Components/Tooltip",
+  title: 'Components/Tooltip',
   component: Tooltip,
   parameters: {
     docs: {
       description: {
         component:
-          "Wrapper component to show a contextual description on hover",
+          'Wrapper component to show a contextual description on hover',
       },
     },
   },
@@ -36,7 +36,7 @@ export const Base: Story = {
 
   args: {
     message:
-      "Optio minus varius reprehenderit ridiculus praesentium metus porttitor tellus.",
+      'Optio minus varius reprehenderit ridiculus praesentium metus porttitor tellus.',
     children: (
       <>
         <Button type="button" variant="filled" color="primary">
@@ -51,9 +51,9 @@ export const Bottom: Story = {
   render: Template,
 
   args: {
-    placement: "bottom",
+    placement: 'bottom',
     message:
-      "Optio minus varius reprehenderit ridiculus praesentium metus porttitor tellus.",
+      'Optio minus varius reprehenderit ridiculus praesentium metus porttitor tellus.',
     children: (
       <Button type="button" variant="filled" color="primary">
         Bottom Tooltip
@@ -66,9 +66,9 @@ export const Icon: Story = {
   render: Template,
 
   args: {
-    placement: "right",
+    placement: 'right',
     message:
-      "Optio minus varius reprehenderit ridiculus praesentium metus porttitor tellus.",
+      'Optio minus varius reprehenderit ridiculus praesentium metus porttitor tellus.',
     icon: <AlertCircle />,
     children: (
       <Button type="button" variant="filled" color="primary">

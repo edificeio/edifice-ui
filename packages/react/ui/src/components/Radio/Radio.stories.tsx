@@ -1,18 +1,18 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react';
 
-import Radio, { RadioProps } from "./Radio";
-import { Applications, ViewList } from "@edifice-ui/icons";
+import Radio, { RadioProps } from './Radio';
+import { Applications, ViewList } from '@edifice-ui/icons';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Radio> = {
-  title: "Forms/Radio",
+  title: 'Forms/Radio',
   component: Radio,
   args: {
-    label: "",
-    value: "",
-    model: "",
+    label: '',
+    value: '',
+    model: '',
     onChange: () => {},
   },
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
@@ -23,7 +23,7 @@ type Story = StoryObj<typeof Radio>;
 
 export const Base: Story = {
   render: (args: RadioProps) => {
-    const [value, setValue] = useState<string>("CP");
+    const [value, setValue] = useState<string>('CP');
 
     const handleChange = ({
       target: { value },
@@ -33,16 +33,16 @@ export const Base: Story = {
 
     const options = [
       {
-        label: "Classe préparatoire",
-        value: "CP",
+        label: 'Classe préparatoire',
+        value: 'CP',
       },
       {
-        label: "Cours élémentaire 1",
-        value: "CM1",
+        label: 'Cours élémentaire 1',
+        value: 'CM1',
       },
       {
-        label: "Cours élémentaire 2",
-        value: "CM2",
+        label: 'Cours élémentaire 2',
+        value: 'CM2',
       },
     ];
 
@@ -67,16 +67,16 @@ export const Base: Story = {
 
 export const RadioWithIcons: Story = {
   render: (args) => {
-    const [value, setValue] = useState<string>("list");
+    const [value, setValue] = useState<string>('list');
 
     const options = [
       {
         icon: <ViewList />,
-        value: "list",
+        value: 'list',
       },
       {
         icon: <Applications />,
-        value: "grid",
+        value: 'grid',
       },
     ];
 
