@@ -1,4 +1,4 @@
-import { RefObject } from "react";
+import { RefObject } from 'react';
 
 import {
   TextVanilla,
@@ -13,10 +13,10 @@ import {
   AlignCenter,
   AlignRight,
   AlignJustify,
-} from "@edifice-ui/icons";
-import { DropdownMenuOptions, MediaLibraryRef } from "@edifice-ui/react";
-import { Editor } from "@tiptap/react";
-import { useTranslation } from "react-i18next";
+} from '@edifice-ui/icons';
+import { DropdownMenuOptions, MediaLibraryRef } from '@edifice-ui/react';
+import { Editor } from '@tiptap/react';
+import { useTranslation } from 'react-i18next';
 
 export const useActionOptions = (
   editor: Editor | null,
@@ -27,15 +27,15 @@ export const useActionOptions = (
   const options: DropdownMenuOptions[] = [
     {
       icon: <TextVanilla />,
-      label: t("tiptap.toolbar.removeFormat"),
+      label: t('tiptap.toolbar.removeFormat'),
       action: () => editor?.chain().clearNodes().unsetAllMarks().run(),
     },
     {
-      type: "divider",
+      type: 'divider',
     },
     {
       icon: <Table />,
-      label: t("tiptap.toolbar.table"),
+      label: t('tiptap.toolbar.table'),
       action: () =>
         editor
           ?.chain()
@@ -44,66 +44,66 @@ export const useActionOptions = (
           .run(),
     },
     {
-      type: "divider",
+      type: 'divider',
     },
     {
       icon: <Superscript />,
-      label: t("tiptap.toolbar.superscript"),
+      label: t('tiptap.toolbar.superscript'),
       action: () => editor?.chain().focus().toggleSuperscript().run(),
     },
     {
       icon: <Subscript />,
-      label: t("tiptap.toolbar.subscript"),
+      label: t('tiptap.toolbar.subscript'),
       action: () => editor?.chain().focus().toggleSubscript().run(),
     },
     {
       icon: <SquareRoot />,
-      label: t("tiptap.toolbar.mathjax"),
+      label: t('tiptap.toolbar.mathjax'),
       action: () => {
         toggleMathsModal();
       },
     },
     {
-      type: "divider",
+      type: 'divider',
     },
     {
       icon: <Code />,
-      label: t("tiptap.toolbar.embed.iframe"),
-      action: () => mediaLibraryRef.current?.show("embedder"),
+      label: t('tiptap.toolbar.embed.iframe'),
+      action: () => mediaLibraryRef.current?.show('embedder'),
     },
   ];
   const listOptions: DropdownMenuOptions[] = [
     {
       icon: <BulletList />,
-      label: t("tiptap.toolbar.ulist"),
+      label: t('tiptap.toolbar.ulist'),
       action: () => editor?.chain().focus().toggleBulletList().run(),
     },
     {
       icon: <OrderedList />,
-      label: t("tiptap.toolbar.olist"),
+      label: t('tiptap.toolbar.olist'),
       action: () => editor?.chain().focus().toggleOrderedList().run(),
     },
   ];
   const alignmentOptions: DropdownMenuOptions[] = [
     {
       icon: <AlignLeft />,
-      label: t("tiptap.toolbar.text.left"),
-      action: () => editor?.chain().focus().setTextAlign("left").run(),
+      label: t('tiptap.toolbar.text.left'),
+      action: () => editor?.chain().focus().setTextAlign('left').run(),
     },
     {
       icon: <AlignCenter />,
-      label: t("tiptap.toolbar.text.center"),
-      action: () => editor?.chain().focus().setTextAlign("center").run(),
+      label: t('tiptap.toolbar.text.center'),
+      action: () => editor?.chain().focus().setTextAlign('center').run(),
     },
     {
       icon: <AlignRight />,
-      label: t("tiptap.toolbar.text.right"),
-      action: () => editor?.chain().focus().setTextAlign("right").run(),
+      label: t('tiptap.toolbar.text.right'),
+      action: () => editor?.chain().focus().setTextAlign('right').run(),
     },
     {
       icon: <AlignJustify />,
-      label: t("tiptap.toolbar.text.justify"),
-      action: () => editor?.chain().focus().setTextAlign("justify").run(),
+      label: t('tiptap.toolbar.text.justify'),
+      action: () => editor?.chain().focus().setTextAlign('justify').run(),
     },
   ];
   return [options, listOptions, alignmentOptions];

@@ -1,7 +1,7 @@
-import { createPortal } from "react-dom";
-import { useTranslation } from "react-i18next";
+import { createPortal } from 'react-dom';
+import { useTranslation } from 'react-i18next';
 
-import Modal from "../../components/Modal/Modal";
+import Modal from '../../components/Modal/Modal';
 
 export interface HelpProps {
   isHelpOpen: boolean;
@@ -34,16 +34,16 @@ export default function Help({
           size="lg"
         >
           <Modal.Header onModalClose={handleHelpOpen}>
-            {t("navbar.help")}
+            {t('navbar.help')}
           </Modal.Header>
           <Modal.Subtitle>
-            {error ? t("help.notfound.title") : parsedHeadline}
+            {error ? t('help.notfound.title') : parsedHeadline}
           </Modal.Subtitle>
-          <Modal.Body className={error ? "d-flex" : null}>
-            {error ? t("help.notfound.text") : parsedContent}
+          <Modal.Body className={error ? 'd-flex' : null}>
+            {error ? t('help.notfound.text') : parsedContent}
           </Modal.Body>
         </Modal>,
-        document.getElementById("portal") as HTMLElement,
+        document.getElementById('portal') as HTMLElement,
       )
     : null;
 }

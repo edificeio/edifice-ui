@@ -1,11 +1,11 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
 
-import { Users } from "@edifice-ui/icons";
-import clsx from "clsx";
-import { IResource } from "edifice-ts-client";
+import { Users } from '@edifice-ui/icons';
+import clsx from 'clsx';
+import { IResource } from 'edifice-ts-client';
 
-import { AppIcon, Card, CardProps, Image } from "../../components";
-import { useDate } from "../../core/useDate";
+import { AppIcon, Card, CardProps, Image } from '../../components';
+import { useDate } from '../../core/useDate';
 
 export interface LinkerCardProps extends CardProps {
   /**
@@ -33,7 +33,7 @@ const LinkerCard = ({
 
   return (
     <Card
-      className={clsx("card-linker shadow-none", className)}
+      className={clsx('card-linker shadow-none', className)}
       isClickable={isClickable}
       isSelectable={isSelectable}
       isSelected={isSelected}
@@ -80,6 +80,6 @@ const LinkerCard = ({
   );
 };
 
-LinkerCard.displayName = "LinkerCard";
+LinkerCard.displayName = 'LinkerCard';
 
 export default LinkerCard;

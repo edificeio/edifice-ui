@@ -1,5 +1,5 @@
-import { Linker } from "./Linker";
+import { Linker } from './Linker';
 
-export * from "./Linker";
+export * from './Linker';
 
 export default Linker;

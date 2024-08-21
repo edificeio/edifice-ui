@@ -1,15 +1,15 @@
-import { ComponentPropsWithRef, useEffect, useState } from "react";
+import { ComponentPropsWithRef, useEffect, useState } from 'react';
 
-import { Delete, Edit } from "@edifice-ui/icons";
-import { IWebApp } from "edifice-ts-client";
+import { Delete, Edit } from '@edifice-ui/icons';
+import { IWebApp } from 'edifice-ts-client';
 
-import { AppIcon } from "../../components/AppIcon";
-import { Avatar } from "../../components/Avatar";
-import { IconButton } from "../../components/Button";
-import clsx from "clsx";
+import { AppIcon } from '../../components/AppIcon';
+import { Avatar } from '../../components/Avatar';
+import { IconButton } from '../../components/Button';
+import clsx from 'clsx';
 
 export interface ImagePickerWorkspaceProps
-  extends ComponentPropsWithRef<"input"> {
+  extends ComponentPropsWithRef<'input'> {
   /**
    * Accessible description of the add button
    */
@@ -51,8 +51,8 @@ export interface ImagePickerWorkspaceProps
 }
 
 const ImagePickerWorkspace = ({
-  addButtonLabel = "Add image",
-  deleteButtonLabel = "Delete image",
+  addButtonLabel = 'Add image',
+  deleteButtonLabel = 'Delete image',
   src,
   className,
   mediaLibraryRef,
@@ -61,7 +61,7 @@ const ImagePickerWorkspace = ({
   onUploadImage,
   onDeleteImage,
 }: ImagePickerWorkspaceProps) => {
-  const [preview, setPreview] = useState<string>(src || "");
+  const [preview, setPreview] = useState<string>(src || '');
 
   useEffect(() => {
     if (libraryMedia) {
@@ -72,15 +72,15 @@ const ImagePickerWorkspace = ({
   }, [libraryMedia]);
 
   const handleClick = () => {
-    mediaLibraryRef.current?.show("image");
+    mediaLibraryRef.current?.show('image');
   };
 
   const handleClean = () => {
-    setPreview("");
+    setPreview('');
     onDeleteImage();
   };
 
-  const classes = clsx("image-input", className);
+  const classes = clsx('image-input', className);
 
   return (
     <div id="image-input" className={classes}>
@@ -112,6 +112,6 @@ const ImagePickerWorkspace = ({
   );
 };
 
-ImagePickerWorkspace.displayName = "ImagePickerWorkspace";
+ImagePickerWorkspace.displayName = 'ImagePickerWorkspace';
 
 export default ImagePickerWorkspace;

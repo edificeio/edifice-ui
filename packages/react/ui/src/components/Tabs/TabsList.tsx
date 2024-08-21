@@ -1,16 +1,16 @@
-import { ComponentPropsWithoutRef } from "react";
+import { ComponentPropsWithoutRef } from 'react';
 
-import clsx from "clsx";
+import clsx from 'clsx';
 
-import Tabs from "./Tabs";
-import { useTabsContext } from "./TabsContext";
+import Tabs from './Tabs';
+import { useTabsContext } from './TabsContext';
 
-const TabsList = (props: ComponentPropsWithoutRef<"div">) => {
+const TabsList = (props: ComponentPropsWithoutRef<'div'>) => {
   const { items, tabUnderlineLeft, tabUnderlineWidth } = useTabsContext();
   const { className, ...restProps } = props;
 
   const tabslist = clsx(
-    "position-relative flex-shrink-0 overflow-x-auto",
+    'position-relative flex-shrink-0 overflow-x-auto',
     className,
   );
   return (
@@ -28,6 +28,6 @@ const TabsList = (props: ComponentPropsWithoutRef<"div">) => {
   );
 };
 
-TabsList.displayName = "Tabs.List";
+TabsList.displayName = 'Tabs.List';
 
 export default TabsList;

@@ -1,4 +1,4 @@
-import { defaultDiacriticsRemovalMap } from "../idiom/Idiom";
+import { defaultDiacriticsRemovalMap } from '../idiom/Idiom';
 
 export class StringUtils {
   static removeAccents(str: string): string {
@@ -12,7 +12,7 @@ export class StringUtils {
   }
 
   static generateVirtualId(): string {
-    return "xxxx-xxxx-xxx-xxxx".replace(/[x]/g, () => {
+    return 'xxxx-xxxx-xxx-xxxx'.replace(/[x]/g, () => {
       const r = Math.floor(Math.random() * 16);
       return r.toString(16);
     });

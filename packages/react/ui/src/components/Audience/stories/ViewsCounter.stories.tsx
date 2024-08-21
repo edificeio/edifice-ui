@@ -1,15 +1,15 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react';
 
-import ViewsCounter, { ViewsCounterProps } from "../ViewsCounter";
+import ViewsCounter, { ViewsCounterProps } from '../ViewsCounter';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof ViewsCounter> = {
-  title: "Components/Audience/Views counter",
+  title: 'Components/Audience/Views counter',
   component: ViewsCounter,
   args: {
     viewsCounter: 3,
     onClick: () => {
-      console.log("Clicked");
+      console.log('Clicked');
     },
   },
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes

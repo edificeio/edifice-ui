@@ -1,11 +1,11 @@
-import { useTranslation } from "react-i18next";
-import { Modal } from "../Modal";
-import { createPortal } from "react-dom";
-import { Button } from "../Button";
-import { See, Users } from "@edifice-ui/icons";
-import { ViewsDetails } from "edifice-ts-client";
-import ViewsByProfileCard from "./ViewsByProfileCard";
-import { StringUtils } from "../../utils";
+import { useTranslation } from 'react-i18next';
+import { Modal } from '../Modal';
+import { createPortal } from 'react-dom';
+import { Button } from '../Button';
+import { See, Users } from '@edifice-ui/icons';
+import { ViewsDetails } from 'edifice-ts-client';
+import ViewsByProfileCard from './ViewsByProfileCard';
+import { StringUtils } from '../../utils';
 
 export interface ViewsModalProps {
   viewsDetails: ViewsDetails;
@@ -25,7 +25,7 @@ const ViewsModal = ({
   return createPortal(
     <Modal id="ViewsModal" isOpen={isOpen} onModalClose={onModalClose}>
       <Modal.Header onModalClose={onModalClose}>
-        {t("audience.views.title")}
+        {t('audience.views.title')}
       </Modal.Header>
       <Modal.Body>
         <div className="views-detail-line p-8 mb-12">
@@ -35,7 +35,7 @@ const ViewsModal = ({
           <div className="h3">
             {StringUtils.toCounter(viewsDetails.viewsCounter)}
           </div>
-          <div>{t("audience.views.detail.viewsCounter")}</div>
+          <div>{t('audience.views.detail.viewsCounter')}</div>
         </div>
         <div className="views-detail-line p-8 mb-12">
           <div className="views-detail-icon rounded p-8">
@@ -46,10 +46,10 @@ const ViewsModal = ({
               <div className="h3">
                 {StringUtils.toCounter(viewsDetails.uniqueViewsCounter)}
               </div>
-              <div>{t("audience.views.detail.uniqueViewsCounter")}</div>
+              <div>{t('audience.views.detail.uniqueViewsCounter')}</div>
             </>
           ) : (
-            <div>{t("audience.views.detail.noUniqueViews")}</div>
+            <div>{t('audience.views.detail.noUniqueViews')}</div>
           )}
         </div>
         {hasUniqueViews
@@ -68,14 +68,14 @@ const ViewsModal = ({
           type="button"
           variant="filled"
         >
-          {t("audience.views.cancel")}
+          {t('audience.views.cancel')}
         </Button>
       </Modal.Footer>
     </Modal>,
-    document.getElementById("portal") as HTMLElement,
+    document.getElementById('portal') as HTMLElement,
   );
 };
 
-ViewsModal.displayName = "ViewsModal";
+ViewsModal.displayName = 'ViewsModal';
 
 export default ViewsModal;

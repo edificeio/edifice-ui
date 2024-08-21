@@ -1,4 +1,4 @@
-import { RafterDown } from "@edifice-ui/icons";
+import { RafterDown } from '@edifice-ui/icons';
 import {
   Community,
   Disconnect,
@@ -11,16 +11,16 @@ import {
   OneMessaging,
   OneProfile,
   Userbook,
-} from "@edifice-ui/icons/nav";
-import clsx from "clsx";
-import { useTranslation } from "react-i18next";
+} from '@edifice-ui/icons/nav';
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
-import { Badge } from "./Badge";
-import { Navbar } from "./Navbar";
-import { NavBarNav } from "./NavbarNav";
-import { NavItem } from "./NavItem";
-import { NavLink } from "./NavLink";
-import { WidgetAppsBody, WidgetAppsFooter } from "./WidgetApps";
+import { Badge } from './Badge';
+import { Navbar } from './Navbar';
+import { NavBarNav } from './NavbarNav';
+import { NavItem } from './NavItem';
+import { NavLink } from './NavLink';
+import { WidgetAppsBody, WidgetAppsFooter } from './WidgetApps';
 import {
   Avatar,
   VisuallyHidden,
@@ -28,7 +28,7 @@ import {
   Popover,
   PopoverBody,
   PopoverFooter,
-} from "../../components";
+} from '../../components';
 import {
   useConversation,
   useUser,
@@ -36,24 +36,24 @@ import {
   useOdeClient,
   useHasWorkflow,
   useOdeTheme,
-} from "../../core";
-import { Help } from "../Help";
-import { useHelp } from "../Help/hooks/useHelp";
-import SearchEngine from "../SearchEngine/SearchEngine";
+} from '../../core';
+import { Help } from '../Help';
+import { useHelp } from '../Help/hooks/useHelp';
+import SearchEngine from '../SearchEngine/SearchEngine';
 
 export interface HeaderProps {
   is1d?: boolean;
   src: string | undefined;
 }
 
-const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
+const Header = ({ is1d = false, src = '' }: HeaderProps): JSX.Element => {
   const { t } = useTranslation();
   const { messages, msgLink, zimbraWorkflow } = useConversation();
   const { user, avatar } = useUser();
   const { currentLanguage, currentApp } = useOdeClient();
   const hasOldHelpEnableWorkflow =
     useHasWorkflow(
-      "org.entcore.portal.controllers.PortalController|oldHelpEnable",
+      'org.entcore.portal.controllers.PortalController|oldHelpEnable',
     ) || false;
 
   const {
@@ -64,9 +64,9 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
     error,
   } = useHelp();
 
-  const classes = clsx("header", {
-    "no-2d": is1d,
-    "no-1d": !is1d,
+  const classes = clsx('header', {
+    'no-2d': is1d,
+    'no-1d': !is1d,
   });
 
   const {
@@ -98,7 +98,7 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
             <Navbar>
               <a
                 className="navbar-title d-md-none text-truncate h4"
-                href={currentApp ? currentApp.address : "/timeline/timeline"}
+                href={currentApp ? currentApp.address : '/timeline/timeline'}
               >
                 {title}
               </a>
@@ -116,14 +116,14 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
               <NavBarNav
                 className="gap-8"
                 aria-hidden="false"
-                aria-label={t("navbar.main.navigation")}
+                aria-label={t('navbar.main.navigation')}
               >
                 {conversationWorflow && (
                   <NavItem>
                     <a href="/conversation/conversation" className="nav-link">
                       <OneMessaging className="icon notification" />
                       {hasMessages && <Badge>{messages}</Badge>}
-                      <VisuallyHidden>{t("navbar.messages")}</VisuallyHidden>
+                      <VisuallyHidden>{t('navbar.messages')}</VisuallyHidden>
                     </a>
                   </NavItem>
                 )}
@@ -131,12 +131,12 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                   <NavLink
                     link="/userbook/mon-compte"
                     className="dropdown-item"
-                    translate={t("navbar.myaccount")}
+                    translate={t('navbar.myaccount')}
                   >
                     <OneProfile className="icon user" />
                   </NavLink>
                 </NavItem>
-                {currentLanguage === "fr" && hasOldHelpEnableWorkflow ? (
+                {currentLanguage === 'fr' && hasOldHelpEnableWorkflow ? (
                   <NavItem>
                     <button
                       className="nav-link"
@@ -145,7 +145,7 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                       }}
                     >
                       <Assistance className="icon help" />
-                      <VisuallyHidden>{t("navbar.help")}</VisuallyHidden>
+                      <VisuallyHidden>{t('navbar.help')}</VisuallyHidden>
                     </button>
 
                     <Help
@@ -160,7 +160,7 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                 <NavItem>
                   <button className="nav-link" onClick={handleLogout}>
                     <Disconnect className="icon logout" />
-                    <VisuallyHidden>{t("navbar.disconnect")}</VisuallyHidden>
+                    <VisuallyHidden>{t('navbar.disconnect')}</VisuallyHidden>
                   </button>
                 </NavItem>
                 <NavItem className="d-md-none">
@@ -169,7 +169,7 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                     type="button"
                     aria-controls="navbarCollapsed"
                     aria-expanded={!isCollapsed}
-                    aria-label={t("navbar.secondary.navigation")}
+                    aria-label={t('navbar.secondary.navigation')}
                     onClick={toggleCollapsedNav}
                   >
                     <RafterDown
@@ -184,19 +184,19 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
           </div>
           <Navbar
             className="no-2d navbar-secondary navbar-expand-md"
-            aria-label={t("navbar.secondary.navigation")}
+            aria-label={t('navbar.secondary.navigation')}
           >
             <div className="container-fluid">
               <div
                 className={`collapse navbar-collapse ${
-                  !isCollapsed ? "show" : ""
+                  !isCollapsed ? 'show' : ''
                 }`}
                 id="navbarCollapsed"
               >
                 <Logo
                   is1d
                   src={`${src}/img/illustrations/logo.png`}
-                  translate={t("navbar.home")}
+                  translate={t('navbar.home')}
                 />
 
                 <NavBarNav className="gap-8">
@@ -204,7 +204,7 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                     <a href="/timeline/timeline" className="button">
                       <NewRelease color="#fff" className="d-md-none" />
                       <span className="d-inline-block">
-                        {t("portal.header.navigation.whatsnew")}
+                        {t('portal.header.navigation.whatsnew')}
                       </span>
                     </a>
                   </NavItem>
@@ -212,7 +212,7 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                     <a href="/userbook/annuaire" className="button">
                       <Userbook color="#fff" className="d-md-none" />
                       <span className="d-inline-block">
-                        {t("portal.header.navigation.classMembers")}
+                        {t('portal.header.navigation.classMembers')}
                       </span>
                     </a>
                   </NavItem>
@@ -220,7 +220,7 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                     <a href="/welcome" className="button">
                       <MyApps color="#fff" className="d-md-none" />
                       <span className="d-inline-block">
-                        {t("portal.header.navigation.myapps")}
+                        {t('portal.header.navigation.myapps')}
                       </span>
                     </a>
                   </NavItem>
@@ -234,14 +234,14 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
           <div className="container-fluid">
             <Logo src={`${src}/img/illustrations/logo.png`} />
             <a
-              href={currentApp ? currentApp.address : "/timeline/timeline"}
+              href={currentApp ? currentApp.address : '/timeline/timeline'}
               className="navbar-title text-truncate d-md-none"
             >
               {title}
             </a>
             <ul className="navbar-nav">
               <NavItem>
-                <NavLink link="/timeline/timeline" translate={t("navbar.home")}>
+                <NavLink link="/timeline/timeline" translate={t('navbar.home')}>
                   <Home color="#fff" />
                 </NavLink>
               </NavItem>
@@ -252,7 +252,7 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                 aria-haspopup="true"
                 aria-expanded={isAppsHovered}
               >
-                <NavLink link="/welcome" translate={t("navbar.applications")}>
+                <NavLink link="/welcome" translate={t('navbar.applications')}>
                   <MyApps color="#fff" />
                 </NavLink>
                 <Popover
@@ -273,7 +273,7 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                   <NavLink
                     className="position-relative"
                     link="/conversation/conversation"
-                    translate={t("conversation")}
+                    translate={t('conversation')}
                   >
                     <NeoMessaging color="#fff" />
                     {hasMessages && <Badge>{messages}</Badge>}
@@ -285,14 +285,14 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                   <NavLink
                     className="position-relative"
                     link={msgLink}
-                    translate={t("conversation")}
+                    translate={t('conversation')}
                   >
                     <NeoMessaging color="#fff" />
                     {hasMessages && <Badge>{messages}</Badge>}
                   </NavLink>
                 </NavItem>
               )}
-              {currentLanguage === "fr" && hasOldHelpEnableWorkflow ? (
+              {currentLanguage === 'fr' && hasOldHelpEnableWorkflow ? (
                 <NavItem>
                   <button
                     className="nav-link btn btn-naked"
@@ -301,7 +301,7 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                     }}
                   >
                     <NeoAssistance color="#fff" />
-                    <VisuallyHidden>{t("support")}</VisuallyHidden>
+                    <VisuallyHidden>{t('support')}</VisuallyHidden>
                   </button>
 
                   <Help
@@ -320,7 +320,7 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                     type="button"
                     aria-controls="dropdown-navbar"
                     aria-expanded={!isCollapsed}
-                    aria-label={t("navbar.open.menu")}
+                    aria-label={t('navbar.open.menu')}
                     onClick={toggleCollapsedNav}
                   >
                     <RafterDown
@@ -332,7 +332,7 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                   </button>
                   <ul
                     className={`dropdown-menu dropdown-menu-end ${
-                      !isCollapsed ? "show" : ""
+                      !isCollapsed ? 'show' : ''
                     }`}
                     id="dropdown-navbar"
                   >
@@ -341,7 +341,7 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                         <a href="/community" className="nav-link dropdown-item">
                           <Community className="icon community" />
                           <span className="nav-text">
-                            {t("navbar.community")}
+                            {t('navbar.community')}
                           </span>
                         </a>
                       </NavItem>
@@ -362,7 +362,7 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                           height="32"
                         />
                         <span className="nav-text">
-                          {t("navbar.myaccount")}
+                          {t('navbar.myaccount')}
                         </span>
                       </a>
                     </NavItem>
@@ -372,14 +372,14 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
                     <NavItem>
                       <a
                         href={
-                          "/auth/logout?callback=" +
-                          (theme?.logoutCallback ?? "/")
+                          '/auth/logout?callback=' +
+                          (theme?.logoutCallback ?? '/')
                         }
                         className="nav-link dropdown-item"
                       >
                         <Disconnect className="icon logout" />
                         <span id="logout-label" className="nav-text">
-                          {t("navbar.disconnect")}
+                          {t('navbar.disconnect')}
                         </span>
                       </a>
                     </NavItem>
@@ -394,6 +394,6 @@ const Header = ({ is1d = false, src = "" }: HeaderProps): JSX.Element => {
   );
 };
 
-Header.displayName = "Header";
+Header.displayName = 'Header';
 
 export default Header;

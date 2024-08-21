@@ -1,43 +1,43 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-import { BurgerMenu } from "@edifice-ui/icons";
-import parse, { attributesToProps, domToReact } from "html-react-parser";
+import { BurgerMenu } from '@edifice-ui/icons';
+import parse, { attributesToProps, domToReact } from 'html-react-parser';
 
-import { Button } from "../../../components";
-import { useOdeClient, useOdeTheme } from "../../../core";
+import { Button } from '../../../components';
+import { useOdeClient, useOdeTheme } from '../../../core';
 
 export function useHelp() {
   const { appCode } = useOdeClient();
   const { theme } = useOdeTheme();
 
-  const [html, setHtml] = useState<string>("");
+  const [html, setHtml] = useState<string>('');
   const [visibility, setVisibility] = useState<boolean>(true);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
-  const helpPath = theme?.is1d ? "/help-1d" : "/help-2d";
+  const helpPath = theme?.is1d ? '/help-1d' : '/help-2d';
 
   useEffect(() => {
     (async () => {
-      let helpURL = "";
-      helpURL = helpPath + "/application/" + appCode + "/";
-      if (!appCode && window.location.pathname !== "/adapter") {
-        helpURL = helpPath + "/application/portal/";
-      } else if (window.location.pathname === "/adapter") {
+      let helpURL = '';
+      helpURL = helpPath + '/application/' + appCode + '/';
+      if (!appCode && window.location.pathname !== '/adapter') {
+        helpURL = helpPath + '/application/portal/';
+      } else if (window.location.pathname === '/adapter') {
         helpURL =
           helpPath +
-          "/application/" +
-          window.location.search.split("eliot=")[1].split("&")[0] +
-          "/";
-      } else if (window.location.pathname.includes("/directory/class-admin")) {
-        helpURL = helpPath + "/application/parametrage-de-la-classe/";
+          '/application/' +
+          window.location.search.split('eliot=')[1].split('&')[0] +
+          '/';
+      } else if (window.location.pathname.includes('/directory/class-admin')) {
+        helpURL = helpPath + '/application/parametrage-de-la-classe/';
       } else if (
-        window.location.pathname.includes("/userbook/mon-compte") ||
-        window.location.pathname.includes("/timeline/preferencesView") ||
-        window.location.pathname.includes("/timeline/historyView")
+        window.location.pathname.includes('/userbook/mon-compte') ||
+        window.location.pathname.includes('/timeline/preferencesView') ||
+        window.location.pathname.includes('/timeline/historyView')
       ) {
-        helpURL = helpPath + "/application/userbook/";
+        helpURL = helpPath + '/application/userbook/';
       }
 
       try {
@@ -62,7 +62,7 @@ export function useHelp() {
     replace: (domNode: any) => {
       const typedDomNode = domNode as any;
 
-      if (typedDomNode.attribs && typedDomNode.attribs.id === "TOC") {
+      if (typedDomNode.attribs && typedDomNode.attribs.id === 'TOC') {
         return (
           <nav id="TOC">
             <Button
@@ -76,12 +76,12 @@ export function useHelp() {
               replace: (domNode: any) => {
                 const typedDomNode = domNode as any;
 
-                if (typedDomNode.attribs && typedDomNode.name === "ul") {
+                if (typedDomNode.attribs && typedDomNode.name === 'ul') {
                   return (
                     <ul
                       id="TOC-list"
                       style={{
-                        display: visibility ? "block" : "none",
+                        display: visibility ? 'block' : 'none',
                       }}
                     >
                       {domToReact(typedDomNode.children, {
@@ -90,7 +90,7 @@ export function useHelp() {
 
                           if (
                             typedDomNode.attribs &&
-                            typedDomNode.name === "a"
+                            typedDomNode.name === 'a'
                           ) {
                             return (
                               <a {...attributesToProps(typedDomNode.attribs)}>
@@ -117,7 +117,7 @@ export function useHelp() {
 
       if (
         typedDomNode.attribs &&
-        typedDomNode.attribs.class === "section level2"
+        typedDomNode.attribs.class === 'section level2'
       ) {
         const props = attributesToProps(domNode.attribs);
         return (
@@ -126,14 +126,14 @@ export function useHelp() {
             className="section level2"
             style={{
               display:
-                typedDomNode.attribs.id !== "présentation" ? "none" : "block",
+                typedDomNode.attribs.id !== 'présentation' ? 'none' : 'block',
             }}
           >
             {domToReact(typedDomNode.children, {
               replace: (domNode: any) => {
                 const typedDomNode = domNode as any;
 
-                if (typedDomNode.attribs && typedDomNode.name === "img") {
+                if (typedDomNode.attribs && typedDomNode.name === 'img') {
                   const attribs = domNode.attribs.src;
                   return (
                     <img
@@ -155,11 +155,11 @@ export function useHelp() {
 
   // @ts-expect-error
   const parsedContent = parsedHTML?.props?.children.find(
-    (child: { type: string }) => child.type === "body",
+    (child: { type: string }) => child.type === 'body',
   )?.props?.children;
 
   const parsedHeadline = parsedContent?.find(
-    (child: { type: string }) => child.type === "p",
+    (child: { type: string }) => child.type === 'p',
   )?.props?.children;
 
   return {

@@ -1,14 +1,14 @@
-import { ResourceService } from "../ResourceService";
+import { ResourceService } from '../ResourceService';
 import {
   CreateParameters,
   CreateResult,
   IResource,
   UpdateParameters,
   UpdateResult,
-} from "../interface";
+} from '../interface';
 
-const APP = "wiki";
-const RESOURCE = "wiki";
+const APP = 'wiki';
+const RESOURCE = 'wiki';
 
 export class WikiResourceService extends ResourceService {
   getApplication(): string {
@@ -25,18 +25,18 @@ export class WikiResourceService extends ResourceService {
 
   getFormUrl(folderId?: string | undefined): string {
     // TODO ?
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   getEditUrl(resourceId?: string | undefined): string {
     // TODO ?
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   async create(parameters: CreateParameters): Promise<CreateResult> {
     const thumbnail = parameters.thumbnail
       ? await this.getThumbnailPath(parameters.thumbnail)
-      : "";
+      : '';
 
     const res = await this.http.post<{ _id: string }>(`/wiki`, {
       title: parameters.name,
@@ -54,7 +54,7 @@ export class WikiResourceService extends ResourceService {
   async update(parameters: UpdateParameters): Promise<UpdateResult> {
     const thumbnail = parameters.thumbnail
       ? await this.getThumbnailPath(parameters.thumbnail)
-      : "";
+      : '';
 
     const res = await this.http.put<IResource>(`/wiki/${parameters.entId}`, {
       trashed: parameters.trashed,

@@ -1,6 +1,6 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react';
 
-import Toolbar from "./Toolbar";
+import Toolbar from './Toolbar';
 import {
   RecordVideo,
   Save,
@@ -8,68 +8,68 @@ import {
   Plus,
   Delete,
   Record,
-} from "@edifice-ui/icons";
-import { Dropdown } from "../Dropdown";
+} from '@edifice-ui/icons';
+import { Dropdown } from '../Dropdown';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Toolbar> = {
-  title: "Components/Toolbar",
+  title: 'Components/Toolbar',
   component: Toolbar,
   parameters: {
     docs: {
       description: {
-        component: "",
+        component: '',
       },
     },
   },
   argTypes: {
     variant: {
-      options: ["default", "no-shadow"],
-      control: { type: "select" },
+      options: ['default', 'no-shadow'],
+      control: { type: 'select' },
     },
-    isBlock: { control: "boolean" },
+    isBlock: { control: 'boolean' },
     align: {
-      options: ["left", "center", "space", "right"],
-      control: { type: "select" },
+      options: ['left', 'center', 'space', 'right'],
+      control: { type: 'select' },
     },
   },
   args: {
     items: [
       {
-        type: "icon",
-        name: "record",
+        type: 'icon',
+        name: 'record',
         props: {
           icon: <RecordVideo />,
-          onClick: () => console.log("on click"),
+          onClick: () => console.log('on click'),
           disabled: true,
         },
       },
       {
-        type: "icon",
-        name: "save",
+        type: 'icon',
+        name: 'save',
         props: {
           icon: <Save />,
-          onClick: () => console.log("on click"),
+          onClick: () => console.log('on click'),
         },
       },
       {
-        type: "divider",
+        type: 'divider',
       },
       {
-        type: "icon",
-        name: "write",
+        type: 'icon',
+        name: 'write',
         props: {
           icon: <Write />,
-          onClick: () => console.log("on click"),
+          onClick: () => console.log('on click'),
           disabled: true,
         },
       },
       {
-        type: "icon",
-        name: "delete",
+        type: 'icon',
+        name: 'delete',
         props: {
           icon: <Delete />,
-          onClick: () => console.log("on click"),
+          onClick: () => console.log('on click'),
         },
       },
     ],
@@ -89,39 +89,39 @@ export const Hidden: Story = {
   args: {
     items: [
       {
-        type: "icon",
-        name: "record",
+        type: 'icon',
+        name: 'record',
         props: {
           icon: <RecordVideo />,
-          onClick: () => console.log("on click"),
+          onClick: () => console.log('on click'),
         },
-        visibility: "hide",
+        visibility: 'hide',
       },
       {
-        type: "icon",
-        name: "save",
+        type: 'icon',
+        name: 'save',
         props: {
           icon: <Save />,
-          onClick: () => console.log("on click"),
+          onClick: () => console.log('on click'),
         },
       },
       {
-        type: "divider",
+        type: 'divider',
       },
       {
-        type: "icon",
-        name: "write",
+        type: 'icon',
+        name: 'write',
         props: {
           icon: <Write />,
-          onClick: () => console.log("on click"),
+          onClick: () => console.log('on click'),
         },
       },
       {
-        type: "icon",
-        name: "delete",
+        type: 'icon',
+        name: 'delete',
         props: {
           icon: <Delete />,
-          onClick: () => console.log("on click"),
+          onClick: () => console.log('on click'),
         },
       },
     ],
@@ -130,7 +130,7 @@ export const Hidden: Story = {
     docs: {
       description: {
         story:
-          "When data object has `visibility` set to `hide`, it will not be displayed",
+          'When data object has `visibility` set to `hide`, it will not be displayed',
       },
     },
   },
@@ -141,38 +141,38 @@ export const WithDivider: Story = {
   args: {
     items: [
       {
-        type: "icon",
-        name: "record",
+        type: 'icon',
+        name: 'record',
         props: {
           icon: <RecordVideo />,
-          onClick: () => console.log("on click"),
+          onClick: () => console.log('on click'),
         },
       },
       {
-        type: "icon",
-        name: "save",
+        type: 'icon',
+        name: 'save',
         props: {
           icon: <Save />,
-          onClick: () => console.log("on click"),
+          onClick: () => console.log('on click'),
         },
       },
       {
-        type: "divider",
+        type: 'divider',
       },
       {
-        type: "icon",
-        name: "write",
+        type: 'icon',
+        name: 'write',
         props: {
           icon: <Write />,
-          onClick: () => console.log("on click"),
+          onClick: () => console.log('on click'),
         },
       },
       {
-        type: "icon",
-        name: "delete",
+        type: 'icon',
+        name: 'delete',
         props: {
           icon: <Delete />,
-          onClick: () => console.log("on click"),
+          onClick: () => console.log('on click'),
         },
       },
     ],
@@ -181,7 +181,7 @@ export const WithDivider: Story = {
     docs: {
       description: {
         story:
-          "Add a data object only with `type` to `divider` to show a divider element",
+          'Add a data object only with `type` to `divider` to show a divider element',
       },
     },
   },
@@ -192,8 +192,8 @@ export const WithPrimaryAction: Story = {
   args: {
     items: [
       {
-        type: "button",
-        name: "save",
+        type: 'button',
+        name: 'save',
         props: {
           children: (
             <>
@@ -201,20 +201,20 @@ export const WithPrimaryAction: Story = {
               <span>Delete</span>
             </>
           ),
-          onClick: () => console.log("on click"),
+          onClick: () => console.log('on click'),
         },
       },
       {
-        type: "icon",
-        name: "delete",
+        type: 'icon',
+        name: 'delete',
         props: {
           icon: <Delete />,
-          onClick: () => console.log("on click"),
+          onClick: () => console.log('on click'),
         },
       },
       {
-        type: "primary",
-        name: "plus",
+        type: 'primary',
+        name: 'plus',
         props: {
           children: (
             <>
@@ -222,7 +222,7 @@ export const WithPrimaryAction: Story = {
               <span>Add</span>
             </>
           ),
-          onClick: () => console.log("on click"),
+          onClick: () => console.log('on click'),
         },
       },
     ],
@@ -231,7 +231,7 @@ export const WithPrimaryAction: Story = {
     docs: {
       description: {
         story:
-          "A data object with `type` to `primary` will be considered as primary action and will be shown to the end of Toolbar. It will accept the same properties as a data object",
+          'A data object with `type` to `primary` will be considered as primary action and will be shown to the end of Toolbar. It will accept the same properties as a data object',
       },
     },
   },
@@ -241,7 +241,7 @@ export const WithDropdownAction: Story = {
   render: (args) => <Toolbar {...args} />,
   decorators: [
     (Story) => (
-      <div className="m-24" style={{ height: "300px" }}>
+      <div className="m-24" style={{ height: '300px' }}>
         {Story()}
       </div>
     ),
@@ -249,8 +249,8 @@ export const WithDropdownAction: Story = {
   args: {
     items: [
       {
-        type: "button",
-        name: "record",
+        type: 'button',
+        name: 'record',
         props: {
           disabled: false,
           children: (
@@ -259,12 +259,12 @@ export const WithDropdownAction: Story = {
               <span>Record</span>
             </>
           ),
-          onClick: () => console.log("on click"),
+          onClick: () => console.log('on click'),
         },
       },
       {
-        type: "button",
-        name: "save",
+        type: 'button',
+        name: 'save',
         props: {
           disabled: false,
           children: (
@@ -273,21 +273,21 @@ export const WithDropdownAction: Story = {
               <span>Delete</span>
             </>
           ),
-          onClick: () => console.log("on click"),
+          onClick: () => console.log('on click'),
         },
       },
       {
-        type: "dropdown",
-        name: "others",
+        type: 'dropdown',
+        name: 'others',
         props: {
           children: () => (
             <>
               <Dropdown.Trigger variant="ghost" label="More..." />
               <Dropdown.Menu>
-                <Dropdown.Item onClick={() => alert("click 1")}>
+                <Dropdown.Item onClick={() => alert('click 1')}>
                   Write something...
                 </Dropdown.Item>
-                <Dropdown.Item onClick={() => alert("click 2")}>
+                <Dropdown.Item onClick={() => alert('click 2')}>
                   Edit something...
                 </Dropdown.Item>
               </Dropdown.Menu>
@@ -301,7 +301,7 @@ export const WithDropdownAction: Story = {
     docs: {
       description: {
         story:
-          "Using an item of type `dropdown`, you have to provide its children through props",
+          'Using an item of type `dropdown`, you have to provide its children through props',
       },
     },
   },
@@ -312,7 +312,7 @@ export const WithoutShadow: Story = {
   parameters: {
     docs: {
       description: {
-        story: "By adding `variant` to `no-shadow`, box-shadow is disabled.",
+        story: 'By adding `variant` to `no-shadow`, box-shadow is disabled.',
       },
     },
   },

@@ -1,10 +1,10 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react';
 
-import Card from "./Card";
-import { useState } from "react";
+import Card from './Card';
+import { useState } from 'react';
 
 const meta: Meta<typeof Card> = {
-  title: "Components/Card/Base",
+  title: 'Components/Card/Base',
   component: Card,
   args: {
     isSelectable: true,

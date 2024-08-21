@@ -1,7 +1,7 @@
-import { DeleteColor } from "@edifice-ui/icons";
-import clsx from "clsx";
+import { DeleteColor } from '@edifice-ui/icons';
+import clsx from 'clsx';
 
-import { ColorPaletteItem } from "./ColorPalette";
+import { ColorPaletteItem } from './ColorPalette';
 
 export interface ColorPickerItemProps {
   /**
@@ -29,15 +29,15 @@ const ColorPickerItem = ({
     <div
       aria-label={model.description}
       className={clsx(
-        "color-picker-hue-color-item rounded-1",
+        'color-picker-hue-color-item rounded-1',
         className,
-        model.hue === "light" ? "light" : "dark",
-        selected && "selected",
+        model.hue === 'light' ? 'light' : 'dark',
+        selected && 'selected',
       )}
       style={{ backgroundColor: model.value }}
     ></div>
   );
 
-ColorPickerItem.displayName = "ColorPickerItem";
+ColorPickerItem.displayName = 'ColorPickerItem';
 
 export default ColorPickerItem;

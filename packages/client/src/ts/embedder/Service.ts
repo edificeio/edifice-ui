@@ -1,5 +1,5 @@
-import { IOdeServices } from "../services/OdeServices";
-import { Embedder } from "./interface";
+import { IOdeServices } from '../services/OdeServices';
+import { Embedder } from './interface';
 
 export class EmbedderService {
   constructor(private context: IOdeServices) {}
@@ -13,7 +13,7 @@ export class EmbedderService {
    * @returns the default list of video embedder
    */
   public async getDefault(): Promise<Embedder[]> {
-    return this.http.get<Embedder[]>("/infra/embed/default");
+    return this.http.get<Embedder[]>('/infra/embed/default');
   }
 
   /**
@@ -21,7 +21,7 @@ export class EmbedderService {
    * @returns the custom list of video embedder
    */
   public async getCustom(): Promise<Embedder[]> {
-    return this.http.get<Embedder[]>("/infra/embed/custom");
+    return this.http.get<Embedder[]>('/infra/embed/custom');
   }
 
   /**
@@ -50,9 +50,9 @@ export class EmbedderService {
    */
   private isUrlFromProvider(url: string, embedder: Embedder): boolean {
     // Regex to remove the variable from the URL pattern (remove everything inside {...})
-    const splitURLRegex = new RegExp("[^{}]+(?=(?:[^{}]*{[^}]*})*[^}]*$)", "g");
-    const splitVariableRegex = new RegExp("{[^}]*}", "g");
-    if (typeof embedder.url === "string") {
+    const splitURLRegex = new RegExp('[^{}]+(?=(?:[^{}]*{[^}]*})*[^}]*$)', 'g');
+    const splitVariableRegex = new RegExp('{[^}]*}', 'g');
+    if (typeof embedder.url === 'string') {
       embedder.url = [embedder.url];
     }
 
@@ -65,7 +65,7 @@ export class EmbedderService {
 
       // Filter urlParts we want to check with the URL given
       variableParts.forEach((variablePart, index) => {
-        if (variablePart.includes("ignore")) {
+        if (variablePart.includes('ignore')) {
           // If the variable is an ignore, we don't need to check the rest of the URL
           return;
         }
@@ -94,13 +94,13 @@ export class EmbedderService {
    */
   public getEmbedCodeForProvider(embedder: Embedder, url: string): string {
     for (const pattern of embedder.url) {
-      const matchParams = new RegExp("{[a-zA-Z0-9_.]+}", "g");
+      const matchParams = new RegExp('{[a-zA-Z0-9_.]+}', 'g');
       const params = pattern.match(matchParams) || [];
       let computedEmbed = embedder.embed;
 
       for (const param of params) {
         let paramBefore = pattern.split(param)[0];
-        const additionnalSplit = paramBefore.split("}");
+        const additionnalSplit = paramBefore.split('}');
         if (additionnalSplit.length > 1) {
           paramBefore = additionnalSplit[additionnalSplit.length - 1];
         }
@@ -108,16 +108,16 @@ export class EmbedderService {
         if (!paramValue) {
           continue;
         }
-        const paramAfter = pattern.split(param)[1].split("{")[0];
+        const paramAfter = pattern.split(param)[1].split('{')[0];
         if (paramAfter) {
           paramValue = paramValue.split(paramAfter)[0];
         }
 
-        const replace = new RegExp("\\" + param.replace(/}/, "\\}"), "g");
+        const replace = new RegExp('\\' + param.replace(/}/, '\\}'), 'g');
         computedEmbed = computedEmbed.replace(replace, paramValue);
       }
       return computedEmbed;
     }
-    return "";
+    return '';
   }
 }

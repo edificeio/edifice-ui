@@ -1,10 +1,10 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react';
 
-import { Button } from "../Button";
-import ActionBar, { ActionBarProps } from "./ActionBar";
+import { Button } from '../Button';
+import ActionBar, { ActionBarProps } from './ActionBar';
 
 const meta: Meta<typeof ActionBar> = {
-  title: "Components/ActionBar",
+  title: 'Components/ActionBar',
   component: ActionBar,
 };
 

@@ -1,5 +1,5 @@
-import { Attachment } from "@edifice-tiptap-extensions/extension-attachment";
-import { ReactNodeViewRenderer } from "@tiptap/react";
+import { Attachment } from '@edifice-tiptap-extensions/extension-attachment';
+import { ReactNodeViewRenderer } from '@tiptap/react';
 
 const AttachmentNodeView = (Component: any) =>
   Attachment.extend({

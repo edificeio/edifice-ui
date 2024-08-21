@@ -1,12 +1,12 @@
-import useKeyPress from "./useKeyPress";
+import useKeyPress from './useKeyPress';
 // @ts-ignore
-import docs from "./useKeyPress.mdx";
-import { useState } from "react";
-import { Meta, StoryObj } from "@storybook/react";
-import Button from "../../components/Button/Button";
+import docs from './useKeyPress.mdx';
+import { useState } from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import Button from '../../components/Button/Button';
 
 const meta: Meta<typeof useKeyPress> = {
-  title: "Hooks/useKeyPress",
+  title: 'Hooks/useKeyPress',
   parameters: {
     docs: { page: docs },
   },
@@ -20,7 +20,7 @@ export const Example: Story = {
     const [isVisible, setIsVisible] = useState<boolean>(true);
     useKeyPress(() => {
       setIsVisible(false);
-    }, ["Escape"]);
+    }, ['Escape']);
 
     return (
       <div>

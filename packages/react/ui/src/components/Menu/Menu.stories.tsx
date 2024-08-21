@@ -1,25 +1,25 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react';
 
-import { AlertCircle, AlignLeft, Calendar, Smiley } from "@edifice-ui/icons";
-import { Menu } from "./Menu";
+import { AlertCircle, AlignLeft, Calendar, Smiley } from '@edifice-ui/icons';
+import { Menu } from './Menu';
 
 const meta: Meta<typeof Menu> = {
-  title: "Components/Menu",
+  title: 'Components/Menu',
   component: Menu,
   args: {
-    label: "My resource",
+    label: 'My resource',
   },
-  decorators: [(Story) => <div style={{ width: "30rem" }}>{Story()}</div>],
+  decorators: [(Story) => <div style={{ width: '30rem' }}>{Story()}</div>],
 };
 
 export default meta;
 type Story = StoryObj<typeof Menu>;
 
 const menuItem = {
-  onClick: () => console.log(""),
+  onClick: () => console.log(''),
   leftIcon: <AlignLeft />,
   rightIcon: <Smiley />,
-  children: "Text",
+  children: 'Text',
   selected: false,
 };
 
@@ -60,21 +60,21 @@ export const Label: Story = {
     );
   },
   args: {
-    label: "Wiki",
+    label: 'Wiki',
   },
 };
 
 const data = [
   {
-    id: "1",
-    children: "Node 1",
-    onClick: () => console.log("node 1"),
+    id: '1',
+    children: 'Node 1',
+    onClick: () => console.log('node 1'),
     leftIcon: <AlertCircle />,
   },
   {
-    id: "2",
-    children: "Node 2",
-    onClick: () => console.log("node 2"),
+    id: '2',
+    children: 'Node 2',
+    onClick: () => console.log('node 2'),
     leftIcon: <Calendar />,
   },
 ];

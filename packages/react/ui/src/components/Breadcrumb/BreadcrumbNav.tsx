@@ -1,12 +1,12 @@
-import { forwardRef, ReactNode, Ref } from "react";
+import { forwardRef, ReactNode, Ref } from 'react';
 
-import clsx from "clsx";
-import { IWebApp } from "edifice-ts-client";
-import { useTranslation } from "react-i18next";
+import clsx from 'clsx';
+import { IWebApp } from 'edifice-ts-client';
+import { useTranslation } from 'react-i18next';
 
-import useOdeIcons from "../../core/useOdeIcons/useOdeIcons";
+import useOdeIcons from '../../core/useOdeIcons/useOdeIcons';
 
-export interface BreadcrumbNavProps extends React.ComponentPropsWithRef<"nav"> {
+export interface BreadcrumbNavProps extends React.ComponentPropsWithRef<'nav'> {
   /**
    * Pass all data about current application
    */
@@ -27,20 +27,20 @@ const BreadcrumbNav = forwardRef(
     const { getIconClass } = useOdeIcons();
 
     const classes = clsx(
-      "d-flex align-items-center mb-0",
+      'd-flex align-items-center mb-0',
       getIconClass(app),
       className,
     );
 
     const style = {
-      "--edifice-breadcrumb-divider": "-",
+      '--edifice-breadcrumb-divider': '-',
     } as React.CSSProperties;
 
     return (
       <nav
         ref={ref}
         className={classes}
-        aria-label={t("breadcrumb")}
+        aria-label={t('breadcrumb')}
         style={style}
       >
         {children}
@@ -49,6 +49,6 @@ const BreadcrumbNav = forwardRef(
   },
 );
 
-BreadcrumbNav.displayName = "BreadcrumbNav";
+BreadcrumbNav.displayName = 'BreadcrumbNav';
 
 export default BreadcrumbNav;

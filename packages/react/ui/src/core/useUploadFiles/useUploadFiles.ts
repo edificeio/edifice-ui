@@ -1,12 +1,12 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 
-import { WorkspaceElement, WorkspaceVisibility } from "edifice-ts-client";
+import { WorkspaceElement, WorkspaceVisibility } from 'edifice-ts-client';
 
-import { useDropzoneContext } from "../../components/Dropzone/DropzoneContext";
-import { addTimestampToImageUrl } from "../../utils";
-import { useUpload } from "../useUpload";
-import { useWorkspaceFile } from "../useWorkspaceFile";
-import { useImageResizer } from "../../hooks/useImageResizer";
+import { useDropzoneContext } from '../../components/Dropzone/DropzoneContext';
+import { addTimestampToImageUrl } from '../../utils';
+import { useUpload } from '../useUpload';
+import { useWorkspaceFile } from '../useWorkspaceFile';
+import { useImageResizer } from '../../hooks/useImageResizer';
 
 const useUploadFiles = ({
   handleOnChange,
@@ -39,7 +39,7 @@ const useUploadFiles = ({
       files.forEach(async (file, index) => {
         if (file == null) return;
         let resource;
-        if (file.type.startsWith("image")) {
+        if (file.type.startsWith('image')) {
           try {
             const replacement = await resizeImageFile(file);
             resource = await uploadAlternateFile(file, replacement);
@@ -79,13 +79,13 @@ const useUploadFiles = ({
       if (numUploads >= UPLOAD_SLOTS) return null;
       const status = getUploadStatus(file);
       // If this file is currently loading => it uses a slot.
-      if (status === "loading") numUploads++;
+      if (status === 'loading') numUploads++;
       // If this file has already been sent in a slot => don't send it again.
       if (status) return null;
       return file;
     });
 
-    newFiles.forEach((file) => file && setUploadStatus(file, "idle"));
+    newFiles.forEach((file) => file && setUploadStatus(file, 'idle'));
     tryUploading(newFiles);
   }, [files, uploadedFiles, getUploadStatus, setUploadStatus, tryUploading]);
 
@@ -155,7 +155,7 @@ const useUploadFiles = ({
        * `res` contains updated file and src path
        * update uploadedFiles with the correct updated information
        */
-      if (res && typeof res === "object") {
+      if (res && typeof res === 'object') {
         setUploadedFiles((prevFiles: WorkspaceElement[]) => {
           return prevFiles.map((prevFile) => {
             if (prevFile._id === res.file._id) {
@@ -172,10 +172,10 @@ const useUploadFiles = ({
 
   const getUrl = (resource?: WorkspaceElement, timestamp?: boolean) => {
     const url = `/workspace/${
-      resource?.public ? "pub/" : ""
+      resource?.public ? 'pub/' : ''
     }document/${resource?._id}`;
 
-    if (!resource) return "";
+    if (!resource) return '';
     /**
      * WB-3053: add timestamp if option is true
      */

@@ -1,7 +1,7 @@
-import { Fragment } from "react";
+import { Fragment } from 'react';
 
-import { Dropdown, DropdownMenuOptions } from "@edifice-ui/react";
-import { useTranslation } from "react-i18next";
+import { Dropdown, DropdownMenuOptions } from '@edifice-ui/react';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   /**
@@ -17,7 +17,7 @@ export const EditorToolbarPlusMenu = ({ options }: Props) => {
     <>
       <Dropdown.Trigger
         variant="ghost"
-        label={t("tiptap.toolbar.plus")}
+        label={t('tiptap.toolbar.plus')}
         size="md"
         tabIndex={-1}
       />
@@ -25,7 +25,7 @@ export const EditorToolbarPlusMenu = ({ options }: Props) => {
         {options.map((option, index) => {
           return (
             <Fragment key={index}>
-              {option.type === "divider" ? (
+              {option.type === 'divider' ? (
                 <Dropdown.Separator />
               ) : (
                 <Dropdown.Item

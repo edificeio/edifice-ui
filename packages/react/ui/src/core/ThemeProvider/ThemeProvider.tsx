@@ -4,12 +4,12 @@ import {
   useMemo,
   useContext,
   useEffect,
-} from "react";
+} from 'react';
 
-import { IOdeTheme } from "edifice-ts-client";
+import { IOdeTheme } from 'edifice-ts-client';
 
-import { useOdeClient } from "../OdeClientProvider";
-import { useConf } from "../useConf";
+import { useOdeClient } from '../OdeClientProvider';
+import { useConf } from '../useConf';
 
 export interface ThemeProps {
   children: ReactNode;
@@ -27,33 +27,33 @@ export function ThemeProvider({ children }: ThemeProps) {
   const confQuery = useConf({ appCode });
 
   useEffect(() => {
-    const favicon = document.getElementById("favicon") as HTMLAnchorElement;
+    const favicon = document.getElementById('favicon') as HTMLAnchorElement;
     favicon.href =
       `${confQuery?.data?.theme?.basePath}/img/illustrations/favicon.ico` as string;
     const bootstrapVersion =
-      confQuery?.data?.theme?.bootstrapVersion?.split("-");
+      confQuery?.data?.theme?.bootstrapVersion?.split('-');
     const dataProduct = bootstrapVersion
       ? bootstrapVersion[bootstrapVersion.length - 1]
       : undefined;
 
     const attributes = [
       {
-        data: "data-skin",
+        data: 'data-skin',
         value: confQuery?.data?.theme?.skinName,
       },
       {
-        data: "data-theme",
+        data: 'data-theme',
         value: confQuery?.data?.theme?.themeName,
       },
       {
-        data: "data-product",
+        data: 'data-product',
         value: dataProduct,
       },
     ];
 
     attributes.forEach((attribute) => {
       return document
-        .querySelector("html")
+        .querySelector('html')
         ?.setAttribute(attribute.data, attribute.value as string);
     });
   }, [confQuery?.data]);

@@ -1,20 +1,20 @@
-import { Mail } from "@edifice-ui/icons";
-import { Meta, StoryObj } from "@storybook/react";
+import { Mail } from '@edifice-ui/icons';
+import { Meta, StoryObj } from '@storybook/react';
 
-import { FormControl, FormText, FormControlProps } from "./index";
+import { FormControl, FormText, FormControlProps } from './index';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof FormControl> = {
-  title: "Forms/Form Control",
+  title: 'Forms/Form Control',
   component: FormControl,
   argTypes: {
     status: {
-      options: ["valid", "invalid"],
-      control: { type: "select" },
+      options: ['valid', 'invalid'],
+      control: { type: 'select' },
     },
   },
   args: {
-    id: "uuid",
+    id: 'uuid',
     isOptional: false,
     isReadOnly: false,
     isRequired: false,
@@ -73,7 +73,7 @@ export const WithLabelAndIcon: Story = {
 export const WithInformativeMessage: Story = {
   render: (args: FormControlProps) => {
     return (
-      <FormControl id="email" style={{ marginTop: "3px" }}>
+      <FormControl id="email" style={{ marginTop: '3px' }}>
         <FormControl.Label leftIcon={<Mail />}>Email</FormControl.Label>
         <FormControl.Input
           type="text"

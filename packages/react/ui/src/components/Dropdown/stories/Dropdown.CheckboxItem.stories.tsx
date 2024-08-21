@@ -1,13 +1,13 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react';
 
-import Dropdown from "../Dropdown";
-import { useState } from "react";
-import { Filter } from "@edifice-ui/icons";
+import Dropdown from '../Dropdown';
+import { useState } from 'react';
+import { Filter } from '@edifice-ui/icons';
 
 const meta: Meta<typeof Dropdown> = {
-  title: "Components/Dropdown/Dropdown Checkbox Item",
+  title: 'Components/Dropdown/Dropdown Checkbox Item',
   component: Dropdown,
-  decorators: [(Story) => <div style={{ height: "25em" }}>{Story()}</div>],
+  decorators: [(Story) => <div style={{ height: '25em' }}>{Story()}</div>],
   args: {
     badgeContent: 0,
   },
@@ -15,7 +15,7 @@ const meta: Meta<typeof Dropdown> = {
     docs: {
       description: {
         component:
-          "Use `Dropdown.CheckboxItem` when a multi-selection is needed. `Dropdown.Trigger` can receive a `badgeContent` prop to display the total of selected items.",
+          'Use `Dropdown.CheckboxItem` when a multi-selection is needed. `Dropdown.Trigger` can receive a `badgeContent` prop to display the total of selected items.',
       },
     },
   },
@@ -48,9 +48,9 @@ export const CheckboxGroup: Story = {
     };
 
     const checkboxOptions = [
-      { label: "Choice 1", value: 1 },
-      { label: "Choice 2", value: 2 },
-      { label: "Choice 3", value: 3 },
+      { label: 'Choice 1', value: 1 },
+      { label: 'Choice 2', value: 2 },
+      { label: 'Choice 3', value: 3 },
     ];
 
     const count = selectedCheckboxes.length;
@@ -103,9 +103,9 @@ export const BadgeContent: Story = {
     };
 
     const checkboxOptions = [
-      { label: "Choice 1", value: 1 },
-      { label: "Choice 2", value: 2 },
-      { label: "Choice 3", value: 3 },
+      { label: 'Choice 1', value: 1 },
+      { label: 'Choice 2', value: 2 },
+      { label: 'Choice 3', value: 3 },
     ];
 
     const count = selectedCheckboxes.length;
@@ -136,7 +136,7 @@ export const BadgeContent: Story = {
     docs: {
       description: {
         story:
-          "A badge with the number of selected items is displayed. It is an optional prop",
+          'A badge with the number of selected items is displayed. It is an optional prop',
       },
     },
   },

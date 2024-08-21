@@ -1,17 +1,17 @@
-import { useRef } from "react";
+import { useRef } from 'react';
 
-import { Landscape, Mic, TextPage, Video } from "@edifice-ui/icons";
-import clsx from "clsx";
+import { Landscape, Mic, TextPage, Video } from '@edifice-ui/icons';
+import clsx from 'clsx';
 import {
   DocumentHelper,
   Role,
   WorkspaceElement,
   odeServices,
-} from "edifice-ts-client";
+} from 'edifice-ts-client';
 
-import { useThumbnail } from "../../hooks/useThumbnail";
-import Card, { CardProps } from "../Card/Card";
-import FileIcon from "./FileIcon";
+import { useThumbnail } from '../../hooks/useThumbnail';
+import Card, { CardProps } from '../Card/Card';
+import FileIcon from './FileIcon';
 
 export interface FileCardProps extends CardProps {
   /**
@@ -32,55 +32,55 @@ const FileCard = ({
 
   const type = DocumentHelper.getRole(doc);
 
-  function getRoleMap(type: Role | "unknown") {
+  function getRoleMap(type: Role | 'unknown') {
     const roleMappings = {
       csv: {
-        icon: ".CSV",
-        color: "bg-orange-200",
+        icon: '.CSV',
+        color: 'bg-orange-200',
       },
       xls: {
-        icon: ".XLS",
-        color: "bg-green-200",
+        icon: '.XLS',
+        color: 'bg-green-200',
       },
       doc: {
-        icon: ".DOC",
-        color: "bg-blue-200",
+        icon: '.DOC',
+        color: 'bg-blue-200',
       },
       txt: {
-        icon: ".TXT",
-        color: "bg-blue-200",
+        icon: '.TXT',
+        color: 'bg-blue-200',
       },
       pdf: {
-        icon: ".PDF",
-        color: "bg-red-200",
+        icon: '.PDF',
+        color: 'bg-red-200',
       },
       audio: {
         icon: <Mic width={22} height={22} />,
-        color: "bg-red-200",
+        color: 'bg-red-200',
       },
       ppt: {
-        icon: ".PPT",
-        color: "bg-yellow-200",
+        icon: '.PPT',
+        color: 'bg-yellow-200',
       },
       img: {
         icon: <Landscape width={22} height={22} />,
-        color: "bg-green-200",
+        color: 'bg-green-200',
       },
       video: {
         icon: <Video width={22} height={22} />,
-        color: "bg-purple-200",
+        color: 'bg-purple-200',
       },
       zip: {
-        icon: ".ZIP",
-        color: "bg-gray-300",
+        icon: '.ZIP',
+        color: 'bg-gray-300',
       },
       md: {
-        icon: ".MD",
-        color: "bg-blue-200",
+        icon: '.MD',
+        color: 'bg-blue-200',
       },
       unknown: {
         icon: <TextPage width={22} height={22} />,
-        color: "bg-gray-300",
+        color: 'bg-gray-300',
       },
     };
 
@@ -88,12 +88,12 @@ const FileCard = ({
   }
 
   const file = clsx(
-    "file position-relative rounded",
-    getRoleMap(type ?? "default")?.color ?? "bg-yellow-200",
+    'file position-relative rounded',
+    getRoleMap(type ?? 'default')?.color ?? 'bg-yellow-200',
   );
 
   const mediaSrc =
-    type === "img" || type === "video"
+    type === 'img' || type === 'video'
       ? odeServices.workspace().getThumbnailUrl(doc)
       : null;
 
@@ -101,12 +101,12 @@ const FileCard = ({
 
   const imageStyles = hasThumbnail && {
     backgroundImage: `url(${mediaSrc})`,
-    backgroundSize: "cover",
+    backgroundSize: 'cover',
   };
 
   return (
     <Card
-      className={clsx("card-file", className)}
+      className={clsx('card-file', className)}
       isClickable={isClickable}
       isSelectable={isSelectable}
       isSelected={isSelected}
@@ -117,11 +117,11 @@ const FileCard = ({
           ref={ref}
           className={file}
           style={{
-            aspectRatio: "16/10",
+            aspectRatio: '16/10',
             ...imageStyles,
           }}
         >
-          {type !== "img" || (type === "img" && !hasThumbnail) ? (
+          {type !== 'img' || (type === 'img' && !hasThumbnail) ? (
             <FileIcon type={type} roleMap={getRoleMap(type)} />
           ) : null}
         </div>
@@ -134,6 +134,6 @@ const FileCard = ({
   );
 };
 
-FileCard.displayName = "FileCard";
+FileCard.displayName = 'FileCard';
 
 export default FileCard;

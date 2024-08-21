@@ -4,10 +4,10 @@ import {
   useImperativeHandle,
   useMemo,
   useState,
-} from "react";
+} from 'react';
 
-import TreeItem from "./TreeItem";
-import { TreeNode } from "./TreeNode";
+import TreeItem from './TreeItem';
+import { TreeNode } from './TreeNode';
 
 export interface TreeViewHandlers {
   unselectAll: () => void;
@@ -132,6 +132,6 @@ const TreeView = forwardRef<TreeViewHandlers, TreeViewProps>(
   },
 );
 
-TreeView.displayName = "TreeView";
+TreeView.displayName = 'TreeView';
 
 export default TreeView;

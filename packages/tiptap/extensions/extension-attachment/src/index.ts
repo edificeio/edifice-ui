@@ -1,5 +1,5 @@
-import { Attachment } from "./Attachment";
+import { Attachment } from './Attachment';
 
-export * from "./Attachment";
+export * from './Attachment';
 
 export default Attachment;

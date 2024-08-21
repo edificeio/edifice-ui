@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react';
 
-import Checkbox from "./Checkbox";
-import React from "react";
+import Checkbox from './Checkbox';
+import React from 'react';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Checkbox> = {
-  title: "Forms/Checkbox",
+  title: 'Forms/Checkbox',
   component: Checkbox,
   args: {
     label: "Activer l'option",
@@ -71,9 +71,9 @@ export const Indeterminate: Story = {
 
     const label = () => {
       if (isIndeterminate) {
-        return "Ni décoché, ni coché";
+        return 'Ni décoché, ni coché';
       } else {
-        return isChecked ? "Coché" : "Décoché";
+        return isChecked ? 'Coché' : 'Décoché';
       }
     };
 

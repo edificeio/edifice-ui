@@ -1,12 +1,12 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
-import { Plus } from "@edifice-ui/icons";
-import clsx from "clsx";
-import { useTranslation } from "react-i18next";
+import { Plus } from '@edifice-ui/icons';
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
-import { useDropzoneContext } from "./DropzoneContext";
-import { useMediaLibraryContext } from "../../multimedia/MediaLibrary/MediaLibraryContext";
-import Button from "../Button/Button";
+import { useDropzoneContext } from './DropzoneContext';
+import { useMediaLibraryContext } from '../../multimedia/MediaLibrary/MediaLibraryContext';
+import Button from '../Button/Button';
 
 const DropzoneFile = ({ children }: { children: ReactNode }) => {
   const { t } = useTranslation();
@@ -16,9 +16,9 @@ const DropzoneFile = ({ children }: { children: ReactNode }) => {
 
   const hasFiles = files && files.length > 0;
 
-  const classes = clsx("drop-file-wrapper", {
-    "d-block": hasFiles,
-    "d-none": !hasFiles,
+  const classes = clsx('drop-file-wrapper', {
+    'd-block': hasFiles,
+    'd-none': !hasFiles,
   });
 
   return (
@@ -31,7 +31,7 @@ const DropzoneFile = ({ children }: { children: ReactNode }) => {
             disabled={!multiple}
             onClick={() => inputRef?.current?.click()}
           >
-            {t("dropzone.add.more")}
+            {t('dropzone.add.more')}
           </Button>
         </div>
       </div>
@@ -40,6 +40,6 @@ const DropzoneFile = ({ children }: { children: ReactNode }) => {
   );
 };
 
-DropzoneFile.displayName = "Dropzone.File";
+DropzoneFile.displayName = 'Dropzone.File';
 
 export default DropzoneFile;

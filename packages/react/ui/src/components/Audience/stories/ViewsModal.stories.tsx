@@ -1,32 +1,32 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react';
 
-import { useToggle } from "../../../hooks";
-import ViewsModal from "../ViewsModal";
-import ViewsCounter from "../ViewsCounter";
-import { ViewsDetails } from "edifice-ts-client";
+import { useToggle } from '../../../hooks';
+import ViewsModal from '../ViewsModal';
+import ViewsCounter from '../ViewsCounter';
+import { ViewsDetails } from 'edifice-ts-client';
 
 const viewsDetailsMockedData: ViewsDetails = {
   viewsCounter: 20,
   uniqueViewsCounter: 5,
   uniqueViewsPerProfile: [
     {
-      profile: "Student",
+      profile: 'Student',
       counter: 1,
     },
     {
-      profile: "Relative",
+      profile: 'Relative',
       counter: 1,
     },
     {
-      profile: "Teacher",
+      profile: 'Teacher',
       counter: 1,
     },
     {
-      profile: "Personnel",
+      profile: 'Personnel',
       counter: 1,
     },
     {
-      profile: "Guest",
+      profile: 'Guest',
       counter: 1,
     },
   ],
@@ -34,9 +34,9 @@ const viewsDetailsMockedData: ViewsDetails = {
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof ViewsModal> = {
-  title: "Components/Audience/Views modal",
+  title: 'Components/Audience/Views modal',
   component: ViewsModal,
-  decorators: [(Story) => <div style={{ height: "25em" }}>{Story()}</div>],
+  decorators: [(Story) => <div style={{ height: '25em' }}>{Story()}</div>],
   args: {
     viewsDetails: viewsDetailsMockedData,
   },

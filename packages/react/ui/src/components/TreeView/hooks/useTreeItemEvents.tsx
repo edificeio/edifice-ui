@@ -17,7 +17,7 @@ export default function useTreeItemEvents(
   };
 
   const handleItemKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.code === "Enter" || event.code === "Space") {
+    if (event.code === 'Enter' || event.code === 'Space') {
       event.preventDefault();
       onItemSelect?.(nodeId);
       itemFoldUnfold();
@@ -41,7 +41,7 @@ export default function useTreeItemEvents(
   const handleItemFoldUnfoldKeyDown = (
     event: React.KeyboardEvent<HTMLDivElement>,
   ) => {
-    if (event.code === "Enter" || event.code === "Space") {
+    if (event.code === 'Enter' || event.code === 'Space') {
       event.preventDefault();
       itemFoldUnfold();
       event.stopPropagation();

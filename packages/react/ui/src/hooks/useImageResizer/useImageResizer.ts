@@ -22,9 +22,9 @@ export default function useImageResizer() {
   };
 
   const renameFileNameExtension = (filename: string, newExtension: string) => {
-    const filenameParts = filename.split(".");
+    const filenameParts = filename.split('.');
     filenameParts.pop();
-    return filenameParts.join(".") + "." + newExtension;
+    return filenameParts.join('.') + '.' + newExtension;
   };
 
   const resizeImage = (
@@ -32,11 +32,11 @@ export default function useImageResizer() {
     fileName: string,
     maxWidth: number,
     maxHeight: number,
-    compressFormat = "jpeg",
+    compressFormat = 'jpeg',
     quality = 80,
   ): Promise<File> => {
     const qualityDecimal = quality / 100;
-    const canvas = document.createElement("canvas");
+    const canvas = document.createElement('canvas');
     const contentType = `image/${compressFormat}`;
 
     let width = image.width;
@@ -52,13 +52,13 @@ export default function useImageResizer() {
     width = newHeightWidth.width;
     height = newHeightWidth.height;
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     if (ctx) {
       canvas.width = width;
       canvas.height = height;
 
       if (ctx.imageSmoothingEnabled && ctx.imageSmoothingQuality) {
-        ctx.imageSmoothingQuality = "high";
+        ctx.imageSmoothingQuality = 'high';
       }
 
       ctx.drawImage(image, 0, 0, width, height);
@@ -97,16 +97,16 @@ export default function useImageResizer() {
     maxHeight: number = 1440,
     quality: number = 80,
   ): Promise<File> => {
-    if (!file) throw Error("Image resizer: file not found!");
+    if (!file) throw Error('Image resizer: file not found!');
 
-    if (!file.type || !file.type.startsWith("image/"))
-      throw Error("Image resizer: the file given is not an image.");
+    if (!file.type || !file.type.startsWith('image/'))
+      throw Error('Image resizer: the file given is not an image.');
 
-    const compressFormat = "jpeg";
+    const compressFormat = 'jpeg';
 
     return new Promise((resolve) => {
       const image = new Image();
-      image.setAttribute("style", "max-width: none;");
+      image.setAttribute('style', 'max-width: none;');
       image.src = URL.createObjectURL(file);
       image.onload = async () => {
         const resizedFile = await resizeImage(
@@ -120,7 +120,7 @@ export default function useImageResizer() {
         resolve(resizedFile);
       };
       image.onerror = (error) => {
-        throw Error("Image Loading Error: " + error);
+        throw Error('Image Loading Error: ' + error);
       };
     });
   };

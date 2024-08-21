@@ -1,1 +1,1 @@
-export { default as useOdeIcons } from "./useOdeIcons";
+export { default as useOdeIcons } from './useOdeIcons';

@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { Code } from "@edifice-ui/icons";
-import { useTranslation } from "react-i18next";
+import { Code } from '@edifice-ui/icons';
+import { useTranslation } from 'react-i18next';
 
-import { FormControl, TextArea } from "../../components";
+import { FormControl, TextArea } from '../../components';
 
 export interface EmbedProps {
   onSuccess: (resource?: string) => void;
@@ -28,16 +28,16 @@ const Embed = ({ onSuccess }: EmbedProps) => {
 
   return (
     <div className="d-flex flex-column flex-fill">
-      <div className="mb-32">{t("bbm.embed.description")}</div>
+      <div className="mb-32">{t('bbm.embed.description')}</div>
       <div className="mb-8 d-flex">
         <Code className="me-8"></Code>
-        {t("bbm.embed.title")}
+        {t('bbm.embed.title')}
       </div>
       <FormControl id="iframeContent">
         <TextArea
           size="md"
           height="sm"
-          placeholder={t("bbm.embed.placeholder")}
+          placeholder={t('bbm.embed.placeholder')}
           onChange={handleContentChange}
         />
       </FormControl>
@@ -49,7 +49,7 @@ const Embed = ({ onSuccess }: EmbedProps) => {
       )}
       {!htmlContent?.length && (
         <div className="embed-preview mt-12 d-flex align-items-center justify-content-center bg-gray-300 text-black-50 rounded-3">
-          <strong>{t("bbm.embed.preview")}</strong>
+          <strong>{t('bbm.embed.preview')}</strong>
         </div>
       )}
     </div>
