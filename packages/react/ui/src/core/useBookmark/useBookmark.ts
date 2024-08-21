@@ -1,6 +1,6 @@
-import { IWebApp } from "edifice-ts-client";
+import { IWebApp } from 'edifice-ts-client';
 
-import { useOdeClient } from "../OdeClientProvider";
+import { useOdeClient } from '../OdeClientProvider';
 
 export default function useBookmark(): IWebApp[] | undefined {
   const { sessionQuery } = useOdeClient();

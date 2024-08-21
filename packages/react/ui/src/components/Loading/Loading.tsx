@@ -1,9 +1,9 @@
-import { forwardRef, ReactNode, Ref } from "react";
+import { forwardRef, ReactNode, Ref } from 'react';
 
-import { Loader } from "@edifice-ui/icons";
-import clsx from "clsx";
+import { Loader } from '@edifice-ui/icons';
+import clsx from 'clsx';
 
-export type LoadingPosition = "left" | "right" | undefined;
+export type LoadingPosition = 'left' | 'right' | undefined;
 export type LoadingIcon = JSX.Element | undefined;
 
 export interface LoadingProps {
@@ -38,7 +38,7 @@ const Loading = forwardRef(
     const {
       isLoading,
       loadingIcon,
-      loadingPosition = "left",
+      loadingPosition = 'left',
       children,
       className,
       ...restProps
@@ -56,23 +56,23 @@ const Loading = forwardRef(
     };
 
     const classes = clsx(
-      "loading d-flex align-items-center gap-8",
+      'loading d-flex align-items-center gap-8',
       {
-        "is-loading": isLoading,
+        'is-loading': isLoading,
       },
       className,
     );
 
     return (
       <div className={classes} role="status" ref={ref}>
-        {(!loadingPosition || loadingPosition === "left") && getLoadingIcon()}
+        {(!loadingPosition || loadingPosition === 'left') && getLoadingIcon()}
         {children}
-        {loadingPosition === "right" && getLoadingIcon()}
+        {loadingPosition === 'right' && getLoadingIcon()}
       </div>
     );
   },
 );
 
-Loading.displayName = "Loading";
+Loading.displayName = 'Loading';
 
 export default Loading;

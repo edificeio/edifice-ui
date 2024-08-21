@@ -1,10 +1,10 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react';
 
-import ExternalLinker from "./ExternalLinker";
-import { useState } from "react";
+import ExternalLinker from './ExternalLinker';
+import { useState } from 'react';
 
 const meta: Meta<typeof ExternalLinker> = {
-  title: "Multimedia/ExternalLinker",
+  title: 'Multimedia/ExternalLinker',
   component: ExternalLinker,
   args: {},
 };
@@ -19,7 +19,7 @@ export const Base: Story = {
   parameters: {
     docs: {
       description: {
-        story: "",
+        story: '',
       },
     },
   },
@@ -28,14 +28,14 @@ export const Base: Story = {
 export const UpdateLink: Story = {
   args: {
     link: {
-      url: "www.edifice.io",
-      text: "Lien vers Edifice",
+      url: 'www.edifice.io',
+      text: 'Lien vers Edifice',
     },
   },
   parameters: {
     docs: {
       description: {
-        story: "",
+        story: '',
       },
     },
   },
@@ -43,12 +43,12 @@ export const UpdateLink: Story = {
 
 export const SelectedText: Story = {
   args: {
-    text: "Text sélectionné",
+    text: 'Text sélectionné',
   },
   parameters: {
     docs: {
       description: {
-        story: "",
+        story: '',
       },
     },
   },

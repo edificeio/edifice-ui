@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { odeServices } from "edifice-ts-client";
+import { odeServices } from 'edifice-ts-client';
 
 // TODO : use new hook usePreference
 /**

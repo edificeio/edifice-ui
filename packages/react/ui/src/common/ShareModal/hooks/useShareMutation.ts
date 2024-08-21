@@ -2,8 +2,8 @@ import {
   UseMutationOptions,
   UseMutationResult,
   useMutation,
-} from "@tanstack/react-query";
-import { PutShareResponse, ShareRight, odeServices } from "edifice-ts-client";
+} from '@tanstack/react-query';
+import { PutShareResponse, ShareRight, odeServices } from 'edifice-ts-client';
 
 const useShareMutation = ({
   application,

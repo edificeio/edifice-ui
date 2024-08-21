@@ -1,14 +1,14 @@
-import { Mail } from "@edifice-ui/icons";
-import { Meta, StoryObj } from "@storybook/react";
-import { FormControl } from "../Form";
-import Label from "./Label";
+import { Mail } from '@edifice-ui/icons';
+import { Meta, StoryObj } from '@storybook/react';
+import { FormControl } from '../Form';
+import Label from './Label';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Label> = {
-  title: "Forms/Label",
+  title: 'Forms/Label',
   component: Label,
   args: {
-    children: "Email",
+    children: 'Email',
   },
 } as Meta<typeof Label>;
 
@@ -38,7 +38,7 @@ export const OptionalField: Story = {
     docs: {
       description: {
         story:
-          "By passing `isOptional` through FormControl Component, we inform the user that this field is not required.",
+          'By passing `isOptional` through FormControl Component, we inform the user that this field is not required.',
       },
     },
   },
@@ -59,7 +59,7 @@ export const OptionalFieldCustomText: Story = {
     docs: {
       description: {
         story:
-          "You can custom the optional text with `optionalText` on Label Component.",
+          'You can custom the optional text with `optionalText` on Label Component.',
       },
     },
   },

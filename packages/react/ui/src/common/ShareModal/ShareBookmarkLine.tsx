@@ -1,15 +1,15 @@
-import { Bookmark, Close, RafterDown } from "@edifice-ui/icons";
+import { Bookmark, Close, RafterDown } from '@edifice-ui/icons';
 import {
   ShareRight,
   ShareRightAction,
   ShareRightActionDisplayName,
   ShareRightWithVisibles,
-} from "edifice-ts-client";
-import { useTranslation } from "react-i18next";
+} from 'edifice-ts-client';
+import { useTranslation } from 'react-i18next';
 
-import { Avatar, Button, Checkbox, IconButton } from "../../components";
-import { hasRight } from "./utils/hasRight";
-import { showShareRightLine } from "./utils/showShareRightLine";
+import { Avatar, Button, Checkbox, IconButton } from '../../components';
+import { hasRight } from './utils/hasRight';
+import { showShareRightLine } from './utils/showShareRightLine';
 
 export const ShareBookmarkLine = ({
   shareRights,
@@ -35,32 +35,32 @@ export const ShareBookmarkLine = ({
       showShareRightLine(shareRight, showBookmark) && (
         <tr
           key={shareRight.id}
-          className={shareRight.isBookmarkMember ? "bg-light" : ""}
+          className={shareRight.isBookmarkMember ? 'bg-light' : ''}
         >
           <td>
-            {shareRight.type !== "sharebookmark" && (
+            {shareRight.type !== 'sharebookmark' && (
               <Avatar
-                alt={t("explorer.modal.share.avatar.shared.alt")}
+                alt={t('explorer.modal.share.avatar.shared.alt')}
                 size="xs"
                 src={shareRight.avatarUrl}
                 variant="circle"
               />
             )}
 
-            {shareRight.type === "sharebookmark" && <Bookmark />}
+            {shareRight.type === 'sharebookmark' && <Bookmark />}
           </td>
           <td>
             <div className="d-flex">
-              {shareRight.type === "sharebookmark" && (
+              {shareRight.type === 'sharebookmark' && (
                 <Button
                   color="tertiary"
                   rightIcon={
                     <RafterDown
-                      title={t("show")}
+                      title={t('show')}
                       className="w-16 min-w-0"
                       style={{
-                        transition: "rotate 0.2s ease-out",
-                        rotate: showBookmark ? "-180deg" : "0deg",
+                        transition: 'rotate 0.2s ease-out',
+                        rotate: showBookmark ? '-180deg' : '0deg',
                       }}
                     />
                   }
@@ -72,15 +72,15 @@ export const ShareBookmarkLine = ({
                   {shareRight.displayName}
                 </Button>
               )}
-              {shareRight.type !== "sharebookmark" && shareRight.displayName}
-              {shareRight.type === "user" &&
-                ` (${t(shareRight.profile || "")})`}
+              {shareRight.type !== 'sharebookmark' && shareRight.displayName}
+              {shareRight.type === 'user' &&
+                ` (${t(shareRight.profile || '')})`}
             </div>
           </td>
           {shareRightActions.map((shareRightAction) => (
             <td
               key={shareRightAction.displayName}
-              style={{ width: "80px" }}
+              style={{ width: '80px' }}
               className="text-center text-white"
             >
               <Checkbox
@@ -92,12 +92,12 @@ export const ShareBookmarkLine = ({
           <td>
             {!shareRight.isBookmarkMember && (
               <IconButton
-                aria-label={t("close")}
+                aria-label={t('close')}
                 color="tertiary"
                 icon={<Close />}
                 type="button"
                 variant="ghost"
-                title={t("close")}
+                title={t('close')}
                 onClick={() => onDeleteRow(shareRight)}
               />
             )}

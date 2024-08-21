@@ -1,10 +1,10 @@
-import Heading from "../../components/Heading/Heading";
-import useTitle from "./useTitle";
-import docs from "./useTitle.mdx";
-import { Meta, StoryObj } from "@storybook/react";
+import Heading from '../../components/Heading/Heading';
+import useTitle from './useTitle';
+import docs from './useTitle.mdx';
+import { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof useTitle> = {
-  title: "Hooks/useTitle",
+  title: 'Hooks/useTitle',
   parameters: {
     docs: { page: docs },
   },

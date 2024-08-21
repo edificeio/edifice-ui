@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { Delete, Download } from "@edifice-ui/icons";
-import { Attachment, Grid, IconButton } from "@edifice-ui/react";
-import { Editor, NodeViewWrapper } from "@tiptap/react";
-import { useTranslation } from "react-i18next";
+import { Delete, Download } from '@edifice-ui/icons';
+import { Attachment, Grid, IconButton } from '@edifice-ui/react';
+import { Editor, NodeViewWrapper } from '@tiptap/react';
+import { useTranslation } from 'react-i18next';
 
-import { useEditorContext } from "../..";
+import { useEditorContext } from '../..';
 
 interface AttachmentProps {
   editor: Editor;
@@ -41,13 +41,13 @@ const AttachmentRenderer = (props: AttachmentProps) => {
       <NodeViewWrapper>
         <div
           style={{
-            backgroundColor: "#F2F2F2",
-            borderRadius: ".8rem",
-            padding: "1.2rem",
+            backgroundColor: '#F2F2F2',
+            borderRadius: '.8rem',
+            padding: '1.2rem',
           }}
           data-drag-handle
         >
-          <p className="m-12 mt-0">{t("tiptap.attachments.bloc")}</p>
+          <p className="m-12 mt-0">{t('tiptap.attachments.bloc')}</p>
           <Grid>
             {attachmentArrayAttrs?.map((attachment, index) => (
               <Grid.Col sm="6" key={index}>
@@ -57,7 +57,7 @@ const AttachmentRenderer = (props: AttachmentProps) => {
                     <>
                       <a href={attachment.href} download>
                         <IconButton
-                          aria-label={t("tiptap.attachments.download")}
+                          aria-label={t('tiptap.attachments.download')}
                           color="tertiary"
                           type="button"
                           icon={<Download />}
@@ -66,7 +66,7 @@ const AttachmentRenderer = (props: AttachmentProps) => {
                       </a>
                       {editable && (
                         <IconButton
-                          aria-label={t("tiptap.attachments.delete")}
+                          aria-label={t('tiptap.attachments.delete')}
                           color="danger"
                           type="button"
                           icon={<Delete />}

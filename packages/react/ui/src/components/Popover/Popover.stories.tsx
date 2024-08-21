@@ -1,24 +1,24 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { useId } from "react";
+import { Meta, StoryObj } from '@storybook/react';
+import { useId } from 'react';
 
-import { Button } from "../Button";
-import { PopoverBody, PopoverFooter, PopoverHeader, Popover } from "./Popover";
-import Avatar from "../Avatar/Avatar";
-import useHover from "../../hooks/useHover/useHover";
+import { Button } from '../Button';
+import { PopoverBody, PopoverFooter, PopoverHeader, Popover } from './Popover';
+import Avatar from '../Avatar/Avatar';
+import useHover from '../../hooks/useHover/useHover';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Popover> = {
-  title: "Components/Popover",
+  title: 'Components/Popover',
   component: Popover,
   args: {
-    id: "popover",
+    id: 'popover',
     isVisible: false,
-    className: "",
+    className: '',
   },
   parameters: {
     docs: {
       description: {
-        component: "Popover Component",
+        component: 'Popover Component',
       },
     },
   },
@@ -26,10 +26,10 @@ const meta: Meta<typeof Popover> = {
     (Story) => (
       <div
         style={{
-          height: "200px",
-          display: "grid",
-          placeItems: "center",
-          marginBottom: "10em",
+          height: '200px',
+          display: 'grid',
+          placeItems: 'center',
+          marginBottom: '10em',
         }}
         className="position-relative"
       >

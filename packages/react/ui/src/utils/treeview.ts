@@ -1,5 +1,5 @@
-import { FOLDER, IFolder } from "edifice-ts-client";
-import { TreeNode } from "../components/TreeView/TreeNode";
+import { FOLDER, IFolder } from 'edifice-ts-client';
+import { TreeNode } from '../components/TreeView/TreeNode';
 
 export function findNodeById(data: TreeNode, id: string): TreeNode | undefined {
   let res: TreeNode | undefined;

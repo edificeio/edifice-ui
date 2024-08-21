@@ -1,17 +1,17 @@
-import { forwardRef, ReactNode, Ref, useMemo } from "react";
+import { forwardRef, ReactNode, Ref, useMemo } from 'react';
 
-import clsx from "clsx";
-import { IWebApp } from "edifice-ts-client";
+import clsx from 'clsx';
+import { IWebApp } from 'edifice-ts-client';
 
-import CardBody from "./CardBody";
-import { CardContext } from "./CardContext";
-import CardFooter from "./CardFooter";
-import CardHeader from "./CardHeader";
-import CardImage from "./CardImage";
-import CardText from "./CardText";
-import CardTitle from "./CardTitle";
-import CardUser from "./CardUser";
-import { useOdeIcons } from "../../core";
+import CardBody from './CardBody';
+import { CardContext } from './CardContext';
+import CardFooter from './CardFooter';
+import CardHeader from './CardHeader';
+import CardImage from './CardImage';
+import CardText from './CardText';
+import CardTitle from './CardTitle';
+import CardUser from './CardUser';
+import { useOdeIcons } from '../../core';
 
 export interface CardProps {
   /**
@@ -61,7 +61,7 @@ const Root = forwardRef(
     ref: Ref<HTMLDivElement>,
   ) => {
     const { getIconCode } = useOdeIcons();
-    const appCode = app ? getIconCode(app) : "placeholder";
+    const appCode = app ? getIconCode(app) : 'placeholder';
 
     const values = useMemo(
       () => ({
@@ -79,23 +79,23 @@ const Root = forwardRef(
         <div
           ref={ref}
           className={clsx(
-            "card",
+            'card',
             {
-              "is-selected": isSelected,
-              "c-pointer": isClickable,
+              'is-selected': isSelected,
+              'c-pointer': isClickable,
             },
             className,
           )}
         >
           <Card.Header />
-          {typeof children === "function" ? children(appCode) : children}
+          {typeof children === 'function' ? children(appCode) : children}
         </div>
       </CardContext.Provider>
     );
   },
 );
 
-Root.displayName = "Card";
+Root.displayName = 'Card';
 
 const Card = Object.assign(Root, {
   Title: CardTitle,

@@ -1,22 +1,22 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react';
 
-import Loading, { LoadingProps } from "./Loading";
+import Loading, { LoadingProps } from './Loading';
 
-import { Hourglass } from "@edifice-ui/icons";
+import { Hourglass } from '@edifice-ui/icons';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Loading> = {
-  title: "Components/Loading",
+  title: 'Components/Loading',
   component: Loading,
   argTypes: {
     loadingPosition: {
-      options: ["left", "right"],
-      control: { type: "inline-radio" },
+      options: ['left', 'right'],
+      control: { type: 'inline-radio' },
     },
   },
   args: {
     isLoading: true,
-    loadingPosition: "left",
+    loadingPosition: 'left',
     loadingIcon: undefined,
   },
 };
@@ -27,15 +27,15 @@ type Story = StoryObj<typeof Loading>;
 
 export const Base: Story = {
   args: {
-    loadingPosition: "left",
-    children: "Loading...",
+    loadingPosition: 'left',
+    children: 'Loading...',
   },
 
   decorators: [
     (Story) => (
       <div
         className="is-loading btn d-inline-flex align-items-center"
-        style={{ backgroundColor: "#4a4a4a", color: "#fff" }}
+        style={{ backgroundColor: '#4a4a4a', color: '#fff' }}
       >
         {Story()}
       </div>
@@ -51,15 +51,15 @@ export const LoadingWithCustomColor: Story = {
 
 export const LoadingWithText: Story = {
   args: {
-    loadingPosition: "left",
-    children: "Loading...",
+    loadingPosition: 'left',
+    children: 'Loading...',
   },
 
   decorators: [
     (Story) => (
       <div
         className="is-loading btn d-inline-flex align-items-center"
-        style={{ backgroundColor: "#4a4a4a", color: "#fff" }}
+        style={{ backgroundColor: '#4a4a4a', color: '#fff' }}
       >
         {Story()}
       </div>
@@ -69,15 +69,15 @@ export const LoadingWithText: Story = {
 
 export const LoadingRightWithText: Story = {
   args: {
-    loadingPosition: "right",
-    children: "Loading...",
+    loadingPosition: 'right',
+    children: 'Loading...',
   },
 
   decorators: [
     (Story) => (
       <div
         className="is-loading btn d-inline-flex align-items-center"
-        style={{ backgroundColor: "#4a4a4a", color: "#fff" }}
+        style={{ backgroundColor: '#4a4a4a', color: '#fff' }}
       >
         {Story()}
       </div>
@@ -87,16 +87,16 @@ export const LoadingRightWithText: Story = {
 
 export const LoadingCustomIcon: Story = {
   args: {
-    loadingPosition: "left",
+    loadingPosition: 'left',
     loadingIcon: <Hourglass />,
-    children: "Loading...",
+    children: 'Loading...',
   },
 
   decorators: [
     (Story) => (
       <div
         className="is-loading btn d-inline-flex align-items-center"
-        style={{ backgroundColor: "#4a4a4a", color: "#fff" }}
+        style={{ backgroundColor: '#4a4a4a', color: '#fff' }}
       >
         {Story()}
       </div>
@@ -106,24 +106,24 @@ export const LoadingCustomIcon: Story = {
 
 export const LoadingCustomIconWithColor: Story = {
   args: {
-    loadingPosition: "left",
+    loadingPosition: 'left',
     loadingIcon: <Hourglass color="blue" />,
-    children: "Loading...",
+    children: 'Loading...',
   },
 };
 
 export const LoadingRightCustomIcon: Story = {
   args: {
-    loadingPosition: "right",
+    loadingPosition: 'right',
     loadingIcon: <Hourglass />,
-    children: "Loading...",
+    children: 'Loading...',
   },
 
   decorators: [
     (Story) => (
       <div
         className="is-loading btn d-inline-flex align-items-center"
-        style={{ backgroundColor: "#4a4a4a", color: "#fff" }}
+        style={{ backgroundColor: '#4a4a4a', color: '#fff' }}
       >
         {Story()}
       </div>

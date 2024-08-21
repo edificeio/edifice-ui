@@ -1,6 +1,6 @@
-@use "../abstracts/" as *;
+@use '../abstracts/' as *;
 
-[data-product="neo"][data-theme="na"] {
+[data-product='neo'][data-theme='na'] {
   --#{$prefix}secondary: #e20037;
 
   .header {

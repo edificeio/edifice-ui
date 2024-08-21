@@ -1,11 +1,11 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react';
 
-import Avatar from "./Avatar";
-import React from "react";
+import Avatar from './Avatar';
+import React from 'react';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Avatar> = {
-  title: "Components/Avatar",
+  title: 'Components/Avatar',
   component: Avatar,
   parameters: {
     docs: {
@@ -16,17 +16,17 @@ const meta: Meta<typeof Avatar> = {
     },
   },
   args: {
-    variant: "square",
-    size: "md",
+    variant: 'square',
+    size: 'md',
   },
   argTypes: {
     variant: {
-      options: ["square", "rounded", "circle"],
-      control: { type: "select" },
+      options: ['square', 'rounded', 'circle'],
+      control: { type: 'select' },
     },
     size: {
-      options: ["xs", "sm", "md", "lg"],
-      control: { type: "inline-radio" },
+      options: ['xs', 'sm', 'md', 'lg'],
+      control: { type: 'inline-radio' },
     },
   },
 };
@@ -54,7 +54,7 @@ export const AvatarSizes: Story = {
     docs: {
       description: {
         story:
-          "Avatar Component accepts 4 sizes with the `size` prop attribute: `xs | sm | md | lg`",
+          'Avatar Component accepts 4 sizes with the `size` prop attribute: `xs | sm | md | lg`',
       },
     },
   },
@@ -90,7 +90,7 @@ export const AvatarShapes: Story = {
     docs: {
       description: {
         story:
-          "Avatar Component can take 3 different shapes with the `variant` prop attribute: `square | rounded | circle`. Default value is `square`",
+          'Avatar Component can take 3 different shapes with the `variant` prop attribute: `square | rounded | circle`. Default value is `square`',
       },
     },
   },
@@ -110,7 +110,7 @@ export const AvatarFallback: Story = {
     docs: {
       description: {
         story:
-          "If `src` is undefined or on error, we use the placeholder image as a fallback.",
+          'If `src` is undefined or on error, we use the placeholder image as a fallback.',
       },
     },
   },
@@ -130,7 +130,7 @@ export const AvatarCustomFallback: Story = {
   parameters: {
     docs: {
       description: {
-        story: "You can override the default fallback with `imgPlaceholder`",
+        story: 'You can override the default fallback with `imgPlaceholder`',
       },
     },
   },

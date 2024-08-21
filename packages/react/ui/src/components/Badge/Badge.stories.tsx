@@ -1,56 +1,56 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react';
 
-import Badge, { BadgeProps } from "./Badge";
-import { Hourglass } from "@edifice-ui/icons";
+import Badge, { BadgeProps } from './Badge';
+import { Hourglass } from '@edifice-ui/icons';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Badge> = {
-  title: "Components/Badges/Badge",
+  title: 'Components/Badges/Badge',
   component: Badge,
   argTypes: {
     variant: {
-      control: { type: "radio" },
+      control: { type: 'radio' },
       options: [
-        "notification / warning",
-        "notification / danger",
-        "notification / info",
-        "notification / warning / text",
-        "notification / danger / text",
-        "notification / info / text",
-        "profile / student",
-        "profile / teacher",
-        "profile / relative",
-        "profile / personnel",
+        'notification / warning',
+        'notification / danger',
+        'notification / info',
+        'notification / warning / text',
+        'notification / danger / text',
+        'notification / info / text',
+        'profile / student',
+        'profile / teacher',
+        'profile / relative',
+        'profile / personnel',
       ],
       mapping: {
-        "notification / warning": { type: "notification", level: "warning" },
-        "notification / danger": { type: "notification", level: "danger" },
-        "notification / info": { type: "notification", level: "info" },
-        "notification / warning / text": {
-          type: "notification",
-          level: "warning",
-          color: "text",
+        'notification / warning': { type: 'notification', level: 'warning' },
+        'notification / danger': { type: 'notification', level: 'danger' },
+        'notification / info': { type: 'notification', level: 'info' },
+        'notification / warning / text': {
+          type: 'notification',
+          level: 'warning',
+          color: 'text',
         },
-        "notification / danger / text": {
-          type: "notification",
-          level: "danger",
-          color: "text",
+        'notification / danger / text': {
+          type: 'notification',
+          level: 'danger',
+          color: 'text',
         },
-        "notification / info / text": {
-          type: "notification",
-          level: "info",
-          color: "text",
+        'notification / info / text': {
+          type: 'notification',
+          level: 'info',
+          color: 'text',
         },
-        "profile / student": { type: "profile", profile: "student" },
-        "profile / teacher": { type: "profile", profile: "teacher" },
-        "profile / relative": { type: "profile", profile: "relative" },
-        "profile / personnel": { type: "profile", profile: "personnel" },
+        'profile / student': { type: 'profile', profile: 'student' },
+        'profile / teacher': { type: 'profile', profile: 'teacher' },
+        'profile / relative': { type: 'profile', profile: 'relative' },
+        'profile / personnel': { type: 'profile', profile: 'personnel' },
       },
     },
   },
   args: {
-    children: "999+",
-    variant: { type: "notification", level: "warning" },
+    children: '999+',
+    variant: { type: 'notification', level: 'warning' },
   },
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
 };
@@ -60,15 +60,15 @@ type Story = StoryObj<typeof Badge>;
 
 export const Base: Story = {
   args: {
-    children: "999+",
-    variant: { type: "notification", level: "danger" },
+    children: '999+',
+    variant: { type: 'notification', level: 'danger' },
   },
 };
 
 export const VisibilityOption: Story = {
   args: {
-    variant: { type: "notification", level: "warning" },
-    visibility: "always",
+    variant: { type: 'notification', level: 'warning' },
+    visibility: 'always',
     children: undefined,
   },
   render: (args: BadgeProps) => {
@@ -90,7 +90,7 @@ export const VisibilityOption: Story = {
 
 export const NotificationTextInfoBadge: Story = {
   args: {
-    variant: { type: "notification", level: "info", color: "text" },
+    variant: { type: 'notification', level: 'info', color: 'text' },
   },
 
   render: (args: BadgeProps) => {
@@ -104,7 +104,7 @@ export const NotificationTextInfoBadge: Story = {
 
 export const StudentProfileBadge: Story = {
   args: {
-    variant: { type: "profile", profile: "student" },
+    variant: { type: 'profile', profile: 'student' },
   },
 
   render: (args: BadgeProps) => {
@@ -118,7 +118,7 @@ export const StudentProfileBadge: Story = {
 
 export const TeacherProfileBadge: Story = {
   args: {
-    variant: { type: "profile", profile: "teacher" },
+    variant: { type: 'profile', profile: 'teacher' },
   },
 
   render: (args: BadgeProps) => {
@@ -132,7 +132,7 @@ export const TeacherProfileBadge: Story = {
 
 export const RelativeProfileBadge: Story = {
   args: {
-    variant: { type: "profile", profile: "relative" },
+    variant: { type: 'profile', profile: 'relative' },
   },
 
   render: (args: BadgeProps) => {
@@ -146,7 +146,7 @@ export const RelativeProfileBadge: Story = {
 
 export const PersonnelProfileBadge: Story = {
   args: {
-    variant: { type: "profile", profile: "personnel" },
+    variant: { type: 'profile', profile: 'personnel' },
   },
 
   render: (args: BadgeProps) => {
@@ -160,7 +160,7 @@ export const PersonnelProfileBadge: Story = {
 
 export const BadgeWithIcon: Story = {
   args: {
-    variant: { type: "link" },
+    variant: { type: 'link' },
   },
 
   render: (args: BadgeProps) => {

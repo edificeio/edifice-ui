@@ -1,4 +1,4 @@
-import { ResourceRight, odeServices, type RightRole } from "edifice-ts-client";
+import { ResourceRight, odeServices, type RightRole } from 'edifice-ts-client';
 
 export interface IObjectWithRights {
   rights: string[];
@@ -49,7 +49,7 @@ const checkHasRights = async ({ roles, rights }: UseHasRightsProps) => {
   }
   if (Array.isArray(rights)) {
     if (rights.length > 0) {
-      if (typeof rights[0] === "string") {
+      if (typeof rights[0] === 'string') {
         const can = await checkRights(roles, rights as string[]);
         return can;
       } else {
@@ -63,7 +63,7 @@ const checkHasRights = async ({ roles, rights }: UseHasRightsProps) => {
       return false;
     }
   } else {
-    if (typeof rights === "string") {
+    if (typeof rights === 'string') {
       const can = await checkRights(roles, rights);
       return can;
     } else if (rights) {
@@ -73,8 +73,8 @@ const checkHasRights = async ({ roles, rights }: UseHasRightsProps) => {
   }
 };
 
-export const checkUserRight = async (rights: UseHasRightsProps["rights"]) => {
-  const roles: Roles = ["contrib", "creator", "manager", "read"];
+export const checkUserRight = async (rights: UseHasRightsProps['rights']) => {
+  const roles: Roles = ['contrib', 'creator', 'manager', 'read'];
   const userRights: Record<RightRole, boolean> = {
     creator: false,
     contrib: false,

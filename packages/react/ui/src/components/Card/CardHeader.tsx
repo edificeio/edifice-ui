@@ -1,7 +1,7 @@
-import { Options } from "@edifice-ui/icons";
+import { Options } from '@edifice-ui/icons';
 
-import { useCardContext } from "./CardContext";
-import { IconButton } from "../Button";
+import { useCardContext } from './CardContext';
+import { IconButton } from '../Button';
 
 const CardHeader = () => {
   const { isSelectable, isClickable, onClick, onSelect } = useCardContext();
@@ -29,6 +29,6 @@ const CardHeader = () => {
   ) : null;
 };
 
-CardHeader.displayName = "Card.Header";
+CardHeader.displayName = 'Card.Header';
 
 export default CardHeader;

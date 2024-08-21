@@ -1,10 +1,10 @@
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef } from 'react';
 
-import { Close } from "@edifice-ui/icons";
-import { useTranslation } from "react-i18next";
+import { Close } from '@edifice-ui/icons';
+import { useTranslation } from 'react-i18next';
 
-import { useModalContext } from "./ModalContext";
-import IconButton from "../Button/IconButton";
+import { useModalContext } from './ModalContext';
+import IconButton from '../Button/IconButton';
 
 export interface ModalHeaderProps {
   /**
@@ -39,12 +39,12 @@ const ModalHeader = (props: ModalHeaderProps) => {
       </h2>
       <IconButton
         ref={closeButtonRef}
-        aria-label={t("close")}
+        aria-label={t('close')}
         color="tertiary"
         icon={<Close />}
         type="button"
         variant="ghost"
-        title={t("close")}
+        title={t('close')}
         onClick={onModalClose}
         className="btn-close"
       />
@@ -52,6 +52,6 @@ const ModalHeader = (props: ModalHeaderProps) => {
   );
 };
 
-ModalHeader.displayName = "Modal.Header";
+ModalHeader.displayName = 'Modal.Header';
 
 export default ModalHeader;

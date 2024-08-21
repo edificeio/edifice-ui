@@ -1,5 +1,5 @@
-import { SpeechRecognition } from "./SpeechRecognition";
+import { SpeechRecognition } from './SpeechRecognition';
 
-export * from "./SpeechRecognition";
+export * from './SpeechRecognition';
 
 export default SpeechRecognition;

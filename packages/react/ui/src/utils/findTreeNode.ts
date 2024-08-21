@@ -1,4 +1,4 @@
-import { TreeNode } from "../components";
+import { TreeNode } from '../components';
 
 /**
  * Utility function to find a node in a subtree

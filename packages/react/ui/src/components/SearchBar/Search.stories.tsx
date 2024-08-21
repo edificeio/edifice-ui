@@ -1,36 +1,36 @@
-import { Search } from "@edifice-ui/icons";
-import { Meta, StoryObj } from "@storybook/react";
-import SearchButton from "../Button/SearchButton";
-import SearchBar, { SearchBarProps } from "./SearchBar";
-import FormControl from "../Form/FormControl";
+import { Search } from '@edifice-ui/icons';
+import { Meta, StoryObj } from '@storybook/react';
+import SearchButton from '../Button/SearchButton';
+import SearchBar, { SearchBarProps } from './SearchBar';
+import FormControl from '../Form/FormControl';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof SearchBar> = {
-  title: "Forms/SearchBar",
+  title: 'Forms/SearchBar',
   component: SearchBar,
   parameters: {
     docs: {
       description: {
         component:
-          "The SearchBar is the composition of FormControl, Input and SearchButton components. All components have access to all their expected props.",
+          'The SearchBar is the composition of FormControl, Input and SearchButton components. All components have access to all their expected props.',
       },
     },
   },
   argTypes: {
     size: {
-      options: ["md", "lg"],
-      control: { type: "select" },
+      options: ['md', 'lg'],
+      control: { type: 'select' },
     },
     isVariant: {
-      control: "boolean",
+      control: 'boolean',
     },
   },
   args: {
     isVariant: false,
     onClick: () => {},
     onChange: () => {},
-    size: "md",
-    placeholder: "Search something....",
+    size: 'md',
+    placeholder: 'Search something....',
   },
 };
 

@@ -1,23 +1,23 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react';
 
-import { Button } from "../Button";
-import Modal from "./Modal";
-import useToggle from "../../hooks/useToggle/useToggle";
+import { Button } from '../Button';
+import Modal from './Modal';
+import useToggle from '../../hooks/useToggle/useToggle';
 
 const meta: Meta<typeof Modal> = {
-  title: "Components/Modal",
+  title: 'Components/Modal',
   component: Modal,
-  decorators: [(Story) => <div style={{ height: "25em" }}>{Story()}</div>],
+  decorators: [(Story) => <div style={{ height: '25em' }}>{Story()}</div>],
   args: {
-    id: "modal",
+    id: 'modal',
     viewport: false,
     scrollable: false,
-    size: "md",
+    size: 'md',
   },
   argTypes: {
     size: {
-      options: ["md", "lg"],
-      control: { type: "select" },
+      options: ['md', 'lg'],
+      control: { type: 'select' },
     },
   },
 };
@@ -258,8 +258,8 @@ export const Scrollable: Story = {
     );
   },
   args: {
-    id: "primaryModal",
-    size: "lg",
+    id: 'primaryModal',
+    size: 'lg',
     scrollable: true,
   },
 };
@@ -335,8 +335,8 @@ export const FullHeight: Story = {
     );
   },
   args: {
-    id: "primaryModal",
-    size: "lg",
+    id: 'primaryModal',
+    size: 'lg',
     scrollable: true,
   },
 };

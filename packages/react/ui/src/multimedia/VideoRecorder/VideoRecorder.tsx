@@ -6,7 +6,7 @@ import {
   useImperativeHandle,
   useRef,
   useState,
-} from "react";
+} from 'react';
 
 import {
   Pause,
@@ -16,9 +16,9 @@ import {
   RecordVideo,
   Refresh,
   Save,
-} from "@edifice-ui/icons";
-import { WorkspaceElement, odeServices } from "edifice-ts-client";
-import { useTranslation } from "react-i18next";
+} from '@edifice-ui/icons';
+import { WorkspaceElement, odeServices } from 'edifice-ts-client';
+import { useTranslation } from 'react-i18next';
 
 import {
   FormControl,
@@ -26,11 +26,11 @@ import {
   LoadingScreen,
   OptionsType,
   Select,
-} from "../../components";
-import { Toolbar, ToolbarItem } from "../../components/Toolbar";
-import { useUpload } from "../../core/useUpload";
-import useBrowserInfo from "../../hooks/useBrowserInfo/useBrowserInfo";
-import { convertMsToMS, getBestSupportedMimeType } from "../../utils";
+} from '../../components';
+import { Toolbar, ToolbarItem } from '../../components/Toolbar';
+import { useUpload } from '../../core/useUpload';
+import useBrowserInfo from '../../hooks/useBrowserInfo/useBrowserInfo';
+import { convertMsToMS, getBestSupportedMimeType } from '../../utils';
 
 export interface VideoRecorderProps {
   appCode: string;
@@ -73,12 +73,12 @@ const VideoRecorder = forwardRef(
       useState<MediaStreamConstraints>({
         audio: true,
         video: {
-          facingMode: "environment",
+          facingMode: 'environment',
           aspectRatio: VIDEO_WIDTH / VIDEO_HEIGHT,
         },
       });
     const [stream, setStream] = useState<MediaStream>();
-    const [mimeType, setMimeType] = useState<string>("");
+    const [mimeType, setMimeType] = useState<string>('');
 
     const [recordedChunks, setRecordedChunks] = useState<Blob[]>([]);
     const [recordedVideo, setRecordedVideo] = useState<Blob>();
@@ -186,23 +186,23 @@ const VideoRecorder = forwardRef(
     const initInputDevices = async () => {
       const devices = await navigator.mediaDevices.enumerateDevices();
       const videoDevices = devices.filter(
-        (device) => device.kind === "videoinput",
+        (device) => device.kind === 'videoinput',
       );
       // console, mobile, tablet, smarttv, wearable, embedded
       switch (device.type) {
-        case "mobile":
-        case "tablet": {
+        case 'mobile':
+        case 'tablet': {
           const backCamera = {
-            deviceId: "environment",
-            label: t("video.back.camera"),
-            groupId: "",
-            kind: "videoinput",
+            deviceId: 'environment',
+            label: t('video.back.camera'),
+            groupId: '',
+            kind: 'videoinput',
           } as MediaDeviceInfo;
           const frontCamera = {
-            deviceId: "user",
-            label: t("video.front.camera"),
-            groupId: "",
-            kind: "videoinput",
+            deviceId: 'user',
+            label: t('video.front.camera'),
+            groupId: '',
+            kind: 'videoinput',
           } as MediaDeviceInfo;
 
           if (videoDevices?.length > 1) {
@@ -232,7 +232,7 @@ const VideoRecorder = forwardRef(
         if (videoRef.current) {
           if (videoRef.current.src) {
             window.URL.revokeObjectURL(videoRef.current.src);
-            videoRef.current.src = "";
+            videoRef.current.src = '';
           }
           videoRef.current.srcObject = mediaStream;
           videoRef.current.autoplay = true;
@@ -270,7 +270,7 @@ const VideoRecorder = forwardRef(
       setRecording(false);
       setRecorded(true);
 
-      if (recorderRef.current?.state === "recording") {
+      if (recorderRef.current?.state === 'recording') {
         recorderRef.current.requestData();
         recorderRef.current.stop();
       }
@@ -308,7 +308,7 @@ const VideoRecorder = forwardRef(
     const handleSave = async () => {
       setSaving(true);
       if (!recordedVideo) {
-        console.error("Error while saving video: recorded video is undefined.");
+        console.error('Error while saving video: recorded video is undefined.');
         return;
       }
 
@@ -322,7 +322,7 @@ const VideoRecorder = forwardRef(
         setSaved(true);
         return [resVideo];
       } else {
-        onError("Error while uploading video");
+        onError('Error while uploading video');
         setSaving(false);
         setSaved(true);
       }
@@ -344,8 +344,8 @@ const VideoRecorder = forwardRef(
       let mediaStreamConstraints: MediaStreamConstraints = {};
       if (selectedDevice?.deviceId) {
         if (
-          selectedDevice?.deviceId === "environment" ||
-          selectedDevice?.deviceId === "user"
+          selectedDevice?.deviceId === 'environment' ||
+          selectedDevice?.deviceId === 'user'
         ) {
           mediaStreamConstraints = {
             audio: true,
@@ -367,7 +367,7 @@ const VideoRecorder = forwardRef(
         setMediaStreamConstraints(mediaStreamConstraints);
 
         if (stream) {
-          if (recorderRef.current?.state === "recording") {
+          if (recorderRef.current?.state === 'recording') {
             recorderRef.current.requestData();
             recorderRef.current.stop();
           }
@@ -376,7 +376,7 @@ const VideoRecorder = forwardRef(
         }
         enableStream(mediaStreamConstraints);
       } else {
-        console.error("Selected input device id is null");
+        console.error('Selected input device id is null');
       }
     };
 
@@ -391,75 +391,75 @@ const VideoRecorder = forwardRef(
 
     const toolbarItems: ToolbarItem[] = [
       {
-        type: "icon",
-        name: "record",
+        type: 'icon',
+        name: 'record',
         props: {
-          icon: <Record color={recording || recorded ? "" : "red"} />,
-          color: "danger",
+          icon: <Record color={recording || recorded ? '' : 'red'} />,
+          color: 'danger',
           disabled: recording || recorded || saving,
           onClick: handleRecord,
-          "aria-label": t("bbm.video.record.start"),
+          'aria-label': t('bbm.video.record.start'),
         },
-        tooltip: t("bbm.video.record.start"),
+        tooltip: t('bbm.video.record.start'),
       },
       {
-        type: "icon",
-        name: "stop",
+        type: 'icon',
+        name: 'stop',
         props: {
           icon: <RecordStop />,
           disabled: !recording || recorded || saving,
           onClick: handleStop,
-          "aria-label": t("bbm.video.record.stop"),
+          'aria-label': t('bbm.video.record.stop'),
         },
-        tooltip: t("bbm.video.record.stop"),
+        tooltip: t('bbm.video.record.stop'),
       },
       {
-        type: "icon",
-        name: "play",
-        visibility: !playing ? "show" : "hide",
+        type: 'icon',
+        name: 'play',
+        visibility: !playing ? 'show' : 'hide',
         props: {
           icon: <PlayFilled />,
           disabled: !recorded || saving,
           onClick: handlePlayPause,
-          "aria-label": t("bbm.video.play.start"),
+          'aria-label': t('bbm.video.play.start'),
         },
-        tooltip: t("bbm.video.play.start"),
+        tooltip: t('bbm.video.play.start'),
       },
       {
-        type: "icon",
-        name: "pause",
-        visibility: playing ? "show" : "hide",
+        type: 'icon',
+        name: 'pause',
+        visibility: playing ? 'show' : 'hide',
         props: {
           icon: <Pause />,
           disabled: !recorded || saving,
           onClick: handlePlayPause,
-          "aria-label": t("bbm.video.play.pause"),
+          'aria-label': t('bbm.video.play.pause'),
         },
-        tooltip: t("bbm.video.play.pause"),
+        tooltip: t('bbm.video.play.pause'),
       },
-      { type: "divider" },
+      { type: 'divider' },
       {
-        type: "icon",
-        name: "reset",
+        type: 'icon',
+        name: 'reset',
         props: {
           icon: <Refresh />,
           disabled: !recorded || saving,
           onClick: handleReset,
-          "aria-label": t("bbm.video.record.reset"),
+          'aria-label': t('bbm.video.record.reset'),
         },
-        tooltip: t("bbm.video.record.reset"),
+        tooltip: t('bbm.video.record.reset'),
       },
       {
-        type: "icon",
-        name: "save",
-        visibility: hideSaveAction ? "hide" : "show",
+        type: 'icon',
+        name: 'save',
+        visibility: hideSaveAction ? 'hide' : 'show',
         props: {
           icon: <Save />,
           disabled: !recorded || saving || saved,
           onClick: handleSave,
-          "aria-label": t("bbm.video.record.save"),
+          'aria-label': t('bbm.video.record.save'),
         },
-        tooltip: t("bbm.video.record.save"),
+        tooltip: t('bbm.video.record.save'),
       },
     ];
 
@@ -472,11 +472,11 @@ const VideoRecorder = forwardRef(
           <div className="video-recorder-devices mb-12">
             <FormControl id="selectInputDevice">
               <Label className="d-none d-md-block">
-                {t("bbm.video.record.select.devices.label")}
+                {t('bbm.video.record.select.devices.label')}
               </Label>
               <Select
                 placeholderOption={t(
-                  "bbm.video.record.select.devices.placeholder",
+                  'bbm.video.record.select.devices.placeholder',
                 )}
                 options={inputDevices.map(
                   (videoInputDevice) => videoInputDevice.label,
@@ -529,7 +529,7 @@ const VideoRecorder = forwardRef(
         {saving && (
           <LoadingScreen
             position={false}
-            caption={t("bbm.video.save.loader.caption")}
+            caption={t('bbm.video.save.loader.caption')}
           />
         )}
       </div>

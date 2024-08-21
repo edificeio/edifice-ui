@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { odeServices } from "edifice-ts-client";
+import { odeServices } from 'edifice-ts-client';
 
-import { useMockedData } from "../../utils";
+import { useMockedData } from '../../utils';
 
 export default function useHasWorkflow(
   workflow: string | string[],
@@ -17,13 +17,13 @@ export default function useHasWorkflow(
     (async () => {
       let response: boolean | Record<string, boolean>;
       if (mock?.hasWorkflow) {
-        if (typeof workflow === "string") {
+        if (typeof workflow === 'string') {
           response = await mock.hasWorkflow(workflow);
         } else {
-          throw "not.implemented.yet)";
+          throw 'not.implemented.yet)';
         }
       } else {
-        if (typeof workflow === "string") {
+        if (typeof workflow === 'string') {
           response = await odeServices
             .rights()
             .sessionHasWorkflowRight(workflow);

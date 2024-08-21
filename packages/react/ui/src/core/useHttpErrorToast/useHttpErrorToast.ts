@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
 
-import { odeServices, LAYER_NAME } from "edifice-ts-client";
-import { useTranslation } from "react-i18next";
+import { odeServices, LAYER_NAME } from 'edifice-ts-client';
+import { useTranslation } from 'react-i18next';
 
-import { useToast } from "../..";
-import { CustomToastOptions } from "../../hooks/useToast/useToast";
+import { useToast } from '../..';
+import { CustomToastOptions } from '../../hooks/useToast/useToast';
 
 const useHttpErrorToast = (options?: CustomToastOptions) => {
   const message = useRef<string>();
@@ -20,7 +20,7 @@ const useHttpErrorToast = (options?: CustomToastOptions) => {
           event?.data?.payload?.error || event.data.response.statusText,
         );
         toast.error(
-          React.createElement("div", { children: [message.current] }),
+          React.createElement('div', { children: [message.current] }),
           options,
         );
       });

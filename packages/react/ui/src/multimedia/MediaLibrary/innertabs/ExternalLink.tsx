@@ -1,5 +1,5 @@
-import ExternalLinker, { IExternalLink } from "../../Linker/ExternalLinker";
-import { useMediaLibraryContext } from "../MediaLibraryContext";
+import ExternalLinker, { IExternalLink } from '../../Linker/ExternalLinker';
+import { useMediaLibraryContext } from '../MediaLibraryContext';
 
 export type ExternalLinkTabProps = {
   multiNodeSelected?: boolean;

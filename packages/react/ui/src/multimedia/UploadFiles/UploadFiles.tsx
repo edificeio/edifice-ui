@@ -1,14 +1,14 @@
-import { WorkspaceElement, WorkspaceVisibility } from "edifice-ts-client";
+import { WorkspaceElement, WorkspaceVisibility } from 'edifice-ts-client';
 
-import { useEffect, useRef } from "react";
-import { UploadCard } from "../../components";
-import { useUploadFiles } from "../../core";
-import { customSize } from "../../utils/fileSize";
-import { ImageEditor } from "../ImageEditor";
+import { useEffect, useRef } from 'react';
+import { UploadCard } from '../../components';
+import { useUploadFiles } from '../../core';
+import { customSize } from '../../utils/fileSize';
+import { ImageEditor } from '../ImageEditor';
 
 const UploadFiles = ({
   onFilesChange,
-  visibility = "protected",
+  visibility = 'protected',
 }: {
   onFilesChange: (uploadedFiles: WorkspaceElement[]) => void;
   visibility?: WorkspaceVisibility;
@@ -25,7 +25,7 @@ const UploadFiles = ({
     getUrl,
   } = useUploadFiles({
     handleOnChange: onFilesChange,
-    application: "media-library",
+    application: 'media-library',
     visibility,
   });
 
@@ -53,8 +53,8 @@ const UploadFiles = ({
    * @param file
    */
   const renderItem = (file: File) => {
-    const isTypeImage = file.type.startsWith("image");
-    const src = isTypeImage ? fileBlobs.current.get(file.name) : "";
+    const isTypeImage = file.type.startsWith('image');
+    const src = isTypeImage ? fileBlobs.current.get(file.name) : '';
     /**
      * We check if a blob already exists for a file
      * If not, we add a new blob
@@ -120,6 +120,6 @@ const UploadFiles = ({
   );
 };
 
-UploadFiles.displayName = "UploadFiles";
+UploadFiles.displayName = 'UploadFiles';
 
 export default UploadFiles;

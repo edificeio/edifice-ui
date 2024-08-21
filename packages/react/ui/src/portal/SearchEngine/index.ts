@@ -1,1 +1,1 @@
-export { default as SearchEngine } from "./SearchEngine";
+export { default as SearchEngine } from './SearchEngine';
