@@ -54,7 +54,7 @@ export interface ImagePickerProps extends ComponentPropsWithRef<'input'> {
   onDeleteImage: () => void;
 }
 
-const ImagePicker = forwardRef(
+export const ImagePicker = forwardRef(
   (
     {
       label,
@@ -161,5 +161,3 @@ const ImagePicker = forwardRef(
 );
 
 ImagePicker.displayName = 'ImagePicker';
-
-export default ImagePicker;
