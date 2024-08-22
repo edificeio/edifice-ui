@@ -1,1 +1,1 @@
-export { default as useHttpErrorToast } from './useHttpErrorToast';
+export * from './useHttpErrorToast';

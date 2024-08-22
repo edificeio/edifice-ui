@@ -1,6 +1,6 @@
 import { IWebApp } from 'edifice-ts-client';
 
-import AppIcon from '../../components/AppIcon/AppIcon';
+import { AppIcon } from '../../components/AppIcon/AppIcon';
 
 const BookmarkedApps = ({ data }: { data: IWebApp[] }) => {
   if (data.length > 0) {

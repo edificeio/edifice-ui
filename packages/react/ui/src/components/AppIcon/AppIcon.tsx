@@ -8,7 +8,7 @@ import { Image } from '../Image';
 
 export type AppIconSize = '24' | '32' | '40' | '48' | '80' | '160';
 
-export interface BaseProps {
+export interface AppIconBaseProps {
   /**
    * Define icon size
    */
@@ -48,13 +48,13 @@ type VariantsIcon = {
   variant: AppVariants;
 };
 
-export type Props = SquareIcon | VariantsIcon;
-export type AppIconProps = BaseProps & Props;
+export type AppIconVariants = SquareIcon | VariantsIcon;
+export type AppIconProps = AppIconBaseProps & AppIconVariants;
 
 /**
  * Icon Component used to display the icon of an application
  */
-const AppIcon = forwardRef(
+export const AppIcon = forwardRef(
   (
     {
       app,
@@ -156,5 +156,3 @@ const AppIcon = forwardRef(
 );
 
 AppIcon.displayName = 'AppIcon';
-
-export default AppIcon;

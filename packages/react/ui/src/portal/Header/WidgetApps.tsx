@@ -3,7 +3,7 @@ import { type ReactNode } from 'react';
 import { type IWebApp } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 
-import AppIcon from '../../components/AppIcon/AppIcon';
+import { AppIcon } from '../../components/AppIcon/AppIcon';
 
 export const WidgetAppsFooter = () => {
   const { t } = useTranslation();

@@ -4,11 +4,11 @@ import { RafterRight } from '@edifice-ui/icons';
 import { IWebApp } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 
+import { AppIcon } from '../AppIcon';
+import Heading from '../Heading/Heading';
 import BreadcrumbItem from './BreadcrumbItem';
 import BreadcrumbList from './BreadcrumbList';
 import BreadcrumbNav from './BreadcrumbNav';
-import { AppIcon } from '../AppIcon';
-import Heading from '../Heading/Heading';
 
 export interface BreadcrumbProps {
   /**
@@ -21,7 +21,7 @@ export interface BreadcrumbProps {
   name?: string;
 }
 
-const Breadcrumb = forwardRef(
+export const Breadcrumb = forwardRef(
   ({ app, name }: BreadcrumbProps, ref: Ref<HTMLElement>) => {
     const { t } = useTranslation();
 
@@ -77,5 +77,3 @@ const Breadcrumb = forwardRef(
 );
 
 Breadcrumb.displayName = 'Breadcrumb';
-
-export default Breadcrumb;
