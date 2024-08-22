@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 
-import { odeServices, LAYER_NAME } from 'edifice-ts-client';
+import { LAYER_NAME, odeServices } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 
 import { useToast } from '../..';
 import { CustomToastOptions } from '../../hooks/useToast/useToast';
 
-const useHttpErrorToast = (options?: CustomToastOptions) => {
+export const useHttpErrorToast = (options?: CustomToastOptions) => {
   const message = useRef<string>();
   const toast = useToast();
   const { t } = useTranslation();
@@ -31,5 +31,3 @@ const useHttpErrorToast = (options?: CustomToastOptions) => {
 
   return message.current;
 };
-
-export default useHttpErrorToast;

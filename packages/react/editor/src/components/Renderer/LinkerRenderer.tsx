@@ -11,7 +11,7 @@ interface LinkerProps {
   node: Node;
 }
 
-const LinkerRenderer = ({ selected, ...props }: LinkerProps) => {
+export const LinkerRenderer = ({ selected, ...props }: LinkerProps) => {
   const { getIconCode } = useOdeIcons();
   const { editor, node } = props;
   const {
@@ -52,5 +52,3 @@ const LinkerRenderer = ({ selected, ...props }: LinkerProps) => {
     </NodeViewWrapper>
   );
 };
-
-export default LinkerRenderer;

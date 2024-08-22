@@ -5,7 +5,7 @@ interface AudioProps {
   [x: string]: any;
 }
 
-const AudioRenderer = (props: AudioProps) => {
+export const AudioRenderer = (props: AudioProps) => {
   const { node } = props;
 
   return (
@@ -18,5 +18,3 @@ const AudioRenderer = (props: AudioProps) => {
     </NodeViewWrapper>
   );
 };
-
-export default AudioRenderer;

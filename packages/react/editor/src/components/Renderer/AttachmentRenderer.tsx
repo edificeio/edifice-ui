@@ -19,7 +19,7 @@ interface AttachmentAttrsProps {
   dataContentType: string;
 }
 
-const AttachmentRenderer = (props: AttachmentProps) => {
+export const AttachmentRenderer = (props: AttachmentProps) => {
   const { t } = useTranslation();
 
   const { node } = props;
@@ -85,5 +85,3 @@ const AttachmentRenderer = (props: AttachmentProps) => {
     )
   );
 };
-
-export default AttachmentRenderer;

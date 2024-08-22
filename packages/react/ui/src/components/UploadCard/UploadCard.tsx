@@ -47,7 +47,7 @@ export interface UploadCardProps extends CardProps {
   onRetry?: () => void;
 }
 
-const UploadCard = ({
+export const UploadCard = ({
   item,
   status = 'idle',
   isClickable = false,
@@ -197,5 +197,3 @@ const UploadCard = ({
     </Card>
   );
 };
-
-export default UploadCard;

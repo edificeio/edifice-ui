@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 
 import { MediaResizeProps, useResizeMedia } from '../../hooks';
 
-const MediaRenderer = (props: MediaResizeProps) => {
+export const MediaRenderer = (props: MediaResizeProps) => {
   const { node } = props;
 
   const { t } = useTranslation();
@@ -116,5 +116,3 @@ const MediaRenderer = (props: MediaResizeProps) => {
     </NodeViewWrapper>
   );
 };
-
-export default MediaRenderer;
