@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.16](https://github.com/edificeio/edifice-ui/compare/v1.5.16-develop.0...v1.5.16) (2024-08-02)
+
+**Note:** Version bump only for package @edifice-tiptap-extensions/extension-line-height
+
 ## [1.5.15](https://github.com/edificeio/edifice-ui/compare/v1.5.15-develop.2...v1.5.15) (2024-08-02)
 
 **Note:** Version bump only for package @edifice-tiptap-extensions/extension-line-height
