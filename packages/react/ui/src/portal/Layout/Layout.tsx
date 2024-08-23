@@ -43,7 +43,7 @@ const Layout = ({ children, headless = false, ...restProps }: LayoutProps) => {
   const renderCookies = showCookiesConsent && (
     <Alert
       type="info"
-      className="m-12"
+      className="m-12 rgpd"
       isConfirm={true}
       position="bottom-right"
       button={

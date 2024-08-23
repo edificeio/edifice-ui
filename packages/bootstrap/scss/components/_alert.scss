@@ -83,6 +83,12 @@
     }
   }
 
+  &.rgpd {
+    @include bootstrap.media-breakpoint-down(md) {
+      margin: 0 !important;
+    }
+  }
+
   &.is-dismissible {
     .btn-close {
       position: absolute;

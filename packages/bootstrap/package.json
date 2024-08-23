@@ -1,6 +1,6 @@
 {
   "name": "edifice-bootstrap",
-  "version": "1.5.16",
+  "version": "1.5.17-develop.1",
   "description": "Edifice CSS framework based on Bootstrap",
   "keywords": [
     "Bootstrap",
@@ -35,7 +35,7 @@
     "build": "rm -rf dist && cp -r assets dist && pnpm run compile && cp dist/index.css ../../public/assets/themes/edifice-bootstrap/index.css",
     "watch": "sass --watch --load-path=node_modules/ --style=compressed scss/index.scss dist/index.css",
     "watch:react": "sass --watch --style compressed --load-path=node_modules/ --no-source-map scss/index.scss ../../public/assets/themes/edifice-bootstrap/index.css",
-    "watch:sb": "sass --watch --style compressed --load-path=node_modules/ --no-source-map scss/index.scss ../ode-dev-server/assets/themes/edifice-bootstrap/index.css"
+    "watch:sb": "sass --watch --style compressed --load-path=node_modules/ --no-source-map scss/index.scss ../../../recette/assets/themes/edifice-bootstrap/index.css"
   },
   "dependencies": {
     "@popperjs/core": "2.11.8",
