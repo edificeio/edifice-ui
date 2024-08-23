@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.17](https://github.com/edificeio/edifice-ui/compare/v1.5.17-develop.1...v1.5.17) (2024-08-23)
+
+**Note:** Version bump only for package edifice-bootstrap
+
 ## [1.5.16](https://github.com/edificeio/edifice-ui/compare/v1.5.16-develop.0...v1.5.16) (2024-08-02)
 
 **Note:** Version bump only for package edifice-bootstrap
