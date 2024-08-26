@@ -1,4 +1,4 @@
-import { CustomImage } from '@edifice-tiptap-extensions/extension-image';
+import { CustomImage } from '@edifice.io/tiptap-extensions';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
 const ImageNodeView = (Component: any) =>
