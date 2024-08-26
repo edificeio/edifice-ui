@@ -1,8 +1,10 @@
 import { RefObject, useCallback } from 'react';
 
-import { HyperlinkAttributes } from '@edifice-tiptap-extensions/extension-hyperlink';
-import { LinkerAttributes } from '@edifice-tiptap-extensions/extension-linker';
 import { MediaLibraryRef } from '@edifice-ui/react';
+import {
+  HyperlinkAttributes,
+  LinkerAttributes,
+} from '@edifice.io/tiptap-extensions';
 import { Editor } from '@tiptap/react';
 
 /**

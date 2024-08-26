@@ -199,48 +199,9 @@ importers:
 
   packages/react/editor:
     dependencies:
-      '@edifice-tiptap-extensions/extension-alert':
+      '@edifice.io/tiptap-extensions':
         specifier: workspace:*
-        version: link:../../tiptap/extensions/extension-alert
-      '@edifice-tiptap-extensions/extension-attachment':
-        specifier: workspace:*
-        version: link:../../tiptap/extensions/extension-attachment
-      '@edifice-tiptap-extensions/extension-audio':
-        specifier: workspace:*
-        version: link:../../tiptap/extensions/extension-audio
-      '@edifice-tiptap-extensions/extension-font-size':
-        specifier: workspace:*
-        version: link:../../tiptap/extensions/extension-font-size
-      '@edifice-tiptap-extensions/extension-heading':
-        specifier: workspace:*
-        version: link:../../tiptap/extensions/extension-heading
-      '@edifice-tiptap-extensions/extension-highlight':
-        specifier: workspace:*
-        version: link:../../tiptap/extensions/extension-highlight
-      '@edifice-tiptap-extensions/extension-hyperlink':
-        specifier: workspace:*
-        version: link:../../tiptap/extensions/extension-hyperlink
-      '@edifice-tiptap-extensions/extension-iframe':
-        specifier: workspace:*
-        version: link:../../tiptap/extensions/extension-iframe
-      '@edifice-tiptap-extensions/extension-image':
-        specifier: workspace:*
-        version: link:../../tiptap/extensions/extension-image
-      '@edifice-tiptap-extensions/extension-linker':
-        specifier: workspace:*
-        version: link:../../tiptap/extensions/extension-linker
-      '@edifice-tiptap-extensions/extension-speechrecognition':
-        specifier: workspace:*
-        version: link:../../tiptap/extensions/extension-speechrecognition
-      '@edifice-tiptap-extensions/extension-speechsynthesis':
-        specifier: workspace:*
-        version: link:../../tiptap/extensions/extension-speechsynthesis
-      '@edifice-tiptap-extensions/extension-table-cell':
-        specifier: workspace:*
-        version: link:../../tiptap/extensions/extension-table-cell
-      '@edifice-tiptap-extensions/extension-video':
-        specifier: workspace:*
-        version: link:../../tiptap/extensions/extension-video
+        version: link:../../tiptap/extensions
       '@react-spring/web':
         specifier: ^9.7.3
         version: 9.7.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -486,6 +447,55 @@ importers:
       react-i18next:
         specifier: ^14.1.0
         version: 14.1.0(i18next@23.14.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+
+  packages/tiptap/extensions:
+    dependencies:
+      '@tiptap/core':
+        specifier: 2.3.0
+        version: 2.3.0(@tiptap/pm@2.3.0)
+      '@tiptap/extension-bold':
+        specifier: 2.3.0
+        version: 2.3.0(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))
+      '@tiptap/extension-document':
+        specifier: 2.3.0
+        version: 2.3.0(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))
+      '@tiptap/extension-heading':
+        specifier: 2.3.0
+        version: 2.3.0(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))
+      '@tiptap/extension-highlight':
+        specifier: 2.3.0
+        version: 2.3.0(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))
+      '@tiptap/extension-image':
+        specifier: 2.3.0
+        version: 2.3.0(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))
+      '@tiptap/extension-link':
+        specifier: 2.3.0
+        version: 2.3.0(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))(@tiptap/pm@2.3.0)
+      '@tiptap/extension-paragraph':
+        specifier: 2.3.0
+        version: 2.3.0(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))
+      '@tiptap/extension-table-cell':
+        specifier: 2.3.0
+        version: 2.3.0(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))
+      '@tiptap/extension-text':
+        specifier: 2.3.0
+        version: 2.3.0(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))
+      '@tiptap/extension-text-style':
+        specifier: 2.3.0
+        version: 2.3.0(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))
+      '@tiptap/html':
+        specifier: 2.3.0
+        version: 2.3.0(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))(@tiptap/pm@2.3.0)
+      '@tiptap/pm':
+        specifier: 2.3.0
+        version: 2.3.0
+      '@tiptap/starter-kit':
+        specifier: 2.3.0
+        version: 2.3.0(@tiptap/pm@2.3.0)
+    devDependencies:
+      '@types/dom-speech-recognition':
+        specifier: ^0.0.1
+        version: 0.0.1
 
   packages/tiptap/extensions/extension-abbr:
     devDependencies:
@@ -16771,7 +16781,7 @@ snapshots:
 
   jest-diff@29.7.0:
     dependencies:
-      chalk: 4.1.2
+      chalk: 4.1.0
       diff-sequences: 29.6.3
       jest-get-type: 29.6.3
       pretty-format: 29.7.0
@@ -17457,7 +17467,7 @@ snapshots:
       array-differ: 3.0.0
       array-union: 2.1.0
       arrify: 2.0.1
-      minimatch: 3.1.2
+      minimatch: 3.0.5
 
   mute-stream@0.0.8: {}
 
@@ -17686,7 +17696,7 @@ snapshots:
       '@yarnpkg/parsers': 3.0.0-rc.46
       '@zkochan/js-yaml': 0.0.6
       axios: 1.6.6
-      chalk: 4.1.2
+      chalk: 4.1.0
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
       cliui: 8.0.1
@@ -17837,7 +17847,7 @@ snapshots:
   ora@5.3.0:
     dependencies:
       bl: 4.1.0
-      chalk: 4.1.2
+      chalk: 4.1.0
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
       is-interactive: 1.0.0

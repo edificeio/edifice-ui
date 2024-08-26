@@ -29,8 +29,8 @@ export const TableTd = (props: React.HTMLAttributes<HTMLTableCellElement>) => {
   return <td {...restProps}>{children}</td>;
 };
 
-TableThead.displayName = "Table.Thead";
-TableTh.displayName = "Table.Th";
-TableTbody.displayName = "Table.Tbody";
-TableTr.displayName = "Table.Tr";
-TableTd.displayName = "Table.Td";
+TableThead.displayName = 'Table.Thead';
+TableTh.displayName = 'Table.Th';
+TableTbody.displayName = 'Table.Tbody';
+TableTr.displayName = 'Table.Tr';
+TableTd.displayName = 'Table.Td';
