@@ -2,10 +2,7 @@
   "compilerOptions": {
     "target": "ES2016",
     "module": "ESNext",
-    "lib": [
-      "ES2016",
-      "DOM"
-    ],
+    "lib": ["ES2016", "DOM"],
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "declaration": true,
@@ -18,11 +15,6 @@
     "skipLibCheck": true,
     "sourceMap": true
   },
-  "exclude": [
-    "dist",
-    "node_modules"
-  ],
-  "include": [
-    "src"
-  ]
+  "exclude": ["dist", "node_modules"],
+  "include": ["src"]
 }
