@@ -2,7 +2,16 @@ import type { IconName } from '@edifice.io/icons';
 import spriteHref from '@edifice.io/icons/icons.svg';
 import type { SVGProps } from 'react';
 
-type IconSize = 16 | 18 | 20 | 24 | 40 | 48;
+type IconSize =
+  | '16'
+  | '18'
+  | '20'
+  | '22'
+  | '24'
+  | '40'
+  | '36'
+  | '48'
+  | (string & {});
 
 export function Icon({
   name,

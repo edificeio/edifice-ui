@@ -14,7 +14,7 @@ const ActionBar = forwardRef(
   ({ children }: ActionBarProps, ref: Ref<HTMLDivElement>) => {
     return (
       <div ref={ref} className="actionbar">
-        <Icon name="smartphone" />
+        <Icon name="smartphone" size="16" />
         {children}
       </div>
     );
