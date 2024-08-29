@@ -1,4 +1,5 @@
 import { forwardRef, Ref } from 'react';
+import { Icon } from '../Icon';
 
 export interface ActionBarProps {
   /**
@@ -13,6 +14,7 @@ const ActionBar = forwardRef(
   ({ children }: ActionBarProps, ref: Ref<HTMLDivElement>) => {
     return (
       <div ref={ref} className="actionbar">
+        <Icon name="smartphone" />
         {children}
       </div>
     );
