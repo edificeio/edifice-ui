@@ -99,6 +99,9 @@
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "vite build",
     "fix": "eslint . --ext ts --report-unused-disable-directives --max-warnings 0",
