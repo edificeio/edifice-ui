@@ -2,6 +2,9 @@ import type { IconName } from '@edifice.io/icons';
 import spriteHref from '@edifice.io/icons/icons.svg';
 import type { SVGProps } from 'react';
 
+/**
+ * IconSize (default to 24x24)
+ */
 type IconSize =
   | '16'
   | '18'
@@ -13,17 +16,19 @@ type IconSize =
   | '48'
   | (string & {});
 
-export function Icon({
+export const Icon = ({
   name,
-  size,
+  size = '24',
   ...props
 }: SVGProps<SVGSVGElement> & {
   name: IconName;
   size?: IconSize;
-}) {
+}) => {
   return (
     <svg {...props} width={size} height={size}>
       <use href={`${spriteHref}#${name}`} />
     </svg>
   );
-}
+};
+
+Icon.displayName = 'Icon';

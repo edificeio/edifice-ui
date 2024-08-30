@@ -1,13 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import {
-  Guest,
-  Student,
-  Parent,
-  Teacher,
-  Personnel,
-} from '@edifice-ui/icons/audience';
+
 import { ViewsDetailsProfile } from 'edifice-ts-client';
-import { Users } from '@edifice-ui/icons';
+import { Icon } from '..';
 import { StringUtils } from '../../utils';
 
 export interface ViewsCardProps {
@@ -22,17 +16,17 @@ const ViewsByProfileCard = ({ viewsByProfile }: ViewsCardProps) => {
   function getIcon(profile: string) {
     switch (profile) {
       case 'student':
-        return <Student />;
+        return <Icon name="audience/views/student" />;
       case 'relative':
-        return <Parent />;
+        return <Icon name="audience/views/parent" />;
       case 'teacher':
-        return <Teacher />;
+        return <Icon name="audience/views/teacher" />;
       case 'personnel':
-        return <Personnel />;
+        return <Icon name="audience/views/personnel" />;
       case 'guest':
-        return <Guest />;
+        return <Icon name="audience/views/guest" />;
       default:
-        return <Users />;
+        return <Icon name="users" />;
     }
   }
 

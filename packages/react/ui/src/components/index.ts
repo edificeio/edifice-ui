@@ -19,6 +19,7 @@ export * from './FileCard';
 export * from './Form';
 export * from './Grid';
 export * from './Heading';
+export * from './Icon';
 export * from './Image';
 export * from './ImagePicker';
 export * from './Input';

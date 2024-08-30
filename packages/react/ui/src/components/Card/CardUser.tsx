@@ -1,5 +1,4 @@
-import { OneProfile } from '@edifice-ui/icons/nav';
-
+import { Icon } from '..';
 import { Avatar } from '../Avatar';
 
 const CardUser = ({
@@ -19,7 +18,7 @@ const CardUser = ({
       height="24"
     />
   ) : (
-    <OneProfile />
+    <Icon name="nav/one-profile" />
   );
 };
 

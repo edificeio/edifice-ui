@@ -14,6 +14,12 @@ importers:
       '@edifice-ui/icons':
         specifier: workspace:*
         version: link:packages/react/icons
+      '@edifice-ui/react':
+        specifier: workspace:*
+        version: link:packages/react/ui
+      '@edifice.io/icons':
+        specifier: workspace:*
+        version: link:packages/icons
       '@skypack/package-check':
         specifier: 0.2.2
         version: 0.2.2

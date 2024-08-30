@@ -1,8 +1,8 @@
 import { Fragment, RefAttributes } from 'react';
 
-import { TextSize } from '@edifice-ui/icons';
 import {
   Dropdown,
+  Icon,
   IconButton,
   IconButtonProps,
   Tooltip,
@@ -82,7 +82,7 @@ export const EditorToolbarTextSize = ({ triggerProps }: Props) => {
           type="button"
           variant="ghost"
           color="tertiary"
-          icon={<TextSize />}
+          icon={<Icon name="text-size" />}
           aria-label={t('tiptap.toolbar.size.choice')}
         />
       </Tooltip>

@@ -1,9 +1,9 @@
-import { Download } from '@edifice-ui/icons';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
-import { useDropzoneContext } from './DropzoneContext';
+import { Icon } from '..';
 import Button from '../Button/Button';
+import { useDropzoneContext } from './DropzoneContext';
 
 const DropzoneImport = () => {
   const { t } = useTranslation();
@@ -18,7 +18,7 @@ const DropzoneImport = () => {
 
   return (
     <div className={classes}>
-      <Download height={48} width={48} />
+      <Icon name="download" size="48" />
       <p className="my-16">{t('dropzone.text')}</p>
       <Button onClick={() => inputRef?.current?.click()}>
         {t('dropzone.import')}

@@ -1,9 +1,9 @@
 import { forwardRef, Ref } from 'react';
 
-import { RafterRight } from '@edifice-ui/icons';
 import { IWebApp } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 
+import { Icon } from '..';
 import { AppIcon } from '../AppIcon';
 import Heading from '../Heading/Heading';
 import BreadcrumbItem from './BreadcrumbItem';
@@ -40,10 +40,10 @@ export const Breadcrumb = forwardRef(
                 </a>
               </BreadcrumbItem>
               <BreadcrumbItem>
-                <RafterRight
+                <Icon
+                  name="rafter-right"
                   color="var(--edifice-gray-600)"
-                  width={20}
-                  height={20}
+                  size="20"
                 />
               </BreadcrumbItem>
               <BreadcrumbItem className="text-truncate">

@@ -1,16 +1,5 @@
-import {
-  Congrats,
-  CongratsCounter,
-  Great,
-  GreatCounter,
-  InterestingCounter,
-  Interesting,
-  Thanks,
-  ThanksCounter,
-} from '@edifice-ui/icons/audience';
-
-import { Reaction as ReactionIcon } from '@edifice-ui/icons';
 import { ReactionType } from 'edifice-ts-client';
+import { Icon } from '../..';
 
 export default function useReactionIcons() {
   /**
@@ -26,15 +15,31 @@ export default function useReactionIcons() {
   ) => {
     switch (reactionType) {
       case 'REACTION_1':
-        return asCounter ? <ThanksCounter /> : <Thanks />;
+        return asCounter ? (
+          <Icon name="audience/reactions/thanks-counter" />
+        ) : (
+          <Icon name="audience/reactions/thanks" />
+        );
       case 'REACTION_2':
-        return asCounter ? <GreatCounter /> : <Great />;
+        return asCounter ? (
+          <Icon name="audience/reactions/great-counter" />
+        ) : (
+          <Icon name="audience/reactions/great" />
+        );
       case 'REACTION_3':
-        return asCounter ? <CongratsCounter /> : <Congrats />;
+        return asCounter ? (
+          <Icon name="audience/reactions/congrats-counter" />
+        ) : (
+          <Icon name="audience/reactions/congrats" />
+        );
       case 'REACTION_4':
-        return asCounter ? <InterestingCounter /> : <Interesting />;
+        return asCounter ? (
+          <Icon name="audience/reactions/interesting-counter" />
+        ) : (
+          <Icon name="audience/reactions/interesting" />
+        );
       default:
-        return <ReactionIcon />;
+        return <Icon name="reaction" />;
     }
   };
 

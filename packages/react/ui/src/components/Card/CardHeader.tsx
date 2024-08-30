@@ -1,7 +1,6 @@
-import { Options } from '@edifice-ui/icons';
-
-import { useCardContext } from './CardContext';
+import { Icon } from '..';
 import { IconButton } from '../Button';
+import { useCardContext } from './CardContext';
 
 const CardHeader = () => {
   const { isSelectable, isClickable, onClick, onSelect } = useCardContext();
@@ -13,7 +12,7 @@ const CardHeader = () => {
           aria-label="Open Action Bar"
           className="z-3 bg-white"
           color="secondary"
-          icon={<Options />}
+          icon={<Icon name="options" />}
           onClick={onSelect}
           variant="ghost"
         />

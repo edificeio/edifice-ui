@@ -1,0 +1,122 @@
+import { iconNames } from '@edifice.io/icons';
+import { IconGallery, IconItem, Meta, Title } from '@storybook/blocks';
+import { Icon } from '../../packages/react/ui/src/components/Icon';
+
+<Meta title="Design Tokens/Iconography" />
+
+# Iconography
+
+- All icons are provided as a SVG Spritesheet
+- All icons are sorted by category in the Spritesheet
+- All icons are single color (currentColor)
+- All icons has square canvas (Default to 24x24)
+- All icons are for decorative purposes
+
+## Common Interface Icons
+
+To use this set of icons, import `Icon` component from `@edifice-ui/react` into your code:
+
+```jsx
+import { Icon } from '@edifice-ui/react';
+
+<Icon name="" />;
+```
+
+<IconGallery>
+  {iconNames
+    .filter(
+      (name) =>
+        !name.startsWith('apps/') &&
+        !name.startsWith('nav/') &&
+        !name.startsWith('audience/'),
+    )
+    .sort()
+    .map((name) => {
+      return (
+        <IconItem name={name}>
+          <Icon name={name} />
+        </IconItem>
+      );
+    })}
+</IconGallery>
+
+## Navbar Icons
+
+To use this set of icons, import `Icon` component from `@edifice-ui/react` into your code:
+
+```jsx
+import { Icon } from '@edifice-ui/react';
+```
+
+Then use the component in your code and prefix the name of the icon with `nav/`
+
+```jsx
+<Icon name="nav/<name>" />
+```
+
+<IconGallery>
+  {iconNames
+    .filter((name) => name.startsWith('nav/'))
+    .sort()
+    .map((name) => {
+      return (
+        <IconItem name={name}>
+          <Icon name={name} />
+        </IconItem>
+      );
+    })}
+</IconGallery>
+
+## Audience Icons
+
+To use this set of icons, import `Icon` component from `@edifice-ui/react` into your code:
+
+```jsx
+import { Icon } from '@edifice-ui/react';
+```
+
+Then use the component in your code and prefix the name of the icon with `audience/`
+
+```jsx
+<Icon name="audience/<name>" />
+```
+
+<IconGallery>
+  {iconNames
+    .filter((name) => name.startsWith('audience/'))
+    .sort()
+    .map((name) => {
+      return (
+        <IconItem name={name}>
+          <Icon name={name} />
+        </IconItem>
+      );
+    })}
+</IconGallery>
+
+## Apps and Connectors Icons
+
+To use this set of icons, import `Icon` component from `@edifice-ui/react` into your code:
+
+```jsx
+import { Icon } from '@edifice-ui/react';
+```
+
+Then use the component in your code and prefix the name of the icon with `apps/`
+
+```jsx
+<Icon name="apps/<name>" />
+```
+
+<IconGallery>
+  {iconNames
+    .filter((name) => name.startsWith('apps/'))
+    .sort()
+    .map((name) => {
+      return (
+        <IconItem name={name}>
+          <Icon name={name} />
+        </IconItem>
+      );
+    })}
+</IconGallery>

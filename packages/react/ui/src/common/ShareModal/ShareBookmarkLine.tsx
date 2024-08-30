@@ -1,4 +1,3 @@
-import { Bookmark, Close, RafterDown } from '@edifice-ui/icons';
 import {
   ShareRight,
   ShareRightAction,
@@ -7,7 +6,7 @@ import {
 } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 
-import { Avatar, Button, Checkbox, IconButton } from '../../components';
+import { Avatar, Button, Checkbox, Icon, IconButton } from '../../components';
 import { hasRight } from './utils/hasRight';
 import { showShareRightLine } from './utils/showShareRightLine';
 
@@ -47,7 +46,7 @@ export const ShareBookmarkLine = ({
               />
             )}
 
-            {shareRight.type === 'sharebookmark' && <Bookmark />}
+            {shareRight.type === 'sharebookmark' && <Icon name="bookmark" />}
           </td>
           <td>
             <div className="d-flex">
@@ -55,8 +54,8 @@ export const ShareBookmarkLine = ({
                 <Button
                   color="tertiary"
                   rightIcon={
-                    <RafterDown
-                      title={t('show')}
+                    <Icon
+                      name="rafter-down"
                       className="w-16 min-w-0"
                       style={{
                         transition: 'rotate 0.2s ease-out',
@@ -94,7 +93,7 @@ export const ShareBookmarkLine = ({
               <IconButton
                 aria-label={t('close')}
                 color="tertiary"
-                icon={<Close />}
+                icon={<Icon name="close" />}
                 type="button"
                 variant="ghost"
                 title={t('close')}

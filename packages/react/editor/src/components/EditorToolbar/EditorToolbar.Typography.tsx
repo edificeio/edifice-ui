@@ -1,8 +1,8 @@
 import { Fragment, RefAttributes, useEffect, useState } from 'react';
 
-import { TextTypo } from '@edifice-ui/icons';
 import {
   Dropdown,
+  Icon,
   IconButton,
   IconButtonProps,
   Tooltip,
@@ -67,7 +67,7 @@ export const EditorToolbarTypography = ({ triggerProps }: Props) => {
           type="button"
           variant="ghost"
           color="tertiary"
-          icon={<TextTypo />}
+          icon={<Icon name="text-typo" />}
           aria-label={t('tiptap.toolbar.typo.choice')}
           className={
             editor?.isActive('textStyle', {

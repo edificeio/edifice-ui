@@ -1,12 +1,4 @@
-import {
-  Delete,
-  DeleteColumn,
-  DeleteColumnHighlight,
-  DeleteRow,
-  DeleteRowHighlight,
-} from '@edifice-ui/icons';
-import { Tooltip } from '@edifice-ui/react';
-import { Dropdown } from '@edifice-ui/react';
+import { Dropdown, Icon, Tooltip } from '@edifice-ui/react';
 import { Editor } from '@tiptap/react';
 import { useTranslation } from 'react-i18next';
 
@@ -31,14 +23,14 @@ export const TableToolbarDelMenu = ({ editor }: Props) => {
       <Dropdown.Menu>
         <Dropdown.Item
           key="del-row"
-          icon={<DeleteRow />}
+          icon={<Icon name="delete-row" />}
           onClick={() => editor?.chain().focus().deleteRow().run()}
         >
           {t('tiptap.table.toolbar.del.line')}
         </Dropdown.Item>
         <Dropdown.Item
           key="del-col"
-          icon={<DeleteColumn />}
+          icon={<Icon name="delete-column" />}
           onClick={() => editor?.chain().focus().deleteColumn().run()}
         >
           {t('tiptap.table.toolbar.del.col')}
@@ -46,14 +38,14 @@ export const TableToolbarDelMenu = ({ editor }: Props) => {
         <Dropdown.Separator />
         <Dropdown.Item
           key="del-header-row"
-          icon={<DeleteRowHighlight />}
+          icon={<Icon name="delete-row-highlight" />}
           onClick={() => editor?.chain().focus().toggleHeaderRow().run()}
         >
           {t('tiptap.table.toolbar.del.line.head')}
         </Dropdown.Item>
         <Dropdown.Item
           key="del-header-col"
-          icon={<DeleteColumnHighlight />}
+          icon={<Icon name="delete-column-highlight" />}
           onClick={() => editor?.chain().focus().toggleHeaderColumn().run()}
         >
           {t('tiptap.table.toolbar.del.col.head')}
@@ -61,7 +53,7 @@ export const TableToolbarDelMenu = ({ editor }: Props) => {
         <Dropdown.Separator />
         <Dropdown.Item
           key="del-table"
-          icon={<Delete />}
+          icon={<Icon name="delete" />}
           onClick={() => editor?.chain().focus().deleteTable().run()}
         >
           {t('tiptap.table.toolbar.del.array')}

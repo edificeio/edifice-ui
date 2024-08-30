@@ -1,13 +1,7 @@
 import { useMemo } from 'react';
 
-import {
-  ImageSizeLarge,
-  ImageSizeMedium,
-  ImageSizeSmall,
-  Wand,
-} from '@edifice-ui/icons';
-import { Toolbar, ToolbarItem } from '@edifice-ui/react';
-import { Editor, BubbleMenu, BubbleMenuProps } from '@tiptap/react';
+import { Icon, Toolbar, ToolbarItem } from '@edifice-ui/react';
+import { BubbleMenu, BubbleMenuProps, Editor } from '@tiptap/react';
 import { useTranslation } from 'react-i18next';
 
 interface ButtonSize {
@@ -53,7 +47,7 @@ const BubbleMenuEditImage = ({
         props: {
           size: 'lg',
           color: 'secondary',
-          leftIcon: <Wand />,
+          leftIcon: <Icon name="wand" />,
           'aria-label': t('tiptap.tooltip.bubblemenu.image.edit'),
           children: t('tiptap.bubblemenu.edit'),
           onClick: onEditImage,
@@ -71,7 +65,7 @@ const BubbleMenuEditImage = ({
         type: 'icon',
         name: 'small',
         props: {
-          icon: <ImageSizeSmall />,
+          icon: <Icon name="image-size-small" />,
           'aria-label': t('tiptap.tooltip.bubblemenu.image.small'),
           color: 'tertiary',
           className:
@@ -95,7 +89,7 @@ const BubbleMenuEditImage = ({
         type: 'icon',
         name: 'medium',
         props: {
-          icon: <ImageSizeMedium />,
+          icon: <Icon name="image-size-medium" />,
           'aria-label': t('tiptap.tooltip.bubblemenu.image.medium'),
           color: 'tertiary',
           className:
@@ -119,7 +113,7 @@ const BubbleMenuEditImage = ({
         type: 'icon',
         name: 'large',
         props: {
-          icon: <ImageSizeLarge />,
+          icon: <Icon name="image-size-large" />,
           'aria-label': t('tiptap.tooltip.bubblemenu.image.big'),
           color: 'tertiary',
           className:

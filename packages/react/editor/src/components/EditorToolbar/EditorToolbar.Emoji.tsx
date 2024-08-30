@@ -1,8 +1,8 @@
 import { RefAttributes } from 'react';
 
-import { Smiley } from '@edifice-ui/icons';
 import {
   Dropdown,
+  Icon,
   IconButton,
   IconButtonProps,
   Tooltip,
@@ -37,7 +37,7 @@ export const EditorToolbarEmoji = ({ triggerProps, itemRefs }: Props) => {
           type="button"
           variant="ghost"
           color="tertiary"
-          icon={<Smiley />}
+          icon={<Icon name="smiley" />}
           aria-label={t('tiptap.toolbar.emojisPicker')}
         />
       </Tooltip>

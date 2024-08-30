@@ -6,13 +6,13 @@ import {
   useState,
 } from 'react';
 
-import { TextColor } from '@edifice-ui/icons';
 import {
   AccessiblePalette,
   ColorPalette,
   ColorPicker,
   DefaultPalette,
   Dropdown,
+  Icon,
   IconButton,
   IconButtonProps,
   Tooltip,
@@ -92,7 +92,7 @@ export const EditorToolbarTextColor = ({ triggerProps, itemRefs }: Props) => {
           type="button"
           variant="ghost"
           color="tertiary"
-          icon={<TextColor />}
+          icon={<Icon name="text-color" />}
           aria-label={t('tiptap.toolbar.color.text')}
           className={isActive ? 'selected' : ''}
         />

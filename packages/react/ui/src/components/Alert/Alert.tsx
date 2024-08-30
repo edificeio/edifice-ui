@@ -11,15 +11,10 @@ import {
   useState,
 } from 'react';
 
-import {
-  AlertCircle,
-  Error,
-  InfoCircle,
-  SuccessOutline,
-} from '@edifice-ui/icons';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
+import { Icon } from '..';
 import { Button } from '../Button';
 
 export interface AlertRef {
@@ -159,10 +154,16 @@ const Alert = forwardRef(
     // Here we are mapping alert type with icon Component and bootstrap class
     // https://getbootstrap.com/docs/5.2/components/alerts/
     const mapping = {
-      success: { icon: <SuccessOutline />, classModifier: 'alert-success' },
-      warning: { icon: <AlertCircle />, classModifier: 'alert-warning' },
-      info: { icon: <InfoCircle />, classModifier: 'alert-info' },
-      danger: { icon: <Error />, classModifier: 'alert-danger' },
+      success: {
+        icon: <Icon name="success-outline" />,
+        classModifier: 'alert-success',
+      },
+      warning: {
+        icon: <Icon name="alert-circle" />,
+        classModifier: 'alert-warning',
+      },
+      info: { icon: <Icon name="info-circle" />, classModifier: 'alert-info' },
+      danger: { icon: <Icon name="error" />, classModifier: 'alert-danger' },
     };
 
     // Create className Attribute from component parameters

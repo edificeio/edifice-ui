@@ -1,8 +1,8 @@
 import { Ref, forwardRef } from 'react';
 
-import { RafterUp } from '@edifice-ui/icons';
 import clsx from 'clsx';
 
+import { Icon } from '..';
 import { useDropdownContext } from './DropdownContext';
 
 export interface DropdownTriggerProps
@@ -84,9 +84,9 @@ const DropdownTrigger = forwardRef(
           </span>
         ) : (
           !hideCarret && (
-            <RafterUp
-              width={16}
-              height={16}
+            <Icon
+              name="rafter-up"
+              size="16"
               className="dropdown-toggle-caret"
             />
           )

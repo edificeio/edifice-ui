@@ -1,11 +1,11 @@
-import { useTranslation } from 'react-i18next';
-import { Modal } from '../Modal';
-import { createPortal } from 'react-dom';
-import { Button } from '../Button';
-import { See, Users } from '@edifice-ui/icons';
 import { ViewsDetails } from 'edifice-ts-client';
-import ViewsByProfileCard from './ViewsByProfileCard';
+import { createPortal } from 'react-dom';
+import { useTranslation } from 'react-i18next';
+import { Icon } from '..';
 import { StringUtils } from '../../utils';
+import { Button } from '../Button';
+import { Modal } from '../Modal';
+import ViewsByProfileCard from './ViewsByProfileCard';
 
 export interface ViewsModalProps {
   viewsDetails: ViewsDetails;
@@ -30,7 +30,7 @@ const ViewsModal = ({
       <Modal.Body>
         <div className="views-detail-line p-8 mb-12">
           <div className="views-detail-icon rounded p-8">
-            <See />
+            <Icon name="see" />
           </div>
           <div className="h3">
             {StringUtils.toCounter(viewsDetails.viewsCounter)}
@@ -39,7 +39,7 @@ const ViewsModal = ({
         </div>
         <div className="views-detail-line p-8 mb-12">
           <div className="views-detail-icon rounded p-8">
-            <Users />
+            <Icon name="users" />
           </div>
           {hasUniqueViews ? (
             <>

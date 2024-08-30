@@ -1,6 +1,6 @@
-import { DeleteColor } from '@edifice-ui/icons';
 import clsx from 'clsx';
 
+import { Icon } from '..';
 import { ColorPaletteItem } from './ColorPalette';
 
 export interface ColorPickerItemProps {
@@ -24,7 +24,7 @@ const ColorPickerItem = ({
   className,
 }: ColorPickerItemProps) =>
   model.isReset ? (
-    <DeleteColor />
+    <Icon name="delete-color" />
   ) : (
     <div
       aria-label={model.description}
