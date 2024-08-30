@@ -22,3 +22,4 @@ export * from "./useWorkspaceFile";
 export * from "./useWorkspaceSearch";
 export * from "./useXitiTrackPageLoad";
 export * from "./useZendeskGuide";
+export * from "./useCantoo";
