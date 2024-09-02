@@ -10,6 +10,8 @@
 
     margin-top: 0;
     margin-left: 0;
+    min-width: $form-check-input-width;
+    min-height: $form-check-input-width;
 
     &:focus {
       background-color: var(--edifice-secondary-200);

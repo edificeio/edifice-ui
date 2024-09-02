@@ -2,9 +2,30 @@
 @use "../vendors/bootstrap";
 
 .table {
+  width: 100%;
+  overflow: hidden;
+  border-spacing: 0;
+  border-collapse: separate;
+  border: 1px solid $table-main-color;
+  border-radius: 8px;
+
   td {
     .form-check {
       justify-content: center;
     }
+  }
+
+  tr > * {
+    padding: 10px 12px;
+    font-size: bootstrap.$small-font-size;
+  }
+
+  thead {
+    color: var(--#{$prefix}gray-800);
+    background-color: $table-main-color;
+  }
+
+  tbody > tr:nth-of-type(even) > * {
+    background-color: var(--#{$prefix}gray-200);
   }
 }
