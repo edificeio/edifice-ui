@@ -18,7 +18,7 @@ export interface TableProps {
   children?: Array<React.ReactElement<HTMLTableSectionElement>> | any;
 }
 
-export const Root = forwardRef(
+const Root = forwardRef(
   ({ children }: { children: ReactNode }, ref: Ref<TableRef>) => {
     return (
       <table ref={ref} className="table align-middle mb-0">
@@ -30,10 +30,12 @@ export const Root = forwardRef(
 
 Root.displayName = "Table";
 
-export const Table = Object.assign(Root, {
+const Table = Object.assign(Root, {
   Thead: TableThead,
   Th: TableTh,
   Tbody: TableTbody,
   Tr: TableTr,
   Td: TableTd,
 });
+
+export default Table;
