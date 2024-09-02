@@ -21,7 +21,7 @@ export interface TableProps {
 export const Root = forwardRef(
   ({ children }: { children: ReactNode }, ref: Ref<TableRef>) => {
     return (
-      <table ref={ref} className="table">
+      <table ref={ref} className="table align-middle mb-0">
         {children}
       </table>
     );
