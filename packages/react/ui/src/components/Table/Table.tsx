@@ -30,10 +30,12 @@ export const Root = forwardRef(
 
 Root.displayName = "Table";
 
-export const Table = Object.assign(Root, {
+const Table = Object.assign(Root, {
   Thead: TableThead,
   Th: TableTh,
   Tbody: TableTbody,
   Tr: TableTr,
   Td: TableTd,
 });
+
+export default Table;

@@ -2,7 +2,7 @@ import { Checklist, Globe, Lock, Users } from "@edifice-ui/icons";
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import { Checkbox } from "../Checkbox";
-import { Table } from "./Table";
+import Table from "./Table";
 
 interface IRow {
   id: string;

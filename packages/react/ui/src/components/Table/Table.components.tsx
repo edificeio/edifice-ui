@@ -1,48 +1,30 @@
-import { PropsWithChildren } from "react";
-
-interface TableHeadProps
-  extends React.HTMLAttributes<HTMLTableSectionElement>,
-    PropsWithChildren {}
-
-export const TableThead = (props: TableHeadProps) => {
+export const TableThead = (
+  props: React.HTMLAttributes<HTMLTableSectionElement>,
+) => {
   const { children, ...restProps } = props;
   return <thead {...restProps}>{children}</thead>;
 };
 
-interface TableHeaderProps
-  extends React.HTMLAttributes<HTMLTableCellElement>,
-    PropsWithChildren {}
-
-export const TableTh = (props: TableHeaderProps) => {
+export const TableTh = (props: React.HTMLAttributes<HTMLTableCellElement>) => {
   const { children, ...restProps } = props;
 
   return <th {...restProps}>{children}</th>;
 };
 
-interface TableRowProps
-  extends React.HTMLAttributes<HTMLTableRowElement>,
-    PropsWithChildren {}
-
-export const TableTr = (props: TableRowProps) => {
+export const TableTr = (props: React.HTMLAttributes<HTMLTableRowElement>) => {
   const { children, ...restProps } = props;
   return <tr {...restProps}>{children}</tr>;
 };
 
-interface TableBodyProps
-  extends React.HTMLAttributes<HTMLTableSectionElement>,
-    PropsWithChildren {}
-
-export const TableTbody = (props: TableBodyProps) => {
+export const TableTbody = (
+  props: React.HTMLAttributes<HTMLTableSectionElement>,
+) => {
   const { children, ...restProps } = props;
 
   return <tbody {...restProps}>{children}</tbody>;
 };
 
-interface TableCellProps
-  extends React.HTMLAttributes<HTMLTableCellElement>,
-    PropsWithChildren {}
-
-export const TableTd = (props: TableCellProps) => {
+export const TableTd = (props: React.HTMLAttributes<HTMLTableCellElement>) => {
   const { children, ...restProps } = props;
   return <td {...restProps}>{children}</td>;
 };
