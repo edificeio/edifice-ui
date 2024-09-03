@@ -1,9 +1,11 @@
-import { useDroppable } from "@dnd-kit/core";
+//import { useDroppable } from "@dnd-kit/core";
 import { Folder, Plus, RafterDown, RafterRight } from "@edifice-ui/icons";
+import { CSS } from "@dnd-kit/utilities";
+import { AnimateLayoutChanges, useSortable } from "@dnd-kit/sortable";
 import clsx from "clsx";
-import { useId } from "react";
 import { useTranslation } from "react-i18next";
 import { TreeData } from "../../types";
+import { CSSProperties, useEffect } from "react";
 
 export interface TreeNodeProps {
   /**
@@ -88,7 +90,7 @@ export const TreeNode = ({
 
   const { t } = useTranslation();
 
-  const { setNodeRef } = useDroppable({
+  /* const { setNodeRef } = useDroppable({
     id: useId(),
     data: {
       id: node.id,
@@ -96,7 +98,33 @@ export const TreeNode = ({
       isTreeview: true,
       accepts: ["folder", "resource"],
     },
+  }); */
+
+  const animateLayoutChanges: AnimateLayoutChanges = ({
+    isSorting,
+    wasDragging,
+  }) => (isSorting || wasDragging ? false : true);
+
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+    isOver,
+  } = useSortable({
+    id: node.id,
+    data: {
+      node: node,
+    },
+    animateLayoutChanges,
   });
+
+  const style: CSSProperties = {
+    transform: CSS.Translate.toString(transform),
+    transition,
+  };
 
   const handleOnItemClick = (nodeId: string) => handleItemClick?.(nodeId);
   const handleOnToggleNode = (nodeId: string) => handleToggleNode?.(nodeId);
@@ -142,6 +170,18 @@ export const TreeNode = ({
     return sibling || (hasNoSiblings && hasChildren);
   };
 
+  useEffect(() => {
+    if (expanded ) {
+      handleOnToggleNode(node.id);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isDragging]);
+
+  useEffect(() => {
+      handleOnToggleNode(node.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOver]);
+
   return (
     <li
       key={node.id}
@@ -150,9 +190,13 @@ export const TreeNode = ({
       role="treeitem"
       aria-selected={selected && selected}
       aria-expanded={expanded && expanded}
+      style={style}
     >
       <div>
         <div className={treeItemClasses.action}>
+          <div {...listeners} {...attributes}>
+            <Plus />
+          </div>
           <div
             className={treeItemClasses.arrow}
             tabIndex={0}
@@ -184,26 +228,25 @@ export const TreeNode = ({
             </button>
           )}
         </div>
-
-        {Array.isArray(node.children) && !!node.children.length && expanded && (
-          <ul role="group">
-            {node.children.map((child) => {
-              return (
-                <TreeNode
-                  key={child.id}
-                  node={child}
-                  selectedNodeId={selectedNodeId}
-                  expandedNodes={expandedNodes}
-                  siblingsNodes={siblingsNodes}
-                  draggedNodeId={draggedNodeId}
-                  handleItemClick={handleItemClick}
-                  handleToggleNode={handleToggleNode}
-                />
-              );
-            })}
-          </ul>
-        )}
       </div>
+      {Array.isArray(node.children) && !!node.children.length && expanded && (
+        <ul role="group">
+          {node.children.map((child) => {
+            return (
+              <TreeNode
+                key={child.id}
+                node={child}
+                selectedNodeId={selectedNodeId}
+                expandedNodes={expandedNodes}
+                siblingsNodes={siblingsNodes}
+                draggedNodeId={draggedNodeId}
+                handleItemClick={handleItemClick}
+                handleToggleNode={handleToggleNode}
+              />
+            );
+          })}
+        </ul>
+      )}
     </li>
   );
 };
