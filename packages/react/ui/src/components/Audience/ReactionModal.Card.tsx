@@ -10,10 +10,7 @@ export function ReactionModalCard({
   reaction: ReactionDetailsData["userReactions"][number];
 }) {
   const { t } = useTranslation();
-  const { avatarURL, userbookURL } = useAvatar(
-    reaction.userId,
-    reaction.profile,
-  );
+  const { avatarURL } = useAvatar(reaction.userId, reaction.profile);
   const { getReactionIcon, getReactionLabel } = useReactionIcons();
 
   return (
@@ -32,9 +29,9 @@ export function ReactionModalCard({
       <div className="d-flex flex-column w-100 pt-8">
         <div className="d-flex align-items-baseline">
           <div className="d-flex overflow-hidden">
-            <a href={userbookURL} className="text-reset flex-shrink-0">
+            <div className="text-reset flex-shrink-0">
               {reaction.displayName}
-            </a>
+            </div>
           </div>
           <strong className="ms-12 caption text-gray-700">
             {t(reaction.profile)}
