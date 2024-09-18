@@ -358,9 +358,6 @@ importers:
       react-i18next:
         specifier: 14.1.0
         version: 14.1.0(i18next@23.14.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      sass:
-        specifier: 1.68.0
-        version: 1.68.0
 
   packages/react/icons:
     devDependencies:
@@ -494,9 +491,6 @@ importers:
       react-i18next:
         specifier: 14.1.0
         version: 14.1.0(i18next@23.14.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      react-slugify:
-        specifier: 3.0.3
-        version: 3.0.3
 
   packages/tiptap/extensions/extension-abbr:
     devDependencies:
@@ -24164,12 +24158,6 @@ snapshots:
   safe-resolve@1.0.0: {}
 
   safer-buffer@2.1.2: {}
-
-  sass@1.68.0:
-    dependencies:
-      chokidar: 3.6.0
-      immutable: 4.3.7
-      source-map-js: 1.2.0
 
   sass@1.70.0:
     dependencies:
