@@ -1,6 +1,6 @@
 {
   "name": "@edifice-tiptap-extensions/extension-video",
-  "version": "1.5.17",
+  "version": "1.5.18-develop.6",
   "description": "Rich Text Editor Video Extension",
   "type": "module",
   "exports": {
