@@ -18,6 +18,7 @@ import { RootProps } from "../types";
 const CommentProvider = ({
   comments: defaultComments,
   callbacks,
+  type = "edit",
   options: commentOptions,
 }: RootProps) => {
   const options = {
@@ -52,10 +53,18 @@ const CommentProvider = ({
       : t("comment.little", { number: commentsCount });
 
   const comments = useMemo(
-    () =>
-      defaultComments
-        ?.sort((a, b) => b.createdAt - a.createdAt)
-        .slice(0, commentLimit) ?? [],
+    () => {
+      if (type === "edit") {
+        return (
+          defaultComments
+            ?.sort((a, b) => b.createdAt - a.createdAt)
+            .slice(0, commentLimit) ?? []
+        );
+      } else {
+        return defaultComments?.sort((a, b) => b.createdAt - a.createdAt) ?? [];
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [commentLimit, defaultComments],
   );
 
@@ -74,25 +83,25 @@ const CommentProvider = ({
   };
 
   const handleReset = () => {
-    callbacks.reset?.();
+    callbacks?.reset?.();
     setContent("");
 
     if (editCommentId) setEditCommentId(null);
   };
 
   const handleDeleteComment = (id: string) => {
-    callbacks.delete(id);
+    callbacks?.delete(id);
   };
 
   const handleUpdateComment = (comment: string) => {
     if (editCommentId) {
-      callbacks.put({ comment, commentId: editCommentId });
+      callbacks?.put({ comment, commentId: editCommentId });
       setEditCommentId(null);
     }
   };
 
   const handleCreateComment = (content: string) => {
-    callbacks.post(content);
+    callbacks?.post(content);
     setContent("");
   };
 
@@ -107,6 +116,7 @@ const CommentProvider = ({
       profiles: profilesQueries.data,
       editCommentId,
       options,
+      type,
       setEditCommentId,
       handleCreateComment,
       handleModifyComment,
@@ -122,7 +132,7 @@ const CommentProvider = ({
   return (
     <CommentContext.Provider value={values}>
       <div className="my-24">
-        <CommentHeader title={title} />
+        {type === "edit" && <CommentHeader title={title} />}
 
         <div className="my-24">
           {user && <CommentForm userId={user.userId} />}
@@ -130,7 +140,7 @@ const CommentProvider = ({
             <>
               <CommentList />
 
-              {commentsCount !== defaultCommentsCount && (
+              {commentsCount !== defaultCommentsCount && type === "edit" && (
                 <Button
                   variant="ghost"
                   color="tertiary"
@@ -144,7 +154,7 @@ const CommentProvider = ({
           ) : null}
         </div>
 
-        {!commentsCount && (
+        {!commentsCount && type === "edit" && (
           <div className="comments-emptyscreen">
             <div className="comments-emptyscreen-wrapper">
               <EmptyScreen

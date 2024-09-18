@@ -24,7 +24,8 @@ export interface CommentCallbacks {
 
 export interface RootProps {
   comments: CommentProps[] | undefined;
-  callbacks: CommentCallbacks;
+  type?: CommentType;
+  callbacks?: CommentCallbacks;
   options?: Partial<CommentOptions>;
 }
 
@@ -56,3 +57,5 @@ export interface UserProfileResult {
   userId: string;
   profile: UserProfile[number];
 }
+
+export type CommentType = "read" | "edit";
