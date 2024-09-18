@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 import { UseMutationResult } from "@tanstack/react-query";
 import {
@@ -34,36 +34,39 @@ export default function ShareBlog({
   const { t } = useTranslation(appCode);
 
   const resource = useResource("blog", resourceId) as BlogResource;
-
   const publishType = resource && resource["publish-type"];
 
   const [radioPublicationValue, setRadioPublicationValue] =
     useState<PublicationType>(publishType ?? "RESTRAINT");
 
+  useEffect(() => {
+    if (publishType) {
+      setRadioPublicationValue(publishType);
+    }
+  }, [publishType]);
+
   const handleRadioPublicationChange = async (
     event: ChangeEvent<HTMLInputElement>,
   ) => {
     const value = event.target.value as PublicationType;
-    (async () => {
-      const params = {
-        description: resource.description || "",
-        entId: resource.assetId,
-        name: resource.name,
-        public: !!resource.public,
-        slug: resource.slug || "",
-        thumbnail: resource.thumbnail,
-        trashed: resource.trashed,
-        "publish-type": value,
-      } as BlogUpdate;
+    const params = {
+      "description": resource.description || "",
+      "entId": resource.assetId,
+      "name": resource.name,
+      "public": !!resource.public,
+      "slug": resource.slug || "",
+      "thumbnail": resource.thumbnail,
+      "trashed": resource.trashed,
+      "publish-type": value,
+    } as BlogUpdate;
 
-      if (updateResource) {
-        await updateResource.mutateAsync(params);
-      } else {
-        await odeServices.resource("blog").update(params);
-      }
+    if (updateResource) {
+      await updateResource.mutateAsync(params);
+    } else {
+      await odeServices.resource("blog").update(params);
+    }
 
-      setRadioPublicationValue(value);
-    })();
+    setRadioPublicationValue(value);
   };
 
   return (
