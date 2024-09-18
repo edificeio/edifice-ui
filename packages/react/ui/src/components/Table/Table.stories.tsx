@@ -1,8 +1,8 @@
-import TableExplorer from './TableExplorer';
 import { Meta, StoryObj } from '@storybook/react';
-import { Checklist, Globe, Lock, Users } from '@edifice-ui/icons';
 import { useState } from 'react';
+import { Icon } from '..';
 import { Checkbox } from '../Checkbox';
+import TableExplorer from './TableExplorer';
 
 interface IRow {
   id: string;
@@ -194,21 +194,21 @@ const Template = (args: any) => {
               </td>
               <td>
                 <div className="d-flex gap-8 align-items-center">
-                  <Checklist width={20} height={20} /> <div>{item.name}</div>
+                  <Icon name="checklist" size="20" /> <div>{item.name}</div>
                 </div>
               </td>
               <td>{new Date(item.createdAt * 1000).toLocaleDateString()}</td>
               <td className="text-blue">{item.creatorName}</td>
               <td>
                 <div className="d-flex align-items-center gap-4">
-                  {item.public && <Globe width="16" height="16" />}
+                  {item.public && <Icon name="globe" size="16" />}
                   {item.shared && (
                     <>
-                      <Users width="16" height="16" /> {item.numberOfShares}
+                      <Icon name="users" size="16" /> {item.numberOfShares}
                     </>
                   )}
                   {!item.public && !item.shared && (
-                    <Lock width="16" height="16" />
+                    <Icon name="lock" size="16" />
                   )}
                 </div>
               </td>
@@ -292,21 +292,21 @@ export const Base: Story = {
                 </td>
                 <td>
                   <div className="d-flex gap-8 align-items-center">
-                    <Checklist width={20} height={20} /> <div>{item.name}</div>
+                    <Icon name="checklist" size="20" /> <div>{item.name}</div>
                   </div>
                 </td>
                 <td>{new Date(item.createdAt * 1000).toLocaleDateString()}</td>
                 <td className="text-blue">{item.creatorName}</td>
                 <td>
                   <div className="d-flex align-items-center gap-4">
-                    {item.public && <Globe width="16" height="16" />}
+                    {item.public && <Icon name="globe" size="16" />}
                     {item.shared && (
                       <>
-                        <Users width="16" height="16" /> {item.numberOfShares}
+                        <Icon name="users" size="16" /> {item.numberOfShares}
                       </>
                     )}
                     {!item.public && !item.shared && (
-                      <Lock width="16" height="16" />
+                      <Icon name="lock" size="16" />
                     )}
                   </div>
                 </td>

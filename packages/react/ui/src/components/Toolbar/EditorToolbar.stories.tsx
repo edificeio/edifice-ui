@@ -1,23 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { Toolbar, IconButtonProps, IconButton, Dropdown } from '..';
-import {
-  AlignLeft,
-  Paperclip,
-  BulletList,
-  Landscape,
-  Link,
-  Mic,
-  RecordVideo,
-  Smiley,
-  Table,
-  TextBold,
-  TextColor,
-  TextHighlight,
-  TextItalic,
-  TextSize,
-  TextTypo,
-  TextUnderline,
-} from '@edifice-ui/icons';
+import { Dropdown, Icon, IconButton, IconButtonProps, Toolbar } from '..';
+
 import { RefAttributes } from 'react';
 
 const meta: Meta<typeof Toolbar> = {
@@ -46,7 +29,7 @@ const meta: Meta<typeof Toolbar> = {
       {
         type: 'icon',
         props: {
-          icon: <Landscape />,
+          icon: <Icon name="landscape" />,
           className: 'bg-green-200',
           'aria-label': 'Insérer une image',
           onClick: () => {},
@@ -56,7 +39,7 @@ const meta: Meta<typeof Toolbar> = {
       {
         type: 'icon',
         props: {
-          icon: <RecordVideo />,
+          icon: <Icon name="record-video" />,
           className: 'bg-purple-200',
           'aria-label': 'Insérer une vidéo',
           onClick: () => {},
@@ -66,7 +49,7 @@ const meta: Meta<typeof Toolbar> = {
       {
         type: 'icon',
         props: {
-          icon: <Mic />,
+          icon: <Icon name="mic" />,
           className: 'bg-red-200',
           'aria-label': 'Insérer une piste audio',
           onClick: () => {},
@@ -76,7 +59,7 @@ const meta: Meta<typeof Toolbar> = {
       {
         type: 'icon',
         props: {
-          icon: <Paperclip />,
+          icon: <Icon name="paperclip" />,
           className: 'bg-yellow-200',
           'aria-label': 'Insérer une pièce jointe',
           onClick: () => {},
@@ -101,7 +84,7 @@ const meta: Meta<typeof Toolbar> = {
                 type="button"
                 variant="ghost"
                 color="tertiary"
-                icon={<TextTypo />}
+                icon={<Icon name="text-typo" />}
                 aria-label={'Choix de la famille de typographie'}
                 className=""
               />
@@ -125,7 +108,7 @@ const meta: Meta<typeof Toolbar> = {
                 type="button"
                 variant="ghost"
                 color="tertiary"
-                icon={<TextSize />}
+                icon={<Icon name="text-size" />}
                 aria-label={'Choix de la taille de typographie'}
               />
             </>
@@ -148,7 +131,7 @@ const meta: Meta<typeof Toolbar> = {
                 type="button"
                 variant="ghost"
                 color="tertiary"
-                icon={<TextColor />}
+                icon={<Icon name="text-color" />}
                 aria-label={'Couleur de texte'}
                 className=""
               />
@@ -172,7 +155,7 @@ const meta: Meta<typeof Toolbar> = {
                 type="button"
                 variant="ghost"
                 color="tertiary"
-                icon={<TextHighlight />}
+                icon={<Icon name="text-highlight" />}
                 aria-label={'Couleur de fond'}
                 className=""
               />
@@ -189,7 +172,7 @@ const meta: Meta<typeof Toolbar> = {
       {
         type: 'icon',
         props: {
-          icon: <TextBold />,
+          icon: <Icon name="text-bold" />,
           'aria-label': 'Ajout de gras',
           className: '',
           onClick: () => {},
@@ -200,7 +183,7 @@ const meta: Meta<typeof Toolbar> = {
       {
         type: 'icon',
         props: {
-          icon: <TextItalic />,
+          icon: <Icon name="text-italic" />,
           'aria-label': 'Incliner le text',
           className: '',
           onClick: () => {},
@@ -211,7 +194,7 @@ const meta: Meta<typeof Toolbar> = {
       {
         type: 'icon',
         props: {
-          icon: <TextUnderline />,
+          icon: <Icon name="text-underline" />,
           'aria-label': 'Souligner le texte',
           className: '',
           onClick: () => {},
@@ -237,7 +220,7 @@ const meta: Meta<typeof Toolbar> = {
                 type="button"
                 variant="ghost"
                 color="tertiary"
-                icon={<Smiley />}
+                icon={<Icon name="smiley" />}
                 aria-label={'Emojis'}
               />
             </>
@@ -249,7 +232,7 @@ const meta: Meta<typeof Toolbar> = {
       {
         type: 'icon',
         props: {
-          icon: <Link />,
+          icon: <Icon name="link" />,
           'aria-label': "Ajout d'un lien",
           className: '',
           onClick: () => console.log('click'),
@@ -274,7 +257,7 @@ const meta: Meta<typeof Toolbar> = {
                 type="button"
                 variant="ghost"
                 color="tertiary"
-                icon={<BulletList />}
+                icon={<Icon name="bullet-list" />}
                 aria-label={"Options d'affichage en liste"}
               />
             </>
@@ -297,7 +280,7 @@ const meta: Meta<typeof Toolbar> = {
                 type="button"
                 variant="ghost"
                 color="tertiary"
-                icon={<AlignLeft />}
+                icon={<Icon name="align-left" />}
                 aria-label={"Options d'alignement"}
               />
             </>

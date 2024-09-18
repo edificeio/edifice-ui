@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
+import { Icon } from '../..';
 import Dropdown from '../Dropdown';
-import { Edit, Copy, Cut, Print, Delete } from '@edifice-ui/icons';
 
 const meta: Meta<typeof Dropdown> = {
   title: 'Components/Dropdown/Dropdown Item',
@@ -25,21 +25,36 @@ export const Base: Story = {
       <Dropdown>
         <Dropdown.Trigger label="Action menu" />
         <Dropdown.Menu>
-          <Dropdown.Item icon={<Edit />} onClick={() => alert('edit')}>
+          <Dropdown.Item
+            icon={<Icon name="edit" />}
+            onClick={() => alert('edit')}
+          >
             Edit
           </Dropdown.Item>
           <Dropdown.Separator />
-          <Dropdown.Item icon={<Copy />} onClick={() => alert('copy')}>
+          <Dropdown.Item
+            icon={<Icon name="copy" />}
+            onClick={() => alert('copy')}
+          >
             Copy
           </Dropdown.Item>
-          <Dropdown.Item icon={<Cut />} onClick={() => alert('cut')}>
+          <Dropdown.Item
+            icon={<Icon name="cut" />}
+            onClick={() => alert('cut')}
+          >
             Cut
           </Dropdown.Item>
-          <Dropdown.Item icon={<Print />} onClick={() => alert('print')}>
+          <Dropdown.Item
+            icon={<Icon name="print" />}
+            onClick={() => alert('print')}
+          >
             Print
           </Dropdown.Item>
           <Dropdown.Separator />
-          <Dropdown.Item icon={<Delete />} onClick={() => alert('delete')}>
+          <Dropdown.Item
+            icon={<Icon name="delete" />}
+            onClick={() => alert('delete')}
+          >
             Delete
           </Dropdown.Item>
         </Dropdown.Menu>

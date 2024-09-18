@@ -2,12 +2,12 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useMemo, useState } from 'react';
 import Button from '../../Button/Button';
 
-import { Indeterminate } from '../../Checkbox/Checkbox.stories';
+import { Icon } from '../..';
 import { Checkbox } from '../../Checkbox';
+import { Indeterminate } from '../../Checkbox/Checkbox.stories';
 import { FormControl } from '../../Form';
 import { Radio } from '../../Radio';
 import Input from '../Input';
-import { Search } from '@edifice-ui/icons';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof FormControl> = {
@@ -44,7 +44,7 @@ export const BorderlessInputGroup: Story = {
   render: (args) => (
     <FormControl id={args.id} status={args.status} className="input-group">
       <span className="input-group-text border-end-0">
-        <Search width={20} height={20}></Search>
+        <Icon name="search" size="20" />
       </span>
       <FormControl.Input
         type="text"
@@ -60,7 +60,7 @@ export const BorderlessDisabledInputGroup: Story = {
   render: (args) => (
     <FormControl id={args.id} status={args.status} className="input-group">
       <span className="input-group-text border-end-0">
-        <Search width={20} height={20}></Search>
+        <Icon name="search" size="20" />
       </span>
       <FormControl.Input
         disabled

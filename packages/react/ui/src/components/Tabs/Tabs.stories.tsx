@@ -1,8 +1,8 @@
-import { Video, Mic, Landscape } from '@edifice-ui/icons';
 import { Meta, StoryObj } from '@storybook/react';
 
+import { Icon } from '..';
+import Tabs from './Tabs';
 import { TabsItemProps } from './TabsItem';
-import Tabs, { TabsProps } from './Tabs';
 
 const meta: Meta<typeof Tabs> = {
   title: 'Components/Tabs',
@@ -19,7 +19,7 @@ type Story = StoryObj<typeof Tabs>;
 const data: TabsItemProps[] = [
   {
     id: '1',
-    icon: <Landscape />,
+    icon: <Icon name="landscape" />,
     label: 'Tab item',
     content: (
       <div className="p-24">
@@ -29,7 +29,7 @@ const data: TabsItemProps[] = [
   },
   {
     id: '2',
-    icon: <Landscape />,
+    icon: <Icon name="landscape" />,
     label: 'Tab item',
     content: (
       <div className="p-24">
@@ -39,7 +39,7 @@ const data: TabsItemProps[] = [
   },
   {
     id: '3',
-    icon: <Landscape />,
+    icon: <Icon name="landscape" />,
     label: 'Tab item',
     content: (
       <div className="p-24">
@@ -49,7 +49,7 @@ const data: TabsItemProps[] = [
   },
   {
     id: '4',
-    icon: <Landscape />,
+    icon: <Icon name="landscape" />,
     label: 'Tab item',
     content: (
       <div className="p-24">
@@ -77,7 +77,7 @@ export const Scroll: Story = {
     items: [
       {
         id: '1',
-        icon: <Landscape />,
+        icon: <Icon name="landscape" />,
         label: 'Tab item',
         content: (
           <div className="p-24">
@@ -87,7 +87,7 @@ export const Scroll: Story = {
       },
       {
         id: '2',
-        icon: <Landscape />,
+        icon: <Icon name="landscape" />,
         label: 'Tab item',
         content: (
           <div className="p-24">
@@ -97,7 +97,7 @@ export const Scroll: Story = {
       },
       {
         id: '3',
-        icon: <Landscape />,
+        icon: <Icon name="landscape" />,
         label: 'Tab item',
         content: (
           <div className="p-24">
@@ -107,7 +107,7 @@ export const Scroll: Story = {
       },
       {
         id: '4',
-        icon: <Landscape />,
+        icon: <Icon name="landscape" />,
         label: 'Tab item',
         content: (
           <div className="p-24">
@@ -117,7 +117,7 @@ export const Scroll: Story = {
       },
       {
         id: '5',
-        icon: <Landscape />,
+        icon: <Icon name="landscape" />,
         label: 'Tab item',
         content: (
           <div className="p-24">
@@ -127,7 +127,7 @@ export const Scroll: Story = {
       },
       {
         id: '6',
-        icon: <Landscape />,
+        icon: <Icon name="landscape" />,
         label: 'Tab item',
         content: (
           <div className="p-24">
@@ -137,7 +137,7 @@ export const Scroll: Story = {
       },
       {
         id: '7',
-        icon: <Landscape />,
+        icon: <Icon name="landscape" />,
         label: 'Tab item',
         content: (
           <div className="p-24">
@@ -147,7 +147,7 @@ export const Scroll: Story = {
       },
       {
         id: '8',
-        icon: <Landscape />,
+        icon: <Icon name="landscape" />,
         label: 'Tab item',
         content: (
           <div className="p-24">
@@ -157,7 +157,7 @@ export const Scroll: Story = {
       },
       {
         id: '9',
-        icon: <Landscape />,
+        icon: <Icon name="landscape" />,
         label: 'Tab item',
         content: (
           <div className="p-24">
@@ -167,7 +167,7 @@ export const Scroll: Story = {
       },
       {
         id: '10',
-        icon: <Landscape />,
+        icon: <Icon name="landscape" />,
         label: 'Tab item',
         content: (
           <div className="p-24">

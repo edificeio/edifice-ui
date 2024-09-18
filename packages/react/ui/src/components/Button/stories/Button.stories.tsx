@@ -1,13 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
+import { Icon } from '../..';
 import Button, { ButtonProps } from '../Button';
-import {
-  AddUser,
-  Close,
-  Hourglass,
-  RafterLeft,
-  RafterRight,
-} from '@edifice-ui/icons';
 import IconButton from '../IconButton';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -97,7 +91,7 @@ export const WithIconLeft: Story = {
     children: 'New user',
     type: 'button',
     disabled: false,
-    leftIcon: <AddUser title="Add User" />,
+    leftIcon: <Icon name="add-user" />,
   },
 };
 
@@ -108,7 +102,7 @@ export const WithIconRight: Story = {
     children: 'Close',
     type: 'button',
     disabled: false,
-    rightIcon: <Close title="Close" />,
+    rightIcon: <Icon name="close" />,
   },
 };
 
@@ -119,8 +113,8 @@ export const WithBothIcon: Story = {
     children: 'Button',
     type: 'button',
     disabled: false,
-    leftIcon: <RafterLeft title="Chevron Left" />,
-    rightIcon: <RafterRight title="Chevron Right" />,
+    leftIcon: <Icon name="rafter-left" />,
+    rightIcon: <Icon name="rafter-right" />,
   },
 };
 
@@ -170,7 +164,7 @@ export const LoadingButtonWithCustomIcon: Story = {
     children: 'Loading...',
     type: 'button',
     isLoading: true,
-    loadingIcon: <Hourglass />,
+    loadingIcon: <Icon name="hourglass" />,
   },
 };
 
@@ -210,7 +204,7 @@ export const ButtonGroupWithIconButton: Story = {
           aria-label="Next Page"
           color="primary"
           variant="filled"
-          icon={<RafterRight />}
+          icon={<Icon name="rafter-right" />}
         />
       </div>
     );
@@ -234,8 +228,8 @@ export const ButtonGroupWithThirdAction: Story = {
           {...args}
           color="primary"
           variant="ghost"
-          leftIcon={<RafterLeft />}
-          rightIcon={<RafterRight />}
+          leftIcon={<Icon name="rafter-left" />}
+          rightIcon={<Icon name="rafter-right" />}
         >
           Button
         </Button>
@@ -243,8 +237,8 @@ export const ButtonGroupWithThirdAction: Story = {
           {...args}
           color="primary"
           variant="outline"
-          leftIcon={<RafterLeft />}
-          rightIcon={<RafterRight />}
+          leftIcon={<Icon name="rafter-left" />}
+          rightIcon={<Icon name="rafter-right" />}
         >
           Button
         </Button>
@@ -252,8 +246,8 @@ export const ButtonGroupWithThirdAction: Story = {
           {...args}
           color="primary"
           variant="filled"
-          leftIcon={<RafterLeft />}
-          rightIcon={<RafterRight />}
+          leftIcon={<Icon name="rafter-left" />}
+          rightIcon={<Icon name="rafter-right" />}
         >
           Button
         </Button>

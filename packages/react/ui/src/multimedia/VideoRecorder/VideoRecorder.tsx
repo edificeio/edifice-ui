@@ -497,13 +497,7 @@ const VideoRecorder = forwardRef(
             <div className="video-recorder-time d-flex align-items-center font-monospace fs-6 text-bg-dark rounded">
               {recording && (
                 <>
-                  <Icon
-                    name="record"
-                    width={12}
-                    height={12}
-                    color="red"
-                    className="me-4"
-                  />
+                  <Icon name="record" size="12" color="red" className="me-4" />
                   <span>
                     {convertMsToMS(recordedTime)}/{convertMsToMS(maxDuration)}
                   </span>
@@ -511,12 +505,7 @@ const VideoRecorder = forwardRef(
               )}
               {recorded && (
                 <>
-                  <Icon
-                    name="record-video"
-                    width={14}
-                    height={14}
-                    className="me-4"
-                  />
+                  <Icon name="record-video" size="14" className="me-4" />
                   <span>
                     {convertMsToMS(playedTime)}/{convertMsToMS(recordedTime)}
                   </span>

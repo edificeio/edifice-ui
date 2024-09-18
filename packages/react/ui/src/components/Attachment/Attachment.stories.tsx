@@ -1,9 +1,9 @@
 import { StoryObj } from '@storybook/react';
 
+import { Icon } from '..';
 import { IconButton } from '../Button';
-import Attachment, { AttachmentProps } from './Attachment';
-import { Delete, Download } from '@edifice-ui/icons';
 import { Grid } from '../Grid';
+import Attachment, { AttachmentProps } from './Attachment';
 
 const meta = {
   title: 'Components/Attachment',
@@ -27,14 +27,14 @@ export const Base: Story = {
               aria-label="Add User"
               color="tertiary"
               type="button"
-              icon={<Download />}
+              icon={<Icon name="download" />}
               variant="ghost"
             />
             <IconButton
               aria-label="Delete"
               color="danger"
               type="button"
-              icon={<Delete />}
+              icon={<Icon name="delete" />}
               variant="ghost"
             />
           </>
@@ -55,14 +55,14 @@ export const EditionMode: Story = {
               aria-label="Add User"
               color="tertiary"
               type="button"
-              icon={<Download />}
+              icon={<Icon name="delete" />}
               variant="ghost"
             />
             <IconButton
               aria-label="Delete"
               color="danger"
               type="button"
-              icon={<Delete />}
+              icon={<Icon name="delete" />}
               variant="ghost"
             />
           </>
@@ -83,7 +83,7 @@ export const VisualisationMode: Story = {
               aria-label="Add User"
               color="tertiary"
               type="button"
-              icon={<Download />}
+              icon={<Icon name="delete" />}
               variant="ghost"
             />
           </>
@@ -106,14 +106,14 @@ export const AttachmentTextTruncate: Story = {
                   aria-label="Add User"
                   color="tertiary"
                   type="button"
-                  icon={<Download />}
+                  icon={<Icon name="delete" />}
                   variant="ghost"
                 />
                 <IconButton
                   aria-label="Delete"
                   color="danger"
                   type="button"
-                  icon={<Delete />}
+                  icon={<Icon name="delete" />}
                   variant="ghost"
                 />
               </>
@@ -129,14 +129,14 @@ export const AttachmentTextTruncate: Story = {
                   aria-label="Add User"
                   color="tertiary"
                   type="button"
-                  icon={<Download />}
+                  icon={<Icon name="delete" />}
                   variant="ghost"
                 />
                 <IconButton
                   aria-label="Delete"
                   color="danger"
                   type="button"
-                  icon={<Delete />}
+                  icon={<Icon name="delete" />}
                   variant="ghost"
                 />
               </>
@@ -169,14 +169,14 @@ export const BlocAttachment: Story = {
                     aria-label="Add User"
                     color="tertiary"
                     type="button"
-                    icon={<Download />}
+                    icon={<Icon name="delete" />}
                     variant="ghost"
                   />
                   <IconButton
                     aria-label="Delete"
                     color="danger"
                     type="button"
-                    icon={<Delete />}
+                    icon={<Icon name="delete" />}
                     variant="ghost"
                   />
                 </>
@@ -192,14 +192,14 @@ export const BlocAttachment: Story = {
                     aria-label="Add User"
                     color="tertiary"
                     type="button"
-                    icon={<Download />}
+                    icon={<Icon name="delete" />}
                     variant="ghost"
                   />
                   <IconButton
                     aria-label="Delete"
                     color="danger"
                     type="button"
-                    icon={<Delete />}
+                    icon={<Icon name="delete" />}
                     variant="ghost"
                   />
                 </>
@@ -215,14 +215,14 @@ export const BlocAttachment: Story = {
                     aria-label="Add User"
                     color="tertiary"
                     type="button"
-                    icon={<Download />}
+                    icon={<Icon name="delete" />}
                     variant="ghost"
                   />
                   <IconButton
                     aria-label="Delete"
                     color="danger"
                     type="button"
-                    icon={<Delete />}
+                    icon={<Icon name="delete" />}
                     variant="ghost"
                   />
                 </>
@@ -238,14 +238,14 @@ export const BlocAttachment: Story = {
                     aria-label="Add User"
                     color="tertiary"
                     type="button"
-                    icon={<Download />}
+                    icon={<Icon name="delete" />}
                     variant="ghost"
                   />
                   <IconButton
                     aria-label="Delete"
                     color="danger"
                     type="button"
-                    icon={<Delete />}
+                    icon={<Icon name="delete" />}
                     variant="ghost"
                   />
                 </>

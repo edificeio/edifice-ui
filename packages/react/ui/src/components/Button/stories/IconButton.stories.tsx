@@ -1,7 +1,7 @@
 import { Meta } from '@storybook/react';
 
+import { Icon } from '../..';
 import IconButton from '../IconButton';
-import { AddUser, Block, Hourglass } from '@edifice-ui/icons';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof IconButton> = {
@@ -39,7 +39,7 @@ export const Base = {
     variant: 'filled',
     type: 'button',
     disabled: false,
-    icon: <AddUser />,
+    icon: <Icon name="add-user" />,
   },
 };
 
@@ -50,7 +50,7 @@ export const IconWithAriaLabel = {
     variant: 'filled',
     type: 'button',
     disabled: false,
-    icon: <AddUser title="Add User" />,
+    icon: <Icon name="add-user" />,
   },
 
   parameters: {

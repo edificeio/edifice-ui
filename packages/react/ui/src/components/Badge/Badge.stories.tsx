@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { Hourglass } from '@edifice-ui/icons';
+import { Icon } from '..';
 import Badge, { BadgeProps } from './Badge';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -166,7 +166,7 @@ export const BadgeWithIcon: Story = {
   render: (args: BadgeProps) => {
     return (
       <Badge {...args}>
-        <Hourglass width="20" height="20" className="me-8" />
+        <Icon name="hourglass" size="20" className="me-8" />
         An history of time
       </Badge>
     );

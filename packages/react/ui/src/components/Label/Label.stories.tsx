@@ -1,5 +1,5 @@
-import { Mail } from '@edifice-ui/icons';
 import { Meta, StoryObj } from '@storybook/react';
+import { Icon } from '..';
 import { FormControl } from '../Form';
 import Label from './Label';
 
@@ -48,7 +48,7 @@ export const OptionalFieldCustomText: Story = {
   render: (args) => {
     return (
       <FormControl id="email-1" isOptional>
-        <Label leftIcon={<Mail />} optionalText="Not mandatory">
+        <Label leftIcon={<Icon name="mail" />} optionalText="Not mandatory">
           Email
         </Label>
       </FormControl>
@@ -69,7 +69,7 @@ export const RequiredField: Story = {
   render: (args) => {
     return (
       <FormControl id="email-2" isRequired>
-        <Label leftIcon={<Mail />}>Email</Label>
+        <Label leftIcon={<Icon name="mail" />}>Email</Label>
       </FormControl>
     );
   },
@@ -79,7 +79,7 @@ export const RequiredFieldCustomText: Story = {
   render: (args) => {
     return (
       <FormControl id="email-3" isRequired>
-        <Label leftIcon={<Mail />} requiredText="- Mandatory">
+        <Label leftIcon={<Icon name="mail" />} requiredText="- Mandatory">
           Email
         </Label>
       </FormControl>
@@ -91,6 +91,6 @@ export const LabelWithIcon: Story = {
   render: Template,
 
   args: {
-    leftIcon: <Mail />,
+    leftIcon: <Icon name="mail" />,
   },
 };

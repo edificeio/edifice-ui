@@ -1,15 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import Toolbar from './Toolbar';
-import {
-  RecordVideo,
-  Save,
-  Write,
-  Plus,
-  Delete,
-  Record,
-} from '@edifice-ui/icons';
+import { Icon } from '..';
 import { Dropdown } from '../Dropdown';
+import Toolbar from './Toolbar';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Toolbar> = {
@@ -39,7 +32,7 @@ const meta: Meta<typeof Toolbar> = {
         type: 'icon',
         name: 'record',
         props: {
-          icon: <RecordVideo />,
+          icon: <Icon name="record-video" />,
           onClick: () => console.log('on click'),
           disabled: true,
         },
@@ -48,7 +41,7 @@ const meta: Meta<typeof Toolbar> = {
         type: 'icon',
         name: 'save',
         props: {
-          icon: <Save />,
+          icon: <Icon name="save" />,
           onClick: () => console.log('on click'),
         },
       },
@@ -59,7 +52,7 @@ const meta: Meta<typeof Toolbar> = {
         type: 'icon',
         name: 'write',
         props: {
-          icon: <Write />,
+          icon: <Icon name="write" />,
           onClick: () => console.log('on click'),
           disabled: true,
         },
@@ -68,7 +61,7 @@ const meta: Meta<typeof Toolbar> = {
         type: 'icon',
         name: 'delete',
         props: {
-          icon: <Delete />,
+          icon: <Icon name="delete" />,
           onClick: () => console.log('on click'),
         },
       },
@@ -92,7 +85,7 @@ export const Hidden: Story = {
         type: 'icon',
         name: 'record',
         props: {
-          icon: <RecordVideo />,
+          icon: <Icon name="record-video" />,
           onClick: () => console.log('on click'),
         },
         visibility: 'hide',
@@ -101,7 +94,7 @@ export const Hidden: Story = {
         type: 'icon',
         name: 'save',
         props: {
-          icon: <Save />,
+          icon: <Icon name="save" />,
           onClick: () => console.log('on click'),
         },
       },
@@ -112,7 +105,7 @@ export const Hidden: Story = {
         type: 'icon',
         name: 'write',
         props: {
-          icon: <Write />,
+          icon: <Icon name="write" />,
           onClick: () => console.log('on click'),
         },
       },
@@ -120,7 +113,7 @@ export const Hidden: Story = {
         type: 'icon',
         name: 'delete',
         props: {
-          icon: <Delete />,
+          icon: <Icon name="delete" />,
           onClick: () => console.log('on click'),
         },
       },
@@ -144,7 +137,7 @@ export const WithDivider: Story = {
         type: 'icon',
         name: 'record',
         props: {
-          icon: <RecordVideo />,
+          icon: <Icon name="record-video" />,
           onClick: () => console.log('on click'),
         },
       },
@@ -152,7 +145,7 @@ export const WithDivider: Story = {
         type: 'icon',
         name: 'save',
         props: {
-          icon: <Save />,
+          icon: <Icon name="save" />,
           onClick: () => console.log('on click'),
         },
       },
@@ -163,7 +156,7 @@ export const WithDivider: Story = {
         type: 'icon',
         name: 'write',
         props: {
-          icon: <Write />,
+          icon: <Icon name="write" />,
           onClick: () => console.log('on click'),
         },
       },
@@ -171,7 +164,7 @@ export const WithDivider: Story = {
         type: 'icon',
         name: 'delete',
         props: {
-          icon: <Delete />,
+          icon: <Icon name="delete" />,
           onClick: () => console.log('on click'),
         },
       },
@@ -197,7 +190,7 @@ export const WithPrimaryAction: Story = {
         props: {
           children: (
             <>
-              <Save />
+              <Icon name="save" />
               <span>Delete</span>
             </>
           ),
@@ -208,7 +201,7 @@ export const WithPrimaryAction: Story = {
         type: 'icon',
         name: 'delete',
         props: {
-          icon: <Delete />,
+          icon: <Icon name="delete" />,
           onClick: () => console.log('on click'),
         },
       },
@@ -218,7 +211,7 @@ export const WithPrimaryAction: Story = {
         props: {
           children: (
             <>
-              <Plus />
+              <Icon name="plus" />
               <span>Add</span>
             </>
           ),
@@ -255,7 +248,7 @@ export const WithDropdownAction: Story = {
           disabled: false,
           children: (
             <>
-              <Record />
+              <Icon name="record" />
               <span>Record</span>
             </>
           ),
@@ -269,7 +262,7 @@ export const WithDropdownAction: Story = {
           disabled: false,
           children: (
             <>
-              <Save />
+              <Icon name="save" />
               <span>Delete</span>
             </>
           ),

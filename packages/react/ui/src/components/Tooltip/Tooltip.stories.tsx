@@ -1,9 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import { Button } from '../Button';
+import { Icon } from '../Icon';
 import Tooltip, { TooltipProps } from './Tooltip';
-import { AlertCircle } from '@edifice-ui/icons';
-import React from 'react';
 
 const meta: Meta<typeof Tooltip> = {
   title: 'Components/Tooltip',
@@ -62,14 +61,14 @@ export const Bottom: Story = {
   },
 };
 
-export const Icon: Story = {
+export const TooltipIcon: Story = {
   render: Template,
 
   args: {
     placement: 'right',
     message:
       'Optio minus varius reprehenderit ridiculus praesentium metus porttitor tellus.',
-    icon: <AlertCircle />,
+    icon: <Icon name="alert-circle" />,
     children: (
       <Button type="button" variant="filled" color="primary">
         Icon Tooltip

@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import Dropdown from '../Dropdown';
 import { useState } from 'react';
-import { Filter } from '@edifice-ui/icons';
+import { Icon } from '../..';
+import Dropdown from '../Dropdown';
 
 const meta: Meta<typeof Dropdown> = {
   title: 'Components/Dropdown/Dropdown Radio Item',
@@ -10,7 +10,7 @@ const meta: Meta<typeof Dropdown> = {
   decorators: [(Story) => <div style={{ height: '25em' }}>{Story()}</div>],
   args: {
     label: 'Dropdown',
-    icon: <Filter />,
+    icon: <Icon name="filter" />,
   },
   parameters: {
     docs: {

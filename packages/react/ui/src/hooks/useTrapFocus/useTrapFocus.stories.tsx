@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { Lock, Mail } from '@edifice-ui/icons';
-import useTrapFocus from './useTrapFocus';
-import FormControl from '../../components/Form/FormControl';
+import { Icon } from '../..';
 import Button from '../../components/Button/Button';
+import FormControl from '../../components/Form/FormControl';
 import { Input } from '../../components/Input';
 import { Label } from '../../components/Label';
+import useTrapFocus from './useTrapFocus';
 
 const meta: Meta<typeof useTrapFocus> = {
   title: 'Hooks/useTrapFocus',
@@ -25,7 +25,7 @@ export const Base: Story = {
         </p>
 
         <FormControl id="email" isRequired className="p-12">
-          <Label leftIcon={<Mail />} requiredText="- Mandatory">
+          <Label leftIcon={<Icon name="mail" />} requiredText="- Mandatory">
             Email
           </Label>
           <Input
@@ -37,7 +37,7 @@ export const Base: Story = {
         </FormControl>
 
         <FormControl id="password" isRequired className="p-12">
-          <Label leftIcon={<Lock />} requiredText="- Mandatory">
+          <Label leftIcon={<Icon name="lock" />} requiredText="- Mandatory">
             Password
           </Label>
           <Input type="text" placeholder="Enter your password..." size="md" />

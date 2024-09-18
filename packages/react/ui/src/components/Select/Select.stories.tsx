@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
+import { Icon } from '..';
 import Select, { OptionsType } from './Select';
-import { ListOrder } from '@edifice-ui/icons';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Select> = {
@@ -77,7 +77,7 @@ export const WithIcon: Story = {
 
     return (
       <Select
-        icon={<ListOrder />}
+        icon={<Icon name="list-order" />}
         onValueChange={onChange}
         options={subjectAreaOptions}
         placeholderOption={subjectAreaOptions[0].label}

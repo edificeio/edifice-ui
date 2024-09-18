@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import Dropdown from '../Dropdown';
-import { Copy, Cut, Delete, Edit, Filter, Print } from '@edifice-ui/icons';
 import { RefAttributes, useState } from 'react';
+import { Icon } from '../..';
 import IconButton, { IconButtonProps } from '../../Button/IconButton';
 import { ColorPicker, DefaultPalette } from '../../ColorPicker';
+import Dropdown from '../Dropdown';
 
 const meta: Meta<typeof Dropdown> = {
   title: 'Components/Dropdown/Base',
@@ -107,21 +107,36 @@ export const ActionMenu: Story = {
       <Dropdown>
         <Dropdown.Trigger label="Action menu" />
         <Dropdown.Menu>
-          <Dropdown.Item icon={<Edit />} onClick={() => alert('edit')}>
+          <Dropdown.Item
+            icon={<Icon name="edit" />}
+            onClick={() => alert('edit')}
+          >
             Edit
           </Dropdown.Item>
           <Dropdown.Separator />
-          <Dropdown.Item icon={<Copy />} onClick={() => alert('copy')}>
+          <Dropdown.Item
+            icon={<Icon name="copy" />}
+            onClick={() => alert('copy')}
+          >
             Copy
           </Dropdown.Item>
-          <Dropdown.Item icon={<Cut />} onClick={() => alert('cut')}>
+          <Dropdown.Item
+            icon={<Icon name="cut" />}
+            onClick={() => alert('cut')}
+          >
             Cut
           </Dropdown.Item>
-          <Dropdown.Item icon={<Print />} onClick={() => alert('print')}>
+          <Dropdown.Item
+            icon={<Icon name="print" />}
+            onClick={() => alert('print')}
+          >
             Print
           </Dropdown.Item>
           <Dropdown.Separator />
-          <Dropdown.Item icon={<Delete />} onClick={() => alert('delete')}>
+          <Dropdown.Item
+            icon={<Icon name="delete" />}
+            onClick={() => alert('delete')}
+          >
             Delete
           </Dropdown.Item>
         </Dropdown.Menu>
@@ -172,7 +187,7 @@ export const CheckboxGroup: Story = {
       <Dropdown>
         <Dropdown.Trigger
           label="Dropdown"
-          icon={<Filter />}
+          icon={<Icon name="filter" />}
           badgeContent={count}
         />
         <Dropdown.Menu>
@@ -217,7 +232,7 @@ export const RadioGroup: Story = {
 
     return (
       <Dropdown>
-        <Dropdown.Trigger label="Dropdown" icon={<Filter />} />
+        <Dropdown.Trigger label="Dropdown" icon={<Icon name="filter" />} />
         <Dropdown.Menu>
           {radioOptions.map((option, index) => (
             <Dropdown.RadioItem
@@ -286,7 +301,7 @@ export const Stack: Story = {
 
     return (
       <Dropdown>
-        <Dropdown.Trigger label="Dropdown" icon={<Filter />} />
+        <Dropdown.Trigger label="Dropdown" icon={<Icon name="filter" />} />
         <Dropdown.Menu>
           <Dropdown.Item onClick={() => console.log('click')}>
             Action label
@@ -343,7 +358,7 @@ export const CustomTrigger: Story = {
               aria-label="label"
               color="tertiary"
               variant="ghost"
-              icon={<Edit />}
+              icon={<Icon name="edit" />}
             />
 
             <Dropdown.Menu>
@@ -384,7 +399,7 @@ export const CustomMenu: Story = {
               aria-label="label"
               color="tertiary"
               variant="ghost"
-              icon={<Edit />}
+              icon={<Icon name="edit" />}
             />
 
             <Dropdown.Menu>

@@ -8,6 +8,7 @@ import {
   odeServices,
 } from 'edifice-ts-client';
 
+import { Icon } from '..';
 import { useThumbnail } from '../../hooks/useThumbnail';
 import Card, { CardProps } from '../Card/Card';
 import FileIcon from './FileIcon';
@@ -54,7 +55,7 @@ const FileCard = ({
         color: 'bg-red-200',
       },
       audio: {
-        icon: <Mic width={22} height={22} />,
+        icon: <Icon name="mic" size="22" />,
         color: 'bg-red-200',
       },
       ppt: {
@@ -62,11 +63,11 @@ const FileCard = ({
         color: 'bg-yellow-200',
       },
       img: {
-        icon: <Landscape width={22} height={22} />,
+        icon: <Icon name="landscape" size="22" />,
         color: 'bg-green-200',
       },
       video: {
-        icon: <Video width={22} height={22} />,
+        icon: <Icon name="video" size="22" />,
         color: 'bg-purple-200',
       },
       zip: {
@@ -78,7 +79,7 @@ const FileCard = ({
         color: 'bg-blue-200',
       },
       unknown: {
-        icon: <TextPage width={22} height={22} />,
+        icon: <Icon name="text-page" size="22" />,
         color: 'bg-gray-300',
       },
     };
