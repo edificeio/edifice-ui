@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 
-import { Landscape, Mic, TextPage, Video } from '@edifice-ui/icons';
 import clsx from 'clsx';
 import {
   DocumentHelper,

@@ -1,6 +1,5 @@
 import { useEffect, useId, useState } from 'react';
 
-import { ArrowRight, Globe } from '@edifice-ui/icons';
 import { Embedder, odeServices } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 
@@ -8,6 +7,7 @@ import {
   Button,
   EmptyScreen,
   FormControl,
+  Icon,
   Image,
   Input,
 } from '../../components';
@@ -111,7 +111,7 @@ const VideoEmbed = ({ onSuccess }: VideoEmbedProps) => {
               onClick={handleSwitchToEmbedderClick}
               className="align-items-start mt-16"
             >
-              {t('bbm.video.useEmbedCode')} <ArrowRight />
+              {t('bbm.video.useEmbedCode')} <Icon name="arrow-right" />
             </Button>
           </div>
         );
@@ -125,7 +125,7 @@ const VideoEmbed = ({ onSuccess }: VideoEmbedProps) => {
             onClick={handleSwitchToEmbedderClick}
             className="align-items-start"
           >
-            {t('bbm.video.useEmbedCode')} <ArrowRight />
+            {t('bbm.video.useEmbedCode')} <Icon name="arrow-right" />
           </Button>
         </div>
       );
@@ -135,7 +135,7 @@ const VideoEmbed = ({ onSuccess }: VideoEmbedProps) => {
   return (
     <div className="d-flex flex-column flex-fill video-embed">
       <div className="mb-8 d-flex">
-        <Globe className="me-8"></Globe>
+        <Icon name="globe" className="me-8" />
         {t('bbm.video.url.title')}
       </div>
       <FormControl id={formControlId}>

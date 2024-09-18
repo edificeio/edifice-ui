@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import ImagePicker, { ImagePickerProps } from './ImagePicker';
+import { ImagePicker, ImagePickerProps } from './ImagePicker';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof ImagePicker> = {

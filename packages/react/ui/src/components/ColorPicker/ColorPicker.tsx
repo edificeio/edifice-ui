@@ -1,11 +1,10 @@
-import { forwardRef } from 'react';
-import { Ref } from 'react';
-import { ComponentPropsWithRef } from 'react';
+import { ComponentPropsWithRef, Ref, forwardRef } from 'react';
 
-import { DeleteColor, InfoCircle } from '@edifice-ui/icons';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
+import { Icon } from '..';
+import { Tooltip } from '../Tooltip';
 import {
   AccessiblePalette,
   ColorPalette,
@@ -14,7 +13,6 @@ import {
   DefaultPalette,
 } from './ColorPalette';
 import ColorPickerItem from './ColorPickerItem';
-import { Tooltip } from '../Tooltip';
 
 export interface ColorPickerProps extends ComponentPropsWithRef<'div'> {
   /**
@@ -59,9 +57,9 @@ const ColorPicker = forwardRef(
               {t(palette.label)}
               {palette.tooltip && (
                 <Tooltip message="" placement="auto" {...palette.tooltip}>
-                  <InfoCircle
-                    width={18}
-                    height={18}
+                  <Icon
+                    name="info-circle"
+                    size="18"
                     className="mx-4 position-relative"
                     style={{ top: '4px' }}
                   />
@@ -76,7 +74,7 @@ const ColorPicker = forwardRef(
                   className="color-picker-reset small my-8 gap-4"
                   onClick={() => handleClick(palette.reset)}
                 >
-                  <DeleteColor width={20} height={20} />
+                  <Icon name="delete-color" size="20" />
                   {palette.reset.description}
                 </button>
               )

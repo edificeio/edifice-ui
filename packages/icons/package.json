@@ -1,0 +1,44 @@
+{
+    "name": "@edifice.io/icons",
+    "version": "0.0.1",
+    "description": "Edifice Icons Library",
+    "keywords": [
+        "svg",
+        "frontend",
+        "icons",
+        "ui"
+    ],
+    "homepage": "https://github.com/edificeio/edifice-ui/tree/main/packages/icons#readme",
+    "bugs": {
+        "url": "https://github.com/edificeio/edifice-ui/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/edificeio/edifice-ui.git"
+    },
+    "license": "AGPL-3.0",
+    "author": "Edifice",
+    "sideEffects": false,
+    "main": "types/index.ts",
+    "type": "module",
+    "files": [
+        "dist",
+        "types"
+    ],
+    "exports": {
+        ".": {
+            "import": "./types/index.ts"
+        },
+        "./*.svg": "./dist/*.svg"
+    },
+    "scripts": {
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "@types/node": "^22.5.1",
+        "vite-plugin-icons-spritesheet": "^2.2.1"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

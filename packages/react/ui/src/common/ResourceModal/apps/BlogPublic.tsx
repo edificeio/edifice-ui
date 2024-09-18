@@ -1,4 +1,3 @@
-import { Copy } from '@edifice-ui/icons';
 import { IResource } from 'edifice-ts-client';
 import {
   UseFormRegister,
@@ -8,10 +7,11 @@ import {
 import { useTranslation } from 'react-i18next';
 
 import {
-  Heading,
   Alert,
-  FormControl,
   Button,
+  FormControl,
+  Heading,
+  Icon,
   Input,
 } from '../../../components';
 import { useSlug } from '../hooks/useSlug';
@@ -95,7 +95,7 @@ const BlogPublic = ({
               disabled={!isPublic}
               onClick={() => onCopyToClipBoard('/blog')}
               type="button"
-              leftIcon={<Copy />}
+              leftIcon={<Icon name="copy" />}
               variant="ghost"
               className="text-nowrap"
             >

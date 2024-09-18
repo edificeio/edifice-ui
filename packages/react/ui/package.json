@@ -64,7 +64,6 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-react-pure-annotations": "7.23.3",
-    "@edifice-ui/icons": "workspace:*",
     "@react-spring/web": "9.7.3",
     "@tanstack/react-query": "5.8.4",
     "@types/node": "20.8.4",
@@ -76,10 +75,10 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "7.49.2",
-    "react-i18next": "14.1.0"
+    "react-i18next": "14.1.0",
+    "@edifice.io/icons": "workspace:*"
   },
   "peerDependencies": {
-    "@edifice-ui/icons": "*",
     "@react-spring/web": "9.7.3",
     "@tanstack/react-query": "5.8.4",
     "react": "18.2.0",

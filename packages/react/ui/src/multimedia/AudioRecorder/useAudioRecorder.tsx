@@ -1,19 +1,9 @@
 import { useCallback, useEffect, useReducer, useRef } from 'react';
 
-import {
-  Loader,
-  Pause,
-  PlayFilled,
-  Record,
-  RecordPause,
-  Refresh,
-  Restart,
-  Save,
-} from '@edifice-ui/icons';
 import { WorkspaceElement, WorkspaceVisibility } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 
-import { ToolbarItem } from '../../components';
+import { Icon, ToolbarItem } from '../../components';
 import { useWorkspaceFile } from '../../core';
 
 export type RecordState =
@@ -423,7 +413,7 @@ export default function useAudioRecorder(
       name: 'record',
       visibility: recordState === 'RECORDING' ? 'hide' : 'show',
       props: {
-        icon: <Record />,
+        icon: <Icon name="record" />,
         color: 'danger',
         disabled:
           (recordState !== 'IDLE' && recordState !== 'PAUSED') ||
@@ -438,7 +428,7 @@ export default function useAudioRecorder(
       name: 'recordPause',
       visibility: recordState === 'RECORDING' ? 'show' : 'hide',
       props: {
-        icon: <RecordPause />,
+        icon: <Icon name="record-pause" />,
         color: 'danger',
         disabled: recordState !== 'RECORDING',
         onClick: handleRecordPause,
@@ -452,7 +442,9 @@ export default function useAudioRecorder(
       name: 'encoding',
       visibility: isEncoding ? 'show' : 'hide',
       props: {
-        icon: <Loader style={{ animation: 'loading 1s infinite' }} />,
+        icon: (
+          <Icon name="loader" style={{ animation: 'loading 1s infinite' }} />
+        ),
         disabled: true,
       },
     },
@@ -461,7 +453,7 @@ export default function useAudioRecorder(
       name: 'play',
       visibility: isEncoding || playState === 'PLAYING' ? 'hide' : 'show',
       props: {
-        icon: <PlayFilled />,
+        icon: <Icon name="play-filled" />,
         disabled:
           recordState !== 'RECORDED' &&
           recordState !== 'PAUSED' &&
@@ -476,7 +468,7 @@ export default function useAudioRecorder(
       name: 'playPause',
       visibility: !isEncoding && playState === 'PLAYING' ? 'show' : 'hide',
       props: {
-        icon: <Pause />,
+        icon: <Icon name="pause" />,
         onClick: handlePlayPause,
         'aria-label': t('bbm.audio.play.pause'),
       },
@@ -486,7 +478,7 @@ export default function useAudioRecorder(
       type: 'icon',
       name: 'stop',
       props: {
-        icon: <Restart />,
+        icon: <Icon name="restart" />,
         disabled: playState !== 'PLAYING' && playState !== 'PAUSED',
         onClick: handlePlayStop,
         'aria-label': t('bbm.audio.play.stop'),
@@ -498,7 +490,7 @@ export default function useAudioRecorder(
       type: 'icon',
       name: 'reset',
       props: {
-        icon: <Refresh />,
+        icon: <Icon name="refresh" />,
         disabled:
           recordState !== 'RECORDED' &&
           recordState !== 'PAUSED' &&
@@ -514,7 +506,7 @@ export default function useAudioRecorder(
       name: 'save',
       visibility: hideSaveAction ? 'hide' : 'show',
       props: {
-        icon: <Save />,
+        icon: <Icon name="save" />,
         disabled:
           (recordState !== 'RECORDED' &&
             recordState !== 'PAUSED' &&

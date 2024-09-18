@@ -1,35 +1,14 @@
 import { RefAttributes, RefObject, useMemo } from 'react';
 
 import {
-  AlignLeft,
-  Paperclip,
-  Landscape,
-  Link,
-  Mic,
-  RecordVideo,
-  TextBold,
-  TextItalic,
-  TextUnderline,
-  SpeechToText,
-  BulletList,
-  Undo,
-  Redo,
-} from '@edifice-ui/icons';
-import {
-  ToolbarItem,
+  Icon,
   IconButtonProps,
   MediaLibraryRef,
   Toolbar,
+  ToolbarItem,
 } from '@edifice-ui/react';
 import { useTranslation } from 'react-i18next';
 
-import { EditorToolbarDropdownMenu } from './EditorToolbar.DropdownMenu';
-import { EditorToolbarEmoji } from './EditorToolbar.Emoji';
-import { EditorToolbarHighlightColor } from './EditorToolbar.HighlightColor';
-import { EditorToolbarPlusMenu } from './EditorToolbar.PlusMenu';
-import { EditorToolbarTextColor } from './EditorToolbar.TextColor';
-import { EditorToolbarTextSize } from './EditorToolbar.TextSize';
-import { EditorToolbarTypography } from './EditorToolbar.Typography';
 import {
   useActionOptions,
   useEditorContext,
@@ -38,6 +17,13 @@ import {
 import { hasExtension } from '../../utils/has-extension';
 import { hasMark } from '../../utils/has-mark';
 import { hasTextStyle } from '../../utils/has-text-style';
+import { EditorToolbarDropdownMenu } from './EditorToolbar.DropdownMenu';
+import { EditorToolbarEmoji } from './EditorToolbar.Emoji';
+import { EditorToolbarHighlightColor } from './EditorToolbar.HighlightColor';
+import { EditorToolbarPlusMenu } from './EditorToolbar.PlusMenu';
+import { EditorToolbarTextColor } from './EditorToolbar.TextColor';
+import { EditorToolbarTextSize } from './EditorToolbar.TextSize';
+import { EditorToolbarTypography } from './EditorToolbar.Typography';
 
 interface Props {
   /** Ref to a MediaLibrary instance */
@@ -85,7 +71,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
       {
         type: 'icon',
         props: {
-          icon: <Undo />,
+          icon: <Icon name="undo" />,
           'aria-label': t('editor.option.undo'),
           onClick: () => editor?.chain().focus().undo().run(),
           disabled: !editor?.can().undo(),
@@ -98,7 +84,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
       {
         type: 'icon',
         props: {
-          icon: <Redo />,
+          icon: <Icon name="redo" />,
           'aria-label': t('editor.option.redo'),
           onClick: () => editor?.chain().focus().redo().run(),
           disabled: !editor?.can().redo(),
@@ -116,7 +102,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
       {
         type: 'icon',
         props: {
-          icon: <Landscape />,
+          icon: <Icon name="landscape" />,
           className: 'bg-green-200',
           'aria-label': t('tiptap.toolbar.picture'),
           onClick: () => mediaLibraryRef.current?.show('image'),
@@ -128,7 +114,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
       {
         type: 'icon',
         props: {
-          icon: <RecordVideo />,
+          icon: <Icon name="record-video" />,
           className: 'bg-purple-200',
           'aria-label': t('tiptap.toolbar.video'),
           onClick: () => mediaLibraryRef.current?.show('video'),
@@ -140,7 +126,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
       {
         type: 'icon',
         props: {
-          icon: <Mic />,
+          icon: <Icon name="mic" />,
           className: 'bg-red-200',
           'aria-label': t('tiptap.toolbar.audio'),
           onClick: () => mediaLibraryRef.current?.show('audio'),
@@ -152,7 +138,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
       {
         type: 'icon',
         props: {
-          icon: <Paperclip />,
+          icon: <Icon name="paperclip" />,
           className: 'bg-yellow-200',
           'aria-label': t('tiptap.toolbar.attachment'),
           onClick: () => mediaLibraryRef.current?.show('attachment'),
@@ -168,7 +154,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
       {
         type: 'icon',
         props: {
-          icon: <SpeechToText />,
+          icon: <Icon name="speech-to-text" />,
           'aria-label': t('tiptap.toolbar.stt'),
           className: speechRecognition ? 'is-selected' : '',
           onClick: () => toggleSpeechRecognition(),
@@ -263,7 +249,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
       {
         type: 'icon',
         props: {
-          icon: <TextBold />,
+          icon: <Icon name="text-bold" />,
           'aria-label': t('tiptap.toolbar.bold'),
           className: editor?.isActive('bold') ? 'is-selected' : '',
           onClick: () => editor?.chain().focus().toggleBold().run(),
@@ -277,7 +263,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
       {
         type: 'icon',
         props: {
-          icon: <TextItalic />,
+          icon: <Icon name="text-italic" />,
           'aria-label': t('tiptap.toolbar.italic'),
           className: editor?.isActive('italic') ? 'is-selected' : '',
           onClick: () => editor?.chain().focus().toggleItalic().run(),
@@ -290,7 +276,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
       {
         type: 'icon',
         props: {
-          icon: <TextUnderline />,
+          icon: <Icon name="text-underline" />,
           'aria-label': t('tiptap.toolbar.underline'),
           className: editor?.isActive('underline') ? 'is-selected' : '',
           onClick: () => editor?.chain().focus().toggleUnderline().run(),
@@ -327,7 +313,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
       {
         type: 'icon',
         props: {
-          icon: <Link />,
+          icon: <Icon name="link" />,
           'aria-label': t('tiptap.toolbar.linker'),
           className: editor?.isActive('linker') ? 'is-selected' : '',
           onClick: () => showLinkModal(),
@@ -351,7 +337,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
           ) => (
             <EditorToolbarDropdownMenu
               triggerProps={triggerProps}
-              icon={<BulletList />}
+              icon={<Icon name="bullet-list" />}
               ariaLabel={t('tiptap.toolbar.listoptions')}
               options={listOptions}
             />
@@ -372,7 +358,7 @@ export const EditorToolbar = ({ mediaLibraryRef, toggleMathsModal }: Props) => {
           ) => (
             <EditorToolbarDropdownMenu
               triggerProps={triggerProps}
-              icon={<AlignLeft />}
+              icon={<Icon name="align-left" />}
               ariaLabel={t('tiptap.toolbar.align')}
               options={alignmentOptions}
             />

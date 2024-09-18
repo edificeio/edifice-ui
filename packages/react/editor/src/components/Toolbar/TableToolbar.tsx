@@ -1,11 +1,10 @@
 import { RefAttributes, useEffect, useMemo, useState } from 'react';
 
-import { MergeCells, SplitCells } from '@edifice-ui/icons';
-import { IconButtonProps, Toolbar } from '@edifice-ui/react';
+import { Icon, IconButtonProps, Toolbar } from '@edifice-ui/react';
 import {
+  Editor,
   FloatingMenu,
   FloatingMenuProps,
-  Editor,
   findParentNodeClosestToPos,
 } from '@tiptap/react';
 import { useTranslation } from 'react-i18next';
@@ -128,7 +127,11 @@ const TableToolbar = ({ editor }: TableToolbarProps) => {
                 name: 'mergeorsplit',
                 // isEnable: typeof isSpan !== "undefined",
                 props: {
-                  icon: isSpan ? <SplitCells /> : <MergeCells />,
+                  icon: isSpan ? (
+                    <Icon name="split-cells" />
+                  ) : (
+                    <Icon name="merge-cells" />
+                  ),
                   'aria-label': isSpan
                     ? t('tiptap.table.toolbar.split')
                     : t('tiptap.table.toolbar.merge'),

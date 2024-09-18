@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import { Edit, ExternalLink, Unlink } from '@edifice-ui/icons';
-import { Toolbar, ToolbarItem } from '@edifice-ui/react';
-import { FloatingMenu, Editor } from '@tiptap/react';
+import { Icon, Toolbar, ToolbarItem } from '@edifice-ui/react';
+import { Editor, FloatingMenu } from '@tiptap/react';
 import { useTranslation } from 'react-i18next';
 
 import { tippyOptions } from './LinkToolbar.TippyOptions';
@@ -37,7 +36,7 @@ const LinkToolbar = ({
         type: 'icon',
         name: 'edit',
         props: {
-          icon: <Edit />,
+          icon: <Icon name="edit" />,
           'aria-label': t('tiptap.link.toolbar.edit'),
           onClick: () => onEdit?.(linkAttrs),
         },
@@ -50,7 +49,7 @@ const LinkToolbar = ({
         type: 'icon',
         name: 'open',
         props: {
-          icon: <ExternalLink />,
+          icon: <Icon name="external-link" />,
           'aria-label': t('tiptap.link.toolbar.open'),
           onClick: () => onOpen?.(linkAttrs),
         },
@@ -63,7 +62,7 @@ const LinkToolbar = ({
         type: 'icon',
         name: 'unlink',
         props: {
-          icon: <Unlink className="text-danger" />,
+          icon: <Icon name="unlink" className="text-danger" />,
           'aria-label': t('tiptap.link.toolbar.unlink'),
           onClick: () => onUnlink?.(linkAttrs),
         },

@@ -1,7 +1,6 @@
-import { Close, Reset, SuccessOutline, Wand } from '@edifice-ui/icons';
 import { useTranslation } from 'react-i18next';
 
-import { Tooltip } from '..';
+import { Icon, Tooltip } from '..';
 import { usePaths } from '../../core';
 import { Status } from '../../types';
 import { Button, IconButton } from '../Button';
@@ -90,7 +89,7 @@ export const UploadCard = ({
       ),
       context: (
         <Button
-          leftIcon={<Reset />}
+          leftIcon={<Icon name="reset" />}
           variant="ghost"
           color="tertiary"
           onClick={onRetry}
@@ -129,7 +128,7 @@ export const UploadCard = ({
       ),
       context: (
         <Tooltip message={t('tiptap.tooltip.upload.loaded')} placement="top">
-          <SuccessOutline className="text-success" />
+          <Icon name="success-outline" className="text-success" />
         </Tooltip>
       ),
       image: (
@@ -150,7 +149,7 @@ export const UploadCard = ({
     isTypeImage && (
       <Tooltip message={t('tiptap.tooltip.upload.edit')} placement="top">
         <IconButton
-          icon={<Wand />}
+          icon={<Icon name="wand" />}
           variant="ghost"
           aria-label={t('tiptap.tooltip.upload.loading')}
           disabled={isLoading || !isSuccess}
@@ -183,7 +182,7 @@ export const UploadCard = ({
                 placement="top"
               >
                 <IconButton
-                  icon={<Close />}
+                  icon={<Icon name="close" />}
                   variant="ghost"
                   aria-label={t('tiptap.tooltip.upload.delete')}
                   color="tertiary"

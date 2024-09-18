@@ -1,9 +1,8 @@
 import { Ref } from 'react';
 
-import { Save } from '@edifice-ui/icons';
 import { useTranslation } from 'react-i18next';
 
-import { Button, FormControl } from '../../components';
+import { Button, FormControl, Icon } from '../../components';
 import { BookmarkProps } from './hooks/useShareBookmark';
 
 export const ShareBookmark = ({
@@ -40,7 +39,7 @@ export const ShareBookmark = ({
           color="primary"
           variant="ghost"
           disabled={bookmark.name.length === 0}
-          leftIcon={<Save />}
+          leftIcon={<Icon name="save" />}
           onClick={onSave}
           className="text-nowrap"
         >

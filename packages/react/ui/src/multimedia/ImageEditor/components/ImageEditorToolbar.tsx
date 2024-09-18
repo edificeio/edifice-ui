@@ -1,9 +1,8 @@
 import { useState } from 'react';
 
-import { Blur, Crop, Reset, Undo } from '@edifice-ui/icons';
 import { useTranslation } from 'react-i18next';
 
-import { Toolbar, ToolbarItem } from '../../../components';
+import { Icon, Toolbar, ToolbarItem } from '../../../components';
 
 export type ImageEditorAction = 'ROTATE' | 'UNDO' | 'CROP' | 'BLUR' | 'RESIZE';
 interface ImageEditorToolbarProps {
@@ -30,7 +29,7 @@ const ImageEditorToolbar = ({
       name: 'undo',
       props: {
         color: 'tertiary',
-        leftIcon: <Undo />,
+        leftIcon: <Icon name="undo" />,
         'aria-label': t('cancel'),
         children: t('cancel'),
         onClick: () => handleAndSave('UNDO'),
@@ -47,7 +46,7 @@ const ImageEditorToolbar = ({
       name: 'reset',
       props: {
         color: 'tertiary',
-        leftIcon: <Reset />,
+        leftIcon: <Icon name="reset" />,
         'aria-label': t('rotate'),
         children: t('rotate'),
         onClick: () => handleAndSave('ROTATE'),
@@ -59,7 +58,7 @@ const ImageEditorToolbar = ({
       name: 'crop',
       props: {
         color: 'tertiary',
-        leftIcon: <Crop />,
+        leftIcon: <Icon name="crop" />,
         'aria-label': t('crop'),
         children: t('crop'),
         className: action === 'CROP' ? 'is-selected' : '',
@@ -72,7 +71,7 @@ const ImageEditorToolbar = ({
       name: 'blur',
       props: {
         color: 'tertiary',
-        leftIcon: <Blur />,
+        leftIcon: <Icon name="blur" />,
         'aria-label': t('blur'),
         children: t('blur'),
         className: action === 'BLUR' ? 'is-selected' : '',

@@ -73,7 +73,6 @@
     "emoji-picker-react": "4.5.2"
   },
   "devDependencies": {
-    "@edifice-ui/icons": "workspace:*",
     "@edifice-ui/react": "workspace:*",
     "@types/node": "20.4.9",
     "@types/react": "18.2.33",
@@ -86,7 +85,6 @@
     "sass": "1.68.0"
   },
   "peerDependencies": {
-    "@edifice-ui/icons": "*",
     "@edifice-ui/react": "*",
     "@react-spring/web": "9.7.3",
     "react": "18.2.0",

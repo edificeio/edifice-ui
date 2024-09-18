@@ -7,9 +7,9 @@
  */
 import { forwardRef, Ref } from 'react';
 
-import { Search } from '@edifice-ui/icons';
 import clsx from 'clsx';
 
+import { Icon } from '..';
 import { ButtonRef } from './Button';
 import IconButton, { IconButtonProps } from './IconButton';
 
@@ -35,7 +35,12 @@ export interface SearchButtonProps extends Pick<IconButtonProps, PickedProps> {
  */
 const SearchButton = forwardRef(
   (
-    { icon = <Search />, onClick, className, ...restProps }: SearchButtonProps,
+    {
+      icon = <Icon name="search" />,
+      onClick,
+      className,
+      ...restProps
+    }: SearchButtonProps,
     ref?: Ref<ButtonRef>,
   ) => {
     const classes = clsx('btn-search', className);

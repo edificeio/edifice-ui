@@ -1,12 +1,12 @@
 import { ChangeEvent } from 'react';
 
-import { Search } from '@edifice-ui/icons';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
 import { Size } from '../../types';
 import { SearchButton } from '../Button';
 import FormControl from '../Form/FormControl';
+import { Icon } from '../Icon';
 
 export interface BaseProps {
   /**
@@ -87,7 +87,7 @@ const SearchBar = ({
     <FormControl id="search-bar" className={searchbar}>
       {isVariant && (
         <div className="position-absolute z-1 top-50 start-0 translate-middle-y border-0 ps-12 bg-transparent">
-          <Search />
+          <Icon name="search" />
         </div>
       )}
       <FormControl.Input
@@ -104,7 +104,7 @@ const SearchBar = ({
         <SearchButton
           type="submit"
           aria-label={t('search')}
-          icon={<Search />}
+          icon={<Icon name="search" />}
           className="border-start-0"
           onClick={handleClick}
         />

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
-import { Delete, Download } from '@edifice-ui/icons';
-import { Attachment, Grid, IconButton } from '@edifice-ui/react';
+import { Attachment, Grid, Icon, IconButton } from '@edifice-ui/react';
 import { Editor, NodeViewWrapper } from '@tiptap/react';
 import { useTranslation } from 'react-i18next';
 
@@ -60,7 +59,7 @@ export const AttachmentRenderer = (props: AttachmentProps) => {
                           aria-label={t('tiptap.attachments.download')}
                           color="tertiary"
                           type="button"
-                          icon={<Download />}
+                          icon={<Icon name="download" />}
                           variant="ghost"
                         />
                       </a>
@@ -69,7 +68,7 @@ export const AttachmentRenderer = (props: AttachmentProps) => {
                           aria-label={t('tiptap.attachments.delete')}
                           color="danger"
                           type="button"
-                          icon={<Delete />}
+                          icon={<Icon name="delete" />}
                           variant="ghost"
                           onClick={() => handleDelete(index)}
                         />

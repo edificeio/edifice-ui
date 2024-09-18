@@ -6,12 +6,12 @@ import {
   useState,
 } from 'react';
 
-import { TextHighlight } from '@edifice-ui/icons';
 import {
   ColorPalette,
   ColorPicker,
   DefaultPalette,
   Dropdown,
+  Icon,
   IconButton,
   IconButtonProps,
   Tooltip,
@@ -91,7 +91,7 @@ export const EditorToolbarHighlightColor = ({
           type="button"
           variant="ghost"
           color="tertiary"
-          icon={<TextHighlight />}
+          icon={<Icon name="text-highlight" />}
           aria-label={t('tiptap.toolbar.highlight.back')}
           className={isActive ? 'selected' : ''}
         />

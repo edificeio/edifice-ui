@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import { Folder, RafterRight, RafterDown } from '@edifice-ui/icons';
 import { useTranslation } from 'react-i18next';
 
+import { Icon } from '..';
 import useTreeItemEvents from './hooks/useTreeItemEvents';
 
 export interface TreeItemProps {
@@ -117,7 +117,7 @@ const TreeItem = (props: TreeItemProps) => {
     }
   }, [nodeId, selectedNodesIds]);
 
-  const rafterSize = section ? 16 : 12;
+  const rafterSize = section ? '16' : '12';
 
   const renderItem = () => (
     <li
@@ -138,29 +138,16 @@ const TreeItem = (props: TreeItemProps) => {
             aria-label={t('foldUnfold')}
           >
             {Array.isArray(children) && !!children.length && !expanded && (
-              <RafterRight
-                title={t('foldUnfold')}
-                width={rafterSize}
-                height={rafterSize}
-              />
+              <Icon name="rafter-right" size={rafterSize} />
             )}
 
             {Array.isArray(children) && !!children.length && expanded && (
-              <RafterDown
-                title={t('foldUnfold')}
-                width={rafterSize}
-                height={rafterSize}
-              />
+              <Icon name="rafter-down" size={rafterSize} />
             )}
 
             {/* Hide rafter when no children to keep alignment */}
             {!Array.isArray(children) && (
-              <RafterRight
-                title={t('foldUnfold')}
-                width={rafterSize}
-                height={rafterSize}
-                aria-hidden="true"
-              />
+              <Icon name="rafter-right" size={rafterSize} aria-hidden="true" />
             )}
           </div>
           <div
@@ -172,7 +159,7 @@ const TreeItem = (props: TreeItemProps) => {
             onFocus={handleItemFocus}
             onBlur={handleItemBlur}
           >
-            {section && <Folder title={t('folder')} width={20} height={20} />}
+            {section && <Icon name="folder" size="20" />}
             <span className="text-truncate">{label}</span>
           </div>
         </div>

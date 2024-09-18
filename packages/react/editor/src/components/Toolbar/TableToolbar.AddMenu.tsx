@@ -1,13 +1,4 @@
-import {
-  ArrowDown,
-  ArrowLeft,
-  ArrowRight,
-  ArrowUp,
-  HighlightColumn,
-  HighlightRow,
-} from '@edifice-ui/icons';
-import { Tooltip } from '@edifice-ui/react';
-import { Dropdown } from '@edifice-ui/react';
+import { Dropdown, Icon, Tooltip } from '@edifice-ui/react';
 import { Editor } from '@tiptap/react';
 import { useTranslation } from 'react-i18next';
 
@@ -32,14 +23,14 @@ export const TableToolbarAddMenu = ({ editor }: Props) => {
       <Dropdown.Menu>
         <Dropdown.Item
           key="add-above"
-          icon={<ArrowUp />}
+          icon={<Icon name="arrow-up" />}
           onClick={() => editor?.chain().focus().addRowBefore().run()}
         >
           {t('tiptap.table.toolbar.line.above')}
         </Dropdown.Item>
         <Dropdown.Item
           key="add-below"
-          icon={<ArrowDown />}
+          icon={<Icon name="arrow-down" />}
           onClick={() => editor?.chain().focus().addRowAfter().run()}
         >
           {t('tiptap.table.toolbar.line.below')}
@@ -47,14 +38,14 @@ export const TableToolbarAddMenu = ({ editor }: Props) => {
         <Dropdown.Separator />
         <Dropdown.Item
           key="add-left"
-          icon={<ArrowLeft />}
+          icon={<Icon name="arrow-left" />}
           onClick={() => editor?.chain().focus().addColumnBefore().run()}
         >
           {t('tiptap.table.toolbar.col.left')}
         </Dropdown.Item>
         <Dropdown.Item
           key="add-right"
-          icon={<ArrowRight />}
+          icon={<Icon name="arrow-right" />}
           onClick={() => editor?.chain().focus().addColumnAfter().run()}
         >
           {t('tiptap.table.toolbar.col.right')}
@@ -62,14 +53,14 @@ export const TableToolbarAddMenu = ({ editor }: Props) => {
         <Dropdown.Separator />
         <Dropdown.Item
           key="header-row"
-          icon={<HighlightRow />}
+          icon={<Icon name="highlight-row" />}
           onClick={() => editor?.chain().focus().toggleHeaderRow().run()}
         >
           {t('tiptap.table.toolbar.line.head')}
         </Dropdown.Item>
         <Dropdown.Item
           key="header-col"
-          icon={<HighlightColumn />}
+          icon={<Icon name="highlight-column" />}
           onClick={() => editor?.chain().focus().toggleHeaderColumn().run()}
         >
           {t('tiptap.table.toolbar.col.head')}

@@ -1,20 +1,6 @@
 import { RefObject } from 'react';
 
-import {
-  TextVanilla,
-  Superscript,
-  Subscript,
-  SquareRoot,
-  Code,
-  Table,
-  BulletList,
-  OrderedList,
-  AlignLeft,
-  AlignCenter,
-  AlignRight,
-  AlignJustify,
-} from '@edifice-ui/icons';
-import { DropdownMenuOptions, MediaLibraryRef } from '@edifice-ui/react';
+import { DropdownMenuOptions, Icon, MediaLibraryRef } from '@edifice-ui/react';
 import { Editor } from '@tiptap/react';
 import { useTranslation } from 'react-i18next';
 
@@ -26,7 +12,7 @@ export const useActionOptions = (
   const { t } = useTranslation();
   const options: DropdownMenuOptions[] = [
     {
-      icon: <TextVanilla />,
+      icon: <Icon name="text-vanilla" />,
       label: t('tiptap.toolbar.removeFormat'),
       action: () => editor?.chain().clearNodes().unsetAllMarks().run(),
     },
@@ -34,7 +20,7 @@ export const useActionOptions = (
       type: 'divider',
     },
     {
-      icon: <Table />,
+      icon: <Icon name="table" />,
       label: t('tiptap.toolbar.table'),
       action: () =>
         editor
@@ -47,17 +33,17 @@ export const useActionOptions = (
       type: 'divider',
     },
     {
-      icon: <Superscript />,
+      icon: <Icon name="superscript" />,
       label: t('tiptap.toolbar.superscript'),
       action: () => editor?.chain().focus().toggleSuperscript().run(),
     },
     {
-      icon: <Subscript />,
+      icon: <Icon name="subscript" />,
       label: t('tiptap.toolbar.subscript'),
       action: () => editor?.chain().focus().toggleSubscript().run(),
     },
     {
-      icon: <SquareRoot />,
+      icon: <Icon name="square-root" />,
       label: t('tiptap.toolbar.mathjax'),
       action: () => {
         toggleMathsModal();
@@ -67,41 +53,41 @@ export const useActionOptions = (
       type: 'divider',
     },
     {
-      icon: <Code />,
+      icon: <Icon name="code" />,
       label: t('tiptap.toolbar.embed.iframe'),
       action: () => mediaLibraryRef.current?.show('embedder'),
     },
   ];
   const listOptions: DropdownMenuOptions[] = [
     {
-      icon: <BulletList />,
+      icon: <Icon name="bullet-list" />,
       label: t('tiptap.toolbar.ulist'),
       action: () => editor?.chain().focus().toggleBulletList().run(),
     },
     {
-      icon: <OrderedList />,
+      icon: <Icon name="ordered-list" />,
       label: t('tiptap.toolbar.olist'),
       action: () => editor?.chain().focus().toggleOrderedList().run(),
     },
   ];
   const alignmentOptions: DropdownMenuOptions[] = [
     {
-      icon: <AlignLeft />,
+      icon: <Icon name="align-left" />,
       label: t('tiptap.toolbar.text.left'),
       action: () => editor?.chain().focus().setTextAlign('left').run(),
     },
     {
-      icon: <AlignCenter />,
+      icon: <Icon name="align-center" />,
       label: t('tiptap.toolbar.text.center'),
       action: () => editor?.chain().focus().setTextAlign('center').run(),
     },
     {
-      icon: <AlignRight />,
+      icon: <Icon name="align-right" />,
       label: t('tiptap.toolbar.text.right'),
       action: () => editor?.chain().focus().setTextAlign('right').run(),
     },
     {
-      icon: <AlignJustify />,
+      icon: <Icon name="align-justify" />,
       label: t('tiptap.toolbar.text.justify'),
       action: () => editor?.chain().focus().setTextAlign('justify').run(),
     },

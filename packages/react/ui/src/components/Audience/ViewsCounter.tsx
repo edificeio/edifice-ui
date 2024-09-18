@@ -1,7 +1,7 @@
-import { See } from '@edifice-ui/icons';
-import { Button } from '../Button';
-import { StringUtils } from '../../utils';
 import clsx from 'clsx';
+import { Icon } from '..';
+import { StringUtils } from '../../utils';
+import { Button } from '../Button';
 
 export interface ViewsCounterProps {
   viewsCounter: number;
@@ -24,7 +24,7 @@ const ViewsCounter = ({
 
   return (
     <Button
-      rightIcon={<See />}
+      rightIcon={<Icon name="see" />}
       variant="ghost"
       type="button"
       className={className}

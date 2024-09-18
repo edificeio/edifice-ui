@@ -1,45 +1,32 @@
-import { RafterDown } from '@edifice-ui/icons';
-import {
-  Community,
-  Disconnect,
-  Home,
-  MyApps,
-  NeoAssistance,
-  NeoMessaging,
-  NewRelease,
-  OneAssistance as Assistance,
-  OneMessaging,
-  OneProfile,
-  Userbook,
-} from '@edifice-ui/icons/nav';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
-import { Badge } from './Badge';
-import { Navbar } from './Navbar';
-import { NavBarNav } from './NavbarNav';
-import { NavItem } from './NavItem';
-import { NavLink } from './NavLink';
-import { WidgetAppsBody, WidgetAppsFooter } from './WidgetApps';
 import {
   Avatar,
-  VisuallyHidden,
+  Icon,
   Logo,
   Popover,
   PopoverBody,
   PopoverFooter,
+  VisuallyHidden,
 } from '../../components';
 import {
   useConversation,
-  useUser,
+  useHasWorkflow,
   useHeader,
   useOdeClient,
-  useHasWorkflow,
   useOdeTheme,
+  useUser,
 } from '../../core';
 import { Help } from '../Help';
 import { useHelp } from '../Help/hooks/useHelp';
 import SearchEngine from '../SearchEngine/SearchEngine';
+import { Badge } from './Badge';
+import { NavItem } from './NavItem';
+import { NavLink } from './NavLink';
+import { Navbar } from './Navbar';
+import { NavBarNav } from './NavbarNav';
+import { WidgetAppsBody, WidgetAppsFooter } from './WidgetApps';
 
 export interface HeaderProps {
   is1d?: boolean;
@@ -121,7 +108,10 @@ const Header = ({ is1d = false, src = '' }: HeaderProps): JSX.Element => {
                 {conversationWorflow && (
                   <NavItem>
                     <a href="/conversation/conversation" className="nav-link">
-                      <OneMessaging className="icon notification" />
+                      <Icon
+                        name="nav/one-messaging"
+                        className="icon notification"
+                      />
                       {hasMessages && <Badge>{messages}</Badge>}
                       <VisuallyHidden>{t('navbar.messages')}</VisuallyHidden>
                     </a>
@@ -133,7 +123,7 @@ const Header = ({ is1d = false, src = '' }: HeaderProps): JSX.Element => {
                     className="dropdown-item"
                     translate={t('navbar.myaccount')}
                   >
-                    <OneProfile className="icon user" />
+                    <Icon name="nav/one-profile" className="icon user" />
                   </NavLink>
                 </NavItem>
                 {currentLanguage === 'fr' && hasOldHelpEnableWorkflow ? (
@@ -144,7 +134,7 @@ const Header = ({ is1d = false, src = '' }: HeaderProps): JSX.Element => {
                         setIsHelpOpen(true);
                       }}
                     >
-                      <Assistance className="icon help" />
+                      <Icon name="nav/neo-assistance" className="icon help" />
                       <VisuallyHidden>{t('navbar.help')}</VisuallyHidden>
                     </button>
 
@@ -159,7 +149,7 @@ const Header = ({ is1d = false, src = '' }: HeaderProps): JSX.Element => {
                 ) : null}
                 <NavItem>
                   <button className="nav-link" onClick={handleLogout}>
-                    <Disconnect className="icon logout" />
+                    <Icon name="nav/disconnect" className="icon logout" />
                     <VisuallyHidden>{t('navbar.disconnect')}</VisuallyHidden>
                   </button>
                 </NavItem>
@@ -172,7 +162,8 @@ const Header = ({ is1d = false, src = '' }: HeaderProps): JSX.Element => {
                     aria-label={t('navbar.secondary.navigation')}
                     onClick={toggleCollapsedNav}
                   >
-                    <RafterDown
+                    <Icon
+                      name="rafter-down"
                       className="icon rafter-down"
                       width="20"
                       height="20"
@@ -202,7 +193,11 @@ const Header = ({ is1d = false, src = '' }: HeaderProps): JSX.Element => {
                 <NavBarNav className="gap-8">
                   <NavItem>
                     <a href="/timeline/timeline" className="button">
-                      <NewRelease color="#fff" className="d-md-none" />
+                      <Icon
+                        name="nav/new-release"
+                        color="#fff"
+                        className="d-md-none"
+                      />
                       <span className="d-inline-block">
                         {t('portal.header.navigation.whatsnew')}
                       </span>
@@ -210,7 +205,11 @@ const Header = ({ is1d = false, src = '' }: HeaderProps): JSX.Element => {
                   </NavItem>
                   <NavItem>
                     <a href="/userbook/annuaire" className="button">
-                      <Userbook color="#fff" className="d-md-none" />
+                      <Icon
+                        name="nav/userbook"
+                        color="#fff"
+                        className="d-md-none"
+                      />
                       <span className="d-inline-block">
                         {t('portal.header.navigation.classMembers')}
                       </span>
@@ -218,7 +217,11 @@ const Header = ({ is1d = false, src = '' }: HeaderProps): JSX.Element => {
                   </NavItem>
                   <NavItem>
                     <a href="/welcome" className="button">
-                      <MyApps color="#fff" className="d-md-none" />
+                      <Icon
+                        name="nav/my-apps"
+                        color="#fff"
+                        className="d-md-none"
+                      />
                       <span className="d-inline-block">
                         {t('portal.header.navigation.myapps')}
                       </span>
@@ -242,7 +245,7 @@ const Header = ({ is1d = false, src = '' }: HeaderProps): JSX.Element => {
             <ul className="navbar-nav">
               <NavItem>
                 <NavLink link="/timeline/timeline" translate={t('navbar.home')}>
-                  <Home color="#fff" />
+                  <Icon name="nav/home" color="#fff" />
                 </NavLink>
               </NavItem>
               <NavItem
@@ -253,7 +256,7 @@ const Header = ({ is1d = false, src = '' }: HeaderProps): JSX.Element => {
                 aria-expanded={isAppsHovered}
               >
                 <NavLink link="/welcome" translate={t('navbar.applications')}>
-                  <MyApps color="#fff" />
+                  <Icon name="nav/my-apps" color="#fff" />
                 </NavLink>
                 <Popover
                   className="top-100 widget"
@@ -275,7 +278,7 @@ const Header = ({ is1d = false, src = '' }: HeaderProps): JSX.Element => {
                     link="/conversation/conversation"
                     translate={t('conversation')}
                   >
-                    <NeoMessaging color="#fff" />
+                    <Icon name="nav/neo-messaging" color="#fff" />
                     {hasMessages && <Badge>{messages}</Badge>}
                   </NavLink>
                 </NavItem>
@@ -287,7 +290,7 @@ const Header = ({ is1d = false, src = '' }: HeaderProps): JSX.Element => {
                     link={msgLink}
                     translate={t('conversation')}
                   >
-                    <NeoMessaging color="#fff" />
+                    <Icon name="nav/neo-messaging" color="#fff" />
                     {hasMessages && <Badge>{messages}</Badge>}
                   </NavLink>
                 </NavItem>
@@ -300,7 +303,7 @@ const Header = ({ is1d = false, src = '' }: HeaderProps): JSX.Element => {
                       setIsHelpOpen(true);
                     }}
                   >
-                    <NeoAssistance color="#fff" />
+                    <Icon name="nav/neo-assistance" color="#fff" />
                     <VisuallyHidden>{t('support')}</VisuallyHidden>
                   </button>
 
@@ -323,7 +326,8 @@ const Header = ({ is1d = false, src = '' }: HeaderProps): JSX.Element => {
                     aria-label={t('navbar.open.menu')}
                     onClick={toggleCollapsedNav}
                   >
-                    <RafterDown
+                    <Icon
+                      name="rafter-down"
                       className="icon rafter-down"
                       width="20"
                       height="20"
@@ -339,7 +343,10 @@ const Header = ({ is1d = false, src = '' }: HeaderProps): JSX.Element => {
                     {communityWorkflow && (
                       <NavItem>
                         <a href="/community" className="nav-link dropdown-item">
-                          <Community className="icon community" />
+                          <Icon
+                            name="nav/community"
+                            className="icon community"
+                          />
                           <span className="nav-text">
                             {t('navbar.community')}
                           </span>
@@ -377,7 +384,7 @@ const Header = ({ is1d = false, src = '' }: HeaderProps): JSX.Element => {
                         }
                         className="nav-link dropdown-item"
                       >
-                        <Disconnect className="icon logout" />
+                        <Icon name="nav/disconnect" className="icon logout" />
                         <span id="logout-label" className="nav-text">
                           {t('navbar.disconnect')}
                         </span>

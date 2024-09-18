@@ -1,10 +1,10 @@
 import { ReactNode, useEffect, useRef } from 'react';
 
-import { Close } from '@edifice-ui/icons';
 import { useTranslation } from 'react-i18next';
 
-import { useModalContext } from './ModalContext';
+import { Icon } from '..';
 import IconButton from '../Button/IconButton';
+import { useModalContext } from './ModalContext';
 
 export interface ModalHeaderProps {
   /**
@@ -41,7 +41,7 @@ const ModalHeader = (props: ModalHeaderProps) => {
         ref={closeButtonRef}
         aria-label={t('close')}
         color="tertiary"
-        icon={<Close />}
+        icon={<Icon name="close" />}
         type="button"
         variant="ghost"
         title={t('close')}

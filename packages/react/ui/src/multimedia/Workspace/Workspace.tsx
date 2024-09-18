@@ -1,10 +1,5 @@
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 
-import {
-  SortAscendingLetters,
-  SortDescendingLetters,
-  SortTime,
-} from '@edifice-ui/icons';
 import clsx from 'clsx';
 import {
   Role,
@@ -18,6 +13,7 @@ import {
   EmptyScreen,
   FileCard,
   Grid,
+  Icon,
   LoadingScreen,
   SearchBar,
   TreeView,
@@ -376,19 +372,19 @@ const Workspace = ({
                 />
                 <Dropdown.Menu>
                   <Dropdown.Item
-                    icon={<SortTime />}
+                    icon={<Icon name="sort-time" />}
                     onClick={() => setSortOrder(['modified', 'desc'])}
                   >
                     {t('sort.order.modify.desc')}
                   </Dropdown.Item>
                   <Dropdown.Item
-                    icon={<SortAscendingLetters />}
+                    icon={<Icon name="sort-ascending-letters" />}
                     onClick={() => setSortOrder(['name', 'asc'])}
                   >
                     {t('sort.order.alpha.asc')}
                   </Dropdown.Item>
                   <Dropdown.Item
-                    icon={<SortDescendingLetters />}
+                    icon={<Icon name="sort-descending-letters" />}
                     onClick={() => setSortOrder(['name', 'desc'])}
                   >
                     {t('sort.order.alpha.desc')}

@@ -1,7 +1,5 @@
 import { ChangeEvent, Dispatch, useEffect, useReducer } from 'react';
 
-import { Bookmark } from '@edifice-ui/icons';
-
 import {
   ShareRight,
   ShareRightAction,
@@ -11,7 +9,7 @@ import {
 } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 
-import { OptionListItemType } from '../../../components';
+import { Icon, OptionListItemType } from '../../../components';
 import { useIsAdml, useOdeClient } from '../../../core';
 import { useDebounce } from '../../../hooks';
 import { ShareOptions } from '../ShareModal';
@@ -160,7 +158,10 @@ export const useSearch = ({
             return {
               value: searchResult.id,
               label,
-              icon: searchResult.type === 'sharebookmark' ? <Bookmark /> : null,
+              icon:
+                searchResult.type === 'sharebookmark' ? (
+                  <Icon name="bookmark" />
+                ) : null,
             };
           },
         );

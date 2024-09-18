@@ -1,7 +1,5 @@
 import { ReactNode, useState } from 'react';
 
-import { Bookmark, InfoCircle, RafterDown } from '@edifice-ui/icons';
-
 import { UseMutationResult } from '@tanstack/react-query';
 import {
   ID,
@@ -18,6 +16,7 @@ import {
   Checkbox,
   Combobox,
   Heading,
+  Icon,
   LoadingScreen,
   Modal,
   Tooltip,
@@ -211,10 +210,10 @@ export default function ShareResourceModal({
         <div className="mt-16">
           <Button
             color="tertiary"
-            leftIcon={<Bookmark />}
+            leftIcon={<Icon name="bookmark" />}
             rightIcon={
-              <RafterDown
-                title={t('show')}
+              <Icon
+                name="rafter-down"
                 className="w-16 min-w-0"
                 style={{
                   transition: 'rotate 0.2s ease-out',
@@ -251,7 +250,7 @@ export default function ShareResourceModal({
             }
             placement="top"
           >
-            <InfoCircle className="c-pointer" height="18" />
+            <Icon name="info-circle" className="c-pointer" size="18" />
           </Tooltip>
         </Heading>
         <div className="row">

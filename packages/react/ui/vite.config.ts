@@ -43,8 +43,6 @@ export default defineConfig({
         'swiper/modules',
         'react/jsx-runtime',
         'edifice-ts-client',
-        '@edifice-ui/icons/nav',
-        '@edifice-ui/icons/audience',
       ],
     },
   },

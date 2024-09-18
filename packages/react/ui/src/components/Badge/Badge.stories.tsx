@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import Badge, { BadgeProps } from './Badge';
 import { Hourglass } from '@edifice-ui/icons';
+import Badge, { BadgeProps } from './Badge';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Badge> = {

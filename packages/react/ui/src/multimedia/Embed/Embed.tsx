@@ -1,9 +1,8 @@
 import { useState } from 'react';
 
-import { Code } from '@edifice-ui/icons';
 import { useTranslation } from 'react-i18next';
 
-import { FormControl, TextArea } from '../../components';
+import { FormControl, Icon, TextArea } from '../../components';
 
 export interface EmbedProps {
   onSuccess: (resource?: string) => void;
@@ -30,7 +29,7 @@ const Embed = ({ onSuccess }: EmbedProps) => {
     <div className="d-flex flex-column flex-fill">
       <div className="mb-32">{t('bbm.embed.description')}</div>
       <div className="mb-8 d-flex">
-        <Code className="me-8"></Code>
+        <Icon name="code" className="me-8" />
         {t('bbm.embed.title')}
       </div>
       <FormControl id="iframeContent">
