@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { AlertCircle, AlignLeft, Calendar, Smiley } from '@edifice-ui/icons';
+import { Icon } from '..';
 import { Menu } from './Menu';
 
 const meta: Meta<typeof Menu> = {
@@ -17,8 +17,8 @@ type Story = StoryObj<typeof Menu>;
 
 const menuItem = {
   onClick: () => console.log(''),
-  leftIcon: <AlignLeft />,
-  rightIcon: <Smiley />,
+  leftIcon: <Icon name="align-left" />,
+  rightIcon: <Icon name="smiley" />,
   children: 'Text',
   selected: false,
 };
@@ -69,13 +69,13 @@ const data = [
     id: '1',
     children: 'Node 1',
     onClick: () => console.log('node 1'),
-    leftIcon: <AlertCircle />,
+    leftIcon: <Icon name="alert-circle" />,
   },
   {
     id: '2',
     children: 'Node 2',
     onClick: () => console.log('node 2'),
-    leftIcon: <Calendar />,
+    leftIcon: <Icon name="calendar" />,
   },
 ];
 

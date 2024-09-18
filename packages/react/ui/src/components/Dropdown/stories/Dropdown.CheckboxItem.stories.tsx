@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import Dropdown from '../Dropdown';
 import { useState } from 'react';
-import { Filter } from '@edifice-ui/icons';
+import { Icon } from '../..';
+import Dropdown from '../Dropdown';
 
 const meta: Meta<typeof Dropdown> = {
   title: 'Components/Dropdown/Dropdown Checkbox Item',
@@ -59,7 +59,7 @@ export const CheckboxGroup: Story = {
       <Dropdown>
         <Dropdown.Trigger
           label="Dropdown"
-          icon={<Filter />}
+          icon={<Icon name="filter" />}
           badgeContent={count || args.badgeContent}
         />
         <Dropdown.Menu>
@@ -114,7 +114,7 @@ export const BadgeContent: Story = {
       <Dropdown>
         <Dropdown.Trigger
           label="Dropdown"
-          icon={<Filter />}
+          icon={<Icon name="filter" />}
           badgeContent={count}
         />
         <Dropdown.Menu>

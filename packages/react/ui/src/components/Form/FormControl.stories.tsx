@@ -1,7 +1,7 @@
-import { Mail } from '@edifice-ui/icons';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { FormControl, FormText, FormControlProps } from './index';
+import { Icon } from '..';
+import { FormControl, FormControlProps, FormText } from './index';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof FormControl> = {
@@ -59,7 +59,9 @@ export const WithLabelAndIcon: Story = {
   render: (args: FormControlProps) => {
     return (
       <FormControl id="email-7">
-        <FormControl.Label leftIcon={<Mail />}>Email</FormControl.Label>
+        <FormControl.Label leftIcon={<Icon name="mail" />}>
+          Email
+        </FormControl.Label>
         <FormControl.Input
           type="text"
           placeholder="Placeholder text"
@@ -74,7 +76,9 @@ export const WithInformativeMessage: Story = {
   render: (args: FormControlProps) => {
     return (
       <FormControl id="email" style={{ marginTop: '3px' }}>
-        <FormControl.Label leftIcon={<Mail />}>Email</FormControl.Label>
+        <FormControl.Label leftIcon={<Icon name="mail" />}>
+          Email
+        </FormControl.Label>
         <FormControl.Input
           type="text"
           placeholder="Placeholder text"
@@ -90,7 +94,9 @@ export const OptionalField: Story = {
   render: (args: FormControlProps) => {
     return (
       <FormControl id="email-0" isOptional>
-        <FormControl.Label leftIcon={<Mail />}>Email</FormControl.Label>
+        <FormControl.Label leftIcon={<Icon name="mail" />}>
+          Email
+        </FormControl.Label>
         <FormControl.Input
           type="text"
           placeholder="Placeholder text"
@@ -105,7 +111,10 @@ export const OptionalFieldCustomText: Story = {
   render: (args: FormControlProps) => {
     return (
       <FormControl id="email-1" isOptional>
-        <FormControl.Label leftIcon={<Mail />} optionalText="Not mandatory">
+        <FormControl.Label
+          leftIcon={<Icon name="mail" />}
+          optionalText="Not mandatory"
+        >
           Email
         </FormControl.Label>
         <FormControl.Input
@@ -122,7 +131,9 @@ export const RequiredField: Story = {
   render: (args: FormControlProps) => {
     return (
       <FormControl id="email-2" isRequired>
-        <FormControl.Label leftIcon={<Mail />}>Email</FormControl.Label>
+        <FormControl.Label leftIcon={<Icon name="mail" />}>
+          Email
+        </FormControl.Label>
         <FormControl.Input
           type="text"
           placeholder="Placeholder text"
@@ -137,7 +148,10 @@ export const RequiredFieldCustomText: Story = {
   render: (args: FormControlProps) => {
     return (
       <FormControl id="email-3" isRequired>
-        <FormControl.Label leftIcon={<Mail />} requiredText="- Mandatory">
+        <FormControl.Label
+          leftIcon={<Icon name="mail" />}
+          requiredText="- Mandatory"
+        >
           Email
         </FormControl.Label>
         <FormControl.Input

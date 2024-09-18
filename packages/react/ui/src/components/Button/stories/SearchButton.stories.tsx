@@ -1,6 +1,6 @@
-import { Search, UserSearch } from '@edifice-ui/icons';
 import { Meta, StoryObj } from '@storybook/react';
 
+import { Icon } from '../..';
 import SearchButton from '../SearchButton';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -11,7 +11,7 @@ const meta: Meta<typeof SearchButton> = {
     'aria-label': 'search',
     type: 'button',
     disabled: false,
-    icon: <Search />,
+    icon: <Icon name="search" />,
   },
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
 };
@@ -23,6 +23,6 @@ export const Base: Story = {};
 
 export const WithCustomIcon: Story = {
   args: {
-    icon: <UserSearch />,
+    icon: <Icon name="user-search" />,
   },
 };

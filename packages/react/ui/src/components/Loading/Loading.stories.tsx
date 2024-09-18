@@ -1,8 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
+import { Icon } from '..';
 import Loading, { LoadingProps } from './Loading';
-
-import { Hourglass } from '@edifice-ui/icons';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Loading> = {
@@ -88,7 +87,7 @@ export const LoadingRightWithText: Story = {
 export const LoadingCustomIcon: Story = {
   args: {
     loadingPosition: 'left',
-    loadingIcon: <Hourglass />,
+    loadingIcon: <Icon name="hourglass" />,
     children: 'Loading...',
   },
 
@@ -107,7 +106,7 @@ export const LoadingCustomIcon: Story = {
 export const LoadingCustomIconWithColor: Story = {
   args: {
     loadingPosition: 'left',
-    loadingIcon: <Hourglass color="blue" />,
+    loadingIcon: <Icon name="hourglass" color="blue" />,
     children: 'Loading...',
   },
 };
@@ -115,7 +114,7 @@ export const LoadingCustomIconWithColor: Story = {
 export const LoadingRightCustomIcon: Story = {
   args: {
     loadingPosition: 'right',
-    loadingIcon: <Hourglass />,
+    loadingIcon: <Icon name="hourglass" />,
     children: 'Loading...',
   },
 

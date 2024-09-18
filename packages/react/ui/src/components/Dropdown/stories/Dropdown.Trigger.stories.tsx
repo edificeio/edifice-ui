@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import Dropdown from '../Dropdown';
-import { Edit, Filter } from '@edifice-ui/icons';
-import IconButton, { IconButtonProps } from '../../Button/IconButton';
 import { RefAttributes } from 'react';
 import { JSX } from 'react/jsx-runtime';
+import { Icon } from '../..';
+import IconButton, { IconButtonProps } from '../../Button/IconButton';
+import Dropdown from '../Dropdown';
 import DropdownTrigger from '../DropdownTrigger';
 
 const meta: Meta<typeof DropdownTrigger> = {
@@ -40,7 +40,7 @@ export const WithIcon: Story = {
   render: (args) => {
     return (
       <Dropdown>
-        <Dropdown.Trigger icon={<Filter />} />
+        <Dropdown.Trigger icon={<Icon name="filter" />} />
         <Dropdown.Menu>
           <Dropdown.Item>Dropdown Item</Dropdown.Item>
           <Dropdown.Item>Dropdown Item</Dropdown.Item>
@@ -173,7 +173,7 @@ export const CustomTrigger: Story = {
               aria-label="label"
               color="tertiary"
               variant="ghost"
-              icon={<Edit />}
+              icon={<Icon name="edit" />}
             />
 
             <Dropdown.Menu>
