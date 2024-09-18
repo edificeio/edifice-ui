@@ -17,9 +17,8 @@ import { RootProps } from "../types";
 
 const CommentProvider = ({
   comments: defaultComments,
-  callbacks,
-  type = "edit",
   options: commentOptions,
+  ...props
 }: RootProps) => {
   const options = {
     maxCommentLength: DEFAULT_MAX_COMMENT_LENGTH,
@@ -37,6 +36,7 @@ const CommentProvider = ({
 
   const { t } = useTranslation();
   const { user } = useOdeClient();
+  const { type } = props;
 
   const usersIds = Array.from(
     new Set(defaultComments?.map((comment) => comment.authorId)),
@@ -83,25 +83,34 @@ const CommentProvider = ({
   };
 
   const handleReset = () => {
-    callbacks?.reset?.();
+    if (type === "edit") {
+      props.callbacks.reset?.();
+    }
     setContent("");
 
     if (editCommentId) setEditCommentId(null);
   };
 
   const handleDeleteComment = (id: string) => {
-    callbacks?.delete(id);
+    if (type === "edit") {
+      props.callbacks.delete(id);
+    }
   };
 
   const handleUpdateComment = (comment: string) => {
     if (editCommentId) {
-      callbacks?.put({ comment, commentId: editCommentId });
+      if (type === "edit") {
+        props.callbacks.put({ comment, commentId: editCommentId });
+      }
+
       setEditCommentId(null);
     }
   };
 
   const handleCreateComment = (content: string) => {
-    callbacks?.post(content);
+    if (type === "edit") {
+      props.callbacks.post(content);
+    }
     setContent("");
   };
 

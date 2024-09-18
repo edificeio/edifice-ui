@@ -22,12 +22,21 @@ export interface CommentCallbacks {
   reset?: () => void;
 }
 
-export interface RootProps {
+interface BaseProps {
   comments: CommentProps[] | undefined;
-  type?: CommentType;
-  callbacks?: CommentCallbacks;
   options?: Partial<CommentOptions>;
 }
+interface EditRootProps extends BaseProps {
+  type: "edit";
+  callbacks: CommentCallbacks;
+}
+
+interface ReadRootProps extends BaseProps {
+  type: "read";
+}
+
+export type RootProps = EditRootProps | ReadRootProps;
+
 
 export type CommentOptions = {
   /**
