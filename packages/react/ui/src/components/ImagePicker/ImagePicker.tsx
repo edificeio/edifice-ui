@@ -6,10 +6,10 @@ import {
   useState,
 } from 'react';
 
-import { Delete, Edit } from '@edifice-ui/icons';
 import clsx from 'clsx';
 import { IWebApp } from 'edifice-ts-client';
 
+import { Icon } from '..';
 import { useDropzone } from '../../hooks';
 import { AppIcon } from '../AppIcon';
 import { Avatar } from '../Avatar';
@@ -124,7 +124,7 @@ export const ImagePicker = forwardRef(
           <IconButton
             aria-label={addButtonLabel}
             color="tertiary"
-            icon={<Edit />}
+            icon={<Icon name="edit" />}
             onClick={handleClick}
             type="button"
             variant="ghost"
@@ -133,7 +133,7 @@ export const ImagePicker = forwardRef(
             aria-label={deleteButtonLabel}
             color="danger"
             disabled={!preview}
-            icon={<Delete width="20" height="20" />}
+            icon={<Icon name="delete" size="20" />}
             onClick={handleClean}
             type="button"
             variant="ghost"

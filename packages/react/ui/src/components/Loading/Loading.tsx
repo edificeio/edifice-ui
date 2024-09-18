@@ -1,7 +1,7 @@
 import { forwardRef, ReactNode, Ref } from 'react';
 
-import { Loader } from '@edifice-ui/icons';
 import clsx from 'clsx';
+import { Icon } from '..';
 
 export type LoadingPosition = 'left' | 'right' | undefined;
 export type LoadingIcon = JSX.Element | undefined;
@@ -49,7 +49,7 @@ const Loading = forwardRef(
       if (loadingIcon) {
         icon = loadingIcon;
       } else {
-        icon = <Loader {...restProps} aria-label="Loading" />;
+        icon = <Icon name="loader" {...restProps} aria-label="Loading" />;
       }
 
       return icon;

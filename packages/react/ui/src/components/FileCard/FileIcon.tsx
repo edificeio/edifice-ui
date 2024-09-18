@@ -1,6 +1,6 @@
-import { Paperclip } from '@edifice-ui/icons';
 import clsx from 'clsx';
 import { Role } from 'edifice-ts-client';
+import { Icon } from '..';
 
 const FileIcon = ({
   type,
@@ -18,7 +18,9 @@ const FileIcon = ({
     roleMap?.color,
   );
 
-  return <div className={fileicon}>{roleMap?.icon ?? <Paperclip />}</div>;
+  return (
+    <div className={fileicon}>{roleMap?.icon ?? <Icon name="paperclip" />}</div>
+  );
 };
 
 export default FileIcon;
