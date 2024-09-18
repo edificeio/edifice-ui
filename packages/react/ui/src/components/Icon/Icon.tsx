@@ -16,6 +16,9 @@ type IconSize =
   | '48'
   | (string & {});
 
+/**
+ * Icon component displays any icon from `@edifice.io/icons`
+ */
 export const Icon = ({
   name,
   size = '24',

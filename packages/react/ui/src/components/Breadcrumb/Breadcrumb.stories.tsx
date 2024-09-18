@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import Breadcrumb from './Breadcrumb';
+import { Breadcrumb } from './Breadcrumb';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Breadcrumb> = {

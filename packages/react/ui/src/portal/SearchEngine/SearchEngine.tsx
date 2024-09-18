@@ -1,9 +1,8 @@
 import { useId, useRef } from 'react';
 
-import { Search } from '@edifice-ui/icons/nav';
 import { useTranslation } from 'react-i18next';
 
-import { Popover, FormControl, SearchButton } from '../../components';
+import { FormControl, Icon, Popover, SearchButton } from '../../components';
 import { useHover } from '../../hooks';
 import { NavItem } from '../Header/NavItem';
 
@@ -29,7 +28,7 @@ const SearchEngine = () => {
       aria-expanded={isSearchHovered}
     >
       <a href="/searchengine" className="nav-link dropdown-item">
-        <Search className="icon search" />
+        <Icon name="search" className="icon search" />
         <span className="nav-text">{t('navbar.search')}</span>
       </a>
       <Popover

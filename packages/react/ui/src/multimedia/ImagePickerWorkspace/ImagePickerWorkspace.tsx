@@ -1,12 +1,12 @@
 import { ComponentPropsWithRef, useEffect, useState } from 'react';
 
-import { Delete, Edit } from '@edifice-ui/icons';
 import { IWebApp } from 'edifice-ts-client';
 
+import clsx from 'clsx';
+import { Icon } from '../..';
 import { AppIcon } from '../../components/AppIcon';
 import { Avatar } from '../../components/Avatar';
 import { IconButton } from '../../components/Button';
-import clsx from 'clsx';
 
 export interface ImagePickerWorkspaceProps
   extends ComponentPropsWithRef<'input'> {
@@ -88,7 +88,7 @@ const ImagePickerWorkspace = ({
         <IconButton
           aria-label={addButtonLabel}
           color="tertiary"
-          icon={<Edit />}
+          icon={<Icon name="edit" />}
           onClick={handleClick}
           type="button"
           variant="ghost"
@@ -97,7 +97,7 @@ const ImagePickerWorkspace = ({
           aria-label={deleteButtonLabel}
           color="danger"
           disabled={!preview}
-          icon={<Delete width="20" height="20" />}
+          icon={<Icon name="delete" size="20" />}
           onClick={handleClean}
           type="button"
           variant="ghost"

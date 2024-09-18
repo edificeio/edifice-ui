@@ -10,34 +10,25 @@ import {
 } from 'react';
 
 import {
-  Applications,
-  Code,
-  Folder,
-  Globe,
-  Mic,
-  RecordVideo,
-  Smartphone,
-} from '@edifice-ui/icons';
-import {
   WorkspaceElement,
   WorkspaceVisibility,
   odeServices,
 } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 
+import { useHttpErrorToast } from '../..';
+import { Button, Icon } from '../../components';
+import Modal, { ModalElement } from '../../components/Modal/Modal';
+import { Tabs } from '../../components/Tabs';
+import { TabsItemProps } from '../../components/Tabs/TabsItem';
+import { useHasWorkflow } from '../../core/useHasWorkflow';
+import { MediaLibraryContext } from './MediaLibraryContext';
 import { InnerTabs } from './innertabs';
 import { ExternalLinkTabProps } from './innertabs/ExternalLink';
 import {
   InternalLinkTabProps,
   InternalLinkTabResult,
 } from './innertabs/InternalLink';
-import { MediaLibraryContext } from './MediaLibraryContext';
-import { useHttpErrorToast } from '../..';
-import { Button } from '../../components';
-import Modal, { ModalElement } from '../../components/Modal/Modal';
-import { Tabs } from '../../components/Tabs';
-import { TabsItemProps } from '../../components/Tabs/TabsItem';
-import { useHasWorkflow } from '../../core/useHasWorkflow';
 
 //---------------------------------------------------
 // Tabs parameters
@@ -229,7 +220,7 @@ const MediaLibrary = forwardRef(
     } = {
       workspace: {
         id: 'workspace',
-        icon: <Folder />,
+        icon: <Icon name="folder" />,
         label: t('bbm.workspace'),
         content: <InnerTabs.Workspace />,
         availableFor: ['audio', 'video', 'image', 'attachment'],
@@ -237,7 +228,7 @@ const MediaLibrary = forwardRef(
       },
       upload: {
         id: 'upload',
-        icon: <Smartphone />,
+        icon: <Icon name="smartphone" />,
         label: t('bbm.device'),
         content: <InnerTabs.Upload />,
         availableFor: ['audio', 'video', 'image', 'attachment'],
@@ -245,7 +236,7 @@ const MediaLibrary = forwardRef(
       },
       'video-capture': {
         id: 'video-capture',
-        icon: <RecordVideo />,
+        icon: <Icon name="record-video" />,
         label: t('bbm.video'),
         content: <InnerTabs.Video />,
         availableFor: ['video'],
@@ -253,7 +244,7 @@ const MediaLibrary = forwardRef(
       },
       'audio-capture': {
         id: 'audio-capture',
-        icon: <Mic />,
+        icon: <Icon name="mic" />,
         label: t('bbm.audio'),
         content: <InnerTabs.Audio />,
         availableFor: ['audio'],
@@ -261,7 +252,7 @@ const MediaLibrary = forwardRef(
       },
       'external-link': {
         id: 'external-link',
-        icon: <Globe />,
+        icon: <Icon name="globe" />,
         label: t('bbm.linker.ext'),
         content: (
           <InnerTabs.ExternalLink
@@ -273,7 +264,7 @@ const MediaLibrary = forwardRef(
       },
       'internal-link': {
         id: 'internal-link',
-        icon: <Applications />,
+        icon: <Icon name="applications" />,
         label: t('bbm.linker.int'),
         content: (
           <InnerTabs.InternalLink
@@ -285,7 +276,7 @@ const MediaLibrary = forwardRef(
       },
       iframe: {
         id: 'iframe',
-        icon: <Code />,
+        icon: <Icon name="code" />,
         label: t('bbm.embed'),
         content: <InnerTabs.Iframe />,
         availableFor: ['embedder'],
@@ -293,7 +284,7 @@ const MediaLibrary = forwardRef(
       },
       'video-embedder': {
         id: 'iframe',
-        icon: <Code />,
+        icon: <Icon name="code" />,
         label: t('bbm.embed'),
         content: <InnerTabs.VideoEmbedder />,
         availableFor: ['video'],

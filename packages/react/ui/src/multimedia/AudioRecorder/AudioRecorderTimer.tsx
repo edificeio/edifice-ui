@@ -1,7 +1,6 @@
-import { Mic, Pause, Record } from '@edifice-ui/icons';
-
-import { PlayState, RecordState } from './useAudioRecorder';
+import { Icon } from '../..';
 import { convertMsToMS } from '../../utils';
+import { PlayState, RecordState } from './useAudioRecorder';
 
 export interface AudioRecorderTimerProps {
   recordState: RecordState;
@@ -23,9 +22,9 @@ const AudioRecorderTimer = ({
       {playState === 'IDLE' && (
         <div className="d-flex align-items-center">
           {recordState === 'PAUSED' ? (
-            <Pause width={12} height={12} className="me-8 text-danger" />
+            <Icon name="pause" size="12" className="me-8 text-danger" />
           ) : (
-            <Record width={12} height={12} className="me-8 text-danger" />
+            <Icon name="record" size="12" className="me-8 text-danger" />
           )}
           {convertMsToMS(recordState !== 'IDLE' ? recordTime! : 0) +
             ' / ' +
@@ -34,7 +33,7 @@ const AudioRecorderTimer = ({
       )}
       {playState !== 'IDLE' && (
         <div className="d-flex align-items-center mx-auto">
-          <Mic width={12} height={12} className="me-8" />
+          <Icon name="mic" size="12" className="me-8" />
           {convertMsToMS(audioTime * 1000)} /{convertMsToMS(recordTime!)}
         </div>
       )}

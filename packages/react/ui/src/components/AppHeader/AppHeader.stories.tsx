@@ -1,9 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
-import AppHeader from './AppHeader';
+import { Breadcrumb } from '../Breadcrumb/Breadcrumb';
 import { Button } from '../Button';
-import Breadcrumb from '../Breadcrumb/Breadcrumb';
-import AppIcon from '../AppIcon/AppIcon';
-import { Image } from '../Image';
+import AppHeader from './AppHeader';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof AppHeader> = {

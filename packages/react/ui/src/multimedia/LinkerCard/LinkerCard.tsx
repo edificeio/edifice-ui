@@ -1,10 +1,9 @@
 import { useMemo } from 'react';
 
-import { Users } from '@edifice-ui/icons';
 import clsx from 'clsx';
 import { IResource } from 'edifice-ts-client';
 
-import { AppIcon, Card, CardProps, Image } from '../../components';
+import { AppIcon, Card, CardProps, Icon, Image } from '../../components';
 import { useDate } from '../../core/useDate';
 
 export interface LinkerCardProps extends CardProps {
@@ -72,7 +71,7 @@ const LinkerCard = ({
 
         {doc.shared && (
           <div className="ps-4 pe-8">
-            <Users width="20" height="20" />
+            <Icon name="users" size="20" />
           </div>
         )}
       </Card.Body>

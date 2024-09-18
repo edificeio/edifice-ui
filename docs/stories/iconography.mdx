@@ -1,8 +1,45 @@
 import { iconNames } from '@edifice.io/icons';
 import { IconGallery, IconItem, Meta, Title } from '@storybook/blocks';
+import { Alert } from '../../packages/react/ui/src/components/Alert';
 import { Icon } from '../../packages/react/ui/src/components/Icon';
 
 <Meta title="Design Tokens/Iconography" />
+
+<style>
+  {`
+    * {box-sizing: border-box;}
+    .grid-css {
+      --min: 16rem;
+      --gap: 1.6rem;
+
+      display: grid;
+      grid-gap: var(--gap);
+      /* min() with 100% prevents overflow
+      in extra narrow spaces */
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), 1fr));
+      place-items: stretch;
+      place-content: center;
+    }
+
+    .grid-item {
+      display: flex;
+      flex-direction: column;
+      place-content: space-evenly;
+      place-items: center;
+      background-color: white;
+      width: 100%;
+      padding: 2rem;
+      box-shadow: 0px 2px 6px 0px #00000026;border-radius: 8px;
+    }
+
+    .grid-item p {
+      margin-block: 0;
+      text-align: center;
+      word-break: break-word;
+      width: 90%;
+    }
+  `}
+</style>
 
 # Iconography
 
@@ -14,15 +51,17 @@ import { Icon } from '../../packages/react/ui/src/components/Icon';
 
 ## Common Interface Icons
 
+<Alert type="info">You can copy the name of the icon by clicking on it</Alert>
+
 To use this set of icons, import `Icon` component from `@edifice-ui/react` into your code:
 
 ```jsx
 import { Icon } from '@edifice-ui/react';
 
-<Icon name="" />;
+<Icon name="<name>" />;
 ```
 
-<IconGallery>
+<div className="grid-css">
   {iconNames
     .filter(
       (name) =>
@@ -33,14 +72,22 @@ import { Icon } from '@edifice-ui/react';
     .sort()
     .map((name) => {
       return (
-        <IconItem name={name}>
+        <div
+          className="grid-item"
+          onClick={() => {
+            navigator.clipboard.writeText(name);
+          }}
+        >
           <Icon name={name} />
-        </IconItem>
+          <p>{name}</p>
+        </div>
       );
     })}
-</IconGallery>
+</div>
 
 ## Navbar Icons
+
+<Alert type="info">You can copy the name of the icon by clicking on it</Alert>
 
 To use this set of icons, import `Icon` component from `@edifice-ui/react` into your code:
 
@@ -54,20 +101,28 @@ Then use the component in your code and prefix the name of the icon with `nav/`
 <Icon name="nav/<name>" />
 ```
 
-<IconGallery>
+<div className="grid-css">
   {iconNames
     .filter((name) => name.startsWith('nav/'))
     .sort()
     .map((name) => {
       return (
-        <IconItem name={name}>
+        <div
+          className="grid-item"
+          onClick={() => {
+            navigator.clipboard.writeText(name);
+          }}
+        >
           <Icon name={name} />
-        </IconItem>
+          <p>{name}</p>
+        </div>
       );
     })}
-</IconGallery>
+</div>
 
 ## Audience Icons
+
+<Alert type="info">You can copy the name of the icon by clicking on it</Alert>
 
 To use this set of icons, import `Icon` component from `@edifice-ui/react` into your code:
 
@@ -81,20 +136,28 @@ Then use the component in your code and prefix the name of the icon with `audien
 <Icon name="audience/<name>" />
 ```
 
-<IconGallery>
+<div className="grid-css">
   {iconNames
     .filter((name) => name.startsWith('audience/'))
     .sort()
     .map((name) => {
       return (
-        <IconItem name={name}>
+        <div
+          className="grid-item"
+          onClick={() => {
+            navigator.clipboard.writeText(name);
+          }}
+        >
           <Icon name={name} />
-        </IconItem>
+          <p>{name}</p>
+        </div>
       );
     })}
-</IconGallery>
+</div>
 
 ## Apps and Connectors Icons
+
+<Alert type="info">You can copy the name of the icon by clicking on it</Alert>
 
 To use this set of icons, import `Icon` component from `@edifice-ui/react` into your code:
 
@@ -108,15 +171,21 @@ Then use the component in your code and prefix the name of the icon with `apps/`
 <Icon name="apps/<name>" />
 ```
 
-<IconGallery>
+<div className="grid-css">
   {iconNames
     .filter((name) => name.startsWith('apps/'))
     .sort()
     .map((name) => {
       return (
-        <IconItem name={name}>
+        <div
+          className="grid-item"
+          onClick={() => {
+            navigator.clipboard.writeText(name);
+          }}
+        >
           <Icon name={name} />
-        </IconItem>
+          <p>{name}</p>
+        </div>
       );
     })}
-</IconGallery>
+</div>

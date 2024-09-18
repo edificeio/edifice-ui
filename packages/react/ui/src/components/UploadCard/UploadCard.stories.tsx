@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import UploadCard from './UploadCard';
+import { UploadCard } from './UploadCard';
 
 const meta: Meta<typeof UploadCard> = {
   title: 'Components/Card/Upload Card',

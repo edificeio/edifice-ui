@@ -8,20 +8,12 @@ import {
   useState,
 } from 'react';
 
-import {
-  Pause,
-  PlayFilled,
-  Record,
-  RecordStop,
-  RecordVideo,
-  Refresh,
-  Save,
-} from '@edifice-ui/icons';
 import { WorkspaceElement, odeServices } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 
 import {
   FormControl,
+  Icon,
   Label,
   LoadingScreen,
   OptionsType,
@@ -394,7 +386,9 @@ const VideoRecorder = forwardRef(
         type: 'icon',
         name: 'record',
         props: {
-          icon: <Record color={recording || recorded ? '' : 'red'} />,
+          icon: (
+            <Icon name="record" color={recording || recorded ? '' : 'red'} />
+          ),
           color: 'danger',
           disabled: recording || recorded || saving,
           onClick: handleRecord,
@@ -406,7 +400,7 @@ const VideoRecorder = forwardRef(
         type: 'icon',
         name: 'stop',
         props: {
-          icon: <RecordStop />,
+          icon: <Icon name="record-stop" />,
           disabled: !recording || recorded || saving,
           onClick: handleStop,
           'aria-label': t('bbm.video.record.stop'),
@@ -418,7 +412,7 @@ const VideoRecorder = forwardRef(
         name: 'play',
         visibility: !playing ? 'show' : 'hide',
         props: {
-          icon: <PlayFilled />,
+          icon: <Icon name="play-filled" />,
           disabled: !recorded || saving,
           onClick: handlePlayPause,
           'aria-label': t('bbm.video.play.start'),
@@ -430,7 +424,7 @@ const VideoRecorder = forwardRef(
         name: 'pause',
         visibility: playing ? 'show' : 'hide',
         props: {
-          icon: <Pause />,
+          icon: <Icon name="pause" />,
           disabled: !recorded || saving,
           onClick: handlePlayPause,
           'aria-label': t('bbm.video.play.pause'),
@@ -442,7 +436,7 @@ const VideoRecorder = forwardRef(
         type: 'icon',
         name: 'reset',
         props: {
-          icon: <Refresh />,
+          icon: <Icon name="refresh" />,
           disabled: !recorded || saving,
           onClick: handleReset,
           'aria-label': t('bbm.video.record.reset'),
@@ -454,7 +448,7 @@ const VideoRecorder = forwardRef(
         name: 'save',
         visibility: hideSaveAction ? 'hide' : 'show',
         props: {
-          icon: <Save />,
+          icon: <Icon name="save" />,
           disabled: !recorded || saving || saved,
           onClick: handleSave,
           'aria-label': t('bbm.video.record.save'),
@@ -503,7 +497,13 @@ const VideoRecorder = forwardRef(
             <div className="video-recorder-time d-flex align-items-center font-monospace fs-6 text-bg-dark rounded">
               {recording && (
                 <>
-                  <Record width={12} height={12} color="red" className="me-4" />
+                  <Icon
+                    name="record"
+                    width={12}
+                    height={12}
+                    color="red"
+                    className="me-4"
+                  />
                   <span>
                     {convertMsToMS(recordedTime)}/{convertMsToMS(maxDuration)}
                   </span>
@@ -511,7 +511,12 @@ const VideoRecorder = forwardRef(
               )}
               {recorded && (
                 <>
-                  <RecordVideo width={14} height={14} className="me-4" />
+                  <Icon
+                    name="record-video"
+                    width={14}
+                    height={14}
+                    className="me-4"
+                  />
                   <span>
                     {convertMsToMS(playedTime)}/{convertMsToMS(recordedTime)}
                   </span>

@@ -1,6 +1,5 @@
 import { FormEvent, useCallback, useEffect, useState } from 'react';
 
-import { Applications } from '@edifice-ui/icons';
 import { App, odeServices } from 'edifice-ts-client';
 /*
  * Augmented definition of a resource, until behaviours are dropped.
@@ -9,7 +8,7 @@ import { App, odeServices } from 'edifice-ts-client';
 import { ILinkedResource } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 
-import { AppIcon, Dropdown, EmptyScreen } from '../../components';
+import { AppIcon, Dropdown, EmptyScreen, Icon } from '../../components';
 import { SearchBar } from '../../components/SearchBar';
 import { useOdeTheme, usePaths, useResourceSearch } from '../../core';
 import { useDebounce } from '../../hooks';
@@ -252,7 +251,7 @@ const InternalLinker = ({
             <Dropdown.Trigger
               icon={
                 <div className="pe-8">
-                  {selectedApplication?.icon || <Applications />}
+                  {selectedApplication?.icon || <Icon name="applications" />}
                 </div>
               }
               label={t(

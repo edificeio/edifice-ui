@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import AppIcon, { AppIconProps } from './AppIcon';
+import { AppIcon, AppIconProps } from './AppIcon';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof AppIcon> = {

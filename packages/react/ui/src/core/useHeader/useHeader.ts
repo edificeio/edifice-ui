@@ -1,13 +1,13 @@
-import { useState, useId, useCallback, useMemo } from 'react';
+import { useCallback, useId, useMemo, useState } from 'react';
 
 import { IUserInfo, odeServices } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 
+import { useOdeTheme } from '..';
 import { useHover } from '../../hooks';
 import { useOdeClient } from '../OdeClientProvider/OdeClientProvider';
 import { useBookmark } from '../useBookmark';
 import { useHasWorkflow } from '../useHasWorkflow';
-import { useOdeTheme } from '..';
 
 export default function useHeader({
   user,
@@ -74,7 +74,6 @@ export default function useHeader({
 
   const handleLogout = async () => {
     await odeServices.session().logout();
-    console.log('Logout' + theme?.logoutCallback ?? '/auth/login');
     window.location.href = theme?.logoutCallback ?? '/auth/login';
   };
 
