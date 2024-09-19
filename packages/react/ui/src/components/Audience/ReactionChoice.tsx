@@ -27,7 +27,7 @@ const ReactionChoice = ({
 
   return (
     <div className="reaction-choice">
-      <Dropdown placement="top-start" isTriggerHovered>
+      <Dropdown placement="top-start">
         <Dropdown.Trigger
           className={classes}
           color="tertiary"
