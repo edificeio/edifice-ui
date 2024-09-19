@@ -1,6 +1,6 @@
 {
   "name": "@edifice-tiptap-extensions/transform",
-  "version": "1.5.19-develop.2",
+  "version": "1.5.19",
   "private": false,
   "description": "Rich Text Editor Transform",
   "homepage": "https://github.com/opendigitaleducation/edifice-tiptap-extensions",

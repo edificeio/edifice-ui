@@ -1,6 +1,6 @@
 {
   "name": "@edifice-tiptap-extensions/extension-paragraph",
-  "version": "1.5.19-develop.2",
+  "version": "1.5.19",
   "description": "Rich Text Editor Paragraph Extension",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
