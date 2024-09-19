@@ -17,6 +17,7 @@ export default defineConfig({
     lib: {
       entry: {
         index: resolve(__dirname, 'src/index.ts'),
+        editor: resolve(__dirname, 'src/modules/editor/index.ts'),
       },
       formats: ['es'],
     },
@@ -43,6 +44,7 @@ export default defineConfig({
         'swiper/modules',
         'react/jsx-runtime',
         'edifice-ts-client',
+        '@edifice.io/icons/icons.svg',
       ],
     },
   },
