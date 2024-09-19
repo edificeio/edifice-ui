@@ -67,7 +67,7 @@ export interface ButtonProps extends React.ComponentPropsWithRef<'button'> {
  * Primary UI component for user interaction
  */
 
-const Button = forwardRef(
+export const Button = forwardRef(
   (
     {
       color = 'primary',

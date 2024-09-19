@@ -1,9 +1,9 @@
 import { forwardRef, ReactNode, Ref, useMemo } from 'react';
 
-import { Context } from './FormContext';
-import FormText from './FormText';
 import { Input } from '../Input';
 import { Label } from '../Label';
+import { Context } from './FormContext';
+import FormText from './FormText';
 
 export interface FormControlProps extends React.ComponentPropsWithRef<'div'> {
   /**
@@ -75,7 +75,7 @@ const Root = forwardRef(
   },
 );
 
-const FormControl = Object.assign(Root, {
+export const FormControl = Object.assign(Root, {
   Label,
   Input,
   Text: FormText,

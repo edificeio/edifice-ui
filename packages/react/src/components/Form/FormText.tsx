@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import { useFormControl } from './FormContext';
 
-const FormText = ({ children }: { children: ReactNode }) => {
+export const FormText = ({ children }: { children: ReactNode }) => {
   const { status } = useFormControl();
   const classes = clsx('form-text', {
     'is-invalid': status === 'invalid',

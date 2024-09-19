@@ -31,7 +31,7 @@ export interface ColorPickerProps extends ComponentPropsWithRef<'div'> {
   onSuccess?: (item: ColorPaletteItem) => void;
 }
 
-const ColorPicker = forwardRef(
+export const ColorPicker = forwardRef(
   (
     {
       palettes = [DefaultPalette, AccessiblePalette],

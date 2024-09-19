@@ -28,7 +28,7 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
 /**
  * Heading component to display heading elements
  */
-const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
+export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   (
     {
       level: Component = 'h1',

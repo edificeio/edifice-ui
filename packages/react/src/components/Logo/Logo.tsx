@@ -8,7 +8,7 @@ export interface LogoProps {
   translate?: string;
 }
 
-const Logo = forwardRef(
+export const Logo = forwardRef(
   (
     { src, is1d, translate = 'Retour accueil' }: LogoProps,
     ref: Ref<HTMLAnchorElement>,

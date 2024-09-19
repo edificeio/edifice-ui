@@ -53,7 +53,7 @@ export interface BadgeProps extends React.ComponentPropsWithRef<'span'> {
 /**
  * Primary UI component for user interaction
  */
-const Badge = forwardRef(
+export const Badge = forwardRef(
   (
     {
       className,

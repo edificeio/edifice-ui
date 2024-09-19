@@ -2,9 +2,9 @@ import { ChangeEvent, Fragment, useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import ComboboxTrigger from './ComboboxTrigger';
 import { Dropdown } from '../Dropdown';
 import { Loading } from '../Loading';
+import ComboboxTrigger from './ComboboxTrigger';
 
 export interface ComboboxProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -33,7 +33,7 @@ export interface OptionListItemType {
   icon?: any;
 }
 
-const Combobox = ({
+export const Combobox = ({
   onSearchResultsChange,
   onSearchInputChange,
   options,

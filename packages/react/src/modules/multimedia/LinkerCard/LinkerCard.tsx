@@ -13,7 +13,7 @@ export interface LinkerCardProps extends CardProps {
   doc: IResource;
 }
 
-const LinkerCard = ({
+export const LinkerCard = ({
   doc,
   isClickable = true,
   isSelectable = false,

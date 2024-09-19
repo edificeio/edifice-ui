@@ -26,7 +26,7 @@ interface BlogPublicProps {
   setValue: UseFormSetValue<FormInputs>;
 }
 
-const BlogPublic = ({
+export const BlogPublic = ({
   appCode,
   isUpdating,
   resource,

@@ -94,7 +94,7 @@ export interface AlertProps extends ComponentPropsWithRef<'div'> {
   className?: string;
 }
 
-const Alert = forwardRef(
+export const Alert = forwardRef(
   (
     {
       type = 'success',

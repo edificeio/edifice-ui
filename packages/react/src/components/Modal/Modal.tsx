@@ -8,15 +8,15 @@
  */
 import { forwardRef, useEffect } from 'react';
 
-import { useTransition, animated } from '@react-spring/web';
+import { animated, useTransition } from '@react-spring/web';
 import clsx from 'clsx';
 
+import { useClickOutside, useKeyPress, useTrapFocus } from '../../hooks';
 import ModalBody from './ModalBody';
 import { ModalContext, ModalContextProps } from './ModalContext';
 import ModalFooter from './ModalFooter';
 import ModalHeader from './ModalHeader';
 import ModalSubtitle from './ModalSubtitle';
-import { useClickOutside, useTrapFocus, useKeyPress } from '../../hooks';
 
 export type ModalElement = HTMLDivElement;
 
@@ -176,7 +176,7 @@ const Root = forwardRef<ModalElement, ModalProps>((props, ref) => {
   );
 });
 
-const Modal = Object.assign(Root, {
+export const Modal = Object.assign(Root, {
   Header: ModalHeader,
   Subtitle: ModalSubtitle,
   Body: ModalBody,

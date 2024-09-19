@@ -57,7 +57,7 @@ export type Props = DefaultSearchBar | DynamicSearchBar;
 
 export type SearchBarProps = BaseProps & Props;
 
-const SearchBar = ({
+export const SearchBar = ({
   isVariant = false,
   size = 'md',
   placeholder = 'search',

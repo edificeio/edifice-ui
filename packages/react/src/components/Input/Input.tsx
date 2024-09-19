@@ -44,7 +44,7 @@ export interface InputProps
  * Input Form Component
  */
 
-const Input = forwardRef(
+export const Input = forwardRef(
   (
     {
       noValidationIcon,

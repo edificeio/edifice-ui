@@ -33,7 +33,7 @@ export interface SearchButtonProps extends Pick<IconButtonProps, PickedProps> {
 /**
  * SearchButton extends the IconButton component by omitting unnecessary props.
  */
-const SearchButton = forwardRef(
+export const SearchButton = forwardRef(
   (
     {
       icon = <Icon name="search" />,

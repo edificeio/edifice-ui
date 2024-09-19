@@ -4,7 +4,7 @@ export interface VisuallyHiddenProps {
   children: ReactNode;
 }
 
-const VisuallyHidden = forwardRef(
+export const VisuallyHidden = forwardRef(
   ({ children }: VisuallyHiddenProps, ref: Ref<HTMLSpanElement>) => {
     return (
       <span className="visually-hidden" ref={ref}>
