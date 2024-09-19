@@ -2,7 +2,7 @@ import { Ref } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { Button, FormControl, Icon } from '../../components';
+import { Button, FormControl, Icon } from '../../../components';
 import { BookmarkProps } from './hooks/useShareBookmark';
 
 export const ShareBookmark = ({

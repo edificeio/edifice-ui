@@ -9,9 +9,9 @@ import {
 } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 
-import { Icon, OptionListItemType } from '../../../components';
-import { useIsAdml, useOdeClient } from '../../../core';
-import { useDebounce } from '../../../hooks';
+import { Icon, OptionListItemType } from '../../../../components';
+import { useIsAdml, useOdeClient } from '../../../../core';
+import { useDebounce } from '../../../../hooks';
 import { ShareOptions } from '../ShareModal';
 import { ShareAction } from './useShare';
 

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
-import Alert from '../../../components/Alert/Alert';
-import usePaths from '../../../core/usePaths/usePaths';
+import Alert from '../../../../components/Alert/Alert';
+import usePaths from '../../../../core/usePaths/usePaths';
 
 export const PublishModalFooter = () => {
   const { t } = useTranslation();

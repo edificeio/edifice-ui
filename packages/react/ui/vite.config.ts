@@ -19,6 +19,7 @@ export default defineConfig({
         index: resolve(__dirname, 'src/index.ts'),
         editor: resolve(__dirname, 'src/modules/editor/index.ts'),
         audience: resolve(__dirname, 'src/modules/audience/index.ts'),
+        modals: resolve(__dirname, 'src/modules/modals/index.ts'),
         multimedia: resolve(__dirname, 'src/modules/multimedia/index.ts'),
       },
       formats: ['es'],

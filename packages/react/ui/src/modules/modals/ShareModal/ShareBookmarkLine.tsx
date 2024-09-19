@@ -6,7 +6,13 @@ import {
 } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 
-import { Avatar, Button, Checkbox, Icon, IconButton } from '../../components';
+import {
+  Avatar,
+  Button,
+  Checkbox,
+  Icon,
+  IconButton,
+} from '../../../components';
 import { hasRight } from './utils/hasRight';
 import { showShareRightLine } from './utils/showShareRightLine';
 

@@ -1,6 +1,6 @@
 import { Control, Controller, FieldValues, Validate } from 'react-hook-form';
 
-import Select from '../../../components/Select/Select';
+import Select from '../../../../components/Select/Select';
 import { ageOptions } from '../constants/ageOptions';
 import { FormDataProps } from '../hooks/usePublishModal';
 

@@ -13,7 +13,7 @@ import {
   Heading,
   Icon,
   Input,
-} from '../../../components';
+} from '../../../../components';
 import { useSlug } from '../hooks/useSlug';
 import { FormInputs } from '../ResourceModal';
 

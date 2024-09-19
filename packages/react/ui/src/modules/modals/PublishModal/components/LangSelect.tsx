@@ -1,6 +1,6 @@
 import { Control, Controller } from 'react-hook-form';
 
-import Select from '../../../components/Select/Select';
+import Select from '../../../../components/Select/Select';
 import { useLanguageOptions } from '../hooks/useLanguageOptions';
 import { FormDataProps } from '../hooks/usePublishModal';
 

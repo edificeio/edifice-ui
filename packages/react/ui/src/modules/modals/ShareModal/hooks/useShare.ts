@@ -10,8 +10,8 @@ import {
 } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 
-import { useOdeClient, useUser } from '../../../core';
-import { useToast } from '../../../hooks';
+import { useOdeClient, useUser } from '../../../../core';
+import { useToast } from '../../../../hooks';
 import { ShareOptions, ShareResourceMutation } from '../ShareModal';
 
 interface UseShareResourceModalProps {
