@@ -21,7 +21,7 @@ import {
   Modal,
   Tooltip,
   VisuallyHidden,
-} from '../../components';
+} from '../../../components';
 import { ShareBookmark } from './ShareBookmark';
 import { ShareBookmarkLine } from './ShareBookmarkLine';
 import { useSearch } from './hooks/useSearch';

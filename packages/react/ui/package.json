@@ -33,6 +33,10 @@
       "import": "./dist/editor.js",
       "types": "./dist/modules/editor/index.d.ts"
     },
+    "./modals": {
+      "import": "./dist/modals.js",
+      "types": "./dist/modules/modals/index.d.ts"
+    },
     "./multimedia": {
       "import": "./dist/multimedia.js",
       "types": "./dist/modules/multimedia/index.d.ts"

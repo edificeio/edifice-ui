@@ -3,7 +3,7 @@ import { Dispatch, useId, useRef, useState } from 'react';
 import { ShareRightWithVisibles, odeServices } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 
-import { useToast, useToggle } from '../../../hooks';
+import { useToast, useToggle } from '../../../../hooks';
 import { ShareAction } from './useShare';
 
 interface UseShareBookmarkProps {

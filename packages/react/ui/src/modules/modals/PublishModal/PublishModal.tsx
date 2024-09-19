@@ -11,11 +11,11 @@ import {
   LoadingScreen,
   Modal,
   TextArea,
-} from '../../components';
-import { useMediaLibrary, useOdeClient } from '../../core';
-import { useResource } from '../../core/useResource';
-import { MediaLibrary } from '../../modules/multimedia';
-import ImagePickerWorkspace from '../../modules/multimedia/ImagePickerWorkspace/ImagePickerWorkspace';
+} from '../../../components';
+import { useMediaLibrary, useOdeClient } from '../../../core';
+import { useResource } from '../../../core/useResource';
+import { MediaLibrary } from '../../multimedia';
+import ImagePickerWorkspace from '../../multimedia/ImagePickerWorkspace/ImagePickerWorkspace';
 import { ActivitiesDropdown } from './components/ActivitiesDropdown';
 import { AgeSelect } from './components/AgeSelect';
 import { LangSelect } from './components/LangSelect';

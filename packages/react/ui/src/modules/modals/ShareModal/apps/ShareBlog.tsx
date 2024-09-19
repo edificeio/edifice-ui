@@ -10,9 +10,9 @@ import {
   odeServices,
 } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
-import { Heading, Radio } from '../../../components';
-import { useOdeClient } from '../../../core';
-import { useResource } from '../../../core/useResource';
+import { Heading, Radio } from '../../../../components';
+import { useOdeClient } from '../../../../core';
+import { useResource } from '../../../../core/useResource';
 
 export type PublicationType = 'RESTRAINT' | 'IMMEDIATE' | undefined;
 

@@ -6,7 +6,7 @@ import { UseFormSetValue, UseFormWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import slugify from 'react-slugify';
 
-import useToast from '../../../hooks/useToast/useToast';
+import useToast from '../../../../hooks/useToast/useToast';
 import { FormInputs } from '../ResourceModal';
 
 interface UseSlugProps {

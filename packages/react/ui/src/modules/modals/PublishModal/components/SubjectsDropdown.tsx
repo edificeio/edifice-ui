@@ -1,25 +1,26 @@
 import { Control, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import Dropdown from '../../../components/Dropdown/Dropdown';
-import { useActivitiesOptions } from '../hooks/useActivitiesOptions';
+import Dropdown from '../../../../components/Dropdown/Dropdown';
 import { FormDataProps } from '../hooks/usePublishModal';
+import { useSubjectsOptions } from '../hooks/useSubjectsOptions';
 
-export const ActivitiesDropdown = ({
+export const SubjectsDropdown = ({
   control,
-  selectedActivities,
-  selectActivities,
+  selectedSubjectAreas,
+  selectSubjects,
 }: {
   control: Control<FormDataProps, any>;
-  selectedActivities: Array<string | number>;
-  selectActivities: (value: string | number) => void;
+  selectedSubjectAreas: Array<string | number>;
+  selectSubjects: (value: string | number) => void;
 }) => {
-  const activitiesOptions = useActivitiesOptions();
+  const subjectsOptions = useSubjectsOptions();
   const { t } = useTranslation();
+
   return (
     <div className="col d-flex">
       <Controller
-        name="activityType"
+        name="subjectArea"
         control={control}
         rules={{
           required: true,
@@ -29,17 +30,17 @@ export const ActivitiesDropdown = ({
             <Dropdown block overflow>
               <Dropdown.Trigger
                 size="md"
-                label={t('bpr.form.publication.type')}
-                badgeContent={selectedActivities?.length}
+                label={t('bpr.form.publication.discipline')}
+                badgeContent={selectedSubjectAreas?.length}
               />
               <Dropdown.Menu>
-                {activitiesOptions.map((option, index) => (
+                {subjectsOptions.map((option, index) => (
                   <Dropdown.CheckboxItem
                     key={index}
                     value={option.value}
-                    model={selectedActivities}
+                    model={selectedSubjectAreas}
                     onChange={() => {
-                      selectActivities(option.value);
+                      selectSubjects(option.value);
                       onChange(option.value);
                     }}
                   >
