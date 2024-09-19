@@ -5,7 +5,7 @@ import {
   LinkerAttributes,
 } from '@edifice.io/tiptap-extensions';
 import { Editor } from '@tiptap/react';
-import { MediaLibraryRef } from '../../../multimedia';
+import { MediaLibraryRef } from '../../multimedia';
 
 /**
  * Custom hook to handle LinkToolbar events.

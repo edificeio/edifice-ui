@@ -28,9 +28,9 @@ import { TextareaCounter } from '../../components/TextArea/TextareaCounter';
 import { useMediaLibrary, useOdeClient } from '../../core';
 import { useResource } from '../../core/useResource';
 import { useToast } from '../../hooks';
+import { MediaLibrary } from '../../modules/multimedia';
+import ImagePickerWorkspace from '../../modules/multimedia/ImagePickerWorkspace/ImagePickerWorkspace';
 import { useThumb } from './hooks/useThumb';
-import { MediaLibrary } from '../../multimedia';
-import ImagePickerWorkspace from '../../multimedia/ImagePickerWorkspace/ImagePickerWorkspace';
 
 export interface FormInputs {
   title: string;

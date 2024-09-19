@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
 
 import { WorkspaceElement } from 'edifice-ts-client';
-import { MediaLibraryRef, MediaLibraryResult } from '../../multimedia';
-import { useWorkspaceFile } from '../useWorkspaceFile';
 import { TabsItemProps } from '../../components';
+import { MediaLibraryRef, MediaLibraryResult } from '../../modules/multimedia';
+import { useWorkspaceFile } from '../useWorkspaceFile';
 
 const useMediaLibrary = () => {
   const mediaLibraryRef = useRef<MediaLibraryRef>(null);

@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
 import { Icon } from '..';
-import { useMediaLibraryContext } from '../../multimedia/MediaLibrary/MediaLibraryContext';
+import { useMediaLibraryContext } from '../../modules/multimedia/MediaLibrary/MediaLibraryContext';
 import Button from '../Button/Button';
 import { useDropzoneContext } from './DropzoneContext';
 

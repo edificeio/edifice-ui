@@ -2,26 +2,26 @@ import { ID } from 'edifice-ts-client';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 
+import {
+  Button,
+  FormControl,
+  Heading,
+  Input,
+  Label,
+  LoadingScreen,
+  Modal,
+  TextArea,
+} from '../../components';
+import { useMediaLibrary, useOdeClient } from '../../core';
+import { useResource } from '../../core/useResource';
+import { MediaLibrary } from '../../modules/multimedia';
+import ImagePickerWorkspace from '../../modules/multimedia/ImagePickerWorkspace/ImagePickerWorkspace';
 import { ActivitiesDropdown } from './components/ActivitiesDropdown';
 import { AgeSelect } from './components/AgeSelect';
 import { LangSelect } from './components/LangSelect';
 import { PublishModalFooter } from './components/PublishModalFooter';
 import { SubjectsDropdown } from './components/SubjectsDropdown';
 import usePublishModal from './hooks/usePublishModal';
-import {
-  Modal,
-  Heading,
-  FormControl,
-  Label,
-  Input,
-  TextArea,
-  Button,
-  LoadingScreen,
-} from '../../components';
-import { useMediaLibrary, useOdeClient } from '../../core';
-import { useResource } from '../../core/useResource';
-import ImagePickerWorkspace from '../../multimedia/ImagePickerWorkspace/ImagePickerWorkspace';
-import { MediaLibrary } from '../../multimedia';
 
 interface PublishModalProps {
   isOpen: boolean;
