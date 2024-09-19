@@ -1,7 +1,7 @@
-import { default as useReactionIcons } from './hooks/useReactionIcons';
-import { Button } from '../Button';
 import { ReactionSummaryData } from 'edifice-ts-client';
+import { Button } from '../../components/Button';
 import { StringUtils } from '../../utils';
+import useReactionIcons from './hooks/useReactionIcons';
 
 export interface ReactionSummaryProps {
   summary?: ReactionSummaryData;

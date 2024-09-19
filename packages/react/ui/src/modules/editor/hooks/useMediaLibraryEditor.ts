@@ -3,15 +3,17 @@ import { useCallback, useRef } from 'react';
 import { Editor } from '@tiptap/react';
 import { WorkspaceElement } from 'edifice-ts-client';
 import {
+  TabsItemProps,
+  addTimestampToImageUrl,
+  useWorkspaceFile,
+} from '../../..';
+import {
   IExternalLink,
   InternalLinkTabResult,
   MediaLibraryRef,
   MediaLibraryResult,
   MediaLibraryType,
-  TabsItemProps,
-  addTimestampToImageUrl,
-  useWorkspaceFile,
-} from '../../..';
+} from '../../multimedia';
 
 /**
  * Custom hook to manage MediaLibrary events in an editor.

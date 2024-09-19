@@ -7,13 +7,8 @@ import {
   useEditorContext,
   useSpeechRecognition,
 } from '../..';
-import {
-  Icon,
-  IconButtonProps,
-  MediaLibraryRef,
-  Toolbar,
-  ToolbarItem,
-} from '../../../..';
+import { Icon, IconButtonProps, Toolbar, ToolbarItem } from '../../../..';
+import { MediaLibraryRef } from '../../../multimedia';
 import { hasExtension } from '../../utils/has-extension';
 import { hasMark } from '../../utils/has-mark';
 import { hasTextStyle } from '../../utils/has-text-style';

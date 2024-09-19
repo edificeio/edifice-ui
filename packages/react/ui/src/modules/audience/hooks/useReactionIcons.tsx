@@ -1,5 +1,5 @@
 import { ReactionType } from 'edifice-ts-client';
-import { Icon } from '../..';
+import { Icon } from '../../../components';
 
 export default function useReactionIcons() {
   /**

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import { ViewsDetailsProfile } from 'edifice-ts-client';
-import { Icon } from '..';
+import { Icon } from '../../components';
 import { StringUtils } from '../../utils';
 
 export interface ViewsCardProps {

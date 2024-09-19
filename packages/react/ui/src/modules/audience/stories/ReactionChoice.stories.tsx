@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { ReactionChoice, ReactionChoiceProps } from '..';
-import { useState } from 'react';
 import { ReactionSummaryData, ReactionType } from 'edifice-ts-client';
+import { useState } from 'react';
+import ReactionChoice, { ReactionChoiceProps } from '../ReactionChoice';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof ReactionChoice> = {

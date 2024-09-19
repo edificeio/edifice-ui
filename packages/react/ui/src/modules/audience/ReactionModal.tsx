@@ -1,17 +1,17 @@
-import { useCallback, useEffect, useId, useMemo, useState } from 'react';
-import { default as useReactionIcons } from './hooks/useReactionIcons';
-import { Modal } from '../Modal';
-import { useTranslation } from 'react-i18next';
-import { Button } from '../Button';
 import {
   ReactionDetailsData,
   ReactionType,
   ReactionTypes,
 } from 'edifice-ts-client';
-import { Tabs, TabsItemProps } from '../Tabs';
-import { ReactionModalCard } from './ReactionModal.Card';
-import { StringUtils } from '../../utils';
+import { useCallback, useEffect, useId, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useTranslation } from 'react-i18next';
+import { Button } from '../../components/Button';
+import { Modal } from '../../components/Modal';
+import { Tabs, TabsItemProps } from '../../components/Tabs';
+import { StringUtils } from '../../utils';
+import { ReactionModalCard } from './ReactionModal.Card';
+import { default as useReactionIcons } from './hooks/useReactionIcons';
 
 export interface ReactionModalProps {
   /** Id of resource. */

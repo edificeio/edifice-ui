@@ -2,7 +2,8 @@ import { RefObject } from 'react';
 
 import { Editor } from '@tiptap/react';
 import { useTranslation } from 'react-i18next';
-import { DropdownMenuOptions, Icon, MediaLibraryRef } from '../../..';
+import { DropdownMenuOptions, Icon } from '../../..';
+import { MediaLibraryRef } from '../../multimedia';
 
 export const useActionOptions = (
   editor: Editor | null,
