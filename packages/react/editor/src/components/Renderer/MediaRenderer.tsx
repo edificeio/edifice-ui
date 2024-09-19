@@ -77,7 +77,10 @@ const MediaRenderer = (props: MediaResizeProps) => {
         <div data-drag-handle>
           {node.type.name === "custom-image" ? (
             <Image
-              {...node.attrs}
+              src={node.attrs.src}
+              title={node.attrs.title}
+              alt={node.attrs.alt}
+              width={node.attrs.width}
               className={`custom-image`}
               ref={resizableMedia as React.RefObject<HTMLImageElement>}
             />
