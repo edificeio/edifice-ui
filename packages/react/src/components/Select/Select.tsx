@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import SelectTrigger from './SelectTrigger';
 import Dropdown, { DropdownProps } from '../Dropdown/Dropdown';
 import { DropdownTriggerProps } from '../Dropdown/DropdownTrigger';
+import SelectTrigger from './SelectTrigger';
 
 export interface OptionsType {
   /**
@@ -43,7 +43,7 @@ export interface SelectProps
  * Select component is based on Dropdown Component. It extends `Dropdown` and `Dropdown.Trigger` props `block`, `overflow`, `icon`, `variant`, `size`, `disabled`
  */
 
-const Select = ({
+export const Select = ({
   icon,
   options,
   overflow,

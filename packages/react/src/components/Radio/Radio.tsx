@@ -26,7 +26,7 @@ export interface RadioProps
   icon?: ReactNode;
 }
 
-const Radio = forwardRef(
+export const Radio = forwardRef(
   (
     {
       model,

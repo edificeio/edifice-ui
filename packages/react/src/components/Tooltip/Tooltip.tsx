@@ -39,7 +39,7 @@ export interface TooltipProps {
   icon?: ReactNode;
 }
 
-const Tooltip = ({
+export const Tooltip = ({
   children,
   message,
   icon = null,

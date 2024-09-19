@@ -3,6 +3,7 @@ import { forwardRef, ReactNode, Ref, useMemo } from 'react';
 import clsx from 'clsx';
 import { IWebApp } from 'edifice-ts-client';
 
+import { useOdeIcons } from '../../core';
 import CardBody from './CardBody';
 import { CardContext } from './CardContext';
 import CardFooter from './CardFooter';
@@ -11,7 +12,6 @@ import CardImage from './CardImage';
 import CardText from './CardText';
 import CardTitle from './CardTitle';
 import CardUser from './CardUser';
-import { useOdeIcons } from '../../core';
 
 export interface CardProps {
   /**
@@ -97,7 +97,7 @@ const Root = forwardRef(
 
 Root.displayName = 'Card';
 
-const Card = Object.assign(Root, {
+export const Card = Object.assign(Root, {
   Title: CardTitle,
   Text: CardText,
   Image: CardImage,

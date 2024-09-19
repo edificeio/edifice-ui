@@ -20,7 +20,7 @@ export interface FileCardProps extends CardProps {
   doc: WorkspaceElement;
 }
 
-const FileCard = ({
+export const FileCard = ({
   doc,
   isClickable = true,
   isSelectable = false,

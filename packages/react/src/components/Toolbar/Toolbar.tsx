@@ -98,7 +98,7 @@ export interface ToolbarProps extends React.ComponentPropsWithRef<'div'> {
   children?: ReactNode;
 }
 
-const Toolbar = forwardRef(
+export const Toolbar = forwardRef(
   (
     {
       items,

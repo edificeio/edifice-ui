@@ -17,7 +17,7 @@ export interface AppHeaderProps extends ComponentPropsWithRef<'div'> {
   isFullscreen?: boolean;
 }
 
-const AppHeader = forwardRef(
+export const AppHeader = forwardRef(
   (
     { children, render, isFullscreen = false, ...restProps }: AppHeaderProps,
     ref: Ref<HTMLDivElement>,

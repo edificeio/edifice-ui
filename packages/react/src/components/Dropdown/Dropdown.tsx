@@ -3,6 +3,8 @@ import { ReactNode, useEffect, useMemo } from 'react';
 import { Placement } from '@floating-ui/react';
 import clsx from 'clsx';
 
+import { useClickOutside } from '../../hooks';
+import useDropdown from '../../hooks/useDropdown/useDropdown';
 import DropdownCheckboxItem from './DropdownCheckboxItem';
 import { DropdownContext } from './DropdownContext';
 import DropdownItem from './DropdownItem';
@@ -11,8 +13,6 @@ import DropdownMenuGroup from './DropdownMenuGroup';
 import DropdownRadioItem from './DropdownRadioItem';
 import DropdownSeparator from './DropdownSeparator';
 import DropdownTrigger from './DropdownTrigger';
-import { useClickOutside } from '../../hooks';
-import useDropdown from '../../hooks/useDropdown/useDropdown';
 
 export interface DropdownProps {
   /** Children Props */
@@ -143,7 +143,7 @@ const Root = ({
 Root.displayName = 'Dropdown';
 
 /* Compound Components */
-const Dropdown = Object.assign(Root, {
+export const Dropdown = Object.assign(Root, {
   Trigger: DropdownTrigger,
   Menu: DropdownMenu,
   Item: DropdownItem,

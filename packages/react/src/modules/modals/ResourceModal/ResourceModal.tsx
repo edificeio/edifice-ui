@@ -75,7 +75,7 @@ type Props = CreateProps | UpdateProps;
 const DEFAULT_INPUT_MAX_LENGTH = 60;
 const DEFAULT_TEXTAREA_MAX_LENGTH = 400;
 
-const ResourceModal = ({
+export const ResourceModal = ({
   isOpen,
   onCancel,
   onSuccess,

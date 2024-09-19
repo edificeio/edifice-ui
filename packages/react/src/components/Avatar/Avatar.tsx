@@ -36,7 +36,7 @@ export interface AvatarProps extends React.ComponentPropsWithRef<'img'> {
   className?: string;
 }
 
-const Avatar = forwardRef(
+export const Avatar = forwardRef(
   (
     {
       variant = 'square',

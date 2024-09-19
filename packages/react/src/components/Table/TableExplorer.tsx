@@ -14,7 +14,7 @@ export interface TableExplorerProps {
   children?: Array<React.ReactElement<HTMLTableSectionElement>>;
 }
 
-const TableExplorer = forwardRef(
+export const TableExplorer = forwardRef(
   ({ children }: TableExplorerProps, ref: Ref<TableExplorerRef>) => {
     return (
       <>

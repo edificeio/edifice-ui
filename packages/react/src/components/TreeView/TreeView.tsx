@@ -55,7 +55,7 @@ export interface TreeViewProps {
  * UI TreeView Component
  */
 
-const TreeView = forwardRef<TreeViewHandlers, TreeViewProps>(
+export const TreeView = forwardRef<TreeViewHandlers, TreeViewProps>(
   (props: TreeViewProps, ref) => {
     const {
       data,

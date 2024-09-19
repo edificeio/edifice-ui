@@ -18,7 +18,7 @@ export interface ColorPickerItemProps {
   className?: string;
 }
 
-const ColorPickerItem = ({
+export const ColorPickerItem = ({
   model,
   selected,
   className,

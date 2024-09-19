@@ -14,7 +14,7 @@ export interface AttachmentProps extends ComponentPropsWithRef<'div'> {
 
 export type AttachmentType = AttachmentProps;
 
-const Attachment = forwardRef(
+export const Attachment = forwardRef(
   (
     { name = 'Attachment Name', options, ...restProps }: AttachmentProps,
     ref: Ref<HTMLDivElement>,

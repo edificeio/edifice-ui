@@ -2,11 +2,11 @@ import { ReactNode, useMemo } from 'react';
 
 import clsx from 'clsx';
 
+import { useDropzone } from '../../hooks';
 import { DropzoneContext } from './DropzoneContext';
 import DropzoneDrag from './DropzoneDrag';
 import DropzoneFile from './DropzoneFile';
 import DropzoneImport from './DropzoneImport';
-import { useDropzone } from '../../hooks';
 
 interface DropzoneProps {
   className?: string;
@@ -17,7 +17,7 @@ interface DropzoneProps {
   children?: ReactNode;
 }
 
-const Dropzone = ({
+export const Dropzone = ({
   className,
   accept,
   multiple = true,

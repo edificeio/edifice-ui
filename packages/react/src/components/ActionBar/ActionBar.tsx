@@ -9,7 +9,7 @@ export interface ActionBarProps {
 
 export type ActionBarType = React.FC<ActionBarProps>;
 
-const ActionBar = forwardRef(
+export const ActionBar = forwardRef(
   ({ children }: ActionBarProps, ref: Ref<HTMLDivElement>) => {
     return (
       <div ref={ref} className="actionbar">

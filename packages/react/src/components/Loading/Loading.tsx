@@ -33,7 +33,7 @@ export interface LoadingProps {
  * Inform user about loading status
  */
 
-const Loading = forwardRef(
+export const Loading = forwardRef(
   (props: LoadingProps, ref: Ref<HTMLDivElement>): JSX.Element => {
     const {
       isLoading,

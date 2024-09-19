@@ -37,7 +37,7 @@ export interface TabsProps {
 /**
  * Tab Content displayed one at a time when a Tab Item is selected
  */
-const Tabs = ({ defaultId, items, onChange, children }: TabsProps) => {
+export const Tabs = ({ defaultId, items, onChange, children }: TabsProps) => {
   const [activeTab, setActiveTab] = useState<string>(defaultId || '');
   const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
   const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);

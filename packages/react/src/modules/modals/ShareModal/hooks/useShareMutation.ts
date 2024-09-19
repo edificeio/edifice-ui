@@ -5,7 +5,7 @@ import {
 } from '@tanstack/react-query';
 import { PutShareResponse, ShareRight, odeServices } from 'edifice-ts-client';
 
-const useShareMutation = ({
+export const useShareMutation = ({
   application,
   options,
 }: {

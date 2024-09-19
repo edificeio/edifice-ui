@@ -29,7 +29,7 @@ export interface CheckboxProps
   indeterminate?: boolean;
 }
 
-const Checkbox = forwardRef(
+export const Checkbox = forwardRef(
   (
     {
       label,

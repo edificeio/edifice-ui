@@ -9,7 +9,7 @@ export interface LoadingScreenProps {
   caption?: string;
 }
 
-const LoadingScreen = forwardRef(
+export const LoadingScreen = forwardRef(
   (
     { position = true, caption }: LoadingScreenProps,
     ref: Ref<HTMLDivElement>,

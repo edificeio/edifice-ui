@@ -32,7 +32,7 @@ export interface ImageProps extends React.ComponentPropsWithRef<'img'> {
   className?: string;
 }
 
-const Image = forwardRef(
+export const Image = forwardRef(
   (
     {
       src,

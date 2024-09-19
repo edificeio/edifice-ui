@@ -29,7 +29,7 @@ export interface EmptyScreenProps {
   className?: string;
 }
 
-const EmptyScreen = ({
+export const EmptyScreen = ({
   imageSrc,
   imageAlt = '',
   title,

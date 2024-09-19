@@ -9,7 +9,7 @@ import { forwardRef, ReactNode, Ref } from 'react';
 
 import clsx from 'clsx';
 
-import Button, { ButtonProps, ButtonRef } from './Button';
+import { Button, ButtonProps, ButtonRef } from './Button';
 
 type OmittedProps = 'children' | 'leftIcon' | 'rightIcon';
 
@@ -21,7 +21,7 @@ export interface IconButtonProps extends Omit<ButtonProps, OmittedProps> {
  * IconButton extends ButtonComponent.
  */
 
-const IconButton = forwardRef(
+export const IconButton = forwardRef(
   (
     { icon, className, ...restProps }: IconButtonProps,
     ref?: Ref<ButtonRef>,

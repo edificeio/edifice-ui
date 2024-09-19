@@ -26,10 +26,7 @@ export interface ShareBlogProps {
   >;
 }
 
-export default function ShareBlog({
-  resourceId,
-  updateResource,
-}: ShareBlogProps) {
+export function ShareBlog({ resourceId, updateResource }: ShareBlogProps) {
   const { appCode } = useOdeClient();
   const { t } = useTranslation(appCode);
 
@@ -94,3 +91,5 @@ export default function ShareBlog({
     </>
   );
 }
+
+export default ShareBlog;

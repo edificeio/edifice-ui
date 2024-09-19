@@ -44,7 +44,7 @@ export interface TextAreaProps
  * TextArea Form Component
  */
 
-const TextArea = forwardRef(
+export const TextArea = forwardRef(
   (
     {
       noValidationIcon,

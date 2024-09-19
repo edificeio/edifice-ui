@@ -31,7 +31,7 @@ export interface LabelProps
   className?: string;
 }
 
-const Label = forwardRef(
+export const Label = forwardRef(
   (
     {
       leftIcon,
