@@ -1,10 +1,10 @@
-import { default as useReactionIcons } from './hooks/useReactionIcons';
-import { IconButton } from '../Button';
-import { Dropdown } from '../Dropdown';
-import { useTranslation } from 'react-i18next';
-import { ReactionSummaryData, ReactionType } from 'edifice-ts-client';
-import { Tooltip } from '../Tooltip';
 import clsx from 'clsx';
+import { ReactionSummaryData, ReactionType } from 'edifice-ts-client';
+import { useTranslation } from 'react-i18next';
+import { useReactionIcons } from '.';
+import { IconButton } from '../../components/Button';
+import { Dropdown } from '../../components/Dropdown';
+import { Tooltip } from '../../components/Tooltip';
 
 export interface ReactionChoiceProps {
   availableReactions: ReactionType[];

@@ -25,6 +25,10 @@
     ".": {
       "import": "./dist/index.js"
     },
+    "./audience": {
+      "import": "./dist/audience.js",
+      "types": "./dist/modules/audience/index.d.ts"
+    },
     "./editor": {
       "import": "./dist/editor.js",
       "types": "./dist/modules/editor/index.d.ts"

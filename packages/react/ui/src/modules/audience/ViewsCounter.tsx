@@ -1,7 +1,7 @@
 import clsx from 'clsx';
-import { Icon } from '..';
+import { Icon } from '../../components';
+import { Button } from '../../components/Button';
 import { StringUtils } from '../../utils';
-import { Button } from '../Button';
 
 export interface ViewsCounterProps {
   viewsCounter: number;

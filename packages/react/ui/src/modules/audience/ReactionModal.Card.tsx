@@ -1,8 +1,8 @@
-import { useTranslation } from 'react-i18next';
-import { useAvatar } from '../../core';
-import { Avatar } from '../Avatar';
-import useReactionIcons from './hooks/useReactionIcons';
 import { ReactionDetailsData } from 'edifice-ts-client';
+import { useTranslation } from 'react-i18next';
+import { Avatar } from '../../components/Avatar';
+import { useAvatar } from '../../core';
+import useReactionIcons from './hooks/useReactionIcons';
 
 export function ReactionModalCard({
   reaction,

@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { ReactionModal } from '..';
-import { useToggle } from '../../../hooks';
-import { Button } from '../../Button';
 import { ReactionDetailsData } from 'edifice-ts-client';
+import { ReactionModal } from '..';
+import { Button } from '../../../components/Button';
+import { useToggle } from '../../../hooks';
 
 const mockedData: ReactionDetailsData = {
   reactionCounters: {
