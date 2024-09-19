@@ -28,6 +28,10 @@
     "./editor": {
       "import": "./dist/editor.js",
       "types": "./dist/modules/editor/index.d.ts"
+    },
+    "./multimedia": {
+      "import": "./dist/multimedia.js",
+      "types": "./dist/modules/multimedia/index.d.ts"
     }
   },
   "module": "dist/index.js",

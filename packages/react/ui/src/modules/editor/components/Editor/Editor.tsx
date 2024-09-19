@@ -30,13 +30,14 @@ import {
   useSpeechSynthetisis,
   useTipTapEditor,
 } from '../..';
-import { LoadingScreen, MediaLibrary, useOdeClient } from '../../../..';
+import { LoadingScreen, useOdeClient } from '../../../..';
+import { MediaLibrary } from '../../../multimedia';
 import { useMathsStyles } from '../../hooks/useMathsStyles';
 
 const MathsModal = lazy(async () => await import('./MathsModal'));
 const ImageEditor = lazy(
   async () =>
-    await import('../../../../multimedia/ImageEditor/components/ImageEditor'),
+    await import('../../../multimedia/ImageEditor/components/ImageEditor'),
 );
 
 export interface EditorRef {
