@@ -81,6 +81,7 @@ const MediaRenderer = (props: MediaResizeProps) => {
               title={node.attrs.title}
               alt={node.attrs.alt}
               width={node.attrs.width}
+              style={node.attrs.style}
               className={`custom-image`}
               ref={resizableMedia as React.RefObject<HTMLImageElement>}
             />
