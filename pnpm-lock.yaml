@@ -3523,9 +3523,6 @@ packages:
   '@storybook/csf@0.1.11':
     resolution: {integrity: sha512-dHYFQH3mA+EtnCkHXzicbLgsvzYjcDJ1JWsogbItZogkPHgSJM/Wr71uMkcvw8v9mmCyP4NpXJuu6bPoVsOnzg==}
 
-  '@storybook/csf@0.1.9':
-    resolution: {integrity: sha512-JlZ6v/iFn+iKohKGpYXnMeNeTiiAMeFoDhYnPLIC8GnyyIWqEI9wJYrOK9i9rxlJ8NZAH/ojGC/u/xVC41qSgQ==}
-
   '@storybook/docs-mdx@0.1.0':
     resolution: {integrity: sha512-JDaBR9lwVY4eSH5W8EGHrhODjygPd6QImRbwjAuJNEnY0Vw4ie3bPkeGfnacB3OBW6u/agqPv2aRlR46JcAQLg==}
 
@@ -12337,7 +12334,7 @@ snapshots:
       '@storybook/client-logger': 7.6.6
       '@storybook/components': 7.6.6(@types/react-dom@18.3.0)(@types/react@18.3.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@storybook/core-events': 7.6.6
-      '@storybook/csf': 0.1.9
+      '@storybook/csf': 0.1.11
       '@storybook/docs-tools': 7.6.6(encoding@0.1.13)
       '@storybook/global': 5.0.0
       '@storybook/manager-api': 7.6.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -12497,7 +12494,7 @@ snapshots:
       '@radix-ui/react-select': 1.2.2(@types/react-dom@18.3.0)(@types/react@18.3.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@radix-ui/react-toolbar': 1.1.0(@types/react-dom@18.3.0)(@types/react@18.3.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@storybook/client-logger': 7.6.6
-      '@storybook/csf': 0.1.9
+      '@storybook/csf': 0.1.11
       '@storybook/global': 5.0.0
       '@storybook/theming': 7.6.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@storybook/types': 7.6.6
@@ -12623,10 +12620,6 @@ snapshots:
       lodash: 4.17.21
 
   '@storybook/csf@0.1.11':
-    dependencies:
-      type-fest: 2.19.0
-
-  '@storybook/csf@0.1.9':
     dependencies:
       type-fest: 2.19.0
 
