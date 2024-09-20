@@ -85,7 +85,7 @@ const MediaRenderer = (props: MediaResizeProps) => {
             // eslint-disable-next-line jsx-a11y/media-has-caption
             <video
               ref={resizableMedia as React.RefObject<HTMLVideoElement>}
-              controls={node.attrs.controls}
+              controls={node.attrs.controls === "true"}
               src={node.attrs.src}
               width={node.attrs.width}
               height={node.attrs.height}
