@@ -36,3 +36,8 @@ dist-ssr
 .npmrc
 .vercel
 .env*.local
+
+
+
+.nx/cache
+.nx/workspace-data

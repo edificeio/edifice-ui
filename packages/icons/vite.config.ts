@@ -27,9 +27,7 @@ export default defineConfig({
       // The cwd, defaults to process.cwd()
       cwd: process.cwd(),
       // What formatter to use to format the generated files, prettier or biome, defaults to no formatter
-      formatter: 'biome',
-      // The path to the formatter config file, defaults to no path
-      pathToFormatterConfig: './biome.json',
+      formatter: 'prettier',
       // Callback function that is called when the script is generating the icon name
       // This is useful if you want to modify the icon name before it is written to the file
       iconNameTransformer: (iconName) => iconName,

@@ -19,18 +19,18 @@
   "license": "AGPL-3.0",
   "author": "Edifice",
   "sideEffects": false,
-  "main": "types/index.ts",
   "type": "module",
-  "files": [
-    "dist",
-    "types"
-  ],
   "exports": {
     ".": {
       "import": "./types/index.ts"
     },
     "./*.svg": "./dist/*.svg"
   },
+  "main": "types/index.ts",
+  "files": [
+    "dist",
+    "types"
+  ],
   "scripts": {
     "build": "vite build"
   },
