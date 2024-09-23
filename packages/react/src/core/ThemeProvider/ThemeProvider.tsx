@@ -1,12 +1,12 @@
 import {
   createContext,
-  type ReactNode,
-  useMemo,
   useContext,
   useEffect,
+  useMemo,
+  type ReactNode,
 } from 'react';
 
-import { IOdeTheme } from 'edifice-ts-client';
+import { IOdeTheme } from '@edifice.io/ts-client';
 
 import { useOdeClient } from '../OdeClientProvider';
 import { useConf } from '../useConf';

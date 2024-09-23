@@ -1,11 +1,11 @@
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 
-import clsx from 'clsx';
 import {
   Role,
   WorkspaceElement,
   WorkspaceSearchFilter,
-} from 'edifice-ts-client';
+} from '@edifice.io/ts-client';
+import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -160,7 +160,7 @@ const Workspace = ({
             othersRef: [ownerRef, sharedRef, protectRef],
           };
         default:
-          throw 'no.root.node';
+          throw new Error('no.root.node');
       }
     },
     [ownerRoot, sharedRoot, protectRoot, publicRoot],
@@ -184,7 +184,7 @@ const Workspace = ({
         loadPublicDocs(currentNode.id);
         break;
       default:
-        throw 'no.way';
+        throw new Error('no.way');
     }
   }, [
     currentFilter,

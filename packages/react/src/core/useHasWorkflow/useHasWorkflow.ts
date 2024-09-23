@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { odeServices } from 'edifice-ts-client';
+import { odeServices } from '@edifice.io/ts-client';
 
 import { useMockedData } from '../../utils';
 
@@ -20,7 +20,7 @@ export default function useHasWorkflow(
         if (typeof workflow === 'string') {
           response = await mock.hasWorkflow(workflow);
         } else {
-          throw 'not.implemented.yet)';
+          throw new Error('not.implemented.yet)');
         }
       } else {
         if (typeof workflow === 'string') {

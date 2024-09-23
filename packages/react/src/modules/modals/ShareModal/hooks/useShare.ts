@@ -7,7 +7,7 @@ import {
   type ShareRightAction,
   type ShareRightActionDisplayName,
   type ShareRightWithVisibles,
-} from 'edifice-ts-client';
+} from '@edifice.io/ts-client';
 import { useTranslation } from 'react-i18next';
 
 import { useOdeClient, useUser } from '../../../../core';
@@ -108,8 +108,7 @@ export default function useShare({
         });
       } catch (error) {
         console.error(error);
-      }
-      {
+      } finally {
         setIsLoading(false);
       }
     })();

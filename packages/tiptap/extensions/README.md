@@ -3,7 +3,7 @@
 ![npm](https://img.shields.io/npm/v/@edifice.io/tiptap-extensions?style=flat-square)
 ![bundlephobia](https://img.shields.io/bundlephobia/min/@edifice.io/tiptap-extensions?style=flat-square)
 
-Extensions based on Tiptap Editor
+TypeScript Extensions based on Tiptap Editor
 
 ## Getting Started
 

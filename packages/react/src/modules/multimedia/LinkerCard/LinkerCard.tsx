@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
+import { IResource } from '@edifice.io/ts-client';
 import clsx from 'clsx';
-import { IResource } from 'edifice-ts-client';
 
 import { AppIcon, Card, CardProps, Icon, Image } from '../../../components';
 import { useDate } from '../../../core/useDate';

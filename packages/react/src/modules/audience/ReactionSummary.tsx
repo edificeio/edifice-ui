@@ -1,4 +1,4 @@
-import { ReactionSummaryData } from 'edifice-ts-client';
+import { ReactionSummaryData } from '@edifice.io/ts-client';
 import { Button } from '../../components/Button';
 import { StringUtils } from '../../utils';
 import useReactionIcons from './hooks/useReactionIcons';

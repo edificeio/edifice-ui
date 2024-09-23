@@ -75,36 +75,34 @@ const ExternalLinker = ({
   }, [linkText, linkURL, isBlankTarget]);
 
   return (
-    <>
-      <div className="d-flex flex-column flex-fill gap-24">
-        <FormControl id="linkText" isOptional>
-          <Label>{t('bbm.linker.ext.text')}</Label>
-          <Input
-            type="text"
-            placeholder={t('bbm.linker.ext.text.placeholder')}
-            size="md"
-            disabled={multiNodeSelected}
-            value={linkText}
-            onChange={(e) => setLinkText(e.target.value)}
-          />
-        </FormControl>
-        <FormControl id="linkUrl" isRequired>
-          <Label>{t('bbm.linker.ext.url')}</Label>
-          <Input
-            type="text"
-            placeholder={t('bbm.linker.ext.url.placeholder')}
-            size="md"
-            value={linkURL}
-            onChange={(e) => setLinkURL(e.target.value)}
-          />
-        </FormControl>
-        <Checkbox
-          label={t('bbm.linker.open.tab')}
-          onChange={() => toggleBlankTarget()}
-          checked={isBlankTarget}
+    <div className="d-flex flex-column flex-fill gap-24">
+      <FormControl id="linkText" isOptional>
+        <Label>{t('bbm.linker.ext.text')}</Label>
+        <Input
+          type="text"
+          placeholder={t('bbm.linker.ext.text.placeholder')}
+          size="md"
+          disabled={multiNodeSelected}
+          value={linkText}
+          onChange={(e) => setLinkText(e.target.value)}
         />
-      </div>
-    </>
+      </FormControl>
+      <FormControl id="linkUrl" isRequired>
+        <Label>{t('bbm.linker.ext.url')}</Label>
+        <Input
+          type="text"
+          placeholder={t('bbm.linker.ext.url.placeholder')}
+          size="md"
+          value={linkURL}
+          onChange={(e) => setLinkURL(e.target.value)}
+        />
+      </FormControl>
+      <Checkbox
+        label={t('bbm.linker.open.tab')}
+        onChange={() => toggleBlankTarget()}
+        checked={isBlankTarget}
+      />
+    </div>
   );
 };
 

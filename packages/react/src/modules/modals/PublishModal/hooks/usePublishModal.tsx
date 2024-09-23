@@ -4,7 +4,7 @@ import {
   IResource,
   odeServices,
   type PublishParameters,
-} from 'edifice-ts-client';
+} from '@edifice.io/ts-client';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 
 import { useOdeClient } from '../../../../core';

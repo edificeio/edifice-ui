@@ -41,3 +41,6 @@ dist-ssr
 
 .nx/cache
 .nx/workspace-data
+
+# Rollup Visualizer
+stats.html

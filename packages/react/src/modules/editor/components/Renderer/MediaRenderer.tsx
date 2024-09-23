@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useEffect, useRef } from 'react';
 
+import { odeServices } from '@edifice.io/ts-client';
 import { NodeViewWrapper } from '@tiptap/react';
-import { odeServices } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 
 import { Image, useBrowserInfo } from '../../../..';
@@ -43,7 +43,7 @@ export const MediaRenderer = (props: MediaResizeProps) => {
       const videoElement: HTMLVideoElement = resizableMedia.current;
       const videoId = videoElement.dataset.documentId;
       const isCaptation =
-        (videoElement.dataset.documentIsCaptation || 'false') == 'true';
+        (videoElement.dataset.documentIsCaptation || 'false') === 'true';
 
       videoId &&
         odeServices

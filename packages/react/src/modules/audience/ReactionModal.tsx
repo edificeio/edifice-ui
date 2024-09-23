@@ -2,7 +2,7 @@ import {
   ReactionDetailsData,
   ReactionType,
   ReactionTypes,
-} from 'edifice-ts-client';
+} from '@edifice.io/ts-client';
 import { useCallback, useEffect, useId, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';

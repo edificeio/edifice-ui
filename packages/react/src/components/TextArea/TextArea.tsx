@@ -75,17 +75,15 @@ export const TextArea = forwardRef(
     );
 
     return (
-      <>
-        <textarea
-          ref={ref}
-          id={id}
-          className={classes}
-          placeholder={placeholder}
-          required={isRequired}
-          readOnly={isReadOnly}
-          {...restProps}
-        />
-      </>
+      <textarea
+        ref={ref}
+        id={id}
+        className={classes}
+        placeholder={placeholder}
+        required={isRequired}
+        readOnly={isReadOnly}
+        {...restProps}
+      />
     );
   },
 );

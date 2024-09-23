@@ -1,4 +1,4 @@
-import { ViewsDetails } from 'edifice-ts-client';
+import { ViewsDetails } from '@edifice.io/ts-client';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { Icon } from '../../components';

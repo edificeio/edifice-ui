@@ -6,8 +6,8 @@ import {
   useState,
 } from 'react';
 
+import { IWebApp } from '@edifice.io/ts-client';
 import clsx from 'clsx';
-import { IWebApp } from 'edifice-ts-client';
 
 import { Icon } from '..';
 import { useDropzone } from '../../hooks';

@@ -90,17 +90,15 @@ const LinkToolbar = ({
     false;
 
   return (
-    <>
-      {editor && (
-        <FloatingMenu
-          editor={editor}
-          tippyOptions={tippyOptions}
-          shouldShow={handleShouldShow}
-        >
-          <Toolbar className="p-4" items={LinkToolbarItems} />
-        </FloatingMenu>
-      )}
-    </>
+    editor && (
+      <FloatingMenu
+        editor={editor}
+        tippyOptions={tippyOptions}
+        shouldShow={handleShouldShow}
+      >
+        <Toolbar className="p-4" items={LinkToolbarItems} />
+      </FloatingMenu>
+    )
   );
 };
 

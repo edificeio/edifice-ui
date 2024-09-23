@@ -14,7 +14,7 @@ import StarterKit from '@tiptap/starter-kit';
 export const useCommentEditor = (
   editable: boolean,
   content: Content,
-  maxLength: number = 800,
+  maxLength = 800,
 ) => {
   const [commentLength, setCommentLength] = useState(0);
 

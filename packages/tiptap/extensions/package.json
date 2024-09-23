@@ -1,6 +1,6 @@
 {
   "name": "@edifice.io/tiptap-extensions",
-  "version": "2.0.0-develop-rc.0",
+  "version": "2.0.0-develop-rc.9",
   "description": "Edifice Rich Text Editor Extensions",
   "homepage": "https://github.com/edificeio/edifice-ui/tree/main/packages/tiptap/extensions#readme",
   "bugs": {
@@ -21,79 +21,98 @@
     },
     "./abbr": {
       "import": "./dist/abbr/abbr.js",
-      "require": "./dist/abbr/abbr.cjs"
+      "require": "./dist/abbr/abbr.cjs",
+      "types": "./dist/abbr/index.d.ts"
     },
     "./alert": {
       "import": "./dist/alert/alert.js",
-      "require": "./dist/alert/alert.cjs"
+      "require": "./dist/alert/alert.cjs",
+      "types": "./dist/alert/index.d.ts"
     },
     "./attachment": {
       "import": "./dist/attachment/attachment.js",
-      "require": "./dist/attachment/attachment.cjs"
+      "require": "./dist/attachment/attachment.cjs",
+      "types": "./dist/attachment/index.d.ts"
     },
     "./audio": {
       "import": "./dist/audio/audio.js",
-      "require": "./dist/audio/audio.cjs"
+      "require": "./dist/audio/audio.cjs",
+      "types": "./dist/audio/index.d.ts"
     },
     "./font-size": {
       "import": "./dist/font-size/font-size.js",
-      "require": "./dist/font-size/font-size.cjs"
+      "require": "./dist/font-size/font-size.cjs",
+      "types": "./dist/font-size/index.d.ts"
     },
     "./heading": {
       "import": "./dist/heading/heading.js",
-      "require": "./dist/heading/heading.cjs"
+      "require": "./dist/heading/heading.cjs",
+      "types": "./dist/heading/index.d.ts"
     },
     "./highlight": {
       "import": "./dist/highlight/highlight.js",
-      "require": "./dist/highlight/highlight.cjs"
+      "require": "./dist/highlight/highlight.cjs",
+      "types": "./dist/highlight/index.d.ts"
     },
     "./hyperlink": {
       "import": "./dist/hyperlink/hyperlink.js",
-      "require": "./dist/hyperlink/hyperlink.cjs"
+      "require": "./dist/hyperlink/hyperlink.cjs",
+      "types": "./dist/hyperlink/index.d.ts"
     },
     "./iframe": {
       "import": "./dist/iframe/iframe.js",
-      "require": "./dist/iframe/iframe.cjs"
+      "require": "./dist/iframe/iframe.cjs",
+      "types": "./dist/iframe/index.d.ts"
     },
     "./image": {
       "import": "./dist/image/image.js",
-      "require": "./dist/image/image.cjs"
+      "require": "./dist/image/image.cjs",
+      "types": "./dist/image/index.d.ts"
     },
     "./line-height": {
       "import": "./dist/line-height/line-height.js",
-      "require": "./dist/line-height/line-height.cjs"
+      "require": "./dist/line-height/line-height.cjs",
+      "types": "./dist/line-height/index.d.ts"
     },
     "./linker": {
       "import": "./dist/linker/linker.js",
-      "require": "./dist/linker/linker.cjs"
+      "require": "./dist/linker/linker.cjs",
+      "types": "./dist/linker/index.d.ts"
     },
     "./mathjax": {
       "import": "./dist/mathjax/mathjax.js",
-      "require": "./dist/mathjax/mathjax.cjs"
+      "require": "./dist/mathjax/mathjax.cjs",
+      "types": "./dist/mathjax/index.d.ts"
     },
     "./paragraph": {
       "import": "./dist/paragraph/paragraph.js",
-      "require": "./dist/paragraph/paragraph.cjs"
+      "require": "./dist/paragraph/paragraph.cjs",
+      "types": "./dist/paragraph/index.d.ts"
     },
     "./speech-recognition": {
       "import": "./dist/speech-recognition/speech-recognition.js",
-      "require": "./dist/speech-recognition/speech-recognition.cjs"
+      "require": "./dist/speech-recognition/speech-recognition.cjs",
+      "types": "./dist/speech-recognition/index.d.ts"
     },
     "./speech-synthesis": {
       "import": "./dist/speech-synthesis/speech-synthesis.js",
-      "require": "./dist/speech-synthesis/speech-synthesis.cjs"
+      "require": "./dist/speech-synthesis/speech-synthesis.cjs",
+      "types": "./dist/speech-synthesis/index.d.ts"
     },
     "./table-cell": {
       "import": "./dist/table-cell/table-cell.js",
-      "require": "./dist/table-cell/table-cell.cjs"
+      "require": "./dist/table-cell/table-cell.cjs",
+      "types": "./dist/table-cell/index.d.ts"
     },
     "./transform": {
       "import": "./dist/transform/transform.js",
-      "require": "./dist/transform/transform.cjs"
+      "require": "./dist/transform/transform.cjs",
+      "types": "./dist/transform/index.d.ts"
     },
     "./video": {
       "import": "./dist/video/video.js",
-      "require": "./dist/video/video.cjs"
+      "require": "./dist/video/video.cjs",
+      "types": "./dist/video/index.d.ts"
     }
   },
   "main": "dist/index.cjs",
@@ -104,27 +123,20 @@
   ],
   "scripts": {
     "build": "vite build",
-    "fix": "eslint . --ext ts --report-unused-disable-directives --max-warnings 0",
     "format": "pnpm run format:write && pnpm run format:check",
     "format:check": "npx prettier --check .",
-    "format:write": "npx prettier --write .",
-    "lint": "eslint \"**/*.ts\""
+    "format:write": "npx prettier --write ."
   },
   "dependencies": {
     "@tiptap/core": "2.3.0",
-    "@tiptap/extension-bold": "2.3.0",
-    "@tiptap/extension-document": "2.3.0",
     "@tiptap/extension-heading": "2.3.0",
     "@tiptap/extension-highlight": "2.3.0",
     "@tiptap/extension-image": "2.3.0",
     "@tiptap/extension-link": "2.3.0",
     "@tiptap/extension-paragraph": "2.3.0",
     "@tiptap/extension-table-cell": "2.3.0",
-    "@tiptap/extension-text": "2.3.0",
     "@tiptap/extension-text-style": "2.3.0",
-    "@tiptap/html": "2.3.0",
-    "@tiptap/pm": "2.3.0",
-    "@tiptap/starter-kit": "2.3.0"
+    "@tiptap/pm": "2.3.0"
   },
   "devDependencies": {
     "@types/dom-speech-recognition": "^0.0.1"

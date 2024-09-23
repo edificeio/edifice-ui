@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useReducer, useRef } from 'react';
 
-import { WorkspaceElement, WorkspaceVisibility } from 'edifice-ts-client';
+import { WorkspaceElement, WorkspaceVisibility } from '@edifice.io/ts-client';
 import { useTranslation } from 'react-i18next';
 
 import { Icon, ToolbarItem } from '../../../components';
@@ -39,9 +39,9 @@ type AudioReducerState = {
 export default function useAudioRecorder(
   onSaveSuccess?: (resource: WorkspaceElement) => void,
   onUpdateRecord?: (audioUrl?: string) => void,
-  hideSaveAction: boolean = false,
+  hideSaveAction = false,
   visibility: WorkspaceVisibility = 'protected',
-  application: string = 'media-library',
+  application = 'media-library',
 ) {
   function audioReducer(
     state: AudioReducerState,
@@ -82,8 +82,8 @@ export default function useAudioRecorder(
   const { t } = useTranslation();
   const { create } = useWorkspaceFile();
 
-  const BUFFER_SIZE: number = 128; // https://developer.mozilla.org/en-US/docs/Web/API/AudioWorkletProcessor
-  const DEFAULT_SAMPLE_RATE: number = 48000;
+  const BUFFER_SIZE = 128; // https://developer.mozilla.org/en-US/docs/Web/API/AudioWorkletProcessor
+  const DEFAULT_SAMPLE_RATE = 48000;
 
   // Init Web Socket to send audio chunks to backend
   useEffect(() => {

@@ -8,6 +8,7 @@ import {
 } from 'react';
 
 import '@edifice.io/tiptap-extensions';
+import { WorkspaceVisibility } from '@edifice.io/ts-client';
 import {
   Content,
   EditorContent,
@@ -15,7 +16,6 @@ import {
   JSONContent,
 } from '@tiptap/react';
 import clsx from 'clsx';
-import { WorkspaceVisibility } from 'edifice-ts-client';
 
 import {
   BubbleMenuEditImage,
@@ -129,7 +129,7 @@ const Editor = forwardRef(
           case 'plain':
             return editor?.getText();
           default:
-            throw `[Editor] Unknown content format ${as}`;
+            throw new Error(`[Editor] Unknown content format ${as}`);
         }
       },
       toogleSpeechSynthetisis: speechSynthetisis.toggle,

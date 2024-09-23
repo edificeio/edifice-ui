@@ -63,6 +63,7 @@ const MathsModal = ({ isOpen, onSuccess, onCancel }: ModalProps) => {
             'https://fr.wikibooks.org/wiki/LaTeX/%C3%89crire_des_math%C3%A9matiques',
           )}
           target="_blank"
+          rel="noreferrer"
         >
           {t('tiptap.maths.subtitle.2')}
         </a>

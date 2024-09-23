@@ -1,4 +1,4 @@
-# Edifice React Components
+# Edifice React Library
 
 ![npm](https://img.shields.io/npm/v/@edifice.io/react?style=flat-square)
 ![bundlephobia](https://img.shields.io/bundlephobia/min/@edifice.io/react?style=flat-square)
@@ -7,104 +7,33 @@
 
 We follow [WAI ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/) rules and [Bootstrap 5](https://getbootstrap.com/docs/5.0/components/accordion/) guidelines when making our components
 
-### Build
+### Install
 
-```bash
-pnpm run build
+```
+pnpm add @edifice.io/react
 ```
 
-### Lint
+### Modules
 
-```bash
-pnpm run lint
-```
+Optional modules are available as `sub-imports`. You can use them in specific applications:
 
-If `pnpm run lint` shows issues, run this command to fix them.
+#### Audience
 
-```bash
-pnpm run fix
-```
+Module to track views or reactions on a resource in a specific application (e.g: Blog)
 
-### Prettier
+#### Editor
 
-```bash
-pnpm run format
-```
+Rich Text Editor using Tiptap and our `multimedia` module.
 
-## Structure
+#### Modals
 
-### Component Folder
+- Onboarding Modal to greet user and give him some useful informations about an application.
+- Publish Modal to publish a resource to the BPR application.
+- Resource Modal can be used to create or edit information about a resource
+- Share Modal allows a user to share one of his resource with specific roles to users
 
-- Folder name always in PascalCase: `Button`
-- Component file in PascalCase: `Button.tsx`
-- Export types & interfaces inside Component file
-- Stories file in PascalCase + `*.stories.tsx` : `Button.stories.tsx`
+#### Multimedia
 
-```bash
-src
-  -- ComponentFolder
-    -- Component.tsx
-    -- Component.stories.tsx
-    -- index.ts
-```
+All our multimedia components to use in applications or in modules.
 
-- Re-export the Component inside his own `index` file: `index.ts`
-- Export everything if Component has types & interfaces
-
-```jsx
-export { default as Component } from './Component';
-export * from './Component';
-```
-
-### Component Guideline
-
-- Always document basic guideline of Component with JSDoc format. Used by Storybook to generate documentation.
-
-```jsx
-/**
- * Primary UI component for user interaction
- */
-```
-
-### Interface description
-
-- Always document typescript types and interface with JSDoc syntax. Used by Storybook to generate documentation.
-
-```jsx
-// Interface description (e.g: TreeViewProps.tsx)
-export interface ButtonProps {
-  /**
-   * Is this the principal call to action on the page?
-   */
-  primary?: boolean;
-  /**
-   * What background color to use
-   */
-  backgroundColor?: string;
-  /**
-   * How large should the button be?
-   */
-  size?: "small" | "medium" | "large";
-  /**
-   * Button contents
-   */
-  label: string;
-  /**
-   * Optional click handler
-   */
-  onClick?: () => void;
-}
-```
-
-### Index file inside `src` folder
-
-- Entry point of this React Library.
-- Import your component inside `index.ts` file.
-
-```jsx
-export * from './Button';
-```
-
-## Dev
-
-You can build your component using `Storybook`. See [README](../../docs//README.md)
+- Linker, AudioRecorder, VideoRecorder, Iframe, Embed component, ...

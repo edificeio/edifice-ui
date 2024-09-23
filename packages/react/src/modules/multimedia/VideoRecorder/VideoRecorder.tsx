@@ -8,7 +8,7 @@ import {
   useState,
 } from 'react';
 
-import { WorkspaceElement, odeServices } from 'edifice-ts-client';
+import { WorkspaceElement, odeServices } from '@edifice.io/ts-client';
 import { useTranslation } from 'react-i18next';
 
 import {

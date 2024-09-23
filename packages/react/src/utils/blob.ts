@@ -1,4 +1,4 @@
-import { StringUtils } from 'edifice-ts-client';
+import { StringUtils } from '@edifice.io/ts-client';
 
 /**
  * Get or generate a virtual ID for a blob object.

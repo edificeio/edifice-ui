@@ -6,7 +6,7 @@ import {
   WorkspaceElement,
   WorkspaceVisibility,
   odeServices,
-} from 'edifice-ts-client';
+} from '@edifice.io/ts-client';
 
 import { useBrowserInfo } from '../../hooks';
 import { Status } from '../../types';
@@ -15,7 +15,7 @@ import { useWorkspaceFile } from '../useWorkspaceFile';
 
 const useUpload = (
   visibility?: WorkspaceVisibility,
-  application: string = 'media-library',
+  application = 'media-library',
 ) => {
   const [status, setStatus] = useState<Record<string, Status>>({});
 

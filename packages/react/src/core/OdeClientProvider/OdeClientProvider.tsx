@@ -6,7 +6,6 @@ import {
   type ReactNode,
 } from 'react';
 
-import { UseQueryResult } from '@tanstack/react-query';
 import {
   App,
   IGetConf,
@@ -15,7 +14,8 @@ import {
   IUserInfo,
   IWebApp,
   UserProfile,
-} from 'edifice-ts-client';
+} from '@edifice.io/ts-client';
+import { UseQueryResult } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { useConf } from '../useConf';

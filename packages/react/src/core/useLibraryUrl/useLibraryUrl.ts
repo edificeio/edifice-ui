@@ -1,4 +1,4 @@
-import { IUserInfo, IWebApp } from 'edifice-ts-client';
+import { IUserInfo, IWebApp } from '@edifice.io/ts-client';
 
 import { libraryMaps } from '../../utils/libraryMaps';
 import { useOdeClient } from '../OdeClientProvider/OdeClientProvider';

@@ -1,4 +1,4 @@
-import { type IWidget, WidgetName, IWebApp } from 'edifice-ts-client';
+import { IWebApp, WidgetName, type IWidget } from '@edifice.io/ts-client';
 
 export default function useOdeIcons() {
   /**
@@ -29,7 +29,7 @@ export default function useOdeIcons() {
    * @param app an IWebApp, or an app prefix
    */
   function getIconCode(app: IWebApp | string | undefined): string {
-    let appCode: string = '';
+    let appCode = '';
 
     if (typeof app === 'string') {
       appCode = app;

@@ -1,4 +1,4 @@
-import { WorkspaceElement, WorkspaceVisibility } from 'edifice-ts-client';
+import { WorkspaceElement, WorkspaceVisibility } from '@edifice.io/ts-client';
 
 import { useEffect, useRef } from 'react';
 import { UploadCard } from '../../../components';

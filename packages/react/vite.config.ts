@@ -46,7 +46,6 @@ export default defineConfig({
         'swiper/react',
         'swiper/modules',
         'react/jsx-runtime',
-        'edifice-ts-client',
         '@edifice.io/icons/icons.svg',
       ],
     },
@@ -62,7 +61,7 @@ export default defineConfig({
       excludeExtensions: ['.stories.tsx'],
     }),
     dts({
-      tsconfigPath: './tsconfig.build.json',
+      tsconfigPath: './tsconfig.lib.json',
       compilerOptions: {
         baseUrl: '.',
         paths: {

@@ -1,5 +1,25 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
+    "production": [
+      "default",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/eslint.config.js",
+      "!{projectRoot}/jest.config.[jt]s",
+      "!{projectRoot}/src/test-setup.[jt]s",
+      "!{projectRoot}/test-setup.[jt]s",
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+      "!{projectRoot}/.storybook/**/*",
+      "!{projectRoot}/tsconfig.storybook.json"
+    ],
+    "sharedGlobals": []
+  },
   "targetDefaults": {
     "compile": {
       "dependsOn": [
@@ -33,12 +53,21 @@
     }
   ],
   "release": {
-    "version": {
-      "conventionalCommits": true
-    },
     "projects": [
       "packages/*",
-      "packages/*/*"
-    ]
+      "packages/**/*"
+    ],
+    "version": {
+      "preVersionCommand": "pnpm dlx nx run-many -t build",
+      "conventionalCommits": false,
+      "generatorOptions": {
+        "preserveLocalDependencyProtocols": true
+      }
+    },
+    "changelog": {
+      "workspaceChangelog": {
+        "createRelease": "github"
+      }
+    }
   }
 }

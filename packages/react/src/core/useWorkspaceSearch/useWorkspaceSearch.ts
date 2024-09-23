@@ -1,7 +1,13 @@
 import { useCallback, useReducer } from 'react';
 
-import { DocumentHelper, Role, odeServices } from 'edifice-ts-client';
-import { ID, WorkspaceElement, WorkspaceSearchFilter } from 'edifice-ts-client';
+import {
+  DocumentHelper,
+  ID,
+  Role,
+  WorkspaceElement,
+  WorkspaceSearchFilter,
+  odeServices,
+} from '@edifice.io/ts-client';
 
 import { TreeNode } from '../../components';
 import { findTreeNode, useMockedData } from '../../utils';
@@ -81,7 +87,7 @@ export default function useWorkspaceSearch(
                   _id: '' + Math.round(Math.random() * 9999),
                 };
                 ret.name =
-                  result.eType == 'folder'
+                  result.eType === 'folder'
                     ? 'folder id=' + ret._id
                     : 'file id=' + ret._id;
                 return ret;

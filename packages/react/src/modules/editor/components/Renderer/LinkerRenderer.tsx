@@ -33,7 +33,7 @@ export const LinkerRenderer = ({ selected, ...props }: LinkerProps) => {
   const handleBadgeClick: MouseEventHandler<HTMLSpanElement> = (event) => {
     // Clicking a linker badge in read mode opens the link
     if (editor && !editor.isEditable) {
-      event.preventDefault;
+      event.preventDefault();
       window.open(href ?? 'about:blank', target ?? '_self');
     }
   };

@@ -139,7 +139,7 @@ export const Toolbar = forwardRef(
       const buttons: NodeListOf<HTMLButtonElement> | undefined =
         divToolbarRef.current?.querySelectorAll('button');
       const enabledItems: Array<HTMLElement> = [];
-      let isfirstItemSet: boolean = false;
+      let isfirstItemSet = false;
 
       buttons?.forEach((item) => {
         if (!item.disabled) {

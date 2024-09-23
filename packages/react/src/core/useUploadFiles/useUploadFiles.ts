@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { WorkspaceElement, WorkspaceVisibility } from 'edifice-ts-client';
+import { WorkspaceElement, WorkspaceVisibility } from '@edifice.io/ts-client';
 
 import { useDropzoneContext } from '../../components/Dropzone/DropzoneContext';
+import { useImageResizer } from '../../hooks/useImageResizer';
 import { addTimestampToImageUrl } from '../../utils';
 import { useUpload } from '../useUpload';
 import { useWorkspaceFile } from '../useWorkspaceFile';
-import { useImageResizer } from '../../hooks/useImageResizer';
 
 const useUploadFiles = ({
   handleOnChange,

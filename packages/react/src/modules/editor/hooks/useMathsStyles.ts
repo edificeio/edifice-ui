@@ -21,7 +21,6 @@ export const useMathsStyles = () => {
       link.rel = 'stylesheet';
       link.type = 'text/css';
 
-      document.links;
       document.head.appendChild(link);
     }
   }, []);

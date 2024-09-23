@@ -185,42 +185,37 @@ export const Alert = forwardRef(
       className,
     );
 
-    return (
-      <>
-        {isVisible ? (
-          <div ref={refAlert} className={divContainerClasses} role="alert">
-            {!isConfirm && mapping[type].icon}
-            <div className="alert-content small">{children}</div>
-            {button && (
-              <div className="ms-12">
-                {button}{' '}
-                {isConfirm && <Button onClick={hide}>{t('close')}</Button>}
-              </div>
-            )}
-            {(isDismissible || isConfirm) && (
-              <div className="btn-close-container">
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="alert"
-                  aria-label={t('close')}
-                  onClick={hide}
-                ></button>
-              </div>
-            )}
-            {/* Waiting animation library */}
-            {autoClose && (
-              <div
-                className="alert-progress"
-                style={{
-                  transform: `scaleX(0)`,
-                }}
-              ></div>
-            )}
+    return isVisible ? (
+      <div ref={refAlert} className={divContainerClasses} role="alert">
+        {!isConfirm && mapping[type].icon}
+        <div className="alert-content small">{children}</div>
+        {button && (
+          <div className="ms-12">
+            {button} {isConfirm && <Button onClick={hide}>{t('close')}</Button>}
           </div>
-        ) : null}
-      </>
-    );
+        )}
+        {(isDismissible || isConfirm) && (
+          <div className="btn-close-container">
+            <button
+              type="button"
+              className="btn-close"
+              data-bs-dismiss="alert"
+              aria-label={t('close')}
+              onClick={hide}
+            ></button>
+          </div>
+        )}
+        {/* Waiting animation library */}
+        {autoClose && (
+          <div
+            className="alert-progress"
+            style={{
+              transform: `scaleX(0)`,
+            }}
+          ></div>
+        )}
+      </div>
+    ) : null;
   },
 );
 

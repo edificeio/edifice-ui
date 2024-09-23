@@ -93,81 +93,76 @@ const TableToolbar = ({ editor }: TableToolbarProps) => {
     (editor?.isEditable && editor.isActive('table')) || false;
 
   return (
-    <>
-      {editor && (
-        <FloatingMenu
-          editor={editor}
-          tippyOptions={tippyOptions}
-          shouldShow={handleShouldShow}
-        >
-          <Toolbar
-            className="p-4"
-            items={[
-              {
-                type: 'dropdown',
-                name: 'bkg-col',
-                // isEnable:
-                //   typeof editor?.getAttributes("tableCell") !== "undefined",
-                props: {
-                  children: (
-                    triggerProps: JSX.IntrinsicAttributes &
-                      Omit<IconButtonProps, 'ref'> &
-                      RefAttributes<HTMLButtonElement>,
-                    itemRefs,
-                  ) => (
-                    <TableToolbarCellColor
-                      editor={editor}
-                      itemRefs={itemRefs}
-                    />
-                  ),
-                },
+    editor && (
+      <FloatingMenu
+        editor={editor}
+        tippyOptions={tippyOptions}
+        shouldShow={handleShouldShow}
+      >
+        <Toolbar
+          className="p-4"
+          items={[
+            {
+              type: 'dropdown',
+              name: 'bkg-col',
+              // isEnable:
+              //   typeof editor?.getAttributes("tableCell") !== "undefined",
+              props: {
+                children: (
+                  triggerProps: JSX.IntrinsicAttributes &
+                    Omit<IconButtonProps, 'ref'> &
+                    RefAttributes<HTMLButtonElement>,
+                  itemRefs,
+                ) => (
+                  <TableToolbarCellColor editor={editor} itemRefs={itemRefs} />
+                ),
               },
-              {
-                type: 'icon',
-                name: 'mergeorsplit',
-                // isEnable: typeof isSpan !== "undefined",
-                props: {
-                  icon: isSpan ? (
-                    <Icon name="split-cells" />
-                  ) : (
-                    <Icon name="merge-cells" />
-                  ),
-                  'aria-label': isSpan
-                    ? t('tiptap.table.toolbar.split')
-                    : t('tiptap.table.toolbar.merge'),
-                  onClick: () => editor?.chain().focus().mergeOrSplit().run(),
-                },
-                tooltip: isSpan
+            },
+            {
+              type: 'icon',
+              name: 'mergeorsplit',
+              // isEnable: typeof isSpan !== "undefined",
+              props: {
+                icon: isSpan ? (
+                  <Icon name="split-cells" />
+                ) : (
+                  <Icon name="merge-cells" />
+                ),
+                'aria-label': isSpan
                   ? t('tiptap.table.toolbar.split')
                   : t('tiptap.table.toolbar.merge'),
+                onClick: () => editor?.chain().focus().mergeOrSplit().run(),
               },
-              {
-                type: 'divider',
-                name: 'add-d0',
+              tooltip: isSpan
+                ? t('tiptap.table.toolbar.split')
+                : t('tiptap.table.toolbar.merge'),
+            },
+            {
+              type: 'divider',
+              name: 'add-d0',
+            },
+            {
+              type: 'dropdown',
+              name: 'add',
+              props: {
+                children: () => <TableToolbarAddMenu editor={editor} />,
               },
-              {
-                type: 'dropdown',
-                name: 'add',
-                props: {
-                  children: () => <TableToolbarAddMenu editor={editor} />,
-                },
+            },
+            {
+              type: 'divider',
+              name: 'add-d1',
+            },
+            {
+              type: 'dropdown',
+              name: 'del',
+              props: {
+                children: () => <TableToolbarDelMenu editor={editor} />,
               },
-              {
-                type: 'divider',
-                name: 'add-d1',
-              },
-              {
-                type: 'dropdown',
-                name: 'del',
-                props: {
-                  children: () => <TableToolbarDelMenu editor={editor} />,
-                },
-              },
-            ]}
-          />
-        </FloatingMenu>
-      )}
-    </>
+            },
+          ]}
+        />
+      </FloatingMenu>
+    )
   );
 };
 

@@ -1,25 +1,24 @@
-# Edifice Bootstrap
+# Edifice SCSS Bootstrap
 
 Edifice Bootstrap is a CSS framework containing all the UI components used by our applications. This framework is based on the latest version of Bootstrap.
 
-## Install
+## Getting Started
 
-Install it by cloning the repository:
+### Install
 
+```bash
+pnpm add @edifice.io/scss-bootstrap
 ```
-git clone https://github.com/opendigitaleducation/edifice-bootstrap.git
-pnpm install
-```
 
-## Build
+### Build
 
 ```
 pnpm build
 ```
 
-## Dev
+### Dev
 
-### Watch + Storybook
+#### Watch + Storybook
 
 Watch styles to `edifice-ui` when developing on Storybook.
 
@@ -27,9 +26,9 @@ Watch styles to `edifice-ui` when developing on Storybook.
 pnpm watch:react
 ```
 
-### Watch + SB
+#### Watch + Springboard
 
-Watch styles to `ode-dev-server` when local develop.
+Watch styles to `recette` when local developing.
 
 ```
 pnpm watch:sb
@@ -81,13 +80,3 @@ Overring style should be done in component file with data-attribute selector `[d
   --#{$prefix}input-focus-border-color: var(--#{$prefix}color);
 }
 ```
-
-### Push Force
-
-`git push --force` is not recommended!!
-
-```
-After a git history rewrite due to a git push --force, the git tags and notes referencing the commits that were rewritten are lost.
-```
-
-If it happens, read this troubleshooting section: [Troubleshooting](https://semantic-release.gitbook.io/semantic-release/support/troubleshooting#release-not-found-release-branch-after-git-push-force)

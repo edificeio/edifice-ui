@@ -93,9 +93,9 @@ export default function useImageResizer() {
    */
   const resizeImageFile = async (
     file: File,
-    maxWidth: number = 1440,
-    maxHeight: number = 1440,
-    quality: number = 80,
+    maxWidth = 1440,
+    maxHeight = 1440,
+    quality = 80,
   ): Promise<File> => {
     if (!file) throw Error('Image resizer: file not found!');
 

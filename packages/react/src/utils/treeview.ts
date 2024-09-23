@@ -1,4 +1,4 @@
-import { FOLDER, IFolder } from 'edifice-ts-client';
+import { FOLDER, IFolder } from '@edifice.io/ts-client';
 import { TreeNode } from '../components/TreeView/TreeNode';
 
 export function findNodeById(data: TreeNode, id: string): TreeNode | undefined {

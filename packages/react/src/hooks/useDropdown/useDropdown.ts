@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
-  useState,
-  useRef,
-  useEffect,
-  useCallback,
-  useId,
-  MutableRefObject,
   Dispatch,
+  MutableRefObject,
   SetStateAction,
+  useCallback,
+  useEffect,
+  useId,
+  useRef,
+  useState,
 } from 'react';
 
 import {
@@ -56,7 +56,7 @@ const useDropdown = (
   extraTriggerKeyDownHandler?: (
     event: React.KeyboardEvent<HTMLButtonElement>,
   ) => void,
-  isTriggerHovered: boolean = false,
+  isTriggerHovered = false,
 ): UseDropdownProps => {
   /* Unique Dropdown Id */
   const id = useId();

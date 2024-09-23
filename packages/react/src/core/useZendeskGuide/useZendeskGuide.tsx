@@ -1,6 +1,7 @@
+/* eslint-disable no-template-curly-in-string */
 import { useEffect, useState } from 'react';
 
-import { UserProfile, odeServices } from 'edifice-ts-client';
+import { UserProfile, odeServices } from '@edifice.io/ts-client';
 
 import { useIsAdml, useOdeClient, useOdeTheme, useUser } from '..';
 import { useHasWorkflow } from '../useHasWorkflow';

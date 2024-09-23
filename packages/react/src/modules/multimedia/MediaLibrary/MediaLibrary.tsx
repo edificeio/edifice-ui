@@ -13,7 +13,7 @@ import {
   WorkspaceElement,
   WorkspaceVisibility,
   odeServices,
-} from 'edifice-ts-client';
+} from '@edifice.io/ts-client';
 import { useTranslation } from 'react-i18next';
 
 import { useHttpErrorToast } from '../../..';
@@ -329,9 +329,9 @@ const MediaLibrary = forwardRef(
 
     function setVisibleTab(tab: AvailableTab) {
       const index = tabs.findIndex((t) => t.id === tab);
-      if (index < 0) throw 'tab.not.visible';
+      if (index < 0) throw new Error('tab.not.visible');
       // TODO améliorer le composant Tabs pour pouvoir le piloter depuis le parent.
-      throw 'not.implemented.yet';
+      throw new Error('not.implemented.yet');
     }
 
     function switchType(type: MediaLibraryType) {
@@ -407,7 +407,7 @@ const MediaLibrary = forwardRef(
         triggerSuccess(result);
       }
       resetState();
-    }, [onSuccessAction, result, onSuccess, visibility]);
+    }, [onSuccessAction, result, onSuccess, visibility, appCode]);
 
     const handleOnCancel = () => {
       onCancel(deletionsOnCancel);

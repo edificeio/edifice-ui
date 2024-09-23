@@ -1,7 +1,7 @@
-import { ID, UserProfile, odeServices } from 'edifice-ts-client';
+import { ID, UserProfile, odeServices } from '@edifice.io/ts-client';
 import { useMemo } from 'react';
-import { Badge } from '../../components';
 import { useTranslation } from 'react-i18next';
+import { Badge } from '../../components';
 
 export default function useAvatar(
   userId: ID,

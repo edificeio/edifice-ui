@@ -1,6 +1,6 @@
 import { useEffect, useId, useState } from 'react';
 
-import { Embedder, odeServices } from 'edifice-ts-client';
+import { Embedder, odeServices } from '@edifice.io/ts-client';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -146,7 +146,7 @@ const VideoEmbed = ({ onSuccess }: VideoEmbedProps) => {
           onChange={handleUrlChange}
         />
       </FormControl>
-      <>{renderContent()}</>
+      {renderContent()}
     </div>
   );
 };

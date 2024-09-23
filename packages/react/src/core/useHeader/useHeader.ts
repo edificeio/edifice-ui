@@ -1,6 +1,6 @@
 import { useCallback, useId, useMemo, useState } from 'react';
 
-import { IUserInfo, odeServices } from 'edifice-ts-client';
+import { IUserInfo, odeServices } from '@edifice.io/ts-client';
 import { useTranslation } from 'react-i18next';
 
 import { useOdeTheme } from '..';
@@ -72,10 +72,10 @@ export default function useHeader({
     setIsCollapsed(!isCollapsed);
   }, [isCollapsed]);
 
-  const handleLogout = async () => {
+  const handleLogout = useCallback(async () => {
     await odeServices.session().logout();
     window.location.href = theme?.logoutCallback ?? '/auth/login';
-  };
+  }, [theme?.logoutCallback]);
 
   return useMemo(
     () => ({
@@ -100,6 +100,7 @@ export default function useHeader({
       bookmarkedApps,
       communityWorkflow,
       conversationWorflow,
+      handleLogout,
       isAppsHovered,
       isCollapsed,
       popoverAppsId,
