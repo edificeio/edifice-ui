@@ -246,6 +246,7 @@ export interface IOdeTheme {
   skins: Array<IThemeConfOverriding>;
   themeName: string;
   themeUrl: string;
+  npmTheme: string | undefined;
 }
 
 export interface IGetConf {

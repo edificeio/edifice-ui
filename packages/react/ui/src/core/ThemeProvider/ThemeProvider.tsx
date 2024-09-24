@@ -1,9 +1,9 @@
 import {
   createContext,
-  type ReactNode,
-  useMemo,
   useContext,
   useEffect,
+  useMemo,
+  type ReactNode,
 } from "react";
 
 import { IOdeTheme } from "edifice-ts-client";
@@ -43,7 +43,9 @@ export function ThemeProvider({ children }: ThemeProps) {
       },
       {
         data: "data-theme",
-        value: confQuery?.data?.theme?.themeName,
+        // WB2-1885, add npmTheme for dynamic theme on springboard
+        value:
+          confQuery?.data?.theme?.npmTheme ?? confQuery?.data?.theme?.themeName,
       },
       {
         data: "data-product",
