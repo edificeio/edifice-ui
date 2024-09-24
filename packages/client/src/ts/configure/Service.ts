@@ -154,6 +154,7 @@ export class ConfService {
       skins,
       themeName: themeOverride.child,
       themeUrl,
+      npmTheme: themeOverride.npmTheme ?? undefined,
     };
   }
 
