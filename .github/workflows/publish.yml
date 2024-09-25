@@ -44,12 +44,13 @@ jobs:
       - run: pnpm install --frozen-lockfile
         env:
           TIPTAP_PRO_TOKEN: ${{ secrets.TIPTAP_PRO_TOKEN }}
+      - name: Check TypeScript version
+        run: pnpm tsc --version
       - name: Cache npm dependencies
         uses: actions/cache/save@v3
         with:
           path: |
             node_modules
-            ~/.cache/Cypress # needed for the Cypress binary
           key: npm-dependencies-${{ hashFiles('pnpm-lock.yaml') }}
       - name: Version & Publish
         #uses: nrwl/nx-set-shas@v4
