@@ -42,7 +42,6 @@ jobs:
         run: pnpm install
         env:
           TIPTAP_PRO_TOKEN: ${{ secrets.TIPTAP_PRO_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Check TypeScript version
         run: pnpm tsc --version
       - name: Cache npm dependencies
