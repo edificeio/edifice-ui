@@ -7,9 +7,9 @@ import { dependencies } from './package.json';
 
 export default defineConfig({
   build: {
+    sourcemap: true,
     lib: {
       entry: resolve(__dirname, './src/index.ts'),
-      // name: 'edifice-ts-client',
       fileName: 'index',
       formats: ['es'],
     },

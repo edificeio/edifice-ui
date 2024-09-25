@@ -60,11 +60,6 @@
     "version": {
       "preVersionCommand": "pnpm dlx nx run-many -t build",
       "conventionalCommits": true,
-      "git": {
-        "commit": true,
-        "tag": true,
-        "commitMessage": "chore: version and publish %s"
-      },
       "generatorOptions": {
         "preserveLocalDependencyProtocols": true
       }

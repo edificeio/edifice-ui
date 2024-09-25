@@ -6,9 +6,6 @@ import dts from 'vite-plugin-dts';
 import { dependencies } from './package.json';
 
 export default defineConfig({
-  esbuild: {
-    minifyIdentifiers: false,
-  },
   build: {
     sourcemap: true,
     lib: {
