@@ -17,16 +17,21 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
         with:
           version: 9
-      - uses: actions/setup-node@v4
+          run_install: false
+      - name: Install Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
+          cache: 'pnpm'
       - name: Generate .npmrc
         run: |
           pnpm config set @edifice.io:registry https://registry.npmjs.org
@@ -34,14 +39,8 @@ jobs:
           pnpm config set @tiptap-pro:registry https://registry.tiptap.dev
           pnpm config set //registry.tiptap.dev/:_authToken ${{ secrets.TIPTAP_PRO_TOKEN }}
           pnpm config set auto-install-peers true
-      - name: Restore cached npm dependencies
-        uses: actions/cache/restore@v3
-        with:
-          path: |
-            node_modules
-            ~/.cache/Cypress # needed for the Cypress binary
-          key: npm-dependencies-${{ hashFiles('pnpm-lock.yaml') }}
-      - run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install
         env:
           TIPTAP_PRO_TOKEN: ${{ secrets.TIPTAP_PRO_TOKEN }}
       - name: Check TypeScript version
