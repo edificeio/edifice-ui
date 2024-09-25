@@ -6,15 +6,16 @@ on:
       - develop
       - develop*
       - feat/*
+
 permissions:
   contents: read #  for checkout
 
 jobs:
   publish:
     permissions:
-    actions: read
-    contents: write
-    id-token: write # needed for provenance data generation
+      actions: read
+      contents: write
+      id-token: write # needed for provenance data generation
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
