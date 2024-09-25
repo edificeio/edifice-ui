@@ -52,7 +52,7 @@ jobs:
           key: npm-dependencies-${{ hashFiles('pnpm-lock.yaml') }}
       - name: Version & Publish
         #uses: nrwl/nx-set-shas@v4
-        run: pnpm exec nx run-many -t lint
+        run: pnpm exec nx run-many -t lint build
 
         shell: bash
         env:
