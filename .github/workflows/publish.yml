@@ -33,11 +33,12 @@ jobs:
           cache: 'pnpm'
       - name: Generate .npmrc
         run: |
-          pnpm config set @edifice.io:registry https://registry.npmjs.org
-          pnpm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
-          pnpm config set @tiptap-pro:registry https://registry.tiptap.dev
-          pnpm config set //registry.tiptap.dev/:_authToken ${{ secrets.TIPTAP_PRO_TOKEN }}
-          pnpm config set auto-install-peers true
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          echo "@edifice.io:registry=https://registry.npmjs.org" >> ~/.npmrc
+          echo "//registry.tiptap.dev/:_authToken=${{ secrets.TIPTAP_PRO_TOKEN }}" > ~/.npmrc
+          echo "@tiptap-pro:registry=https://registry.tiptap.dev" >> ~/.npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Install dependencies
         run: pnpm install
         env:
