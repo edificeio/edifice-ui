@@ -65,7 +65,6 @@
       "preVersionCommand": "pnpm dlx nx run-many -t build",
       "conventionalCommits": true,
       "generatorOptions": {
-        "currentVersionResolver": "git-tag",
         "preserveLocalDependencyProtocols": true
       }
     },
