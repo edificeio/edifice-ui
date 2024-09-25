@@ -51,9 +51,25 @@ jobs:
           path: |
             node_modules
           key: npm-dependencies-${{ hashFiles('pnpm-lock.yaml') }}
-      - name: Version & Publish
+      - name: Lint & Build
         #uses: nrwl/nx-set-shas@v4
+      - name: Version & Publish
         run: pnpm exec nx run-many -t lint build
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor}}@users.noreply.github.com"
+
+          echo "Your current branch is ${{ github.ref_name }}"
+
+          if [ ${{ github.ref_name }} = "main" ]; then
+            echo "This is the main branch."
+            pnpm nx release --first-release --skip-publish
+            pnpm nx release publish
+          else
+            echo "This is not the main branch."
+            pnpm nx release version --specifier prerelease --preid develop-rc --git-tag --git-commit
+            pnpm nx release publish --tag develop-rc --output-style=stream
+          fi
 
         shell: bash
         env:
