@@ -53,10 +53,6 @@
     }
   ],
   "release": {
-    "git": {
-      "commit": true,
-      "tag": false
-    },
     "projects": [
       "packages/*",
       "packages/**/*"
