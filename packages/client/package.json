@@ -1,6 +1,6 @@
 {
   "name": "@edifice.io/ts-client",
-  "version": "2.0.0-develop-rc.11",
+  "version": "2.0.0-develop-rc.12",
   "description": "Edifice TypeScript Client Library",
   "keywords": [
     "client",
