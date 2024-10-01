@@ -33,44 +33,39 @@ const queryClient = new QueryClient({
 export const Base: Story = {
   render: (_args) => {
     return (
-      <QueryClientProvider client={queryClient}>
-        <OdeClientProvider params={{ app: "blog" }}>
-          <CommentProvider
-            type="edit"
-            comments={[
-              {
-                id: "a2b1-cdf3",
-                comment: "This is my first comment",
-                authorId: "64bfd-30eab",
-                authorName: "John Doe",
-                createdAt: 1231931,
-                updatedAt: 230311,
-              },
-              {
-                id: "a2b1-cd2f",
-                comment: "This is my own comment",
-                authorId: "64bfd-30eab",
-                authorName: "Catherine Bailly",
-                createdAt: 1231931,
-                updatedAt: 230311,
-              },
-            ]}
-            options={{
-              maxCommentLength: 800,
-              maxReplyLength: 200,
-              maxComments: 10,
-              maxReplies: 5,
-              additionalComments: 5,
-            }}
-            callbacks={{
-              post: (comment) => console.log(comment),
-              put: ({ comment, commentId }) =>
-                console.log({ comment, commentId }),
-              delete: (commentId) => console.log(commentId),
-            }}
-          />
-        </OdeClientProvider>
-      </QueryClientProvider>
+      <CommentProvider
+        type="edit"
+        comments={[
+          {
+            id: "a2b1-cdf3",
+            comment: "This is my first comment",
+            authorId: "64bfd-30eab",
+            authorName: "John Doe",
+            createdAt: 1231931,
+            updatedAt: 230311,
+          },
+          {
+            id: "a2b1-cd2f",
+            comment: "This is my own comment",
+            authorId: "64bfd-30eab",
+            authorName: "Catherine Bailly",
+            createdAt: 1231931,
+            updatedAt: 230311,
+          },
+        ]}
+        options={{
+          maxCommentLength: 800,
+          maxReplyLength: 200,
+          maxComments: 10,
+          maxReplies: 5,
+          additionalComments: 5,
+        }}
+        callbacks={{
+          post: (comment) => console.log(comment),
+          put: ({ comment, commentId }) => console.log({ comment, commentId }),
+          delete: (commentId) => console.log(commentId),
+        }}
+      />
     );
   },
 };

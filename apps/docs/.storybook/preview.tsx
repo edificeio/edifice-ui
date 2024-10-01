@@ -1,8 +1,9 @@
-import { OdeClientProvider, ThemeProvider } from "@edifice-ui/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HttpResponse, http } from "msw";
 import { initialize, mswLoader } from "msw-storybook-addon";
 import React from "react";
+import { OdeClientProvider } from "../../../packages/react/ui/src/core/OdeClientProvider";
+// import { OdeClientProvider } from "@edifice-ui/react";
 
 // Initialize MSW
 initialize();
@@ -17,7 +18,22 @@ const queryClient = new QueryClient({
 });
 
 const preview = {
+  globalTypes: {
+    theme: {
+      name: "theme",
+      description: "Select theming",
+      defaultValue: "one",
+      toolbar: {
+        icon: "switchalt",
+        items: ["one", "neo", "side-by-side"],
+      },
+    },
+    app: {
+      defaultValue: "blog",
+    },
+  },
   parameters: {
+    viewMode: "docs",
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
       matchers: {
@@ -43,8 +59,7 @@ const preview = {
       handlers: {
         "apps": http.get("/userbook/preference/apps", () => {
           return HttpResponse.json({
-            preference:
-              '{"bookmarks":[],"applications":["Actualites","Annuaire","Aide et support","Blog","Diary","Cahier Multimédia","Cahier de texte","Schoolbook","Mindmap","Rack","Community","Administration","Espace documentaire","Exercices et évaluations","Formulaire","Forum","TimelineGenerator","Archive","Messagerie","Moodle","CollaborativeWall","Mediacentre","Collaborative Editor","Pages","Paramétrage de la classe","Viescolaire","ShareBigFiles","Pronote","Réservation de ressources","website","Poll","Statistiques","Web-conference","Wiki"]}',
+            preference: '{"bookmarks":[],"applications":["Blog"]}',
           });
         }),
         "person": http.get("userbook/api/person", () => {
@@ -52,26 +67,26 @@ const preview = {
             status: "ok",
             result: [
               {
-                id: "f6c5ea40-5405-4cea-a755-8a0170bc6741",
-                login: "clement.admc",
-                displayName: "admc clement",
+                id: "f6c5ea40",
+                login: "user.name",
+                displayName: "user.name",
                 type: ["Personnel"],
                 visibleInfos: [],
                 schools: [
                   {
                     exports: null,
                     classes: [],
-                    name: "Édifice",
-                    id: "bfaac2c1-b572-4e7c-a14d-cead748b1e21",
+                    name: "School",
+                    id: "bfaac2c1",
                     UAI: null,
                   },
                 ],
                 relatedName: null,
                 relatedId: null,
                 relatedType: null,
-                userId: "f6c5ea40-5405-4cea-a755-8a0170bc6741",
+                userId: "f6c5ea40",
                 motto: "",
-                photo: "/userbook/avatar/f6c5ea40-5405-4cea-a755-8a0170bc6741",
+                photo: "/userbook/avatar/f6c5ea40",
                 mood: "default",
                 health: "",
                 address: "",
@@ -96,44 +111,38 @@ const preview = {
         "locale": http.get("/locale", () => {
           return HttpResponse.text("fr");
         }),
-        "directory": http.get(
-          "/directory/userbook/f6c5ea40-5405-4cea-a755-8a0170bc6741",
-          () => {
-            return HttpResponse.json({
-              mood: "default",
-              health: "",
-              alertSize: false,
-              storage: 27683216,
-              type: "USERBOOK",
-              userid: "f6c5ea40-5405-4cea-a755-8a0170bc6741",
-              picture: "/userbook/avatar/f6c5ea40-5405-4cea-a755-8a0170bc6741",
-              quota: 104857600,
-              motto: "",
-              theme: "default",
-              hobbies: [],
-            });
-          },
-        ),
-        "quota": http.get(
-          "/workspace/quota/user/f6c5ea40-5405-4cea-a755-8a0170bc6741",
-          () => {
-            return HttpResponse.json({ quota: 104857600, storage: 27683216 });
-          },
-        ),
+        "directory": http.get("/directory/userbook/f6c5ea40", () => {
+          return HttpResponse.json({
+            mood: "default",
+            health: "",
+            alertSize: false,
+            storage: 27683216,
+            type: "USERBOOK",
+            userid: "f6c5ea40",
+            picture: "/userbook/avatar/f6c5ea40",
+            quota: 104857600,
+            motto: "",
+            theme: "default",
+            hobbies: [],
+          });
+        }),
+        "quota": http.get("/workspace/quota/user/f6c5ea40", () => {
+          return HttpResponse.json({ quota: 104857600, storage: 27683216 });
+        }),
         "userinfo": http.get("/auth/oauth2/userinfo", () => {
           return HttpResponse.json({
             classNames: null,
             level: "",
-            login: "clement.admc",
+            login: "user.admc",
             lastName: "admc",
-            firstName: "clement",
+            firstName: "user",
             externalId: "e4cc33f4-0ad0-444f-8bee-bad0b11c4c9a",
             federated: null,
             birthDate: "2023-09-25",
             forceChangePassword: null,
             needRevalidateTerms: false,
             deletePending: false,
-            username: "admc clement",
+            username: "user.name",
             type: "PERSEDUCNAT",
             hasPw: true,
             functions: {
@@ -145,9 +154,9 @@ const preview = {
             groupsIds: ["326573-1707401228471", "326427-1690981921280"],
             federatedIDP: null,
             optionEnabled: [],
-            userId: "f6c5ea40-5405-4cea-a755-8a0170bc6741",
-            structures: ["bfaac2c1-b572-4e7c-a14d-cead748b1e21"],
-            structureNames: ["Édifice"],
+            userId: "f6c5ea40",
+            structures: ["bfaac2c1"],
+            structureNames: ["School"],
             uai: [],
             hasApp: false,
             ignoreMFA: true,
@@ -248,7 +257,7 @@ const preview = {
                 child: "cg77",
                 skins: ["default", "dyslexic"],
                 help: "/help-2d",
-                bootstrapVersion: "ode-bootstrap-neo",
+                bootstrapVersion: "ode-bootstrap-one",
                 edumedia: {
                   uri: "https://www.edumedia-sciences.com",
                   pattern: "uai-token-hash-[[uai]]",
@@ -284,19 +293,58 @@ const preview = {
   // Provide the MSW addon loader globally
   loaders: [mswLoader],
   decorators: [
-    (Story) => (
-      <QueryClientProvider client={queryClient}>
-        <OdeClientProvider
-          params={{
-            app: "blog",
-          }}
-        >
-          <ThemeProvider>
+    (Story, context) => {
+      /**
+       * App value default to "one"
+       */
+      const theme = context.globals.theme;
+      /**
+       * App value default to "blog"
+       */
+      const app = context.globals.app;
+
+      const StoryTheme = ({ themePath }: { themePath: string }) => {
+        return (
+          <div data-product={themePath} className="my-12">
             <Story />
-          </ThemeProvider>
-        </OdeClientProvider>
-      </QueryClientProvider>
-    ),
+          </div>
+        );
+      };
+
+      const renderStoryTheme = () => {
+        switch (theme) {
+          case "side-by-side": {
+            return (
+              <>
+                <StoryTheme themePath="one" />
+                <StoryTheme themePath="neo" />
+              </>
+            );
+          }
+          case "one": {
+            return <StoryTheme themePath="one" />;
+          }
+          case "neo": {
+            return <StoryTheme themePath="neo" />;
+          }
+          case "default": {
+            return <StoryTheme themePath={theme} />;
+          }
+        }
+      };
+
+      return (
+        <QueryClientProvider client={queryClient}>
+          <OdeClientProvider
+            params={{
+              app,
+            }}
+          >
+            {renderStoryTheme()}
+          </OdeClientProvider>
+        </QueryClientProvider>
+      );
+    },
   ],
 };
 

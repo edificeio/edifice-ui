@@ -5,7 +5,7 @@ import dts from "vite-plugin-dts";
 
 export default defineConfig({
   root: __dirname,
-  cacheDir: "../node_modules/.vite/docs",
+  cacheDir: "../../node_modules/.vite/docs",
 
   /* resolve: {
     alias: {
@@ -31,7 +31,7 @@ export default defineConfig({
   // Configuration for building your library.
   // See: https://vitejs.dev/guide/build.html#library-mode
   build: {
-    outDir: "../dist",
+    outDir: "../../dist",
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,

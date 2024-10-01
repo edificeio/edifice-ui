@@ -11,7 +11,8 @@
     }
   },
   "dependencies": {
-    "@edifice-ui/react": "workspace:*"
+    "@edifice-ui/react": "workspace:*",
+    "@tanstack/react-query": "5.56.2"
   },
   "devDependencies": {
     "msw": "2.0.11",
