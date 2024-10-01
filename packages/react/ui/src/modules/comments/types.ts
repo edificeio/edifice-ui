@@ -26,6 +26,7 @@ interface BaseProps {
   comments: CommentProps[] | undefined;
   options?: Partial<CommentOptions>;
 }
+
 interface EditRootProps extends BaseProps {
   type: "edit";
   callbacks: CommentCallbacks;
@@ -55,9 +56,8 @@ export type CommentOptions = {
    */
   additionalComments: number;
   /**
-     * Limit on displaying replies to a comment
-  
-     */
+   * Limit on displaying replies to a comment
+   */
   maxReplies: number;
 };
 

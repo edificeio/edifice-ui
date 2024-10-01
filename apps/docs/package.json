@@ -1,0 +1,30 @@
+{
+  "name": "@edifice.io/docs",
+  "private": true,
+  "version": "0.0.1",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.js"
+    }
+  },
+  "dependencies": {
+    "@edifice-ui/react": "workspace:*"
+  },
+  "devDependencies": {
+    "msw": "2.0.11",
+    "msw-storybook-addon": "2.0.0-beta.1"
+  },
+  "msw": {
+    "workerDirectory": [
+      "docs/public"
+    ]
+  },
+  "scripts": {
+    "docs": "storybook dev -p 6006",
+    "docs:build": "storybook build --docs -o dist/ && cp -R packages/react/icons/assets/ dist/icons/",
+    "docs:preview": "npx http-server ./dist"
+  }
+}
