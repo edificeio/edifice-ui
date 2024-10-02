@@ -2,8 +2,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HttpResponse, http } from "msw";
 import { initialize, mswLoader } from "msw-storybook-addon";
 import React from "react";
+import { I18nextProvider } from "react-i18next";
 import { OdeClientProvider } from "../../../packages/react/ui/src/core/OdeClientProvider";
 // import { OdeClientProvider } from "@edifice-ui/react";
+import { useEffect } from "react";
+
+import "../../../packages/bootstrap/dist/index.css";
+
+import i18n from "../src/i18n";
 
 // Initialize MSW
 initialize();
@@ -19,6 +25,17 @@ const queryClient = new QueryClient({
 
 const preview = {
   globalTypes: {
+    locale: {
+      name: "Locale",
+      description: "Internationalization locale",
+      toolbar: {
+        icon: "globe",
+        items: [
+          { value: "en", title: "English" },
+          { value: "fr", title: "Français" },
+        ],
+      },
+    },
     theme: {
       name: "theme",
       description: "Select theming",
@@ -50,19 +67,30 @@ const preview = {
           "Design Tokens",
           "Icons",
           "Components",
+          "Modules",
           ["Base", "*"],
           "Layouts",
         ],
       },
     },
     msw: {
-      handlers: {
-        "apps": http.get("/userbook/preference/apps", () => {
+      handlers: [
+        http.get("/blog/conf/public", () => {
+          return HttpResponse.json({
+            ID_SERVICE: {
+              default: 2,
+            },
+            LIBELLE_SERVICE: {
+              default: "PRODUCTION_COLLABORATIVE",
+            },
+          });
+        }),
+        http.get("/userbook/preference/apps", () => {
           return HttpResponse.json({
             preference: '{"bookmarks":[],"applications":["Blog"]}',
           });
         }),
-        "person": http.get("userbook/api/person", () => {
+        http.get("/userbook/api/person", () => {
           return HttpResponse.json({
             status: "ok",
             result: [
@@ -70,7 +98,7 @@ const preview = {
                 id: "f6c5ea40",
                 login: "user.name",
                 displayName: "user.name",
-                type: ["Personnel"],
+                type: ["Teacher"],
                 visibleInfos: [],
                 schools: [
                   {
@@ -99,7 +127,7 @@ const preview = {
             ],
           });
         }),
-        "theme": http.get("/theme", () => {
+        http.get("/theme", () => {
           return HttpResponse.json({
             template: "/public/template/portal.html",
             logoutCallback: "",
@@ -108,10 +136,10 @@ const preview = {
             skinName: "default",
           });
         }),
-        "locale": http.get("/locale", () => {
+        http.get("/locale", () => {
           return HttpResponse.text("fr");
         }),
-        "directory": http.get("/directory/userbook/f6c5ea40", () => {
+        http.get("/directory/userbook/f6c5ea40", () => {
           return HttpResponse.json({
             mood: "default",
             health: "",
@@ -126,10 +154,10 @@ const preview = {
             hobbies: [],
           });
         }),
-        "quota": http.get("/workspace/quota/user/f6c5ea40", () => {
+        http.get("/workspace/quota/user/f6c5ea40", () => {
           return HttpResponse.json({ quota: 104857600, storage: 27683216 });
         }),
-        "userinfo": http.get("/auth/oauth2/userinfo", () => {
+        http.get("/auth/oauth2/userinfo", () => {
           return HttpResponse.json({
             classNames: null,
             level: "",
@@ -228,10 +256,10 @@ const preview = {
             sessionMetadata: {},
           });
         }),
-        "rgpdCookies": http.get("/userbook/preference/rgpdCookies", () => {
+        http.get("/userbook/preference/rgpdCookies", () => {
           return HttpResponse.json({ preference: '{"showInfoTip":false}' });
         }),
-        "application-list": http.get("/applications-list", () => {
+        http.get("/applications-list", () => {
           return HttpResponse.json({
             apps: [
               {
@@ -249,7 +277,7 @@ const preview = {
             ],
           });
         }),
-        "theme-conf": http.get("/assets/theme-conf.js", () => {
+        http.get("/assets/theme-conf.js", () => {
           return HttpResponse.json({
             overriding: [
               {
@@ -287,7 +315,7 @@ const preview = {
             ],
           });
         }),
-      },
+      ],
     },
   },
   // Provide the MSW addon loader globally
@@ -333,15 +361,22 @@ const preview = {
         }
       };
 
+      const { locale } = context.globals;
+      useEffect(() => {
+        i18n.changeLanguage(locale);
+      }, [locale]);
+
       return (
         <QueryClientProvider client={queryClient}>
-          <OdeClientProvider
-            params={{
-              app,
-            }}
-          >
-            {renderStoryTheme()}
-          </OdeClientProvider>
+          <I18nextProvider i18n={i18n}>
+            <OdeClientProvider
+              params={{
+                app,
+              }}
+            >
+              {renderStoryTheme()}
+            </OdeClientProvider>
+          </I18nextProvider>
         </QueryClientProvider>
       );
     },

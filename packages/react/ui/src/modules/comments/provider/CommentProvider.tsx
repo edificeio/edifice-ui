@@ -38,6 +38,8 @@ const CommentProvider = ({
   const { user } = useOdeClient();
   const { type } = props;
 
+  console.log({ user });
+
   const usersIds = Array.from(
     new Set(defaultComments?.map((comment) => comment.authorId)),
   );

@@ -1,0 +1,70 @@
+{/* List.mdx */}
+
+import { Canvas, Controls, Meta } from "@storybook/blocks";
+import * as commentStories from "./CommentProvider.stories";
+
+<Meta of={commentStories} />
+
+# Comments
+
+`CommentProvider` component allows to add a comments section in your app
+
+<Canvas of={commentStories.Base} />
+{/* <Controls /> */}
+
+## Comment
+
+The structure of a comment object must conform to this interface. If not, you must transform your content before passing comments as a prop.
+
+```
+export interface CommentProps {
+  id: string;
+  comment: string;
+  authorId: string;
+  authorName: string;
+  createdAt: number;
+  updatedAt?: number;
+}
+```
+
+## Callbacks
+
+The `callbacks` prop needs 3 keys with functions: `post`, `put`, `delete` to create, update or remove a comment.
+You can manage all three of these methods however you like.
+
+- The post method returns the newly created comment
+
+```
+post: (comment: string) => Promise<void>
+```
+
+- The put method returns the updated comment along with its ID
+
+```
+put: ({comment, commentId}: {comment: string; commentId: string;}) => Promise<void>;
+```
+
+- The delete method returns the commentId of the comment to be deleted.
+
+```
+delete: (commentId: string) => Promise<void>;
+```
+
+## Creating a new comment
+
+By passing `type='edit'` to the CommentProvider, it will expect the `comments` and `callbacks` props.
+
+<Canvas of={commentStories.CreateComment} />
+
+## Update a comment
+
+If you have a comment, you have the possibilities to update a comment by cliking on the Update button.
+
+<Canvas of={commentStories.UpdateComment} />
+
+## Delete a comment
+
+If you have a comment, you have the possibilities to remove this comment by cliking on the Delete button.
+You need to pass an Event Handler to the `callbacks` prop to control your own
+
+<Canvas of={commentStories.DeleteComment} />

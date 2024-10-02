@@ -21,6 +21,8 @@ export const CommentDate = ({
       date: fromNow(date),
     });
 
+  console.log({ createdAt, updatedAt });
+
   if (updatedAt) {
     return (
       <>
