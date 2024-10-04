@@ -5,7 +5,6 @@ import React from "react";
 import { I18nextProvider } from "react-i18next";
 import { OdeClientProvider } from "../../../packages/react/ui/src/core/OdeClientProvider";
 // import { OdeClientProvider } from "@edifice-ui/react";
-import { useEffect } from "react";
 
 import "../../../packages/bootstrap/dist/index.css";
 
@@ -25,7 +24,7 @@ const queryClient = new QueryClient({
 
 const preview = {
   globalTypes: {
-    locale: {
+    /* locale: {
       name: "Locale",
       description: "Internationalization locale",
       toolbar: {
@@ -35,7 +34,7 @@ const preview = {
           { value: "fr", title: "Français" },
         ],
       },
-    },
+    }, */
     theme: {
       name: "theme",
       description: "Select theming",
@@ -137,7 +136,10 @@ const preview = {
           });
         }),
         http.get("/locale", () => {
-          return HttpResponse.text("fr");
+          return HttpResponse.json({ locale: "en" });
+        }),
+        http.get("/userbook/preference/language", () => {
+          return HttpResponse.json({ preference: { "default-domaine": "en" } });
         }),
         http.get("/directory/userbook/f6c5ea40", () => {
           return HttpResponse.json({
@@ -361,10 +363,10 @@ const preview = {
         }
       };
 
-      const { locale } = context.globals;
+      /*  const { locale } = context.globals;
       useEffect(() => {
         i18n.changeLanguage(locale);
-      }, [locale]);
+      }, [locale]); */
 
       return (
         <QueryClientProvider client={queryClient}>
