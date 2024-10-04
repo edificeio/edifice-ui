@@ -56,9 +56,9 @@ export const useComments = ({
   const defaultCommentsCount = defaultComments?.length ?? 0;
 
   const title =
-    commentsCount && commentsCount > 1
-      ? t("comment.several", { number: commentsCount })
-      : t("comment.little", { number: commentsCount });
+    defaultCommentsCount && defaultCommentsCount > 1
+      ? t("comment.several", { number: defaultCommentsCount })
+      : t("comment.little", { number: defaultCommentsCount });
 
   const handleMoreComments = () => {
     const newLimit = comments?.length + (options.additionalComments ?? 5);
