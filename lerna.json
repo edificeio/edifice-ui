@@ -4,8 +4,14 @@
   "npmClient": "pnpm",
   "command": {
     "version": {
-      "allowBranch": ["main", "develop", "develop*", "hotfix/*"],
-      "message": "chore(release): version & publish"
+      "allowBranch": [
+        "main",
+        "develop",
+        "develop*",
+        "hotfix/*"
+      ],
+      "conventionalCommits": true,
+      "message": "chore: version & publish %s"
     }
   }
 }
