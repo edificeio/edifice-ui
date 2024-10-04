@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.21](https://github.com/edificeio/edifice-ui/compare/v1.5.21-develop.0...v1.5.21) (2024-10-04)
+
+**Note:** Version bump only for package @edifice-ui/react
+
 ## [1.5.20](https://github.com/edificeio/edifice-ui/compare/v1.5.19...v1.5.20) (2024-10-02)
 
 **Note:** Version bump only for package @edifice-ui/react
