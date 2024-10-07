@@ -82,9 +82,7 @@
     "@tiptap/react": "2.3.0",
     "@tiptap/starter-kit": "2.3.0",
     "clsx": "2.1.0",
-    "emoji-picker-react": "4.5.2"
-  },
-  "optionalDependencies": {
+    "emoji-picker-react": "4.5.2",
     "@tiptap-pro/extension-mathematics": "2.2.1"
   },
   "devDependencies": {
