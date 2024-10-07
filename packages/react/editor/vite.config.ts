@@ -20,10 +20,9 @@ export default defineConfig({
     },
     rollupOptions: {
       external: [
-        ...Object.keys(dependencies).filter(
-          (dep) => dep !== "@tiptap-pro/extension-mathematics",
-        ),
+        ...Object.keys(dependencies),
         ...Object.keys(peerDependencies),
+        "katex",
         "react/jsx-runtime",
         "edifice-ts-client",
         "@edifice-ui/icons/nav",

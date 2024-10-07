@@ -57,7 +57,6 @@
     "@edifice-tiptap-extensions/extension-speechsynthesis": "workspace:*",
     "@edifice-tiptap-extensions/extension-table-cell": "workspace:*",
     "@edifice-tiptap-extensions/extension-video": "workspace:*",
-    "@tiptap-pro/extension-mathematics": "2.2.1",
     "@tiptap/core": "2.3.0",
     "@tiptap/extension-character-count": "2.3.0",
     "@tiptap/extension-color": "2.3.0",
@@ -86,6 +85,7 @@
     "emoji-picker-react": "4.5.2"
   },
   "devDependencies": {
+    "@tiptap-pro/extension-mathematics": "2.2.1",
     "@edifice-ui/icons": "workspace:*",
     "@edifice-ui/react": "workspace:*",
     "@types/node": "^20.4.9",
