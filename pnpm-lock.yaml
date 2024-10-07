@@ -247,6 +247,9 @@ importers:
       '@react-spring/web':
         specifier: ^9.7.3
         version: 9.7.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@tiptap-pro/extension-mathematics':
+        specifier: 2.2.1
+        version: 2.2.1(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))(@tiptap/pm@2.3.0)(katex@0.16.11)
       '@tiptap/core':
         specifier: 2.3.0
         version: 2.3.0(@tiptap/pm@2.3.0)
@@ -325,10 +328,6 @@ importers:
       emoji-picker-react:
         specifier: 4.5.2
         version: 4.5.2(react@18.2.0)
-    optionalDependencies:
-      '@tiptap-pro/extension-mathematics':
-        specifier: 2.2.1
-        version: 2.2.1(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))(@tiptap/pm@2.3.0)(katex@0.16.11)
     devDependencies:
       '@edifice-ui/icons':
         specifier: workspace:*
@@ -12911,7 +12910,6 @@ snapshots:
       '@tiptap/core': 2.3.0(@tiptap/pm@2.3.0)
       '@tiptap/pm': 2.3.0
       katex: 0.16.11
-    optional: true
 
   '@tiptap/core@2.3.0(@tiptap/pm@2.3.0)':
     dependencies:
@@ -14282,8 +14280,7 @@ snapshots:
 
   commander@7.2.0: {}
 
-  commander@8.3.0:
-    optional: true
+  commander@8.3.0: {}
 
   commander@9.5.0: {}
 
@@ -16395,7 +16392,6 @@ snapshots:
   katex@0.16.11:
     dependencies:
       commander: 8.3.0
-    optional: true
 
   keyv@4.5.4:
     dependencies:
