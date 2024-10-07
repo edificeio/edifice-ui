@@ -30,9 +30,9 @@ import Typography from "@tiptap/extension-typography";
 import Underline from "@tiptap/extension-underline";
 import { Content, FocusPosition, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { Mathematics } from "@tiptap-pro/extension-mathematics";
 import { useTranslation } from "react-i18next";
 
+import Mathematics from "@tiptap-pro/extension-mathematics";
 import {
   AttachmentNodeView,
   AttachmentRenderer,
