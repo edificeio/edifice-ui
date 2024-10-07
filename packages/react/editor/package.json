@@ -1,6 +1,6 @@
 {
   "name": "@edifice-ui/editor",
-  "version": "1.5.22-hotfix-editor.2",
+  "version": "1.5.22-hotfix-editor.3",
   "description": "Edifice Editor Library",
   "keywords": [
     "react",
@@ -85,9 +85,9 @@
     "emoji-picker-react": "4.5.2"
   },
   "devDependencies": {
-    "@tiptap-pro/extension-mathematics": "2.2.1",
     "@edifice-ui/icons": "workspace:*",
     "@edifice-ui/react": "workspace:*",
+    "@tiptap-pro/extension-mathematics": "2.2.1",
     "@types/node": "^20.4.9",
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.14",
