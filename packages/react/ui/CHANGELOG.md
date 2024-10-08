@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.22-develop-pedago.3](https://github.com/edificeio/edifice-ui/compare/v1.5.22-develop-pedago.2...v1.5.22-develop-pedago.3) (2024-10-08)
+
+### Features
+
+- **hook:** #WB2-1943, add new useBreakpoint hook to handle responsive display ([79c60f1](https://github.com/edificeio/edifice-ui/commit/79c60f10c3de273e8313736e6825e52f272117db)), closes [#WB2-1943](https://github.com/edificeio/edifice-ui/issues/WB2-1943)
+
 ## [1.5.22-develop-pedago.2](https://github.com/edificeio/edifice-ui/compare/v1.5.22-develop-pedago.1...v1.5.22-develop-pedago.2) (2024-10-08)
 
 ### Features
