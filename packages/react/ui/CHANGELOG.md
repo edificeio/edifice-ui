@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.22-develop-pedago.2](https://github.com/edificeio/edifice-ui/compare/v1.5.22-develop-pedago.1...v1.5.22-develop-pedago.2) (2024-10-08)
+
+### Features
+
+- **ui:** #WB2-1636, adapt List component with actions Toolbar ([645cae7](https://github.com/edificeio/edifice-ui/commit/645cae7427b4a26fa170fc4b18f06fb9d0512e27)), closes [#WB2-1636](https://github.com/edificeio/edifice-ui/issues/WB2-1636)
+
 ## [1.5.22-develop-pedago.1](https://github.com/edificeio/edifice-ui/compare/v1.5.21...v1.5.22-develop-pedago.1) (2024-10-07)
 
 ### Bug Fixes
