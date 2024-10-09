@@ -53,7 +53,7 @@ export const FileHandlerConfig = (
     onPaste: (editor: Editor, files: File[], pasteContent?: string) => {
       if (pasteContent) {
         const containBase64Regex =
-          /src="data:image\/(png|jpeg|gif|webp|heic);base64,(.*)" /gim;
+          /src="data:image\/(png|jpeg|gif|webp|heic|avif);base64,(.*)" /gim;
         const validBase64Regex = /^[-A-Za-z0-9+/]*={0,3}$/;
         const containBase64 = containBase64Regex.exec(pasteContent);
 
