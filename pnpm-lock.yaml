@@ -246,6 +246,9 @@ importers:
       "@react-spring/web":
         specifier: ^9.7.3
         version: 9.7.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      "@tiptap-pro/extension-file-handler":
+        specifier: ^2.11.9
+        version: 2.11.9(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))(@tiptap/pm@2.3.0)
       "@tiptap-pro/extension-mathematics":
         specifier: 2.2.1
         version: 2.2.1(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))(@tiptap/pm@2.3.0)(katex@0.16.11)
@@ -807,6 +810,9 @@ importers:
 
   packages/tiptap/extensions/extension-image:
     dependencies:
+      "@tiptap-pro/extension-file-handler":
+        specifier: ^2.11.9
+        version: 2.11.9(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))(@tiptap/pm@2.3.0)
       "@tiptap/extension-image":
         specifier: 2.3.0
         version: 2.3.0(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))
@@ -4900,7 +4906,7 @@ packages:
       {
         integrity: sha512-L8sXFJUHmrlyU2BsWWZGuAjv39Jl1uAqUHdxmN42JY15M4+XCMjGlArdCCjDe1wpTSW6USYISA9axjZojgtvnw==,
       }
-    deprecated: In Storybook 8, this package functionality has been integrated to a new package called @storybook/test, which uses Vitest APIs for an improved experience. When upgrading to Storybook 8 with 'npx storybook@latest upgrade', you will get prompted and will get an automigration for the new package. Please migrate when you can.
+    deprecated: In Storybook 8, this package functionality has been integrated to a new package called @storybook/test, which uses Vitest APIs for an improved experience. When upgrading to Storybook 8 with "npx storybook@latest upgrade", you will get prompted and will get an automigration for the new package. Please migrate when you can.
 
   "@storybook/theming@7.6.6":
     resolution:
@@ -5197,6 +5203,15 @@ packages:
     engines: { node: ">=12", npm: ">=6" }
     peerDependencies:
       "@testing-library/dom": ">=7.21.4"
+
+  "@tiptap-pro/extension-file-handler@2.11.9":
+    resolution:
+      {
+        integrity: sha512-/Aa420i0YfnPdlgS6I4RbWBBmEeFMqNqKnc9D4irklHCuD/SE6z+tdVTZiFFU/66Edza/2AM4IviUNy8tdZWfA==,
+      }
+    peerDependencies:
+      "@tiptap/core": ^2.0.0
+      "@tiptap/pm": ^2.0.0
 
   "@tiptap-pro/extension-mathematics@2.2.1":
     resolution:
@@ -18714,6 +18729,11 @@ snapshots:
   "@testing-library/user-event@14.5.2(@testing-library/dom@9.3.4)":
     dependencies:
       "@testing-library/dom": 9.3.4
+
+  "@tiptap-pro/extension-file-handler@2.11.9(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))(@tiptap/pm@2.3.0)":
+    dependencies:
+      "@tiptap/core": 2.3.0(@tiptap/pm@2.3.0)
+      "@tiptap/pm": 2.3.0
 
   "@tiptap-pro/extension-mathematics@2.2.1(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))(@tiptap/pm@2.3.0)(katex@0.16.11)":
     dependencies:
