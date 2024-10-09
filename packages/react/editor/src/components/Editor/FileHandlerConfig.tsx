@@ -43,12 +43,9 @@ export const FileHandlerConfig = (
     allowedMimeTypes: [
       "image/png",
       "image/jpeg",
-      "image/gif",
       "image/webp",
-      "image/heic",
-      "image/heif",
-      "image/bmp",
-      "image/tiff",
+      "image/gif",
+      "image/avif",
     ],
     onDrop: (editor: Editor, files: File[], pos: number) => {
       uploadFiles(files, editor, pos);
