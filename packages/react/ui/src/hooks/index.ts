@@ -12,3 +12,4 @@ export * from "./useScrollToTop";
 export * from "./useTitle";
 export * from "./useToggle";
 export * from "./useTrapFocus";
+export * from "./useImageResizer";
