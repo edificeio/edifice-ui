@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.22-develop-b2school.1](https://github.com/edificeio/edifice-ui/compare/v1.5.22-develop-b2school.0...v1.5.22-develop-b2school.1) (2024-10-09)
+
+### Bug Fixes
+
+- **editor:** #WB-3308 enable copy paste images files ([#256](https://github.com/edificeio/edifice-ui/issues/256)) ([370004f](https://github.com/edificeio/edifice-ui/commit/370004f03c67a344b948b542b71bee9570e34666)), closes [#WB-3308](https://github.com/edificeio/edifice-ui/issues/WB-3308)
+
 ## [1.5.22-develop-b2school.0](https://github.com/edificeio/edifice-ui/compare/v1.5.21...v1.5.22-develop-b2school.0) (2024-10-09)
 
 ### Bug Fixes
