@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.22-develop-b2school.0](https://github.com/edificeio/edifice-ui/compare/v1.5.21...v1.5.22-develop-b2school.0) (2024-10-09)
+
+### Bug Fixes
+
+- **bootstrap:** #WB-3275 align images in tiptap editor [#239](https://github.com/edificeio/edifice-ui/issues/239) ([#251](https://github.com/edificeio/edifice-ui/issues/251)) ([dfaadaa](https://github.com/edificeio/edifice-ui/commit/dfaadaabb15bd947bfdc4abe945148a63275cb5a)), closes [#WB-3275](https://github.com/edificeio/edifice-ui/issues/WB-3275)
+
 ## [1.5.21](https://github.com/edificeio/edifice-ui/compare/v1.5.21-develop.0...v1.5.21) (2024-10-04)
 
 **Note:** Version bump only for package edifice-bootstrap

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.22-develop-b2school.0](https://github.com/opendigitaleducation/edifice-ui/compare/v1.5.21...v1.5.22-develop-b2school.0) (2024-10-09)
+
+### Bug Fixes
+
+- #MOZO-283 remove dupplicate h2 ([c12b2fa](https://github.com/opendigitaleducation/edifice-ui/commit/c12b2fa84e4441478130454003cdc93dc7e63146)), closes [#MOZO-283](https://github.com/opendigitaleducation/edifice-ui/issues/MOZO-283)
+- **bootstrap:** #WB-3275 align images in tiptap editor [#239](https://github.com/opendigitaleducation/edifice-ui/issues/239) ([#251](https://github.com/opendigitaleducation/edifice-ui/issues/251)) ([dfaadaa](https://github.com/opendigitaleducation/edifice-ui/commit/dfaadaabb15bd947bfdc4abe945148a63275cb5a)), closes [#WB-3275](https://github.com/opendigitaleducation/edifice-ui/issues/WB-3275)
+- **editeur:** #WB-3227 cast controls attribut to boolean ([#250](https://github.com/opendigitaleducation/edifice-ui/issues/250)) ([ab8afdd](https://github.com/opendigitaleducation/edifice-ui/commit/ab8afdd05f3fc208a05259c66dd8b4336236f0b7)), closes [#WB-3227](https://github.com/opendigitaleducation/edifice-ui/issues/WB-3227)
+- **editor:** #WB-3226 remove editor image attribute textAlign ([#245](https://github.com/opendigitaleducation/edifice-ui/issues/245)) ([c435b11](https://github.com/opendigitaleducation/edifice-ui/commit/c435b110c883eed319394c6fa282bdae7aeeaf69)), closes [#WB-3226](https://github.com/opendigitaleducation/edifice-ui/issues/WB-3226)
+- **editor:** WB-3020, do not trigger an update content event when only editor's mode changes ([#255](https://github.com/opendigitaleducation/edifice-ui/issues/255)) ([c9191c7](https://github.com/opendigitaleducation/edifice-ui/commit/c9191c79c9bbb794727b297a980f916fc28c3ee2))
+- **multimedia:** #WB-3012, stop any playing video before save ([#236](https://github.com/opendigitaleducation/edifice-ui/issues/236)) ([c2cd350](https://github.com/opendigitaleducation/edifice-ui/commit/c2cd3501ec6919fe8545c22d72a5f4a13b579f2f)), closes [#WB-3012](https://github.com/opendigitaleducation/edifice-ui/issues/WB-3012)
+
 ## [1.5.21](https://github.com/opendigitaleducation/edifice-ui/compare/v1.5.21-develop.0...v1.5.21) (2024-10-04)
 
 **Note:** Version bump only for package root

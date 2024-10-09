@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.22-develop-b2school.0](https://github.com/edificeio/edifice-ui/compare/v1.5.21...v1.5.22-develop-b2school.0) (2024-10-09)
+
+### Bug Fixes
+
+- #MOZO-283 remove dupplicate h2 ([c12b2fa](https://github.com/edificeio/edifice-ui/commit/c12b2fa84e4441478130454003cdc93dc7e63146)), closes [#MOZO-283](https://github.com/edificeio/edifice-ui/issues/MOZO-283)
+- **multimedia:** #WB-3012, stop any playing video before save ([#236](https://github.com/edificeio/edifice-ui/issues/236)) ([c2cd350](https://github.com/edificeio/edifice-ui/commit/c2cd3501ec6919fe8545c22d72a5f4a13b579f2f)), closes [#WB-3012](https://github.com/edificeio/edifice-ui/issues/WB-3012)
+
 ## [1.5.21](https://github.com/edificeio/edifice-ui/compare/v1.5.21-develop.0...v1.5.21) (2024-10-04)
 
 **Note:** Version bump only for package @edifice-ui/react
