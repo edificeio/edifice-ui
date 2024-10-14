@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.22-develop-pedago.4](https://github.com/opendigitaleducation/edifice-ui/compare/v1.5.22-develop-pedago.3...v1.5.22-develop-pedago.4) (2024-10-14)
+
+### Features
+
+- **ui:** #WB2-1651, add tooltip component to attachment component ([f4cf4b4](https://github.com/opendigitaleducation/edifice-ui/commit/f4cf4b4df63f0e2e85d210a1336705a8ece40fbb)), closes [#WB2-1651](https://github.com/opendigitaleducation/edifice-ui/issues/WB2-1651)
+
 ## [1.5.22-develop-pedago.3](https://github.com/opendigitaleducation/edifice-ui/compare/v1.5.22-develop-pedago.2...v1.5.22-develop-pedago.3) (2024-10-08)
 
 ### Features
