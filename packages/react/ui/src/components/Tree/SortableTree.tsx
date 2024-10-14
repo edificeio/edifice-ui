@@ -30,6 +30,21 @@ const SortableTree = ({
   onSortable,
 }: SortableTreeProps) => {
   const {
+    selectedNodeId,
+    expandedNodes,
+    handleItemClick,
+    handleFoldUnfold,
+    handleCollapseNode,
+  } = useTreeView({
+    data: nodes,
+    externalSelectedNodeId,
+    shouldExpandAllNodes,
+    onTreeItemClick,
+    // onTreeItemFold,
+    // onTreeItemUnfold,
+  });
+
+  const {
     handleDragEnd,
     handleDragMove,
     handleDragOver,
@@ -46,17 +61,7 @@ const SortableTree = ({
     measuring,
     sensors,
     items,
-  } = useTreeSortable({ nodes, onSortable });
-
-  const { selectedNodeId, expandedNodes, handleItemClick, handleFoldUnfold } =
-    useTreeView({
-      data: nodes,
-      externalSelectedNodeId,
-      shouldExpandAllNodes,
-      onTreeItemClick,
-      // onTreeItemFold,
-      // onTreeItemUnfold,
-    });
+  } = useTreeSortable({ nodes, onSortable, handleCollapseNode });
 
   return (
     <div className="treeview">

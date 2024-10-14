@@ -311,5 +311,6 @@ export const useTreeView = ({
     draggedNodeId,
     handleItemClick,
     handleFoldUnfold,
+    handleCollapseNode,
   };
 };

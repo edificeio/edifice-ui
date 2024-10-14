@@ -31,9 +31,11 @@ import {
 export const useTreeSortable = ({
   nodes,
   onSortable,
+  handleCollapseNode,
 }: {
   nodes: TreeItem[];
   onSortable: (updateArray: UpdateTreeData[]) => void;
+  handleCollapseNode: (nodeId: string) => void;
 }) => {
   const [items, setItems] = useState<TreeItem[]>(() => nodes);
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -157,6 +159,8 @@ export const useTreeSortable = ({
 
   function handleDragStart(event: DragStartEvent) {
     const { active } = event;
+
+    handleCollapseNode(active.id as string);
 
     setActiveId(active.id as unknown as string);
     setOverId(active.id as unknown as string);
