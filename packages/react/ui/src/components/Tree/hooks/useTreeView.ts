@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
-import { TreeItem } from '../types/types';
+import { useEffect, useRef, useState } from "react";
+import { TreeItem } from "../types/types";
 
 export function findPathById(
   tree: TreeItem | TreeItem[],
-  nodeId: string
+  nodeId: string,
 ): string[] {
   let path: string[] = [];
 
@@ -40,7 +40,7 @@ export function findPathById(
 
 export function findNodeById(
   data: TreeItem | TreeItem[],
-  id: string
+  id: string,
 ): TreeItem | undefined {
   if (Array.isArray(data)) {
     for (const node of data) {
@@ -100,7 +100,7 @@ export const useTreeView = ({
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
   const siblingsNodes = useRef<Set<string>>(new Set());
   const [draggedNodeId, setDraggedNodeId] = useState<string | undefined>(
-    undefined
+    undefined,
   );
 
   const selectedNodeId = internalSelectedNodeId ?? externalSelectedNodeId;
@@ -155,7 +155,7 @@ export const useTreeView = ({
   } */
 
   const expandAllNodes = (shouldExpandAllNodes: boolean | undefined) => {
-    const initExpandedNodes = new Set('');
+    const initExpandedNodes = new Set("");
     if (data && Array.isArray(data) && shouldExpandAllNodes) {
       data.forEach((node) => initExpandedNodes.add(node.id));
       setExpandedNodes(initExpandedNodes);
@@ -212,7 +212,7 @@ export const useTreeView = ({
       return;
     }
 
-    if (externalSelectedNodeId === 'default') {
+    if (externalSelectedNodeId === "default") {
       expandedNodes.forEach((node) => onTreeItemUnfold?.(node));
       return;
     }

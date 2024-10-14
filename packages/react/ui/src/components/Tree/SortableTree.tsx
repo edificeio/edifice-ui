@@ -1,19 +1,23 @@
-import { DndContext, DragOverlay } from '@dnd-kit/core';
+import { DndContext, DragOverlay } from "@dnd-kit/core";
 import {
   AnimateLayoutChanges,
   SortableContext,
   useSortable,
   verticalListSortingStrategy,
-} from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
-import { Folder, RafterRight } from '@edifice-ui/icons';
-import clsx from 'clsx';
-import { CSSProperties, forwardRef, Ref } from 'react';
-import { createPortal } from 'react-dom';
-import { useTranslation } from 'react-i18next';
-import { FlattenedItem, SortableTreeNodeProps, SortableTreeProps } from './types/types';
-import { useTreeView } from './hooks/useTreeView';
-import { useTreeSortable } from './hooks/useTreeSortable';
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { Folder, RafterRight } from "@edifice-ui/icons";
+import clsx from "clsx";
+import { CSSProperties, forwardRef, Ref } from "react";
+import { createPortal } from "react-dom";
+import { useTranslation } from "react-i18next";
+import {
+  FlattenedItem,
+  SortableTreeNodeProps,
+  SortableTreeProps,
+} from "./types/types";
+import { useTreeView } from "./hooks/useTreeView";
+import { useTreeSortable } from "./hooks/useTreeSortable";
 
 const SortableTree = ({
   nodes,
@@ -97,12 +101,10 @@ const SortableTree = ({
               modifiers={indicator ? [adjustTranslate] : undefined}
             >
               {activeId && activeItem ? (
-                <DragOverlayItem
-                  activeItem={activeItem}
-                />
+                <DragOverlayItem activeItem={activeItem} />
               ) : null}
             </DragOverlay>,
-            document.body
+            document.body,
           )}
         </DndContext>
       </ul>
@@ -125,9 +127,9 @@ const TreeNode = forwardRef(
       projected,
       renderNode,
       onTreeItemClick,
-      onToggleNode
+      onToggleNode,
     }: SortableTreeNodeProps,
-    ref: Ref<HTMLLIElement>
+    ref: Ref<HTMLLIElement>,
   ) => {
     const { t } = useTranslation();
 
@@ -152,21 +154,21 @@ const TreeNode = forwardRef(
     };
 
     const treeItemClasses = {
-      action: clsx('action-container d-flex align-items-center gap-8 px-2', {
-        'drag-focus': focused,
-        'border border-secondary rounded rounded-2 shadow bg-white': isDragging,
+      action: clsx("action-container d-flex align-items-center gap-8 px-2", {
+        "drag-focus": focused,
+        "border border-secondary rounded rounded-2 shadow bg-white": isDragging,
       }),
       arrow: clsx({
         invisible: !Array.isArray(node.children) || node.children.length === 0,
       }),
-      button: clsx('flex-fill d-flex align-items-center text-truncate gap-8', {
-        'py-8': depth === 0,
-        'py-4': depth === 1,
+      button: clsx("flex-fill d-flex align-items-center text-truncate gap-8", {
+        "py-8": depth === 0,
+        "py-4": depth === 1,
       }),
     };
 
     const handleItemKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (event.code === 'Enter' || event.code === 'Space') {
+      if (event.code === "Enter" || event.code === "Space") {
         event.preventDefault();
         event.stopPropagation();
 
@@ -175,9 +177,9 @@ const TreeNode = forwardRef(
     };
 
     const handleItemToggleKeyDown = (
-      event: React.KeyboardEvent<HTMLDivElement>
+      event: React.KeyboardEvent<HTMLDivElement>,
     ) => {
-      if (event.code === 'Enter' || event.code === 'Space') {
+      if (event.code === "Enter" || event.code === "Space") {
         event.preventDefault();
         event.stopPropagation();
 
@@ -189,10 +191,10 @@ const TreeNode = forwardRef(
       !isDragging
         ? null
         : isChildren
-        ? depth === 1
-          ? `${indentationWidth * depth}px`
-          : '0px'
-        : `${indentationWidth * depth}px`;
+          ? depth === 1
+            ? `${indentationWidth * depth}px`
+            : "0px"
+          : `${indentationWidth * depth}px`;
 
     return (
       <li
@@ -219,12 +221,12 @@ const TreeNode = forwardRef(
                 role="button"
                 onClick={() => onToggleNode?.(node.id)}
                 onKeyDown={handleItemToggleKeyDown}
-                aria-label={t('foldUnfold')}
+                aria-label={t("foldUnfold")}
               >
                 <RafterRight
                   width={16}
                   style={{
-                    transform: expanded ? 'rotate(90deg)' : '',
+                    transform: expanded ? "rotate(90deg)" : "",
                   }}
                 />
               </div>
@@ -284,7 +286,7 @@ const TreeNode = forwardRef(
         </div>
       </li>
     );
-  }
+  },
 );
 
 export const DragOverlayItem = forwardRef(
@@ -295,26 +297,26 @@ export const DragOverlayItem = forwardRef(
     }: {
       activeItem: FlattenedItem | null | undefined;
     },
-    ref: Ref<HTMLDivElement>
+    ref: Ref<HTMLDivElement>,
   ) => {
     return (
       <div
         ref={ref}
         {...props}
         className="opacity-0"
-        style={{ cursor: 'grabbing' }}
+        style={{ cursor: "grabbing" }}
       >
         <div
-          className={clsx('action-container align-items-center gap-8 px-2')}
+          className={clsx("action-container align-items-center gap-8 px-2")}
           style={{
-            backgroundColor: 'white',
-            border: '1px solid black',
-            width: '100px',
+            backgroundColor: "white",
+            border: "1px solid black",
+            width: "100px",
           }}
         >
           <div
             className={clsx(
-              'flex-fill d-flex align-items-center text-truncate gap-8 py-8'
+              "flex-fill d-flex align-items-center text-truncate gap-8 py-8",
             )}
           >
             <span className="text-truncate">{activeItem?.name}</span>
@@ -322,7 +324,7 @@ export const DragOverlayItem = forwardRef(
         </div>
       </div>
     );
-  }
+  },
 );
 
 SortableTree.displayName = "SortableTree";

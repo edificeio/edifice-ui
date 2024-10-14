@@ -1,8 +1,8 @@
-import { useDroppable } from '@dnd-kit/core';
-import { forwardRef, useId } from 'react';
-import { TreeNode } from './Tree';
-import { DndTreeNodeProps, DndTreeProps } from './types/types';
-import { useTreeView } from './hooks/useTreeView';
+import { useDroppable } from "@dnd-kit/core";
+import { forwardRef, useId } from "react";
+import { TreeNode } from "./Tree";
+import { DndTreeNodeProps, DndTreeProps } from "./types/types";
+import { useTreeView } from "./hooks/useTreeView";
 
 const DndTree = ({
   nodes,
@@ -52,26 +52,24 @@ const DndTree = ({
 };
 
 export const DndTreeNode = forwardRef(
-  (
-    {
-      node,
-      selectedNodeId,
-      showIcon = false,
-      expandedNodes,
-      renderNode,
-      onTreeItemClick,
-      onToggleNode,
-      draggedNodeId,
-      ...restProps
-    }: DndTreeNodeProps,
-  ) => {
+  ({
+    node,
+    selectedNodeId,
+    showIcon = false,
+    expandedNodes,
+    renderNode,
+    onTreeItemClick,
+    onToggleNode,
+    draggedNodeId,
+    ...restProps
+  }: DndTreeNodeProps) => {
     const { setNodeRef } = useDroppable({
       id: useId(),
       data: {
         id: node.id,
         name: node.name,
         isTreeview: true,
-        accepts: ['folder', 'resource'],
+        accepts: ["folder", "resource"],
       },
     });
 
@@ -92,7 +90,7 @@ export const DndTreeNode = forwardRef(
         {...restProps}
       />
     );
-  }
+  },
 );
 
 DndTree.displayName = "DndTree";

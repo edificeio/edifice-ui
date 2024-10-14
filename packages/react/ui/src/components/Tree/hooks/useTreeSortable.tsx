@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
-import { FlattenedItem, TreeItem, UpdateTreeData } from '../types/types';
+import { useEffect, useMemo, useState } from "react";
+import { FlattenedItem, TreeItem, UpdateTreeData } from "../types/types";
 import {
   Announcements,
   defaultDropAnimation,
@@ -15,9 +15,9 @@ import {
   UniqueIdentifier,
   useSensor,
   useSensors,
-} from '@dnd-kit/core';
-import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
+} from "@dnd-kit/core";
+import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import {
   determineNewParentId,
   flattenTree,
@@ -26,7 +26,7 @@ import {
   getDragDepth,
   getIndicesToUpdate,
   updateParentIds,
-} from '../utils/utils';
+} from "../utils/utils";
 
 export const useTreeSortable = ({
   nodes,
@@ -59,7 +59,7 @@ export const useTreeSortable = ({
   const flattenedTree: FlattenedItem[] = useMemo(
     () => flattenTree(items, null),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [items]
+    [items],
   );
 
   const activeItem = activeId
@@ -103,7 +103,7 @@ export const useTreeSortable = ({
     activeId: UniqueIdentifier,
     overId: UniqueIdentifier,
     dragOffset: number,
-    indentationWidth: number
+    indentationWidth: number,
   ) {
     const overItemIndex = items.findIndex(({ id }) => id === overId);
     const activeItemIndex = items.findIndex(({ id }) => id === activeId);
@@ -151,7 +151,7 @@ export const useTreeSortable = ({
           activeId,
           overId,
           offsetLeft,
-          indentationWidth
+          indentationWidth,
         )
       : null;
 
@@ -192,14 +192,14 @@ export const useTreeSortable = ({
       over,
       activeNode,
       overNode,
-      projected
+      projected,
     );
 
     const indicesToUpdate = getIndicesToUpdate(
       activeNode,
       activeNodeIndex,
       flattenedTree,
-      projected
+      projected,
     );
 
     updateParentIds(flattenedTree, indicesToUpdate, newParentId);
@@ -207,7 +207,7 @@ export const useTreeSortable = ({
     const updatedFlattenedTree = arrayMove(
       flattenedTree,
       activeNodeIndex,
-      overNodeIndex
+      overNodeIndex,
     );
     const { updateArray, updatedTreeData } =
       generateUpdateData(updatedFlattenedTree);
@@ -223,16 +223,16 @@ export const useTreeSortable = ({
 
   const sortedIds = useMemo(
     () => flattenedTree.map(({ id }) => id),
-    [flattenedTree]
+    [flattenedTree],
   );
 
   function getMovementAnnouncement(
     eventName: string,
     activeId: UniqueIdentifier,
-    overId?: UniqueIdentifier
+    overId?: UniqueIdentifier,
   ) {
     if (overId && projected) {
-      if (eventName !== 'onDragEnd') {
+      if (eventName !== "onDragEnd") {
         if (
           currentPosition &&
           projected.parentId === currentPosition.parentId &&
@@ -248,7 +248,7 @@ export const useTreeSortable = ({
       }
 
       const clonedItems: FlattenedItem[] = JSON.parse(
-        JSON.stringify(flattenTree(items, null, 0))
+        JSON.stringify(flattenTree(items, null, 0)),
       );
       const overIndex = clonedItems.findIndex(({ id }) => id === overId);
       const activeIndex = clonedItems.findIndex(({ id }) => id === activeId);
@@ -257,8 +257,8 @@ export const useTreeSortable = ({
       const previousItem = sortedItems[overIndex - 1];
 
       let announcement;
-      const movedVerb = eventName === 'onDragEnd' ? 'dropped' : 'moved';
-      const nestedVerb = eventName === 'onDragEnd' ? 'dropped' : 'nested';
+      const movedVerb = eventName === "onDragEnd" ? "dropped" : "moved";
+      const nestedVerb = eventName === "onDragEnd" ? "dropped" : "nested";
 
       if (!previousItem) {
         const nextItem = sortedItems[overIndex + 1];
@@ -290,13 +290,13 @@ export const useTreeSortable = ({
       return `Picked up ${active.id}.`;
     },
     onDragMove({ active, over }) {
-      return getMovementAnnouncement('onDragMove', active.id, over?.id);
+      return getMovementAnnouncement("onDragMove", active.id, over?.id);
     },
     onDragOver({ active, over }) {
-      return getMovementAnnouncement('onDragOver', active.id, over?.id);
+      return getMovementAnnouncement("onDragOver", active.id, over?.id);
     },
     onDragEnd({ active, over }) {
-      return getMovementAnnouncement('onDragEnd', active.id, over?.id);
+      return getMovementAnnouncement("onDragEnd", active.id, over?.id);
     },
     onDragCancel({ active }) {
       return `Moving was cancelled. ${active.id} was dropped in its original position.`;
@@ -317,7 +317,7 @@ export const useTreeSortable = ({
         },
       ];
     },
-    easing: 'ease-out',
+    easing: "ease-out",
     sideEffects({ active }) {
       active.node.animate([{ opacity: 0 }, { opacity: 1 }], {
         duration: defaultDropAnimation.duration,
@@ -343,7 +343,7 @@ export const useTreeSortable = ({
     useSensor(PointerSensor, { activationConstraint }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   );
 
   return {

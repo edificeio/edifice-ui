@@ -1,5 +1,5 @@
-import { Active, Over, UniqueIdentifier } from '@dnd-kit/core';
-import { FlattenedItem, Projected, TreeItem } from '../types/types';
+import { Active, Over, UniqueIdentifier } from "@dnd-kit/core";
+import { FlattenedItem, Projected, TreeItem } from "../types/types";
 
 export function getDragDepth(offset: number, indentationWidth: number) {
   return Math.round(offset / indentationWidth);
@@ -7,7 +7,7 @@ export function getDragDepth(offset: number, indentationWidth: number) {
 
 function getSubtreeIndices(
   flattenedTree: FlattenedItem[],
-  activeIndex: number
+  activeIndex: number,
 ) {
   const indices = [activeIndex];
   const nodeIds = [flattenedTree[activeIndex].id];
@@ -30,7 +30,7 @@ export function determineNewParentId(
   over: Over | null,
   activeNode: FlattenedItem,
   overNode: FlattenedItem | null,
-  projected: Projected
+  projected: Projected,
 ): string | null | undefined {
   if (projected && (projected.depth === 0 || projected.depth === 1)) {
     return projected.parentId;
@@ -45,7 +45,7 @@ export function determineNewParentId(
 export function getActiveAndOverNodes(
   tree: FlattenedItem[],
   activeId: UniqueIdentifier,
-  overId?: UniqueIdentifier | undefined
+  overId?: UniqueIdentifier | undefined,
 ) {
   const activeNodeIndex = tree.findIndex(({ id }) => id === activeId);
   const overNodeIndex = overId ? tree.findIndex(({ id }) => id === overId) : -1;
@@ -59,7 +59,7 @@ export function getIndicesToUpdate(
   activeNode: FlattenedItem,
   activeNodeIndex: number,
   flattenedTree: FlattenedItem[],
-  projected: Projected
+  projected: Projected,
 ): number[] {
   if (
     activeNode.children &&
@@ -75,7 +75,7 @@ export function getIndicesToUpdate(
 export function flattenTree(
   tree: TreeItem[],
   parentId: string | null,
-  depth = 0
+  depth = 0,
 ): FlattenedItem[] {
   return tree.reduce((acc, node) => {
     acc.push({
@@ -98,7 +98,7 @@ export function flattenTree(
 export function updateParentIds(
   flattenedTree: any[],
   indices: number[],
-  newParentId: string | null | undefined
+  newParentId: string | null | undefined,
 ) {
   indices.forEach((index) => {
     flattenedTree[index] = {
@@ -110,7 +110,7 @@ export function updateParentIds(
 
 export function findItemIndexInTree(
   tree: any[],
-  itemId: string
+  itemId: string,
 ): number | null {
   for (let i = 0; i < tree.length; i++) {
     const node = tree[i];
