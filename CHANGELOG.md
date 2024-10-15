@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.22-develop-pedago.5](https://github.com/opendigitaleducation/edifice-ui/compare/v1.5.22-develop-pedago.4...v1.5.22-develop-pedago.5) (2024-10-15)
+
+### Features
+
+- #WB2-1514, add new component Treeview Sortable ([#257](https://github.com/opendigitaleducation/edifice-ui/issues/257)) ([b902300](https://github.com/opendigitaleducation/edifice-ui/commit/b902300d67aefae584071813c8f6d839a5d88a6a)), closes [#WB2-1514](https://github.com/opendigitaleducation/edifice-ui/issues/WB2-1514)
+
 ## [1.5.22-develop-pedago.4](https://github.com/opendigitaleducation/edifice-ui/compare/v1.5.22-develop-pedago.3...v1.5.22-develop-pedago.4) (2024-10-14)
 
 ### Features
