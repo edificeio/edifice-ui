@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.22-develop-pedago.7](https://github.com/opendigitaleducation/edifice-ui/compare/v1.5.22-develop-pedago.6...v1.5.22-develop-pedago.7) (2024-10-15)
+
+### Bug Fixes
+
+- #WB2-1514, fix name type Treeview ([7461a82](https://github.com/opendigitaleducation/edifice-ui/commit/7461a82b998e6ee2b8499ceb8184f39e0d1d2a91))
+
 ## [1.5.22-develop-pedago.6](https://github.com/opendigitaleducation/edifice-ui/compare/v1.5.22-develop-pedago.5...v1.5.22-develop-pedago.6) (2024-10-15)
 
 ### Bug Fixes
