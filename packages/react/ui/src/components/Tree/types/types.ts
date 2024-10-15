@@ -25,6 +25,14 @@ export interface TreeProps extends SharedTreeProps {
    */
   shouldExpandAllNodes?: boolean;
   /**
+   * Pass draggeNode when you drag an element from another context (resource / folder)
+   */
+  draggedNode?: {
+    isOver: boolean;
+    overId: string | undefined;
+    isTreeview: boolean;
+  };
+  /**
    * Callback function to provide folded item to parent component
    */
   onTreeItemFold?: (nodeId: string) => void;
@@ -111,6 +119,10 @@ export interface TreeNodeProps
    */
   expandedNodes: Set<string>;
   /**
+   * Siblings nodes
+   */
+  siblingsNodes?: React.MutableRefObject<Set<string>>;
+  /**
    * Function to fold / unfold node
    */
   onToggleNode?: (nodeId: string) => void;
@@ -131,12 +143,21 @@ export interface SortableTreeNodeProps extends TreeNodeProps {
    * Use to disable sorting, check SortableTreeProps
    */
   disabled?: boolean;
+  /**
+   * Node spacing value
+   */
   indentationWidth: number;
-
+  /**
+   * Node identifier as parent or child
+   */
   depth: number;
-
+  /**
+   * Node identifier as parent or child
+   */
   isChildren?: boolean;
-
+  /**
+   *  Projected node before dragging it
+   */
   projected?: Projected;
 }
 

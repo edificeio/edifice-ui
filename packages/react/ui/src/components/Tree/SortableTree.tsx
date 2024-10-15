@@ -40,8 +40,6 @@ const SortableTree = ({
     externalSelectedNodeId,
     shouldExpandAllNodes,
     onTreeItemClick,
-    // onTreeItemFold,
-    // onTreeItemUnfold,
   });
 
   const {

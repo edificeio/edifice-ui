@@ -10,6 +10,9 @@ const Tree = ({
   selectedNodeId: externalSelectedNodeId,
   showIcon = false,
   shouldExpandAllNodes = false,
+  draggedNode,
+  onTreeItemFold,
+  onTreeItemUnfold,
   onTreeItemClick,
   renderNode,
 }: TreeProps) => {
@@ -17,17 +20,17 @@ const Tree = ({
     useTreeView({
       data: nodes,
       externalSelectedNodeId,
-      // draggedNode,
+      draggedNode,
       shouldExpandAllNodes,
       onTreeItemClick,
-      // onTreeItemFold,
-      // onTreeItemUnfold,
+      onTreeItemFold,
+      onTreeItemUnfold,
     });
 
   return (
     <div className="treeview">
       <ul role="tree" className="m-0 p-0">
-        {Array.isArray(nodes) &&
+      {Array.isArray(nodes) &&
           nodes.map((node) => (
             <TreeNode
               node={node}

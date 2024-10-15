@@ -1,5 +1,6 @@
 import { Active, Over, UniqueIdentifier } from "@dnd-kit/core";
-import { FlattenedItem, Projected, TreeItem } from "../types/types";
+import { FlattenedItem, Projected, TreeItem } from "./types/types";
+import { arrayMove } from "@dnd-kit/sortable";
 
 export function getDragDepth(offset: number, indentationWidth: number) {
   return Math.round(offset / indentationWidth);
@@ -138,4 +139,82 @@ export function generateUpdateData(updatedFlattenedTree: FlattenedItem[]) {
   });
 
   return { updateArray, updatedTreeData: updatedFlattenedTree };
+}
+
+export const buildTree = (flatNodes: FlattenedItem[]): TreeItem[] => {
+  const nodeMap = new Map<string, TreeItem>();
+
+  // Initialiser la map avec chaque nœud
+  flatNodes.forEach((node) => {
+    nodeMap.set(node.id, {
+      id: node.id,
+      name: node.name,
+      children: [],
+      position: node.position,
+    });
+  });
+
+  const tree: TreeItem[] = [];
+
+  // Parcourir les nœuds et assigner les enfants à leur parent
+  flatNodes.forEach((node) => {
+    const treeNode = nodeMap.get(node.id)!; // Récupère le nœud correspondant
+    if (node.parentId === null) {
+      tree.push(treeNode); // Pas de parent, c'est un nœud racine
+    } else {
+      const parentNode = nodeMap.get(node.parentId);
+      if (parentNode) {
+        parentNode.children = parentNode.children ?? undefined;
+        parentNode.children?.push(treeNode); // Ajoute le nœud en tant qu'enfant de son parent
+      }
+    }
+  });
+
+  return tree;
+};
+
+export function getProjection(
+  items: FlattenedItem[],
+  activeId: UniqueIdentifier,
+  overId: UniqueIdentifier,
+  dragOffset: number,
+  indentationWidth: number,
+) {
+  const overItemIndex = items.findIndex(({ id }) => id === overId);
+  const activeItemIndex = items.findIndex(({ id }) => id === activeId);
+  const activeItem = items[activeItemIndex];
+  const newItems = arrayMove(items, activeItemIndex, overItemIndex);
+  const previousItem = newItems[overItemIndex - 1];
+  const dragDepth = getDragDepth(dragOffset, indentationWidth);
+  const projectedDepth = activeItem.depth + dragDepth;
+  let depth = projectedDepth + activeItem.depth;
+
+  if (!previousItem) {
+    depth = 0;
+  } else {
+    depth = Math.max(0, Math.min(1, projectedDepth));
+  }
+
+  return { depth, parentId: getParentId(), activeId, previousItem };
+
+  function getParentId() {
+    if (depth === 0 || !previousItem) {
+      return null;
+    }
+
+    if (depth === previousItem.depth) {
+      return previousItem.parentId;
+    }
+
+    if (depth > previousItem.depth) {
+      return previousItem.id;
+    }
+
+    const newParent = newItems
+      .slice(0, overItemIndex)
+      .reverse()
+      .find((item) => item.depth === depth)?.parentId;
+
+    return newParent ?? null;
+  }
 }
