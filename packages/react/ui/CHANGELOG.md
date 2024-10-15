@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.22-develop-pedago.6](https://github.com/edificeio/edifice-ui/compare/v1.5.22-develop-pedago.5...v1.5.22-develop-pedago.6) (2024-10-15)
+
+### Bug Fixes
+
+- #WB2-1514, fix renderNode for Tree component ([7a0936d](https://github.com/edificeio/edifice-ui/commit/7a0936d2f4f7d3de4ed2498b3ba5473437801eb2))
+
 ## [1.5.22-develop-pedago.5](https://github.com/edificeio/edifice-ui/compare/v1.5.22-develop-pedago.4...v1.5.22-develop-pedago.5) (2024-10-15)
 
 ### Features
