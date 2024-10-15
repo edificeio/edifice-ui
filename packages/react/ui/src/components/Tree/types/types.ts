@@ -19,7 +19,7 @@ export interface TreeProps extends SharedTreeProps {
   /**
    * Tree data
    */
-  nodes: TreeItem[];
+  nodes: TreeItem | TreeItem[];
   /**
    * Expand all nodes
    */
@@ -114,6 +114,10 @@ export interface TreeNodeProps
    * Use to disable sorting, check SortableTreeProps
    */
   disabled?: boolean;
+  /**
+   * Id of draggable node
+   */
+  draggedNodeId?: string | undefined;
   /**
    * Nodes expanded (opened)
    */
