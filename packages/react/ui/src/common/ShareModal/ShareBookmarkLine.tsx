@@ -1,4 +1,4 @@
-import { Bookmark, Close, RafterDown } from "@edifice-ui/icons";
+import { Bookmark, Close, RafterDown, Users } from "@edifice-ui/icons";
 import {
   ShareRight,
   ShareRightAction,
@@ -30,6 +30,7 @@ export const ShareBookmarkLine = ({
   onDeleteRow: (shareRight: ShareRight) => void;
 }) => {
   const { t } = useTranslation();
+
   return shareRights?.rights.map((shareRight: ShareRight) => {
     return (
       showShareRightLine(shareRight, showBookmark) && (
@@ -38,16 +39,22 @@ export const ShareBookmarkLine = ({
           className={shareRight.isBookmarkMember ? "bg-light" : ""}
         >
           <td>
-            {shareRight.type !== "sharebookmark" && (
-              <Avatar
-                alt={t("explorer.modal.share.avatar.shared.alt")}
-                size="xs"
-                src={shareRight.avatarUrl}
-                variant="circle"
-              />
-            )}
-
-            {shareRight.type === "sharebookmark" && <Bookmark />}
+            {{
+              user: (
+                <Avatar
+                  alt={t("explorer.modal.share.avatar.shared.alt")}
+                  size="xs"
+                  src={shareRight.avatarUrl}
+                  variant="circle"
+                />
+              ),
+              group: (
+                <div className="avatar-xs bg-secondary-200 justify-content-center d-flex rounded-circle">
+                  <Users width={16} />
+                </div>
+              ),
+              sharebookmark: <Bookmark />,
+            }[shareRight.type] || null}
           </td>
           <td>
             <div className="d-flex">
