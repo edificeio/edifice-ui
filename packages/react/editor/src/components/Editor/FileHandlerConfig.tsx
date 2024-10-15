@@ -53,12 +53,17 @@ export const FileHandlerConfig = (
     onPaste: (editor: Editor, files: File[], pasteContent?: string) => {
       if (pasteContent) {
         const containBase64Regex =
-          /src="data:image\/(png|jpeg|gif|webp|heic|avif);base64,(.*)" /gim;
+          /src="data:image\/(png|jpeg|jpg|gif|webp|heic|avif);base64,(.*)"/gim;
+        const imageURLRegex =
+          /src="http(s)?:\/\/(.*).(png|jpeg|jpg|gif|webp|heic|avif)"/gim;
         const validBase64Regex = /^[-A-Za-z0-9+/]*={0,3}$/;
         const containBase64 = containBase64Regex.exec(pasteContent);
 
         // If the pasteContent does not contain base64 or the base64 is invalid, do not insert the image
-        if (!containBase64 || !validBase64Regex.test(containBase64[2])) {
+        if (
+          (!imageURLRegex.test(pasteContent) && !containBase64) ||
+          (containBase64 && !validBase64Regex.test(containBase64[2]))
+        ) {
           return false;
         }
       }

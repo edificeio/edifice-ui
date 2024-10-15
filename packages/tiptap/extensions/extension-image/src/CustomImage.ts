@@ -120,9 +120,17 @@ export const CustomImage = Image.extend<CustomImageOptions>({
   parseHTML() {
     return [
       {
-        tag: 'img[src]:not([src^="data:"])',
+        tag: "img[src]",
         getAttrs: (el: HTMLImageElement) => {
           const attr = { src: el.getAttribute("src") };
+          if (
+            attr.src.startsWith("data:image") ||
+            attr.src.startsWith("http")
+          ) {
+            // Check source is a base64 image or a remote image they will be taken care by the file handler extension to upload the image as resource
+            return false;
+          }
+
           // Check old content format and get the width from the parent element
           if (el.parentElement?.className.includes("image-container")) {
             if (el.parentElement.style?.width) {
