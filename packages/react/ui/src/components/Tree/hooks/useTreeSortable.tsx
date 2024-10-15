@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { FlattenedItem, TreeItem, UpdateTreeData } from "../types/types";
+import { FlattenedItem, TreeItem, UpdateTreeData } from "../types";
 import {
   Announcements,
   defaultDropAnimation,

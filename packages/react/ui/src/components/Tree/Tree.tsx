@@ -2,7 +2,7 @@ import { Folder, RafterRight } from "@edifice-ui/icons";
 import clsx from "clsx";
 import { forwardRef, Ref } from "react";
 import { useTranslation } from "react-i18next";
-import { TreeNodeProps, TreeProps } from "./types/types";
+import { TreeNodeProps, TreeProps } from "./types";
 import { useTreeView } from "./hooks/useTreeView";
 
 const Tree = ({

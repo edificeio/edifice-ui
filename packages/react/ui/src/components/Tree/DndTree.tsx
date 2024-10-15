@@ -1,7 +1,7 @@
 import { useDroppable } from "@dnd-kit/core";
 import { forwardRef, useId } from "react";
 import { TreeNode } from "./Tree";
-import { DndTreeNodeProps, DndTreeProps } from "./types/types";
+import { DndTreeNodeProps, DndTreeProps } from "./types";
 import { useTreeView } from "./hooks/useTreeView";
 
 const DndTree = ({

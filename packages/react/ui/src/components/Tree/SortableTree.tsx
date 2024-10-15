@@ -15,7 +15,7 @@ import {
   FlattenedItem,
   SortableTreeNodeProps,
   SortableTreeProps,
-} from "./types/types";
+} from "./types";
 import { useTreeView } from "./hooks/useTreeView";
 import { useTreeSortable } from "./hooks/useTreeSortable";
 

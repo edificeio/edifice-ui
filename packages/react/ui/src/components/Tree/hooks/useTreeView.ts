@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { TreeItem } from "../types/types";
+import { TreeItem } from "../types";
 
 export function findPathById(
   tree: TreeItem | TreeItem[],

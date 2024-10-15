@@ -3,7 +3,7 @@ import {
   FlattenedItem,
   Projected,
   TreeItem,
-} from "../components/Tree/types/types";
+} from "../components/Tree/types";
 import { arrayMove } from "@dnd-kit/sortable";
 
 export function getDragDepth(offset: number, indentationWidth: number) {

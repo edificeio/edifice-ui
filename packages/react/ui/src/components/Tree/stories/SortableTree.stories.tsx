@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import SortableTree from "../SortableTree";
-import { SortableTreeProps } from "../types/types";
+import { SortableTreeProps } from "../types";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof SortableTree> = {
