@@ -27,7 +27,7 @@ import {
   getIndicesToUpdate,
   getProjection,
   updateParentIds,
-} from "../utils";
+} from "../../../utils/tree-sortable";
 
 export const useTreeSortable = ({
   nodes,
