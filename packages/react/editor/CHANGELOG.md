@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.22-develop-b2school.3](https://github.com/edificeio/edifice-ui/compare/v1.5.22-develop-b2school.2...v1.5.22-develop-b2school.3) (2024-10-15)
+
+### Bug Fixes
+
+- #WB-2538 update legend refresh image attribut ([636bea1](https://github.com/edificeio/edifice-ui/commit/636bea1657df5e33fafbcb696d61115e5ba82103)), closes [#WB-2538](https://github.com/edificeio/edifice-ui/issues/WB-2538)
+
 ## [1.5.22-develop-b2school.2](https://github.com/edificeio/edifice-ui/compare/v1.5.22-develop-b2school.1...v1.5.22-develop-b2school.2) (2024-10-15)
 
 ### Bug Fixes
