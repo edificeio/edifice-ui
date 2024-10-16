@@ -51,6 +51,9 @@ export const ShareBookmarkLine = ({
 
     const selectedAvatar = avatarMapping[shareRight.type] || null;
 
+    const isTypeBookmark = shareRight.type === "sharebookmark";
+    const isTypeUser = shareRight.type === "user";
+
     return (
       showShareRightLine(shareRight, showBookmark) && (
         <tr
@@ -60,7 +63,7 @@ export const ShareBookmarkLine = ({
           <td>{selectedAvatar}</td>
           <td>
             <div className="d-flex">
-              {shareRight.type === "sharebookmark" && (
+              {isTypeBookmark && (
                 <Button
                   color="tertiary"
                   rightIcon={
@@ -81,9 +84,8 @@ export const ShareBookmarkLine = ({
                   {shareRight.displayName}
                 </Button>
               )}
-              {shareRight.type !== "sharebookmark" && shareRight.displayName}
-              {shareRight.type === "user" &&
-                ` (${t(shareRight.profile || "")})`}
+              {!isTypeBookmark && shareRight.displayName}
+              {isTypeUser && ` (${t(shareRight.profile || "")})`}
             </div>
           </td>
           {shareRightActions.map((shareRightAction) => (
