@@ -12,7 +12,7 @@ export default class ImageResizer {
    * @param maxWidth - The maximum allowed width for the image.
    * @returns An object containing the adjusted height and width of the image.
    */
-  private static changeHeightWidth(
+  private static changeDimension(
     height: number,
     maxHeight: number,
     width: number,
@@ -71,7 +71,7 @@ export default class ImageResizer {
     let width = image.width;
     let height = image.height;
 
-    const newHeightWidth = this.changeHeightWidth(
+    const newHeightWidth = this.changeDimension(
       height,
       maxHeight,
       width,

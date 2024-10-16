@@ -4,7 +4,7 @@ The `ImageResizer` class provides functionality to resize and compress image fil
 
 ### Methods
 
-#### `changeHeightWidth(height: number, maxHeight: number, width: number, maxWidth: number): { height: number; width: number }`
+#### `changeDimension(height: number, maxHeight: number, width: number, maxWidth: number): { height: number; width: number }`
 
 This private static method adjusts the height and width of an image to fit within the specified maximum dimensions while maintaining the aspect ratio.
 
