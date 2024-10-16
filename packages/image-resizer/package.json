@@ -29,8 +29,8 @@
   "scripts": {
     "build": "vite build",
     "format": "pnpm run format:write && pnpm run format:check",
-    "format:check": "npx prettier --check \"src/ts/**/*.ts\"",
-    "format:write": "npx prettier --write \"src/ts/**/*.ts\""
+    "format:check": "npx prettier --check \"src/**/*.ts\"",
+    "format:write": "npx prettier --write \"src/**/*.ts\""
   },
   "dependencies": {},
   "devDependencies": {
