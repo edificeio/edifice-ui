@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.22-develop-pedago.9](https://github.com/opendigitaleducation/edifice-ui/compare/v1.5.22-develop-pedago.8...v1.5.22-develop-pedago.9) (2024-10-16)
+
+### Bug Fixes
+
+- #WB2-1514, fix probleme treeview with one node + fix disappears nodes ([d0d9aa9](https://github.com/opendigitaleducation/edifice-ui/commit/d0d9aa92140552155b97834a28419114a619e22d))
+
 ## [1.5.22-develop-pedago.8](https://github.com/opendigitaleducation/edifice-ui/compare/v1.5.22-develop-pedago.7...v1.5.22-develop-pedago.8) (2024-10-16)
 
 ### Bug Fixes
