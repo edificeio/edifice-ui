@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.22-develop-pedago.8](https://github.com/opendigitaleducation/edifice-ui/compare/v1.5.22-develop-pedago.7...v1.5.22-develop-pedago.8) (2024-10-16)
+
+### Bug Fixes
+
+- WB2-1514, add collapse node when drag parent is drag + update types ([917f24d](https://github.com/opendigitaleducation/edifice-ui/commit/917f24db9311cc7b83a70e99a53ffc6dec4e0b98))
+
 ## [1.5.22-develop-pedago.7](https://github.com/opendigitaleducation/edifice-ui/compare/v1.5.22-develop-pedago.6...v1.5.22-develop-pedago.7) (2024-10-15)
 
 ### Bug Fixes
