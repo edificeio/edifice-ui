@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.22-develop-pedago.10](https://github.com/opendigitaleducation/edifice-ui/compare/v1.5.22-develop-pedago.9...v1.5.22-develop-pedago.10) (2024-10-16)
+
+### Bug Fixes
+
+- #WB2-1294, fix group icon in share modal ([#259](https://github.com/opendigitaleducation/edifice-ui/issues/259)) ([dfd834f](https://github.com/opendigitaleducation/edifice-ui/commit/dfd834f22600b38df9d83a7f2c3b4921fb3d05ec))
+
 ## [1.5.22-develop-pedago.9](https://github.com/opendigitaleducation/edifice-ui/compare/v1.5.22-develop-pedago.8...v1.5.22-develop-pedago.9) (2024-10-16)
 
 ### Bug Fixes
