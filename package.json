@@ -38,6 +38,7 @@
   "devDependencies": {
     "@babel/plugin-transform-react-pure-annotations": "7.23.3",
     "@edifice-ui/icons": "workspace:*",
+    "@edifice.io/image-resizer": "workspace:*",
     "@skypack/package-check": "0.2.2",
     "@storybook/addon-a11y": "7.6.6",
     "@storybook/addon-essentials": "7.6.6",
