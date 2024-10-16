@@ -13,9 +13,6 @@ importers:
       "@edifice-ui/icons":
         specifier: workspace:*
         version: link:packages/react/icons
-      "@edifice.io/image-resizer":
-        specifier: workspace:*
-        version: link:packages/image-resizer
       "@skypack/package-check":
         specifier: 0.2.2
         version: 0.2.2
@@ -361,9 +358,6 @@ importers:
       "@edifice-ui/react":
         specifier: workspace:*
         version: link:../ui
-      "@edifice.io/image-resizer":
-        specifier: workspace:*
-        version: link:../../image-resizer
       "@types/node":
         specifier: ^20.4.9
         version: 20.11.6
@@ -485,9 +479,6 @@ importers:
       "@edifice-ui/icons":
         specifier: workspace:*
         version: link:../icons
-      "@edifice.io/image-resizer":
-        specifier: workspace:*
-        version: link:../../image-resizer
       "@react-spring/web":
         specifier: 9.7.3
         version: 9.7.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
