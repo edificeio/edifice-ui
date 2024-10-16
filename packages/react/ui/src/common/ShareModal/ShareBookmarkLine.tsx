@@ -32,30 +32,32 @@ export const ShareBookmarkLine = ({
   const { t } = useTranslation();
 
   return shareRights?.rights.map((shareRight: ShareRight) => {
+    const avatarMapping = {
+      user: (
+        <Avatar
+          alt={t("explorer.modal.share.avatar.shared.alt")}
+          size="xs"
+          src={shareRight.avatarUrl}
+          variant="circle"
+        />
+      ),
+      group: (
+        <div className="avatar-xs bg-primary-200 justify-content-center d-flex rounded-circle">
+          <Users width={16} />
+        </div>
+      ),
+      sharebookmark: <Bookmark />,
+    };
+
+    const selectedAvatar = avatarMapping[shareRight.type] || null;
+
     return (
       showShareRightLine(shareRight, showBookmark) && (
         <tr
           key={shareRight.id}
           className={shareRight.isBookmarkMember ? "bg-light" : ""}
         >
-          <td>
-            {{
-              user: (
-                <Avatar
-                  alt={t("explorer.modal.share.avatar.shared.alt")}
-                  size="xs"
-                  src={shareRight.avatarUrl}
-                  variant="circle"
-                />
-              ),
-              group: (
-                <div className="avatar-xs bg-secondary-200 justify-content-center d-flex rounded-circle">
-                  <Users width={16} />
-                </div>
-              ),
-              sharebookmark: <Bookmark />,
-            }[shareRight.type] || null}
-          </td>
+          <td>{selectedAvatar}</td>
           <td>
             <div className="d-flex">
               {shareRight.type === "sharebookmark" && (
