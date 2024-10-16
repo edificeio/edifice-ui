@@ -90,7 +90,6 @@
   "devDependencies": {
     "@edifice-ui/icons": "workspace:*",
     "@edifice-ui/react": "workspace:*",
-    "@edifice.io/image-resizer": "workspace:*",
     "@types/node": "^20.4.9",
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.14",
@@ -103,7 +102,6 @@
   "peerDependencies": {
     "@edifice-ui/icons": "*",
     "@edifice-ui/react": "*",
-    "@edifice.io/image-resizer": "*",
     "@react-spring/web": "^9.7.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
