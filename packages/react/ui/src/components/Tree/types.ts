@@ -7,6 +7,7 @@ export type TreeItem = {
   position?: number;
   section?: boolean;
   children?: TreeItem[];
+  isVisible?: boolean;
 };
 
 export type Projected = {
@@ -80,11 +81,7 @@ export interface SharedTreeProps {
   /**
    * Customize the JSX we render inside a node
    */
-  renderNode?: (payload: {
-    nodeId: string;
-    nodeName: string;
-    hasChildren: boolean;
-  }) => React.ReactNode;
+  renderNode?: (node: TreeItem, hasChildren: boolean) => React.ReactNode;
   /**
    * Show Section Icon
    */

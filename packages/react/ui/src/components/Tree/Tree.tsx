@@ -168,12 +168,10 @@ export const TreeNode = forwardRef(
               onKeyDown={handleItemKeyDown}
             >
               {renderNode && !isChildren ? (
-                renderNode({
-                  nodeId: node.id,
-                  nodeName: node.name,
-                  hasChildren:
-                    Array.isArray(node.children) && !!node.children.length,
-                })
+                renderNode(
+                  node,
+                  Array.isArray(node.children) && !!node.children.length,
+                )
               ) : (
                 <div className="text-truncate">{node.name}</div>
               )}
