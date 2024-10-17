@@ -199,6 +199,24 @@ importers:
         specifier: 3.7.2
         version: 3.7.2(@types/node@20.11.6)(rollup@4.21.0)(typescript@5.3.3)(vite@5.0.12(@types/node@20.11.6)(sass@1.70.0)(terser@5.27.0))
 
+  packages/image-resizer:
+    devDependencies:
+      "@types/node":
+        specifier: 20.11.6
+        version: 20.11.6
+      prettier:
+        specifier: 3.2.4
+        version: 3.2.4
+      typescript:
+        specifier: 5.3.3
+        version: 5.3.3
+      vite:
+        specifier: 5.0.12
+        version: 5.0.12(@types/node@20.11.6)(sass@1.70.0)(terser@5.27.0)
+      vite-plugin-dts:
+        specifier: 3.7.2
+        version: 3.7.2(@types/node@20.11.6)(rollup@4.21.0)(typescript@5.3.3)(vite@5.0.12(@types/node@20.11.6)(sass@1.70.0)(terser@5.27.0))
+
   packages/react/editor:
     dependencies:
       "@edifice-tiptap-extensions/extension-alert":
@@ -243,6 +261,9 @@ importers:
       "@edifice-tiptap-extensions/extension-video":
         specifier: workspace:*
         version: link:../../tiptap/extensions/extension-video
+      "@edifice.io/image-resizer":
+        specifier: workspace:*
+        version: link:../../image-resizer
       "@react-spring/web":
         specifier: ^9.7.3
         version: 9.7.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -388,6 +409,9 @@ importers:
 
   packages/react/ui:
     dependencies:
+      "@edifice.io/image-resizer":
+        specifier: workspace:*
+        version: link:../../image-resizer
       "@floating-ui/react":
         specifier: 0.26.0
         version: 0.26.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -405,7 +429,7 @@ importers:
         version: 2.3.0
       "@tiptap/react":
         specifier: 2.3.0
-        version: 2.3.0(@tiptap/core@2.6.4(@tiptap/pm@2.3.0))(@tiptap/pm@2.3.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 2.3.0(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))(@tiptap/pm@2.3.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       "@tiptap/starter-kit":
         specifier: 2.3.0
         version: 2.3.0(@tiptap/pm@2.3.0)
@@ -5227,14 +5251,6 @@ packages:
       }
     peerDependencies:
       "@tiptap/pm": ^2.0.0
-
-  "@tiptap/core@2.6.4":
-    resolution:
-      {
-        integrity: sha512-lv+JyBI+5C6C7BMLYg2bloB00HvAZkcvgO3CzmFia28Vtt1P9yhS44elvBemhUf7IP7Hu12FUzDWY+2GQqiqkw==,
-      }
-    peerDependencies:
-      "@tiptap/pm": ^2.6.4
 
   "@tiptap/extension-blockquote@2.6.4":
     resolution:
@@ -18742,10 +18758,6 @@ snapshots:
     dependencies:
       "@tiptap/pm": 2.3.0
 
-  "@tiptap/core@2.6.4(@tiptap/pm@2.3.0)":
-    dependencies:
-      "@tiptap/pm": 2.3.0
-
   "@tiptap/extension-blockquote@2.6.4(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))":
     dependencies:
       "@tiptap/core": 2.3.0(@tiptap/pm@2.3.0)
@@ -18757,12 +18769,6 @@ snapshots:
   "@tiptap/extension-bubble-menu@2.6.4(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))(@tiptap/pm@2.3.0)":
     dependencies:
       "@tiptap/core": 2.3.0(@tiptap/pm@2.3.0)
-      "@tiptap/pm": 2.3.0
-      tippy.js: 6.3.7
-
-  "@tiptap/extension-bubble-menu@2.6.4(@tiptap/core@2.6.4(@tiptap/pm@2.3.0))(@tiptap/pm@2.3.0)":
-    dependencies:
-      "@tiptap/core": 2.6.4(@tiptap/pm@2.3.0)
       "@tiptap/pm": 2.3.0
       tippy.js: 6.3.7
 
@@ -18801,12 +18807,6 @@ snapshots:
   "@tiptap/extension-floating-menu@2.6.4(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))(@tiptap/pm@2.3.0)":
     dependencies:
       "@tiptap/core": 2.3.0(@tiptap/pm@2.3.0)
-      "@tiptap/pm": 2.3.0
-      tippy.js: 6.3.7
-
-  "@tiptap/extension-floating-menu@2.6.4(@tiptap/core@2.6.4(@tiptap/pm@2.3.0))(@tiptap/pm@2.3.0)":
-    dependencies:
-      "@tiptap/core": 2.6.4(@tiptap/pm@2.3.0)
       "@tiptap/pm": 2.3.0
       tippy.js: 6.3.7
 
@@ -18959,15 +18959,6 @@ snapshots:
       "@tiptap/core": 2.3.0(@tiptap/pm@2.3.0)
       "@tiptap/extension-bubble-menu": 2.6.4(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))(@tiptap/pm@2.3.0)
       "@tiptap/extension-floating-menu": 2.6.4(@tiptap/core@2.3.0(@tiptap/pm@2.3.0))(@tiptap/pm@2.3.0)
-      "@tiptap/pm": 2.3.0
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-
-  "@tiptap/react@2.3.0(@tiptap/core@2.6.4(@tiptap/pm@2.3.0))(@tiptap/pm@2.3.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)":
-    dependencies:
-      "@tiptap/core": 2.6.4(@tiptap/pm@2.3.0)
-      "@tiptap/extension-bubble-menu": 2.6.4(@tiptap/core@2.6.4(@tiptap/pm@2.3.0))(@tiptap/pm@2.3.0)
-      "@tiptap/extension-floating-menu": 2.6.4(@tiptap/core@2.6.4(@tiptap/pm@2.3.0))(@tiptap/pm@2.3.0)
       "@tiptap/pm": 2.3.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
