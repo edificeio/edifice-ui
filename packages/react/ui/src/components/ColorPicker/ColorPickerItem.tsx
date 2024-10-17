@@ -1,4 +1,4 @@
-import { DeleteColor } from '@edifice-ui/icons';
+import { DeleteColor } from '@edifice.io/icons';
 import clsx from 'clsx';
 
 import { ColorPaletteItem } from './ColorPalette';

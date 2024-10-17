@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import { Meta, StoryObj } from '@storybook/react';
 
+import { Applications, ViewList } from '@edifice.io/icons';
 import Radio, { RadioProps } from './Radio';
-import { Applications, ViewList } from '@edifice-ui/icons';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Radio> = {

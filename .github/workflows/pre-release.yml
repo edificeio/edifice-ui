@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: "Select the branch to run the workflow on"
+        description: 'Select the branch to run the workflow on'
         required: true
         type: choice
         options:
@@ -25,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: "0"
+          fetch-depth: '0'
           ref: ${{ github.event.inputs.branch }}
 
       - uses: actions/setup-node@v4
@@ -56,7 +56,7 @@ jobs:
 
       - name: Generate .npmrc
         run: |
-          pnpm config set @edifice-ui:registry https://registry.npmjs.org
+          pnpm config set @edifice.io:registry https://registry.npmjs.org
           pnpm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
           pnpm config set @tiptap-pro:registry https://registry.tiptap.dev
           pnpm config set //registry.tiptap.dev/:_authToken ${{ secrets.TIPTAP_PRO_TOKEN }}

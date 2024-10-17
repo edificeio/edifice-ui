@@ -6,7 +6,7 @@ import {
   IconButton,
   IconButtonProps,
   Tooltip,
-} from '@edifice-ui/react';
+} from '@edifice.io/react';
 
 interface Props {
   /**

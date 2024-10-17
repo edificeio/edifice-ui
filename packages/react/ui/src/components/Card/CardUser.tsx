@@ -1,4 +1,4 @@
-import { OneProfile } from '@edifice-ui/icons/nav';
+import { OneProfile } from '@edifice.io/icons/nav';
 
 import { Avatar } from '../Avatar';
 

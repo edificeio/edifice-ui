@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { Users } from '@edifice-ui/icons';
+import { Users } from '@edifice.io/icons';
 import clsx from 'clsx';
 import { IResource } from 'edifice-ts-client';
 

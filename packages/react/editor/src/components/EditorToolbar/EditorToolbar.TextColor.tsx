@@ -6,7 +6,7 @@ import {
   useState,
 } from 'react';
 
-import { TextColor } from '@edifice-ui/icons';
+import { TextColor } from '@edifice.io/icons';
 import {
   AccessiblePalette,
   ColorPalette,
@@ -16,7 +16,7 @@ import {
   IconButton,
   IconButtonProps,
   Tooltip,
-} from '@edifice-ui/react';
+} from '@edifice.io/react';
 import { useTranslation } from 'react-i18next';
 
 import { useEditorContext } from '../../hooks/useEditorContext';

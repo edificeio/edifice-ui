@@ -1,9 +1,9 @@
 import { StoryObj } from '@storybook/react';
 
+import { Delete, Download } from '@edifice.io/icons';
 import { IconButton } from '../Button';
-import Attachment, { AttachmentProps } from './Attachment';
-import { Delete, Download } from '@edifice-ui/icons';
 import { Grid } from '../Grid';
+import Attachment, { AttachmentProps } from './Attachment';
 
 const meta = {
   title: 'Components/Attachment',

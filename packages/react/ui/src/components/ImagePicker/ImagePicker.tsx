@@ -6,7 +6,7 @@ import {
   useState,
 } from 'react';
 
-import { Delete, Edit } from '@edifice-ui/icons';
+import { Delete, Edit } from '@edifice.io/icons';
 import clsx from 'clsx';
 import { IWebApp } from 'edifice-ts-client';
 

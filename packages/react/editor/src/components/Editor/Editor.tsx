@@ -7,7 +7,7 @@ import {
   useImperativeHandle,
 } from 'react';
 
-import { LoadingScreen, MediaLibrary, useOdeClient } from '@edifice-ui/react';
+import { LoadingScreen, MediaLibrary, useOdeClient } from '@edifice.io/react';
 import '@edifice.io/tiptap-extensions';
 import {
   Content,

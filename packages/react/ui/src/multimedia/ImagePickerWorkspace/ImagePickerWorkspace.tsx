@@ -1,12 +1,12 @@
 import { ComponentPropsWithRef, useEffect, useState } from 'react';
 
-import { Delete, Edit } from '@edifice-ui/icons';
+import { Delete, Edit } from '@edifice.io/icons';
 import { IWebApp } from 'edifice-ts-client';
 
+import clsx from 'clsx';
 import { AppIcon } from '../../components/AppIcon';
 import { Avatar } from '../../components/Avatar';
 import { IconButton } from '../../components/Button';
-import clsx from 'clsx';
 
 export interface ImagePickerWorkspaceProps
   extends ComponentPropsWithRef<'input'> {

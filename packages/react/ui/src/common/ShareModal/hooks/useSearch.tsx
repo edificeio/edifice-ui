@@ -1,6 +1,6 @@
 import { ChangeEvent, Dispatch, useEffect, useReducer } from 'react';
 
-import { Bookmark } from '@edifice-ui/icons';
+import { Bookmark } from '@edifice.io/icons';
 
 import {
   ShareRight,

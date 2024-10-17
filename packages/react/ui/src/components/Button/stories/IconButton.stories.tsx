@@ -1,7 +1,7 @@
 import { Meta } from '@storybook/react';
 
+import { AddUser, Block, Hourglass } from '@edifice.io/icons';
 import IconButton from '../IconButton';
-import { AddUser, Block, Hourglass } from '@edifice-ui/icons';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof IconButton> = {

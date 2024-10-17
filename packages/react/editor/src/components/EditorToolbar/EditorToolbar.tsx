@@ -2,34 +2,27 @@ import { RefAttributes, RefObject, useMemo } from 'react';
 
 import {
   AlignLeft,
-  Paperclip,
+  BulletList,
   Landscape,
   Link,
   Mic,
+  Paperclip,
   RecordVideo,
+  Redo,
+  SpeechToText,
   TextBold,
   TextItalic,
   TextUnderline,
-  SpeechToText,
-  BulletList,
   Undo,
-  Redo,
-} from '@edifice-ui/icons';
+} from '@edifice.io/icons';
 import {
-  ToolbarItem,
   IconButtonProps,
   MediaLibraryRef,
   Toolbar,
-} from '@edifice-ui/react';
+  ToolbarItem,
+} from '@edifice.io/react';
 import { useTranslation } from 'react-i18next';
 
-import { EditorToolbarDropdownMenu } from './EditorToolbar.DropdownMenu';
-import { EditorToolbarEmoji } from './EditorToolbar.Emoji';
-import { EditorToolbarHighlightColor } from './EditorToolbar.HighlightColor';
-import { EditorToolbarPlusMenu } from './EditorToolbar.PlusMenu';
-import { EditorToolbarTextColor } from './EditorToolbar.TextColor';
-import { EditorToolbarTextSize } from './EditorToolbar.TextSize';
-import { EditorToolbarTypography } from './EditorToolbar.Typography';
 import {
   useActionOptions,
   useEditorContext,
@@ -38,6 +31,13 @@ import {
 import { hasExtension } from '../../utils/has-extension';
 import { hasMark } from '../../utils/has-mark';
 import { hasTextStyle } from '../../utils/has-text-style';
+import { EditorToolbarDropdownMenu } from './EditorToolbar.DropdownMenu';
+import { EditorToolbarEmoji } from './EditorToolbar.Emoji';
+import { EditorToolbarHighlightColor } from './EditorToolbar.HighlightColor';
+import { EditorToolbarPlusMenu } from './EditorToolbar.PlusMenu';
+import { EditorToolbarTextColor } from './EditorToolbar.TextColor';
+import { EditorToolbarTextSize } from './EditorToolbar.TextSize';
+import { EditorToolbarTypography } from './EditorToolbar.Typography';
 
 interface Props {
   /** Ref to a MediaLibrary instance */

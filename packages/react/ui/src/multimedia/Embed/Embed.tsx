@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Code } from '@edifice-ui/icons';
+import { Code } from '@edifice.io/icons';
 import { useTranslation } from 'react-i18next';
 
 import { FormControl, TextArea } from '../../components';

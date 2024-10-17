@@ -1,11 +1,11 @@
-import { useTranslation } from 'react-i18next';
-import { Modal } from '../Modal';
-import { createPortal } from 'react-dom';
-import { Button } from '../Button';
-import { See, Users } from '@edifice-ui/icons';
+import { See, Users } from '@edifice.io/icons';
 import { ViewsDetails } from 'edifice-ts-client';
-import ViewsByProfileCard from './ViewsByProfileCard';
+import { createPortal } from 'react-dom';
+import { useTranslation } from 'react-i18next';
 import { StringUtils } from '../../utils';
+import { Button } from '../Button';
+import { Modal } from '../Modal';
+import ViewsByProfileCard from './ViewsByProfileCard';
 
 export interface ViewsModalProps {
   viewsDetails: ViewsDetails;

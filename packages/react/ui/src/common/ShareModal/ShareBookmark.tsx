@@ -1,6 +1,6 @@
 import { Ref } from 'react';
 
-import { Save } from '@edifice-ui/icons';
+import { Save } from '@edifice.io/icons';
 import { useTranslation } from 'react-i18next';
 
 import { Button, FormControl } from '../../components';

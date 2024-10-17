@@ -1,4 +1,4 @@
-import { useToggle } from '@edifice-ui/react';
+import { useToggle } from '@edifice.io/react';
 import { Editor } from '@tiptap/react';
 
 /**

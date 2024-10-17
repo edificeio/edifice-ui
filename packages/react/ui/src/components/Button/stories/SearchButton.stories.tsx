@@ -1,4 +1,4 @@
-import { Search, UserSearch } from '@edifice-ui/icons';
+import { Search, UserSearch } from '@edifice.io/icons';
 import { Meta, StoryObj } from '@storybook/react';
 
 import SearchButton from '../SearchButton';

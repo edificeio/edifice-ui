@@ -9,7 +9,7 @@ import {
   Refresh,
   Restart,
   Save,
-} from '@edifice-ui/icons';
+} from '@edifice.io/icons';
 import { WorkspaceElement, WorkspaceVisibility } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 

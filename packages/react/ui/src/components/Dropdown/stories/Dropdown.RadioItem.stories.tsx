@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import Dropdown from '../Dropdown';
+import { Filter } from '@edifice.io/icons';
 import { useState } from 'react';
-import { Filter } from '@edifice-ui/icons';
+import Dropdown from '../Dropdown';
 
 const meta: Meta<typeof Dropdown> = {
   title: 'Components/Dropdown/Dropdown Radio Item',

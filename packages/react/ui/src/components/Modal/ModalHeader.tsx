@@ -1,10 +1,10 @@
 import { ReactNode, useEffect, useRef } from 'react';
 
-import { Close } from '@edifice-ui/icons';
+import { Close } from '@edifice.io/icons';
 import { useTranslation } from 'react-i18next';
 
-import { useModalContext } from './ModalContext';
 import IconButton from '../Button/IconButton';
+import { useModalContext } from './ModalContext';
 
 export interface ModalHeaderProps {
   /**

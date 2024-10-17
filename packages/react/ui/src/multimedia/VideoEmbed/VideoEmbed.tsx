@@ -1,6 +1,6 @@
 import { useEffect, useId, useState } from 'react';
 
-import { ArrowRight, Globe } from '@edifice-ui/icons';
+import { ArrowRight, Globe } from '@edifice.io/icons';
 import { Embedder, odeServices } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 

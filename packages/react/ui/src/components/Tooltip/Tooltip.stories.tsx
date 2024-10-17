@@ -1,9 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
 
+import { AlertCircle } from '@edifice.io/icons';
 import { Button } from '../Button';
 import Tooltip, { TooltipProps } from './Tooltip';
-import { AlertCircle } from '@edifice-ui/icons';
-import React from 'react';
 
 const meta: Meta<typeof Tooltip> = {
   title: 'Components/Tooltip',

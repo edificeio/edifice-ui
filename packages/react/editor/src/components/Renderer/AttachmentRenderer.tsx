@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { Delete, Download } from '@edifice-ui/icons';
-import { Attachment, Grid, IconButton } from '@edifice-ui/react';
+import { Delete, Download } from '@edifice.io/icons';
+import { Attachment, Grid, IconButton } from '@edifice.io/react';
 import { Editor, NodeViewWrapper } from '@tiptap/react';
 import { useTranslation } from 'react-i18next';
 

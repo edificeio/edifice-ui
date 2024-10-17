@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import { Button, Modal } from '@edifice-ui/react';
+import { Button, Modal } from '@edifice.io/react';
+import Mathematics from '@tiptap-pro/extension-mathematics';
 import { Editor, EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import Mathematics from '@tiptap-pro/extension-mathematics';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 

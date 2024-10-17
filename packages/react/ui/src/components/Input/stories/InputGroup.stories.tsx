@@ -2,12 +2,12 @@ import { Meta, StoryObj } from '@storybook/react';
 import { useMemo, useState } from 'react';
 import Button from '../../Button/Button';
 
-import { Indeterminate } from '../../Checkbox/Checkbox.stories';
+import { Search } from '@edifice.io/icons';
 import { Checkbox } from '../../Checkbox';
+import { Indeterminate } from '../../Checkbox/Checkbox.stories';
 import { FormControl } from '../../Form';
 import { Radio } from '../../Radio';
 import Input from '../Input';
-import { Search } from '@edifice-ui/icons';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof FormControl> = {

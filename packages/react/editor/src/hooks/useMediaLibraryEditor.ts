@@ -9,7 +9,7 @@ import {
   TabsItemProps,
   addTimestampToImageUrl,
   useWorkspaceFile,
-} from '@edifice-ui/react';
+} from '@edifice.io/react';
 import { Editor } from '@tiptap/react';
 import { WorkspaceElement } from 'edifice-ts-client';
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { Folder, RafterRight, RafterDown } from '@edifice-ui/icons';
+import { Folder, RafterDown, RafterRight } from '@edifice.io/icons';
 import { useTranslation } from 'react-i18next';
 
 import useTreeItemEvents from './hooks/useTreeItemEvents';

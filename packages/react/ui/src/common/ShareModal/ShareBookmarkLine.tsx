@@ -1,4 +1,4 @@
-import { Bookmark, Close, RafterDown } from '@edifice-ui/icons';
+import { Bookmark, Close, RafterDown } from '@edifice.io/icons';
 import {
   ShareRight,
   ShareRightAction,

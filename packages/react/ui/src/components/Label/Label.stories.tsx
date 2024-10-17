@@ -1,4 +1,4 @@
-import { Mail } from '@edifice-ui/icons';
+import { Mail } from '@edifice.io/icons';
 import { Meta, StoryObj } from '@storybook/react';
 import { FormControl } from '../Form';
 import Label from './Label';

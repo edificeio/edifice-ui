@@ -1,4 +1,4 @@
-import { Close, Reset, SuccessOutline, Wand } from '@edifice-ui/icons';
+import { Close, Reset, SuccessOutline, Wand } from '@edifice.io/icons';
 import { useTranslation } from 'react-i18next';
 
 import { Tooltip } from '..';

@@ -1,4 +1,4 @@
-import { Paperclip } from '@edifice-ui/icons';
+import { Paperclip } from '@edifice.io/icons';
 import clsx from 'clsx';
 import { Role } from 'edifice-ts-client';
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Blur, Crop, Reset, Undo } from '@edifice-ui/icons';
+import { Blur, Crop, Reset, Undo } from '@edifice.io/icons';
 import { useTranslation } from 'react-i18next';
 
 import { Toolbar, ToolbarItem } from '../../../components';

@@ -1,12 +1,12 @@
 import { ReactNode } from 'react';
 
-import { Plus } from '@edifice-ui/icons';
+import { Plus } from '@edifice.io/icons';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
-import { useDropzoneContext } from './DropzoneContext';
 import { useMediaLibraryContext } from '../../multimedia/MediaLibrary/MediaLibraryContext';
 import Button from '../Button/Button';
+import { useDropzoneContext } from './DropzoneContext';
 
 const DropzoneFile = ({ children }: { children: ReactNode }) => {
   const { t } = useTranslation();

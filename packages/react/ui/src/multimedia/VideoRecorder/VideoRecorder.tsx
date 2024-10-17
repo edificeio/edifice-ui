@@ -16,7 +16,7 @@ import {
   RecordVideo,
   Refresh,
   Save,
-} from '@edifice-ui/icons';
+} from '@edifice.io/icons';
 import { WorkspaceElement, odeServices } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 

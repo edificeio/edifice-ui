@@ -1,7 +1,7 @@
 # Edifice React Icons Library
 
-![npm](https://img.shields.io/npm/v/@edifice-ui/icons?style=flat-square)
-![bundlephobia](https://img.shields.io/bundlephobia/min/@edifice-ui/icons?style=flat-square)
+![npm](https://img.shields.io/npm/v/@edifice.io/icons?style=flat-square)
+![bundlephobia](https://img.shields.io/bundlephobia/min/@edifice.io/icons?style=flat-square)
 
 ## Getting Started
 

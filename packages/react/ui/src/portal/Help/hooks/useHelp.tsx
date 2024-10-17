@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-import { BurgerMenu } from '@edifice-ui/icons';
+import { BurgerMenu } from '@edifice.io/icons';
 import parse, { attributesToProps, domToReact } from 'html-react-parser';
 
 import { Button } from '../../../components';

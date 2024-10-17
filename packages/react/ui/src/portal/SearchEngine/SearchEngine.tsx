@@ -1,9 +1,9 @@
 import { useId, useRef } from 'react';
 
-import { Search } from '@edifice-ui/icons/nav';
+import { Search } from '@edifice.io/icons/nav';
 import { useTranslation } from 'react-i18next';
 
-import { Popover, FormControl, SearchButton } from '../../components';
+import { FormControl, Popover, SearchButton } from '../../components';
 import { useHover } from '../../hooks';
 import { NavItem } from '../Header/NavItem';
 

@@ -16,7 +16,7 @@ import {
   Error,
   InfoCircle,
   SuccessOutline,
-} from '@edifice-ui/icons';
+} from '@edifice.io/icons';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 

@@ -1,8 +1,8 @@
-import { Video, Mic, Landscape } from '@edifice-ui/icons';
+import { Landscape } from '@edifice.io/icons';
 import { Meta, StoryObj } from '@storybook/react';
 
+import Tabs from './Tabs';
 import { TabsItemProps } from './TabsItem';
-import Tabs, { TabsProps } from './Tabs';
 
 const meta: Meta<typeof Tabs> = {
   title: 'Components/Tabs',

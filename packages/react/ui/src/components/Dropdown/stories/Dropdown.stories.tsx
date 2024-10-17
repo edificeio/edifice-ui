@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import Dropdown from '../Dropdown';
-import { Copy, Cut, Delete, Edit, Filter, Print } from '@edifice-ui/icons';
+import { Copy, Cut, Delete, Edit, Filter, Print } from '@edifice.io/icons';
 import { RefAttributes, useState } from 'react';
 import IconButton, { IconButtonProps } from '../../Button/IconButton';
 import { ColorPicker, DefaultPalette } from '../../ColorPicker';
+import Dropdown from '../Dropdown';
 
 const meta: Meta<typeof Dropdown> = {
   title: 'Components/Dropdown/Base',

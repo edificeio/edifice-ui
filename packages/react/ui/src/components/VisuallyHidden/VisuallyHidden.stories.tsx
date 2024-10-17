@@ -1,7 +1,7 @@
+import { AddUser } from '@edifice.io/icons';
 import { Meta } from '@storybook/react';
-import VisuallyHidden, { VisuallyHiddenProps } from './VisuallyHidden';
 import { Button } from '../Button';
-import { AddUser } from '@edifice-ui/icons';
+import VisuallyHidden, { VisuallyHiddenProps } from './VisuallyHidden';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof VisuallyHidden> = {

@@ -5,9 +5,8 @@ import {
   ArrowUp,
   HighlightColumn,
   HighlightRow,
-} from '@edifice-ui/icons';
-import { Tooltip } from '@edifice-ui/react';
-import { Dropdown } from '@edifice-ui/react';
+} from '@edifice.io/icons';
+import { Dropdown, Tooltip } from '@edifice.io/react';
 import { Editor } from '@tiptap/react';
 import { useTranslation } from 'react-i18next';
 

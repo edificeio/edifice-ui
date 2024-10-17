@@ -1,4 +1,4 @@
-import { addTimestampToImageUrl } from '@edifice-ui/react';
+import { addTimestampToImageUrl } from '@edifice.io/react';
 import { Editor } from '@tiptap/react';
 /**
  * This hooks lets manipulate selected image node by

@@ -1,3 +1,3 @@
-import { ImageEditor } from '@edifice-ui/react';
+import { ImageEditor } from '@edifice.io/react';
 
 export default ImageEditor;

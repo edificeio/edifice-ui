@@ -1,11 +1,10 @@
-import { forwardRef } from 'react';
-import { Ref } from 'react';
-import { ComponentPropsWithRef } from 'react';
+import { ComponentPropsWithRef, Ref, forwardRef } from 'react';
 
-import { DeleteColor, InfoCircle } from '@edifice-ui/icons';
+import { DeleteColor, InfoCircle } from '@edifice.io/icons';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
+import { Tooltip } from '../Tooltip';
 import {
   AccessiblePalette,
   ColorPalette,
@@ -14,7 +13,6 @@ import {
   DefaultPalette,
 } from './ColorPalette';
 import ColorPickerItem from './ColorPickerItem';
-import { Tooltip } from '../Tooltip';
 
 export interface ColorPickerProps extends ComponentPropsWithRef<'div'> {
   /**

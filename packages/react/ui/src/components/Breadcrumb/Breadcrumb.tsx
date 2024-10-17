@@ -1,6 +1,6 @@
 import { forwardRef, Ref } from 'react';
 
-import { RafterRight } from '@edifice-ui/icons';
+import { RafterRight } from '@edifice.io/icons';
 import { IWebApp } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 

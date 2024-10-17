@@ -1,11 +1,11 @@
 import { RefAttributes, useEffect, useMemo, useState } from 'react';
 
-import { MergeCells, SplitCells } from '@edifice-ui/icons';
-import { IconButtonProps, Toolbar } from '@edifice-ui/react';
+import { MergeCells, SplitCells } from '@edifice.io/icons';
+import { IconButtonProps, Toolbar } from '@edifice.io/react';
 import {
+  Editor,
   FloatingMenu,
   FloatingMenuProps,
-  Editor,
   findParentNodeClosestToPos,
 } from '@tiptap/react';
 import { useTranslation } from 'react-i18next';

@@ -1,20 +1,20 @@
 import { RefObject } from 'react';
 
 import {
-  TextVanilla,
-  Superscript,
-  Subscript,
-  SquareRoot,
-  Code,
-  Table,
-  BulletList,
-  OrderedList,
-  AlignLeft,
   AlignCenter,
-  AlignRight,
   AlignJustify,
-} from '@edifice-ui/icons';
-import { DropdownMenuOptions, MediaLibraryRef } from '@edifice-ui/react';
+  AlignLeft,
+  AlignRight,
+  BulletList,
+  Code,
+  OrderedList,
+  SquareRoot,
+  Subscript,
+  Superscript,
+  Table,
+  TextVanilla,
+} from '@edifice.io/icons';
+import { DropdownMenuOptions, MediaLibraryRef } from '@edifice.io/react';
 import { Editor } from '@tiptap/react';
 import { useTranslation } from 'react-i18next';
 

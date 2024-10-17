@@ -1,5 +1,6 @@
-import { RafterDown } from '@edifice-ui/icons';
+import { RafterDown } from '@edifice.io/icons';
 import {
+  OneAssistance as Assistance,
   Community,
   Disconnect,
   Home,
@@ -7,39 +8,38 @@ import {
   NeoAssistance,
   NeoMessaging,
   NewRelease,
-  OneAssistance as Assistance,
   OneMessaging,
   OneProfile,
   Userbook,
-} from '@edifice-ui/icons/nav';
+} from '@edifice.io/icons/nav';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
-import { Badge } from './Badge';
-import { Navbar } from './Navbar';
-import { NavBarNav } from './NavbarNav';
-import { NavItem } from './NavItem';
-import { NavLink } from './NavLink';
-import { WidgetAppsBody, WidgetAppsFooter } from './WidgetApps';
 import {
   Avatar,
-  VisuallyHidden,
   Logo,
   Popover,
   PopoverBody,
   PopoverFooter,
+  VisuallyHidden,
 } from '../../components';
 import {
   useConversation,
-  useUser,
+  useHasWorkflow,
   useHeader,
   useOdeClient,
-  useHasWorkflow,
   useOdeTheme,
+  useUser,
 } from '../../core';
 import { Help } from '../Help';
 import { useHelp } from '../Help/hooks/useHelp';
 import SearchEngine from '../SearchEngine/SearchEngine';
+import { Badge } from './Badge';
+import { NavItem } from './NavItem';
+import { NavLink } from './NavLink';
+import { Navbar } from './Navbar';
+import { NavBarNav } from './NavbarNav';
+import { WidgetAppsBody, WidgetAppsFooter } from './WidgetApps';
 
 export interface HeaderProps {
   is1d?: boolean;

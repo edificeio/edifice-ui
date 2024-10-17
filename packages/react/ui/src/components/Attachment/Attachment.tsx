@@ -1,6 +1,6 @@
 import { ComponentPropsWithRef, forwardRef, ReactNode, Ref } from 'react';
 
-import { Paperclip } from '@edifice-ui/icons';
+import { Paperclip } from '@edifice.io/icons';
 
 export interface AttachmentProps extends ComponentPropsWithRef<'div'> {
   /**

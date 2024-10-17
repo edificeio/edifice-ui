@@ -1,5 +1,5 @@
 {
-  "name": "@edifice-ui/editor",
+  "name": "@edifice.io/editor",
   "version": "1.5.21",
   "description": "Edifice Editor Library",
   "keywords": [
@@ -73,8 +73,8 @@
     "emoji-picker-react": "4.5.2"
   },
   "devDependencies": {
-    "@edifice-ui/icons": "workspace:*",
-    "@edifice-ui/react": "workspace:*",
+    "@edifice.io/icons": "workspace:*",
+    "@edifice.io/react": "workspace:*",
     "@types/node": "^20.4.9",
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.14",
@@ -85,8 +85,8 @@
     "react-i18next": "^14.1.0"
   },
   "peerDependencies": {
-    "@edifice-ui/icons": "*",
-    "@edifice-ui/react": "*",
+    "@edifice.io/icons": "*",
+    "@edifice.io/react": "*",
     "@react-spring/web": "^9.7.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

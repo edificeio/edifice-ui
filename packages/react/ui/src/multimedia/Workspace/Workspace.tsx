@@ -4,7 +4,7 @@ import {
   SortAscendingLetters,
   SortDescendingLetters,
   SortTime,
-} from '@edifice-ui/icons';
+} from '@edifice.io/icons';
 import clsx from 'clsx';
 import {
   Role,

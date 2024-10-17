@@ -1,5 +1,5 @@
 {
-  "name": "@edifice-ui/react",
+  "name": "@edifice.io/react",
   "version": "1.5.21",
   "description": "Edifice React Library",
   "keywords": [
@@ -64,7 +64,7 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-react-pure-annotations": "7.23.3",
-    "@edifice-ui/icons": "workspace:*",
+    "@edifice.io/icons": "workspace:*",
     "@react-spring/web": "9.7.3",
     "@tanstack/react-query": "5.8.4",
     "@types/node": "20.8.4",
@@ -79,7 +79,7 @@
     "react-i18next": "^14.1.0"
   },
   "peerDependencies": {
-    "@edifice-ui/icons": "*",
+    "@edifice.io/icons": "*",
     "@react-spring/web": "^9.7.3",
     "@tanstack/react-query": "^5.8.4",
     "react": "^18.2.0",

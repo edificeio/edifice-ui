@@ -1,6 +1,6 @@
 import { forwardRef, ReactNode, Ref } from 'react';
 
-import { Loader } from '@edifice-ui/icons';
+import { Loader } from '@edifice.io/icons';
 import clsx from 'clsx';
 
 export type LoadingPosition = 'left' | 'right' | undefined;

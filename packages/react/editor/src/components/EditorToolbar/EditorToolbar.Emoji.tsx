@@ -1,12 +1,12 @@
 import { RefAttributes } from 'react';
 
-import { Smiley } from '@edifice-ui/icons';
+import { Smiley } from '@edifice.io/icons';
 import {
   Dropdown,
   IconButton,
   IconButtonProps,
   Tooltip,
-} from '@edifice-ui/react';
+} from '@edifice.io/react';
 import EmojiPicker, { Categories } from 'emoji-picker-react';
 import { useTranslation } from 'react-i18next';
 

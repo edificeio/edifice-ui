@@ -1,13 +1,13 @@
-import { useTranslation } from 'react-i18next';
+import { Users } from '@edifice.io/icons';
 import {
   Guest,
-  Student,
   Parent,
-  Teacher,
   Personnel,
-} from '@edifice-ui/icons/audience';
+  Student,
+  Teacher,
+} from '@edifice.io/icons/audience';
 import { ViewsDetailsProfile } from 'edifice-ts-client';
-import { Users } from '@edifice-ui/icons';
+import { useTranslation } from 'react-i18next';
 import { StringUtils } from '../../utils';
 
 export interface ViewsCardProps {

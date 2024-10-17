@@ -1,15 +1,15 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import Toolbar from './Toolbar';
 import {
+  Delete,
+  Plus,
+  Record,
   RecordVideo,
   Save,
   Write,
-  Plus,
-  Delete,
-  Record,
-} from '@edifice-ui/icons';
+} from '@edifice.io/icons';
 import { Dropdown } from '../Dropdown';
+import Toolbar from './Toolbar';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Toolbar> = {

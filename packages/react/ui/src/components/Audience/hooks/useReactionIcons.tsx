@@ -3,13 +3,13 @@ import {
   CongratsCounter,
   Great,
   GreatCounter,
-  InterestingCounter,
   Interesting,
+  InterestingCounter,
   Thanks,
   ThanksCounter,
-} from '@edifice-ui/icons/audience';
+} from '@edifice.io/icons/audience';
 
-import { Reaction as ReactionIcon } from '@edifice-ui/icons';
+import { Reaction as ReactionIcon } from '@edifice.io/icons';
 import { ReactionType } from 'edifice-ts-client';
 
 export default function useReactionIcons() {

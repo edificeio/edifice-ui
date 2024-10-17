@@ -1,13 +1,13 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import Button, { ButtonProps } from '../Button';
 import {
   AddUser,
   Close,
   Hourglass,
   RafterLeft,
   RafterRight,
-} from '@edifice-ui/icons';
+} from '@edifice.io/icons';
+import Button, { ButtonProps } from '../Button';
 import IconButton from '../IconButton';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export

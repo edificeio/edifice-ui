@@ -1,7 +1,7 @@
-import { See } from '@edifice-ui/icons';
-import { Button } from '../Button';
-import { StringUtils } from '../../utils';
+import { See } from '@edifice.io/icons';
 import clsx from 'clsx';
+import { StringUtils } from '../../utils';
+import { Button } from '../Button';
 
 export interface ViewsCounterProps {
   viewsCounter: number;

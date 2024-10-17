@@ -31,7 +31,7 @@ export default defineConfig({
         ...Object.keys(peerDependencies),
         'react/jsx-runtime',
         'edifice-ts-client',
-        '@edifice-ui/icons/nav',
+        '@edifice.io/icons/nav',
       ],
     },
   },

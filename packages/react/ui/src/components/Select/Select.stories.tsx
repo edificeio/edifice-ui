@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
+import { ListOrder } from '@edifice.io/icons';
 import Select, { OptionsType } from './Select';
-import { ListOrder } from '@edifice-ui/icons';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Select> = {

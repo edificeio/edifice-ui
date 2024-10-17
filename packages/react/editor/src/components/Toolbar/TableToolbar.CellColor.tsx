@@ -6,8 +6,8 @@ import {
   ColorPickerItem,
   DefaultPalette,
   Dropdown,
-} from '@edifice-ui/react';
-import { Tooltip } from '@edifice-ui/react';
+  Tooltip,
+} from '@edifice.io/react';
 import { Editor } from '@tiptap/react';
 import { useTranslation } from 'react-i18next';
 

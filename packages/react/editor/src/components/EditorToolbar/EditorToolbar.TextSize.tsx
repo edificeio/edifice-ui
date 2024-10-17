@@ -1,12 +1,12 @@
 import { Fragment, RefAttributes } from 'react';
 
-import { TextSize } from '@edifice-ui/icons';
+import { TextSize } from '@edifice.io/icons';
 import {
   Dropdown,
   IconButton,
   IconButtonProps,
   Tooltip,
-} from '@edifice-ui/react';
+} from '@edifice.io/react';
 import { useTranslation } from 'react-i18next';
 
 import { useEditorContext } from '../../hooks/useEditorContext';

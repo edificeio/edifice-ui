@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import Dropdown from '../Dropdown';
-import { Edit, Filter } from '@edifice-ui/icons';
-import IconButton, { IconButtonProps } from '../../Button/IconButton';
+import { Edit, Filter } from '@edifice.io/icons';
 import { RefAttributes } from 'react';
 import { JSX } from 'react/jsx-runtime';
+import IconButton, { IconButtonProps } from '../../Button/IconButton';
+import Dropdown from '../Dropdown';
 import DropdownTrigger from '../DropdownTrigger';
 
 const meta: Meta<typeof DropdownTrigger> = {

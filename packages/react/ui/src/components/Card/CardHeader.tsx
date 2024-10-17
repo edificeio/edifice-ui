@@ -1,7 +1,7 @@
-import { Options } from '@edifice-ui/icons';
+import { Options } from '@edifice.io/icons';
 
-import { useCardContext } from './CardContext';
 import { IconButton } from '../Button';
+import { useCardContext } from './CardContext';
 
 const CardHeader = () => {
   const { isSelectable, isClickable, onClick, onSelect } = useCardContext();

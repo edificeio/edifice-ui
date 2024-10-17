@@ -5,9 +5,9 @@ import {
   ImageSizeMedium,
   ImageSizeSmall,
   Wand,
-} from '@edifice-ui/icons';
-import { Toolbar, ToolbarItem } from '@edifice-ui/react';
-import { Editor, BubbleMenu, BubbleMenuProps } from '@tiptap/react';
+} from '@edifice.io/icons';
+import { Toolbar, ToolbarItem } from '@edifice.io/react';
+import { BubbleMenu, BubbleMenuProps, Editor } from '@tiptap/react';
 import { useTranslation } from 'react-i18next';
 
 interface ButtonSize {

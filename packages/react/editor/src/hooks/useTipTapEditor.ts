@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 // Import TipTap module overloaded typings (custom commands)
 import '@edifice.io/tiptap-extensions';
 
-import { useOdeClient } from '@edifice-ui/react';
+import { useOdeClient } from '@edifice.io/react';
 import {
   Alert,
   CustomHeading,

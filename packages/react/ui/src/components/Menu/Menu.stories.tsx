@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { AlertCircle, AlignLeft, Calendar, Smiley } from '@edifice-ui/icons';
+import { AlertCircle, AlignLeft, Calendar, Smiley } from '@edifice.io/icons';
 import { Menu } from './Menu';
 
 const meta: Meta<typeof Menu> = {

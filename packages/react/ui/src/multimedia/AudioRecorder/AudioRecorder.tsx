@@ -1,13 +1,13 @@
-import { useState, forwardRef, useImperativeHandle } from 'react';
+import { forwardRef, useImperativeHandle, useState } from 'react';
 
-import { Mic } from '@edifice-ui/icons';
+import { Mic } from '@edifice.io/icons';
 import clsx from 'clsx';
 import { WorkspaceElement, WorkspaceVisibility } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 
+import { FormControl, Input, Toolbar } from '../../components';
 import AudioRecorderTimer from './AudioRecorderTimer';
 import useAudioRecorder from './useAudioRecorder';
-import { FormControl, Input, Toolbar } from '../../components';
 
 export interface AudioRecorderProps {
   onSaveSuccess?: (resource: WorkspaceElement) => void;

@@ -1,7 +1,7 @@
-import { Mic, Pause, Record } from '@edifice-ui/icons';
+import { Mic, Pause, Record } from '@edifice.io/icons';
 
-import { PlayState, RecordState } from './useAudioRecorder';
 import { convertMsToMS } from '../../utils';
+import { PlayState, RecordState } from './useAudioRecorder';
 
 export interface AudioRecorderTimerProps {
   recordState: RecordState;

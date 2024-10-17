@@ -17,7 +17,7 @@ import {
   Mic,
   RecordVideo,
   Smartphone,
-} from '@edifice-ui/icons';
+} from '@edifice.io/icons';
 import {
   WorkspaceElement,
   WorkspaceVisibility,
@@ -25,19 +25,19 @@ import {
 } from 'edifice-ts-client';
 import { useTranslation } from 'react-i18next';
 
-import { InnerTabs } from './innertabs';
-import { ExternalLinkTabProps } from './innertabs/ExternalLink';
-import {
-  InternalLinkTabProps,
-  InternalLinkTabResult,
-} from './innertabs/InternalLink';
-import { MediaLibraryContext } from './MediaLibraryContext';
 import { useHttpErrorToast } from '../..';
 import { Button } from '../../components';
 import Modal, { ModalElement } from '../../components/Modal/Modal';
 import { Tabs } from '../../components/Tabs';
 import { TabsItemProps } from '../../components/Tabs/TabsItem';
 import { useHasWorkflow } from '../../core/useHasWorkflow';
+import { MediaLibraryContext } from './MediaLibraryContext';
+import { InnerTabs } from './innertabs';
+import { ExternalLinkTabProps } from './innertabs/ExternalLink';
+import {
+  InternalLinkTabProps,
+  InternalLinkTabResult,
+} from './innertabs/InternalLink';
 
 //---------------------------------------------------
 // Tabs parameters

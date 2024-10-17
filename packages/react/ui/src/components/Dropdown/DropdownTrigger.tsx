@@ -1,6 +1,6 @@
 import { Ref, forwardRef } from 'react';
 
-import { RafterUp } from '@edifice-ui/icons';
+import { RafterUp } from '@edifice.io/icons';
 import clsx from 'clsx';
 
 import { useDropdownContext } from './DropdownContext';

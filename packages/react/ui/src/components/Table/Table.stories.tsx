@@ -1,4 +1,4 @@
-import { Checklist, Globe, Lock, Users } from '@edifice-ui/icons';
+import { Checklist, Globe, Lock, Users } from '@edifice.io/icons';
 import { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { Checkbox } from '../Checkbox';

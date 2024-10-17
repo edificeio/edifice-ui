@@ -1,7 +1,7 @@
 # Edifice Editor
 
-![npm](https://img.shields.io/npm/v/@edifice-ui/editor?style=flat-square)
-![bundlephobia](https://img.shields.io/bundlephobia/min/@edifice-ui/editor?style=flat-square)
+![npm](https://img.shields.io/npm/v/@edifice.io/editor?style=flat-square)
+![bundlephobia](https://img.shields.io/bundlephobia/min/@edifice.io/editor?style=flat-square)
 
 ## Getting Started
 
@@ -75,7 +75,7 @@ export interface ButtonProps {
 - Import your component inside `index.ts` file.
 
 ```jsx
-export * from "./Button";
+export * from './Button';
 ```
 
 ## Dev

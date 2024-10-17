@@ -1,4 +1,4 @@
-import { Copy } from '@edifice-ui/icons';
+import { Copy } from '@edifice.io/icons';
 import { IResource } from 'edifice-ts-client';
 import {
   UseFormRegister,
@@ -8,10 +8,10 @@ import {
 import { useTranslation } from 'react-i18next';
 
 import {
-  Heading,
   Alert,
-  FormControl,
   Button,
+  FormControl,
+  Heading,
   Input,
 } from '../../../components';
 import { useSlug } from '../hooks/useSlug';

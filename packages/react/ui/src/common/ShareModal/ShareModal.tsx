@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react';
 
-import { Bookmark, InfoCircle, RafterDown } from '@edifice-ui/icons';
+import { Bookmark, InfoCircle, RafterDown } from '@edifice.io/icons';
 
 import { UseMutationResult } from '@tanstack/react-query';
 import {

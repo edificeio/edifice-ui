@@ -1,6 +1,6 @@
 import { FormEvent, useCallback, useEffect, useState } from 'react';
 
-import { Applications } from '@edifice-ui/icons';
+import { Applications } from '@edifice.io/icons';
 import { App, odeServices } from 'edifice-ts-client';
 /*
  * Augmented definition of a resource, until behaviours are dropped.

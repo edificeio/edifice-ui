@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import Loading, { LoadingProps } from './Loading';
 
-import { Hourglass } from '@edifice-ui/icons';
+import { Hourglass } from '@edifice.io/icons';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Loading> = {

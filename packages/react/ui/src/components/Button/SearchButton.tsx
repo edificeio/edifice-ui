@@ -7,7 +7,7 @@
  */
 import { forwardRef, Ref } from 'react';
 
-import { Search } from '@edifice-ui/icons';
+import { Search } from '@edifice.io/icons';
 import clsx from 'clsx';
 
 import { ButtonRef } from './Button';

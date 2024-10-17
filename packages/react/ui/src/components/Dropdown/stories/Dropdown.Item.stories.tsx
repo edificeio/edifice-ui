@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
+import { Copy, Cut, Delete, Edit, Print } from '@edifice.io/icons';
 import Dropdown from '../Dropdown';
-import { Edit, Copy, Cut, Print, Delete } from '@edifice-ui/icons';
 
 const meta: Meta<typeof Dropdown> = {
   title: 'Components/Dropdown/Dropdown Item',

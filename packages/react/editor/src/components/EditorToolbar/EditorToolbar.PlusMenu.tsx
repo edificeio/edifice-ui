@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 
-import { Dropdown, DropdownMenuOptions } from '@edifice-ui/react';
+import { Dropdown, DropdownMenuOptions } from '@edifice.io/react';
 import { useTranslation } from 'react-i18next';
 
 interface Props {

@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react';
 
-import { AppIcon, Badge, useOdeIcons } from '@edifice-ui/react';
+import { AppIcon, Badge, useOdeIcons } from '@edifice.io/react';
 import { Node } from '@tiptap/pm/model';
 import { Editor, NodeViewWrapper } from '@tiptap/react';
 import clsx from 'clsx';
