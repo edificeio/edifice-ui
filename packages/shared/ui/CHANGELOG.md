@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-develop-rc.14](https://github.com/edificeio/edifice-frontend-framework/compare/v1.5.21...v2.0.0-develop-rc.14) (2024-10-17)
+
+**Note:** Version bump only for package @edifice.io/react
+
 # [2.0.0-develop-rc.13](https://github.com/edificeio/edifice-frontend-framework/compare/v1.5.21...v2.0.0-develop-rc.13) (2024-10-17)
 
 ### Bug Fixes
