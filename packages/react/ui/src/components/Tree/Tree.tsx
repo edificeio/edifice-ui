@@ -167,7 +167,7 @@ export const TreeNode = forwardRef(
               onClick={() => onTreeItemClick(node.id)}
               onKeyDown={handleItemKeyDown}
             >
-              {renderNode && !isChild ? (
+              {renderNode ? (
                 renderNode({
                   node,
                   hasChildren:
